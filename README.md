@@ -1,6 +1,6 @@
 # 大飞随笔
 
-使用 Astro 构建的个人 AI 研究博客。Markdown 保存在 GitHub，Astro 生成静态页面；自有服务器只运行静态站点和一个轻量 Artalk 服务。
+使用 Astro 构建的个人 AI 研究博客。Markdown 保存在 GitHub，Astro 生成静态页面；自有服务器通过 Nginx 提供页面，并运行一个单文件 Artalk 服务。
 
 ## 本地运行
 
@@ -89,7 +89,7 @@ PUBLIC_ARTALK_SERVER=https://comments.ainoteatlas.com
 PUBLIC_ARTALK_SITE=AINoteAtlas
 ```
 
-访客无需 GitHub，也无需注册账号；填写昵称与邮箱即可评论。Artalk 默认使用 SQLite，一个数据目录即可备份。部署说明见 [`docs/community-and-analytics.md`](docs/community-and-analytics.md)。
+访客无需 GitHub，也无需注册账号；填写昵称与邮箱即可评论。服务器直接运行 Artalk 官方二进制与 SQLite，不需要 Docker 或额外数据库。部署说明见 [`docs/community-and-analytics.md`](docs/community-and-analytics.md)。
 
 ## 目录
 
@@ -99,5 +99,5 @@ src/content/writing/  Markdown 文章（从这里开始写）
 src/layouts/          公共布局与元数据
 src/pages/            路由页面
 src/styles/           全局样式
-deploy/artalk/        Artalk Docker 配置
+deploy/               Nginx 与 Artalk 服务配置
 ```
