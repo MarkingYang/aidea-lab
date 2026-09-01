@@ -1,0 +1,18 @@
+[Unit]
+Description=Deploy AINoteAtlas when GitHub main changes
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/opt/aidea-lab
+Environment=ASTRO_TELEMETRY_DISABLED=1
+Environment=NPM_CONFIG_CACHE=/var/lib/aidea-deploy/npm-cache
+ExecStart=/usr/bin/flock --nonblock --conflict-exit-code 0 /run/aidea-deploy.lock /usr/local/sbin/aidea-deploy
+TimeoutStartSec=10min
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/aidea-lab /srv/ainoteatlas /var/lib/aidea-deploy

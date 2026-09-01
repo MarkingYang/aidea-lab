@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+repo=/opt/aidea-lab
+state=/var/lib/aidea-deploy/last-successful
+
+remote_commit=$(timeout 30 git -C "$repo" ls-remote origin refs/heads/main | awk 'NR == 1 { print $1 }')
+[[ $remote_commit =~ ^[0-9a-f]{40}$ ]] || { echo "无法读取 GitHub main 分支"; exit 1; }
+
+deployed_commit=$(cat "$state" 2>/dev/null || true)
+if [[ $remote_commit == "$deployed_commit" ]]; then
+  echo "无需更新：${remote_commit:0:7}"
+  exit 0
+fi
+
+git -C "$repo" pull --ff-only origin main
+[[ $(git -C "$repo" rev-parse HEAD) == "$remote_commit" ]] || { echo "本地提交与远程不一致"; exit 1; }
+
+if [[ ! -d $repo/node_modules ]] || [[ -z $deployed_commit ]] || ! git -C "$repo" diff --quiet "$deployed_commit" "$remote_commit" -- package.json package-lock.json; then
+  npm --prefix "$repo" ci --no-audit --no-fund
+fi
+
+SITE_URL=https://ainoteatlas.com npm --prefix "$repo" run build -- --force
+rsync -a --delete "$repo/dist/" /srv/ainoteatlas/
+printf '%s\n' "$remote_commit" > "$state"
+echo "发布完成：${remote_commit:0:7}"
+

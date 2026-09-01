@@ -56,7 +56,14 @@ sudo mkdir -p /srv/ainoteatlas
 sudo rsync -a --delete dist/ /srv/ainoteatlas/
 ```
 
-以后发布新文章只需推送 Markdown，然后在服务器执行以上六条命令。后续可以再加 GitHub Actions 自动部署，但它不是博客上线的必要条件。
+服务器每两分钟使用 `git ls-remote` 读取一次 GitHub `main` 的 Commit ID。只有 Commit 变化时才拉取、构建和发布；服务器重启后约两分钟自动恢复检查。发布日志：
+
+```sh
+systemctl status aidea-deploy.timer
+sudo journalctl -u aidea-deploy -n 100 --no-pager
+```
+
+因此以后发布新文章只需提交并推送 Markdown，不必再登录服务器执行构建。
 
 ## 4. 统计口径
 

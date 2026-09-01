@@ -47,6 +47,8 @@ git commit -m "content: add agent harness essay"
 git push
 ```
 
+服务器每两分钟轻量检查一次 `main` 的 Commit ID；发现变化后才拉取、构建并发布，通常两分钟内上线。
+
 ## Markdown 能力
 
 支持标题、引用、表格、任务列表、脚注、数学公式、代码高亮、图片、视频、音频、折叠内容，以及 Mermaid 流程图、时序图、状态图、类图、ER 图、甘特图和思维导图。
