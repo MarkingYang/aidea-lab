@@ -9,15 +9,7 @@ const enabled = import.meta.env.PROD || Boolean(import.meta.env.PUBLIC_ARTALK_SE
 const { title } = Astro.props;
 ---
 
-<section class="comments" id="comments" aria-labelledby="comments-title">
-  <header class="comments-heading">
-    <div>
-      <h2 id="comments-title">参与讨论</h2>
-      <p>无需登录。填写昵称与邮箱即可补充证据、提出异议或分享实践。</p>
-    </div>
-    <span>ARTALK · ANONYMOUS</span>
-  </header>
-
+<section class="comments" id="comments" aria-label="文章评论">
   {enabled ? (
     <div
       id="Comments"
@@ -29,8 +21,7 @@ const { title } = Astro.props;
     ></div>
   ) : (
     <div class="comment-setup">
-      <strong>评论服务等待部署</strong>
-      <p>连接 Artalk 后，这里将支持免 GitHub、免登录评论，并自动记录阅读量。</p>
+      <strong>评论服务等待连接</strong>
     </div>
   )}
 </section>
@@ -41,6 +32,39 @@ const { title } = Astro.props;
 
     const host = document.querySelector<HTMLElement>('[data-artalk-comments]');
     if (host) {
+      const getAnonymousId = () => {
+        const storageKey = 'aidea-anonymous-commenter';
+        try {
+          let id = localStorage.getItem(storageKey);
+          if (!id) {
+            id = crypto.randomUUID?.() || `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}`;
+            localStorage.setItem(storageKey, id);
+          }
+          return id.replace(/[^a-z0-9]/gi, '').slice(0, 12);
+        } catch {
+          return Math.random().toString(36).slice(2, 14);
+        }
+      };
+
+      const anonymousIdentity = () => {
+        const id = getAnonymousId();
+        const signature = [...id].reduce((sum, character) => sum + character.charCodeAt(0), 0);
+        const adjectives = ['远山', '星野', '微光', '松间', '云端', '潮汐', '北岸', '晚风'];
+        const nouns = ['旅人', '读者', '观察者', '同行者'];
+        return {
+          name: `${adjectives[signature % adjectives.length]}${nouns[signature % nouns.length]}·${id.slice(-4).toUpperCase()}`,
+          email: `anonymous-${id}@ainoteatlas.invalid`,
+        };
+      };
+
+      const setInputValue = (input: HTMLInputElement, value: string) => {
+        if (input.value.trim()) return false;
+        input.value = value;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+      };
+
       const comments = Artalk.init({
         el: host,
         server: host.dataset.server || '',
@@ -52,7 +76,67 @@ const { title } = Astro.props;
         pvEl: '.artalk-pv-count',
         countEl: '.artalk-comment-count',
         statPageKeyAttr: 'data-page-key',
+        placeholder: '写下你的观察、问题或不同意见…',
+        sendBtn: '发布评论',
+        noComment: '还没有评论',
+        beforeSubmit(editor, next) {
+          const inputs = editor.getHeaderInputEls();
+          const identity = anonymousIdentity();
+          setInputValue(inputs.name, identity.name);
+          if (setInputValue(inputs.email, identity.email)) host.dataset.generatedEmail = 'true';
+          if (inputs.link.value) {
+            inputs.link.value = '';
+            inputs.link.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          next();
+        },
       });
+
+      const prepareEditor = () => {
+        const name = host.querySelector<HTMLInputElement>('input[name="name"]');
+        const email = host.querySelector<HTMLInputElement>('input[name="email"]');
+        const link = host.querySelector<HTMLInputElement>('input[name="link"]');
+        const textarea = host.querySelector<HTMLTextAreaElement>('textarea');
+        const sendButton = host.querySelector<HTMLButtonElement>('.atk-send-btn');
+        if (name) {
+          name.placeholder = '昵称（可留空）';
+          name.required = false;
+          name.autocomplete = 'nickname';
+          name.setAttribute('aria-label', '昵称，可留空');
+        }
+        if (email) {
+          email.placeholder = '邮箱（可留空）';
+          email.required = false;
+          email.autocomplete = 'email';
+          email.setAttribute('aria-label', '邮箱，可留空');
+        }
+        if (link) {
+          if (link.value) {
+            link.value = '';
+            link.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+          link.hidden = true;
+          link.tabIndex = -1;
+          link.setAttribute('aria-hidden', 'true');
+        }
+        if (textarea && textarea.placeholder !== '写下你的观察、问题或不同意见…') {
+          textarea.placeholder = '写下你的观察、问题或不同意见…';
+        }
+        if (sendButton && sendButton.textContent !== '发布评论') sendButton.textContent = '发布评论';
+      };
+
+      comments.on('mounted', prepareEditor);
+      comments.on('editor-submitted', () => {
+        if (host.dataset.generatedEmail !== 'true') return;
+        const email = host.querySelector<HTMLInputElement>('input[name="email"]');
+        if (email) {
+          email.value = '';
+          email.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+        delete host.dataset.generatedEmail;
+      });
+      requestAnimationFrame(prepareEditor);
+      new MutationObserver(prepareEditor).observe(host, { childList: true, subtree: true });
 
       window.addEventListener('site-theme-change', ((event: CustomEvent<{ theme: string }>) => {
         comments.setDarkMode(event.detail?.theme === 'dark');
@@ -62,18 +146,23 @@ const { title } = Astro.props;
 )}
 
 <style>
-  .comments { width: min(var(--measure), var(--page)); margin: var(--space-section) auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
-  .comments-heading { margin-bottom: 28px; display: flex; align-items: start; justify-content: space-between; gap: 30px; }
-  .comments-heading h2 { margin: 0; font-family: var(--display); font-size: var(--display-section-size); font-weight: 400; letter-spacing: -.025em; }
-  .comments-heading p { margin: 10px 0 0; color: var(--text-soft); font-size: 13px; line-height: 1.7; }
-  .comments-heading > span { padding-top: 8px; color: var(--text-soft); font: 9px var(--mono); letter-spacing: .08em; }
-  .comment-setup { margin: 0; padding: 24px; border-radius: var(--radius); background: var(--surface); color: var(--text-soft); font-size: 13px; }
+  .comments { width: min(var(--measure), var(--page)); margin: var(--space-section) auto 0; padding-top: 30px; border-top: 1px solid var(--line); }
+  .comment-setup { margin: 0; padding: 20px; border-radius: var(--radius); background: var(--surface-soft); color: var(--text-soft); font-size: 13px; }
   .comment-setup strong { color: var(--text); font-size: 14px; }
-  .comment-setup p { margin: 9px 0 0; line-height: 1.7; }
   :global(.artalk) { --at-color-main: var(--accent); --at-color-bg: var(--bg); --at-color-font: var(--text); --at-color-deep: var(--text); --at-color-sub: var(--text-soft); --at-color-border: var(--line); }
+  :global(.comments .atk-main-editor) { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 4%, transparent); }
+  :global(.comments .atk-main-editor > .atk-header) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-bottom: 1px solid var(--line); }
+  :global(.comments .atk-main-editor > .atk-header input) { min-width: 0; height: 42px; border: 0; border-right: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--text); font-size: 13px; }
+  :global(.comments .atk-main-editor > .atk-header input:nth-of-type(2)) { border-right: 0; }
+  :global(.comments .atk-main-editor > .atk-header input[name='link']) { display: none !important; }
+  :global(.comments .atk-main-editor textarea) { min-height: 124px; padding: 16px; background: transparent !important; color: var(--text) !important; font-size: 14px; line-height: 1.75; }
+  :global(.comments .atk-main-editor .atk-bottom) { min-height: 44px; padding: 7px 9px; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--surface) 62%, transparent); }
+  :global(.comments .atk-send-btn) { min-width: 88px; border-radius: 7px; background: var(--text) !important; color: var(--bg) !important; }
+  :global(.comments .atk-list-header) { margin-top: 28px; padding-bottom: 12px; border-bottom-color: var(--line); }
   @media (max-width: 640px) {
-    .comments { margin-top: 56px; }
-    .comments-heading { flex-direction: column; gap: 8px; }
-    .comments-heading > span { padding-top: 0; }
+    .comments { margin-top: 52px; padding-top: 24px; }
+    :global(.comments .atk-main-editor > .atk-header) { grid-template-columns: 1fr; }
+    :global(.comments .atk-main-editor > .atk-header input) { border-right: 0; border-bottom: 1px solid var(--line); }
+    :global(.comments .atk-main-editor > .atk-header input:nth-of-type(2)) { border-bottom: 0; }
   }
 </style>

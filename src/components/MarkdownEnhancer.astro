@@ -176,15 +176,15 @@
         flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
         sequence: { useMaxWidth: true, wrap: true },
         themeVariables: dark ? {
-          background: '#1f1f1f', primaryColor: '#292929', primaryTextColor: '#f2f2f2',
-          primaryBorderColor: '#525252', secondaryColor: '#35211d', secondaryTextColor: '#f2f2f2',
-          tertiaryColor: '#1f1f1f', tertiaryTextColor: '#f2f2f2', lineColor: '#9a9a9a',
-          noteBkgColor: '#35211d', noteTextColor: '#f2f2f2', noteBorderColor: '#e2603f',
+          background: '#1a1b18', primaryColor: '#242521', primaryTextColor: '#eeede8',
+          primaryBorderColor: '#4a4a43', secondaryColor: '#33211a', secondaryTextColor: '#eeede8',
+          tertiaryColor: '#161714', tertiaryTextColor: '#eeede8', lineColor: '#9c9991',
+          noteBkgColor: '#33211a', noteTextColor: '#eeede8', noteBorderColor: '#d36b49',
         } : {
-          background: '#f5f5f5', primaryColor: '#ffffff', primaryTextColor: '#292929',
-          primaryBorderColor: '#c8c8c8', secondaryColor: '#f6e7e2', secondaryTextColor: '#292929',
-          tertiaryColor: '#f5f5f5', tertiaryTextColor: '#292929', lineColor: '#727272',
-          noteBkgColor: '#f6e7e2', noteTextColor: '#292929', noteBorderColor: '#c54120',
+          background: '#f7f5f0', primaryColor: '#fbfaf7', primaryTextColor: '#252421',
+          primaryBorderColor: '#bcb6ab', secondaryColor: '#f2dfd7', secondaryTextColor: '#252421',
+          tertiaryColor: '#f3f0ea', tertiaryTextColor: '#252421', lineColor: '#77736d',
+          noteBkgColor: '#f2dfd7', noteTextColor: '#252421', noteBorderColor: '#b84d2e',
         },
       });
 
@@ -253,7 +253,7 @@
         const record = chartRecords.find((item) => item.element === chartElement);
         if (!record?.chart) return;
         const link = document.createElement('a');
-        link.href = record.chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: document.documentElement.dataset.theme === 'dark' ? '#141414' : '#ffffff' });
+        link.href = record.chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: document.documentElement.dataset.theme === 'dark' ? '#111210' : '#fbfaf7' });
         link.download = `${pageSlug}-chart-${index + 1}.png`;
         link.click();
       });
@@ -285,20 +285,20 @@
 
       const registerThemes = () => {
         echarts.registerTheme('site-light', {
-          color: ['#c54120', '#696969', '#9a776d', '#a8a8a8', '#603b32'],
-          backgroundColor: 'transparent', textStyle: { color: '#292929' },
-          title: { textStyle: { color: '#292929' }, subtextStyle: { color: '#727272' } },
-          legend: { textStyle: { color: '#727272' } },
-          categoryAxis: { axisLine: { lineStyle: { color: '#c8c8c8' } }, axisLabel: { color: '#727272' }, splitLine: { lineStyle: { color: '#e5e5e5' } } },
-          valueAxis: { axisLine: { lineStyle: { color: '#c8c8c8' } }, axisLabel: { color: '#727272' }, splitLine: { lineStyle: { color: '#e5e5e5' } } },
+          color: ['#b84d2e', '#77736d', '#9b756a', '#aaa59d', '#5d473f'],
+          backgroundColor: 'transparent', textStyle: { color: '#252421' },
+          title: { textStyle: { color: '#252421' }, subtextStyle: { color: '#77736d' } },
+          legend: { textStyle: { color: '#77736d' } },
+          categoryAxis: { axisLine: { lineStyle: { color: '#cbc5ba' } }, axisLabel: { color: '#77736d' }, splitLine: { lineStyle: { color: '#dedad2' } } },
+          valueAxis: { axisLine: { lineStyle: { color: '#cbc5ba' } }, axisLabel: { color: '#77736d' }, splitLine: { lineStyle: { color: '#dedad2' } } },
         });
         echarts.registerTheme('site-dark', {
-          color: ['#e2603f', '#9a9a9a', '#b98678', '#686868', '#d4aa9f'],
-          backgroundColor: 'transparent', textStyle: { color: '#f2f2f2' },
-          title: { textStyle: { color: '#f2f2f2' }, subtextStyle: { color: '#9a9a9a' } },
-          legend: { textStyle: { color: '#9a9a9a' } },
-          categoryAxis: { axisLine: { lineStyle: { color: '#525252' } }, axisLabel: { color: '#9a9a9a' }, splitLine: { lineStyle: { color: '#303030' } } },
-          valueAxis: { axisLine: { lineStyle: { color: '#525252' } }, axisLabel: { color: '#9a9a9a' }, splitLine: { lineStyle: { color: '#303030' } } },
+          color: ['#d36b49', '#9c9991', '#bb8878', '#706e68', '#d3aca0'],
+          backgroundColor: 'transparent', textStyle: { color: '#eeede8' },
+          title: { textStyle: { color: '#eeede8' }, subtextStyle: { color: '#9c9991' } },
+          legend: { textStyle: { color: '#9c9991' } },
+          categoryAxis: { axisLine: { lineStyle: { color: '#3b3c36' } }, axisLabel: { color: '#9c9991' }, splitLine: { lineStyle: { color: '#2c2d29' } } },
+          valueAxis: { axisLine: { lineStyle: { color: '#3b3c36' } }, axisLabel: { color: '#9c9991' }, splitLine: { lineStyle: { color: '#2c2d29' } } },
         });
       };
 
@@ -429,16 +429,17 @@
 
 <style is:global>
   .reader-toolbar {
-    min-height: 44px;
+    min-height: 42px;
     padding: 0 12px 0 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
     border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
     color: var(--text-soft);
   }
-  .reader-label { flex: 0 0 auto; font: 10px var(--mono); letter-spacing: .08em; }
+  .reader-label { flex: 0 0 auto; color: var(--text-muted); font: 9px var(--mono); letter-spacing: .1em; }
   .reader-actions { display: flex; align-items: center; gap: 3px; overflow-x: auto; scrollbar-width: none; }
   .reader-actions::-webkit-scrollbar { display: none; }
   .reader-tool { min-width: 30px; padding: 6px 8px; border: 0; border-radius: 6px; background: transparent; color: var(--text-soft); cursor: pointer; font-size: 11px; white-space: nowrap; transition: color .2s ease, background-color .2s ease, transform .15s ease; }
@@ -446,12 +447,12 @@
   .reader-tool:active { transform: scale(.96); }
   .scale-label { min-width: 42px; color: var(--text-soft); font: 9px var(--mono); text-align: center; }
 
-  .code-frame, .visual-frame { margin: 38px 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .code-frame, .visual-frame { margin: 36px 0; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); box-shadow: 0 1px 0 color-mix(in srgb, var(--text) 4%, transparent), 0 12px 28px color-mix(in srgb, var(--text) 3%, transparent); }
   .code-frame pre { margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
   .code-frame.is-wrapped pre, .code-frame.is-wrapped code { white-space: pre-wrap !important; overflow-wrap: anywhere; }
 
-  .diagram-viewport { padding: clamp(24px, 4vw, 44px); overflow: auto; text-align: center; overscroll-behavior: contain; }
-  .mermaid { min-width: 0; }
+  .diagram-viewport { min-height: 190px; padding: clamp(30px, 4vw, 46px); display: grid; place-items: center; overflow: auto; text-align: center; overscroll-behavior: contain; }
+  .mermaid { width: 100%; min-width: 0; }
   .mermaid svg { display: block; height: auto; margin: 0 auto; transition: width .22s ease; }
   .echarts-canvas { width: 100%; height: clamp(340px, 46vw, 480px); padding: 12px; }
   .visual-error { min-height: 180px; padding: 28px; overflow: auto; color: var(--accent); font: 12px/1.7 var(--mono); text-align: left; white-space: pre-wrap; }
@@ -460,7 +461,8 @@
   .visual-frame:fullscreen .echarts-canvas { height: calc(100vh - 44px); }
 
   .callout { position: relative; border-left-width: 3px !important; }
-  .callout-label { margin-bottom: 10px; color: var(--accent); font: 600 11px var(--sans); letter-spacing: .06em; }
+  .callout-label { margin-bottom: 11px; display: flex; align-items: center; gap: 8px; color: var(--accent); font: 600 10px var(--sans); letter-spacing: .1em; }
+  .callout-label::before { width: 6px; height: 6px; display: block; border-radius: 50%; background: currentColor; content: ''; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 12%, transparent); }
   .callout-tip, .callout-note { border-left-color: var(--text-soft) !important; }
   .callout-warning, .callout-caution, .callout-important { border-left-color: var(--accent) !important; }
 
@@ -484,6 +486,10 @@
   .lightbox-toolbar a:hover { color: var(--accent); }
   .image-lightbox > img { width: 100%; height: calc(100% - 48px); display: block; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; }
   .image-lightbox > img.is-zoomed { transform: scale(1.7); cursor: zoom-out; }
+
+  @media (min-width: 1080px) {
+    .prose .visual-frame { width: min(820px, calc(100vw - 360px)); }
+  }
 
   @media (max-width: 640px) {
     .reader-toolbar { align-items: flex-start; flex-direction: column; padding: 11px 12px; }

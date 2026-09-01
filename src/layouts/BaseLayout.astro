@@ -37,7 +37,7 @@ const navItems = [
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#fbfaf7" />
     <link rel="canonical" href={pageUrl} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
@@ -54,7 +54,7 @@ const navItems = [
         const saved = localStorage.getItem('theme');
         const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#141414' : '#ffffff');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#111210' : '#fbfaf7');
       })();
     </script>
     <title>{title}</title>
@@ -87,7 +87,7 @@ const navItems = [
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = next;
         localStorage.setItem('theme', next);
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#141414' : '#ffffff');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#111210' : '#fbfaf7');
         window.dispatchEvent(new CustomEvent('site-theme-change', { detail: { theme: next } }));
       });
     </script>
