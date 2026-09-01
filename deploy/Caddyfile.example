@@ -1,0 +1,10 @@
+ainoteatlas.com, www.ainoteatlas.com {
+	root * /srv/ainoteatlas
+	encode zstd gzip
+	file_server
+}
+
+comments.ainoteatlas.com {
+	reverse_proxy 127.0.0.1:23366
+}
+

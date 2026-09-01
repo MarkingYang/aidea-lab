@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContentCard from '../components/ContentCard.astro';
 import { getCollection } from 'astro:content';
-import { getUmamiPopularity, getWritingMetric } from '../lib/umami';
 
 const writing = (await getCollection('writing')).sort(
   (a, b) => (b.data.updatedAt ?? b.data.publishedAt).valueOf() - (a.data.updatedAt ?? a.data.publishedAt).valueOf(),
@@ -11,13 +10,6 @@ const topicStats = [...new Set(writing.flatMap((entry) => entry.data.topics))]
   .map((topic) => ({ topic, count: writing.filter((entry) => entry.data.topics.includes(topic)).length }))
   .sort((a, b) => b.count - a.count || a.topic.localeCompare(b.topic, 'zh-CN'))
   .slice(0, 7);
-const popularity = await getUmamiPopularity();
-const popularWriting = writing
-  .map((entry) => ({ entry, metric: getWritingMetric(popularity.metrics, entry.id) }))
-  .filter((item) => item.metric && item.metric.pageviews > 0)
-  .sort((a, b) => (b.metric?.pageviews ?? 0) - (a.metric?.pageviews ?? 0))
-  .slice(0, 5);
-const numberFormatter = new Intl.NumberFormat('zh-CN');
 ---
 
 <BaseLayout>
@@ -39,74 +31,17 @@ const numberFormatter = new Intl.NumberFormat('zh-CN');
     <section class="latest" id="latest">
       <div class="collection-heading">
         <div><p class="eyebrow">WRITING INDEX</p><h2>浏览记录</h2></div>
-        <div class="view-tabs" role="tablist" aria-label="记录排序方式">
-          <button id="latest-tab" type="button" role="tab" aria-selected="true" aria-controls="latest-panel" data-writing-tab="latest">最新</button>
-          <button id="popular-tab" type="button" role="tab" aria-selected="false" aria-controls="popular-panel" data-writing-tab="popular" tabindex="-1">热门</button>
-        </div>
+        <span class="latest-label">最新发布</span>
       </div>
 
-      <div id="latest-panel" role="tabpanel" aria-labelledby="latest-tab" data-writing-panel="latest">
+      <div>
         <p class="panel-note">{String(writing.length).padStart(2, '0')} 条记录，按最近发布或修订时间排列</p>
         <div class="home-grid">
-          {writing.map((entry, index) => <ContentCard entry={entry} index={index} views={getWritingMetric(popularity.metrics, entry.id)?.pageviews ?? null} />)}
+          {writing.map((entry, index) => <ContentCard entry={entry} index={index} />)}
         </div>
         <a class="all-writing" href="/notes/">查看全部笔记 <span aria-hidden="true">↗</span></a>
       </div>
-
-      <div id="popular-panel" role="tabpanel" aria-labelledby="popular-tab" data-writing-panel="popular" hidden>
-        {popularWriting.length > 0 ? (
-          <>
-            <p class="panel-note">根据最近 {popularity.periodDays} 天真实阅读量排列，每次部署时更新</p>
-            <div class="popular-list">
-              {popularWriting.map(({ entry, metric }, index) => (
-                <a href={`/writing/${entry.id}/`}>
-                  <span class="popular-rank">{String(index + 1).padStart(2, '0')}</span>
-                  <span class="popular-copy"><strong>{entry.data.title}</strong><small>{entry.data.topics[0]} / {entry.data.readingTime}</small></span>
-                  <span class="popular-count"><strong>{numberFormatter.format(metric?.pageviews ?? 0)}</strong><small>次阅读</small></span>
-                  <span class="popular-arrow" aria-hidden="true">↗</span>
-                </a>
-              ))}
-            </div>
-          </>
-        ) : (
-          <div class="popular-empty">
-            <strong>{popularity.configured ? '正在积累访问数据' : '热门榜等待连接'}</strong>
-            <p>{popularity.configured ? '文章产生有效访问后，这里会自动出现最近 30 天的热门记录。' : '配置 Umami 后，热门记录会由真实访问数据生成，不使用模拟热度。'}</p>
-          </div>
-        )}
-      </div>
     </section>
-
-    <script is:inline>
-      (() => {
-        const tabs = Array.from(document.querySelectorAll('[data-writing-tab]'));
-        const panels = Array.from(document.querySelectorAll('[data-writing-panel]'));
-        if (!tabs.length || !panels.length) return;
-
-        const activate = (name) => {
-          tabs.forEach((tab) => {
-            const active = tab.dataset.writingTab === name;
-            tab.setAttribute('aria-selected', String(active));
-            tab.tabIndex = active ? 0 : -1;
-          });
-          panels.forEach((panel) => {
-            panel.hidden = panel.dataset.writingPanel !== name;
-          });
-        };
-
-        tabs.forEach((tab, index) => {
-          tab.addEventListener('click', () => activate(tab.dataset.writingTab));
-          tab.addEventListener('keydown', (event) => {
-            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-            event.preventDefault();
-            const direction = event.key === 'ArrowRight' ? 1 : -1;
-            const next = tabs[(index + direction + tabs.length) % tabs.length];
-            activate(next.dataset.writingTab);
-            next.focus();
-          });
-        });
-      })();
-    </script>
 
     <section class="manifesto">
       <p class="eyebrow">CURRENT QUESTION</p>
@@ -133,28 +68,11 @@ const numberFormatter = new Intl.NumberFormat('zh-CN');
   .latest { padding: var(--space-section) 0 24px; }
   .collection-heading { margin-bottom: 24px; display: flex; align-items: end; justify-content: space-between; gap: 24px; }
   .collection-heading h2 { margin: 8px 0 0; font-family: var(--display); font-size: var(--display-section-size); font-weight: 400; letter-spacing: -.03em; }
-  .view-tabs { padding: 4px; display: flex; border-radius: 10px; background: var(--surface); }
-  .view-tabs button { min-width: 66px; padding: 9px 14px; border: 0; border-radius: 7px; background: transparent; color: var(--text-soft); font-size: 12px; cursor: pointer; transition: background-color .2s ease, color .2s ease, transform .15s ease; }
-  .view-tabs button[aria-selected='true'] { background: var(--bg); color: var(--text); }
-  .view-tabs button:active { transform: translateY(1px); }
+  .latest-label { padding: 8px 11px; border-radius: 8px; background: var(--surface); color: var(--text-soft); font: 9px var(--mono); letter-spacing: .06em; }
   .panel-note { margin: 0 0 22px; color: var(--text-soft); font: 10px/1.7 var(--mono); }
   .home-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 16px; }
   .all-writing { width: fit-content; margin-top: 38px; padding: 10px 13px; display: block; border-radius: 8px; background: var(--surface); color: var(--text-soft); font-size: 13px; text-decoration: none; }
   .all-writing:hover { color: var(--text); background: var(--surface-strong); }
-  .popular-list { border-top: 1px solid var(--line); }
-  .popular-list > a { min-height: 92px; display: grid; grid-template-columns: 48px minmax(0, 1fr) auto 24px; gap: 18px; align-items: center; border-bottom: 1px solid var(--line); text-decoration: none; }
-  .popular-rank { color: var(--text-soft); font: 10px var(--mono); }
-  .popular-copy { display: flex; flex-direction: column; gap: 8px; }
-  .popular-copy strong { font-family: var(--display); font-size: clamp(19px, 1.9vw, 27px); font-weight: 400; line-height: 1.35; }
-  .popular-copy small, .popular-count small { color: var(--text-soft); font: 9px var(--mono); }
-  .popular-count { min-width: 74px; display: flex; flex-direction: column; align-items: end; gap: 5px; }
-  .popular-count strong { font: 18px var(--mono); font-weight: 400; }
-  .popular-arrow { color: var(--text-soft); transition: transform .2s ease, color .2s ease; }
-  .popular-list > a:hover .popular-copy strong, .popular-list > a:hover .popular-arrow { color: var(--accent); }
-  .popular-list > a:hover .popular-arrow { transform: translate(3px, -3px); }
-  .popular-empty { min-height: 220px; padding: 42px; display: flex; flex-direction: column; justify-content: end; border-radius: var(--radius-lg); background: var(--surface); }
-  .popular-empty strong { font-family: var(--display); font-size: var(--display-section-size); font-weight: 400; }
-  .popular-empty p { max-width: 580px; margin: 14px 0 0; color: var(--text-soft); font-size: 14px; line-height: 1.75; }
   .manifesto { margin-top: var(--space-section-lg); padding: clamp(40px, 5vw, 64px); border-radius: var(--radius-lg); background: var(--text); color: var(--bg); }
   .manifesto .eyebrow { color: currentColor; opacity: .55; }
   .manifesto > p:not(.eyebrow) { max-width: 920px; margin: 34px 0 42px; font-family: var(--display); font-size: clamp(30px, 3.8vw, 48px); line-height: 1.28; letter-spacing: -.03em; text-wrap: balance; }
@@ -167,10 +85,6 @@ const numberFormatter = new Intl.NumberFormat('zh-CN');
     .latest { padding-top: 52px; }
     .collection-heading { align-items: flex-start; flex-direction: column; }
     .home-grid { grid-template-columns: 1fr; gap-block: 36px; }
-    .popular-list > a { grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; padding: 18px 0; }
-    .popular-arrow { display: none; }
-    .popular-count { min-width: 54px; }
-    .popular-empty { min-height: 190px; padding: 28px 22px; }
     .manifesto { margin-top: 64px; padding: 32px 22px; }
   }
 </style>

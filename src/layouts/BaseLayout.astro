@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import UmamiAnalytics from '../components/UmamiAnalytics.astro';
+import ArtalkStats from '../components/ArtalkStats.astro';
 
 interface Props {
   title?: string;
@@ -49,7 +49,6 @@ const navItems = [
     <meta name="twitter:description" content={description} />
     {imageUrl && <meta name="twitter:image" content={imageUrl} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <UmamiAnalytics />
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('theme');
@@ -82,6 +81,7 @@ const navItems = [
       </div>
     </header>
     <main id="main"><slot /></main>
+    <ArtalkStats />
     <script is:inline>
       document.querySelector('.theme-toggle')?.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';

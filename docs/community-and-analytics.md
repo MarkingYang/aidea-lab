@@ -1,81 +1,90 @@
-# 访问统计与评论配置
+# 评论与阅读量部署
 
-站点使用 Umami 统计阅读，使用 Giscus 承载评论。所有标识通过环境变量注入，源码中不保存 API Token。
+本站只使用一个动态服务：Artalk。它同时负责文章累计阅读量、评论数、免登录评论和管理后台；数据默认保存在 SQLite，不需要再部署 Umami、MySQL 或 GitHub Discussions。
 
-## 1. 连接 Umami
+## 架构
 
-### 创建站点
-
-可以使用 Umami Cloud，也可以自行部署 Umami。在 Umami 后台添加正式域名，复制 Website ID，并创建 API Key。
-
-### 填写环境变量
-
-```dotenv
-PUBLIC_UMAMI_WEBSITE_ID=your-website-id
-PUBLIC_UMAMI_SCRIPT_URL=https://cloud.umami.is/script.js
-PUBLIC_UMAMI_DOMAINS=your-domain.example,www.your-domain.example
-UMAMI_API_URL=https://api.umami.is
-UMAMI_API_TOKEN=your-private-api-key
+```text
+GitHub 仓库 ──构建──> Astro 静态文件 ──Caddy/Nginx──> ainoteatlas.com
+                                              └──────> comments.ainoteatlas.com ──> Artalk + SQLite
 ```
 
-使用自托管实例时：
+## 服务器目录
 
-```dotenv
-PUBLIC_UMAMI_SCRIPT_URL=https://analytics.your-domain.example/script.js
-UMAMI_API_URL=https://analytics.your-domain.example
+建议保持三个清楚的目录：
+
+```text
+/opt/aidea-lab/       Git 仓库
+/opt/artalk/          compose.yaml、.env 与 SQLite 数据
+/srv/ainoteatlas/     Astro 构建后的静态文件
 ```
 
-### 数据如何进入页面
+## 1. 启动 Artalk
 
-浏览器中的 Umami 脚本负责记录页面访问。生产构建会调用 Umami 的 expanded path metrics API，读取最近 30 天的数据，只保留 `/writing/` 路径，并生成首页热门榜。
+服务器安装 Docker 后：
 
-本地开发环境不加载跟踪脚本。热门数据读取失败时，构建不会中断，页面会显示数据积累状态。
-
-## 2. 连接 Giscus
-
-### 准备 GitHub 仓库
-
-1. 仓库必须为公开仓库。
-2. 在仓库 Settings 的 Features 中启用 Discussions。
-3. 安装 Giscus GitHub App，并授权访问这个仓库。
-4. 创建或选择一个 Discussion 分类，例如 `Announcements`。
-
-### 生成配置
-
-打开 [giscus.app/zh-CN](https://giscus.app/zh-CN)，完成以下选择：
-
-- 页面与 Discussion 映射：`pathname`
-- Discussion 分类：选定的评论分类
-- 启用主帖子反应
-- 评论框位置：评论上方
-- 语言：简体中文
-
-把生成代码中的值写入环境变量：
-
-```dotenv
-PUBLIC_GISCUS_REPO=owner/repository
-PUBLIC_GISCUS_REPO_ID=R_kg...
-PUBLIC_GISCUS_CATEGORY=Announcements
-PUBLIC_GISCUS_CATEGORY_ID=DIC_kw...
+```sh
+sudo mkdir -p /opt/artalk
+sudo cp deploy/artalk/compose.yaml deploy/artalk/.env.example /opt/artalk/
+cd /opt/artalk
+sudo mv .env.example .env
+sudo sh -c 'printf "ATK_APP_KEY=%s\n" "$(openssl rand -hex 32)" > .env'
+sudo docker compose up -d
+sudo docker compose exec artalk artalk admin
 ```
 
-站点会自动处理深浅主题同步，并通过 Giscus metadata 在文章元信息中显示评论数量。
+最后一条命令用于创建站长账号。普通访客不需要账号，填写昵称与邮箱即可评论。服务只监听服务器本机 `127.0.0.1:23366`，不会绕过 HTTPS 反向代理直接暴露到公网。
 
-## 3. 上线检查
+## 2. 域名与反向代理
 
-- `SITE_URL` 是正式 HTTPS 域名。
-- `PUBLIC_UMAMI_DOMAINS` 只包含正式域名，不包含 localhost。
-- `UMAMI_API_TOKEN` 保存在部署平台的 Secret 中。
-- GitHub Discussions 已开启，Giscus App 已获得仓库权限。
-- 生产页面能看到 Umami 的 `/api/send` 请求。
-- 第一次测试评论后，GitHub Discussions 中出现对应路径的讨论。
-- 积累访问后重新部署，首页热门榜出现真实阅读数据。
+添加 DNS 解析：
 
-## 4. 数据口径
+- `ainoteatlas.com` → `43.172.92.100`
+- `www.ainoteatlas.com` → `43.172.92.100`
+- `comments.ainoteatlas.com` → `43.172.92.100`
 
-- 最新：按照 `updatedAt` 或 `publishedAt` 倒序。
-- 热门：最近 30 天文章 pageviews。
-- 访客：Umami visitors，用于后台分析，页面暂不公开展示。
-- 评论数：Giscus 对应 Discussion 的总评论数量。
+仓库中的 `deploy/Caddyfile.example` 可以直接作为 Caddy 配置参考。它让主域名读取 `/srv/ainoteatlas`，评论子域名反向代理到 Artalk，并自动申请 HTTPS 证书。
 
-访问量与评论数分开表达。热门榜只按照阅读量排序，避免高争议文章因为评论更多而占据榜首。
+如果服务器已经运行 Nginx 或其他站点，不要直接覆盖现有配置；先确认 80/443 端口和当前虚拟主机，再添加两个域名。
+
+## 3. 构建静态站点
+
+```sh
+cd /opt/aidea-lab
+git pull --ff-only
+npm ci
+SITE_URL=https://ainoteatlas.com npm run build -- --force
+sudo mkdir -p /srv/ainoteatlas
+sudo rsync -a --delete dist/ /srv/ainoteatlas/
+```
+
+以后发布新文章只需推送 Markdown，然后在服务器执行以上五条命令。后续可以再加 GitHub Actions 自动部署，但它不是博客上线的必要条件。
+
+## 4. 统计口径
+
+- 文章卡片和正文头部展示 Artalk 保存的累计 PV。
+- 同一个访客刷新页面仍可能增加 PV，因此它是“页面浏览量”，不是严格去重人数。
+- 评论数来自同一文章路径下的真实评论。
+- 首页保持按时间排序；不为了一个热门榜再引入第二套统计系统。
+
+## 5. 备份
+
+需要备份的只有 `/opt/artalk/data/`。最省心的方法是开启腾讯云自动快照；在升级或迁移前，再额外执行一次：
+
+```sh
+cd /opt/artalk
+sudo docker compose stop
+sudo tar -czf "/opt/artalk-backup-$(date +%F).tar.gz" data
+sudo docker compose start
+```
+
+停止容器后再复制 SQLite，可避免备份过程中数据库仍在写入。静态文章已经保存在 GitHub，不需要重复备份。
+
+## 6. 上线检查
+
+- `https://ainoteatlas.com` 可以打开，且 HTTPS 正常。
+- `https://comments.ainoteatlas.com` 可以打开 Artalk 页面。
+- 文章卡片和正文显示阅读量、评论数。
+- 使用无痕窗口、不登录 GitHub也能发表评论。
+- Artalk 后台能够审核或删除评论。
+- 腾讯云防火墙只开放 SSH、HTTP 和 HTTPS，不开放 23366。

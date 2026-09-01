@@ -1,10 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GiscusComments from '../../components/GiscusComments.astro';
+import ArtalkComments from '../../components/ArtalkComments.astro';
 import MarkdownEnhancer from '../../components/MarkdownEnhancer.astro';
 import 'katex/dist/katex.min.css';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { getUmamiPopularity, getWritingMetric } from '../../lib/umami';
 
 export async function getStaticPaths() {
   const entries = await getCollection('writing');
@@ -15,13 +14,10 @@ interface Props { entry: CollectionEntry<'writing'>; }
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const popularity = await getUmamiPopularity();
-const pageMetric = getWritingMetric(popularity.metrics, entry.id);
-
 const typeLabels = { note: 'NOTE', essay: 'ESSAY', weekly: 'WEEKLY' };
 const statusLabels = { seed: '种子', growing: '生长中', evergreen: '常青', archived: '归档' };
 const published = entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
-const numberFormatter = new Intl.NumberFormat('zh-CN');
+const pageKey = `/writing/${entry.id}/`;
 ---
 
 <BaseLayout title={`${entry.data.title}｜大飞随笔`} description={entry.data.description} image={null} ogType="article">
@@ -36,10 +32,12 @@ const numberFormatter = new Intl.NumberFormat('zh-CN');
         <div class="topics">{entry.data.topics.map((topic) => <a href="/topics/">#{topic}</a>)}</div>
         <div>
           <span>{entry.data.readingTime}</span>
-          <span class="article-view-count" title={pageMetric ? '最近 30 天文章阅读量' : '等待 Umami 访问数据'}>
-            近 30 天阅读 {pageMetric ? numberFormatter.format(pageMetric.pageviews) : '--'}
+          <span class="article-view-count" title="累计阅读量">
+            阅读 <strong class="artalk-pv-count" data-page-key={pageKey}>--</strong>
           </span>
-          <span data-comment-count hidden></span>
+          <span class="article-comment-count" title="累计评论数">
+            评论 <strong class="artalk-comment-count" data-page-key={pageKey}>--</strong>
+          </span>
           <span class:list={['status', entry.data.status]}>{statusLabels[entry.data.status]}</span>
         </div>
       </div>
@@ -56,7 +54,7 @@ const numberFormatter = new Intl.NumberFormat('zh-CN');
     </div>
   </article>
 
-  <GiscusComments />
+  <ArtalkComments title={entry.data.title} />
   <MarkdownEnhancer />
 </BaseLayout>
 
@@ -68,7 +66,8 @@ const numberFormatter = new Intl.NumberFormat('zh-CN');
   .article-header > p { max-width: 720px; margin: 0; color: var(--text-soft); font-size: 16px; line-height: 1.8; text-wrap: pretty; }
   .article-info { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 34px; padding-top: 15px; border-top: 1px solid var(--line); font: 10px var(--mono); }
   .article-info > div { display: flex; align-items: center; gap: 10px; }
-  .article-view-count { color: var(--text); }
+  .article-view-count, .article-comment-count { color: var(--text); }
+  .article-view-count strong, .article-comment-count strong { font: inherit; }
   .topics a { color: var(--text-soft); text-underline-offset: 3px; }
   .status { padding: 5px 8px; border-radius: 6px; background: var(--surface); color: var(--text-soft); }
   .status.growing { background: var(--accent-soft); color: var(--accent); }

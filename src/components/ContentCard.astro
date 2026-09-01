@@ -5,27 +5,29 @@ interface Props {
   entry: CollectionEntry<'writing'>;
   variant?: 'default' | 'compact';
   index?: number;
-  views?: number | null;
 }
 
-const { entry, variant = 'default', index = 0, views = null } = Astro.props;
+const { entry, variant = 'default', index = 0 } = Astro.props;
 const typeLabels = { note: '笔记', essay: '文章', weekly: '每周信号' };
 const statusLabels = { seed: '种子', growing: '生长中', evergreen: '常青', archived: '归档' };
 const date = entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', '.');
-const formattedViews = views === null ? '--' : new Intl.NumberFormat('zh-CN').format(views);
+const pageKey = `/writing/${entry.id}/`;
 ---
 
 <article class:list={['content-card', variant, `tone-${index % 5}`]}>
   <a class="card-visual" href={`/writing/${entry.id}/`} aria-label={`阅读：${entry.data.title}`}>
     <span class="visual-type">{typeLabels[entry.data.type]}</span>
     <span class="visual-index">{String(index + 1).padStart(2, '0')}</span>
-    <span class="visual-views" title={views === null ? '等待 Umami 访问数据' : '最近 30 天文章阅读量'}>
+    <span class="visual-stats" title="累计阅读量与评论数">
       <svg viewBox="0 0 16 16" aria-hidden="true">
         <path d="M1.5 8s2.3-4 6.5-4 6.5 4 6.5 4-2.3 4-6.5 4-6.5-4-6.5-4Z"></path>
         <circle cx="8" cy="8" r="1.8"></circle>
       </svg>
-      <span>30 天阅读</span>
-      <strong>{formattedViews}</strong>
+      <span>阅读</span>
+      <strong class="artalk-pv-count" data-page-key={pageKey}>--</strong>
+      <i aria-hidden="true">·</i>
+      <span>评论</span>
+      <strong class="artalk-comment-count" data-page-key={pageKey}>--</strong>
     </span>
     <strong>{entry.data.title}</strong>
     <span class="visual-arrow" aria-hidden="true">↗</span>
@@ -58,11 +60,12 @@ const formattedViews = views === null ? '--' : new Intl.NumberFormat('zh-CN').fo
   .visual-type, .visual-index { position: absolute; top: 20px; color: currentColor; font: 10px var(--mono); letter-spacing: .08em; opacity: .56; }
   .visual-type { left: 22px; }
   .visual-index { right: 22px; }
-  .visual-views { position: absolute; top: 45px; left: 22px; display: inline-flex; align-items: center; gap: 5px; padding: 5px 8px; border: 1px solid color-mix(in srgb, currentColor 14%, transparent); border-radius: 999px; background: color-mix(in srgb, currentColor 8%, transparent); color: currentColor; font: 8px var(--mono); letter-spacing: .04em; backdrop-filter: blur(8px); }
-  .visual-views svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.2; }
-  .visual-views strong { font: inherit; font-weight: 600; }
+  .visual-stats { position: absolute; top: 45px; left: 22px; display: inline-flex; align-items: center; gap: 5px; padding: 5px 8px; border: 1px solid color-mix(in srgb, currentColor 14%, transparent); border-radius: 999px; background: color-mix(in srgb, currentColor 8%, transparent); color: currentColor; font: 8px var(--mono); letter-spacing: .04em; backdrop-filter: blur(8px); }
+  .visual-stats svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.2; }
+  .visual-stats i { font-style: normal; opacity: .45; }
+  .visual-stats strong { font: inherit; font-weight: 600; }
   .card-visual strong { max-width: 88%; margin-top: auto; font-family: var(--display); font-size: clamp(20px, 1.85vw, 28px); font-weight: 400; line-height: 1.34; letter-spacing: -.02em; text-wrap: balance; }
-  .card-visual .visual-views strong { margin: 0; font-family: var(--mono); font-size: 8px; line-height: 1; letter-spacing: .04em; }
+  .card-visual .visual-stats strong { margin: 0; font-family: var(--mono); font-size: 8px; line-height: 1; letter-spacing: .04em; }
   .visual-arrow { position: absolute; right: 22px; bottom: 20px; font-size: 18px; opacity: .55; transition: transform .25s ease; }
   .card-visual:hover .visual-arrow { transform: translate(3px, -3px); }
   .card-caption { padding-top: 14px; }

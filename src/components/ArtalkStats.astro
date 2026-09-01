@@ -1,0 +1,30 @@
+---
+const server = import.meta.env.PUBLIC_ARTALK_SERVER?.trim() || 'https://comments.ainoteatlas.com';
+const site = import.meta.env.PUBLIC_ARTALK_SITE?.trim() || 'AINoteAtlas';
+const enabled = import.meta.env.PROD || Boolean(import.meta.env.PUBLIC_ARTALK_SERVER?.trim());
+---
+
+<span
+  data-artalk-stats
+  data-enabled={String(enabled)}
+  data-server={server}
+  data-site={site}
+  hidden
+></span>
+
+<script>
+  import Artalk from 'artalk/ArtalkLite';
+
+  const config = document.querySelector<HTMLElement>('[data-artalk-stats]');
+  const hasCounters = document.querySelector('.artalk-pv-count, .artalk-comment-count');
+
+  if (config?.dataset.enabled === 'true' && hasCounters && !document.querySelector('[data-artalk-comments]')) {
+    Artalk.loadCountWidget({
+      server: config.dataset.server || '',
+      site: config.dataset.site || '',
+      pvEl: '.artalk-pv-count',
+      countEl: '.artalk-comment-count',
+      statPageKeyAttr: 'data-page-key',
+    });
+  }
+</script>

@@ -1,0 +1,79 @@
+---
+import 'artalk/Artalk.css';
+
+interface Props { title: string; }
+
+const server = import.meta.env.PUBLIC_ARTALK_SERVER?.trim() || 'https://comments.ainoteatlas.com';
+const site = import.meta.env.PUBLIC_ARTALK_SITE?.trim() || 'AINoteAtlas';
+const enabled = import.meta.env.PROD || Boolean(import.meta.env.PUBLIC_ARTALK_SERVER?.trim());
+const { title } = Astro.props;
+---
+
+<section class="comments" id="comments" aria-labelledby="comments-title">
+  <header class="comments-heading">
+    <div>
+      <h2 id="comments-title">参与讨论</h2>
+      <p>无需登录。填写昵称与邮箱即可补充证据、提出异议或分享实践。</p>
+    </div>
+    <span>ARTALK · ANONYMOUS</span>
+  </header>
+
+  {enabled ? (
+    <div
+      id="Comments"
+      data-artalk-comments
+      data-server={server}
+      data-site={site}
+      data-page-key={Astro.url.pathname}
+      data-page-title={title}
+    ></div>
+  ) : (
+    <div class="comment-setup">
+      <strong>评论服务等待部署</strong>
+      <p>连接 Artalk 后，这里将支持免 GitHub、免登录评论，并自动记录阅读量。</p>
+    </div>
+  )}
+</section>
+
+{enabled && (
+  <script>
+    import Artalk from 'artalk';
+
+    const host = document.querySelector<HTMLElement>('[data-artalk-comments]');
+    if (host) {
+      const comments = Artalk.init({
+        el: host,
+        server: host.dataset.server || '',
+        site: host.dataset.site || '',
+        pageKey: host.dataset.pageKey || location.pathname,
+        pageTitle: host.dataset.pageTitle || document.title,
+        locale: 'zh-CN',
+        darkMode: document.documentElement.dataset.theme === 'dark',
+        pvEl: '.artalk-pv-count',
+        countEl: '.artalk-comment-count',
+        statPageKeyAttr: 'data-page-key',
+      });
+
+      window.addEventListener('site-theme-change', ((event: CustomEvent<{ theme: string }>) => {
+        comments.setDarkMode(event.detail?.theme === 'dark');
+      }) as EventListener);
+    }
+  </script>
+)}
+
+<style>
+  .comments { width: min(var(--measure), var(--page)); margin: var(--space-section) auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
+  .comments-heading { margin-bottom: 28px; display: flex; align-items: start; justify-content: space-between; gap: 30px; }
+  .comments-heading h2 { margin: 0; font-family: var(--display); font-size: var(--display-section-size); font-weight: 400; letter-spacing: -.025em; }
+  .comments-heading p { margin: 10px 0 0; color: var(--text-soft); font-size: 13px; line-height: 1.7; }
+  .comments-heading > span { padding-top: 8px; color: var(--text-soft); font: 9px var(--mono); letter-spacing: .08em; }
+  .comment-setup { margin: 0; padding: 24px; border-radius: var(--radius); background: var(--surface); color: var(--text-soft); font-size: 13px; }
+  .comment-setup strong { color: var(--text); font-size: 14px; }
+  .comment-setup p { margin: 9px 0 0; line-height: 1.7; }
+  :global(.artalk) { --at-color-main: var(--accent); --at-color-bg: var(--bg); --at-color-font: var(--text); --at-color-deep: var(--text); --at-color-sub: var(--text-soft); --at-color-border: var(--line); }
+  @media (max-width: 640px) {
+    .comments { margin-top: 56px; }
+    .comments-heading { flex-direction: column; gap: 8px; }
+    .comments-heading > span { padding-top: 0; }
+  }
+</style>
