@@ -1,0 +1,20 @@
+---
+const websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID?.trim();
+const scriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL?.trim() || 'https://cloud.umami.is/script.js';
+const domains = import.meta.env.PUBLIC_UMAMI_DOMAINS?.trim();
+const enabled = import.meta.env.PROD && Boolean(websiteId);
+---
+
+{enabled && (
+  <script
+    is:inline
+    defer
+    src={scriptUrl}
+    data-website-id={websiteId}
+    data-domains={domains || undefined}
+    data-exclude-search="true"
+    data-exclude-hash="true"
+    data-do-not-track="true"
+    data-performance="true"
+  ></script>
+)}

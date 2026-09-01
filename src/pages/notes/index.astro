@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection } from 'astro:content';
+import { getUmamiPopularity, getWritingMetric } from '../../lib/umami';
+
+const entries = (await getCollection('writing', ({ data }) => data.type !== 'essay')).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const popularity = await getUmamiPopularity();
+---
+
+<BaseLayout title="笔记｜大飞随笔" description="短想法、每周信号与仍在生长的 AI 学习记录。">
+  <div class="page-shell">
+    <header class="page-intro">
+      <div><p class="eyebrow">NOTES & SIGNALS</p><h1>笔记，不急着<br />成为文章。</h1></div>
+      <p class="intro-copy">捕捉还没有完整结构的观察。它们可能继续生长，也可能只是帮助我记住一次认知变化。</p>
+    </header>
+    <div class="count-line"><span>{String(entries.length).padStart(2, '0')} ENTRIES</span><span>按时间倒序</span></div>
+    <section class="content-grid" aria-label="笔记列表">
+      {entries.map((entry, index) => <ContentCard entry={entry} index={index} views={getWritingMetric(popularity.metrics, entry.id)?.pageviews ?? null} />)}
+    </section>
+  </div>
+</BaseLayout>

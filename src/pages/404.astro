@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="没有找到｜大飞随笔" description="这个想法还没有被写下。" image={null}>
+  <section class="not-found">
+    <p class="eyebrow">404 · UNWRITTEN</p>
+    <h1>这个想法，<br />还没有被写下。</h1>
+    <p>也可能它已经改变了名字，沿着别的路径继续生长。</p>
+    <a href="/">返回花园首页 →</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found { width: var(--page); margin: 0 auto; padding: var(--space-section-lg) 0; }
+  h1 { margin: 18px 0 24px; font-family: var(--display); font-size: var(--display-page-size); font-weight: 400; line-height: 1.16; letter-spacing: -.04em; }
+  .not-found > p:not(.eyebrow) { max-width: 520px; color: var(--text-soft); line-height: 1.9; }
+  a { display: inline-block; margin-top: 30px; padding: 10px 13px; border-radius: 8px; background: var(--surface); color: var(--text-soft); font-size: 13px; text-decoration: none; }
+  a:hover { color: var(--text); background: var(--surface-strong); }
+</style>

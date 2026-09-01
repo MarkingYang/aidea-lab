@@ -1,0 +1,501 @@
+<script>
+  type DiagramRecord = {
+    element: HTMLElement;
+    figure: HTMLElement;
+    source: string;
+    scale: number;
+    scaleLabel: HTMLElement;
+  };
+
+  type ChartRecord = {
+    element: HTMLElement;
+    figure: HTMLElement;
+    option: Record<string, unknown>;
+    source: string;
+    chart: any;
+  };
+
+  const pageSlug = location.pathname.split('/').filter(Boolean).pop() || 'article';
+
+  const makeButton = (label: string, title = label) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'reader-tool';
+    button.textContent = label;
+    button.title = title;
+    button.setAttribute('aria-label', title);
+    return button;
+  };
+
+  const flashButton = (button: HTMLButtonElement, message: string, original: string) => {
+    button.textContent = message;
+    window.setTimeout(() => { button.textContent = original; }, 1400);
+  };
+
+  const copyText = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const field = document.createElement('textarea');
+      field.value = text;
+      field.style.position = 'fixed';
+      field.style.opacity = '0';
+      document.body.append(field);
+      field.select();
+      document.execCommand('copy');
+      field.remove();
+    }
+  };
+
+  const downloadBlob = (blob: Blob, filename: string) => {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    window.setTimeout(() => URL.revokeObjectURL(url), 500);
+  };
+
+  const toggleFullscreen = async (element: HTMLElement) => {
+    if (document.fullscreenElement === element) await document.exitFullscreen();
+    else await element.requestFullscreen();
+  };
+
+  // Code blocks: copy and optional soft wrapping.
+  const regularCodeBlocks = [...document.querySelectorAll<HTMLElement>('.prose pre')]
+    .filter((pre) => !pre.querySelector('code.language-mermaid, code.language-echarts'));
+
+  regularCodeBlocks.forEach((pre, index) => {
+    const source = pre.textContent ?? '';
+    const code = pre.querySelector('code');
+    const languageClass = [...(code?.classList ?? [])].find((name) => name.startsWith('language-'));
+    const language = (pre.dataset.language || languageClass?.replace('language-', ''))?.toUpperCase() || `CODE ${String(index + 1).padStart(2, '0')}`;
+    const frame = document.createElement('div');
+    frame.className = 'code-frame';
+    const toolbar = document.createElement('div');
+    toolbar.className = 'reader-toolbar';
+    const label = document.createElement('span');
+    label.className = 'reader-label';
+    label.textContent = language;
+    const actions = document.createElement('div');
+    actions.className = 'reader-actions';
+    const wrapButton = makeButton('换行', '切换代码自动换行');
+    const copyButton = makeButton('复制', '复制代码');
+
+    wrapButton.addEventListener('click', () => {
+      const wrapped = frame.classList.toggle('is-wrapped');
+      wrapButton.textContent = wrapped ? '不换行' : '换行';
+      wrapButton.setAttribute('aria-pressed', String(wrapped));
+    });
+    copyButton.addEventListener('click', async () => {
+      await copyText(source);
+      flashButton(copyButton, '已复制', '复制');
+    });
+
+    actions.append(wrapButton, copyButton);
+    toolbar.append(label, actions);
+    pre.replaceWith(frame);
+    frame.append(toolbar, pre);
+  });
+
+  // Mermaid: architecture, flow, sequence, class, state, ER, gantt and mind maps.
+  const mermaidBlocks = [...document.querySelectorAll<HTMLElement>('.prose pre > code.language-mermaid')];
+
+  if (mermaidBlocks.length > 0) {
+    const diagrams: DiagramRecord[] = mermaidBlocks.map((code, index) => {
+      const source = code.textContent?.trim() ?? '';
+      const figure = document.createElement('figure');
+      figure.className = 'visual-frame mermaid-figure';
+      const toolbar = document.createElement('figcaption');
+      toolbar.className = 'reader-toolbar';
+      const label = document.createElement('span');
+      label.className = 'reader-label';
+      label.textContent = `MERMAID · ${String(index + 1).padStart(2, '0')}`;
+      const actions = document.createElement('div');
+      actions.className = 'reader-actions';
+      const zoomOut = makeButton('−', '缩小图表');
+      const scaleLabel = document.createElement('span');
+      scaleLabel.className = 'scale-label';
+      scaleLabel.textContent = '100%';
+      const zoomIn = makeButton('+', '放大图表');
+      const reset = makeButton('复位', '恢复图表尺寸');
+      const copy = makeButton('复制', '复制 Mermaid 源码');
+      const exportButton = makeButton('SVG', '导出 SVG');
+      const fullscreen = makeButton('全屏', '全屏查看图表');
+      const viewport = document.createElement('div');
+      viewport.className = 'diagram-viewport';
+      const diagram = document.createElement('div');
+      diagram.className = 'mermaid';
+      diagram.textContent = source;
+
+      const record: DiagramRecord = { element: diagram, figure, source, scale: 1, scaleLabel };
+      const applyScale = () => {
+        const svg = diagram.querySelector<SVGElement>('svg');
+        if (!svg) return;
+        svg.style.maxWidth = 'none';
+        svg.style.width = `${record.scale * 100}%`;
+        svg.style.height = 'auto';
+        scaleLabel.textContent = `${Math.round(record.scale * 100)}%`;
+      };
+
+      zoomOut.addEventListener('click', () => { record.scale = Math.max(.5, record.scale - .25); applyScale(); });
+      zoomIn.addEventListener('click', () => { record.scale = Math.min(2.5, record.scale + .25); applyScale(); });
+      reset.addEventListener('click', () => { record.scale = 1; applyScale(); viewport.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); });
+      copy.addEventListener('click', async () => { await copyText(source); flashButton(copy, '已复制', '复制'); });
+      exportButton.addEventListener('click', () => {
+        const svg = diagram.querySelector('svg');
+        if (!svg) return;
+        const clone = svg.cloneNode(true) as SVGElement;
+        clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        downloadBlob(new Blob([new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' }), `${pageSlug}-diagram-${index + 1}.svg`);
+      });
+      fullscreen.addEventListener('click', () => toggleFullscreen(figure));
+
+      actions.append(zoomOut, scaleLabel, zoomIn, reset, copy, exportButton, fullscreen);
+      toolbar.append(label, actions);
+      viewport.append(diagram);
+      figure.append(toolbar, viewport);
+      code.parentElement?.replaceWith(figure);
+      return record;
+    });
+
+    const { default: mermaid } = await import('mermaid');
+    let rendering = false;
+    let renderAgain = false;
+
+    const renderMermaid = async () => {
+      if (rendering) { renderAgain = true; return; }
+      rendering = true;
+      const dark = document.documentElement.dataset.theme === 'dark';
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: 'base',
+        fontFamily: 'PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif',
+        flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+        sequence: { useMaxWidth: true, wrap: true },
+        themeVariables: dark ? {
+          background: '#1f1f1f', primaryColor: '#292929', primaryTextColor: '#f2f2f2',
+          primaryBorderColor: '#525252', secondaryColor: '#35211d', secondaryTextColor: '#f2f2f2',
+          tertiaryColor: '#1f1f1f', tertiaryTextColor: '#f2f2f2', lineColor: '#9a9a9a',
+          noteBkgColor: '#35211d', noteTextColor: '#f2f2f2', noteBorderColor: '#e2603f',
+        } : {
+          background: '#f5f5f5', primaryColor: '#ffffff', primaryTextColor: '#292929',
+          primaryBorderColor: '#c8c8c8', secondaryColor: '#f6e7e2', secondaryTextColor: '#292929',
+          tertiaryColor: '#f5f5f5', tertiaryTextColor: '#292929', lineColor: '#727272',
+          noteBkgColor: '#f6e7e2', noteTextColor: '#292929', noteBorderColor: '#c54120',
+        },
+      });
+
+      for (const diagram of diagrams) {
+        diagram.element.classList.remove('visual-error');
+        diagram.element.removeAttribute('data-processed');
+        diagram.element.textContent = diagram.source;
+        await mermaid.run({ nodes: [diagram.element], suppressErrors: true });
+        const svg = diagram.element.querySelector<SVGElement>('svg');
+        if (!svg) {
+          diagram.element.classList.add('visual-error');
+          diagram.element.textContent = `图表语法有误\n\n${diagram.source}`;
+        } else {
+          svg.style.maxWidth = 'none';
+          svg.style.width = `${diagram.scale * 100}%`;
+          svg.style.height = 'auto';
+        }
+      }
+
+      rendering = false;
+      if (renderAgain) { renderAgain = false; await renderMermaid(); }
+    };
+
+    await renderMermaid();
+    window.addEventListener('site-theme-change', renderMermaid);
+  }
+
+  // ECharts: JSON-only options keep Markdown portable and prevent executable chart config.
+  const echartsBlocks = [...document.querySelectorAll<HTMLElement>('.prose pre > code.language-echarts')];
+
+  if (echartsBlocks.length > 0) {
+    const chartRecords: ChartRecord[] = [];
+
+    echartsBlocks.forEach((code, index) => {
+      const source = code.textContent?.trim() ?? '';
+      const figure = document.createElement('figure');
+      figure.className = 'visual-frame echarts-figure';
+      const toolbar = document.createElement('figcaption');
+      toolbar.className = 'reader-toolbar';
+      const label = document.createElement('span');
+      label.className = 'reader-label';
+      label.textContent = `DATA CHART · ${String(index + 1).padStart(2, '0')}`;
+      const actions = document.createElement('div');
+      actions.className = 'reader-actions';
+      const copy = makeButton('复制', '复制 ECharts 配置');
+      const exportButton = makeButton('PNG', '导出 PNG');
+      const fullscreen = makeButton('全屏', '全屏查看图表');
+      const chartElement = document.createElement('div');
+      chartElement.className = 'echarts-canvas';
+      chartElement.setAttribute('role', 'img');
+      chartElement.setAttribute('aria-label', `文章数据图表 ${index + 1}`);
+
+      let option: Record<string, unknown> | null = null;
+      try {
+        const parsed = JSON.parse(source);
+        if (!parsed || Array.isArray(parsed) || typeof parsed !== 'object') throw new Error('配置必须是 JSON 对象');
+        option = parsed;
+      } catch (error) {
+        chartElement.classList.add('visual-error');
+        chartElement.textContent = `数据图表配置有误\n\n${error instanceof Error ? error.message : String(error)}\n\n${source}`;
+      }
+
+      copy.addEventListener('click', async () => { await copyText(source); flashButton(copy, '已复制', '复制'); });
+      fullscreen.addEventListener('click', () => toggleFullscreen(figure));
+      exportButton.addEventListener('click', () => {
+        const record = chartRecords.find((item) => item.element === chartElement);
+        if (!record?.chart) return;
+        const link = document.createElement('a');
+        link.href = record.chart.getDataURL({ type: 'png', pixelRatio: 2, backgroundColor: document.documentElement.dataset.theme === 'dark' ? '#141414' : '#ffffff' });
+        link.download = `${pageSlug}-chart-${index + 1}.png`;
+        link.click();
+      });
+
+      actions.append(copy, exportButton, fullscreen);
+      toolbar.append(label, actions);
+      figure.append(toolbar, chartElement);
+      code.parentElement?.replaceWith(figure);
+      if (option) chartRecords.push({ element: chartElement, figure, option, source, chart: null });
+    });
+
+    if (chartRecords.length > 0) {
+      const [echarts, charts, components, features, renderers] = await Promise.all([
+        import('echarts/core'), import('echarts/charts'), import('echarts/components'),
+        import('echarts/features'), import('echarts/renderers'),
+      ]);
+
+      echarts.use([
+        charts.BarChart, charts.LineChart, charts.PieChart, charts.ScatterChart, charts.EffectScatterChart,
+        charts.RadarChart, charts.GaugeChart, charts.FunnelChart, charts.HeatmapChart, charts.GraphChart,
+        charts.TreeChart, charts.TreemapChart, charts.SankeyChart, charts.SunburstChart,
+        components.TitleComponent, components.TooltipComponent, components.LegendComponent,
+        components.GridComponent, components.DatasetComponent, components.TransformComponent,
+        components.DataZoomComponent, components.VisualMapComponent, components.PolarComponent,
+        components.RadarComponent, components.CalendarComponent, components.MarkLineComponent,
+        components.MarkPointComponent, components.MarkAreaComponent, components.AriaComponent,
+        features.LabelLayout, features.UniversalTransition, renderers.CanvasRenderer,
+      ]);
+
+      const registerThemes = () => {
+        echarts.registerTheme('site-light', {
+          color: ['#c54120', '#696969', '#9a776d', '#a8a8a8', '#603b32'],
+          backgroundColor: 'transparent', textStyle: { color: '#292929' },
+          title: { textStyle: { color: '#292929' }, subtextStyle: { color: '#727272' } },
+          legend: { textStyle: { color: '#727272' } },
+          categoryAxis: { axisLine: { lineStyle: { color: '#c8c8c8' } }, axisLabel: { color: '#727272' }, splitLine: { lineStyle: { color: '#e5e5e5' } } },
+          valueAxis: { axisLine: { lineStyle: { color: '#c8c8c8' } }, axisLabel: { color: '#727272' }, splitLine: { lineStyle: { color: '#e5e5e5' } } },
+        });
+        echarts.registerTheme('site-dark', {
+          color: ['#e2603f', '#9a9a9a', '#b98678', '#686868', '#d4aa9f'],
+          backgroundColor: 'transparent', textStyle: { color: '#f2f2f2' },
+          title: { textStyle: { color: '#f2f2f2' }, subtextStyle: { color: '#9a9a9a' } },
+          legend: { textStyle: { color: '#9a9a9a' } },
+          categoryAxis: { axisLine: { lineStyle: { color: '#525252' } }, axisLabel: { color: '#9a9a9a' }, splitLine: { lineStyle: { color: '#303030' } } },
+          valueAxis: { axisLine: { lineStyle: { color: '#525252' } }, axisLabel: { color: '#9a9a9a' }, splitLine: { lineStyle: { color: '#303030' } } },
+        });
+      };
+
+      registerThemes();
+      const renderCharts = () => {
+        const theme = document.documentElement.dataset.theme === 'dark' ? 'site-dark' : 'site-light';
+        chartRecords.forEach((record) => {
+          record.chart?.dispose();
+          record.chart = echarts.init(record.element, theme, { renderer: 'canvas' });
+          record.chart.setOption({ aria: { enabled: true, decal: { show: false } }, animationDuration: 550, ...record.option });
+        });
+      };
+
+      renderCharts();
+      const resizeObserver = new ResizeObserver(() => chartRecords.forEach((record) => record.chart?.resize()));
+      chartRecords.forEach((record) => resizeObserver.observe(record.element));
+      window.addEventListener('site-theme-change', renderCharts);
+      document.addEventListener('fullscreenchange', () => window.setTimeout(() => chartRecords.forEach((record) => record.chart?.resize()), 80));
+    }
+  }
+
+  // GitHub-style callouts, expressed with standard blockquotes.
+  const calloutLabels: Record<string, string> = {
+    NOTE: '说明', TIP: '建议', IMPORTANT: '重点', WARNING: '注意', CAUTION: '谨慎',
+  };
+  document.querySelectorAll<HTMLElement>('.prose blockquote').forEach((quote) => {
+    const first = quote.querySelector<HTMLElement>('p');
+    if (!first) return;
+    const match = first.textContent?.match(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i);
+    if (!match) return;
+    const type = match[1].toUpperCase();
+    quote.classList.add('callout', `callout-${type.toLowerCase()}`);
+    first.innerHTML = first.innerHTML.replace(/^\s*\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*/i, '');
+    const label = document.createElement('div');
+    label.className = 'callout-label';
+    label.textContent = calloutLabels[type];
+    quote.prepend(label);
+    if (!first.textContent?.trim()) first.remove();
+  });
+
+  // Heading permalinks and active table of contents.
+  const articleHeadings = [...document.querySelectorAll<HTMLElement>('.prose h2[id], .prose h3[id], .prose h4[id]')];
+  articleHeadings.forEach((heading) => {
+    const anchor = document.createElement('a');
+    anchor.className = 'heading-anchor';
+    anchor.href = `#${heading.id}`;
+    anchor.textContent = '#';
+    anchor.setAttribute('aria-label', `复制「${heading.textContent?.trim() ?? '本节'}」的链接`);
+    anchor.addEventListener('click', async () => {
+      await copyText(`${location.origin}${location.pathname}#${heading.id}`);
+      anchor.dataset.copied = 'true';
+      window.setTimeout(() => delete anchor.dataset.copied, 1200);
+    });
+    heading.append(anchor);
+  });
+
+  const tocLinks = [...document.querySelectorAll<HTMLAnchorElement>('.toc a[href^="#"]')];
+  if (tocLinks.length > 0 && articleHeadings.length > 0) {
+    const linkById = new Map(tocLinks.map((link) => [decodeURIComponent(link.hash.slice(1)), link]));
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => link.removeAttribute('aria-current'));
+      linkById.get(visible.target.id)?.setAttribute('aria-current', 'location');
+    }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+    articleHeadings.forEach((heading) => observer.observe(heading));
+  }
+
+  // Images: lazy loading, captions from Markdown title, and an accessible lightbox.
+  const articleImages = [...document.querySelectorAll<HTMLImageElement>('.prose img')];
+  if (articleImages.length > 0) {
+    const dialog = document.createElement('dialog');
+    dialog.className = 'image-lightbox';
+    const dialogBar = document.createElement('div');
+    dialogBar.className = 'lightbox-toolbar';
+    const dialogCaption = document.createElement('span');
+    const originalLink = document.createElement('a');
+    originalLink.textContent = '打开原图';
+    originalLink.target = '_blank';
+    originalLink.rel = 'noreferrer';
+    const close = makeButton('关闭', '关闭图片查看器');
+    const dialogImage = document.createElement('img');
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    dialogImage.addEventListener('click', () => dialogImage.classList.toggle('is-zoomed'));
+    dialogBar.append(dialogCaption, originalLink, close);
+    dialog.append(dialogBar, dialogImage);
+    document.body.append(dialog);
+
+    const openImage = (image: HTMLImageElement) => {
+      dialogImage.src = image.currentSrc || image.src;
+      dialogImage.alt = image.alt;
+      dialogImage.classList.remove('is-zoomed');
+      dialogCaption.textContent = image.title || image.alt || '文章图片';
+      originalLink.href = image.currentSrc || image.src;
+      dialog.showModal();
+    };
+
+    articleImages.forEach((image) => {
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      if (!image.closest('a')) {
+        image.tabIndex = 0;
+        image.setAttribute('role', 'button');
+        image.setAttribute('aria-label', `${image.alt || '文章图片'}，点击放大`);
+        image.addEventListener('click', () => openImage(image));
+        image.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openImage(image); }
+        });
+      }
+
+      const visual = image.parentElement?.tagName === 'A' ? image.parentElement : image;
+      const paragraph = visual.parentElement;
+      if (paragraph?.tagName === 'P' && paragraph.childElementCount === 1 && !paragraph.textContent?.trim()) {
+        const figure = document.createElement('figure');
+        figure.className = 'article-image';
+        paragraph.replaceWith(figure);
+        figure.append(visual);
+        if (image.title) {
+          const caption = document.createElement('figcaption');
+          caption.textContent = image.title;
+          figure.append(caption);
+        }
+      }
+    });
+  }
+</script>
+
+<style is:global>
+  .reader-toolbar {
+    min-height: 44px;
+    padding: 0 12px 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-soft);
+  }
+  .reader-label { flex: 0 0 auto; font: 10px var(--mono); letter-spacing: .08em; }
+  .reader-actions { display: flex; align-items: center; gap: 3px; overflow-x: auto; scrollbar-width: none; }
+  .reader-actions::-webkit-scrollbar { display: none; }
+  .reader-tool { min-width: 30px; padding: 6px 8px; border: 0; border-radius: 6px; background: transparent; color: var(--text-soft); cursor: pointer; font-size: 11px; white-space: nowrap; transition: color .2s ease, background-color .2s ease, transform .15s ease; }
+  .reader-tool:hover { background: var(--surface-strong); color: var(--text); }
+  .reader-tool:active { transform: scale(.96); }
+  .scale-label { min-width: 42px; color: var(--text-soft); font: 9px var(--mono); text-align: center; }
+
+  .code-frame, .visual-frame { margin: 38px 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .code-frame pre { margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
+  .code-frame.is-wrapped pre, .code-frame.is-wrapped code { white-space: pre-wrap !important; overflow-wrap: anywhere; }
+
+  .diagram-viewport { padding: clamp(24px, 4vw, 44px); overflow: auto; text-align: center; overscroll-behavior: contain; }
+  .mermaid { min-width: 0; }
+  .mermaid svg { display: block; height: auto; margin: 0 auto; transition: width .22s ease; }
+  .echarts-canvas { width: 100%; height: clamp(340px, 46vw, 480px); padding: 12px; }
+  .visual-error { min-height: 180px; padding: 28px; overflow: auto; color: var(--accent); font: 12px/1.7 var(--mono); text-align: left; white-space: pre-wrap; }
+  .visual-frame:fullscreen { width: 100vw; height: 100vh; margin: 0; border: 0; border-radius: 0; background: var(--bg); }
+  .visual-frame:fullscreen .diagram-viewport { height: calc(100vh - 44px); display: grid; align-items: center; }
+  .visual-frame:fullscreen .echarts-canvas { height: calc(100vh - 44px); }
+
+  .callout { position: relative; border-left-width: 3px !important; }
+  .callout-label { margin-bottom: 10px; color: var(--accent); font: 600 11px var(--sans); letter-spacing: .06em; }
+  .callout-tip, .callout-note { border-left-color: var(--text-soft) !important; }
+  .callout-warning, .callout-caution, .callout-important { border-left-color: var(--accent) !important; }
+
+  .prose h2, .prose h3, .prose h4 { position: relative; scroll-margin-top: 96px; }
+  .heading-anchor { margin-left: 9px; color: var(--text-soft) !important; font: .52em var(--mono); text-decoration: none; opacity: 0; transition: opacity .2s ease, color .2s ease; }
+  .prose h2:hover .heading-anchor, .prose h3:hover .heading-anchor, .prose h4:hover .heading-anchor, .heading-anchor:focus-visible { opacity: .65; }
+  .heading-anchor[data-copied='true']::after { content: ' 已复制'; font-size: 10px; }
+  .toc a[aria-current='location'] { color: var(--accent) !important; }
+
+  .article-image { margin: 42px 0; }
+  .article-image img { margin: 0 !important; cursor: zoom-in; }
+  .article-image figcaption { max-width: 88%; margin: 12px auto 0; color: var(--text-soft); font-size: 12px; line-height: 1.65; text-align: center; }
+  .prose p:has(> img + img), .prose p:has(> a > img):has(> a + a) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .prose p:has(> img + img) img, .prose p:has(> a > img):has(> a + a) img { height: 100%; margin: 0; object-fit: cover; }
+
+  .image-lightbox { width: min(96vw, 1500px); max-width: none; height: min(94vh, 1100px); max-height: none; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg); color: var(--text); }
+  .image-lightbox::backdrop { background: rgba(0, 0, 0, .72); backdrop-filter: blur(8px); }
+  .lightbox-toolbar { min-height: 48px; padding: 0 12px 0 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); color: var(--text-soft); font-size: 12px; }
+  .lightbox-toolbar span { min-width: 0; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .lightbox-toolbar a { color: var(--text-soft); text-decoration: none; white-space: nowrap; }
+  .lightbox-toolbar a:hover { color: var(--accent); }
+  .image-lightbox > img { width: 100%; height: calc(100% - 48px); display: block; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; }
+  .image-lightbox > img.is-zoomed { transform: scale(1.7); cursor: zoom-out; }
+
+  @media (max-width: 640px) {
+    .reader-toolbar { align-items: flex-start; flex-direction: column; padding: 11px 12px; }
+    .reader-actions { width: 100%; }
+    .visual-frame { margin-inline: -6px; }
+    .diagram-viewport { padding: 22px 12px; }
+    .echarts-canvas { height: 360px; padding: 5px; }
+    .prose p:has(> img + img), .prose p:has(> a > img):has(> a + a) { grid-template-columns: 1fr; }
+    .lightbox-toolbar span { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mermaid svg, .image-lightbox > img { transition: none; }
+  }
+</style>

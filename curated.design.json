@@ -1,0 +1,66 @@
+{
+  "source": "https://curated.design/inspiration/dark/",
+  "tokens": {
+    "spacing": {
+      "scale": [4, 8, 12, 16, 24, 32, 48, 64, 96],
+      "base_unit": 4
+    },
+    "typography": {
+      "families": ["Hedvig Letters Serif", "Euclid Circular A", "ui-monospace"],
+      "scale": [
+        { "role": "display", "size": "60px", "weight": "400", "family": "Hedvig Letters Serif" },
+        { "role": "h1", "size": "48px", "weight": "400", "family": "Hedvig Letters Serif" },
+        { "role": "h2", "size": "30px", "weight": "400", "family": "Hedvig Letters Serif" },
+        { "role": "body", "size": "16px", "weight": "400", "family": "Euclid Circular A" },
+        { "role": "label", "size": "13px", "weight": "400", "family": "Euclid Circular A" }
+      ]
+    },
+    "colors": [
+      { "role": "background", "value": "#FFFFFF" },
+      { "role": "surface", "value": "#F5F5F5" },
+      { "role": "line", "value": "#E5E5E5" },
+      { "role": "text-primary", "value": "#292929" },
+      { "role": "text-muted", "value": "#737373" },
+      { "role": "accent", "value": "#C54120" },
+      { "role": "dark-background", "value": "#141414" },
+      { "role": "dark-surface", "value": "#1F1F1F" },
+      { "role": "dark-text", "value": "#F5F5F5" }
+    ],
+    "radius": ["6px", "8px", "12px", "16px", "999px"],
+    "shadows": ["none", "0 1px 2px rgba(0,0,0,0.04)"],
+    "image_ratios": [
+      { "usage": "gallery-card", "ratio": "16:9" }
+    ],
+    "grid": { "max_width": "1760px", "columns": 4, "gutter": "16px" }
+  },
+  "taste": [
+    {
+      "name": "Whitespace as navigation",
+      "trigger": "When separating the page introduction from a large gallery",
+      "decision": "Chose 64–96px pauses and open alignment over boxed section wrappers",
+      "reason": "Readers can identify the next layer of content before scanning individual cards.",
+      "evidence": ["96px footer padding", "32px container padding", "16px gallery gutters"]
+    },
+    {
+      "name": "Typography carries identity",
+      "trigger": "When the page needs character without competing with many visual examples",
+      "decision": "Chose a serif display face paired with a neutral sans over decorative backgrounds",
+      "reason": "The heading remains memorable while the gallery stays the main source of visual variation.",
+      "evidence": ["Hedvig Letters Serif display face", "Euclid Circular A body face", "60px display size"]
+    },
+    {
+      "name": "Accent as a scarce signal",
+      "trigger": "When highlighting actions inside a grayscale interface",
+      "decision": "Chose one rust accent for primary actions over distributing brand color across headings and cards",
+      "reason": "A rare color becomes an unambiguous cue instead of ambient decoration.",
+      "evidence": ["#C54120 accent", "neutral card surfaces", "gray navigation controls"]
+    },
+    {
+      "name": "Media before containers",
+      "trigger": "When presenting many peer items for comparison",
+      "decision": "Chose consistent 16:9 media and captions over bordered card shells and layered shadows",
+      "reason": "Repeated geometry makes the collection faster to scan and leaves each item room to differ.",
+      "evidence": ["4-column desktop gallery", "16px gutter", "8px media radius", "no persistent card shadow"]
+    }
+  ]
+}

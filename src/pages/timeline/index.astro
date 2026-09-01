@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingHeatmap from '../../components/WritingHeatmap.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const entries = (await getCollection('writing')).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const groups: { key: string; label: string; entries: CollectionEntry<'writing'>[] }[] = [];
+const monthFormatter = new Intl.DateTimeFormat('zh-CN', { year: 'numeric', month: 'long', timeZone: 'UTC' });
+const dayFormatter = new Intl.DateTimeFormat('zh-CN', { month: '2-digit', day: '2-digit', timeZone: 'UTC' });
+const weekdayFormatter = new Intl.DateTimeFormat('zh-CN', { weekday: 'short', timeZone: 'UTC' });
+const typeLabels = { note: '笔记', essay: '文章', weekly: '每周信号' };
+const statusLabels = { seed: '种子', growing: '生长中', evergreen: '常青', archived: '归档' };
+
+for (const entry of entries) {
+  const key = entry.data.publishedAt.toISOString().slice(0, 7);
+  let group = groups.at(-1);
+  if (!group || group.key !== key) {
+    group = { key, label: monthFormatter.format(entry.data.publishedAt), entries: [] };
+    groups.push(group);
+  }
+  group.entries.push(entry);
+}
+---
+
+<BaseLayout title="时间线｜大飞随笔" description="按照日期回看 AI 学习、产品判断与技术思考的形成过程。">
+  <div class="page-shell timeline-page">
+    <header class="page-intro">
+      <p class="eyebrow">WRITING ARCHIVE</p>
+      <h1>写作留下的，<br />不只是结论。</h1>
+      <p class="intro-copy">从时间出发，查看每个判断在何时被写下。热力图按真实发布日期统计，时间线保留文章当时的状态。</p>
+    </header>
+
+    <section class="heatmap-section" aria-labelledby="heatmap-title">
+      <header class="archive-heading">
+        <div><h2 id="heatmap-title">写作热力图</h2><p>过去 53 周的发布节奏</p></div>
+        <span>{String(entries.length).padStart(2, '0')} ENTRIES</span>
+      </header>
+      <WritingHeatmap entries={entries} />
+    </section>
+
+    <section class="timeline-section" aria-labelledby="timeline-title">
+      <header class="archive-heading">
+        <div><h2 id="timeline-title">时间线</h2><p>按发布时间倒序</p></div>
+        <span>{String(groups.length).padStart(2, '0')} MONTHS</span>
+      </header>
+
+      <div class="timeline-groups">
+        {groups.map((group) => (
+          <section class="timeline-group">
+            <header><h3>{group.label}</h3><span>{group.entries.length} 篇</span></header>
+            <ol>
+              {group.entries.map((entry) => (
+                <li>
+                  <time datetime={entry.data.publishedAt.toISOString()}>
+                    <strong>{dayFormatter.format(entry.data.publishedAt)}</strong>
+                    <span>{weekdayFormatter.format(entry.data.publishedAt)}</span>
+                  </time>
+                  <a class="timeline-copy" href={`/writing/${entry.id}/`}>
+                    <h4>{entry.data.title}</h4>
+                    <p>{entry.data.description}</p>
+                  </a>
+                  <div class="timeline-meta">
+                    <span>{typeLabels[entry.data.type]}</span>
+                    <span>{entry.data.readingTime}</span>
+                    <span>{statusLabels[entry.data.status]}</span>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .timeline-page { padding-bottom: var(--space-section-lg); }
+  .heatmap-section, .timeline-section { margin-top: var(--space-section-lg); }
+  .archive-heading { margin-bottom: 22px; display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+  .archive-heading h2 { margin: 0; font-family: var(--display); font-size: var(--display-section-size); font-weight: 400; letter-spacing: -.03em; }
+  .archive-heading p { margin: 8px 0 0; color: var(--text-soft); font-size: 12px; }
+  .archive-heading > span { color: var(--text-soft); font: 9px var(--mono); letter-spacing: .06em; }
+  .timeline-groups { border-top: 1px solid var(--line); }
+  .timeline-group { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 30px; padding: 28px 0 10px; border-bottom: 1px solid var(--line); }
+  .timeline-group > header { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .timeline-group > header h3 { margin: 0; font-family: var(--display); font-size: 23px; font-weight: 400; }
+  .timeline-group > header span { color: var(--text-soft); font: 9px var(--mono); }
+  .timeline-group ol { margin: 0; padding: 0; list-style: none; }
+  .timeline-group li { display: grid; grid-template-columns: 74px minmax(0, 1fr) 150px; gap: 22px; align-items: start; padding: 0 0 22px; }
+  .timeline-group li + li { padding-top: 22px; border-top: 1px solid var(--line); }
+  .timeline-group time { padding-top: 3px; display: flex; flex-direction: column; gap: 4px; color: var(--text-soft); font: 9px var(--mono); }
+  .timeline-group time strong { color: var(--text); font-size: 11px; font-weight: 500; }
+  .timeline-copy { padding-left: 22px; border-left: 1px solid var(--line); text-decoration: none; }
+  .timeline-copy h4 { margin: 0; font-family: var(--display); font-size: clamp(20px, 2vw, 27px); font-weight: 400; line-height: 1.4; letter-spacing: -.02em; text-wrap: balance; }
+  .timeline-copy p { max-width: 660px; margin: 8px 0 0; color: var(--text-soft); font-size: 12px; line-height: 1.7; text-wrap: pretty; }
+  .timeline-copy:hover h4 { color: var(--accent); }
+  .timeline-meta { padding-top: 4px; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px 10px; color: var(--text-soft); font: 9px var(--mono); text-align: right; }
+  @media (max-width: 800px) {
+    .timeline-group { grid-template-columns: 1fr; gap: 22px; }
+    .timeline-group > header { justify-content: flex-start; }
+  }
+  @media (max-width: 640px) {
+    .archive-heading { align-items: flex-start; }
+    .timeline-group li { grid-template-columns: 58px minmax(0, 1fr); gap: 12px; }
+    .timeline-copy { padding-left: 16px; }
+    .timeline-meta { grid-column: 2; justify-content: flex-start; padding: 0 0 0 17px; text-align: left; }
+  }
+</style>

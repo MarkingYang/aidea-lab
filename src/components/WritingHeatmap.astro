@@ -1,0 +1,130 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'writing'>[];
+}
+
+const { entries } = Astro.props;
+const WEEK_COUNT = 53;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const toUtcDay = (date: Date) => new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+const toKey = (date: Date) => date.toISOString().slice(0, 10);
+const today = toUtcDay(new Date());
+const latestPublished = entries.reduce(
+  (latest, entry) => Math.max(latest, toUtcDay(entry.data.publishedAt).valueOf()),
+  today.valueOf(),
+);
+const end = new Date(Math.max(today.valueOf(), latestPublished));
+end.setUTCDate(end.getUTCDate() + (6 - end.getUTCDay()));
+const start = new Date(end.valueOf() - (WEEK_COUNT * 7 - 1) * DAY_MS);
+
+const activity = new Map<string, CollectionEntry<'writing'>[]>();
+for (const entry of entries) {
+  const key = toKey(toUtcDay(entry.data.publishedAt));
+  const current = activity.get(key) ?? [];
+  current.push(entry);
+  activity.set(key, current);
+}
+
+const days = Array.from({ length: WEEK_COUNT * 7 }, (_, index) => new Date(start.valueOf() + index * DAY_MS));
+const visibleActivity = [...activity.entries()].filter(([key]) => key >= toKey(start) && key <= toKey(end));
+const monthLabels: { label: string; week: number }[] = [];
+let previousMonth = '';
+
+days.forEach((date, index) => {
+  const monthKey = `${date.getUTCFullYear()}-${date.getUTCMonth()}`;
+  if (monthKey !== previousMonth) {
+    monthLabels.push({ label: `${date.getUTCMonth() + 1}月`, week: Math.floor(index / 7) + 1 });
+    previousMonth = monthKey;
+  }
+});
+
+const dateFormatter = new Intl.DateTimeFormat('zh-CN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+const levelFor = (count: number) => count === 0 ? 0 : Math.min(4, count + 1);
+---
+
+<div class="heatmap">
+  <div class="heatmap-scroll" tabindex="0" aria-label="过去一年写作热力图，可横向滚动">
+    <div class="heatmap-frame">
+      <div class="weekday-labels" aria-hidden="true">
+        <span style="grid-row: 2">一</span>
+        <span style="grid-row: 4">三</span>
+        <span style="grid-row: 6">五</span>
+      </div>
+      <div class="heatmap-chart">
+        <div class="month-labels" aria-hidden="true">
+          {monthLabels.map(({ label, week }) => <span style={`grid-column: ${week}`}>{label}</span>)}
+        </div>
+        <div class="heatmap-cells">
+          {days.map((date) => {
+            const key = toKey(date);
+            const dayEntries = activity.get(key) ?? [];
+            const title = dayEntries.length > 0
+              ? `${dateFormatter.format(date)}，${dayEntries.length} 篇：${dayEntries.map((entry) => entry.data.title).join('、')}`
+              : `${dateFormatter.format(date)}，没有发布`;
+            return dayEntries.length > 0 ? (
+              <a
+                class={`heat-cell level-${levelFor(dayEntries.length)}`}
+                href={`/writing/${dayEntries[0].id}/`}
+                aria-label={title}
+                title={title}
+              ></a>
+            ) : <span class="heat-cell level-0" aria-hidden="true" title={title}></span>;
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="heatmap-footer">
+    <p><strong>{entries.length}</strong> 篇记录，分布在 <strong>{visibleActivity.length}</strong> 个发布日期</p>
+    <div class="heatmap-legend" aria-label="颜色越深表示当天发布越多">
+      <span>少</span>
+      {[0, 1, 2, 3, 4].map((level) => <i class={`heat-cell level-${level}`}></i>)}
+      <span>多</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const showLatestActivity = () => {
+    document.querySelectorAll<HTMLElement>('.heatmap-scroll').forEach((container) => {
+      container.scrollLeft = container.scrollWidth;
+    });
+  };
+
+  requestAnimationFrame(showLatestActivity);
+</script>
+
+<style>
+  .heatmap { padding: 24px; border-radius: var(--radius-lg); background: var(--surface); }
+  .heatmap-scroll { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-color: var(--surface-strong) transparent; }
+  .heatmap-frame { min-width: 840px; display: grid; grid-template-columns: 30px auto; gap: 10px; }
+  .weekday-labels { padding-top: 22px; display: grid; grid-template-rows: repeat(7, 11px); gap: 4px; color: var(--text-soft); font: 8px var(--mono); }
+  .weekday-labels span { align-self: center; }
+  .month-labels { height: 18px; display: grid; grid-template-columns: repeat(53, 11px); gap: 4px; color: var(--text-soft); font: 8px var(--mono); white-space: nowrap; }
+  .month-labels span { align-self: start; }
+  .heatmap-cells { display: grid; grid-template-rows: repeat(7, 11px); grid-auto-flow: column; grid-auto-columns: 11px; gap: 4px; }
+  .heat-cell { width: 11px; height: 11px; display: block; border-radius: 2px; background: var(--surface-strong); }
+  a.heat-cell { transition: transform .18s ease, background-color .18s ease; }
+  a.heat-cell:hover { position: relative; z-index: 1; transform: scale(1.45); }
+  .level-1 { background: color-mix(in srgb, var(--accent) 22%, var(--surface)); }
+  .level-2 { background: color-mix(in srgb, var(--accent) 42%, var(--surface)); }
+  .level-3 { background: color-mix(in srgb, var(--accent) 68%, var(--surface)); }
+  .level-4 { background: var(--accent); }
+  .heatmap-footer { margin-top: 18px; padding-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 11px; }
+  .heatmap-footer p { margin: 0; }
+  .heatmap-footer strong { color: var(--text); font: 12px var(--mono); font-weight: 500; }
+  .heatmap-legend { display: flex; align-items: center; gap: 5px; font: 8px var(--mono); }
+  .heatmap-legend .heat-cell { flex: 0 0 auto; }
+  @media (max-width: 640px) {
+    .heatmap { margin-inline: calc(0px - var(--page-gutter)); padding: 20px 14px; border-radius: 0; }
+    .heatmap-footer { align-items: flex-start; flex-direction: column; gap: 12px; }
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ContentCard from '../../components/ContentCard.astro';
+import { getCollection } from 'astro:content';
+import { getUmamiPopularity, getWritingMetric } from '../../lib/umami';
+
+const entries = (await getCollection('writing', ({ data }) => data.type === 'essay')).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const popularity = await getUmamiPopularity();
+---
+
+<BaseLayout title="文章｜大飞随笔" description="关于 AI、产品与人的长篇思考。">
+  <div class="page-shell">
+    <header class="page-intro">
+      <div><p class="eyebrow">LONG-FORM THINKING</p><h1>把零散信号，<br />写成一个判断。</h1></div>
+      <p class="intro-copy">长文不是最终答案，而是一次阶段性的思想整理。保留发布日期，也保留后来发生的修改。</p>
+    </header>
+    <div class="count-line"><span>{String(entries.length).padStart(2, '0')} ESSAYS</span><span>持续修订</span></div>
+    <section class="content-grid" aria-label="文章列表">
+      {entries.map((entry, index) => <ContentCard entry={entry} index={index} views={getWritingMetric(popularity.metrics, entry.id)?.pageviews ?? null} />)}
+    </section>
+  </div>
+</BaseLayout>

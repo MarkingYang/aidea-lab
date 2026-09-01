@@ -1,0 +1,116 @@
+---
+const repo = import.meta.env.PUBLIC_GISCUS_REPO?.trim();
+const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID?.trim();
+const category = import.meta.env.PUBLIC_GISCUS_CATEGORY?.trim();
+const categoryId = import.meta.env.PUBLIC_GISCUS_CATEGORY_ID?.trim();
+const configured = Boolean(repo && repoId && category && categoryId);
+const showSetup = import.meta.env.DEV && !configured;
+---
+
+{(configured || showSetup) && (
+  <section class="comments" id="comments" aria-labelledby="comments-title">
+    <header class="comments-heading">
+      <div>
+        <h2 id="comments-title">参与讨论</h2>
+        <p>补充证据、提出异议，或分享另一种实践。</p>
+      </div>
+      <span>GITHUB DISCUSSIONS</span>
+    </header>
+
+    {configured ? (
+      <>
+        <div
+          class="giscus-host"
+          data-repo={repo}
+          data-repo-id={repoId}
+          data-category={category}
+          data-category-id={categoryId}
+        >
+          <p class="comment-loading" data-giscus-loading>评论载入中</p>
+        </div>
+        <script is:inline>
+          (() => {
+            const loader = document.currentScript;
+            const host = loader?.previousElementSibling;
+            if (!(host instanceof HTMLElement) || host.dataset.loaded === 'true') return;
+            host.dataset.loaded = 'true';
+
+            const script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.async = true;
+            script.crossOrigin = 'anonymous';
+            script.dataset.repo = host.dataset.repo || '';
+            script.dataset.repoId = host.dataset.repoId || '';
+            script.dataset.category = host.dataset.category || '';
+            script.dataset.categoryId = host.dataset.categoryId || '';
+            script.dataset.mapping = 'pathname';
+            script.dataset.strict = '0';
+            script.dataset.reactionsEnabled = '1';
+            script.dataset.emitMetadata = '1';
+            script.dataset.inputPosition = 'top';
+            script.dataset.lang = 'zh-CN';
+            script.dataset.loading = 'lazy';
+            script.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'transparent_dark' : 'light';
+            host.appendChild(script);
+
+            const loading = host.querySelector('[data-giscus-loading]');
+            const stopLoading = () => loading?.setAttribute('hidden', '');
+            const observer = new MutationObserver(() => {
+              if (host.querySelector('iframe.giscus-frame')) {
+                stopLoading();
+                observer.disconnect();
+              }
+            });
+            observer.observe(host, { childList: true });
+
+            const updateTheme = (theme) => {
+              const frame = host.querySelector('iframe.giscus-frame');
+              frame?.contentWindow?.postMessage({
+                giscus: { setConfig: { theme: theme === 'dark' ? 'transparent_dark' : 'light' } },
+              }, 'https://giscus.app');
+            };
+
+            window.addEventListener('site-theme-change', (event) => updateTheme(event.detail?.theme));
+            window.addEventListener('message', (event) => {
+              if (event.origin !== 'https://giscus.app') return;
+              const discussion = event.data?.giscus?.discussion;
+              if (!discussion) return;
+
+              stopLoading();
+              const target = document.querySelector('[data-comment-count]');
+              const count = discussion.totalCommentCount;
+              if (target instanceof HTMLElement && Number.isFinite(count)) {
+                target.textContent = `${count} 条评论`;
+                target.hidden = false;
+              }
+            });
+          })();
+        </script>
+      </>
+    ) : (
+      <div class="comment-setup">
+        <strong>评论区等待连接</strong>
+        <p>在环境变量中填入 Giscus 的仓库与分类标识后，这里会自动显示评论。</p>
+      </div>
+    )}
+  </section>
+)}
+
+<style>
+  .comments { width: min(var(--measure), var(--page)); margin: var(--space-section) auto 0; padding-top: 26px; border-top: 1px solid var(--line); }
+  .comments-heading { margin-bottom: 28px; display: flex; align-items: start; justify-content: space-between; gap: 30px; }
+  .comments-heading h2 { margin: 0; font-family: var(--display); font-size: var(--display-section-size); font-weight: 400; letter-spacing: -.025em; }
+  .comments-heading p { margin: 10px 0 0; color: var(--text-soft); font-size: 13px; line-height: 1.7; }
+  .comments-heading > span { padding-top: 8px; color: var(--text-soft); font: 9px var(--mono); letter-spacing: .08em; }
+  .giscus-host { min-height: 180px; }
+  .comment-loading, .comment-setup { margin: 0; padding: 24px 0; color: var(--text-soft); font-size: 13px; }
+  .comment-loading { font-family: var(--mono); }
+  .comment-setup { border-radius: var(--radius); background: var(--surface); padding-inline: 24px; }
+  .comment-setup strong { color: var(--text); font-size: 14px; }
+  .comment-setup p { margin: 9px 0 0; line-height: 1.7; }
+  @media (max-width: 640px) {
+    .comments { margin-top: 56px; }
+    .comments-heading { flex-direction: column; gap: 8px; }
+    .comments-heading > span { padding-top: 0; }
+  }
+</style>

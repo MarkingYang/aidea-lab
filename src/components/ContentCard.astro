@@ -1,0 +1,81 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'writing'>;
+  variant?: 'default' | 'compact';
+  index?: number;
+  views?: number | null;
+}
+
+const { entry, variant = 'default', index = 0, views = null } = Astro.props;
+const typeLabels = { note: '笔记', essay: '文章', weekly: '每周信号' };
+const statusLabels = { seed: '种子', growing: '生长中', evergreen: '常青', archived: '归档' };
+const date = entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', '.');
+const formattedViews = views === null ? '--' : new Intl.NumberFormat('zh-CN').format(views);
+---
+
+<article class:list={['content-card', variant, `tone-${index % 5}`]}>
+  <a class="card-visual" href={`/writing/${entry.id}/`} aria-label={`阅读：${entry.data.title}`}>
+    <span class="visual-type">{typeLabels[entry.data.type]}</span>
+    <span class="visual-index">{String(index + 1).padStart(2, '0')}</span>
+    <span class="visual-views" title={views === null ? '等待 Umami 访问数据' : '最近 30 天文章阅读量'}>
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M1.5 8s2.3-4 6.5-4 6.5 4 6.5 4-2.3 4-6.5 4-6.5-4-6.5-4Z"></path>
+        <circle cx="8" cy="8" r="1.8"></circle>
+      </svg>
+      <span>30 天阅读</span>
+      <strong>{formattedViews}</strong>
+    </span>
+    <strong>{entry.data.title}</strong>
+    <span class="visual-arrow" aria-hidden="true">↗</span>
+  </a>
+  <div class="card-caption">
+    <div>
+      <h2><a href={`/writing/${entry.id}/`}>{entry.data.title}</a></h2>
+      {variant === 'default' && <p>{entry.data.description}</p>}
+    </div>
+    <div class="card-meta">
+      <span>{entry.data.topics[0]} / {entry.data.readingTime}</span>
+      <span class="card-meta-right">
+        <time datetime={entry.data.publishedAt.toISOString()}>{date}</time>
+        <span>{statusLabels[entry.data.status]}</span>
+      </span>
+    </div>
+  </div>
+</article>
+
+<style>
+  .content-card { min-width: 0; }
+  .card-visual { position: relative; aspect-ratio: 16 / 8.8; padding: clamp(18px, 2vw, 26px); display: flex; flex-direction: column; overflow: hidden; border-radius: var(--radius); background: var(--surface); color: var(--text); text-decoration: none; isolation: isolate; transition: transform .3s cubic-bezier(.4,0,.2,1), background-color .3s ease; }
+  .card-visual::after { content: ''; position: absolute; z-index: -1; width: 52%; aspect-ratio: 1; right: -12%; bottom: -46%; border: 1px solid color-mix(in srgb, var(--text) 12%, transparent); border-radius: 50%; transition: transform .4s ease; }
+  .tone-1 .card-visual { background: color-mix(in srgb, var(--surface) 82%, var(--accent-soft)); }
+  .tone-2 .card-visual { background: var(--text); color: var(--bg); }
+  .tone-3 .card-visual::after { width: 72%; right: -22%; bottom: -75%; box-shadow: 0 0 0 28px color-mix(in srgb, var(--text) 5%, transparent), 0 0 0 56px color-mix(in srgb, var(--text) 3%, transparent); }
+  .tone-4 .card-visual { background: var(--accent-soft); }
+  .card-visual:hover { transform: translateY(-4px); }
+  .card-visual:hover::after { transform: scale(1.15); }
+  .visual-type, .visual-index { position: absolute; top: 20px; color: currentColor; font: 10px var(--mono); letter-spacing: .08em; opacity: .56; }
+  .visual-type { left: 22px; }
+  .visual-index { right: 22px; }
+  .visual-views { position: absolute; top: 45px; left: 22px; display: inline-flex; align-items: center; gap: 5px; padding: 5px 8px; border: 1px solid color-mix(in srgb, currentColor 14%, transparent); border-radius: 999px; background: color-mix(in srgb, currentColor 8%, transparent); color: currentColor; font: 8px var(--mono); letter-spacing: .04em; backdrop-filter: blur(8px); }
+  .visual-views svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.2; }
+  .visual-views strong { font: inherit; font-weight: 600; }
+  .card-visual strong { max-width: 88%; margin-top: auto; font-family: var(--display); font-size: clamp(20px, 1.85vw, 28px); font-weight: 400; line-height: 1.34; letter-spacing: -.02em; text-wrap: balance; }
+  .card-visual .visual-views strong { margin: 0; font-family: var(--mono); font-size: 8px; line-height: 1; letter-spacing: .04em; }
+  .visual-arrow { position: absolute; right: 22px; bottom: 20px; font-size: 18px; opacity: .55; transition: transform .25s ease; }
+  .card-visual:hover .visual-arrow { transform: translate(3px, -3px); }
+  .card-caption { padding-top: 14px; }
+  .card-caption h2 { margin: 0; font-size: 14px; font-weight: 500; line-height: 1.5; }
+  .card-caption h2 a { text-decoration: none; }
+  .card-caption h2 a:hover { color: var(--accent); }
+  .card-caption p { margin: 6px 0 0; color: var(--text-soft); font-size: 12px; line-height: 1.65; }
+  .card-meta { margin-top: 11px; display: flex; justify-content: space-between; gap: 16px; color: var(--text-soft); font: 9px var(--mono); line-height: 1.5; }
+  .card-meta-right { display: flex; justify-content: flex-end; gap: 10px; text-align: right; }
+  .compact .card-caption p { display: none; }
+  @media (max-width: 640px) {
+    .card-visual strong { font-size: clamp(22px, 7vw, 26px); }
+    .card-meta { align-items: flex-start; flex-direction: column; gap: 6px; }
+    .card-meta-right { justify-content: flex-start; text-align: left; }
+  }
+</style>
