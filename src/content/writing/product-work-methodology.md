@@ -1,5 +1,5 @@
 ---
-title: 产品工作的方法论
+title: OpenAI 与 Anthropic 的产品实践：AI 时代产品经理的角色变迁
 description: 在 Agent Harness 时代，产品经理如何把不确定的模型能力，转化为可验证、可控制、可持续演进的工作系统。
 publishedAt: 2026-09-01
 type: essay
