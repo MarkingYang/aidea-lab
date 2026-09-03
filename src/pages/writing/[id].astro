@@ -7,7 +7,9 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('writing');
-  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  return entries
+    .filter((entry) => !entry.data.standalone)
+    .map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
 
 interface Props { entry: CollectionEntry<'writing'>; }
