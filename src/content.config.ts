@@ -13,7 +13,6 @@ const writing = defineCollection({
     topics: z.array(z.string()).min(1),
     featured: z.boolean().default(false),
     readingTime: z.string(),
-    standalone: z.boolean().default(false),
   }),
 });
 
