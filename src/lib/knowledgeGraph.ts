@@ -1,3 +1,4 @@
+import { createGraphSimulation } from './graphSimulation';
 import { getKnowledge, topics, articleHref, type Writing } from './knowledge';
 
 export type GraphNodeKind = 'topic' | 'series' | 'keyword' | 'article';
@@ -58,29 +59,9 @@ export interface KnowledgeGraphData {
     similarities: number;
   };
   layout: {
-    type: 'clustered-circle-packing';
+    type: 'force-directed';
     radius: number;
     version: number;
-    clusters: Array<{
-      id: string;
-      label: string;
-      topicId: string;
-      hubId: string;
-      x: number;
-      y: number;
-      radius: number;
-      nodeCount: number;
-    }>;
-    bridges: Array<{
-      id: string;
-      source: string;
-      target: string;
-      sourceClusterId: string;
-      targetClusterId: string;
-      count: number;
-      weight: number;
-      relations: GraphRelation[];
-    }>;
   };
   generatedAt: string;
 }
@@ -112,260 +93,23 @@ function similarityScore(a: Writing, b: Writing, tagFrequency: Map<string, numbe
   return { shared, score };
 }
 
-function hashUnit(value: string) {
-  let result = 2166136261;
-  for (let index = 0; index < value.length; index++) result = Math.imul(result ^ value.charCodeAt(index), 16777619);
-  return (result >>> 0) / 4294967295;
-}
-
-function graphEdgeWeight(relation: GraphRelation) {
-  if (relation === 'topic') return 3.4;
-  if (relation === 'series') return 2.8;
-  if (relation === 'reference') return 1.35;
-  if (relation === 'keyword') return .48;
-  return .72;
-}
-
-function assignCirclePackingLayout(nodes: KnowledgeGraphNode[], links: KnowledgeGraphLink[]) {
-  let graphRadius = 210;
-  const nodeById = new Map(nodes.map(node => [node.id, node]));
-  const clusterForNode = new Map<string, string>();
-  const clusterDefinitions = new Map<string, { id: string; label: string; topicId: string; hubId: string }>();
-
-  for (const topic of topics) {
-    const id = `cluster:topic:${topic.id}`;
-    clusterDefinitions.set(id, { id, label: topic.title, topicId: topic.id, hubId: `topic:${topic.id}` });
-  }
-  for (const node of nodes.filter(node => node.kind === 'series')) {
-    const id = `cluster:series:${node.seriesId}`;
-    clusterDefinitions.set(id, { id, label: node.title, topicId: node.topicId, hubId: node.id });
-  }
-
+function assignForceLayout(nodes: KnowledgeGraphNode[], links: KnowledgeGraphLink[]) {
   for (const node of nodes) {
-    if (node.kind === 'keyword') continue;
-    const clusterId = node.kind === 'series' || node.seriesId
-      ? `cluster:series:${node.seriesId}`
-      : `cluster:topic:${node.topicId}`;
-    clusterForNode.set(node.id, clusterId);
+    node.clusterId = node.seriesId ? `series:${node.seriesId}` : `topic:${node.topicId}`;
+    node.labelSide = 'right';
   }
-
-  // A keyword joins the community containing most of the articles that use it.
-  // This turns editorial metadata into spatial proximity without inventing edges.
-  for (const keyword of nodes.filter(node => node.kind === 'keyword')) {
-    const candidates = new Map<string, number>();
-    for (const link of links) {
-      if (link.source !== keyword.id && link.target !== keyword.id) continue;
-      const neighborId = link.source === keyword.id ? link.target : link.source;
-      const clusterId = clusterForNode.get(neighborId);
-      if (clusterId) candidates.set(clusterId, (candidates.get(clusterId) ?? 0) + link.weight);
-    }
-    const clusterId = [...candidates]
-      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'zh-CN'))[0]?.[0]
-      ?? `cluster:topic:${keyword.topicId}`;
-    clusterForNode.set(keyword.id, clusterId);
-  }
-
-  const membersByCluster = new Map<string, KnowledgeGraphNode[]>();
+  const simulation = createGraphSimulation(nodes, links);
+  simulation.tick(400);
+  simulation.stop();
+  const minX = Math.min(...nodes.map(node => node.x!));
+  const maxX = Math.max(...nodes.map(node => node.x!));
+  const minY = Math.min(...nodes.map(node => node.y!));
+  const maxY = Math.max(...nodes.map(node => node.y!));
   for (const node of nodes) {
-    const clusterId = clusterForNode.get(node.id) ?? `cluster:topic:${node.topicId}`;
-    node.clusterId = clusterId;
-    membersByCluster.set(clusterId, [...(membersByCluster.get(clusterId) ?? []), node]);
+    node.x = Number((node.x! - (minX + maxX) / 2).toFixed(4));
+    node.y = Number((node.y! - (minY + maxY) / 2).toFixed(4));
   }
-
-  type Circle = {
-    id: string;
-    label: string;
-    topicId: string;
-    hubId: string;
-    members: KnowledgeGraphNode[];
-    local: Map<string, { x: number; y: number }>;
-    radius: number;
-    x: number;
-    y: number;
-  };
-  const circles: Circle[] = [...clusterDefinitions.values()]
-    .map(definition => ({
-      ...definition,
-      members: membersByCluster.get(definition.id) ?? [],
-      local: new Map(),
-      radius: 8,
-      x: 0,
-      y: 0,
-    }))
-    .filter(circle => circle.members.length)
-    .sort((a, b) => b.members.length - a.members.length || a.id.localeCompare(b.id, 'zh-CN'));
-
-  // Each community is a small circular system. Its semantic hub stays at the
-  // center while articles and keywords occupy deterministic concentric rings.
-  for (const circle of circles) {
-    circle.local.set(circle.hubId, { x: 0, y: 0 });
-    const members = circle.members
-      .filter(node => node.id !== circle.hubId)
-      .sort((a, b) => {
-        const kindOrder = { article: 0, keyword: 1, series: 2, topic: 3 };
-        return kindOrder[a.kind] - kindOrder[b.kind]
-          || (a.chapter ?? 999) - (b.chapter ?? 999)
-          || b.degree - a.degree
-          || a.id.localeCompare(b.id, 'zh-CN');
-      });
-    let cursor = 0;
-    let ring = 0;
-    const phase = hashUnit(`${circle.id}:phase`) * Math.PI * 2;
-    while (cursor < members.length) {
-      const capacity = 7 + ring * 5;
-      const ringMembers = members.slice(cursor, cursor + capacity);
-      const radius = 17 + ring * 14;
-      ringMembers.forEach((node, index) => {
-        const angle = phase + Math.PI * 2 * index / ringMembers.length + ring * .21;
-        circle.local.set(node.id, { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius });
-      });
-      circle.radius = radius + 8;
-      cursor += ringMembers.length;
-      ring++;
-    }
-  }
-
-  const metaEdgeWeights = new Map<string, number>();
-  for (const link of links) {
-    const sourceCluster = clusterForNode.get(link.source);
-    const targetCluster = clusterForNode.get(link.target);
-    if (!sourceCluster || !targetCluster || sourceCluster === targetCluster) continue;
-    const id = pairKey(sourceCluster, targetCluster);
-    metaEdgeWeights.set(id, (metaEdgeWeights.get(id) ?? 0) + graphEdgeWeight(link.relation));
-  }
-  const circleWeight = (circle: Circle) => {
-    let weight = 0;
-    for (const [id, edgeWeight] of metaEdgeWeights) {
-      const [source, target] = id.split('::');
-      if (source === circle.id || target === circle.id) weight += edgeWeight;
-    }
-    return weight;
-  };
-  const centerCircle = [...circles].sort((a, b) => circleWeight(b) - circleWeight(a) || b.members.length - a.members.length || a.id.localeCompare(b.id, 'zh-CN'))[0];
-  centerCircle.x = 0;
-  centerCircle.y = 0;
-
-  // The remaining local circles form one stable global ring. Topic order keeps
-  // adjacent knowledge together, while radius-weighted arc lengths prevent large
-  // communities from colliding with their neighbors.
-  const outerCircles = circles
-    .filter(circle => circle !== centerCircle)
-    .sort((a, b) => {
-      const topicOrder = topics.findIndex(topic => topic.id === a.topicId) - topics.findIndex(topic => topic.id === b.topicId);
-      return topicOrder || circleWeight(b) - circleWeight(a) || b.members.length - a.members.length || a.id.localeCompare(b.id, 'zh-CN');
-    });
-  const arcWeights = outerCircles.map(circle => Math.pow(circle.radius, .82));
-  const totalArcWeight = arcWeights.reduce((sum, weight) => sum + weight, 0) || 1;
-  // Preserve the ordering and internal scale as the library grows. Enlarge the
-  // envelope until every pair (including the central circle) has clearance.
-  for (let attempt = 0; ; attempt++) {
-    let angleCursor = -Math.PI / 2;
-    outerCircles.forEach((circle, index) => {
-      const span = Math.PI * 2 * arcWeights[index] / totalArcWeight;
-      const angle = angleCursor + span / 2;
-      const orbit = graphRadius - circle.radius - 7;
-      circle.x = Math.cos(angle) * orbit;
-      circle.y = Math.sin(angle) * orbit;
-      angleCursor += span;
-    });
-    const overlaps = circles.some((a, index) => circles.slice(index + 1).some(b =>
-      Math.hypot(a.x - b.x, a.y - b.y) < a.radius + b.radius + 1
-    ));
-    if (!overlaps) break;
-    if (attempt >= 100) throw new Error('Knowledge graph circles could not be separated');
-    graphRadius *= 1.05;
-  }
-
-  const scale = 1;
-  for (const circle of circles) {
-    circle.x *= scale;
-    circle.y *= scale;
-    circle.radius *= scale;
-    for (const node of circle.members) {
-      const local = circle.local.get(node.id) ?? { x: 0, y: 0 };
-      const x = circle.x + local.x * scale;
-      const y = circle.y + local.y * scale;
-      node.x = Number(x.toFixed(4));
-      node.y = Number(y.toFixed(4));
-      node.labelSide = x < circle.x ? 'left' : 'right';
-    }
-  }
-
-  if (nodes.some(node => !Number.isFinite(node.x) || !Number.isFinite(node.y))) throw new Error('Knowledge graph layout contains an invalid position');
-  const clusterById = new Map(circles.map(circle => [circle.id, circle]));
-  const bridgeCandidates = new Map<string, {
-    sourceClusterId: string;
-    targetClusterId: string;
-    count: number;
-    weight: number;
-    relations: Set<GraphRelation>;
-  }>();
-  for (const link of links) {
-    const sourceClusterId = clusterForNode.get(link.source);
-    const targetClusterId = clusterForNode.get(link.target);
-    if (!sourceClusterId || !targetClusterId || sourceClusterId === targetClusterId) continue;
-    const [source, target] = [sourceClusterId, targetClusterId].sort();
-    const id = pairKey(source, target);
-    const candidate = bridgeCandidates.get(id) ?? {
-      sourceClusterId: source,
-      targetClusterId: target,
-      count: 0,
-      weight: 0,
-      relations: new Set<GraphRelation>(),
-    };
-    candidate.count++;
-    candidate.weight += graphEdgeWeight(link.relation);
-    candidate.relations.add(link.relation);
-    bridgeCandidates.set(id, candidate);
-  }
-
-  // Cross-community evidence can contain dozens of article-level links. The
-  // overview uses their maximum-weight spanning forest as a quiet relationship
-  // skeleton; interaction still reveals every original edge.
-  const parent = new Map(circles.map(circle => [circle.id, circle.id]));
-  const find = (id: string): string => {
-    const current = parent.get(id) ?? id;
-    if (current === id) return id;
-    const root = find(current);
-    parent.set(id, root);
-    return root;
-  };
-  const bridges = [...bridgeCandidates.entries()]
-    .sort((a, b) => b[1].weight - a[1].weight || b[1].count - a[1].count || a[0].localeCompare(b[0]))
-    .flatMap(([id, candidate]) => {
-      const sourceRoot = find(candidate.sourceClusterId);
-      const targetRoot = find(candidate.targetClusterId);
-      if (sourceRoot === targetRoot) return [];
-      parent.set(targetRoot, sourceRoot);
-      const sourceCircle = clusterById.get(candidate.sourceClusterId);
-      const targetCircle = clusterById.get(candidate.targetClusterId);
-      if (!sourceCircle || !targetCircle) return [];
-      return [{
-        id: `bridge:${id}`,
-        source: sourceCircle.hubId,
-        target: targetCircle.hubId,
-        sourceClusterId: candidate.sourceClusterId,
-        targetClusterId: candidate.targetClusterId,
-        count: candidate.count,
-        weight: Number(candidate.weight.toFixed(2)),
-        relations: [...candidate.relations].sort(),
-      }];
-    });
-
-  return {
-    radius: graphRadius,
-    clusters: circles.map(circle => ({
-      id: circle.id,
-      label: circle.label,
-      topicId: circle.topicId,
-      hubId: circle.hubId,
-      x: Number(circle.x.toFixed(4)),
-      y: Number(circle.y.toFixed(4)),
-      radius: Number(circle.radius.toFixed(4)),
-      nodeCount: circle.members.length,
-    })),
-    bridges,
-  };
+  return { radius: Math.max(...nodes.map(node => Math.hypot(node.x!, node.y!))) + 24 };
 }
 
 let graphPromise: Promise<KnowledgeGraphData> | undefined;
@@ -517,14 +261,10 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
 
   const explicitPairs = new Set<string>();
   for (const entry of entries) {
-    const sourceSeries = seriesByArticle.get(entry.id)?.id;
-    for (const match of entry.body?.matchAll(writingLink) ?? []) {
+    const body = (entry.body ?? '').replace(/^>[^\n]*(?:系列|篇目|目录)[^\n]*$/gm, '');
+    for (const match of body.matchAll(writingLink)) {
       const target = match[1];
       if (!entryById.has(target) || target === entry.id) continue;
-      const targetSeries = seriesByArticle.get(target)?.id;
-      // The first block of each series chapter repeats the complete series index.
-      // Series membership already carries that structure, so suppress those cliques.
-      if (sourceSeries && sourceSeries === targetSeries) continue;
       explicitPairs.add(pairKey(entry.id, target));
       addLink({
         source: entry.id,
@@ -582,7 +322,7 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
   }
   for (const node of nodes) node.degree = degrees.get(node.id) ?? 0;
 
-  const packedLayout = assignCirclePackingLayout(nodes, links);
+  const packedLayout = assignForceLayout(nodes, links);
 
   const nodeIds = new Set(nodes.map(node => node.id));
   if (nodeIds.size !== nodes.length) throw new Error('Duplicate knowledge graph node id');
@@ -602,11 +342,9 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
       similarities: links.filter(link => link.relation === 'similarity').length,
     },
     layout: {
-      type: 'clustered-circle-packing',
+      type: 'force-directed',
       radius: packedLayout.radius,
-      clusters: packedLayout.clusters,
-      bridges: packedLayout.bridges,
-      version: 5,
+      version: 6,
     },
     generatedAt: new Date().toISOString(),
   };

@@ -135,73 +135,22 @@ for (const [seriesId, expectedArticles] of maintainedSeries) {
     link.relation === 'series' && [link.source, link.target].includes(hubId) && [link.source, link.target].includes(id)
   )), `Every ${seriesId} chapter must connect to its series hub`);
 }
-assert.equal(graph.layout?.type, 'clustered-circle-packing', 'The global graph must use hierarchical circle packing');
-assert.ok(Number.isFinite(graph.layout?.radius) && graph.layout.radius > 0, 'The graph layout must declare a valid radius');
-assert.ok(Array.isArray(graph.layout?.clusters) && graph.layout.clusters.length >= graph.stats.series, 'The layout must expose its local knowledge circles');
-assert.ok(Array.isArray(graph.layout?.bridges), 'The layout must expose its cross-circle relationship skeleton');
-
+assert.equal(graph.layout?.type, 'force-directed');
+assert.ok(Number.isFinite(graph.layout.radius) && graph.layout.radius > 0);
 for (const node of graph.nodes) {
-  assert.ok(Number.isFinite(node.x) && Number.isFinite(node.y), `Node ${node.id} must have a build-time position`);
-  assert.ok(Math.hypot(node.x, node.y) <= graph.layout.radius + .001, `Node ${node.id} must stay inside the global circle`);
-  assert.ok(node.clusterId, `Node ${node.id} must belong to one local circle`);
+  assert.ok(Number.isFinite(node.x) && Number.isFinite(node.y), `Finite position: ${node.id}`);
 }
-
-const clusterById = new Map(graph.layout.clusters.map(cluster => [cluster.id, cluster]));
-for (const cluster of graph.layout.clusters) {
-  const members = graph.nodes.filter(node => node.clusterId === cluster.id);
-  const hub = graph.nodes.find(node => node.id === cluster.hubId);
-  assert.equal(members.length, cluster.nodeCount, `Cluster ${cluster.id} must report its actual node count`);
-  assert.ok(members.every(node => Math.hypot(node.x - cluster.x, node.y - cluster.y) <= cluster.radius + .001), `Cluster ${cluster.id} must contain its nodes`);
-  assert.ok(hub && Math.hypot(hub.x - cluster.x, hub.y - cluster.y) <= .001, `Cluster ${cluster.id} must keep its semantic hub at the center`);
-}
-
-for (let first = 0; first < graph.layout.clusters.length; first++) {
-  for (let second = first + 1; second < graph.layout.clusters.length; second++) {
-    const a = graph.layout.clusters[first];
-    const b = graph.layout.clusters[second];
-    assert.ok(Math.hypot(a.x - b.x, a.y - b.y) + .001 >= a.radius + b.radius, `Local circles ${a.id} and ${b.id} must not overlap`);
+// Catch collapsed or overlapping layouts, without prescribing a geometric shape.
+for (let i = 0; i < graph.nodes.length; i++) {
+  for (let j = i + 1; j < graph.nodes.length; j++) {
+    const a = graph.nodes[i], b = graph.nodes[j];
+    assert.ok(Math.hypot(a.x - b.x, a.y - b.y) > 18, `Nodes overlap: ${a.id}, ${b.id}`);
   }
 }
-const centered = graph.layout.clusters.filter(cluster => Math.hypot(cluster.x, cluster.y) < .001);
-assert.equal(centered.length, 1, 'Exactly one high-connectivity circle must anchor the center');
-for (const cluster of graph.layout.clusters.filter(cluster => !centered.includes(cluster))) {
-  assert.ok(Math.abs(Math.hypot(cluster.x, cluster.y) + cluster.radius - (graph.layout.radius - 7)) < .01, `Outer circle ${cluster.id} must contribute to the global envelope`);
-}
-
-const lengths = { local: [], cross: [] };
-for (const link of graph.links) {
-  const source = graph.nodes.find(node => node.id === link.source);
-  const target = graph.nodes.find(node => node.id === link.target);
-  const distance = Math.hypot(source.x - target.x, source.y - target.y);
-  lengths[source.clusterId === target.clusterId ? 'local' : 'cross'].push(distance);
-}
-const mean = values => values.reduce((sum, value) => sum + value, 0) / values.length;
-assert.ok(mean(lengths.local) < mean(lengths.cross), 'Relations inside a knowledge circle must be spatially closer than cross-circle relations');
-assert.ok(graph.nodes.every(node => clusterById.has(node.clusterId)), 'Every node must reference a declared circle');
-
-const rawCrossPairs = new Set(graph.links.flatMap(link => {
-  const sourceClusterId = graph.nodes.find(node => node.id === link.source)?.clusterId;
-  const targetClusterId = graph.nodes.find(node => node.id === link.target)?.clusterId;
-  return sourceClusterId && targetClusterId && sourceClusterId !== targetClusterId
-    ? [[sourceClusterId, targetClusterId].sort().join('::')]
-    : [];
-}));
-const bridgeParents = new Map(graph.layout.clusters.map(cluster => [cluster.id, cluster.id]));
-const findBridgeRoot = id => bridgeParents.get(id) === id ? id : findBridgeRoot(bridgeParents.get(id));
-for (const bridge of graph.layout.bridges) {
-  assert.ok(nodeIds.has(bridge.source) && nodeIds.has(bridge.target), `Bridge ${bridge.id} must connect existing semantic hubs`);
-  assert.ok(clusterById.has(bridge.sourceClusterId) && clusterById.has(bridge.targetClusterId), `Bridge ${bridge.id} must connect declared circles`);
-  assert.ok(rawCrossPairs.has([bridge.sourceClusterId, bridge.targetClusterId].sort().join('::')), `Bridge ${bridge.id} must summarize real cross-circle evidence`);
-  assert.ok(bridge.count > 0 && bridge.weight > 0, `Bridge ${bridge.id} must report its supporting evidence`);
-  const sourceRoot = findBridgeRoot(bridge.sourceClusterId);
-  const targetRoot = findBridgeRoot(bridge.targetClusterId);
-  assert.notEqual(sourceRoot, targetRoot, 'The overview relationship skeleton must not contain a cycle');
-  bridgeParents.set(targetRoot, sourceRoot);
-}
-assert.ok(graph.layout.bridges.length < rawCrossPairs.size, 'The overview must summarize cross-circle relationships instead of drawing every pair');
+assert.ok(graph.links.some(link => link.relation === 'reference'), 'Preserve real article references');
 
 assert.equal(graph.stats.articles, articleIds.size, 'Article statistics must match graph data');
 assert.equal(graph.stats.keywords, graph.nodes.filter(node => node.kind === 'keyword').length, 'Keyword statistics must match graph data');
 assert.equal(graph.stats.keywordLinks, graph.links.filter(link => link.relation === 'keyword').length, 'Keyword edge statistics must match graph data');
 
-console.log(`PASS knowledge graph auto-build: ${articleIds.size} articles, ${graph.nodes.length} nodes, ${graph.links.length} links, ${graph.layout.clusters.length} local circles inside one global circle, layout v${graph.layout.version}`);
+console.log(`PASS knowledge graph auto-build: ${articleIds.size} articles, ${graph.nodes.length} nodes, ${graph.links.length} links, force-directed layout, layout v${graph.layout.version}`);

@@ -13,7 +13,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       <header class="graph-heading">
         <p class="eyebrow">Knowledge constellation</p>
         <h1 id="graph-title">知识星图</h1>
-        <p class="graph-summary"><strong>{graph.stats.articles}</strong> 篇文章，<strong>{graph.stats.keywords}</strong> 个关键词，沿 <strong>{graph.links.length}</strong> 条真实关系彼此连接</p>
+        <p class="graph-summary"><strong>{graph.stats.articles}</strong> 篇文章，<strong>{graph.stats.keywords}</strong> 个关键词，<strong>{graph.stats.references}</strong> 条正文引用</p>
       </header>
 
       <div class="graph-search">
@@ -26,6 +26,16 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         <div class="search-results" id="graph-search-results" role="listbox" hidden></div>
       </div>
 
+      <details class="graph-tuning">
+        <summary>显示与布局 <span aria-hidden="true">⌄</span></summary>
+        <div class="tuning-content">
+          <label for="graph-spacing">节点间距 <output data-spacing-output>1.0×</output></label>
+          <input id="graph-spacing" data-graph-spacing type="range" min="0.6" max="2" step="0.1" value="1" />
+          <label class="tuning-check"><input data-show-labels type="checkbox" checked />显示标题</label>
+          <button type="button" data-reset-layout>恢复初始布局</button>
+          <p>拖动节点可调整位置；滚轮缩放后会显示更多标题。</p>
+        </div>
+      </details>
       <div class="graph-canvas" data-graph-canvas tabindex="0" role="application" aria-describedby="graph-instructions" aria-label={`由 ${graph.nodes.length} 个可见节点、${graph.links.length} 条关系组成的可交互知识图谱`}></div>
       <div class="graph-loading" data-graph-loading><span></span><p>正在组织知识星群…</p></div>
       <p class="graph-error" data-graph-error hidden>图谱暂时没有完成渲染。你仍可以通过知识目录继续阅读。</p>
@@ -34,8 +44,15 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         <span class="status-pulse" aria-hidden="true"></span><span data-graph-status>全局视野</span>
         <button type="button" data-clear-focus hidden>返回全图</button>
       </div>
-      <p class="graph-hint" id="graph-instructions"><span class="desktop-hint">拖动画布，滚轮缩放；悬停查看关系，点击文章阅读</span><span class="mobile-hint">单指拖动，双指缩放；点按文章阅读</span></p>
+      <p class="graph-hint" id="graph-instructions"><span class="desktop-hint">拖动节点或画布 · 滚轮缩放 · 点击探索关联</span><span class="mobile-hint">单指拖动，双指缩放；点按探索关联</span></p>
 
+      <div class="graph-filters" aria-label="显示关系">
+        <span>关系</span>
+        <label><input type="checkbox" data-relation-filter="reference" checked />正文引用</label>
+        <label><input type="checkbox" data-relation-filter="series,topic" checked />系列与主题</label>
+        <label><input type="checkbox" data-relation-filter="keyword" checked />关键词</label>
+        <label><input type="checkbox" data-relation-filter="similarity" />推测关联</label>
+      </div>
       <div class="graph-controls" aria-label="图谱视图控制">
         <button type="button" data-zoom="in" aria-label="放大图谱" title="放大">+</button>
         <button type="button" data-zoom="out" aria-label="缩小图谱" title="缩小">−</button>
@@ -45,8 +62,8 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       <button class="legend-toggle" type="button" data-legend-toggle aria-expanded="false" aria-controls="graph-legend"><span aria-hidden="true">?</span><span class="sr-only">查看图例</span></button>
       <div class="graph-legend" id="graph-legend" data-graph-legend hidden>
         <div><strong>节点</strong><span><i class="topic-node"></i>主题</span><span><i class="series-node"></i>系列</span><span><i class="keyword-node"></i>关键词</span><span><i class="article-node"></i>文章</span></div>
-        <div><strong>关系</strong><span><i class="belongs-line"></i>归属</span><span><i class="keyword-line"></i>关键词</span><span><i class="reference-line"></i>引用</span><span><i class="similarity-line"></i>相似</span><span><i class="bridge-line"></i>星群桥</span></div>
-        <p>全局只保留圆内关系和少量星群桥。悬停或选择节点时，才展开它真实连接的跨圆关系；点击文章圆点或标题直接进入阅读。</p>
+        <div><strong>关系</strong><span><i class="belongs-line"></i>归属</span><span><i class="keyword-line"></i>关键词</span><span><i class="reference-line"></i>引用</span><span><i class="similarity-line"></i>相似</span></div>
+        <p>连线表示正文引用、系列归属或关键词。悬停突出直接关联；点击节点展开详情，从详情进入阅读。共享标签仅代表可能相关，可按需开启。</p>
       </div>
 
       <aside class="node-panel" data-node-panel data-open="false" aria-hidden="true" aria-live="polite" aria-label="节点详情" inert>
@@ -56,6 +73,10 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
           <p class="panel-description" data-panel-description></p>
           <div class="panel-tags" data-panel-tags></div>
           <a class="panel-primary" data-panel-link href="#">打开这篇内容 <span>↗</span></a>
+          <div class="local-controls" aria-label="局部图范围">
+            <span>关联范围</span><button type="button" data-depth="1" aria-pressed="true">一层</button><button type="button" data-depth="2" aria-pressed="false">两层</button>
+            <label><input data-local-only type="checkbox" checked />仅看关联</label>
+          </div>
           <div class="panel-relations"><div><h3>直接关联</h3><span data-panel-count></span></div><ul data-panel-relations></ul></div>
         </div>
       </aside>
@@ -65,10 +86,10 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       <header><h2 id="graph-notes-title">不是目录的另一种画法，<br />而是文章之间的上下文。</h2></header>
       <div class="graph-note-grid">
         <article><h3>从领域进入</h3><p>较大的铜橙色节点代表主题。点击它，镜头会聚焦这一知识区域，但不会割裂它与全局的联系。</p></article>
-        <article><h3>沿系列深入</h3><p>青绿色节点代表系列。围绕它排列的文章形成一条由浅入深的阅读路径。</p></article>
+        <article><h3>沿系列深入</h3><p>青绿色节点代表系列。关联文章自然聚集，点击后可沿章节继续阅读。</p></article>
         <article><h3>从关键词横向探索</h3><p>金色关键词把不同系列的文章连接起来；点击它会展开局部关系，再从文章标题直接进入阅读。</p></article>
       </div>
-      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容实时生成。每个系列或主题先成为一个局部圆，相关文章和关键词围绕语义中心排列；这些局部圆再依据引用、共享标签和主题归属相互靠近，共同构成全局大圆。边界不直接绘制，而由节点和连线自然显现。全局视图会把大量跨圆关系归纳为少量星群桥，选择节点后再展开原始关系。</p></details>
+      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容生成。正文引用与系列关系拉近节点，节点间的排斥保持阅读空间，自然形成疏密不同的知识区域。主题归属采用较弱的牵引，共享标签的推测关联默认关闭。</p></details>
       <details class="graph-method graph-automation"><summary>新增文章后，图谱如何更新？</summary><p>把 Markdown 放入文章目录并保存即可。开发模式会随内容变更重新生成；正式发布时，构建过程会重新扫描全部文章，计算节点、关系、主题分区和二维坐标，再校验每篇文章都已进入图谱。独立文章不需要维护额外清单，只有加入有顺序的系列时才需要指定章节位置。</p></details>
     </section>
   </div>
@@ -78,6 +99,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
 <script>
   import Graph from 'graphology';
   import Sigma from 'sigma';
+  import { createGraphSimulation } from '../../lib/graphSimulation';
 
   const root = document.querySelector('[data-graph-root]');
   const canvas = root?.querySelector('[data-graph-canvas]');
@@ -90,7 +112,6 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
     const kindNames = { topic: '阅读主题', series: '文章系列', keyword: '关键词', article: '文章' };
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const network = new Graph({ type: 'undirected', multi: true });
-    const rawNeighbors = new Map();
 
     const graphLabel = (title) => title.length > 20 ? `${title.slice(0, 19)}…` : title;
     for (const node of graphData.nodes) {
@@ -102,15 +123,13 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         clusterId: node.clusterId,
         kind: node.kind,
         degree: node.degree,
-        size: node.kind === 'topic' ? 10 + Math.sqrt(node.degree) * 1.1 : node.kind === 'series' ? 7 + Math.sqrt(node.degree) * .92 : node.kind === 'keyword' ? 4.5 + Math.sqrt(node.degree) * .68 : 3.9 + Math.sqrt(node.degree) * .78,
+        size: (node.kind === 'article' ? 2.4 : node.kind === 'series' ? 3 : 2) + Math.min(2.4, Math.sqrt(node.degree) * .35),
         zIndex: node.kind === 'topic' ? 4 : node.kind === 'series' ? 3 : node.kind === 'keyword' ? 2 : 1,
       });
     }
     for (const link of graphData.links) {
       const sourceNode = nodeById.get(link.source);
       const targetNode = nodeById.get(link.target);
-      rawNeighbors.set(link.source, new Set([...(rawNeighbors.get(link.source) ?? []), link.target]));
-      rawNeighbors.set(link.target, new Set([...(rawNeighbors.get(link.target) ?? []), link.source]));
       network.addEdgeWithKey(link.id, link.source, link.target, {
         relation: link.relation,
         local: sourceNode?.clusterId === targetNode?.clusterId,
@@ -119,33 +138,27 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         size: link.relation === 'reference' ? 1.15 : link.relation === 'similarity' ? .65 : link.relation === 'keyword' ? .42 : .85,
       });
     }
-    for (const bridge of graphData.layout?.bridges ?? []) {
-      network.addEdgeWithKey(bridge.id, bridge.source, bridge.target, {
-        relation: 'bridge',
-        local: false,
-        summary: true,
-        weight: bridge.weight,
-        count: bridge.count,
-        size: .46 + Math.min(1.05, Math.log2(bridge.count + 1) * .2),
-      });
-    }
-    const rawNeighborIds = (id) => rawNeighbors.get(id) ?? new Set();
+    const enabledRelations = new Set(['reference', 'series', 'topic', 'keyword']);
+    const rawNeighborIds = (id) => new Set(graphData.links.filter(link => enabledRelations.has(link.relation) && (link.source === id || link.target === id)).map(link => link.source === id ? link.target : link.source));
     root.dataset.localEdges = String(graphData.links.filter((link) => nodeById.get(link.source)?.clusterId === nodeById.get(link.target)?.clusterId).length);
     root.dataset.crossEdges = String(graphData.links.filter((link) => nodeById.get(link.source)?.clusterId !== nodeById.get(link.target)?.clusterId).length);
-    root.dataset.bridgeEdges = String(graphData.layout?.bridges?.length ?? 0);
+    root.dataset.layout = graphData.layout.type;
     root.dataset.edgeMode = 'overview';
 
     let renderer;
     let hoveredId = null;
     let selectedId = null;
     let focusIds = null;
+    let localDepth = 1;
+    let localOnly = true;
+    let showLabels = true;
     let neighborIds = new Set();
     let visitedIds = new Set();
     try { visitedIds = new Set(JSON.parse(localStorage.getItem('knowledge-graph-visited') || '[]')); } catch {}
 
     const palette = () => document.documentElement.dataset.theme === 'dark'
-      ? { topic: '#df7958', series: '#7caea4', keyword: '#c6a66a', article: '#bbb8b0', visited: '#9b8aba', muted: '#343530', edge: '#353833', bridge: '#4b4d47', keywordEdge: '#6b604c', reference: '#a95c43', similarity: '#4f7770', label: '#e7e5df' }
-      : { topic: '#b84d2e', series: '#3f756c', keyword: '#9a773d', article: '#79766f', visited: '#77618d', muted: '#d5d1c9', edge: '#d0ccc4', bridge: '#b8b4ac', keywordEdge: '#b8aa8d', reference: '#b9654b', similarity: '#6d948d', label: '#302f2b' };
+      ? { topic: '#df7958', series: '#7caea4', keyword: '#c6a66a', article: '#bbb8b0', visited: '#9b8aba', muted: '#343530', edge: '#484d49', bridge: '#4b4d47', keywordEdge: '#6b604c', reference: '#a95c43', similarity: '#4f7770', label: '#e7e5df' }
+      : { topic: '#b84d2e', series: '#3f756c', keyword: '#9a773d', article: '#79766f', visited: '#77618d', muted: '#d5d1c9', edge: '#c2beb6', bridge: '#b8b4ac', keywordEdge: '#b8aa8d', reference: '#b9654b', similarity: '#6d948d', label: '#302f2b' };
     const nodeColor = (node, colors = palette()) => visitedIds.has(node.id) && node.kind === 'article' ? colors.visited : colors[node.kind];
     const edgeColor = (relation, colors = palette()) => relation === 'bridge' ? colors.bridge : relation === 'reference' ? colors.reference : relation === 'similarity' ? colors.similarity : relation === 'keyword' ? colors.keywordEdge : colors.edge;
     const activeId = () => hoveredId || selectedId;
@@ -161,50 +174,43 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       network.forEachNode((id) => network.mergeNodeAttributes(id, { color: nodeColor(nodeById.get(id), colors), labelColor: colors.label }));
       network.forEachEdge((id, attrs) => network.mergeEdgeAttributes(id, { color: edgeColor(attrs.relation, colors) }));
 
-      const drawNodeLabel = (context, data, settings) => {
-        if (!data.label) return;
-        const left = data.labelSide === 'left';
-        context.fillStyle = data.labelColor || colors.label;
-        context.font = `${settings.labelWeight} ${settings.labelSize}px ${settings.labelFont}`;
-        context.textAlign = left ? 'right' : 'left';
-        context.textBaseline = 'middle';
-        context.fillText(data.label, data.x + (left ? -data.size - 4 : data.size + 4), data.y);
-      };
-
       renderer = new Sigma(network, canvas, {
-        defaultDrawNodeLabel: drawNodeLabel,
+        renderLabels: false,
+        defaultDrawNodeHover: () => {},
         defaultNodeColor: colors.article,
         defaultEdgeColor: colors.edge,
         edgeReducer: (edge, attrs) => {
           const [source, target] = network.extremities(edge);
           const active = activeId();
-          if (attrs.summary) return { ...attrs, hidden: Boolean(active), zIndex: 0 };
-          if (active && source !== active && target !== active) return { ...attrs, hidden: true };
-          if (!active && !attrs.local) return { ...attrs, hidden: true };
-          return { ...attrs, size: active ? Math.max(1.25, attrs.size) : attrs.size, zIndex: active ? 2 : 1 };
+          if (!enabledRelations.has(attrs.relation)) return { ...attrs, hidden: true };
+          if (selectedId && focusIds && (!focusIds.has(source) || !focusIds.has(target))) return { ...attrs, hidden: true };
+          if (!selectedId && active && source !== active && target !== active) return { ...attrs, hidden: true };
+
+          return { ...attrs, color: active ? edgeColor(attrs.relation) : palette().edge, size: active ? 1.3 : .85, zIndex: active ? 2 : 1 };
         },
         hideEdgesOnMove: false,
         labelColor: { attribute: 'labelColor', color: colors.label },
-        labelDensity: 1.08,
+        labelDensity: innerWidth < 760 ? .15 : .3,
         labelFont: "'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif",
         labelGridCellSize: 112,
-        labelRenderedSizeThreshold: 7.2,
-        labelSize: 9.5,
-        labelWeight: '500',
+        labelRenderedSizeThreshold: innerWidth < 760 ? 4.5 : 3.5,
+        labelSize: 11,
+        labelWeight: '400',
         maxCameraRatio: 1.22,
         minCameraRatio: .085,
-        minEdgeThickness: .45,
+        minEdgeThickness: .3,
         nodeReducer: (id, attrs) => {
           const node = nodeById.get(id);
           const active = activeId();
-          const inActiveNeighborhood = !active || id === active || neighborIds.has(id);
           const inFocus = !focusIds || focusIds.has(id);
+          const inActiveNeighborhood = selectedId && !hoveredId ? inFocus : !active || id === active || neighborIds.has(id);
           const muted = !inActiveNeighborhood || !inFocus;
           return {
             ...attrs,
+            hidden: Boolean(selectedId && localOnly && !inFocus),
             color: muted ? palette().muted : nodeColor(node),
-            label: muted ? '' : attrs.label,
-            forceLabel: id === active || neighborIds.has(id) || (!focusIds && node.kind === 'topic'),
+            label: !inFocus ? '' : attrs.label,
+            forceLabel: id === active,
             highlighted: id === active,
             size: id === active ? attrs.size * 1.5 : attrs.size,
             zIndex: id === active ? 9 : inActiveNeighborhood && active ? 7 : attrs.zIndex,
@@ -213,10 +219,9 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         stagePadding: innerWidth < 760 ? 34 : 70,
         zIndex: true,
       });
-      const layoutRadius = graphData.layout?.radius ?? 210;
-      renderer.setCustomBBox({ x: [-layoutRadius, layoutRadius], y: [-layoutRadius, layoutRadius] });
+      renderer.setCustomBBox(renderer.getBBox());
       const camera = renderer.getCamera();
-      const exposeCameraRatio = ({ ratio }) => { root.dataset.cameraRatio = ratio.toFixed(4); };
+      const exposeCameraRatio = ({ ratio }) => { root.dataset.cameraRatio = ratio.toFixed(4); renderer.scheduleRefresh(); };
       camera.on('updated', exposeCameraRatio);
       exposeCameraRatio(camera.getState());
 
@@ -224,11 +229,17 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         visitedIds.add(id);
         try { localStorage.setItem('knowledge-graph-visited', JSON.stringify([...visitedIds].slice(-120))); } catch {}
       };
-      const linkedTo = (id) => graphData.links
-        .filter((link) => link.source === id || link.target === id)
-        .map((link) => ({ link, node: nodeById.get(link.source === id ? link.target : link.source) }))
-        .filter((item) => item.node)
-        .sort((a, b) => b.link.weight - a.link.weight || a.node.title.localeCompare(b.node.title, 'zh-CN'));
+      const linkedTo = (id) => {
+        const grouped = new Map();
+        for (const link of graphData.links) {
+          if (!enabledRelations.has(link.relation) || (link.source !== id && link.target !== id)) continue;
+          const targetId = link.source === id ? link.target : link.source;
+          const previous = grouped.get(targetId);
+          if (previous) previous.relations.add(relationNames[link.relation]);
+          else grouped.set(targetId, { link, node: nodeById.get(targetId), relations: new Set([relationNames[link.relation]]) });
+        }
+        return [...grouped.values()].sort((a, b) => b.link.weight - a.link.weight || a.node.title.localeCompare(b.node.title, 'zh-CN'));
+      };
 
       const panel = root.querySelector('[data-node-panel]');
       const panelTitle = root.querySelector('[data-panel-title]');
@@ -257,11 +268,11 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         panelTags.replaceChildren(...node.tags.slice(0, 5).map((tag) => { const item = document.createElement('span'); item.textContent = tag; return item; }));
         panelLink.href = node.href;
         panelLink.firstChild.textContent = node.kind === 'article' ? '阅读这篇文章 ' : node.kind === 'series' ? '打开系列目录 ' : node.kind === 'keyword' ? '查看关键词文章 ' : '打开主题目录 ';
-        panelCount.textContent = `${links.length} 条`;
-        panelRelations.replaceChildren(...links.slice(0, 9).map(({ link, node: target }) => {
+        panelCount.textContent = `${links.length} 个节点`;
+        panelRelations.replaceChildren(...links.map(({ link, node: target, relations }) => {
           const item = document.createElement('li'); const button = document.createElement('button');
           button.type = 'button'; button.dataset.nodeId = target.id;
-          const meta = document.createElement('span'); meta.textContent = `${relationNames[link.relation]} · ${link.reasons.join('、')}`;
+          const meta = document.createElement('span'); meta.textContent = [...relations].join(' · ');
           const title = document.createElement('strong'); title.textContent = target.title;
           button.append(meta, title); item.append(button); return item;
         }));
@@ -282,11 +293,10 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       });
       const setSelection = (id, { move = true, sync = true } = {}) => {
         if (!nodeById.has(id)) return;
-        const selected = nodeById.get(id);
-        const regionalIds = selected.kind === 'topic'
-          ? graphData.nodes.filter((node) => node.topicId === selected.topicId).map((node) => node.id)
-          : graphData.nodes.filter((node) => node.clusterId === selected.clusterId).map((node) => node.id);
-        selectedId = id; focusIds = new Set([id, ...regionalIds, ...rawNeighborIds(id)]);
+        const regionalIds = new Set([id, ...rawNeighborIds(id)]);
+        if (localDepth === 2) for (const neighbor of [...regionalIds]) for (const next of rawNeighborIds(neighbor)) regionalIds.add(next);
+        hoveredId = null;
+        selectedId = id; focusIds = regionalIds;
         graphStatus.textContent = nodeById.get(id).title; clearFocus.hidden = false;
         updatePanel(id); refreshRelations(); if (move) moveCamera(new Set(regionalIds)); if (sync) syncUrl();
       };
@@ -301,29 +311,151 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       const activateNode = (id) => {
         const item = nodeById.get(id);
         if (!item) return;
-        if (item.kind === 'article') { markVisited(id); location.assign(item.href); }
-        else setSelection(id);
+        setSelection(id);
       };
 
-      // Sigma hit-tests circles, while labels live on a separate canvas. Treat the
-      // visible title bounds as part of the node so clicking a title opens it too.
-      const labelMeasure = document.createElement('canvas').getContext('2d');
-      const labelAt = ({ x, y }) => {
-        if (!labelMeasure) return null;
-        const settings = renderer.getSettings();
-        labelMeasure.font = `${settings.labelWeight} ${settings.labelSize}px ${settings.labelFont}`;
-        for (const id of [...renderer.getNodeDisplayedLabels()].reverse()) {
-          const data = renderer.getNodeDisplayData(id);
-          if (!data?.label) continue;
-          const point = renderer.framedGraphToViewport(data);
-          const size = renderer.scaleSize(data.size);
-          const width = labelMeasure.measureText(data.label).width;
-          const left = data.labelSide === 'left' ? point.x - size - 5 - width : point.x + size + 3;
-          const right = data.labelSide === 'left' ? point.x - size - 3 : left + width + 2;
-          if (x >= left - 5 && x <= right + 5 && y >= point.y - settings.labelSize - 5 && y <= point.y + settings.labelSize + 5) return id;
+      // Lay out actual title boxes, not approximate label grid cells. The same
+      // buttons provide pointer hit targets and keyboard access to visible nodes.
+      const labelLayer = document.createElement('div');
+      labelLayer.className = 'graph-label-layer';
+      canvas.append(labelLayer);
+      const labelButtons = new Map();
+      const measure = document.createElement('canvas').getContext('2d');
+      let labelBoxes = [];
+      const intersects = (a, b) => a.x < b.x + b.width + 5 && a.x + a.width + 5 > b.x && a.y < b.y + b.height + 4 && a.y + a.height + 4 > b.y;
+      const renderTitles = () => {
+        labelBoxes = [];
+        const ratio = camera.getState().ratio;
+        const fontSize = innerWidth < 760 ? 10 : 11;
+        measure.font = `${fontSize}px "PingFang SC", system-ui, sans-serif`;
+        const points = graphData.nodes.map(node => {
+          const display = renderer.getNodeDisplayData(node.id);
+          return { node, display, point: display && renderer.framedGraphToViewport(display) };
+        }).filter(item => item.display && !item.display.hidden);
+        const priority = id => id === activeId() ? 100000 : id === selectedId ? 90000 : neighborIds.has(id) ? 10000 : 0;
+        points.sort((a, b) => priority(b.node.id) - priority(a.node.id) || b.node.degree - a.node.degree);
+        const visible = new Set();
+        const canvasRect = canvas.getBoundingClientRect();
+        const panelRect = panel.getBoundingClientRect();
+        const panelBox = { x: panelRect.x - canvasRect.x, y: panelRect.y - canvasRect.y, width: panelRect.width, height: panelRect.height };
+        for (const { node, display, point } of points) {
+          if (!showLabels || !display.label) continue;
+          const important = node.id === activeId() || node.id === selectedId;
+          if (!important && !selectedId && ratio > .75 && node.kind !== 'series' && node.degree < 18) continue;
+          if (!important && labelBoxes.length >= (innerWidth < 760 ? 10 : ratio > .75 ? 22 : 65)) continue;
+          const text = node.title.length > (important ? 30 : 19) ? node.title.slice(0, important ? 29 : 18) + '…' : node.title;
+          const width = Math.min(canvas.clientWidth - 24, measure.measureText(text).width + 8);
+          const height = fontSize + 10;
+          const radius = renderer.scaleSize(display.size) + 5;
+          const candidates = [
+            { x: point.x + radius, y: point.y - height / 2, width, height },
+            { x: point.x - radius - width, y: point.y - height / 2, width, height },
+            { x: point.x - width / 2, y: point.y - radius - height, width, height },
+            { x: point.x - width / 2, y: point.y + radius, width, height },
+          ];
+          const box = candidates.find(box => box.x >= 6 && box.y >= 6 && box.x + width < canvas.clientWidth - 6 && box.y + height < canvas.clientHeight - 6
+            && (!selectedId || !intersects(box, panelBox))
+            && !labelBoxes.some(other => intersects(box, other))
+            && (important || !points.some(other => other.node.id !== node.id && intersects(box, { x: other.point.x - 3, y: other.point.y - 3, width: 6, height: 6 }))));
+          if (!box) continue;
+          labelBoxes.push({ ...box, id: node.id });
+          visible.add(node.id);
+          let button = labelButtons.get(node.id);
+          if (!button) {
+            button = document.createElement('button'); button.type = 'button';
+            button.dataset.graphNodeLabel = node.id;
+            button.setAttribute('aria-label', node.title);
+            button.addEventListener('click', event => { event.stopPropagation(); activateNode(node.id); });
+            labelLayer.append(button); labelButtons.set(node.id, button);
+          }
+          button.hidden = false;
+          button.textContent = text;
+          button.dataset.active = String(important);
+          button.style.cssText = `left:${box.x}px;top:${box.y}px;width:${width}px;height:${height}px;font-size:${fontSize}px`;
         }
-        return null;
+        for (const [id, button] of labelButtons) button.hidden = !visible.has(id);
       };
+      renderer.on('afterRender', renderTitles);
+      renderTitles();
+      const labelAt = ({ x, y }) => labelBoxes.find(box => x >= box.x && x <= box.x + box.width && y >= box.y && y <= box.y + box.height)?.id;
+
+      const physicsNodes = graphData.nodes.map(node => ({ ...node, vx: 0, vy: 0 }));
+      const physicsById = new Map(physicsNodes.map(node => [node.id, node]));
+      const simulation = createGraphSimulation(physicsNodes, graphData.links).alpha(.08);
+      simulation.on('tick', () => {
+        network.updateEachNodeAttributes((id, attrs) => ({ ...attrs, x: physicsById.get(id).x, y: physicsById.get(id).y }));
+      });
+      let dragged = null;
+      let dragStart = null;
+      let didDrag = false;
+      let suppressClickUntil = 0;
+      renderer.on('downNode', ({ node, event }) => {
+        if (event.original.button && event.original.button !== 0) return;
+        dragged = physicsById.get(node);
+        dragStart = { x: event.x, y: event.y };
+        didDrag = false;
+        camera.disable();
+      });
+      renderer.getMouseCaptor().on('mousemovebody', event => {
+        if (!dragged) return;
+        event.preventSigmaDefault();
+        event.original.preventDefault();
+        event.original.stopPropagation();
+        if (!didDrag && Math.hypot(event.x - dragStart.x, event.y - dragStart.y) < 4) return;
+        didDrag = true;
+        const point = renderer.viewportToGraph(event);
+        dragged.fx = point.x; dragged.fy = point.y;
+        dragged.x = point.x; dragged.y = point.y;
+        network.mergeNodeAttributes(dragged.id, point);
+        if (!reducedMotion) simulation.alphaTarget(.08).restart();
+        canvas.style.cursor = 'grabbing';
+      });
+      const finishDrag = () => {
+        if (!dragged) return;
+        dragged.fx = null; dragged.fy = null;
+        if (didDrag) {
+          suppressClickUntil = performance.now() + 250;
+          if (!reducedMotion) simulation.alphaTarget(0).alpha(.15).restart();
+        }
+        dragged = null;
+        camera.enable();
+        canvas.style.cursor = '';
+      };
+      window.addEventListener('mouseup', finishDrag);
+      window.addEventListener('blur', finishDrag);
+      window.addEventListener('pagehide', () => simulation.stop(), { once: true });
+      const spacing = root.querySelector('[data-graph-spacing]');
+      const updatePositions = () => network.updateEachNodeAttributes((id, attrs) => ({ ...attrs, x: physicsById.get(id).x, y: physicsById.get(id).y }));
+      spacing.addEventListener('input', () => {
+        const value = Number(spacing.value);
+        root.querySelector('[data-spacing-output]').textContent = value.toFixed(1) + '×';
+        simulation.force('charge').strength(-100 * value);
+        simulation.alpha(.25);
+        if (reducedMotion) { simulation.stop().tick(160); updatePositions(); }
+        else simulation.restart();
+      });
+      root.querySelector('[data-reset-layout]').addEventListener('click', () => {
+        simulation.stop().alpha(0).alphaTarget(0);
+        simulation.force('charge').strength(-100);
+        for (const original of graphData.nodes) Object.assign(physicsById.get(original.id), { x: original.x, y: original.y, vx: 0, vy: 0, fx: null, fy: null });
+        spacing.value = '1'; root.querySelector('[data-spacing-output]').textContent = '1.0×';
+        updatePositions(); resetView();
+      });
+      root.querySelector('[data-show-labels]').addEventListener('change', event => { showLabels = event.target.checked; renderTitles(); });
+      root.querySelector('[data-local-only]').addEventListener('change', event => { localOnly = event.target.checked; renderer.scheduleRefresh(); });
+      root.querySelectorAll('[data-depth]').forEach(button => button.addEventListener('click', () => {
+        localDepth = Number(button.dataset.depth);
+        root.querySelectorAll('[data-depth]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+        if (selectedId) setSelection(selectedId);
+      }));
+      root.querySelectorAll('[data-relation-filter]').forEach(input => {
+        input.addEventListener('change', () => {
+          const relations = input.dataset.relationFilter.split(',');
+          relations.forEach(relation => input.checked ? enabledRelations.add(relation) : enabledRelations.delete(relation));
+          if (selectedId) setSelection(selectedId, { move: false });
+          refreshRelations();
+        });
+      });
 
       let pointerOnNode = false;
       const updatePointer = (pointerOnLabel = false) => { canvas.dataset.interactive = String(pointerOnNode || pointerOnLabel); };
@@ -332,12 +464,14 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       renderer.on('leaveNode', () => { pointerOnNode = false; updatePointer(); hoveredId = null; refreshRelations(); });
       renderer.on('clickNode', ({ node, event }) => {
         event.preventSigmaDefault();
+        if (performance.now() < suppressClickUntil) return;
         activateNode(node);
       });
       renderer.on('clickStage', ({ event }) => {
+        if (performance.now() < suppressClickUntil) return;
         const labelNode = labelAt(event);
         if (labelNode) { event.preventSigmaDefault(); activateNode(labelNode); return; }
-        hoveredId = null; refreshRelations();
+        resetView();
       });
       renderer.getMouseCaptor().on('mousemove', (event) => updatePointer(Boolean(labelAt(event))));
 
@@ -406,18 +540,41 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
 </script>
 
 <style>
+  .graph-filters { position: absolute; z-index: 7; bottom: 26px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 17px; padding: 10px 16px; border: 1px solid var(--line); background: var(--bg); font-size: 10px; color: var(--text-soft); white-space: nowrap; }
+  .graph-filters > span { color: var(--text-muted); }
+  .graph-filters label { display: flex; gap: 5px; align-items: center; cursor: pointer; }
+  .graph-filters input { width: 11px; height: 11px; accent-color: var(--text-soft); }
+  .graph-hint { display: none; }
+  @media (max-width: 760px) { .graph-filters { bottom: 70px; gap: 10px; padding: 8px 10px; } .graph-filters > span { display: none; } .graph-canvas { top: 185px; bottom: 112px; } }
+  .graph-tuning { position: absolute; z-index: 12; top: 99px; right: max(var(--page-gutter), calc(50vw - 720px)); width: 220px; color: var(--text-soft); font-size: 11px; }
+  .graph-tuning summary { list-style: none; display: flex; justify-content: space-between; gap: 25px; padding: 10px 12px; cursor: pointer; background: var(--bg); border: 1px solid var(--line); }
+  .tuning-content { padding: 15px; border: 1px solid var(--line); border-top: 0; background: var(--bg); box-shadow: 0 15px 35px #0002; }
+  .tuning-content label { display: flex; align-items: center; justify-content: space-between; }
+  .tuning-content input[type=range] { width: 100%; margin: 16px 0; accent-color: var(--text-soft); }
+  .tuning-content .tuning-check { justify-content: flex-start; gap: 7px; }
+  .tuning-content button { margin-top: 15px; padding: 7px 10px; border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; }
+  .tuning-content p { margin: 14px 0 0; font-size: 10px; line-height: 1.7; color: var(--text-muted); }
+  .local-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 20px; color: var(--text-soft); font-size: 10px; }
+  .local-controls button { padding: 5px 8px; border: 1px solid var(--line); background: transparent; color: inherit; cursor: pointer; }
+  .local-controls button[aria-pressed=true] { background: var(--text); color: var(--bg); }
+  .local-controls label { display: flex; align-items: center; gap: 4px; }
+  .graph-canvas :global(.graph-label-layer) { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+  .graph-canvas :global(.graph-label-layer button) { position: absolute; pointer-events: auto; padding: 0 4px; border: 0; border-radius: 3px; background: color-mix(in srgb, var(--bg) 83%, transparent); color: var(--text-soft); font-family: 'PingFang SC', system-ui, sans-serif; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; cursor: pointer; }
+  .graph-canvas :global(.graph-label-layer button[data-active=true]), .graph-canvas :global(.graph-label-layer button:hover) { color: var(--text); background: var(--surface); }
+  .graph-canvas :global(.graph-label-layer button:focus-visible) { outline: 1px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 900px) { .graph-tuning { top: 159px; right: 14px; width: 180px; } }
   .graph-page { width: 100%; overflow: clip; }
   .graph-experience { position: relative; width: 100%; height: max(660px, calc(100dvh - 64px)); min-height: 660px; overflow: hidden; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 94%, var(--surface)); isolation: isolate; }
   .graph-atmosphere { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(circle at 50% 52%, color-mix(in srgb, var(--accent-soft) 18%, transparent), transparent 62%); mask-image: linear-gradient(to bottom, #000 0 82%, transparent 100%); }
   .graph-heading { position: absolute; z-index: 6; top: clamp(24px, 4vw, 46px); left: max(var(--page-gutter), calc(50vw - 720px)); pointer-events: none; }
-  .graph-heading h1 { margin: 7px 0 8px; font: 400 clamp(35px, 4vw, 52px)/1.06 var(--display); letter-spacing: -.05em; }
+  .graph-heading h1 { margin: 7px 0 8px; font: 400 clamp(28px, 3vw, 38px)/1.06 var(--display); letter-spacing: -.05em; }
   .graph-summary { margin: 0; color: var(--text-soft); font-size: 11px; letter-spacing: .02em; }
   .graph-summary strong { color: var(--text); font-weight: 600; }
-  .graph-canvas { position: absolute; inset: 0; cursor: grab; touch-action: none; }
+  .graph-canvas { position: absolute; inset: 135px 0 65px; cursor: grab; touch-action: none; }
   .graph-canvas:active { cursor: grabbing; }
   .graph-canvas[data-interactive='true'], .graph-canvas[data-interactive='true']:active { cursor: pointer; }
   .graph-canvas:focus-visible { outline-offset: -5px; }
-  .graph-search { position: absolute; z-index: 9; top: clamp(24px, 4vw, 46px); right: max(var(--page-gutter), calc(50vw - 720px)); width: min(340px, calc(100vw - 40px)); }
+  .graph-search { position: absolute; z-index: 13; top: clamp(24px, 4vw, 46px); right: max(var(--page-gutter), calc(50vw - 720px)); width: min(340px, calc(100vw - 40px)); }
   .search-field { height: 43px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border: 1px solid color-mix(in srgb, var(--line-strong) 82%, transparent); background: color-mix(in srgb, var(--bg) 80%, transparent); box-shadow: 0 8px 30px color-mix(in srgb, #000 8%, transparent); backdrop-filter: blur(18px) saturate(1.15); }
   .search-field:focus-within { border-color: color-mix(in srgb, var(--accent) 72%, var(--line)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-soft) 55%, transparent); }
   .search-field svg { width: 16px; flex: 0 0 16px; fill: none; stroke: var(--text-soft); stroke-width: 1.4; }
@@ -461,7 +618,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
   .graph-legend .similarity-line { border-color: #568078; border-style: dashed; }
   .graph-legend .bridge-line { border-color: var(--text-soft); opacity: .48; }
   .graph-legend p { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 10px; line-height: 1.7; }
-  .node-panel { position: absolute; z-index: 11; top: 112px; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 112px; width: 350px; overflow: auto; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 91%, transparent); box-shadow: 0 26px 80px color-mix(in srgb, #000 16%, transparent); backdrop-filter: blur(24px) saturate(1.08); transform: translateX(calc(100% + 48px)); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.22,.8,.22,1), opacity .25s ease; }
+  .node-panel { position: absolute; z-index: 11; top: 150px; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 112px; width: 350px; overflow: auto; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 91%, transparent); box-shadow: 0 26px 80px color-mix(in srgb, #000 16%, transparent); backdrop-filter: blur(24px) saturate(1.08); transform: translateX(calc(100% + 48px)); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.22,.8,.22,1), opacity .25s ease; }
   .node-panel[data-open='true'] { transform: translateX(0); opacity: 1; pointer-events: auto; }
   .panel-content { padding: 24px 22px; }
   .panel-top { display: flex; justify-content: space-between; align-items: start; gap: 20px; }
@@ -500,7 +657,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
     .graph-heading { top: 25px; }
     .graph-heading h1 { font-size: 38px; }
     .graph-search { top: 110px; left: var(--page-gutter); right: auto; width: min(340px, calc(100vw - var(--page-gutter) * 2)); }
-    .node-panel { top: 168px; width: min(350px, calc(100vw - var(--page-gutter) * 2)); }
+    .node-panel { top: 202px; width: min(350px, calc(100vw - var(--page-gutter) * 2)); }
     .graph-hint { display: none; }
     .graph-notes { grid-template-columns: 1fr; gap: 35px; }
     .graph-method { grid-column: 1; }

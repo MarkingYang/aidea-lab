@@ -23,8 +23,39 @@ try {
   assert.equal(await page.locator('[data-graph-loading]').isHidden(), true);
   assert.equal(await page.locator('.site-nav a[href="/graph/"]').getAttribute('aria-current'), 'page');
   assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'overview');
-  assert.ok(Number(await page.locator('[data-graph-root]').getAttribute('data-local-edges')) > Number(await page.locator('[data-graph-root]').getAttribute('data-cross-edges')));
-  assert.ok(Number(await page.locator('[data-graph-root]').getAttribute('data-bridge-edges')) < Number(await page.locator('[data-graph-root]').getAttribute('data-cross-edges')));
+  assert.equal(await page.locator('[data-graph-root]').getAttribute('data-layout'), 'force-directed');
+  assert.equal(await page.locator('[data-relation-filter="similarity"]').isChecked(), false);
+  await page.locator('[data-relation-filter="similarity"]').check();
+  await page.locator('[data-relation-filter="similarity"]').uncheck();
+
+  const titles = page.locator('[data-graph-node-label]:visible');
+  assert.ok(await titles.count() > 0);
+  const bounds = await titles.evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(); return { x: r.x, y: r.y, width: r.width, height: r.height }; }));
+  for (let i = 0; i < bounds.length; i++) for (let j = i + 1; j < bounds.length; j++) {
+    const a = bounds[i], b = bounds[j];
+    assert.ok(a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y, 'Visible title boxes must not overlap');
+  }
+  await page.locator('.graph-tuning summary').click();
+  await page.locator('[data-show-labels]').uncheck();
+  assert.equal(await titles.count(), 0);
+  await page.locator('[data-show-labels]').check();
+  const beforeSpacing = await page.locator('[data-graph-canvas]').screenshot();
+  await page.locator('[data-graph-spacing]').focus();
+  await page.locator('[data-graph-spacing]').press('ArrowRight');
+  assert.equal(await page.locator('[data-spacing-output]').textContent(), '1.1×');
+  assert.notDeepEqual(await page.locator('[data-graph-canvas]').screenshot(), beforeSpacing, 'Spacing changes rendered graph positions');
+  await page.locator('[data-reset-layout]').click();
+  assert.equal(await page.locator('[data-spacing-output]').textContent(), '1.0×');
+  await page.locator('.graph-tuning summary').click();
+  await titles.first().focus();
+  await titles.first().press('Enter');
+  assert.equal(await page.locator('[data-node-panel]').getAttribute('data-open'), 'true');
+  await page.locator('[data-depth="2"]').click();
+  assert.equal(await page.locator('[data-depth="2"]').getAttribute('aria-pressed'), 'true');
+  await page.locator('[data-local-only]').uncheck();
+  await page.locator('[data-local-only]').check();
+  await page.locator('[data-depth="1"]').click();
+  await page.locator('[data-clear-focus]').click();
 
   await page.locator('#graph-query').fill('Context Engineering');
   await page.locator('.search-results [data-node-id="keyword:Context Engineering"]').click();
@@ -47,7 +78,7 @@ try {
   await page.locator('.search-results [data-node-id="series:composable-agent-harness"]').click();
   assert.equal(await page.locator('[data-panel-title]').textContent(), '可塑 Agent Harness');
   assert.match(page.url(), /node=series%3Acomposable-agent-harness/);
-  assert.ok(await page.locator('[data-panel-relations] li').count() >= 9);
+  assert.ok(await page.locator('[data-panel-relations] li').count() >= 4);
   assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/series\/composable-agent-harness\//);
 
   await page.locator('[data-zoom="in"]').click();
@@ -67,6 +98,8 @@ try {
 
   await page.locator('#graph-query').fill('成功率、稳定性');
   await page.locator('.search-results [data-node-id="agent-evaluation-metrics"]').click();
+  assert.match(await page.locator('[data-panel-title]').textContent(), /成功率、稳定性/);
+  await page.locator('[data-panel-link]').click();
   await page.waitForURL('**/writing/agent-evaluation-metrics/');
   assert.equal(await page.locator('h1').textContent(), 'Agent 评测（二）：成功率、稳定性与成本，不能揉成一个分数');
 
@@ -89,7 +122,7 @@ try {
   assert.ok(await page.locator('.related-knowledge li').count() >= 2);
   assert.match(await page.locator('.related-knowledge header > a').getAttribute('href'), /\/graph\/\?node=agent-evaluation-metrics&view=local/);
   assert.deepEqual(errors, []);
-  console.log('PASS Sigma graph render, progressive edge disclosure, keyword regions, single search, direct article entry, region camera focus/reset, URL state, zoom, theme, mobile drawer and article relations');
+  console.log('PASS Sigma graph render, force layout, relation filters, keyword regions, single search, article exploration and reading, region camera focus/reset, URL state, zoom, theme, mobile drawer and article relations');
 } finally {
   await browser.close();
 }
