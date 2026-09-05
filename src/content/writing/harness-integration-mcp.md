@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - MCP
 featured: false
-readingTime: 4 min
+readingTime: 5 min
 ---
 
 工具模块应先有清楚的业务接口，再选择传输方式。第一版 Mini Harness 如果所有能力都在同一个 Python 进程里，直接函数调用通常最容易调试。需要让多个客户端共享能力，或由独立进程维护资源时，再引入 MCP。
@@ -45,6 +45,28 @@ async with session_for(root) as (session, version):
 ```
 
 `root` 是状态目录的 `Path`；完整运行入口见[组装与运行](/writing/harness-integration-lab/)。调用返回后，`call()` 先检查 `isError`，再检查 `structuredContent` 中是否包含 `ticket`。MCP 的工具结果可以包含文本与结构化内容；本应用主动选择后者作为机器判断接口。[MCP 工具规范](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
+
+```mermaid
+sequenceDiagram
+  participant H as execute 运行器
+  participant C as session_for 与 call
+  participant S as MCP 工具服务
+  H->>C: 建立连接
+  C->>S: initialize 与 list_tools
+  S-->>C: 协议版本与工具目录
+  H->>C: 按操作键查询
+  C->>S: lookup_review_ticket
+  S-->>H: 结构化工单或 null
+  opt 资源不存在且允许写入
+    H->>H: 检查目标和许可，保存意图
+    H->>C: 创建请求
+    C->>S: create_review_ticket
+    S-->>H: 结构化结果
+  end
+  H->>C: 再次查询并对照目标验收
+```
+
+*图 1｜连接、工具调用和业务验收分别有明确责任。查到既有工单时可直接验收，无需再次创建。*
 
 ## stdio 与 HTTP 如何选择
 

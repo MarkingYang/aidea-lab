@@ -15,6 +15,24 @@ readingTime: 5 min
 
 运行器记得“发过请求”，不等于业务系统已经完成；客户端没收到响应，也不等于业务系统没有写入。Mini Harness 的恢复模块要同时读取运行记录与业务事实。
 
+```mermaid
+sequenceDiagram
+  participant H as Harness
+  participant R as runs.sqlite
+  participant T as 工具服务与 tickets.sqlite
+  H->>R: 保存派发意图
+  H->>T: 用稳定操作键创建
+  T->>T: 事务提交工单与操作键
+  Note over H,T: 服务进程退出，响应未到达
+  Note over H,R: Harness 重启，运行状态仍未确认
+  H->>T: 按原操作键查询
+  T-->>H: 返回已存在的工单
+  H->>H: 对照原始目标检查字段
+  H->>R: 保存 succeeded
+```
+
+*图 1｜复现 server-after-commit：工单已经存在，恢复执行只读查询与验收，不能换键再创建。*
+
 ## 两份存储各管什么
 
 | 存储 | 内容 | 它能回答的问题 |

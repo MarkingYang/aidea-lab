@@ -11,7 +11,7 @@ topics:
   - AI 架构
 featured: false
 readingTime: 9 min
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 ---
 
 > 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
@@ -59,7 +59,7 @@ flowchart LR
   LOADING -->|加载完成| ACTIVE[ACTIVE]
   LOADING -->|校验或加载异常| FAILED[FAILED]
   ACTIVE -->|配置变化、依赖消失或主动释放| UNLOADING[UNLOADING]
-  UNLOADING -->|副作用已回滚| DISPOSED[DISPOSED]
+  UNLOADING -->|受管资源已释放| DISPOSED[DISPOSED]
   DISPOSED --> FINISH((结束))
 ```
 

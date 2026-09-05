@@ -1,0 +1,166 @@
+[
+  {
+    "article": "agent-evaluation-engineering",
+    "change": "评测回归要保证同一任务在不同版本下可比较。以销售月报为例：固定输入表和月份，分别运行两个 Agent 版本，再由独立检查器核对数字、来源和保存位置。本文将这条流程实现为可重复运行的本地实验。",
+    "before": "前述讨论解决了量尺和题目，现在需要一个每次都能按相同口径工作的流程。把一份输入、两份成品和独立检查跑通，比先画满仪表盘更有价值。"
+  },
+  {
+    "article": "agent-evaluation-metrics",
+    "change": "假设销售经理要求汇总 8 月订单，输出地区、销售额与来源行号，禁止混入 7 月数据。同一 Agent 运行三次：两次通过验收，一次选错月份。这说明“多次尝试能找到合格结果”与“每次执行都可靠”不同；无人值守运行更需要关注后者。",
+    "before": "以有明确月份与字段要求的月报任务为例。现在假设它运行三次：第一次成功，第二次月份错误，第三次成功。你可以说“三次至少成功一次”，却不能说“每次都可靠”。这两句话的差别，决定产品应该提供草稿辅助还是无人值守执行。"
+  },
+  {
+    "article": "ai-value-voice",
+    "change": "用户手机上已有明天早上 7:00 的闹钟，现在要求“改成 7:30”。任务成功的条件是修改这一个闹钟，保留其他闹钟，并从设备读取新时间确认。语音识别正确只是其中一步。",
+    "before": "上一页用代码和测试核对结果。这一页换成一句日常指令：“把明天早上七点的闹钟改成七点半。”语音识别只差一个字，也可能改错对象或时间。"
+  },
+  {
+    "article": "ai-value-voice",
+    "change": "统计延迟时分别记录首次反馈与设备修改完成；一句“好的”不能作为完成时间。",
+    "before": "本篇结束后，读者应能把语音模型的误差映射到实际失败类型，并明确“说完到首次反馈”和“说完到真正完成”是两个不同的延迟终点。"
+  },
+  {
+    "article": "harness-engineering-loop",
+    "change": "用户要求在工单系统创建一张待核验工单，并返回可查询的编号。模型只生成了标题和来源，却回答“完成了”。此时任务尚未完成：运行器还需检查许可、实际创建，再查询工单核对字段。",
+    "before": "工单已经准备好，模型返回一句“完成了”。运行时此刻应该结束吗？只有当“准备好”就是用户要求的交付物时，答案才是肯定的。如果目标是实际创建并核验工单，系统仍然欠一次写入和一次终态检查。"
+  },
+  {
+    "article": "harness-engineering-recovery",
+    "change": "假设 Worker A、B 都基于文档版本 1 生成摘要，A 先提交并得到版本 2。B 提交时收到冲突；如果只改用版本号 2，却仍写入原摘要，就会覆盖 A 新增的证据。版本检查通过不代表内容合并正确。",
+    "before": "B 收到冲突后，如果只是读取最新版本号，把原摘要原样再提交，形式上通过了检查，语义上仍可能覆盖 A 的新证据。"
+  },
+  {
+    "article": "harness-foundations-concurrency",
+    "change": "删除无信息增量的段落",
+    "before": "理解协议与运行系统的分工，可以先阅读 [从 Prompt 到 Context，再到 Harness](/writing/prompt-context-harness-engineering/)，再进入本篇的并发与协议基础。\n\n"
+  },
+  {
+    "article": "harness-operations-observability",
+    "change": "选择[故障实验]",
+    "before": "选择上一组[故障实验]"
+  },
+  {
+    "article": "harness-operations-production",
+    "change": "[本地实验]",
+    "before": "上一组[本地实验]"
+  },
+  {
+    "article": "harness-operations-release",
+    "change": "发布后的执行权与竞争处理见[并发控制](/writing/harness-foundations-concurrency/)。",
+    "before": "继续学习：[Harness 工程基础与协议：全景与并发](/writing/harness-foundations-concurrency/)。"
+  },
+  {
+    "article": "harness-operations-context",
+    "change": "title: 上下文组装：材料、状态与输入预算",
+    "before": "title: 先看全景，再决定模型应该看到什么"
+  },
+  {
+    "article": "harness-integration-lab",
+    "change": "本实验创建一张本地待核验工单：来源为 `source-001`，标题为“核验 Agent Harness 资料”。运行后应只存在一条字段匹配的工单；写入后进程退出，再次运行也不能重复创建。下面按模块安装、执行并检查这个结果。",
+    "before": "现在按模块图运行第一版 Mini Harness，再替换一个组件。学习目标是能够指出每次交接的输入、输出和失败处理，而不只是看到终端打印成功。"
+  },
+  {
+    "article": "capability-routing-discovery",
+    "change": "候选可能是 Skill、工具或 Agent。下一步应比较完成同一任务的执行路径，见[方案与执行](/writing/capability-routing-execution/)。",
+    "before": "如果检索同时返回“会议总结 Skill”“创建文档工具”和“会议助理 Agent”，接下来该比较什么？[方案与执行](/writing/capability-routing-execution/)进一步把候选组织成方案。这个变化，也是理解最终整套系统的关键一步：我们正在从搜索对象"
+  },
+  {
+    "article": "agent-product-evaluation-rhythm",
+    "change": "## 将评测结果落实到授权范围",
+    "before": "## 最后的判断：产品经理在设计责任，而不只是体验"
+  },
+  {
+    "article": "ai-capability-evidence-action",
+    "change": "结合[模型能力与评测证据](/writing/llm-agent-capability-landscape-2026/)，可以提出以下三个产品方向假设；它们仍需用业务任务验证。",
+    "before": "从上述证据，我更看好三个方向。**以下是技术与产品推断，不是已经证实的市场规模、收益或岗位替代预测。**"
+  },
+  {
+    "article": "ai-capability-evidence-action",
+    "change": "[任务评测设计]",
+    "before": "[《Agent 体系评测深度研究报告》]"
+  },
+  {
+    "article": "china-work-agent-showdown",
+    "change": "本文依据截至 2026 年 9 月的公开资料，选择三款办公 Agent 比较其入口与任务范围：",
+    "before": "截至 2026 年 9 月，国内最有代表性的三条路线已经相当清楚："
+  },
+  {
+    "article": "coding-agent-harness-showdown",
+    "change": "## Codex：任务监督、环境与变更审查",
+    "before": "## Codex：最像多 Agent 时代的工作操作系统"
+  },
+  {
+    "article": "coding-agent-harness-showdown",
+    "change": "## Claude Code：项目约束与工作流扩展",
+    "before": "## Claude Code：最像一套可执行的工程制度"
+  },
+  {
+    "article": "claude-code-session-collaboration",
+    "change": "## Worktree 的隔离范围",
+    "before": "## 经典设计四：用 Worktree 隔离并行任务，而不是假设所有 Session 都隔离"
+  },
+  {
+    "article": "claude-code-session-collaboration",
+    "change": "## 按寿命管理上下文",
+    "before": "## 经典设计五：把上下文拆成不同寿命"
+  },
+  {
+    "article": "claude-code-session-collaboration",
+    "change": "## 用扩展接入现有流程",
+    "before": "## 经典设计六：保持低层，不强迫用户接受新流程"
+  },
+  {
+    "article": "claude-code-session-collaboration",
+    "change": "## 跨端接管需要保留哪些状态",
+    "before": "## 经典设计七：跨端延续的是 Session，不是聊天记录"
+  },
+  {
+    "article": "claude-code-trust",
+    "change": "## 用验证界面支持用户验收",
+    "before": "## 经典设计三：用验证界面对抗生成的不确定性"
+  },
+  {
+    "article": "learning-organization-boundaries",
+    "change": "这里讨论的是作者从演讲中提炼的组织学习假设，是否形成竞争优势仍需看真实反馈和经营结果。",
+    "before": "这是整场分享中最有价值的洞察。它比“AI 将产生很多创业机会”更有解释力。"
+  },
+  {
+    "article": "product-frameworks-growth",
+    "change": "这条追问链提出了“样本与目标场景不匹配”的原因假设，尚未证明因果。下一步用销售会议样本核对被指派人与发言人，再比较修订前后的抽取结果；若错误没有减少，应继续检查其他原因。",
+    "before": "此时根因不是“模型不够聪明”，而是研究样本与目标场景不匹配。下一步应该补充真实销售会议样本、重写标注规则并建立责任人准确率评估。"
+  },
+  {
+    "article": "product-frameworks-growth",
+    "change": "若价值主张是“减少人工时间”，可以测试按团队规模或使用量收费，但定价仍需验证客户支付意愿与服务成本",
+    "before": "若价值主张是“减少人工时间”，收入就更适合与团队规模或使用量相关"
+  },
+  {
+    "article": "product-frameworks-delivery",
+    "change": "以下为假设案例：“试用前两天，客户明确要求数据只能留在指定区域（S）；团队需在两天内调整试用范围与部署（T）；产品减少输入字段，工程配置区域存储，销售重新确认验收范围（A）；客户确认测试环境满足这次试用约定，试用按期开始（R）。”这个结果只支持本次约定达成；是否满足法规要求需要另",
+    "before": "例如：“大客户试用前两天发现数据不能跨境存储（S），团队必须在不延期的情况下完成隔离方案（T）；产品缩小首期数据范围，工程切换区域存储，销售重新约定验收边界（A）；试用按期开始，后续又把这套流程沉淀成企业客户合规清单（R）。”"
+  },
+  {
+    "article": "anthropic-skills-overview",
+    "change": "例如，用户要求把销售表生成可编辑的月报。Skill 说明先核对月份与字段，脚本生成文档，再渲染检查表格是否溢出；若总额不符，就回到原始数据核对。这个教学例子说明：说明文件负责组织步骤，脚本与产物检查提供执行证据，单独生成一份文件不足以验收。"
+  },
+  {
+    "article": "addy-agent-skills-overview",
+    "change": "以“修复登录请求超时，但不改登录协议”为教学例子：定义阶段固定允许修改的行为，计划阶段列出复现与回归，构建阶段修改超时处理，验证阶段运行这两类测试。测试失败时回到对应变更，而不是继续发布。阶段的意义由交付物和退出条件决定。"
+  },
+  {
+    "article": "mattpocock-skills-overview",
+    "change": "例如，用户说“让导入更快”。澄清后确认：一万行 CSV 必须在约定时间内导入，失败行要能下载重试，禁止跳过校验。这时就可以形成基线测量和失败样本；继续追问按钮颜色不会改变当前实现决策，应停止扩展问题。这个例子用于说明澄清的退出条件。"
+  },
+  {
+    "article": "openviking-series-overview",
+    "change": "例如，团队把接口手册作为 Resource，保存“该项目禁止自动发布”为 Memory，再把发布检查方法作为 Skill。回答接口用法时应读取手册；执行发布时还要检查项目约束。统一检索入口不能消除三者的职责差异。这是对象划分的教学例子，不是项目内置的发布流程。"
+  },
+  {
+    "article": "learning-organization-boundaries",
+    "change": "删除动员式结尾，收窄竞争判断；以销售复盘实验说明反馈如何改变问题定义及样本边界。"
+  },
+  {
+    "article": "product-work-methodology",
+    "change": "用客户反馈任务明确输入、目标和权限，替换泛化的传统产品与 Agent 对比铺垫。"
+  }
+]

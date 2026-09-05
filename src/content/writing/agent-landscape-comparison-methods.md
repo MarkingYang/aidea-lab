@@ -2,7 +2,7 @@
 title: Agent 选型：比较维度、任务契约与 PoC
 description: 按研究对象和任务证据比较 Agent，用明确契约、分项指标和分轮 PoC 形成可复核的采用决定。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -11,10 +11,23 @@ topics:
   - 产品战略
   - 产品方法论
 featured: false
-readingTime: 12 min
+readingTime: 10 min
 ---
 
 同一张功能清单无法公平比较 Coding Agent、办公 Agent 与开源 Harness。真正有用的比较，必须先声明决策对象，再让不同框架各自回答一个问题。
+
+```mermaid
+flowchart TD
+  Q[明确任务与采购范围] --> C[按同类产品筛选候选]
+  C --> H[权限 数据与环境硬条件]
+  H --> P[固定任务 输入与验收，运行 PoC]
+  P --> F{通过业务门槛？}
+  F -->|否| R[排除或缩小采用范围]
+  F -->|是| V[比较完成质量 成本与人工时间]
+  V --> D[记录选择理由 适用范围与复评条件]
+```
+
+*图 1｜竞品分析先建立可比范围，再用业务任务验证。未通过硬条件的产品，不用其他高分抵消。*
 
 ## 三个分析工具各自回答什么
 
@@ -58,7 +71,7 @@ readingTime: 12 min
 
 ### 候选产品按研究对象分组
 
-| 研究对象 | 资料核验案例 | 比较前需要控制的差异 |
+| 研究对象 | 候选示例 | 比较前需要控制的差异 |
 | --- | --- | --- |
 | 产品化工程任务 | Claude Code、Codex、Kimi Code | 模型、套餐、本地或云端环境、工具权限 |
 | 办公任务交付 | Kimi Work、WorkBuddy、豆包工作 | 文件格式、企业版本、连接器与地区可用性 |
@@ -66,23 +79,7 @@ readingTime: 12 min
 
 Kimi Code 和 Kimi Work 分属不同研究对象，不能把 Work 公布的并发规模直接记到 Code 名下。同样，某企业子系统的安全功能也不能外推到个人版的全部工作模式。
 
-以下两款工程产品用于说明“怎样从公开机制提出候选假设”，不据此宣布总体领先。
-
-## 从扩展与调度机制提出候选假设
-
-### Claude Code：把 Harness 变成工程组织可以塑形的系统
-
-Claude Code 可重点检查扩展机制之间的职责分工：`CLAUDE.md` 管长期项目规则，Skills 管按需工作流，MCP 管外部连接，Hooks 在匹配事件上触发检查，Subagents 管隔离上下文，Agent Teams 管协作，Sandbox 与 Permissions 管硬边界。官方的[扩展能力总览](https://code.claude.com/docs/en/features-overview)已经形成一套相对清楚的设计语言。
-
-这使 Claude Code 特别适合“组织有自己的做事方式”这一场景。团队可以把规范、检查、连接和权限逐层编码，而不必把所有要求塞进一段超级提示词。
-
-### Codex：把 Agent 从对话工具变成工作调度系统
-
-Codex 可重点检查多任务调度和结果审查的衔接。CLI 负责本地高带宽协作，云端任务负责异步执行，App 负责多线程监督，Worktree 隔离并行改动，Review 负责回收结果，Automations 负责周期性工作。OpenAI 在[Codex App 发布文](https://openai.com/index/introducing-the-codex-app/)中把重点从“写代码”转向“管理多个长期运行的 Agent”。
-
-同时，[Codex CLI 的 Rust 实现](https://github.com/openai/codex)公开了核心 Agent Loop 和系统级沙箱，是“商业产品体验 + 可审计本地执行层”之间很有竞争力的组合。
-
-两者仍有明显边界：核心模型与云端服务是厂商控制的，重度并行会放大成本，企业必须处理源码与业务上下文进入云端模型的治理问题。这些机制是否降低交付成本，仍需同任务比较。
+产品机制与采用假设分别见[Coding Agent 比较](/writing/coding-agent-harness-showdown/)和[办公 Agent 比较](/writing/china-work-agent-showdown/)；本篇统一任务、证据和决策方法，不再重复逐产品介绍。
 
 ## 把候选假设变成可执行比较
 
@@ -105,43 +102,13 @@ Codex 可重点检查多任务调度和结果审查的衔接。CLI 负责本地�
 
 如果系统默认自治，却把验证成本全部留给使用者，它只是把操作负担换成监督负担。如果系统层层确认，却没有提供足够证据，确认也只是把责任推回给人。成熟的工作系统应让权限、证据和恢复能力一起增长。
 
-## 先把八款产品放回正确的赛道
-
-### 第一层：工程 Agent——把需求变成可验证的代码变更
-
-Claude Code、Codex 和 Kimi Code 的核心工作对象是代码仓库。它们要完成的不是“写一段代码”，而是读取项目、修改多个文件、运行命令和测试、解释差异，并把结果交到人类可审查的位置。
-
-[Claude Code 官方产品页](https://claude.com/product/claude-code)已经把入口扩展到终端、IDE、桌面、Web、GitHub、Slack 和移动端；[Codex App](https://openai.com/index/introducing-the-codex-app/)则明确把产品定义成并行管理多个 Agent 的 command center。两者都已超越单一 CLI。
-
-[Kimi Code](https://www.kimi.com/resources/kimi-code-introduction)走的是模型与产品垂直整合路线：月之暗面既提供 Agentic 模型，也提供终端和 IDE Agent。它不再只是“国产模型接进第三方 CLI”，而是在补齐自己的执行层。
-
-### 第二层：工作 Agent——把自然语言目标变成办公制品
-
-Kimi Work、WorkBuddy 和豆包工作的用户通常不从 Git 仓库开始，而从本地文件、浏览器、企业知识库、聊天记录、表格、PPT 或一项模糊业务目标开始。
-
-[Kimi Work](https://www.kimi.com/zh-hans/resources/kimi-work-introduction)强调本地桌面、开放网络、专业数据集与 Agent Swarm；[WorkBuddy](https://cloud.tencent.com/product/workbuddy)强调“办公、代码、设计”统一工作台、腾讯生态和 SkillHub；字节 Seed 团队则把豆包“办公任务”描述为面向真实生产力场景的通用 Agent，突出项目规划、文件处理、工具调用和多模态交付，参见[Seed2.1 发布说明](https://seed.bytedance.com/zh/blog/seed2-1-officially-released-advancing-ai-productivity)。
-
-它们真正争夺的是：**用户愿不愿意把一项完整工作交出去，而不只是把一个问题问出去。**
-
-### 第三层：开源 Harness——把 Agent 本身变成可改造的基础设施
-
-Hermes、Pi 与 DeepSeek Harness 都开源，但哲学差异极大：
-
-| 产品 | 核心主张 | 更像什么 | 默认取舍 |
-| --- | --- | --- | --- |
-| [Hermes Agent](https://github.com/NousResearch/hermes-agent) | “会记住、会沉淀技能的个人 Agent” | 电池齐全的自治助理 | 能力面广，部署与安全责任也更重 |
-| [Pi](https://pi.dev/docs/latest) | “最小终端 Coding Harness” | 可编程的 Agent 内核 | 核心克制，把工作流和治理交给扩展 |
-| [DeepSeek Harness](https://www.deepseek.com/harness/) | “Everything is a plugin” | Agent 运行时与插件实验场 | 组合自由度高，但仍是 developer preview |
-
-它们不以“开箱即用的企业席位”取胜，而以源码可见、模型可换、运行时可改、部署可控取胜。
-
 ## 先定义 PoC 要决定什么
 
 PoC 不是把公开资料里的价值曲线再画一遍，而是回答一个具体决定：**哪套系统能在我们的任务、权限和成本边界内稳定交付？** 因此，开始前要冻结四项内容：候选产品、任务范围、允许动作和通过门槛。
 
 同一产品可以有多种配置。Claude Code 的权限模式、Codex 的执行环境、Kimi Code 的模型与并发设置都要记录；不能让一个候选使用团队精心准备的项目说明，另一个只拿到一句临时提示。公平不是配置完全相同，而是每个候选都获得完成任务所需、且能在生产中持续维护的配置。
 
-## 两周只做三轮，不追求覆盖所有功能
+## 两周 PoC 的示例安排
 
 | 时间 | 目标 | 产物 |
 | --- | --- | --- |
@@ -167,9 +134,9 @@ evidence: [targeted_test, regression_suite, diff_review]
 
 这份 YAML 是教学格式，不属于任何候选产品。它的意义是让评测运行器与人类审查者使用同一份完成定义。
 
-## 真正公平的 PoC：不要让六个 Agent 做同一道玩具题
+## 任务样本按真实用途分层
 
-一个有效的两周 PoC，至少应包含四类任务：
+面向 Coding Agent 的样本可包含四类任务；办公系统应替换为同等复杂度的材料处理、写回和接管任务：
 
 1. **定位型任务**：理解陌生代码、追踪跨模块调用、解释故障；
 2. **修改型任务**：实现中型功能，必须通过已有测试和静态检查；

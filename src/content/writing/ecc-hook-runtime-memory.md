@@ -2,7 +2,7 @@
 title: ECC：规则如何在事件边界真正发生
 description: 沿 Hook 运行时、Memory Vault 与持续学习，理解 ECC 如何分离确定性约束、历史事实和经验候选。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: evergreen
 topics:
@@ -21,7 +21,7 @@ readingTime: 6 min
 
 Skills 与 Rules 会影响模型决策，但它们无法证明模型一定运行了测试、一定没有执行危险命令，也无法保证会话结束时一定保存状态。
 
-Hooks 用确定性事件补上了这条缝隙。
+在指定提交 `22e8cf0` 中，Hooks 为配置匹配的事件提供程序检查；是否阻断仍取决于宿主支持、启用状态、超时和错误处理策略。
 
 ```mermaid
 sequenceDiagram
@@ -67,9 +67,11 @@ Hook 本质上是 Harness 启动的子进程。Windows Shell、插件根路径�
 
 PreToolUse 可以用退出码 2 阻断工具；PostToolUse 只能观察和反馈；异步 Hook 不应承担强制门禁。这个边界避免把一个耗时的构建分析误放到每次工具调用之前，也避免团队以为某条事后警告已经提供了安全保证。
 
-但 Hook 也是 ECC 跨 Harness 设计的最大天花板。Claude Code 拥有完整的原生事件能力，Codex 插件只打包满足其协议和信任模型的同步 Hook 子集，OpenCode 与 Cursor 则通过各自的事件适配层复用部分逻辑，其他平台还可能只能依靠说明性规则。**资产可移植不等于执行语义等价。** ECC 自己也在支持矩阵中承认这种差异；选型时应该验证关键门禁在目标 Harness 上究竟是 Hook-backed 还是 instruction-backed。
+例如工具已修改文件，随后 PostToolUse 类型检查失败，文件不会因此自动回滚。Harness 必须记录失败并安排修复；事后检查既不能撤销既成副作用，也不能补发执行授权。
 
-## 记忆与持续学习：ECC 最成熟的地方是没有把“记住”误写成“相信”
+Hook 同时约束了 ECC 的跨 Harness 能力。Claude Code 拥有完整的原生事件能力，Codex 插件只打包满足其协议和信任模型的同步 Hook 子集，OpenCode 与 Cursor 则通过各自的事件适配层复用部分逻辑，其他平台还可能只能依靠说明性规则。**资产可移植不等于执行语义等价。** ECC 自己也在支持矩阵中承认这种差异；选型时应该验证关键门禁在目标 Harness 上究竟是 Hook-backed 还是 instruction-backed。
+
+## 记忆与持续学习：保存记录与批准规则分开
 
 很多 Agent 系统会把完整 Transcript 塞回向量数据库，再把相似内容自动注入后续会话。这样做很方便，也混合了三个完全不同的问题：
 
@@ -79,7 +81,7 @@ PreToolUse 可以用退出码 2 阻断工具；PostToolUse 只能观察和反馈
 
 ECC 分别使用会话状态、Memory Vault 与 Instinct / Skill Evolution 处理这三层。
 
-### Memory Vault：Markdown 是真相源，索引只是投影
+### Memory Vault：Markdown 是原始记录，索引是投影
 
 Memory Vault 使用 `ecc.memory.v1` Markdown 文档保存 project、team 和 user 三种作用域的事实、决策、交接、经验与笔记，并同时提供确定性 CLI 和可选的本地 MCP 接口。[设计文档](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/design/ecc-memory-vault.md)规定了几条很克制的边界：
 

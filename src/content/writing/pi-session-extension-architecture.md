@@ -2,7 +2,7 @@
 title: Pi：运行历史如何成为可扩展 Session
 description: 沿 AgentSession、追加事件树、Compaction 与扩展拦截点，理解 Pi 如何分离事实、上下文投影和产品策略。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -14,7 +14,7 @@ featured: false
 readingTime: 6 min
 ---
 
-Pi 的最小内核没有把历史保存成最终 messages 数组，而是让 AgentSession 同时承担持久化、上下文投影、扩展和 UI 的产品语义。本篇关注这条状态主线。
+Pi 的最小内核没有把历史保存成最终 messages 数组，而是让 AgentSession 同时承担持久化、上下文投影、扩展和 UI 的产品语义。本篇沿用[内核篇](/writing/pi-architecture-deep-dive/)的 `e44d75c` / `0.84.4` 快照，关注这条状态主线。
 
 ## AgentSession：真正的产品语义集中层
 
@@ -63,7 +63,7 @@ U->>S: prompt(text)
 
 这里最值得借鉴的是 **所有跨层动作都有明确的稳定点**：扩展在模型调用前修改上下文，在工具执行前阻止调用，在结果入库前变换结果；自定义消息要等一个 turn 的全部 tool result 写入后才落盘，避免把消息插进 tool call 与 tool result 之间，造成 Provider 拒绝历史。
 
-这类正确性约束很难从功能列表看出来，却是 Harness 从 Demo 走向长期可用产品的分水岭。
+例如用户在工具调用期间追加说明，应等这批工具结果配对落盘后再插入新消息，避免恢复时产生无法解释的历史。
 
 ## Session 不是聊天记录，而是一棵追加写入的事件树
 
@@ -84,7 +84,7 @@ flowchart LR
 [`SessionManager`](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/core/session-manager.ts#L856) 的注释直接把它定义为 “append-only trees stored in JSONL files”。这个选择带来几个好处：
 
 1. **历史不被覆盖**：修改早期提示词不是重写文件，而是从旧节点长出新分支；
-2. **写入简单**：正常路径主要是追加一行，崩溃恢复和人工检查都比较直接；
+2. **写入路径短**：正常路径主要是追加一行；崩溃恢复仍需处理尾部不完整记录及落盘策略；
 3. **状态可重放**：模型、thinking level、压缩、标签、扩展数据都是事件；
 4. **分支是数据结构，不是 UI 特效**：`/tree`、`/fork`、`/clone` 只是对同一事件树的不同操作。
 

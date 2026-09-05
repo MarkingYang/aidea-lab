@@ -2,7 +2,7 @@
 title: Hermes：长期运行的内核如何维持
 description: 从七个平面、Agent Loop 与 Prompt 分层出发，理解 Hermes 如何把不同模型收敛为可中断、可续跑的行动协议。
 publishedAt: 2026-09-04
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -11,19 +11,12 @@ topics:
   - Agent Harness
   - 开源架构
 featured: true
-readingTime: 8 min
+readingTime: 7 min
 ---
 
-很多人第一次看到 Hermes Agent，会把它理解成“支持很多模型、很多工具和很多聊天平台的开源 Agent”。这个描述没有错，却错过了它真正有辨识度的部分。
+Hermes 把 Agent Loop、工具执行、Session、Gateway、Memory 和 Skills 连接成跨会话运行系统。本文分析 Nous Research 官方仓库 `v0.21.0` 开发线的[固定快照 `6327930`](https://github.com/NousResearch/hermes-agent/tree/63279301bcbdc185c1b07b98a9312eb0c862f26d)；部署长期在线服务和治理经验更新的细节分别放在后两篇。
 
-Hermes 的核心不是多接几个 API，而是试图回答一个更难的问题：**一个 Agent 如何在几个月甚至几年里持续工作，记住人与项目，把成功经验沉淀成程序性知识，同时又不让上下文、成本和权限一起失控？**
-
-它给出的答案，是把一次模型调用扩展成一套长期运行系统：前台有 Agent Loop，下面有工具与执行环境，旁边有 Session 与 Gateway，背后则有记忆、技能和后台复盘组成的学习闭环。
-
-> [!IMPORTANT]
-> **结论先行：**Hermes Agent 最准确的定位，不是“开源版 Claude Code”，也不是“带工具的聊天机器人”，而是一个以个人长期关系为中心、Batteries included 的 Agent OS。它最有价值的设计是把工作记忆、历史检索、事实记忆和程序性技能拆开；它最大的架构风险也来自同一件事——当 Agent 可以改写自己的长期上下文时，错误不再只影响一次回答，而可能进入未来每一次决策。
-
-本文基于 Nous Research 官方仓库 `v0.21.0` 开发线的 [2026-09-03 代码快照](https://github.com/NousResearch/hermes-agent/tree/63279301bcbdc185c1b07b98a9312eb0c862f26d)与官方文档。Hermes 仍在快速演进，因此文中的数字和默认值都应结合版本理解。
+以“每天整理已授权项目的进度，先生成草稿，不发送外部消息”为教学场景：Gateway 触发并路由任务，Loop 调用工具，Session 保存过程，Memory 提供项目背景。能定时启动不等于每次都正确交付，发送权限也不能从定时配置中推导。
 
 ## 先看全局：Hermes 不是一个 Loop，而是七个平面
 
@@ -111,7 +104,7 @@ Hermes 内部至少有三种并行：
 
 第一种减少 I/O 等待，第二种购买额外推理能力，第三种用确定性代码替代重复的模型往返。把三者都叫“多 Agent”会丢掉最关键的成本差异。
 
-## Prompt 架构：真正稀缺的不是 Token，而是稳定前缀
+## Prompt 架构：按更新频率组织前缀
 
 Hermes 的 Prompt 不是把所有资料拼成一大段，而是按稳定性分成三层：
 
@@ -131,11 +124,11 @@ flowchart LR
   H[Conversation History] --> R
 ```
 
-*图 3｜只有稳定层形成可复用前缀；项目上下文、易变信息、临时覆盖层与历史在单次请求中汇合。*
+*图 3｜稳定层便于形成可复用前缀；其余内容也可能参与缓存，是否命中取决于实际序列化前缀和 Provider 规则。*
 
 这个设计有三个深层含义。
 
-第一，Prompt Cache 不是最后再加的性能优化，而是信息架构约束。频繁变化的信息越靠后，越容易复用前缀；临时信息不写回持久历史，避免每轮都让缓存失效。
+第一，Prompt Cache 不是最后再加的性能优化，而是信息架构约束。频繁变化的信息越靠后，越容易复用前缀；临时覆盖信息放在后面，减少对既有前缀的扰动；这不保证每次都命中缓存。
 
 第二，Memory 写入与 Memory 生效被刻意分开。Agent 在本轮新增的记忆会立即落盘，但当前 Session 的 System Prompt 是冻结快照，通常要到新 Session 或重建路径才会重新注入。官方[记忆文档](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory/)明确把这种延迟作为缓存稳定性的交换。
 

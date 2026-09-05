@@ -2,7 +2,7 @@
 title: Anthropic Skills：规范、渐进加载与文档管线
 description: 从 Skill 规范和资源组织进入渐进加载与文档管线，说明触发、执行和资产分发各自的约束。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -10,7 +10,7 @@ topics:
   - Anthropic
   - 开源架构
 featured: true
-readingTime: 3 min
+readingTime: 4 min
 ---
 
 [`anthropics/skills`](https://github.com/anthropics/skills)同时包含 Agent Skills 规范、基础模板、示例 Skills 和用于文档生产的复杂能力。研究时必须区分这些层次，也要注意仓库明确说明：部分示例采用 Apache 2.0，而 docx、pdf、pptx、xlsx 等生产参考是 source-available，并非同一开源许可。
@@ -39,13 +39,15 @@ flowchart TB
 | Assets | 模板、字体和示例资源 |
 | Verification | 渲染、解析和视觉复核 |
 
-这说明高质量 Skill 的输出不是一段回答，而是经过验证的 Artifact。模型负责在不确定输入中做判断，脚本负责可重复操作，渲染检查负责把文件存在与文件可用区分开。
+对于文档生产类 Skill，验收对象是经过验证的文件产物。模型负责在不确定输入中做判断，脚本负责可重复操作，渲染检查负责把文件存在与文件可用区分开。
 
 许可证同样属于能力边界。仓库公开可读不代表所有目录都可以任意再分发；Skill Marketplace 和团队安装器需要把来源、许可和第三方依赖纳入清单。
 
+例如，用户要求把销售表生成可编辑的月报。Skill 说明先核对月份与字段，脚本生成文档，再渲染检查表格是否溢出；若总额不符，就回到原始数据核对。这个教学例子说明：说明文件负责组织步骤，脚本与产物检查提供执行证据，单独生成一份文件不足以验收。
+
 ## 渐进加载与上下文预算
 
-Agent Skills 的关键不是 Markdown 格式，而是渐进披露。宿主先读取名称和描述参与能力发现；匹配任务后才加载 SKILL.md 正文；脚本、参考和资产又在正文指引下按需读取。这样技能数量可以增长，而上下文成本不会与全文总量线性增长。
+Agent Skills 的关键不是 Markdown 格式，而是渐进披露。宿主先读取名称和描述参与能力发现；匹配任务后才加载 SKILL.md 正文；脚本、参考和资产又在正文指引下按需读取。这避免每次加载全部正文；名称与描述仍随目录规模增长，能力较多时还需要检索或分组路由。
 
 ```mermaid
 flowchart LR

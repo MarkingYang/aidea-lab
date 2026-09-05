@@ -2,7 +2,7 @@
 title: ECC：如何把工程经验编译到不同平台
 description: 从资产、安装计划与跨 Harness 适配出发，拆解 ECC 如何把工程意图投射为可安装、可恢复的系统。
 publishedAt: 2026-09-04
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: evergreen
 topics:
@@ -12,26 +12,12 @@ topics:
   - Codex
   - AI 工程
 featured: true
-readingTime: 9 min
+readingTime: 8 min
 ---
 
-如果只看仓库名字，Everything Claude Code（下文简称 ECC）很容易被理解成一套 Claude Code 配置合集：很多 Agent、Skill、Command、Rule，再加一些 Hook。
+Everything Claude Code（ECC）把 Skills、Rules、Hooks 和安装策略分发到多个 Agent Harness。本文分析固定提交 [`22e8cf0`](https://github.com/affaan-m/ECC/tree/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e)：共享资产描述工作方式，安装器把它们转换为目标平台文件，模型调用与工具主循环仍由宿主承担。
 
-这个理解只对了一半。
-
-截至本文分析的 [`22e8cf0`](https://github.com/affaan-m/ECC/tree/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e) 版本，ECC 已经形成一套更有野心的结构：它把一支工程团队反复使用的开发方法、工具规范、安全策略与上下文管理机制，保存为一份与模型相对解耦的“工程中间表示”，再针对 Claude Code、Codex、Cursor、OpenCode、Gemini 等 Harness 编译出不同的安装结果。
-
-它不是一个替你调用模型的 Agent Framework，也不是一个新的大模型客户端。**ECC 更像 Agent 时代的工程策略编译器与运行时扩展层：上游维护可复用的工程意图，下游适配不同 Harness 的加载、执行和治理能力。**
-
-这也是理解其架构的主线。286 个 Skills、68 个 Agents 和 94 个兼容命令只是表面的资产规模；真正决定系统质量的是下面四件事：
-
-1. 怎样把大量知识变成不会淹没上下文的能力；
-2. 怎样把同一套能力投射到接口并不相同的 Harness；
-3. 怎样让“建议”在必要时升级为确定性的执行约束；
-4. 怎样保存经验，又不让历史输出悄悄变成新的系统指令。
-
-> [!IMPORTANT]
-> ECC 最值得研究的不是“它收集了多少 Prompt”，而是它如何把 Prompt、策略、事件处理、安装状态与演进证据组织成一个工程系统。
+本文重点检查资产分类、安装计划、平台适配和安全卸载。Hook 的运行语义与记忆信任边界见[运行时篇](/writing/ecc-hook-runtime-memory/)，控制平面的成熟度见[供应链篇](/writing/ecc-memory-supply-chain/)。
 
 ## 先把 ECC 放对位置：它是 Meta-Harness，不是模型代理层
 
@@ -64,7 +50,7 @@ I --> A
 
 ECC 自己的[跨 Harness 架构文档](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/architecture/cross-harness.md)给出了很准确的分工：ECC 是 reusable workflow layer，Claude Code、Codex、OpenCode 和 Cursor 是 execution surfaces。稳定的工作方式应该留在共享源中，平台文件只处理加载方式、事件格式、命令映射与能力缺口。
 
-这带来一个很实用的判断标准：如果一个工作流换到另一个 Harness 就必须重写，它很可能还没有被抽象到正确层级。
+迁移时要区分路径差异和能力缺口：路径差异由 Adapter 处理；目标平台缺少阻断事件时，应报告门禁不可用，不能用一段说明宣称等价。例如同一“测试通过才发布”流程，可以共享检查脚本，但发布拦截必须在目标平台或受保护 CI 中另行验证。
 
 ### ECC 管的是五类不同对象
 
@@ -97,16 +83,6 @@ references / scripts / examples
 ```
 
 因此，Skill 的价值不只在于复用提示词，更在于控制注意力预算。模型先看到“有哪些能力”，再读取“这一项怎么做”，最后才取用证据或执行脚本。仓库首页那句“Optimize the context window. Persist everything else”不是宣传口号，而是资产设计的核心约束。[README](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/README.md)也明确把 ECC 描述为从计划、测试、实现、审查、验证到记忆和改进的连续流程。
-
-这里可以看出 ECC 与普通 Prompt 仓库的差别：
-
-- Prompt 仓库保存的是“某次应该说什么”；
-- Skill 保存的是“某类任务如何被发现、执行与验证”；
-- Rule 保存的是“长期默认成立的约束”；
-- Hook 定义配置匹配时触发的检查，实际执行与阻断能力取决于事件类型和运行配置；
-- Memory 保存的是“未来可能有用、但尚未成为规则的上下文”。
-
-这套分类把知识的**适用范围、加载时机、可信度与执行强度**分开了。
 
 ### Profile 与 Module：规模扩大后的第二道上下文阀门
 
@@ -177,4 +153,4 @@ ECC 的 Apply 层因此要处理：
 
 这种设计也形成了明显的风险集中点。`scripts/lib/install-lifecycle.js` 超过 2,000 行，负责发现已有安装、漂移诊断、修复计划、兼容迁移与安全卸载；不同平台的差异最终都会回流到这个生命周期内核。
 
-它带来的好处是行为统一，代价是回归半径很大。ECC 后续最值得做的重构不是继续增加 Adapter，而是进一步把生命周期内核拆成稳定的操作代数、文件安全层、状态投影层与平台迁移层，并用跨平台 Golden Fixtures 锁定它们之间的契约。
+集中实现便于统一行为，也可能扩大回归范围；文件行数本身不能证明必须重构。应先检查平台变更是否反复触及无关逻辑，再决定是否拆分文件安全、安装状态和平台迁移。跨平台固定样本应覆盖覆盖冲突、用户修改和卸载失败。

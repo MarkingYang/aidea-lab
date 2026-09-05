@@ -2,7 +2,7 @@
 title: LangChain 与 LangGraph：从模型调用到可恢复的 Agent，协议处在哪一层？
 description: 用知识库助手处理工单的例子，讲清 LangChain、LangGraph 与 MCP 的分工，拆解工具循环、状态、条件分支和暂停恢复，并给出可运行的小实验与选型方法。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -12,7 +12,7 @@ topics:
   - LangGraph
   - MCP
 featured: false
-readingTime: 16 min
+readingTime: 14 min
 ---
 
 一个知识库助手，最初只需要回答“这个接口为什么报错”。接入搜索工具以后，它可以先查文档再解释。再往前走一步，用户希望它核对故障证据、整理工单、等待确认，最后提交并返回编号。
@@ -272,7 +272,7 @@ LangChain Agent 本身已经构建在 LangGraph 上，因此不是遇到“需�
 
 对知识库助手，我会先做能验证价值的查询版本：它能否找到正确资料，能否承认证据不足？然后加入结构化提案；真正出现审核等待与跨步骤恢复需求时，再明确组织外层图。这样的演进有一个可以持续检查的标准：每增加一层结构，都应该让某个具体故障更容易定位、让某项业务责任更清楚。
 
-好的 Agent 架构最终要回答几个朴素的问题：它现在知道什么，下一步允许做什么，做到哪里了，失败后怎样接着做。LangChain、LangGraph 和 MCP 分别承担其中一部分工作，应用则把这些部分连接成用户可以验收的结果。
+需要进一步比较图式编排与其他运行方式时，使用[三种架构的同题实验](/writing/harness-architecture-selection/)。本篇的内存检查点示例只解释暂停位置，该实验才包含持久检查点与真实业务资源。
 
 ## 参考资料
 

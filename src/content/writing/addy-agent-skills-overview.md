@@ -2,7 +2,7 @@
 title: Addy Skills：工程生命周期与验证门槛
 description: 沿研发生命周期组织可触发的 Skills，把需求、实现、验证与反馈接成具有证据门槛的工程流程。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 开发者工具
 featured: true
-readingTime: 3 min
+readingTime: 4 min
 ---
 
 [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills)不是 Agent Runtime，而是一套面向生产工程的流程资产。它把工作从定义、计划、构建、验证、审查一路组织到发布，并用命令、Skills、专业 Agent、Hook 和参考清单连接各阶段。
@@ -39,11 +39,13 @@ flowchart LR
 | Define | 问题与约束 | 目标可复述 |
 | Plan | 原子任务 | 每项可验证 |
 | Build | 小批变更 | 局部检查通过 |
-| Verify | 测试证据 | 失败已解释 |
+| Verify | 测试证据 | 必需检查通过，例外由负责人明确接受 |
 | Review | 风险清单 | 关键问题关闭 |
-| Ship | 发布与回滚计划 | 结果可观察 |
+| Ship | 发布与回滚计划 | 已获发布授权，结果可观察 |
 
 流程仍需允许跳转和回退。真正的工程工作不是瀑布线，失败会把任务送回计划或实现；Skill 编排的价值，是让回退带着证据，而不是重新开始一段无状态对话。
+
+以“修复登录请求超时，但不改登录协议”为教学例子：定义阶段固定允许修改的行为，计划阶段列出复现与回归，构建阶段修改超时处理，验证阶段运行这两类测试。测试失败时回到对应变更，而不是继续发布。阶段的意义由交付物和退出条件决定。
 
 ## 验证门槛与可执行证据
 

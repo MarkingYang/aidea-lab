@@ -2,7 +2,7 @@
 title: 模型、上下文与有界循环怎样组合
 description: 设计模型输入和候选动作接口，解释工具结果怎样进入下一轮，并把单动作实验与完整 Agent Loop 的实现范围分清。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -53,6 +53,23 @@ propose(expected, provider, model) -> (action, metadata)
 
 新项目可用供应方官方 SDK 处理连接与响应类型，但应保留这层应用契约。工具名称、用途说明和输入 Schema 是模型选工具的依据，名称对上并不足以约束参数语义。[Claude 工具定义文档](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools)
 
+```mermaid
+flowchart TD
+  I[目标字段与工具定义] --> F{模型来源}
+  F -->|fixture| A[固定响应]
+  F -->|anthropic| B[一次 Messages 请求]
+  A --> P[parse_response：完整且单一的提案]
+  B --> P
+  P --> V[validate_action：字段与长度]
+  V --> E{与可信目标一致？}
+  E -->|是| S[保存提案，进入运行器]
+  E -->|否| X[拒绝，不派发工具]
+  P -->|无效响应| X
+  V -->|无效字段| X
+```
+
+*图 1｜现有实验是一轮提案解析。下文的多轮循环属于扩展设计，不应据此认为代码已自动研究资料。*
+
 ## 多轮 Agent Loop 应怎样接
 
 如果任务需要“读材料以后再决定查哪里”，单次 `propose()` 就不够。推荐把适配器扩展为接收消息历史和本轮可用工具，返回统一的三类结果：候选工具调用、最终答案、无法继续。循环控制不依赖供应方具体的停止原因名称。
@@ -62,13 +79,13 @@ propose(expected, provider, model) -> (action, metadata)
 ```text
 读取已保存的任务、状态和消息
 重复，最多 N 轮：
+    先处理历史未确认写入：只读对账或等待，不生成替代写入
     检查任务截止时间、剩余额度和取消状态
     组装本轮上下文，调用模型，校验完整响应
     若模型提出最终答案：执行独立验收，再决定成功或继续
     若模型提出工具调用：
         校验工具与参数，检查当前执行权限
         为业务动作确定稳定操作键，保存意图与预算消耗
-        对结果未知的历史写入先查询资源
         仅在可以安全执行时派发工具
         保存工具结果，按供应方协议关联原 tool call ID
         将模型的调用消息与对应工具结果加入下一轮上下文

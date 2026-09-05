@@ -2,7 +2,7 @@
 title: TencentDB Agent Memory：资产权限与发布治理
 description: 从 Chat Memory、Skill、Wiki、CodeGraph 的所有权、版本、审核、ACL 与 Agent 装配理解团队治理。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -30,7 +30,7 @@ flowchart LR
   H --> C
 ```
 
-*图 1｜经验先成为有归属的资产，再经审核和装配进入不同角色。*
+*图 1｜建议的资产发布流程。固定提交 `2ee2239` 提供资产、可见性与装配设计；图中的统一审核闭环是采用要求，不能据此视为已实现的完整审批引擎。*
 
 ## 四类资产承担不同用途
 
@@ -54,7 +54,7 @@ Chat Memory 保存事实、偏好、决策和交互；Skill 保存带触发边�
 
 ## Beta 阶段最重要的是保持可逆
 
-官方明确把 Team Memory 标注为 Beta，路线图仍包含记忆编辑、搜索和 Agent 模板等能力。这时最稳妥的采用方式是小范围、可观察、可退出：固定提交或版本；为关键资产保留原始来源；默认私有；共享需要审核；高风险 Skill 在隔离环境验证；Proxy 失败时能够绕过或降级。
+官方明确把 Team Memory 标注为 Beta，路线图仍包含记忆编辑、搜索和 Agent 模板等能力。这时最稳妥的采用方式是小范围、可观察、可退出：固定提交或版本；为关键资产保留原始来源；默认私有；共享需要审核；高风险 Skill 在隔离环境验证；非必要记忆服务失败时可降级为不注入记忆，但身份、数据范围和执行权限必须保持原约束；如果关键授权依赖该服务，则应停止操作。
 
 <details>
 <summary>官方资产与权限说明</summary>

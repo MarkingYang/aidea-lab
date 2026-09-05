@@ -11,7 +11,7 @@ topics:
   - AI 架构
 featured: false
 readingTime: 6 min
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 ---
 
 > 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
@@ -20,7 +20,7 @@ updatedAt: 2026-09-05
 
 这一篇讨论事实如何进入日志，又怎样变成模型能读的有限上下文。
 
-## Agent Loop：Turn 是业务承诺，Step 是一次模型调用
+## Agent Loop：Turn 管输入工作段，Step 管一次模型调用
 
 很多 Agent 框架把循环写成一个看似简单的 `while (toolCalls.length)`。DeepSeek Harness 的循环更像一个事件溯源状态机。
 
@@ -29,7 +29,7 @@ updatedAt: 2026-09-05
 - **Step**：一次模型请求，以及该响应触发的一组工具执行；
 - **Turn**：从一条用户输入被认领，到所有工具债务和中途追加输入都被处理完，包含零个或多个 Step。
 
-一个 Turn 的主流程如下：
+Turn 结束表示该输入工作段已收尾，不证明业务目标已经验收。一个 Turn 的主流程如下：
 
 ```mermaid
 sequenceDiagram
@@ -143,4 +143,4 @@ Prompt 装配也服务于缓存稳定性。固定 Identity、Persona、Prompt Se
 
 完整日志也不是无限保留的许可：生产系统应按数据类别配置访问、保留与删除策略，并处理备份和派生视图。这里的 append-only 是运行时记录语义，不是对所有业务数据永久不可删除的要求。
 
-读完这部分，应能解释“历史完整”与“上下文变短”为什么不矛盾：它们服务不同消费者，却需要共同的来源与版本约束。
+压缩验收因此要同时检查两份产物：原始日志可追溯，当前投影保留未完成事项与不确定性。

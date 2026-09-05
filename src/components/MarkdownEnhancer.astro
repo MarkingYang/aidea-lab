@@ -102,6 +102,13 @@
   const mermaidBlocks = [...document.querySelectorAll<HTMLElement>('.prose pre > code.language-mermaid')];
 
   if (mermaidBlocks.length > 0) {
+    const sizeDiagram = (svg: SVGElement, scale: number) => {
+      const width = (svg as SVGSVGElement).viewBox.baseVal.width;
+      svg.style.maxWidth = 'none';
+      // Preserve readable labels on narrow screens; the viewport scrolls horizontally.
+      svg.style.width = `max(${scale * 100}%, ${width * .8 * scale}px)`;
+      svg.style.height = 'auto';
+    };
     const diagrams: DiagramRecord[] = mermaidBlocks.map((code, index) => {
       const source = code.textContent?.trim() ?? '';
       const figure = document.createElement('figure');
@@ -132,9 +139,7 @@
       const applyScale = () => {
         const svg = diagram.querySelector<SVGElement>('svg');
         if (!svg) return;
-        svg.style.maxWidth = 'none';
-        svg.style.width = `${record.scale * 100}%`;
-        svg.style.height = 'auto';
+        sizeDiagram(svg, record.scale);
         scaleLabel.textContent = `${Math.round(record.scale * 100)}%`;
       };
 
@@ -189,18 +194,19 @@
       });
 
       for (const diagram of diagrams) {
+        diagram.element.dataset.renderState = 'rendering';
         diagram.element.classList.remove('visual-error');
         diagram.element.removeAttribute('data-processed');
         diagram.element.textContent = diagram.source;
         await mermaid.run({ nodes: [diagram.element], suppressErrors: true });
         const svg = diagram.element.querySelector<SVGElement>('svg');
         if (!svg) {
+          diagram.element.dataset.renderState = 'error';
           diagram.element.classList.add('visual-error');
           diagram.element.textContent = `图表语法有误\n\n${diagram.source}`;
         } else {
-          svg.style.maxWidth = 'none';
-          svg.style.width = `${diagram.scale * 100}%`;
-          svg.style.height = 'auto';
+          sizeDiagram(svg, diagram.scale);
+          diagram.element.dataset.renderState = 'ready';
         }
       }
 

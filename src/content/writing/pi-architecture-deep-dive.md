@@ -2,7 +2,7 @@
 title: Pi：最小内核如何维持正确性
 description: 从 Provider、Agent Loop 与事件协议出发，理解 Pi 的极简为什么不等于简单。
 publishedAt: 2026-09-04
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -14,12 +14,7 @@ featured: true
 readingTime: 7 min
 ---
 
-很多 Coding Agent 都在增加功能：计划模式、子 Agent、权限弹窗、浏览器、MCP、云端沙箱、任务队列。Pi 选择了相反的产品姿态——默认只提供一条足够短的 Agent Loop、四个基础工具和一个终端界面，把其他能力留给扩展。
-
-这很容易被误读成“功能少”。但读完源码后会发现，Pi 的极简并不是删减版产品，而是一种明确的架构选择：**内核只负责稳定机制，把工作流偏好留在边界之外。** 模型怎么接、消息怎么流、工具怎么执行、历史怎么保存，这些是机制；要不要计划、何时审批、是否启用子 Agent，则是策略。
-
-> [!IMPORTANT]
-> Pi 最值得学习的，不是它只有 `read`、`write`、`edit`、`bash` 四个默认工具，而是它让同一条执行链可以被 CLI、JSON、RPC、SDK 和扩展共同复用，又没有把某一种工作方式焊死在核心里。
+Pi 的经典路径提供 Agent Loop、`read`、`write`、`edit`、`bash` 四个默认工具和终端入口；计划、审批及子 Agent 等策略由扩展实现。本文检查 Provider、消息投影和工具事件如何让多个入口复用同一内核。
 
 本文基于 Pi 仓库的 [`e44d75c`](https://github.com/earendil-works/pi/tree/e44d75c20a51142abc056c243b13c1d7bb4be687) 提交与 `0.84.4` 代码线分析。这个时间点的仓库同时包含稳定运行的经典架构，以及仍标注为 experimental 的下一代 durable `AgentHarness`。两者必须分开看，否则很容易把未来设计当成当前默认实现。
 
@@ -124,7 +119,7 @@ AgentMessage[]
 2. 允许的工具并行运行，完成事件按真实完成顺序发出；
 3. 最终写入上下文的 `toolResult` 仍按原始 tool call 顺序排列。
 
-实现可见 [`executeToolCallsParallel()`](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/agent-loop.ts#L487)。这同时满足了三件事：执行快、UI 能及时反馈、历史又保持确定性。如果某个工具声明 `executionMode: "sequential"`，整批调用会退回串行，避免对有顺序副作用的工具做危险并发。
+实现可见 [`executeToolCallsParallel()`](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/agent-loop.ts#L487)。这样可以及时展示进度，并稳定模型上下文中的结果顺序；并行是否更快取决于工具依赖与资源容量，也不保证外部副作用可重放。如果某个工具声明 `executionMode: "sequential"`，整批调用会退回串行，避免对有顺序副作用的工具做危险并发。
 
 ### 3. 把运行过程定义成事件，而不是回调拼图
 

@@ -2,7 +2,7 @@
 title: Codex：运行时、沙箱与持续任务
 description: 连接 Codex 本地运行时、执行沙箱、任务证据、Skills 和自动化，区分开源内核与应用协作层。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -14,6 +14,10 @@ readingTime: 4 min
 ---
 
 研究 Codex 首先要拆开两个边界：[`openai/codex`](https://github.com/openai/codex)公开本地 CLI 与核心运行代码；Codex App 则在其上组织线程、Worktree、并行 Agent、Skills、Memory 和 Automations。把两者混在一起，会把产品能力误写成某个 Rust 模块已经提供的机制。
+
+研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下图是职责归纳，不是完整部署图，也不作为未运行路径的实测证明。
+
+以“修复登录超时，不推送”为例：Core 组织模型与工具往返，执行策略约束命令可达范围，测试与 Diff 判断补丁是否合格。App 的任务列表和自动化提供另一个组织层；可用性取决于具体应用版本与设置。
 
 ```mermaid
 flowchart TB
@@ -71,4 +75,4 @@ flowchart LR
 
 官方已经把“记住偏好、从先前行动学习”作为 Memory 预览能力，同时让 Automation 复用已有线程并跨天继续工作。[官方说明](https://openai.com/index/codex-for-almost-everything/) 这比单次 CLI 会话更接近长期 Agent，但也要求更强治理：自动唤醒不能扩大原任务授权，记忆需要允许纠正和删除，Skill 更新必须能够回滚。
 
-Skills 最重要的价值不是多一个提示词目录，而是让团队把反复使用的工作方式版本化；Automation 的价值也不是定时器，而是把长期任务重新交回可审查队列。
+配置自动化时需保留任务范围、执行环境和停止条件；重用已有线程也不自动批准新的外部写入。

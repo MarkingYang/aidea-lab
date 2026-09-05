@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 架构设计
 featured: false
-readingTime: 5 min
+readingTime: 6 min
 ---
 
 单 Worker 实验中，同一时刻只有一个执行者。把它扩成两个进程后，新的问题出现了：旧 Worker 暂停太久，调度器把任务交给新 Worker；旧进程恢复，又继续写入。
@@ -40,6 +40,23 @@ flowchart LR
 *图 1｜队列推动任务，持久状态定义任务事实。入口投递与完成确认都需要处理崩溃窗口。*
 
 如果“保存任务”和“入队”分别发生，需避免前者成功、后者失败导致任务永远无人处理。可以采用事务性 Outbox 或具备相应保证的任务平台。消息只携带必要标识，Worker 按当前授权读取内容，有助于减少敏感正文在队列中的复制。
+
+```mermaid
+sequenceDiagram
+  participant A as 旧 Worker
+  participant Q as 调度与租约
+  participant B as 新 Worker
+  participant R as 支持栅栏校验的资源端
+  Q-->>A: 分配执行代次 7
+  Note over A,Q: A 长时间暂停，租约过期
+  Q-->>B: 分配执行代次 8
+  B->>R: 以代次 8 提交
+  R-->>B: 接受并记录代次 8
+  A->>R: 恢复后以旧代次 7 提交
+  R-->>A: 拒绝过期写入
+```
+
+*图 2｜设计示意：资源端必须校验执行代次，单靠租约到期无法阻止旧进程写入。不支持校验的第三方服务需要受控写入代理等额外机制。*
 
 ## 消息不可见，不等于不会重复
 
@@ -84,4 +101,4 @@ fencing 与幂等也不能互换：前者判断执行者代次，后者判断是
 | 单个租户提交大量任务 | 其他租户仍满足约定服务目标 |
 | Worker 在等待审批时重启 | 状态可恢复，权限重新检查 |
 
-配套[工作簿](/labs/harness-operations-workbook.md)要求为每个反例写出执行权、操作键和验收证据。上一组[本地实验](/writing/harness-foundations-lab/)没有实现多 Worker，因此只能提供副作用恢复的基础，不能当成这些生产性质已经被证明。
+配套[工作簿](/labs/harness-operations-workbook.md)要求为每个反例写出执行权、操作键和验收证据。[本地实验](/writing/harness-foundations-lab/)没有实现多 Worker，因此只能提供副作用恢复的基础，不能当成这些生产性质已经被证明。

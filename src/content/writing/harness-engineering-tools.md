@@ -2,7 +2,7 @@
 title: 工具契约：输入、结果与错误语义
 description: 在能力路由之后补齐工具接口工程，用输入、结果、错误、权限和幂等契约，让执行层保留真实业务语义。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -13,7 +13,7 @@ featured: false
 readingTime: 5 min
 ---
 
-[能力路由架构](/writing/capability-routing-at-scale/)解决了从大量能力中寻找可执行方案的问题。选中 `create_review_ticket` 之后，系统仍然需要回答：参数从哪里来，出错能否重试，返回的编号是否可以查证？
+[能力路由架构](/writing/capability-routing-at-scale/)解决了从大量能力中寻找可执行方案的问题。以资料核验为例，目标是为指定资料创建一张核验工单。选中 `create_review_ticket` 之后，系统仍然需要回答：参数从哪里来，出错能否重试，返回的编号是否可以查证？
 
 工具的名称、参数和文字说明是模型看到的接口；服务端的校验、授权、去重和查询能力决定真实行为。两边需要表达同一份契约。
 

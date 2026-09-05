@@ -2,7 +2,7 @@
 title: Mini Harness 的模块、接口与默认选型
 description: 定义单用户 Mini Harness 的八项职责，给出模型、循环、工具、权限、状态和验收的默认组合及升级条件。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - MCP
 featured: true
-readingTime: 6 min
+readingTime: 7 min
 ---
 
 要搭一个能完成任务的 Harness，第一步是画清模块，以及它们交换什么。实战采用一个具体起点：**单用户、单 Worker、Python、本地执行、允许重启恢复**。在这个范围内，优先选择少量显式函数、严格数据校验和 SQLite；出现明确瓶颈后再换组件。
@@ -31,6 +31,22 @@ readingTime: 6 min
 | 结果验收 | 可信目标、实际资源 → 通过或失败 | 实际交付是否符合要求 | 工具查询后对照 `expected` |
 
 这些模块的依赖方向应清楚：模型返回提案；运行器决定是否派发；工具改变资源；验收器读取资源。运行器把关键状态和事件写入存储。模型输出不能自行变成执行许可或验收标准。
+
+```mermaid
+flowchart TD
+  I[任务字段与运行配置] --> E[lab.py：execute]
+  E --> M[model.py：propose]
+  M -->|合法提案| E
+  E <--> R[(store.py：Runs)]
+  E --> P[目标检查与执行开关]
+  P --> C[session_for 与 call]
+  C <-->|MCP stdio| S[server.py：两个业务工具]
+  S <--> T[(store.py：Tickets)]
+  C -->|查询到的工单| V[execute：对照 expected 验收]
+  V --> R
+```
+
+*图 1｜实验落地为运行器和工具服务两个进程。策略与验收都在 execute 内，不需要为每项职责建立独立服务。*
 
 ## 当前适合这个起点的默认组合
 
@@ -57,7 +73,7 @@ LangGraph 的 checkpointer 保存线程运行状态，store 保存跨线程信�
 
 这个任务的执行路径已经确定，因此它是**单动作工作流**：模型负责产生结构化提案，运行器执行固定的查询、创建和验收步骤。实际业务中，如果字段已经完全确定，可以直接调用创建函数。这里保留模型适配，是为了单独练习生成结果如何进入受控执行链路。
 
-在此基础上，真正需要 Agent 决策的扩展任务可以是“读取三份材料，比较冲突，生成待核验问题，再创建工单”。这时模型要根据工具结果选择下一步，才需要多轮循环；[模型与循环](/writing/harness-integration-model/)给出循环接口与消息往返，实验包尚未实现该扩展。
+在此基础上，真正需要 Agent 决策的扩展任务可以是“读取三份材料，比较冲突，生成待核验问题，再创建工单”。这时模型要根据工具结果选择下一步，才需要多轮循环；[模型与循环](/writing/harness-integration-model/)给出循环接口与消息往返，本 Mini 实验包尚未实现该扩展。[架构对照实验](/writing/harness-architecture-selection/)另外实现了读取两份资料、根据观察推进、批准后创建的控制链路，模型仍用固定响应，便于隔离编排差异。
 
 ## 五篇的组装顺序
 
@@ -70,3 +86,5 @@ LangGraph 的 checkpointer 保存线程运行状态，store 保存跨线程信�
 | 5. 组装与运行 | 跑命令、读数据库、替换一个模块 | 正常路径和故障路径都有实际证据 |
 
 Skills、长期记忆和多 Agent 都是可选扩展。只有重复流程值得沉淀、跨任务信息确实有用、任务拆分收益超过协调成本时，再分别接入。关于循环和任务边界，可对照[Harness 工程主线](/writing/harness-engineering-map/)继续阅读。
+
+需要比较自写循环、图式编排与持久工作流时，继续阅读[架构选型与对照实验](/writing/harness-architecture-selection/)。

@@ -1,0 +1,663 @@
+{
+  "python": "3.11.9",
+  "dependencies": {
+    "langgraph": "1.2.11",
+    "langgraph-checkpoint-sqlite": "3.1.1",
+    "temporalio": "1.32.0"
+  },
+  "model": "deterministic fixture; no live model calls",
+  "repeats": 3,
+  "cases_passed": 72,
+  "worker_restart_passed": true,
+  "results": [
+    {
+      "engine": "A",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 2.75
+    },
+    {
+      "engine": "A",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.88
+    },
+    {
+      "engine": "A",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.77
+    },
+    {
+      "engine": "A",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 2.36
+    },
+    {
+      "engine": "A",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 1.48
+    },
+    {
+      "engine": "A",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 3.31
+    },
+    {
+      "engine": "A",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 3.7
+    },
+    {
+      "engine": "A",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 1.0
+    },
+    {
+      "engine": "A",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 2.27
+    },
+    {
+      "engine": "A",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 3.42
+    },
+    {
+      "engine": "A",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.36
+    },
+    {
+      "engine": "A",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 2.34
+    },
+    {
+      "engine": "A",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 1.79
+    },
+    {
+      "engine": "A",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 3.77
+    },
+    {
+      "engine": "A",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.26
+    },
+    {
+      "engine": "A",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 0.82
+    },
+    {
+      "engine": "A",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 2.73
+    },
+    {
+      "engine": "A",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 3.48
+    },
+    {
+      "engine": "A",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.35
+    },
+    {
+      "engine": "A",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 2.58
+    },
+    {
+      "engine": "A",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 1.55
+    },
+    {
+      "engine": "A",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 3.39
+    },
+    {
+      "engine": "A",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.34
+    },
+    {
+      "engine": "A",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 1.55
+    },
+    {
+      "engine": "B",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 17.83
+    },
+    {
+      "engine": "B",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 9.45
+    },
+    {
+      "engine": "B",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 11.34
+    },
+    {
+      "engine": "B",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.93
+    },
+    {
+      "engine": "B",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 3.95
+    },
+    {
+      "engine": "B",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 9.05
+    },
+    {
+      "engine": "B",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 9.12
+    },
+    {
+      "engine": "B",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 3.3
+    },
+    {
+      "engine": "B",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 7.17
+    },
+    {
+      "engine": "B",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 8.53
+    },
+    {
+      "engine": "B",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 10.63
+    },
+    {
+      "engine": "B",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 4.97
+    },
+    {
+      "engine": "B",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 4.15
+    },
+    {
+      "engine": "B",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 9.12
+    },
+    {
+      "engine": "B",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 11.27
+    },
+    {
+      "engine": "B",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 5.9
+    },
+    {
+      "engine": "B",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 10.04
+    },
+    {
+      "engine": "B",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 12.56
+    },
+    {
+      "engine": "B",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 20.52
+    },
+    {
+      "engine": "B",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 8.8
+    },
+    {
+      "engine": "B",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 31.94
+    },
+    {
+      "engine": "B",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 23.81
+    },
+    {
+      "engine": "B",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 13.89
+    },
+    {
+      "engine": "B",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 5.65
+    },
+    {
+      "engine": "C",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 67.56
+    },
+    {
+      "engine": "C",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 41.47
+    },
+    {
+      "engine": "C",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 1405.87
+    },
+    {
+      "engine": "C",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 25.58
+    },
+    {
+      "engine": "C",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 15.86
+    },
+    {
+      "engine": "C",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 494.59
+    },
+    {
+      "engine": "C",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 597.79
+    },
+    {
+      "engine": "C",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 147.63
+    },
+    {
+      "engine": "C",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 298.09
+    },
+    {
+      "engine": "C",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 597.85
+    },
+    {
+      "engine": "C",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 1504.69
+    },
+    {
+      "engine": "C",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 19.36
+    },
+    {
+      "engine": "C",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 11.82
+    },
+    {
+      "engine": "C",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 555.01
+    },
+    {
+      "engine": "C",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 595.03
+    },
+    {
+      "engine": "C",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 147.67
+    },
+    {
+      "engine": "C",
+      "case": "baseline",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 0,
+      "elapsed_ms": 297.61
+    },
+    {
+      "engine": "C",
+      "case": "review",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 596.77
+    },
+    {
+      "engine": "C",
+      "case": "response_lost",
+      "status": "succeeded",
+      "tickets": 1,
+      "create_calls": 1,
+      "fixture_decisions": 3,
+      "elapsed_ms": 1506.28
+    },
+    {
+      "engine": "C",
+      "case": "invalid_proposal",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 27.34
+    },
+    {
+      "engine": "C",
+      "case": "budget",
+      "status": "exhausted",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 1,
+      "elapsed_ms": 14.39
+    },
+    {
+      "engine": "C",
+      "case": "revoke",
+      "status": "failed",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 541.72
+    },
+    {
+      "engine": "C",
+      "case": "cancel",
+      "status": "cancelled",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 3,
+      "elapsed_ms": 597.61
+    },
+    {
+      "engine": "C",
+      "case": "version",
+      "status": "migration_required",
+      "tickets": 0,
+      "create_calls": 0,
+      "fixture_decisions": 0,
+      "elapsed_ms": 146.03
+    }
+  ],
+  "verified_at": "2026-09-06"
+}

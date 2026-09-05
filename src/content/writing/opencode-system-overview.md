@@ -2,7 +2,7 @@
 title: OpenCode：客户端、服务端与扩展系统
 description: 连接 OpenCode 的客户端、服务端、Session、模型适配与扩展资产，理解开放系统的稳定契约。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -10,10 +10,14 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 3 min
+readingTime: 4 min
 ---
 
 OpenCode 的研究价值在于核心产品和扩展体系都能沿开放源码检查。它不是一个单文件 CLI，而是由服务端状态、不同客户端、Provider 适配、Session、工具和配置系统共同组成的 Coding Agent。[官方仓库](https://github.com/anomalyco/opencode)
+
+研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下图是职责归纳，不是完整部署图，也不作为未运行路径的实测证明。
+
+设用户从桌面端启动代码修改，再从终端查看同一个 Session。客户端应看到服务端持有的同一任务状态；它们可以断开重连，但不能据“界面重连成功”判断工具副作用是否已完成。
 
 ```mermaid
 flowchart TB

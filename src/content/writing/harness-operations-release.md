@@ -2,7 +2,7 @@
 title: 让每一次变化都有进入生产和退出生产的证据
 description: 将模型、上下文、工具、策略与状态版本纳入同一发布单元，通过离线回归、隔离回放、灰度和消融决定扩量、回滚或简化。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -83,12 +83,8 @@ readingTime: 6 min
 
 消融实验的输出不是“更少总是更好”，而是某个机制在什么任务条件下有证据值得保留。它可以接续已有的[Harness 减负原则](/writing/harness-engineering-map/)与[评测系统观](/writing/agent-evaluation-engineering/)。
 
-## 把七篇收束成一份变更记录
+## 用变更记录约束扩量
 
 使用[设计工作簿](/labs/harness-operations-workbook.md)，记录本次改变了什么、预期解决哪种失败、哪些任务可能受损、观察到哪些证据，以及何时停止扩量。没有数据时保留“未测”，不要把计划写成结果。
 
-接下来的学习重点可以转向真实模型与服务集成，以及按业务需要展开的 Computer Use、多模态和企业数据接入。这里提供设计方法和反例，不把尚未实施的生产能力算作已经验收。
-
----
-
-继续学习：[Harness 工程基础与协议：全景与并发](/writing/harness-foundations-concurrency/)。
+需要决定运行控制与持久化组合时，使用[架构选型](/writing/harness-architecture-selection/)中的迁移条件；上线后的执行权接管由[生产调度](/writing/harness-operations-production/)负责。

@@ -69,23 +69,24 @@
       "id": "harness-engineering",
       "topic": "harness",
       "title": "架构与运行循环",
-      "description": "从 Prompt、Context 与 Harness 进入任务契约、反馈循环、执行图与停止条件。",
+      "description": "从工程分工、模块接口和运行循环，进入架构组合与选型验证。",
       "articles": [
         "prompt-context-harness-engineering",
         "harness-engineering-map",
         "harness-engineering-loop",
         "loop-graph-engineering",
         "langchain-langgraph-frameworks-and-protocols",
-        "multi-agent-architecture-selection"
+        "multi-agent-architecture-selection",
+        "harness-architecture-selection"
       ],
-      "outcome": "能划分任务责任，设计有界循环、节点交接与可验收的执行结构。",
+      "outcome": "能按任务约束选择 A/B/C 组合，说明模块接口、状态归属、代价和迁移条件。",
       "question": "Agent 怎样根据反馈持续推进，并组织有分支和依赖的复杂任务？"
     },
     {
       "id": "harness-tools",
       "topic": "harness",
       "title": "工具、协议与执行边界",
-      "description": "从 Prompt、Context 与 Harness 的关系进入工具契约、MCP 生命周期、安全边界与能力路由。",
+      "description": "工具契约、MCP 生命周期、执行安全与能力路由。",
       "articles": [
         "harness-engineering-tools",
         "harness-foundations-mcp-lifecycle",
@@ -95,8 +96,8 @@
         "capability-routing-execution",
         "capability-routing-evaluation"
       ],
-      "outcome": "理解指令、上下文与运行控制的分工，设计可检查的工具和执行契约。",
-      "question": "指令、上下文、协议与运行系统怎样共同支撑可验收的动作？"
+      "outcome": "明确工具输入、执行许可、结果与恢复边界。",
+      "question": "候选动作怎样成为受控且可验收的业务操作？"
     },
     {
       "id": "harness-recovery",
@@ -108,7 +109,7 @@
         "harness-engineering-recovery",
         "harness-foundations-lab"
       ],
-      "outcome": "区分运行状态和业务事实，处理竞争、重复与结果未知。",
+      "outcome": "能区分重试、对账和补偿，为竞争写入定义可验证的恢复规则。",
       "question": "区分运行状态和业务事实，处理竞争、重复与结果未知。"
     },
     {
@@ -123,7 +124,7 @@
         "agent-memory-retrieval",
         "agent-memory-governance"
       ],
-      "outcome": "按装配、写入、检索和治理组织记忆生命周期。",
+      "outcome": "能为每条信息定义来源、有效时间、读取范围与纠错方式。",
       "question": "按装配、写入、检索和治理组织记忆生命周期。"
     },
     {
@@ -138,7 +139,7 @@
         "harness-operations-production",
         "harness-operations-release"
       ],
-      "outcome": "模型网关、协作、观测、调度和版本发布。",
+      "outcome": "能为协作、调度和版本变更设置预算、观测与回退条件。",
       "question": "模型网关、协作、观测、调度和版本发布。"
     },
     {
@@ -153,7 +154,7 @@
         "harness-integration-recovery",
         "harness-integration-lab"
       ],
-      "outcome": "按模块选型、模型循环、工具策略、状态验收与运行步骤组装。",
+      "outcome": "能运行并替换 Mini Harness 模块，用真实资源检查正常与退出恢复路径。",
       "question": "按模块选型、模型循环、工具策略、状态验收与运行步骤组装。"
     },
     {
@@ -177,7 +178,7 @@
         "pi-session-extension-architecture",
         "pi-durable-harness-governance"
       ],
-      "outcome": "沿实际项目研究循环、状态、扩展和执行边界。",
+      "outcome": "能从源码证据辨别项目的状态、扩展和执行边界，区分成熟实现与实验路线。",
       "question": "沿实际项目研究循环、状态、扩展和执行边界。"
     },
     {
@@ -193,7 +194,7 @@
         "ecc-hook-runtime-memory",
         "ecc-memory-supply-chain"
       ],
-      "outcome": "标准、工程方法、Hook 运行时与跨平台资产治理。",
+      "outcome": "能区分流程说明与执行门禁，设计资产加载、分发、更新和退出规则。",
       "question": "标准、工程方法、Hook 运行时与跨平台资产治理。"
     },
     {
@@ -209,7 +210,7 @@
         "tencentdb-agent-memory-overview",
         "tencentdb-agent-memory-governance"
       ],
-      "outcome": "对照 Mem0、OpenViking、TencentDB 的数据流与治理边界。",
+      "outcome": "能按核心对象选择记忆方案，说明各自的数据流、失败模式与部署责任。",
       "question": "对照 Mem0、OpenViking、TencentDB 的数据流与治理边界。"
     },
     {
@@ -226,7 +227,7 @@
         "trace-framework-deep-dive",
         "trace-lite-production"
       ],
-      "outcome": "任务边界、指标、样本、回归与 TRACE 过程评测。",
+      "outcome": "能固定任务、样本和指标，将失败转成可复现的回归证据。",
       "question": "任务边界、指标、样本、回归与 TRACE 过程评测。"
     },
     {
@@ -238,7 +239,7 @@
         "llm-agent-capability-landscape-2026",
         "ai-capability-evidence-action"
       ],
-      "outcome": "将公开评测转成带场景、证据与责任条件的使用判断。",
+      "outcome": "能判断公开分数支持什么结论，以及哪些委托仍需任务验证。",
       "question": "将公开评测转成带场景、证据与责任条件的使用判断。"
     },
     {
@@ -253,7 +254,7 @@
         "product-frameworks-growth",
         "product-frameworks-delivery"
       ],
-      "outcome": "市场、优先级、增长和复盘，按实际决策组织框架。",
+      "outcome": "能按决策问题选择方法，为优先级、增长和复盘保留验证依据。",
       "question": "市场、优先级、增长和复盘，按实际决策组织框架。"
     },
     {
@@ -265,7 +266,7 @@
         "product-work-methodology",
         "agent-product-evaluation-rhythm"
       ],
-      "outcome": "把目标、上下文与评测接进产品团队工作。",
+      "outcome": "能将业务需求写成任务契约，按评测证据决定交付与迭代。",
       "question": "把目标、上下文与评测接进产品团队工作。"
     },
     {
@@ -278,7 +279,7 @@
         "claude-code-trust",
         "claude-code-session-collaboration"
       ],
-      "outcome": "以 Claude Code 为案例分析任务旅程、信任与并行协作。",
+      "outcome": "能设计可观察、可接管、可验收的任务界面与协作路径。",
       "question": "以 Claude Code 为案例分析任务旅程、信任与并行协作。"
     },
     {
@@ -292,22 +293,22 @@
         "ai-value-voice",
         "ai-value-office"
       ],
-      "outcome": "用编程、语音和办公案例计算真实交付价值。",
+      "outcome": "能计入失败、返工和人工时间，计算真实交付成本。",
       "question": "用编程、语音和办公案例计算真实交付价值。"
     },
     {
       "id": "agent-work-systems",
       "topic": "practice",
-      "title": "产品比较与采用",
-      "description": "比较方法与 PoC、工程产品、办公产品和组织采用。",
+      "title": "Agent 竞品分析与选型",
+      "description": "比较编程与办公 Agent，用任务契约、PoC 和采用条件支持选型。",
       "articles": [
         "agent-landscape-comparison-methods",
         "coding-agent-harness-showdown",
         "china-work-agent-showdown",
         "china-work-agent-adoption"
       ],
-      "outcome": "比较方法与 PoC、工程产品、办公产品和组织采用。",
-      "question": "比较方法与 PoC、工程产品、办公产品和组织采用。"
+      "outcome": "形成有证据的产品选型与采用决定。",
+      "question": "哪款 Agent 适合当前任务，依据是什么？"
     },
     {
       "id": "researcher-founder",
@@ -319,7 +320,7 @@
         "researcher-founder-thinking",
         "learning-organization-boundaries"
       ],
-      "outcome": "研究型创业的原始观点、推演方法和组织边界。",
+      "outcome": "能把原始观点转成可推翻的假设，区分组织经验与因果证据。",
       "question": "研究型创业的原始观点、推演方法和组织边界。"
     }
   ]

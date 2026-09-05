@@ -2,7 +2,7 @@
 title: Hermes：经验如何积累而不失去边界
 description: 拆解 Hermes 的 Session、Memory、Skill、自我改进与安全模型，理解长期 Agent 如何保存经验并控制污染。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -11,12 +11,12 @@ topics:
   - Agent Skills
   - Agent Harness
 featured: false
-readingTime: 8 min
+readingTime: 7 min
 ---
 
 Hermes 真正不同于一次性工具的地方，是它试图让任务之间发生连接。但长期积累会把一次错误放大到未来，因此“记住什么”必须与“凭什么相信”一起设计。
 
-## 四类记忆：Hermes 最值得借鉴的设计
+## 四类记忆按生命周期分工
 
 “拥有长期记忆”常被产品描述成一个开关，但 Hermes 实际上把记忆拆成四种载体：
 
@@ -27,7 +27,7 @@ Hermes 真正不同于一次性工具的地方，是它试图让任务之间发�
 | 事实记忆 | `MEMORY.md` / `USER.md` | 跨 Session、常驻 Prompt | 用户偏好、环境事实、稳定约定 | 每轮占 Token，错误会长期放大 |
 | 程序记忆 | Skills | 跨 Session、按需加载 | 可重复工作流、排错路径、验证方法 | 需要选择、版本治理与安全审查 |
 
-这比“把所有历史做向量检索”更克制。
+这些载体分别承担当前输入、原始记录、短事实和方法复用，检索和更新策略也应分开。
 
 ### 1. Session 是事实日志，不是摘要替身
 
@@ -48,12 +48,12 @@ Skills 只在 System Prompt 中暴露精简索引，匹配任务后再读取完�
 因此，Memory 与 Skill 的分界应该是：
 
 ```text
-Memory：以后做任何任务都可能需要知道的短事实
+Memory：在所属用户或项目范围内可复用的短事实
 Skill：以后做这一类任务时才需要加载的长方法
 Session Search：当需要核对过去究竟发生过什么时再查证
 ```
 
-这套分层是 Hermes 对 Agent 上下文工程最有普适价值的贡献。它不是追求“永不遗忘”，而是让不同信息以不同成本被重新看见。
+固定快照 `6327930` 采用这套分层；接入时仍需检查来源、保留期与当前任务适用性。
 
 ## “自我进化”到底是什么：受约束的 Artifact Learning
 
@@ -103,7 +103,7 @@ Hermes 的[安全文档](https://hermes-agent.nousresearch.com/docs/user-guide/s
 | 永久 Blocklist / Deny Rules | 明确不可接受的命令 | 命令入口硬限制 |
 | `write_file` / `patch` 路径保护 | 误写密钥与系统文件 | 仅覆盖文件工具，不覆盖 Shell |
 | Context / Skill / Memory 扫描 | Prompt Injection 与持久污染 | 启发式 Guardrail |
-| Docker / Modal 等隔离环境 | 限制文件、进程与凭证影响范围 | 真正的执行边界 |
+| Docker / Modal 等隔离环境 | 限制文件、进程与凭证影响范围 | 取决于挂载、权限、网络和凭证配置 |
 | Checkpoint / Worktree | 错误后的恢复与变更隔离 | 恢复机制，不是权限系统 |
 
 这里最容易误读的是文件写入保护。官方明确说明，`write_file` 和 `patch` 的路径 Denylist 不能约束同一 OS 用户权限下的 `terminal`；若把它当成对恶意 Agent 的沙箱，就会产生虚假安全感。真正的安全边界仍然是容器、远程 Sandbox、文件挂载、网络出口和最小权限凭证。
@@ -112,23 +112,11 @@ Checkpoint 同样不是沙箱。它会在文件变更前把工作目录快照到
 
 对于能改写自身 Memory 与 Skills 的系统，还必须增加一条“认知供应链”安全线：来源是否可信、内容是否被扫描、后台 Agent 是否有写权限、变更是否需要审批、旧版本能否恢复。Hermes 已经提供了这些机制的雏形，但默认允许自动写入；用于工作机器或多人环境时，开启 Memory 与 Skill 写入审批会更稳妥。
 
-## 把 Hermes 的设计收束成四条原则
+## 用临时故障检查经验是否被误用
 
-第一，按生命周期存信息：当前任务留在工作记忆，原始历史进入 Session，可复用短事实进入 Memory，长方法进入按需加载的 Skill。一个“万能记忆库”很难同时做到低成本、可追溯和高召回。
+在隔离项目中模拟一次“工具未安装”，随后安装工具并启动新 Session。检查后台是否把瞬态失败写成永久禁用方法，能否追到来源、修订制品，以及新会话是否读取正确版本。这是建议验收场景，本文没有实际执行。
 
-第二，让 Session 成为证据账本，让 Memory 成为可推翻的结论。长期认识必须能回到原始事件核对；只保存总结、不保存来源，会让错误越来越难纠正。
-
-第三，自我改进优先修改可见 Artifact。Memory、Skill 和 Rule 应拥有来源、Diff、审批、所有权与回滚，不能成为 Agent 可以无痕改写的隐形状态。
-
-第四，自治程度由硬边界决定，而不是由确认次数决定。身份、目录、网络、凭证、预算和执行环境先被限制，Agent 才能在边界内连续行动。
-
-这也解释了 Hermes 的适用面：它适合愿意承担部署与治理责任、需要跨会话和跨渠道长期运行的团队；若目标只是获得边界清晰的仓库内编码体验，产品化 Coding Agent 往往更省维护。可结合 [Coding Agent Harness 对决](/writing/coding-agent-harness-showdown/)继续比较。
-
-## 结语：长期积累必须与长期纠错同时成立
-
-Hermes 让 Memory、Skills、Session、Gateway 与 Cron 共同形成一条跨任务时间轴。它的价值不只是记得更多，而是让过去经验能够参与未来行动。
-
-同一条时间轴也会放大错误。一个长期 Agent 是否可信，最终取决于经验能否追溯、验证、撤回和遗忘。Hermes 给出的答案仍在演进，却已经把问题从“怎样完成一次 Tool Loop”推进到“怎样治理一个会形成习惯的行动系统”。
+需要跨会话、跨渠道持续工作且愿意承担服务与记忆治理时，可以评估 Hermes；仅需要仓库内编码时，应比较现成 Coding Agent 的维护成本。[Coding Agent 比较](/writing/coding-agent-harness-showdown/)提供同维度入口。
 
 ---
 

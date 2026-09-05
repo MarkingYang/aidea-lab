@@ -2,7 +2,7 @@
 title: 故障实验：并发冲突、业务恢复与协议状态
 description: 集中运行并发与协议状态、业务写入恢复两组实验，按故障位置检查实际资源和恢复行为。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -57,7 +57,7 @@ python3 -m unittest discover -p 'test_*.py' -v
 
 特别要注意：协议等待表、目录状态和未知操作集合都在内存中。SQLite 资源可以被新建的存储对象重新读取，不代表协议状态已经支持进程崩溃恢复。
 
-第一批故障实验提供了持久化执行意图和双库恢复；本包则集中验证并发与消息边界。两套实验可以互相补充，但目前没有合并成一个生产 Runtime。
+下文的业务写入恢复实验提供了持久化执行意图和双库恢复；当前这组实验集中验证并发与消息边界。两套实验可以互相补充，但目前没有合并成一个生产 Runtime。
 
 ## 16 项测试按失败责任划分
 
@@ -167,6 +167,6 @@ SQLite 在这里代表一个提供权威查询与原子去重的模拟服务。�
 
 再替换工单服务，核对真实接口的幂等作用域、查询一致性、去重留存和鉴权。最后才加入并发 Worker、队列、沙箱和跨服务 Trace，每增加一种机制，都新增一个它应该解决的失败样本。已有[评测工程篇](/writing/agent-evaluation-engineering/)可承接这些样本。
 
-接下来进入[Harness 运行与演进](/writing/harness-operations-context/)，继续学习上下文装配、动态规划、可观测性、多 Agent、模型网关和生产调度。这六篇建立了可检验的主干，不代表所有生产问题已经解决。
+接入模型与真实 MCP 子进程见[Mini Harness 实战](/writing/harness-integration-map/)；多 Worker 的接管与队列规则见[生产调度](/writing/harness-operations-production/)。
 
 ---

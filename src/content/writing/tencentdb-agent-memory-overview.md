@@ -2,7 +2,7 @@
 title: TencentDB Agent Memory：协议代理与分层记忆
 description: 从 Memory Proxy、Core、Hub 与 Knowledge 资产理解 TencentDB Agent Memory 的系统边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -97,7 +97,7 @@ flowchart BT
 
 ## 四层不是越高越真实
 
-L0 保存完整交互，适合核对原话、时间和来源；L1 把对话拆成可精确召回的事实与约束；L2 围绕项目或场景组织信息；L3 总结长期 Persona 与稳定模式。层级越高，读取越便宜、覆盖越广，也离原始证据越远。
+L0 保存完整交互，适合核对原话、时间和来源；L1 把对话拆成可精确召回的事实与约束；L2 围绕项目或场景组织信息；L3 总结长期 Persona 与稳定模式。高层摘要旨在用较少内容覆盖更多背景，但实际成本取决于长度和装配策略；抽象程度越高，越需要核对原始证据。
 
 例如“这次不要重构旧鉴权模块”可以成为 L1 项目约束，多个相关结论形成 L2 场景；只有在跨任务长期稳定时，才可能影响更高层认识。若一次临时妥协被直接提升为 Persona，系统会把偶然偏好变成持续偏见。
 

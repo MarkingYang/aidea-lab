@@ -59,7 +59,7 @@ try {
       await visit(`/writing/${id}/`);
       const source=fs.readFileSync(`src/content/writing/${id}.md`,'utf8');
       const expectedDiagrams=(source.match(/^```mermaid/gm)||[]).length;
-      await page.waitForFunction(n=>document.querySelectorAll('.mermaid svg').length===n,expectedDiagrams);
+      await page.waitForFunction(n=>document.querySelectorAll('.mermaid[data-render-state="ready"] svg').length===n,expectedDiagrams);
       assert.equal(await page.locator('.mermaid .error-icon, .mermaid .error-text, .katex-error').count(),0,`${id}: rendered figure or formula error`);
       assert.match(await page.locator('.series-position').textContent(),new RegExp(`第 ${i+1} / ${series.articles.length} 篇`));
       assert.equal(await page.locator('.series-sidebar a[aria-current="page"]').count(),1);
@@ -78,7 +78,22 @@ try {
     }
     if(width<=900) {await page.locator('.mobile-reading summary').click();assert.equal(await page.locator('.mobile-reading a[aria-current="page"]').count(),1);assert.ok(await page.locator('.mobile-reading').getAttribute('open')!==null);}
   }
-  await page.setViewportSize({width:390,height:844});await visit('/library/?series=agent-memory');await page.locator('.library-controls').waitFor({state:'visible'});assert.equal(await page.locator('.library-result').count(),5);
+  await page.setViewportSize({width:390,height:844});
+  await visit('/writing/harness-architecture-selection/');
+  await page.locator('.mermaid[data-render-state="ready"] svg').first().waitFor();
+  const figure=page.locator('.mermaid-figure').first();
+  const svg=figure.locator('svg');
+  const diagramGeometry=await svg.evaluate(node=>({width:node.viewBox.baseVal.width,height:node.viewBox.baseVal.height,labels:[...node.querySelectorAll('.nodeLabel')].map(label=>label.getBoundingClientRect().height)}));
+  assert.ok(diagramGeometry.width<2000 && diagramGeometry.height<2000,'Reduced motion must not corrupt Mermaid layout measurements');
+  assert.ok(diagramGeometry.labels.length>=8 && diagramGeometry.labels.every(height=>height>=12 && height<100),'Architecture labels must have readable, bounded dimensions');
+  const initialWidth=await svg.evaluate(node=>node.getBoundingClientRect().width);
+  assert.ok(await svg.evaluate(node=>node.getBoundingClientRect().width/node.viewBox.baseVal.width)>=.79,'Mobile diagrams must preserve readable label scale');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'Diagram overflow belongs inside its viewport');
+  await figure.getByRole('button',{name:'放大图表',exact:true}).click();
+  assert.ok(await svg.evaluate(node=>node.getBoundingClientRect().width)>initialWidth,'Diagram zoom increases readable size');
+  await figure.getByRole('button',{name:'恢复图表尺寸',exact:true}).click();
+  assert.ok(Math.abs(await svg.evaluate(node=>node.getBoundingClientRect().width)-initialWidth)<1);checks+=2;
+  await visit('/library/?series=agent-memory');await page.locator('.library-controls').waitFor({state:'visible'});assert.equal(await page.locator('.library-result').count(),5);
   await page.locator('.theme-toggle').click();const theme=await page.locator('html').getAttribute('data-theme');await page.reload();assert.equal(await page.locator('html').getAttribute('data-theme'),theme);
   if(screenshots) {
     fs.mkdirSync(screenshots,{recursive:true});

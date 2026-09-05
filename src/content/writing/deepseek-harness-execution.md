@@ -10,8 +10,8 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 11 min
-updatedAt: 2026-09-05
+readingTime: 12 min
+updatedAt: 2026-09-06
 ---
 
 > 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
@@ -59,7 +59,7 @@ model tool call
 
 这些细节都记录在官方 [Tools 子系统](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/subsystems/tools.md)中。它们反映出 DeepSeek Harness 的设计重心：模型协议要短，Host 侧契约要严格。
 
-## PTC：把五次工具往返压缩成一段程序
+## PTC：把确定性工具编排移入程序
 
 PTC，即 Programmatic Tool Calling，是 DeepSeek Harness 区别于普通 Native Function Calling 的另一条路线。
 
@@ -116,7 +116,7 @@ Provider 可以是一轮即结束，也可以是可继续的 Child。父 Agent �
 
 它和普通“并行调用多个 Agent”最大的不同是：团队状态也进入可重放日志。代价则是协调协议、恢复语义和共享工作区冲突都变成平台责任。官方仍将它标为 Experimental，见 [Agent Teams 文档](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/subsystems/agent-team.md)。
 
-## 安全架构：插件自由必须由不可逆的边界兜底
+## 安全架构：插件策略与外层隔离分别验证
 
 DeepSeek Harness 的工具流水线已经体现了 Fail-closed 思想：没有审批通道、审批者异常、返回非法结果或请求被取消，都不能放行动作；只有 `allowed-once` 是授权。
 
@@ -138,7 +138,7 @@ DeepSeek Harness 的工具流水线已经体现了 Fail-closed 思想：没有�
 
 官方 [Safety Notice](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/SAFETY.md)明确写着：项目尚未经过安全审计，不应被视为安全或生产就绪；对于不可信工作负载，应使用一次性 VM、容器或专用环境，并遵循最小权限。
 
-所以正确的生产拓扑不是“相信内置 Sandbox”，而是：
+对于不可信执行内容，可采用下面的外层隔离方案；具体强度取决于挂载、网络和凭证配置：
 
 ```mermaid
 flowchart LR
@@ -158,7 +158,7 @@ Harness 内策略用于表达业务意图，操作系统或云基础设施负责
 ## 一组必须分别验证的反例
 
 - 审批后参数被替换：执行应基于同一冻结事实，不能“批 A 做 B”。
-- 只读工具被误标可并行：用共享状态测试验证声明，分类函数不是自动证明器。
+- 查询工具共享一个可变游标却标为可并行：用交错请求检查漏读与重复，分类函数不是自动证明器。
 - Worker 超时后派生进程仍在：资源限制与系统级清理需分别检查。
 - 两个子 Agent 写同一路径：写范围提示不等于文件锁，必须有隔离或协调。
 - 任务禁止外发，但 URL 可访问：文件沙箱不替代网络与凭证策略。

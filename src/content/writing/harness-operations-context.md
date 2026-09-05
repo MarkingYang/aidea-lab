@@ -1,8 +1,8 @@
 ---
-title: 先看全景，再决定模型应该看到什么
-description: 从单次执行走向持续运行，建立七个进阶专题的地图，并用上下文装配契约连接任务、证据、状态、记忆与预算。
+title: 上下文组装：材料、状态与输入预算
+description: 按任务、状态、来源、权限与预算组装单次模型请求，说明压缩、缓存和装配清单怎样影响判断。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:

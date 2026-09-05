@@ -2,7 +2,7 @@
 title: TRACE 如何从“答对”走向“可信地答对”
 description: 拆解 TRACE 的轨迹效用、过程效率、证据扎根、错误恢复与脚手架评测，理解结果指标之外的过程质量。
 publishedAt: 2026-09-04
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -17,11 +17,9 @@ readingTime: 9 min
 > [!NOTE]
 > **论文出处**：Yanyu Chen、Jiyue Jiang、Jiahong Liu、Yifei Zhang、Xiao Guo、Irwin King，*TRACE: Trajectory-Aware Comprehensive Evaluation for Deep Research Agents*，The Web Conference 2026（WWW ’26），pp. 2524–2534。论文：[arXiv:2602.21230](https://arxiv.org/abs/2602.21230)；正式 DOI：[10.1145/3774904.3792738](https://doi.org/10.1145/3774904.3792738)。本文依据 arXiv v1（2026-02-05）精读，实验数字均为论文自报结果。
 
-如果只用一句话概括 TRACE，我会说：**它试图把 Deep Research Agent 的评测对象，从“最终答案”改成“产生答案的整条研究轨迹”。**
+TRACE 在答案正确性之外评估研究轨迹的效率、证据支持与恢复。本篇逐项检查这些指标依赖什么，以及何时会误判。
 
 这一步很重要。一个 Agent 可能碰巧答对，却反复搜索、引用不支持结论的材料，甚至先被错误信息带偏、最后靠一次幸运检索翻盘。Pass@1 会把这些过程压成同一个“1”；TRACE 则追问：它花了多少代价、证据是否真的支撑声明、陷入误导后多久恢复，以及只差多少提示就能稳定完成任务。
-
-但更值得深读的，不只是 TRACE 提出了哪些指标，而是这些指标**真正测到了什么、依赖了什么，以及在什么条件下会失真**。
 
 ## TRACE 想拆穿的两种幻觉
 
@@ -111,7 +109,7 @@ p_t=1+\mathbb{I}(g_t=0\land g_{t-1}=0)
 \cdot\alpha\cdot\cos(\Phi(o_t),\Phi(o_{t-1}))
 $$
 
-这一设计比“工具调用越少越好”聪明：复杂研究本来就需要多步探索，真正应该惩罚的是连续、相似、没有推进的信息采集。
+该惩罚将连续、相似且未超过历史相似度的观察视为冗余；它依赖这一代理量能否反映任务推进。
 
 但 MIG 也是 TRACE 最明显的代理指标之一。
 
@@ -134,7 +132,7 @@ $$
 
 论文实验中 $\beta=0.5$。一个分量检查答案能否被引用证据支持，另一个检查 Agent 遇到信息陷阱后的恢复速度。
 
-### 4.1 证据扎根 $\mathcal{G}_E$
+### 证据扎根 $\mathcal{G}_E$
 
 最终答案先被拆成 $N$ 个原子声明 $c_i$，再由 NLI 模型判断引用证据 $E_i$ 对声明的蕴含概率：
 
@@ -154,7 +152,7 @@ $$
 
 生产版应把“声明—证据蕴含”“来源质量”“来源独立性”“时效性”拆成不同字段，避免用一个 NLI 概率承载全部信任问题。
 
-### 4.2 推理鲁棒性 $\mathcal{R}_R$
+### 推理鲁棒性 $\mathcal{R}_R$
 
 DeepResearch-Bench 会在任务中嵌入看似合理的误导信息。TRACE 记录 Agent 遇到陷阱后，经过多少步重新获得正向 MIG：
 

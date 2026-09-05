@@ -12,14 +12,14 @@ topics:
   - TencentDB Agent Memory
 featured: false
 readingTime: 6 min
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 ---
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
 > 单项目纵向阅读：[Mem0 多信号检索](/writing/mem0-series-overview/) · [OpenViking 分层检索](/writing/openviking-series-overview/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-overview/)
 
-上一页保存了上海和杭州两条记录。现在查询“给我推荐附近的办公地点”，语义检索可能同时命中两座城市。候选相关，不代表当前有效；当前有效，也不代表查询者有权看到。
+用户一月住在上海，六月搬到杭州，系统保留了两条带时间的记录。现在查询“给我推荐附近的办公地点”，语义检索可能同时命中两座城市。候选相关，不代表当前有效；当前有效，也不代表查询者有权看到。
 
 ## Mem0：语义、关键词与实体信号互补
 
@@ -49,13 +49,13 @@ OpenViking 为目录生成三层内容：
 
 OpenViking 的复杂查询会先结合 Session 摘要、最近消息与当前问题，生成 0–5 个带类型和优先级的 Typed Query，再分别路由到 Memory、Resource 或 Skill。随后系统从全局高分目录起步，用优先队列递归搜索子目录，并在过程中 rerank。完整流程见[检索机制](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/07-retrieval.md)。
 
-这种“先定位目录，再逐层下钻”的路线比平铺向量检索更适合复杂知识库：局部语境不会因为切片相似度较低而彻底丢失，检索轨迹也可以解释 Agent 为什么找到了这份内容。
+目录导航在资料具有稳定层级时可帮助保留局部语境，并提供可检查的检索路径。若目录摘要失真或起始目录选错，仍可能漏掉证据；是否优于平铺检索需要同任务对照。
 
 代价是更长的在线链路。意图分析、递归搜索和 rerank 都可能增加延迟；目录摘要还要随子节点变化向上刷新。对更新频繁的深层目录，应额外验证摘要刷新和写放大成本。层级不是免费的，它用生成与一致性成本换取导航能力。
 
 ## 从 Top-K 到上下文装配
 
-Mem0 强化单次搜索的准确率；OpenViking 强化检索过程中的路由与导航；腾讯方案强化权限过滤后，把不同资产装配给不同角色。
+三种设计分别侧重单次搜索的多信号排序、目录导航、以及按角色装配资产；这些是机制差异，不是准确率高低的实测结论。
 
 因此，真实的读取公式不应只是：
 
@@ -67,7 +67,7 @@ TopK(vector_similarity)
 
 ```text
 候选 = 权限范围 ∩ 类型路由 ∩ 时间有效性
-得分 = 语义 + 关键词 + 实体/关系 + 新鲜度 + 任务相关度
+排序 = 融合语义、关键词、实体等信号，再按任务重排
 注入 = 在 Token、延迟与来源多样性预算下选择候选
 ```
 
@@ -112,4 +112,4 @@ python3 -m unittest discover -s docs/editorial-labs -p 'test_*.py' -v
 
 将来接入真实存储后，保留这些测试，同时增加同义词、实体歧义、多跳信息与长历史任务。候选召回率衡量检索，最终答案正确率衡量使用，二者分别报告。
 
-本篇最重要的分界线是：搜索返回候选，Context Assembler 决定模型最终看见什么。正确记忆如果被错误装配，同样会产生错误行动。
+完整请求的材料取舍、压缩和缓存见[上下文组装](/writing/harness-operations-context/)。

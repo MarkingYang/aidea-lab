@@ -2,7 +2,7 @@
 title: Claude Code、Codex 与 Kimi Code 的 Harness 分歧
 description: 从循环、上下文、工具、验证、安全与协作出发，比较三种产品化 Coding Agent 的系统分歧。
 publishedAt: 2026-09-04
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -11,15 +11,10 @@ topics:
   - Claude Code
   - Codex
 featured: true
-readingTime: 9 min
+readingTime: 8 min
 ---
 
-如果只比较模型，Coding Agent 的产品差异会显得很小：无非是读文件、改代码、跑命令。但真实使用几天之后，差距往往不来自模型第一次写对了多少代码，而来自它如何理解项目、如何处理失败、如何证明完成、如何限制副作用，以及工作能否被另一个人接手。
-
-这就是 Harness 的竞争。
-
-> [!IMPORTANT]
-> **结论先行：**Claude Code 与 Codex 展示了两种值得比较的工程产品结构，本文没有同任务实测来判断总体完成度。Claude Code 更像一套可编程的工程制度，强在上下文、Skills、Hooks、MCP、Subagents 与权限体系的组合；Codex 更像 Agent 工作操作系统，强在本地与云端连续性、多任务监督、Worktree 隔离、Review 和 Automations。Kimi Code 是这里选择的国产工程产品案例；Hermes、Pi、DeepSeek Harness 则分别代表“丰富自治”“极简内核”“万物插件”三条开源路线。
+本文比较 Claude Code、Codex 与 Kimi Code 的公开产品结构，资料基线为 2026-09-05。比较同样的六项职责：上下文、执行、验证、协作、扩展和治理。尚无同任务实测，下面的产品取向是采用假设，不能用于总体完成率排名。
 
 ## Harness 到底在解决什么
 
@@ -45,17 +40,17 @@ flowchart LR
 
 ## 系统职责对比：内置能力与自建范围
 
-| 层 | Claude Code | Codex | Kimi Code | Hermes | Pi | DeepSeek Harness |
-| --- | --- | --- | --- | --- | --- | --- |
-| 入口 | CLI / IDE / Desktop / Web / GitHub / Slack | CLI / IDE / App / Cloud / GitHub / Slack | CLI / IDE / ACP | CLI / Desktop / IM / Gateway | CLI / RPC / SDK | Web UI / CLI / Presets |
-| 上下文 | `CLAUDE.md`、Rules、Memory、Skills | `AGENTS.md`、Skills、Session、Compaction | 项目上下文、Skills、Agents | Context files、Memory、Skills、Session search | Context files、Skills、树状 Session | Session event stream、插件化上下文 |
-| 执行 | 本地与云端 | 本地与云端 | 本地终端 | 本地、容器、远程后端 | 本地为主，可嵌入 | 插件化 Sandbox 与 Runtime |
-| 验证 | 测试、Diff、Preview、Review、Hooks | 测试、Diff、Browser、Review Queue | Shell、文件、Web、子 Agent | Checkpoint、工具结果、Cron 记录 | 由模型、脚本与扩展组合 | Trace、Replay、模式化运行 |
-| 并行 | Subagents、Agent View、Teams、Worktrees、Batch | 多线程、Worktrees、Cloud tasks、协作 Agent | 内置子 Agent 与 Agent Swarm | `delegate_task` | 默认不内置，自行扩展或用 tmux | Loop、Scheduling、Subagents 均可插件化 |
-| 扩展 | Skills、Hooks、MCP、Plugins、Agent SDK | Skills、MCP、Rules、SDK、App 工具 | Skills、MCP、ACP、自定义 Agent | Skills、MCP、Tools、Hooks、Provider routing | TypeScript Extensions、Skills、Packages、SDK | Cordis Plugins、Presets、Creator mode |
-| 治理 | Permissions + OS Sandbox + Hooks + Managed settings | Approvals + OS Sandbox + Cloud isolation + Admin controls | 产品权限与本地环境边界 | 审批、写入限制、容器、安全扫描 | 默认把治理交给用户/扩展 | 安全插件与沙箱可换，生产基线仍早期 |
+| 层 | Claude Code | Codex | Kimi Code |
+| --- | --- | --- | --- |
+| 入口 | CLI / IDE / Desktop / Web / GitHub / Slack | CLI / IDE / App / Cloud / GitHub / Slack | CLI / IDE / ACP |
+| 上下文 | `CLAUDE.md`、Rules、Memory、Skills | `AGENTS.md`、Skills、Session、Compaction | 项目上下文、Skills、Agents |
+| 执行 | 本地与云端 | 本地与云端 | 本地终端 |
+| 验证 | 测试、Diff、Preview、Review、Hooks | 测试、Diff、Browser、Review Queue | Shell、文件、Web、子 Agent |
+| 并行 | Subagents、Agent View、Teams、Worktrees、Batch | 多线程、Worktrees、Cloud tasks、协作 Agent | 内置子 Agent 与 Agent Swarm |
+| 扩展 | Skills、Hooks、MCP、Plugins、Agent SDK | Skills、MCP、Rules、SDK、App 工具 | Skills、MCP、ACP、自定义 Agent |
+| 治理 | Permissions + OS Sandbox + Hooks + Managed settings | Approvals + OS Sandbox + Cloud isolation + Admin controls | 产品权限与本地环境边界 |
 
-这张表最重要的信息不是谁的单元格更满，而是“默认产品意见”有多强。Claude Code、Codex 给出一套较完整的标准路径；Pi 故意不替用户决定；DeepSeek Harness 甚至允许替换路径本身。
+开源 Harness 的内部实现分别见[Hermes](/writing/hermes-agent-architecture-deep-dive/)、[Pi](/writing/pi-architecture-deep-dive/)与[DeepSeek Harness](/writing/deepseek-harness-composition/)。它们的部署与维护责任不同，不在产品化编码工具表中并列打分。
 
 ## 用户体验五要素：同一套功能为何成为不同产品
 
@@ -63,15 +58,17 @@ flowchart LR
 
 ### 产品化 Coding Agent 逐层对比
 
+战略与表现层是基于公开设计的分析假设；“监督感”“中文友好”等感受尚无本文用户测试支持。
+
 | 五要素 | Claude Code | Codex | Kimi Code |
 | --- | --- | --- | --- |
 | **战略层** | 让个人与团队把工程方法交给 Claude 执行 | 让用户监督多个 Agent 完成软件生命周期工作 | 用自研 Agentic 模型覆盖中文与全球开发者 |
 | **范围层** | 代码、Shell、Web、MCP、GitHub、Skills、Hooks、团队 Agent | 本地与云端编码、Review、Worktree、Automation、Skills、应用工具 | 代码、Shell、Web、MCP、ACP、Skills、内置与自定义 Agent |
-| **结构层** | 单 Agent 循环按需升级为 Subagent、Agent View、Team 或 Batch | 项目—线程—Worktree—Review Queue，任务天然异步 | 主 Agent 调度内置子 Agent 与 Agent Swarm，新旧 CLI 逐步迁移 |
+| **结构层** | 单 Agent 循环按需升级为 Subagent、Agent View、Team 或 Batch | 项目—线程—Worktree—Review Queue，支持异步任务，具体取决于运行入口 | 主 Agent 调度内置子 Agent 与 Agent Swarm，新旧 CLI 逐步迁移 |
 | **框架层** | 终端、IDE、桌面和 Web 都强调计划、工具轨迹、Diff 与介入点 | App 侧栏承担多任务控制台，Diff、终端、浏览器与 Review 集中呈现 | TUI 与 IDE/ACP 为主，重点呈现任务过程与多 Agent 状态 |
 | **表现层** | 信息密度高、过程透明，工程师心智强 | 以任务状态和可审查结果为中心，监督感更强 | 中文友好、模型能力标签突出，产品仍在快速演化 |
 
-## Claude Code：最像一套可执行的工程制度
+## Claude Code：项目约束与工作流扩展
 
 Claude Code 的突出之处是，几乎每种“给 Agent 的信息”都有明确容器：
 
@@ -85,9 +82,9 @@ Claude Code 的突出之处是，几乎每种“给 Agent 的信息”都有明�
 
 官方[扩展指南](https://code.claude.com/docs/en/features-overview)把这些机制放在同一张职责地图上，这一点比单纯支持某个协议更重要。它降低了组织把所有规则堆进 System Prompt 的冲动。
 
-### 它为什么强
+### 可以验证的设计收益
 
-第一，Claude Code 的上下文工程成熟。Rules、Skills、Subagents 和 Compaction 让不同信息按不同生命周期进入上下文，而不是永远常驻。
+第一，Claude Code 为不同上下文提供独立机制。Rules、Skills、Subagents 和 Compaction 让不同信息按不同生命周期进入上下文，而不是永远常驻。
 
 第二，软约束与硬约束分开。Permissions 控制 Agent 是否应该调用工具，Sandbox 用操作系统边界限制命令实际上能访问什么；Anthropic 的[沙箱说明](https://www.anthropic.com/engineering/claude-code-sandboxing)同时覆盖文件系统和网络。
 
@@ -99,11 +96,11 @@ Claude Code 的能力面正在变大，配置体系也随之复杂。Skills、Pl
 
 更现实的限制是模型与商业服务绑定 Anthropic。CLI 的可配置性很强，不等于整套能力可以脱离 Claude 模型与 Anthropic 服务独立运行。
 
-## Codex：最像多 Agent 时代的工作操作系统
+## Codex：任务监督、环境与变更审查
 
 Codex 的产品重心已经从“一个终端 Agent”转向“人如何监督很多并行工作”。[Codex App](https://openai.com/index/introducing-the-codex-app/)把项目、线程、Worktree、Review 与 Automation 收进一个控制面；[Codex 云端 Agent](https://openai.com/index/introducing-codex/)则为每个任务准备隔离环境，并把结果交回审查。
 
-### 它为什么强
+### 可以验证的设计收益
 
 第一，本地、IDE、云端与 App 不是割裂产品。用户可以在本地高带宽协作，也可以把独立任务交给云端，最后回到差异审查。
 
@@ -111,7 +108,7 @@ Codex 的产品重心已经从“一个终端 Agent”转向“人如何监督�
 
 第三，Codex CLI 的核心是 Apache-2.0 开源 Rust 实现，并提供 macOS Seatbelt、Linux Sandbox 与 Windows 受限执行等系统级策略，参见[Codex CLI 仓库](https://github.com/openai/codex)。这给本地执行层带来了可审计性，也让 `codex exec` 能进入脚本和 CI。
 
-第四，Codex 把“结束”设计成“进入 Review Queue”，而不是一条聊天回复。这个细节代表产品心智已经从回答问题转向交付工作。
+第四，Review 为变更审查提供入口，但不是每次任务结束都自动进入同一种审查队列。采用时应检查当前任务的交付物、审查状态和负责人。
 
 ### 它的代价
 

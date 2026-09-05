@@ -2,7 +2,7 @@
 title: 沿着一条失败任务，把故障定位到边界
 description: 用任务、操作与 Trace 的关联关系诊断模型、工具、队列和验收故障，明确异步链路、采样偏差与敏感内容的记录边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -15,7 +15,7 @@ readingTime: 6 min
 
 用户说“资料核验卡住了”，运维看见模型接口正常，开发看见工具没有报错。这两项信息都可能真实：任务也许还在队列里，也许等待审批，也许已经完成写入却迟迟没进入验收。
 
-可观测性的首要目标，是让这些情况可以区分。安装一个漂亮的 Trace 平台只是开始，还要让同一任务经过的模块保留可以连接的标识与状态。
+可观测性要能区分排队、等待、执行和验收。为此，同一任务经过的模块需要保留可关联的标识与状态。
 
 ## 三类标识承担不同职责
 
@@ -89,6 +89,6 @@ flowchart LR
 
 ## 本篇交付物：十分钟诊断路径
 
-选择上一组[故障实验](/writing/harness-foundations-lab/)的“写入后中断”场景，画出从 Run 到 Operation，再到实际工单的查询路径。接入真实观测平台时，补上 Trace 和故障分类，但保留独立账本。
+选择[故障实验](/writing/harness-foundations-lab/)的“写入后中断”场景，画出从 Run 到 Operation，再到实际工单的查询路径。接入真实观测平台时，补上 Trace 和故障分类，但保留独立账本。
 
 在[工作簿](/labs/harness-operations-workbook.md)中写清三件事：一线人员先看哪里，什么证据允许安全重试，什么情况下应交给对账负责人。诊断完成后，把最小失败条件加入[回归系统](/writing/agent-evaluation-engineering/)。

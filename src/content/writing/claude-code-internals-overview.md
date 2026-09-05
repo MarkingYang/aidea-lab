@@ -2,7 +2,7 @@
 title: Claude Code：执行循环、记忆与扩展机制
 description: 沿执行循环、工具证据、项目规则、自动记忆和扩展机制，理解 Claude Code 的职责与公开可验证边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -14,6 +14,10 @@ readingTime: 4 min
 ---
 
 Claude Code 的核心实现并未完整开源，公开仓库主要承担分发、Issue、插件和部分工具，因此本文不声称完成逐行源码分析。可验证材料来自[官方仓库](https://github.com/anthropics/claude-code)与[官方架构文档](https://code.claude.com/docs/en/how-claude-code-works)。
+
+研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下图是职责归纳，不是完整部署图，也不作为未运行路径的实测证明。
+
+设用户要求修复登录请求超时并运行回归，不推送代码。Claude Code 可以读取实现、提出修改并调用测试；模型提出 Git 推送时，应由当前权限与任务约束阻止。下文以这条任务说明上下文、工具和扩展的分工。
 
 ```mermaid
 flowchart TB

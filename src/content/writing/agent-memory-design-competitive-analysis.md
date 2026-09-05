@@ -12,7 +12,7 @@ topics:
   - TencentDB Agent Memory
 featured: false
 readingTime: 5 min
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 ---
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
@@ -23,7 +23,7 @@ updatedAt: 2026-09-05
 
 向量相似度只能解释其中一小段。真正的记忆系统还要决定什么值得记、何时生效、怎样纠错、谁能读取以及多少内容值得进入上下文。
 
-这里用“搬家事实”和“团队项目经验”两个连续案例，比较 Mem0、OpenViking 与 TencentDB Agent Memory 的设计选择，最后回到一个问题：**记忆是在储存事实，还是在维护可被修正的认识？**
+本文用七个维度比较记忆方案；写入、检索与治理各有主文，项目内部调用链集中在上方链接的实现研究中。
 
 ## 先定义竞品框架：记忆系统要完成七件事
 

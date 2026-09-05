@@ -2,7 +2,7 @@
 title: Kimi Code：Session、Skills 与任务委派
 description: 从持久 Session 和工具循环进入 Skills 与任务委派，解释 Kimi Code 的运行、扩展和恢复边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -10,10 +10,14 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 3 min
+readingTime: 4 min
 ---
 
 Kimi Code 是当前应研究的主线，旧 [`MoonshotAI/kimi-cli`](https://github.com/MoonshotAI/kimi-cli)已经明确向 Kimi Code CLI 收敛并逐步退出，因此本文以 Kimi Code 为研究对象。[Kimi Code 官方仓库](https://github.com/MoonshotAI/kimi-code)把 CLI 定义为下一代 Agent 的起点。
+
+研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下图是职责归纳，不是完整部署图，也不作为未运行路径的实测证明。
+
+设会话在修改文件之后、测试之前退出。重新进入 Session 应恢复已记录的工作，并检查磁盘上的修改；如果历史里还有结果未知的外部写入，必须对账后再决定是否重试。下图说明需要检查的状态位置，不代表本文已运行故障实验。
 
 ```mermaid
 flowchart TB
@@ -63,4 +67,4 @@ Agent 与 AgentSwarm 是另一层：前者把子任务交给独立工作单元�
 | 任务路由 | Agent | 边界不清、摘要丢失 |
 | 并发路由 | Swarm | 写冲突、重复工作 |
 
-多个 Agent 不应共享模糊目标后自行碰撞。可靠协作需要明确输入、输出、文件所有权和验收者；并发提高吞吐，但不会自动提高正确率。
+多个 Agent 不应共享模糊目标后自行碰撞。可靠协作需要明确输入、输出、文件所有权和验收者；并发可能缩短独立子任务的等待时间；吞吐与正确率均需连同协调成本实测。

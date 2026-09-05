@@ -2,7 +2,7 @@
 title: Mem0：部署、Provider 与生产边界
 description: 从库模式、自托管服务、组件替换、迁移和 OSS 平台差异，检查 Mem0 的真实生产边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -12,6 +12,8 @@ topics:
 featured: false
 readingTime: 3 min
 ---
+
+本文沿用[实现篇](/writing/mem0-series-overview/)的固定提交 `dae67f7`，不混用 OSS 与托管平台能力。
 
 Mem0 开源版既可以作为 Python/TypeScript 库嵌入应用，也可以运行自托管服务。LLM、Embedding、Vector Store 和 Reranker 都能替换。可替换性扩大了部署自由，也把组合验证交给了部署者。
 
