@@ -86,18 +86,18 @@ const pageHref=(n:number)=>n===1?'/library/':`/library/${n}/`;
   }
 </script>
 <style is:global>
-  .library { margin-top:40px; }
-  .library-controls { padding:25px 0 15px; border-block:1px solid var(--line); }
-  .library-controls > label { display:block; margin-bottom:10px; color:var(--text-soft); font-size:11px; }
-  .search-field { display:flex; align-items:center; gap:14px; }
-  .search-field svg { width:20px; height:20px; fill:none; stroke:var(--text-soft); stroke-width:1.4; flex-shrink:0; }
-  .search-field input { flex:1; min-width:0; padding:10px 0; border:0; border-radius:0; outline:0; background:transparent; color:var(--text); font:400 clamp(18px,2vw,24px) var(--display); }
+  .library { margin-top:32px; }
+  .library-controls { width:min(100%,720px); padding:14px 0 10px; border-bottom:1px solid var(--line); }
+  .library-controls > label { display:block; margin-bottom:6px; color:var(--text-soft); font-size:11px; }
+  .search-field { display:flex; align-items:center; gap:10px; }
+  .search-field svg { width:17px; height:17px; fill:none; stroke:var(--text-soft); stroke-width:1.4; flex-shrink:0; }
+  .search-field input { flex:1; min-width:0; padding:6px 0 7px; border:0; border-radius:0; outline:0; background:transparent; color:var(--text); font:400 clamp(17px,1.5vw,20px) var(--display); }
   .search-field input::placeholder { color:var(--text-muted); }
   .library-controls:focus-within { border-bottom-color:var(--accent); }
   .library-context { padding:14px 0; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--line); color:var(--text-soft); font-size:11px; }
   .library-context strong { color:var(--text); font-weight:500; }
   .library-context button { margin-left:auto; padding:6px 0; border:0; background:none; color:var(--accent); font-size:11px; cursor:pointer; }
-  .library-summary { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:24px 0 16px; border-bottom:1px solid var(--line); color:var(--text-soft); font-size:11px; }
+  .library-summary { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:18px 0 14px; border-bottom:1px solid var(--line); color:var(--text-soft); font-size:11px; }
   .library-summary p { margin:0; scroll-margin-top:90px; }
   .library-result { display:grid; grid-template-columns:minmax(0,1fr) 95px; gap:35px; padding:25px 0; border-bottom:1px solid var(--line); }
   .result-context { margin:0 0 10px; color:var(--text-soft); font-size:11px; line-height:1.8; }
@@ -110,5 +110,5 @@ const pageHref=(n:number)=>n===1?'/library/':`/library/${n}/`;
   .library-pagination a[aria-current='page'] { background:var(--text); color:var(--bg); border-color:var(--text); }
   .library-pagination a:hover { border-color:var(--accent); }
   .library-empty { padding:45px 0; } .library-empty p { font:400 28px var(--display); } .library-empty span { display:block; color:var(--text-soft); font-size:13px; line-height:1.8; } .library-empty button { display:block; padding:12px 0; margin-top:16px; border:0; background:none; color:var(--accent); cursor:pointer; }
-  @media(max-width:640px) { .library-controls { padding-top:20px; } .search-field { gap:10px; } .library-result { grid-template-columns:1fr; gap:15px; } .result-meta { flex-direction:row; gap:16px; padding:0; } .library-result h2 { font-size:17px; } }
+  @media(max-width:640px) { .library { margin-top:24px; } .library-controls { padding-top:12px; } .library-summary { padding-top:16px; } .library-result { grid-template-columns:1fr; gap:15px; } .result-meta { flex-direction:row; gap:16px; padding:0; } .library-result h2 { font-size:17px; } }
 </style>

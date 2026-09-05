@@ -29,6 +29,8 @@ try {
   }
   console.log('PASS desktop directory routes and internal links:',routes.length);
   await visit('/library/');await page.locator('.library-controls').waitFor({state:'visible'});
+  const searchBounds=await page.locator('.library-controls').boundingBox();
+  assert.ok(searchBounds.width<=721 && searchBounds.height<=90,'Library search must remain a compact reading tool');
   const totalArticles=await page.locator('[data-library-index]').evaluate(node=>JSON.parse(node.textContent).length);
   assert.equal(await page.locator('.library-result').count(),12);
   await visit('/library/?series=agent-evaluation');await page.waitForFunction(()=>document.querySelectorAll('.library-result').length===5);

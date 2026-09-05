@@ -22,13 +22,18 @@ try {
   assert.match(await page.locator('[data-graph-canvas]').getAttribute('aria-label'), /\d+ 个可见节点、\d+ 条关系/);
   assert.equal(await page.locator('[data-graph-loading]').isHidden(), true);
   assert.equal(await page.locator('.site-nav a[href="/graph/"]').getAttribute('aria-current'), 'page');
+  assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'overview');
+  assert.ok(Number(await page.locator('[data-graph-root]').getAttribute('data-local-edges')) > Number(await page.locator('[data-graph-root]').getAttribute('data-cross-edges')));
+  assert.ok(Number(await page.locator('[data-graph-root]').getAttribute('data-bridge-edges')) < Number(await page.locator('[data-graph-root]').getAttribute('data-cross-edges')));
 
   await page.locator('#graph-query').fill('Context Engineering');
   await page.locator('.search-results [data-node-id="keyword:Context Engineering"]').click();
   assert.equal(await page.locator('[data-panel-title]').textContent(), 'Context Engineering');
+  assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'detail');
   assert.equal(await page.locator('[data-panel-relations] li').count(), 5);
   assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/library\/\?tag=Context%20Engineering/);
   await page.locator('[data-clear-focus]').click();
+  assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'overview');
 
   await page.locator('#graph-query').fill('万级能力路由');
   await page.locator('.search-results [data-node-id="series:capability-routing"]').click();
@@ -76,7 +81,7 @@ try {
   assert.ok(await page.locator('.related-knowledge li').count() >= 2);
   assert.match(await page.locator('.related-knowledge header > a').getAttribute('href'), /\/graph\/\?node=agent-evaluation-metrics&view=local/);
   assert.deepEqual(errors, []);
-  console.log('PASS Sigma graph render, keyword regions, single search, direct article entry, region camera focus/reset, URL state, zoom, theme, mobile drawer and article relations');
+  console.log('PASS Sigma graph render, progressive edge disclosure, keyword regions, single search, direct article entry, region camera focus/reset, URL state, zoom, theme, mobile drawer and article relations');
 } finally {
   await browser.close();
 }

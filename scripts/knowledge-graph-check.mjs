@@ -22,6 +22,7 @@ assert.ok(graph.links.every(link => nodeIds.has(link.source) && nodeIds.has(link
 assert.equal(graph.layout?.type, 'clustered-circle-packing', 'The global graph must use hierarchical circle packing');
 assert.ok(Number.isFinite(graph.layout?.radius) && graph.layout.radius > 0, 'The graph layout must declare a valid radius');
 assert.ok(Array.isArray(graph.layout?.clusters) && graph.layout.clusters.length >= graph.stats.series, 'The layout must expose its local knowledge circles');
+assert.ok(Array.isArray(graph.layout?.bridges), 'The layout must expose its cross-circle relationship skeleton');
 
 for (const node of graph.nodes) {
   assert.ok(Number.isFinite(node.x) && Number.isFinite(node.y), `Node ${node.id} must have a build-time position`);
@@ -61,6 +62,27 @@ for (const link of graph.links) {
 const mean = values => values.reduce((sum, value) => sum + value, 0) / values.length;
 assert.ok(mean(lengths.local) < mean(lengths.cross), 'Relations inside a knowledge circle must be spatially closer than cross-circle relations');
 assert.ok(graph.nodes.every(node => clusterById.has(node.clusterId)), 'Every node must reference a declared circle');
+
+const rawCrossPairs = new Set(graph.links.flatMap(link => {
+  const sourceClusterId = graph.nodes.find(node => node.id === link.source)?.clusterId;
+  const targetClusterId = graph.nodes.find(node => node.id === link.target)?.clusterId;
+  return sourceClusterId && targetClusterId && sourceClusterId !== targetClusterId
+    ? [[sourceClusterId, targetClusterId].sort().join('::')]
+    : [];
+}));
+const bridgeParents = new Map(graph.layout.clusters.map(cluster => [cluster.id, cluster.id]));
+const findBridgeRoot = id => bridgeParents.get(id) === id ? id : findBridgeRoot(bridgeParents.get(id));
+for (const bridge of graph.layout.bridges) {
+  assert.ok(nodeIds.has(bridge.source) && nodeIds.has(bridge.target), `Bridge ${bridge.id} must connect existing semantic hubs`);
+  assert.ok(clusterById.has(bridge.sourceClusterId) && clusterById.has(bridge.targetClusterId), `Bridge ${bridge.id} must connect declared circles`);
+  assert.ok(rawCrossPairs.has([bridge.sourceClusterId, bridge.targetClusterId].sort().join('::')), `Bridge ${bridge.id} must summarize real cross-circle evidence`);
+  assert.ok(bridge.count > 0 && bridge.weight > 0, `Bridge ${bridge.id} must report its supporting evidence`);
+  const sourceRoot = findBridgeRoot(bridge.sourceClusterId);
+  const targetRoot = findBridgeRoot(bridge.targetClusterId);
+  assert.notEqual(sourceRoot, targetRoot, 'The overview relationship skeleton must not contain a cycle');
+  bridgeParents.set(targetRoot, sourceRoot);
+}
+assert.ok(graph.layout.bridges.length < rawCrossPairs.size, 'The overview must summarize cross-circle relationships instead of drawing every pair');
 
 assert.equal(graph.stats.articles, articleIds.size, 'Article statistics must match graph data');
 assert.equal(graph.stats.keywords, graph.nodes.filter(node => node.kind === 'keyword').length, 'Keyword statistics must match graph data');

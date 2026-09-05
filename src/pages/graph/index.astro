@@ -45,8 +45,8 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       <button class="legend-toggle" type="button" data-legend-toggle aria-expanded="false" aria-controls="graph-legend"><span aria-hidden="true">?</span><span class="sr-only">查看图例</span></button>
       <div class="graph-legend" id="graph-legend" data-graph-legend hidden>
         <div><strong>节点</strong><span><i class="topic-node"></i>主题</span><span><i class="series-node"></i>系列</span><span><i class="keyword-node"></i>关键词</span><span><i class="article-node"></i>文章</span></div>
-        <div><strong>关系</strong><span><i class="belongs-line"></i>归属</span><span><i class="keyword-line"></i>关键词</span><span><i class="reference-line"></i>引用</span><span><i class="similarity-line"></i>相似</span></div>
-        <p>节点越大，连接越多。点击主题、系列或关键词聚焦局部；点击文章圆点或标题直接进入阅读。</p>
+        <div><strong>关系</strong><span><i class="belongs-line"></i>归属</span><span><i class="keyword-line"></i>关键词</span><span><i class="reference-line"></i>引用</span><span><i class="similarity-line"></i>相似</span><span><i class="bridge-line"></i>星群桥</span></div>
+        <p>全局只保留圆内关系和少量星群桥。悬停或选择节点时，才展开它真实连接的跨圆关系；点击文章圆点或标题直接进入阅读。</p>
       </div>
 
       <aside class="node-panel" data-node-panel data-open="false" aria-hidden="true" aria-live="polite" aria-label="节点详情" inert>
@@ -68,7 +68,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         <article><h3>沿系列深入</h3><p>青绿色节点代表系列。围绕它排列的文章形成一条由浅入深的阅读路径。</p></article>
         <article><h3>从关键词横向探索</h3><p>金色关键词把不同系列的文章连接起来；点击它会展开局部关系，再从文章标题直接进入阅读。</p></article>
       </div>
-      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容实时生成。每个系列或主题先成为一个局部圆，相关文章和关键词围绕语义中心排列；这些局部圆再依据引用、共享标签和主题归属相互靠近，共同构成全局大圆。边界不直接绘制，而由节点和连线自然显现。</p></details>
+      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容实时生成。每个系列或主题先成为一个局部圆，相关文章和关键词围绕语义中心排列；这些局部圆再依据引用、共享标签和主题归属相互靠近，共同构成全局大圆。边界不直接绘制，而由节点和连线自然显现。全局视图会把大量跨圆关系归纳为少量星群桥，选择节点后再展开原始关系。</p></details>
       <details class="graph-method graph-automation"><summary>新增文章后，图谱如何更新？</summary><p>把 Markdown 放入文章目录并保存即可。开发模式会随内容变更重新生成；正式发布时，构建过程会重新扫描全部文章，计算节点、关系、主题分区和二维坐标，再校验每篇文章都已进入图谱。独立文章不需要维护额外清单，只有加入有顺序的系列时才需要指定章节位置。</p></details>
     </section>
   </div>
@@ -90,6 +90,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
     const kindNames = { topic: '阅读主题', series: '文章系列', keyword: '关键词', article: '文章' };
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const network = new Graph({ type: 'undirected', multi: true });
+    const rawNeighbors = new Map();
 
     const graphLabel = (title) => title.length > 20 ? `${title.slice(0, 19)}…` : title;
     for (const node of graphData.nodes) {
@@ -106,12 +107,33 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       });
     }
     for (const link of graphData.links) {
+      const sourceNode = nodeById.get(link.source);
+      const targetNode = nodeById.get(link.target);
+      rawNeighbors.set(link.source, new Set([...(rawNeighbors.get(link.source) ?? []), link.target]));
+      rawNeighbors.set(link.target, new Set([...(rawNeighbors.get(link.target) ?? []), link.source]));
       network.addEdgeWithKey(link.id, link.source, link.target, {
         relation: link.relation,
+        local: sourceNode?.clusterId === targetNode?.clusterId,
+        summary: false,
         weight: link.relation === 'topic' ? 3.4 : link.relation === 'series' ? 2.8 : link.relation === 'reference' ? 1.35 : link.relation === 'keyword' ? .48 : .72,
         size: link.relation === 'reference' ? 1.15 : link.relation === 'similarity' ? .65 : link.relation === 'keyword' ? .42 : .85,
       });
     }
+    for (const bridge of graphData.layout?.bridges ?? []) {
+      network.addEdgeWithKey(bridge.id, bridge.source, bridge.target, {
+        relation: 'bridge',
+        local: false,
+        summary: true,
+        weight: bridge.weight,
+        count: bridge.count,
+        size: .46 + Math.min(1.05, Math.log2(bridge.count + 1) * .2),
+      });
+    }
+    const rawNeighborIds = (id) => rawNeighbors.get(id) ?? new Set();
+    root.dataset.localEdges = String(graphData.links.filter((link) => nodeById.get(link.source)?.clusterId === nodeById.get(link.target)?.clusterId).length);
+    root.dataset.crossEdges = String(graphData.links.filter((link) => nodeById.get(link.source)?.clusterId !== nodeById.get(link.target)?.clusterId).length);
+    root.dataset.bridgeEdges = String(graphData.layout?.bridges?.length ?? 0);
+    root.dataset.edgeMode = 'overview';
 
     let renderer;
     let hoveredId = null;
@@ -122,14 +144,15 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
     try { visitedIds = new Set(JSON.parse(localStorage.getItem('knowledge-graph-visited') || '[]')); } catch {}
 
     const palette = () => document.documentElement.dataset.theme === 'dark'
-      ? { topic: '#df7958', series: '#7caea4', keyword: '#c6a66a', article: '#bbb8b0', visited: '#9b8aba', muted: '#343530', edge: '#353833', keywordEdge: '#6b604c', reference: '#a95c43', similarity: '#4f7770', label: '#e7e5df' }
-      : { topic: '#b84d2e', series: '#3f756c', keyword: '#9a773d', article: '#79766f', visited: '#77618d', muted: '#d5d1c9', edge: '#d0ccc4', keywordEdge: '#b8aa8d', reference: '#b9654b', similarity: '#6d948d', label: '#302f2b' };
+      ? { topic: '#df7958', series: '#7caea4', keyword: '#c6a66a', article: '#bbb8b0', visited: '#9b8aba', muted: '#343530', edge: '#353833', bridge: '#4b4d47', keywordEdge: '#6b604c', reference: '#a95c43', similarity: '#4f7770', label: '#e7e5df' }
+      : { topic: '#b84d2e', series: '#3f756c', keyword: '#9a773d', article: '#79766f', visited: '#77618d', muted: '#d5d1c9', edge: '#d0ccc4', bridge: '#b8b4ac', keywordEdge: '#b8aa8d', reference: '#b9654b', similarity: '#6d948d', label: '#302f2b' };
     const nodeColor = (node, colors = palette()) => visitedIds.has(node.id) && node.kind === 'article' ? colors.visited : colors[node.kind];
-    const edgeColor = (relation, colors = palette()) => relation === 'reference' ? colors.reference : relation === 'similarity' ? colors.similarity : relation === 'keyword' ? colors.keywordEdge : colors.edge;
+    const edgeColor = (relation, colors = palette()) => relation === 'bridge' ? colors.bridge : relation === 'reference' ? colors.reference : relation === 'similarity' ? colors.similarity : relation === 'keyword' ? colors.keywordEdge : colors.edge;
     const activeId = () => hoveredId || selectedId;
     const refreshRelations = () => {
       const active = activeId();
-      neighborIds = new Set(active ? network.neighbors(active) : []);
+      neighborIds = new Set(active ? rawNeighborIds(active) : []);
+      root.dataset.edgeMode = active ? 'detail' : 'overview';
       renderer?.scheduleRefresh();
     };
 
@@ -155,9 +178,10 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         edgeReducer: (edge, attrs) => {
           const [source, target] = network.extremities(edge);
           const active = activeId();
+          if (attrs.summary) return { ...attrs, hidden: Boolean(active), zIndex: 0 };
           if (active && source !== active && target !== active) return { ...attrs, hidden: true };
-          if (focusIds && !focusIds.has(source) && !focusIds.has(target)) return { ...attrs, hidden: true };
-          return { ...attrs, size: active ? Math.max(1.25, attrs.size) : attrs.size, zIndex: active ? 2 : 0 };
+          if (!active && !attrs.local) return { ...attrs, hidden: true };
+          return { ...attrs, size: active ? Math.max(1.25, attrs.size) : attrs.size, zIndex: active ? 2 : 1 };
         },
         hideEdgesOnMove: false,
         labelColor: { attribute: 'labelColor', color: colors.label },
@@ -262,12 +286,12 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         const regionalIds = selected.kind === 'topic'
           ? graphData.nodes.filter((node) => node.topicId === selected.topicId).map((node) => node.id)
           : graphData.nodes.filter((node) => node.clusterId === selected.clusterId).map((node) => node.id);
-        selectedId = id; focusIds = new Set([id, ...regionalIds, ...network.neighbors(id)]);
+        selectedId = id; focusIds = new Set([id, ...regionalIds, ...rawNeighborIds(id)]);
         graphStatus.textContent = nodeById.get(id).title; clearFocus.hidden = false;
-        updatePanel(id); refreshRelations(); if (move) moveCamera(focusIds); if (sync) syncUrl();
+        updatePanel(id); refreshRelations(); if (move) moveCamera(new Set(regionalIds)); if (sync) syncUrl();
       };
       const resetView = ({ sync = true } = {}) => {
-        selectedId = null; hoveredId = null; focusIds = null; neighborIds = new Set();
+        selectedId = null; hoveredId = null; focusIds = null; neighborIds = new Set(); root.dataset.edgeMode = 'overview';
         graphStatus.textContent = '全局视野'; clearFocus.hidden = true; panel.dataset.open = 'false'; panel.setAttribute('aria-hidden', 'true'); panel.inert = true; renderer.scheduleRefresh();
         if (reducedMotion) camera.setState({ x: .5, y: .5, ratio: 1, angle: 0 });
         else camera.animatedReset({ duration: 620, easing: 'quadraticInOut' });
@@ -431,10 +455,11 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
   .graph-legend .series-node { background: #4d837a; }
   .graph-legend .keyword-node { background: #a98548; }
   .graph-legend .article-node { width: 6px; height: 6px; }
-  .graph-legend .belongs-line, .graph-legend .keyword-line, .graph-legend .reference-line, .graph-legend .similarity-line { width: 18px; height: 0; border-radius: 0; border-top: 1px solid var(--line-strong); background: none; }
+  .graph-legend .belongs-line, .graph-legend .keyword-line, .graph-legend .reference-line, .graph-legend .similarity-line, .graph-legend .bridge-line { width: 18px; height: 0; border-radius: 0; border-top: 1px solid var(--line-strong); background: none; }
   .graph-legend .keyword-line { border-color: #a98548; opacity: .72; }
   .graph-legend .reference-line { border-color: var(--accent); border-style: dotted; }
   .graph-legend .similarity-line { border-color: #568078; border-style: dashed; }
+  .graph-legend .bridge-line { border-color: var(--text-soft); opacity: .48; }
   .graph-legend p { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 10px; line-height: 1.7; }
   .node-panel { position: absolute; z-index: 11; top: 112px; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 112px; width: 350px; overflow: auto; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 91%, transparent); box-shadow: 0 26px 80px color-mix(in srgb, #000 16%, transparent); backdrop-filter: blur(24px) saturate(1.08); transform: translateX(calc(100% + 48px)); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.22,.8,.22,1), opacity .25s ease; }
   .node-panel[data-open='true'] { transform: translateX(0); opacity: 1; pointer-events: auto; }

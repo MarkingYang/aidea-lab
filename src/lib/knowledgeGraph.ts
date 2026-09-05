@@ -71,6 +71,16 @@ export interface KnowledgeGraphData {
       radius: number;
       nodeCount: number;
     }>;
+    bridges: Array<{
+      id: string;
+      source: string;
+      target: string;
+      sourceClusterId: string;
+      targetClusterId: string;
+      count: number;
+      weight: number;
+      relations: GraphRelation[];
+    }>;
   };
   generatedAt: string;
 }
@@ -272,6 +282,66 @@ function assignCirclePackingLayout(nodes: KnowledgeGraphNode[], links: Knowledge
   }
 
   if (nodes.some(node => !Number.isFinite(node.x) || !Number.isFinite(node.y))) throw new Error('Knowledge graph layout contains an invalid position');
+  const clusterById = new Map(circles.map(circle => [circle.id, circle]));
+  const bridgeCandidates = new Map<string, {
+    sourceClusterId: string;
+    targetClusterId: string;
+    count: number;
+    weight: number;
+    relations: Set<GraphRelation>;
+  }>();
+  for (const link of links) {
+    const sourceClusterId = clusterForNode.get(link.source);
+    const targetClusterId = clusterForNode.get(link.target);
+    if (!sourceClusterId || !targetClusterId || sourceClusterId === targetClusterId) continue;
+    const [source, target] = [sourceClusterId, targetClusterId].sort();
+    const id = pairKey(source, target);
+    const candidate = bridgeCandidates.get(id) ?? {
+      sourceClusterId: source,
+      targetClusterId: target,
+      count: 0,
+      weight: 0,
+      relations: new Set<GraphRelation>(),
+    };
+    candidate.count++;
+    candidate.weight += graphEdgeWeight(link.relation);
+    candidate.relations.add(link.relation);
+    bridgeCandidates.set(id, candidate);
+  }
+
+  // Cross-community evidence can contain dozens of article-level links. The
+  // overview uses their maximum-weight spanning forest as a quiet relationship
+  // skeleton; interaction still reveals every original edge.
+  const parent = new Map(circles.map(circle => [circle.id, circle.id]));
+  const find = (id: string): string => {
+    const current = parent.get(id) ?? id;
+    if (current === id) return id;
+    const root = find(current);
+    parent.set(id, root);
+    return root;
+  };
+  const bridges = [...bridgeCandidates.entries()]
+    .sort((a, b) => b[1].weight - a[1].weight || b[1].count - a[1].count || a[0].localeCompare(b[0]))
+    .flatMap(([id, candidate]) => {
+      const sourceRoot = find(candidate.sourceClusterId);
+      const targetRoot = find(candidate.targetClusterId);
+      if (sourceRoot === targetRoot) return [];
+      parent.set(targetRoot, sourceRoot);
+      const sourceCircle = clusterById.get(candidate.sourceClusterId);
+      const targetCircle = clusterById.get(candidate.targetClusterId);
+      if (!sourceCircle || !targetCircle) return [];
+      return [{
+        id: `bridge:${id}`,
+        source: sourceCircle.hubId,
+        target: targetCircle.hubId,
+        sourceClusterId: candidate.sourceClusterId,
+        targetClusterId: candidate.targetClusterId,
+        count: candidate.count,
+        weight: Number(candidate.weight.toFixed(2)),
+        relations: [...candidate.relations].sort(),
+      }];
+    });
+
   return {
     radius: graphRadius,
     clusters: circles.map(circle => ({
@@ -284,6 +354,7 @@ function assignCirclePackingLayout(nodes: KnowledgeGraphNode[], links: Knowledge
       radius: Number(circle.radius.toFixed(4)),
       nodeCount: circle.members.length,
     })),
+    bridges,
   };
 }
 
@@ -520,7 +591,13 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
       references: links.filter(link => link.relation === 'reference').length,
       similarities: links.filter(link => link.relation === 'similarity').length,
     },
-    layout: { type: 'clustered-circle-packing', radius: packedLayout.radius, clusters: packedLayout.clusters, version: 3 },
+    layout: {
+      type: 'clustered-circle-packing',
+      radius: packedLayout.radius,
+      clusters: packedLayout.clusters,
+      bridges: packedLayout.bridges,
+      version: 4,
+    },
     generatedAt: new Date().toISOString(),
   };
 }
