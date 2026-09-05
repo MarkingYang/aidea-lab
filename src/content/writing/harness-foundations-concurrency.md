@@ -19,6 +19,8 @@ readingTime: 5 min
 
 [Agent Harness 工程](/writing/harness-engineering-map/)建立了执行、恢复和安全主干，[运行与演进](/writing/harness-operations-context/)补上调度与发布。本系列继续补足它们依赖的基础知识，并把基础带到 MCP 连接现场。
 
+理解协议与运行系统的分工，可以先阅读 [从 Prompt 到 Context，再到 Harness](/writing/prompt-context-harness-engineering/)，再进入本篇的并发与协议基础。
+
 ## 五篇文章的知识地图
 
 | 顺序 | 要回答的问题 | 读后应能留下的证据 |

@@ -19,6 +19,8 @@ readingTime: 5 min
 
 这个问题跨越运行时、存储、工具服务和验收。工程知识的下一步，是知道每条边界由谁守住。本系列用“为一条资料创建核验工单”贯穿六篇，从责任地图走到可执行的故障实验。
 
+它与提示词工程、上下文工程的关联，可先阅读 [从 Prompt 到 Context，再到 Harness](/writing/prompt-context-harness-engineering/)，沿同一个资料核验任务理解三者的分工与演变。
+
 ## 先把已有知识放回地图
 
 [旧站的九层地图](https://www.aialtas.site/)按能力与项目组织知识；新站的 [可塑 Harness](/writing/composable-agent-harness-architecture/)、[DeepSeek 架构](/writing/deepseek-harness-architecture/)、[记忆设计](/writing/agent-memory-design-competitive-analysis/)与[评测](/writing/agent-system-evaluation-research/)则提供机制分析。它们可以共同回答“有哪些材料”，本系列继续回答“怎样将材料接成可靠的任务链”。
