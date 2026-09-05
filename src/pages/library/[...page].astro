@@ -8,6 +8,6 @@ export const getStaticPaths = (async ({paginate}) => { const {entries}=await get
 interface Props {page:Page<Writing>}
 const {page}=Astro.props;
 ---
-<BaseLayout title={`全部文章${page.currentPage>1 ? ` · 第 ${page.currentPage} 页`:''}｜大飞随笔`} description="按问题检索，按主题筛选，或按时间回看全部文章与随想。">
-  <div class="page-shell"><header class="page-intro"><p class="eyebrow">The writing library</p><h1>让沉淀的想法，<br />仍然容易被找到。</h1><p class="intro-copy">搜索一个关键词，或者组合方向、系列与标签。想循序渐进？先去<a href="/series/">系列目录</a>看看。</p></header><Library initialEntries={page.data} currentPage={page.currentPage} totalPages={page.lastPage}/></div>
+<BaseLayout title={`全部文章${page.currentPage>1 ? ` · 第 ${page.currentPage} 页`:''}｜大飞随笔`} description="输入一个关键词，查找相关文章与随想。">
+  <div class="page-shell"><header class="page-intro"><p class="eyebrow">The writing library</p><h1>让沉淀的想法，<br />仍然容易被找到。</h1><p class="intro-copy">知道自己在找什么，就输入一个关键词；想从关系或方向进入，也可以前往<a href="/graph/">知识星图</a>或<a href="/topics/">知识目录</a>。</p></header><Library initialEntries={page.data} currentPage={page.currentPage} totalPages={page.lastPage}/></div>
 </BaseLayout>

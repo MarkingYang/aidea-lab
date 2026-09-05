@@ -7,7 +7,7 @@ const tags = [...new Set(entries.flatMap(entry => entry.data.topics))].sort((a,b
 <BaseLayout title="知识目录｜大飞随笔" description="从主题进入系列，再沿章节逐步深入。技术与系统、产品与实践、认知与观察。">
   <div class="page-shell">
     <header class="page-intro"><p class="eyebrow">An atlas, not a feed</p><h1>用问题组织知识，<br />用实践连接理解。</h1><p class="intro-copy">这里有三条主线，也允许交叉与回访。选择一个方向，从全景开始；已有具体问题，就直接检索文章。</p></header>
-    <nav class="directory-jump" aria-label="知识目录章节">{topics.map(topic => <a href={`#${topic.id}`}>{topic.title} ↓</a>)}<a href="/library/">搜索文章 ↗</a></nav>
+    <nav class="directory-jump" aria-label="知识目录章节">{topics.map(topic => <a href={`#${topic.id}`}>{topic.title} ↓</a>)}<a href="/library/">搜索文章 ↗</a><a href="/graph/">进入知识星图 ↗</a></nav>
     <div class="knowledge-tree">
       {topics.map((topic,index) => {
         const children = series.filter(item => item.topic === topic.id);

@@ -22,3 +22,15 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Obsidian
+.obsidian/
+assets/
+/templates/
+/writing/
+
+# Local private writing (never publish or commit)
+src/content/private-writing/
+
+# Local architecture index and work memory
+graphify-out/

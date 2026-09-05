@@ -1,0 +1,508 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getKnowledgeGraph } from '../../lib/knowledgeGraph';
+
+const graph = await getKnowledgeGraph();
+const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
+---
+
+<BaseLayout title="知识星图｜大飞随笔" description="从主题、系列、关键词与正文引用出发，在一张可缩放的知识地图中探索文章。">
+  <div class="graph-page">
+    <section class="graph-experience" data-graph-root aria-labelledby="graph-title">
+      <div class="graph-atmosphere" aria-hidden="true"></div>
+      <header class="graph-heading">
+        <p class="eyebrow">Knowledge constellation</p>
+        <h1 id="graph-title">知识星图</h1>
+        <p class="graph-summary"><strong>{graph.stats.articles}</strong> 篇文章，<strong>{graph.stats.keywords}</strong> 个关键词，沿 <strong>{graph.links.length}</strong> 条真实关系彼此连接</p>
+      </header>
+
+      <div class="graph-search">
+        <label class="sr-only" for="graph-query">搜索文章、系列或主题</label>
+        <div class="search-field">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>
+          <input id="graph-query" type="search" autocomplete="off" placeholder="搜索文章、系列或主题" aria-controls="graph-search-results" aria-expanded="false" />
+          <kbd>⌘ K</kbd>
+        </div>
+        <div class="search-results" id="graph-search-results" role="listbox" hidden></div>
+      </div>
+
+      <div class="graph-canvas" data-graph-canvas tabindex="0" role="application" aria-describedby="graph-instructions" aria-label={`由 ${graph.nodes.length} 个可见节点、${graph.links.length} 条关系组成的可交互知识图谱`}></div>
+      <div class="graph-loading" data-graph-loading><span></span><p>正在组织知识星群…</p></div>
+      <p class="graph-error" data-graph-error hidden>图谱暂时没有完成渲染。你仍可以通过知识目录继续阅读。</p>
+
+      <div class="graph-status" aria-live="polite">
+        <span class="status-pulse" aria-hidden="true"></span><span data-graph-status>全局视野</span>
+        <button type="button" data-clear-focus hidden>返回全图</button>
+      </div>
+      <p class="graph-hint" id="graph-instructions"><span class="desktop-hint">拖动画布，滚轮缩放；悬停查看关系，点击文章阅读</span><span class="mobile-hint">单指拖动，双指缩放；点按文章阅读</span></p>
+
+      <div class="graph-controls" aria-label="图谱视图控制">
+        <button type="button" data-zoom="in" aria-label="放大图谱" title="放大">+</button>
+        <button type="button" data-zoom="out" aria-label="缩小图谱" title="缩小">−</button>
+        <button type="button" data-zoom="reset" aria-label="重置图谱视图" title="重置视图"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 7V3h4M4.7 4.8A7 7 0 1 1 3 11"></path></svg></button>
+      </div>
+
+      <button class="legend-toggle" type="button" data-legend-toggle aria-expanded="false" aria-controls="graph-legend"><span aria-hidden="true">?</span><span class="sr-only">查看图例</span></button>
+      <div class="graph-legend" id="graph-legend" data-graph-legend hidden>
+        <div><strong>节点</strong><span><i class="topic-node"></i>主题</span><span><i class="series-node"></i>系列</span><span><i class="keyword-node"></i>关键词</span><span><i class="article-node"></i>文章</span></div>
+        <div><strong>关系</strong><span><i class="belongs-line"></i>归属</span><span><i class="keyword-line"></i>关键词</span><span><i class="reference-line"></i>引用</span><span><i class="similarity-line"></i>相似</span></div>
+        <p>节点越大，连接越多。点击主题、系列或关键词聚焦局部；点击文章圆点或标题直接进入阅读。</p>
+      </div>
+
+      <aside class="node-panel" data-node-panel data-open="false" aria-hidden="true" aria-live="polite" aria-label="节点详情" inert>
+        <div class="panel-content" data-panel-content>
+          <div class="panel-top"><p class="eyebrow" data-panel-kind></p><button type="button" data-panel-close aria-label="关闭节点详情">×</button></div>
+          <h2 data-panel-title></h2>
+          <p class="panel-description" data-panel-description></p>
+          <div class="panel-tags" data-panel-tags></div>
+          <a class="panel-primary" data-panel-link href="#">打开这篇内容 <span>↗</span></a>
+          <div class="panel-relations"><div><h3>直接关联</h3><span data-panel-count></span></div><ul data-panel-relations></ul></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="graph-notes" aria-labelledby="graph-notes-title">
+      <header><h2 id="graph-notes-title">不是目录的另一种画法，<br />而是文章之间的上下文。</h2></header>
+      <div class="graph-note-grid">
+        <article><h3>从领域进入</h3><p>较大的铜橙色节点代表主题。点击它，镜头会聚焦这一知识区域，但不会割裂它与全局的联系。</p></article>
+        <article><h3>沿系列深入</h3><p>青绿色节点代表系列。围绕它排列的文章形成一条由浅入深的阅读路径。</p></article>
+        <article><h3>从关键词横向探索</h3><p>金色关键词把不同系列的文章连接起来；点击它会展开局部关系，再从文章标题直接进入阅读。</p></article>
+      </div>
+      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容实时生成。每个系列或主题先成为一个局部圆，相关文章和关键词围绕语义中心排列；这些局部圆再依据引用、共享标签和主题归属相互靠近，共同构成全局大圆。边界不直接绘制，而由节点和连线自然显现。</p></details>
+      <details class="graph-method graph-automation"><summary>新增文章后，图谱如何更新？</summary><p>把 Markdown 放入文章目录并保存即可。开发模式会随内容变更重新生成；正式发布时，构建过程会重新扫描全部文章，计算节点、关系、主题分区和二维坐标，再校验每篇文章都已进入图谱。独立文章不需要维护额外清单，只有加入有顺序的系列时才需要指定章节位置。</p></details>
+    </section>
+  </div>
+  <script type="application/json" id="knowledge-graph-data" set:html={serializedGraph}></script>
+</BaseLayout>
+
+<script>
+  import Graph from 'graphology';
+  import Sigma from 'sigma';
+
+  const root = document.querySelector('[data-graph-root]');
+  const canvas = root?.querySelector('[data-graph-canvas]');
+  const dataElement = document.querySelector('#knowledge-graph-data');
+
+  if (root instanceof HTMLElement && canvas instanceof HTMLElement && dataElement?.textContent) {
+    const graphData = JSON.parse(dataElement.textContent);
+    const nodeById = new Map(graphData.nodes.map((node) => [node.id, node]));
+    const relationNames = { topic: '主题归属', series: '系列归属', keyword: '关键词关联', reference: '正文引用', similarity: '共享标签' };
+    const kindNames = { topic: '阅读主题', series: '文章系列', keyword: '关键词', article: '文章' };
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const network = new Graph({ type: 'undirected', multi: true });
+
+    const graphLabel = (title) => title.length > 20 ? `${title.slice(0, 19)}…` : title;
+    for (const node of graphData.nodes) {
+      network.addNode(node.id, {
+        x: node.x ?? 0,
+        y: node.y ?? 0,
+        label: graphLabel(node.title),
+        labelSide: node.labelSide ?? 'right',
+        clusterId: node.clusterId,
+        kind: node.kind,
+        degree: node.degree,
+        size: node.kind === 'topic' ? 10 + Math.sqrt(node.degree) * 1.1 : node.kind === 'series' ? 7 + Math.sqrt(node.degree) * .92 : node.kind === 'keyword' ? 4.5 + Math.sqrt(node.degree) * .68 : 3.9 + Math.sqrt(node.degree) * .78,
+        zIndex: node.kind === 'topic' ? 4 : node.kind === 'series' ? 3 : node.kind === 'keyword' ? 2 : 1,
+      });
+    }
+    for (const link of graphData.links) {
+      network.addEdgeWithKey(link.id, link.source, link.target, {
+        relation: link.relation,
+        weight: link.relation === 'topic' ? 3.4 : link.relation === 'series' ? 2.8 : link.relation === 'reference' ? 1.35 : link.relation === 'keyword' ? .48 : .72,
+        size: link.relation === 'reference' ? 1.15 : link.relation === 'similarity' ? .65 : link.relation === 'keyword' ? .42 : .85,
+      });
+    }
+
+    let renderer;
+    let hoveredId = null;
+    let selectedId = null;
+    let focusIds = null;
+    let neighborIds = new Set();
+    let visitedIds = new Set();
+    try { visitedIds = new Set(JSON.parse(localStorage.getItem('knowledge-graph-visited') || '[]')); } catch {}
+
+    const palette = () => document.documentElement.dataset.theme === 'dark'
+      ? { topic: '#df7958', series: '#7caea4', keyword: '#c6a66a', article: '#bbb8b0', visited: '#9b8aba', muted: '#343530', edge: '#353833', keywordEdge: '#6b604c', reference: '#a95c43', similarity: '#4f7770', label: '#e7e5df' }
+      : { topic: '#b84d2e', series: '#3f756c', keyword: '#9a773d', article: '#79766f', visited: '#77618d', muted: '#d5d1c9', edge: '#d0ccc4', keywordEdge: '#b8aa8d', reference: '#b9654b', similarity: '#6d948d', label: '#302f2b' };
+    const nodeColor = (node, colors = palette()) => visitedIds.has(node.id) && node.kind === 'article' ? colors.visited : colors[node.kind];
+    const edgeColor = (relation, colors = palette()) => relation === 'reference' ? colors.reference : relation === 'similarity' ? colors.similarity : relation === 'keyword' ? colors.keywordEdge : colors.edge;
+    const activeId = () => hoveredId || selectedId;
+    const refreshRelations = () => {
+      const active = activeId();
+      neighborIds = new Set(active ? network.neighbors(active) : []);
+      renderer?.scheduleRefresh();
+    };
+
+    try {
+      const colors = palette();
+      network.forEachNode((id) => network.mergeNodeAttributes(id, { color: nodeColor(nodeById.get(id), colors), labelColor: colors.label }));
+      network.forEachEdge((id, attrs) => network.mergeEdgeAttributes(id, { color: edgeColor(attrs.relation, colors) }));
+
+      const drawNodeLabel = (context, data, settings) => {
+        if (!data.label) return;
+        const left = data.labelSide === 'left';
+        context.fillStyle = data.labelColor || colors.label;
+        context.font = `${settings.labelWeight} ${settings.labelSize}px ${settings.labelFont}`;
+        context.textAlign = left ? 'right' : 'left';
+        context.textBaseline = 'middle';
+        context.fillText(data.label, data.x + (left ? -data.size - 4 : data.size + 4), data.y);
+      };
+
+      renderer = new Sigma(network, canvas, {
+        defaultDrawNodeLabel: drawNodeLabel,
+        defaultNodeColor: colors.article,
+        defaultEdgeColor: colors.edge,
+        edgeReducer: (edge, attrs) => {
+          const [source, target] = network.extremities(edge);
+          const active = activeId();
+          if (active && source !== active && target !== active) return { ...attrs, hidden: true };
+          if (focusIds && !focusIds.has(source) && !focusIds.has(target)) return { ...attrs, hidden: true };
+          return { ...attrs, size: active ? Math.max(1.25, attrs.size) : attrs.size, zIndex: active ? 2 : 0 };
+        },
+        hideEdgesOnMove: false,
+        labelColor: { attribute: 'labelColor', color: colors.label },
+        labelDensity: 1.08,
+        labelFont: "'PingFang SC', 'Hiragino Sans GB', system-ui, sans-serif",
+        labelGridCellSize: 112,
+        labelRenderedSizeThreshold: 7.2,
+        labelSize: 9.5,
+        labelWeight: '500',
+        maxCameraRatio: 1.22,
+        minCameraRatio: .085,
+        minEdgeThickness: .45,
+        nodeReducer: (id, attrs) => {
+          const node = nodeById.get(id);
+          const active = activeId();
+          const inActiveNeighborhood = !active || id === active || neighborIds.has(id);
+          const inFocus = !focusIds || focusIds.has(id);
+          const muted = !inActiveNeighborhood || !inFocus;
+          return {
+            ...attrs,
+            color: muted ? palette().muted : nodeColor(node),
+            label: muted ? '' : attrs.label,
+            forceLabel: id === active || neighborIds.has(id) || (!focusIds && node.kind === 'topic'),
+            highlighted: id === active,
+            size: id === active ? attrs.size * 1.5 : attrs.size,
+            zIndex: id === active ? 9 : inActiveNeighborhood && active ? 7 : attrs.zIndex,
+          };
+        },
+        stagePadding: innerWidth < 760 ? 34 : 70,
+        zIndex: true,
+      });
+      const layoutRadius = graphData.layout?.radius ?? 210;
+      renderer.setCustomBBox({ x: [-layoutRadius, layoutRadius], y: [-layoutRadius, layoutRadius] });
+      const camera = renderer.getCamera();
+      const exposeCameraRatio = ({ ratio }) => { root.dataset.cameraRatio = ratio.toFixed(4); };
+      camera.on('updated', exposeCameraRatio);
+      exposeCameraRatio(camera.getState());
+
+      const markVisited = (id) => {
+        visitedIds.add(id);
+        try { localStorage.setItem('knowledge-graph-visited', JSON.stringify([...visitedIds].slice(-120))); } catch {}
+      };
+      const linkedTo = (id) => graphData.links
+        .filter((link) => link.source === id || link.target === id)
+        .map((link) => ({ link, node: nodeById.get(link.source === id ? link.target : link.source) }))
+        .filter((item) => item.node)
+        .sort((a, b) => b.link.weight - a.link.weight || a.node.title.localeCompare(b.node.title, 'zh-CN'));
+
+      const panel = root.querySelector('[data-node-panel]');
+      const panelTitle = root.querySelector('[data-panel-title]');
+      const panelKind = root.querySelector('[data-panel-kind]');
+      const panelDescription = root.querySelector('[data-panel-description]');
+      const panelTags = root.querySelector('[data-panel-tags]');
+      const panelLink = root.querySelector('[data-panel-link]');
+      const panelCount = root.querySelector('[data-panel-count]');
+      const panelRelations = root.querySelector('[data-panel-relations]');
+      const graphStatus = root.querySelector('[data-graph-status]');
+      const clearFocus = root.querySelector('[data-clear-focus]');
+
+      const syncUrl = () => {
+        const url = new URL(location.href);
+        if (selectedId) { url.searchParams.set('node', selectedId); url.searchParams.set('view', 'local'); }
+        else { url.searchParams.delete('node'); url.searchParams.delete('view'); }
+        history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+      };
+      const updatePanel = (id) => {
+        const node = id && nodeById.get(id);
+        panel.dataset.open = node ? 'true' : 'false'; panel.setAttribute('aria-hidden', node ? 'false' : 'true'); panel.inert = !node;
+        if (!node) return;
+        const links = linkedTo(id);
+        panelKind.textContent = kindNames[node.kind]; panelTitle.textContent = node.title;
+        panelDescription.textContent = node.description || '从这里继续探索与它直接相连的内容。';
+        panelTags.replaceChildren(...node.tags.slice(0, 5).map((tag) => { const item = document.createElement('span'); item.textContent = tag; return item; }));
+        panelLink.href = node.href;
+        panelLink.firstChild.textContent = node.kind === 'article' ? '阅读这篇文章 ' : node.kind === 'series' ? '打开系列目录 ' : node.kind === 'keyword' ? '查看关键词文章 ' : '打开主题目录 ';
+        panelCount.textContent = `${links.length} 条`;
+        panelRelations.replaceChildren(...links.slice(0, 9).map(({ link, node: target }) => {
+          const item = document.createElement('li'); const button = document.createElement('button');
+          button.type = 'button'; button.dataset.nodeId = target.id;
+          const meta = document.createElement('span'); meta.textContent = `${relationNames[link.relation]} · ${link.reasons.join('、')}`;
+          const title = document.createElement('strong'); title.textContent = target.title;
+          button.append(meta, title); item.append(button); return item;
+        }));
+      };
+      const moveCamera = (ids) => requestAnimationFrame(() => {
+        const points = [...ids].map((id) => renderer.getNodeDisplayData(id)).filter(Boolean);
+        if (!points.length) return;
+        const xs = points.map((point) => point.x); const ys = points.map((point) => point.y);
+        const minX = Math.min(...xs); const maxX = Math.max(...xs); const minY = Math.min(...ys); const maxY = Math.max(...ys);
+        const ratio = Math.max(.46, Math.min(.92, Math.max(maxX - minX, maxY - minY) * 1.8 || .5));
+        const state = {
+          x: (minX + maxX) / 2 + (innerWidth > 760 ? ratio * .14 : 0),
+          y: (minY + maxY) / 2 - (innerWidth <= 760 ? ratio * .1 : 0),
+          ratio,
+        };
+        if (reducedMotion) camera.setState(state);
+        else camera.animate(state, { duration: 720, easing: 'quadraticInOut' });
+      });
+      const setSelection = (id, { move = true, sync = true } = {}) => {
+        if (!nodeById.has(id)) return;
+        const selected = nodeById.get(id);
+        const regionalIds = selected.kind === 'topic'
+          ? graphData.nodes.filter((node) => node.topicId === selected.topicId).map((node) => node.id)
+          : graphData.nodes.filter((node) => node.clusterId === selected.clusterId).map((node) => node.id);
+        selectedId = id; focusIds = new Set([id, ...regionalIds, ...network.neighbors(id)]);
+        graphStatus.textContent = nodeById.get(id).title; clearFocus.hidden = false;
+        updatePanel(id); refreshRelations(); if (move) moveCamera(focusIds); if (sync) syncUrl();
+      };
+      const resetView = ({ sync = true } = {}) => {
+        selectedId = null; hoveredId = null; focusIds = null; neighborIds = new Set();
+        graphStatus.textContent = '全局视野'; clearFocus.hidden = true; panel.dataset.open = 'false'; panel.setAttribute('aria-hidden', 'true'); panel.inert = true; renderer.scheduleRefresh();
+        if (reducedMotion) camera.setState({ x: .5, y: .5, ratio: 1, angle: 0 });
+        else camera.animatedReset({ duration: 620, easing: 'quadraticInOut' });
+        if (sync) syncUrl();
+      };
+
+      const activateNode = (id) => {
+        const item = nodeById.get(id);
+        if (!item) return;
+        if (item.kind === 'article') { markVisited(id); location.assign(item.href); }
+        else setSelection(id);
+      };
+
+      // Sigma hit-tests circles, while labels live on a separate canvas. Treat the
+      // visible title bounds as part of the node so clicking a title opens it too.
+      const labelMeasure = document.createElement('canvas').getContext('2d');
+      const labelAt = ({ x, y }) => {
+        if (!labelMeasure) return null;
+        const settings = renderer.getSettings();
+        labelMeasure.font = `${settings.labelWeight} ${settings.labelSize}px ${settings.labelFont}`;
+        for (const id of [...renderer.getNodeDisplayedLabels()].reverse()) {
+          const data = renderer.getNodeDisplayData(id);
+          if (!data?.label) continue;
+          const point = renderer.framedGraphToViewport(data);
+          const size = renderer.scaleSize(data.size);
+          const width = labelMeasure.measureText(data.label).width;
+          const left = data.labelSide === 'left' ? point.x - size - 5 - width : point.x + size + 3;
+          const right = data.labelSide === 'left' ? point.x - size - 3 : left + width + 2;
+          if (x >= left - 5 && x <= right + 5 && y >= point.y - settings.labelSize - 5 && y <= point.y + settings.labelSize + 5) return id;
+        }
+        return null;
+      };
+
+      let pointerOnNode = false;
+      const updatePointer = (pointerOnLabel = false) => { canvas.dataset.interactive = String(pointerOnNode || pointerOnLabel); };
+
+      renderer.on('enterNode', ({ node }) => { pointerOnNode = true; updatePointer(); hoveredId = node; refreshRelations(); });
+      renderer.on('leaveNode', () => { pointerOnNode = false; updatePointer(); hoveredId = null; refreshRelations(); });
+      renderer.on('clickNode', ({ node, event }) => {
+        event.preventSigmaDefault();
+        activateNode(node);
+      });
+      renderer.on('clickStage', ({ event }) => {
+        const labelNode = labelAt(event);
+        if (labelNode) { event.preventSigmaDefault(); activateNode(labelNode); return; }
+        hoveredId = null; refreshRelations();
+      });
+      renderer.getMouseCaptor().on('mousemove', (event) => updatePointer(Boolean(labelAt(event))));
+
+      root.querySelector('[data-panel-close]')?.addEventListener('click', () => resetView());
+      clearFocus?.addEventListener('click', () => resetView());
+      panelRelations?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-node-id]'); if (!button) return;
+        const node = nodeById.get(button.dataset.nodeId);
+        activateNode(node.id);
+      });
+      panelLink?.addEventListener('click', () => { if (selectedId && nodeById.get(selectedId)?.kind === 'article') markVisited(selectedId); });
+      root.querySelectorAll('[data-zoom]').forEach((button) => button.addEventListener('click', () => {
+        const action = button.dataset.zoom;
+        if (action === 'reset') resetView();
+        else if (action === 'in') camera.animatedZoom({ factor: 1.3, duration: reducedMotion ? 1 : 260 });
+        else camera.animatedUnzoom({ factor: 1.3, duration: reducedMotion ? 1 : 260 });
+      }));
+
+      const query = root.querySelector('#graph-query');
+      const results = root.querySelector('#graph-search-results');
+      const closeResults = () => { results.hidden = true; query.setAttribute('aria-expanded', 'false'); };
+      const search = () => {
+        const value = query.value.trim().toLocaleLowerCase('zh-CN'); if (!value) return closeResults();
+        const matches = graphData.nodes.filter((node) => `${node.title} ${node.description} ${node.tags.join(' ')}`.toLocaleLowerCase('zh-CN').includes(value)).sort((a, b) => b.degree - a.degree).slice(0, 7);
+        results.replaceChildren(...matches.map((node) => {
+          const button = document.createElement('button'); button.type = 'button'; button.role = 'option'; button.dataset.nodeId = node.id;
+          const type = document.createElement('span'); type.textContent = kindNames[node.kind]; const title = document.createElement('strong'); title.textContent = node.title;
+          button.append(type, title); return button;
+        }));
+        if (!matches.length) { const empty = document.createElement('p'); empty.textContent = '没有找到匹配节点'; results.append(empty); }
+        results.hidden = false; query.setAttribute('aria-expanded', 'true');
+      };
+      query?.addEventListener('input', search);
+      results?.addEventListener('click', (event) => {
+        const button = event.target.closest('[data-node-id]'); if (!button) return;
+        const node = nodeById.get(button.dataset.nodeId); query.value = node.title; closeResults();
+        activateNode(node.id);
+      });
+
+      const legendToggle = root.querySelector('[data-legend-toggle]');
+      const legend = root.querySelector('[data-graph-legend]');
+      legendToggle?.addEventListener('click', () => { const open = legend.hidden; legend.hidden = !open; legendToggle.setAttribute('aria-expanded', String(open)); });
+      document.addEventListener('click', (event) => {
+        if (!root.querySelector('.graph-search')?.contains(event.target)) closeResults();
+        if (!legend.contains(event.target) && !legendToggle.contains(event.target)) { legend.hidden = true; legendToggle.setAttribute('aria-expanded', 'false'); }
+      });
+      document.addEventListener('keydown', (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); query?.focus(); }
+        if (event.key === 'Escape') { closeResults(); query?.blur(); if (selectedId) resetView(); }
+      });
+
+      const requestedNode = new URL(location.href).searchParams.get('node');
+      if (requestedNode && nodeById.has(requestedNode)) setSelection(requestedNode, { move: true, sync: false });
+      root.querySelector('[data-graph-loading]')?.setAttribute('hidden', '');
+      window.addEventListener('site-theme-change', () => {
+        const next = palette();
+        network.forEachNode((id) => network.mergeNodeAttributes(id, { color: nodeColor(nodeById.get(id), next), labelColor: next.label }));
+        network.forEachEdge((id, attrs) => network.mergeEdgeAttributes(id, { color: edgeColor(attrs.relation, next) }));
+        renderer.setSettings({ defaultNodeColor: next.article, defaultEdgeColor: next.edge, labelColor: { attribute: 'labelColor', color: next.label } });
+      });
+    } catch (error) {
+      console.error('Knowledge graph failed to initialize', error);
+      root.querySelector('[data-graph-loading]')?.setAttribute('hidden', ''); root.querySelector('[data-graph-error]')?.removeAttribute('hidden');
+    }
+  }
+</script>
+
+<style>
+  .graph-page { width: 100%; overflow: clip; }
+  .graph-experience { position: relative; width: 100%; height: max(660px, calc(100dvh - 64px)); min-height: 660px; overflow: hidden; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 94%, var(--surface)); isolation: isolate; }
+  .graph-atmosphere { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(circle at 50% 52%, color-mix(in srgb, var(--accent-soft) 18%, transparent), transparent 62%); mask-image: linear-gradient(to bottom, #000 0 82%, transparent 100%); }
+  .graph-heading { position: absolute; z-index: 6; top: clamp(24px, 4vw, 46px); left: max(var(--page-gutter), calc(50vw - 720px)); pointer-events: none; }
+  .graph-heading h1 { margin: 7px 0 8px; font: 400 clamp(35px, 4vw, 52px)/1.06 var(--display); letter-spacing: -.05em; }
+  .graph-summary { margin: 0; color: var(--text-soft); font-size: 11px; letter-spacing: .02em; }
+  .graph-summary strong { color: var(--text); font-weight: 600; }
+  .graph-canvas { position: absolute; inset: 0; cursor: grab; touch-action: none; }
+  .graph-canvas:active { cursor: grabbing; }
+  .graph-canvas[data-interactive='true'], .graph-canvas[data-interactive='true']:active { cursor: pointer; }
+  .graph-canvas:focus-visible { outline-offset: -5px; }
+  .graph-search { position: absolute; z-index: 9; top: clamp(24px, 4vw, 46px); right: max(var(--page-gutter), calc(50vw - 720px)); width: min(340px, calc(100vw - 40px)); }
+  .search-field { height: 43px; display: flex; align-items: center; gap: 10px; padding: 0 12px; border: 1px solid color-mix(in srgb, var(--line-strong) 82%, transparent); background: color-mix(in srgb, var(--bg) 80%, transparent); box-shadow: 0 8px 30px color-mix(in srgb, #000 8%, transparent); backdrop-filter: blur(18px) saturate(1.15); }
+  .search-field:focus-within { border-color: color-mix(in srgb, var(--accent) 72%, var(--line)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-soft) 55%, transparent); }
+  .search-field svg { width: 16px; flex: 0 0 16px; fill: none; stroke: var(--text-soft); stroke-width: 1.4; }
+  .search-field input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 12px; }
+  .search-field input::placeholder { color: var(--text-muted); }
+  .search-field kbd { padding: 3px 5px; border: 1px solid var(--line); color: var(--text-muted); font: 8px var(--mono); white-space: nowrap; }
+  .search-results { position: absolute; top: 50px; right: 0; width: 100%; padding: 7px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 95%, transparent); box-shadow: 0 22px 55px color-mix(in srgb, #000 18%, transparent); backdrop-filter: blur(20px); }
+  .search-results :global(button) { width: 100%; padding: 10px; display: grid; grid-template-columns: 54px 1fr; gap: 9px; border: 0; background: transparent; color: var(--text); text-align: left; cursor: pointer; }
+  .search-results :global(button:hover), .search-results :global(button:focus-visible) { background: var(--surface); }
+  .search-results :global(span) { color: var(--accent); font: 8px var(--mono); }
+  .search-results :global(strong) { overflow: hidden; font-size: 11px; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+  .search-results :global(p) { margin: 0; padding: 16px 10px; color: var(--text-soft); font-size: 11px; }
+  .graph-loading { position: absolute; z-index: 5; inset: 0; display: grid; place-content: center; justify-items: center; background: color-mix(in srgb, var(--bg) 86%, transparent); color: var(--text-soft); font: 9px var(--mono); letter-spacing: .1em; backdrop-filter: blur(3px); }
+  .graph-loading span { width: 42px; height: 42px; border: 1px solid var(--line-strong); border-top-color: var(--accent); border-radius: 50%; animation: orbit 1.1s linear infinite; }
+  .graph-error { position: absolute; z-index: 10; left: var(--page-gutter); top: 120px; max-width: 420px; padding: 14px; border: 1px solid var(--line); background: var(--bg); color: var(--text-soft); font-size: 12px; }
+  .graph-status { position: absolute; z-index: 6; left: max(var(--page-gutter), calc(50vw - 720px)); bottom: 28px; height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 11px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text-soft); font: 9px var(--mono); backdrop-filter: blur(14px); }
+  .status-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .graph-status button { margin-left: 5px; padding: 0 0 1px; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--accent); font-size: 9px; cursor: pointer; }
+  .graph-hint { position: absolute; z-index: 4; left: 50%; bottom: 34px; margin: 0; transform: translateX(-50%); color: var(--text-muted); font: 8px var(--mono); letter-spacing: .04em; pointer-events: none; white-space: nowrap; }
+  .mobile-hint { display: none; }
+  .graph-controls { position: absolute; z-index: 7; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 28px; display: flex; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); }
+  .graph-controls button { width: 36px; height: 34px; display: grid; place-items: center; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--text); font-size: 17px; cursor: pointer; }
+  .graph-controls button:last-child { border: 0; }
+  .graph-controls button:hover { background: var(--surface); color: var(--accent); }
+  .graph-controls svg { width: 14px; fill: none; stroke: currentColor; stroke-width: 1.45; }
+  .legend-toggle { position: absolute; z-index: 8; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 70px; width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 82%, transparent); color: var(--text-soft); font: 11px var(--mono); cursor: pointer; backdrop-filter: blur(14px); }
+  .legend-toggle:hover { color: var(--accent); }
+  .graph-legend { position: absolute; z-index: 10; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 112px; width: min(370px, calc(100vw - 40px)); padding: 16px; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 94%, transparent); box-shadow: 0 20px 55px color-mix(in srgb, #000 17%, transparent); color: var(--text-soft); font-size: 10px; backdrop-filter: blur(20px); }
+  .graph-legend > div { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 13px; }
+  .graph-legend > div + div { margin-top: 12px; }
+  .graph-legend strong { min-width: 32px; color: var(--text); font-size: 10px; }
+  .graph-legend span { display: inline-flex; align-items: center; gap: 5px; }
+  .graph-legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--text-soft); }
+  .graph-legend .topic-node { width: 10px; height: 10px; background: var(--accent); }
+  .graph-legend .series-node { background: #4d837a; }
+  .graph-legend .keyword-node { background: #a98548; }
+  .graph-legend .article-node { width: 6px; height: 6px; }
+  .graph-legend .belongs-line, .graph-legend .keyword-line, .graph-legend .reference-line, .graph-legend .similarity-line { width: 18px; height: 0; border-radius: 0; border-top: 1px solid var(--line-strong); background: none; }
+  .graph-legend .keyword-line { border-color: #a98548; opacity: .72; }
+  .graph-legend .reference-line { border-color: var(--accent); border-style: dotted; }
+  .graph-legend .similarity-line { border-color: #568078; border-style: dashed; }
+  .graph-legend p { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 10px; line-height: 1.7; }
+  .node-panel { position: absolute; z-index: 11; top: 112px; right: max(var(--page-gutter), calc(50vw - 720px)); bottom: 112px; width: 350px; overflow: auto; border: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 91%, transparent); box-shadow: 0 26px 80px color-mix(in srgb, #000 16%, transparent); backdrop-filter: blur(24px) saturate(1.08); transform: translateX(calc(100% + 48px)); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.22,.8,.22,1), opacity .25s ease; }
+  .node-panel[data-open='true'] { transform: translateX(0); opacity: 1; pointer-events: auto; }
+  .panel-content { padding: 24px 22px; }
+  .panel-top { display: flex; justify-content: space-between; align-items: start; gap: 20px; }
+  .panel-top button { width: 29px; height: 29px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--text-soft); font-size: 18px; cursor: pointer; }
+  .panel-top button:hover { color: var(--accent); border-color: var(--accent); }
+  .panel-content h2 { margin: 15px 0 12px; font: 400 25px/1.34 var(--display); letter-spacing: -.025em; }
+  .panel-description { margin: 0; color: var(--text-soft); font-size: 11.5px; line-height: 1.85; }
+  .panel-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 17px; }
+  .panel-tags :global(span) { padding: 4px 6px; border: 1px solid var(--line); color: var(--text-soft); font-size: 8px; }
+  .panel-primary { margin-top: 22px; padding: 12px 0; display: flex; justify-content: space-between; border-block: 1px solid var(--line); color: var(--accent); font-size: 11px; text-decoration: none; }
+  .panel-relations { margin-top: 25px; }
+  .panel-relations > div { display: flex; justify-content: space-between; align-items: baseline; }
+  .panel-relations h3 { margin: 0; font-size: 11px; font-weight: 600; }
+  .panel-relations > div span { color: var(--text-muted); font: 8px var(--mono); }
+  .panel-relations ul { margin: 12px 0 0; padding: 0; list-style: none; }
+  .panel-relations :global(li) { border-top: 1px solid var(--line); }
+  .panel-relations :global(button) { width: 100%; padding: 12px 0; display: block; border: 0; background: transparent; color: var(--text); text-align: left; cursor: pointer; }
+  .panel-relations :global(button:hover strong) { color: var(--accent); transform: translateX(3px); }
+  .panel-relations :global(button span) { display: block; overflow: hidden; color: var(--text-muted); font: 8px var(--mono); text-overflow: ellipsis; white-space: nowrap; }
+  .panel-relations :global(button strong) { display: block; margin-top: 5px; font-size: 10.5px; font-weight: 500; line-height: 1.55; transition: color .2s, transform .2s; }
+  .graph-notes { width: var(--page); margin: 0 auto; padding: clamp(68px, 8vw, 104px) 0 36px; display: grid; grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr); gap: clamp(48px, 8vw, 110px); }
+  .graph-notes h2 { margin: 0; font: 400 clamp(29px, 3vw, 39px)/1.28 var(--display); letter-spacing: -.035em; }
+  .graph-note-grid { display: grid; grid-template-columns: 1.08fr .92fr; border-top: 1px solid var(--line); }
+  .graph-note-grid article { padding: 22px 19px 0 0; }
+  .graph-note-grid article + article { padding-left: 19px; border-left: 1px solid var(--line); }
+  .graph-note-grid article:nth-child(3) { grid-column: 1 / -1; margin-top: 21px; padding: 21px 0 0; border-top: 1px solid var(--line); border-left: 0; }
+  .graph-note-grid h3 { margin: 0 0 9px; font-size: 13px; font-weight: 500; }
+  .graph-note-grid p, .graph-method p { margin: 0; color: var(--text-soft); font-size: 11px; line-height: 1.85; }
+  .graph-method { grid-column: 2; margin-top: 4px; padding-top: 17px; border-top: 1px solid var(--line); }
+  .graph-automation { margin-top: -1px; }
+  .graph-method summary { color: var(--text-soft); font-size: 10.5px; cursor: pointer; }
+  .graph-method p { margin-top: 13px; max-width: 760px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  @keyframes orbit { to { transform: rotate(360deg); } }
+  @media (max-width: 900px) {
+    .graph-heading { top: 25px; }
+    .graph-heading h1 { font-size: 38px; }
+    .graph-search { top: 110px; left: var(--page-gutter); right: auto; width: min(340px, calc(100vw - var(--page-gutter) * 2)); }
+    .node-panel { top: 168px; width: min(350px, calc(100vw - var(--page-gutter) * 2)); }
+    .graph-hint { display: none; }
+    .graph-notes { grid-template-columns: 1fr; gap: 35px; }
+    .graph-method { grid-column: 1; }
+  }
+  @media (max-width: 640px) {
+    .graph-experience { height: calc(100dvh - 60px); min-height: 620px; }
+    .graph-heading { top: 20px; left: 16px; }
+    .graph-heading .eyebrow { font-size: 8px; }
+    .graph-heading h1 { margin-top: 5px; font-size: 32px; }
+    .graph-summary { font-size: 9px; }
+    .graph-search { top: 103px; left: 14px; width: calc(100vw - 28px); }
+    .search-field kbd { display: none; }
+    .graph-status { left: 14px; bottom: 18px; max-width: calc(100vw - 164px); overflow: hidden; }
+    .graph-status > span:nth-child(2) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .graph-controls { right: 48px; bottom: 18px; }
+    .legend-toggle { right: 14px; bottom: 18px; }
+    .graph-legend { right: 14px; bottom: 63px; width: calc(100vw - 28px); }
+    .node-panel { top: auto; right: 10px; bottom: 62px; width: calc(100vw - 20px); max-height: min(42vh, 360px); transform: translateY(calc(100% + 80px)); }
+    .node-panel[data-open='true'] { transform: translateY(0); }
+    .panel-content { padding: 20px 18px; }
+    .panel-content h2 { font-size: 22px; }
+    .mobile-hint { display: inline; }
+    .graph-notes { padding-top: 58px; }
+    .graph-note-grid { grid-template-columns: 1fr; }
+    .graph-note-grid article { padding: 19px 0; }
+    .graph-note-grid article + article { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+    .graph-note-grid article:nth-child(3) { grid-column: 1; margin-top: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .graph-loading span { animation: none; } .node-panel { transition: none; } }
+</style>

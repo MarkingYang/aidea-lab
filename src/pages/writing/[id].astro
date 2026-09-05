@@ -2,9 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArtalkComments from '../../components/ArtalkComments.astro';
 import MarkdownEnhancer from '../../components/MarkdownEnhancer.astro';
+import RelatedKnowledge from '../../components/RelatedKnowledge.astro';
 import 'katex/dist/katex.min.css';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import { getKnowledge, topics as knowledgeTopics, shortTitle, articleHref, dateLabel, stageLabel } from '../../lib/knowledge';
+import { getKnowledgeGraph, getRelatedArticles } from '../../lib/knowledgeGraph';
 
 export async function getStaticPaths() {
   const entries = await getCollection('writing');
@@ -29,6 +31,7 @@ const sectionHeadings=headings.filter(heading=>heading.depth===2);
 // Preserve portable Markdown navigation in source, suppress only the verified duplicate in this layout.
 const firstBlock=entry.body?.trimStart().split(/\n\s*\n/)[0] ?? '';
 const hasInlineSeriesNav=!!series && firstBlock.startsWith('> ') && firstBlock.includes('系列') && series.articles.every(item=>firstBlock.includes(articleHref(item.id)));
+const related=getRelatedArticles(await getKnowledgeGraph(),entry.id,4);
 ---
 
 <BaseLayout title={`${entry.data.title}｜大飞随笔`} description={entry.data.description} image={null} ogType="article">
@@ -69,6 +72,7 @@ const hasInlineSeriesNav=!!series && firstBlock.startsWith('> ') && firstBlock.i
       </aside>
       <div class:list={['prose', { 'has-inline-series-nav': hasInlineSeriesNav }]}><Content /></div>
     </div>
+    <RelatedKnowledge articleId={entry.id} related={related} />
     {series ? <nav class="article-pagination" aria-label="系列前后篇"><a href={previous ? articleHref(previous.id) : `/series/${series.id}/`} rel={previous?'prev':undefined}><small>{previous?'上一篇':'系列起点'}</small><span>{previous?shortTitle(previous.data.title):'回到全景目录'}</span></a><a href={next ? articleHref(next.id) : `/series/${series.id}/`} rel={next?'next':undefined}><small>{next?'下一篇 →':'全系列读毕 · 回看目录 →'}</small><span>{next?shortTitle(next.data.title):series.question}</span></a></nav> : <div class="article-pagination"><a href="/library/">← 返回文章目录</a><a href="/topics/">沿主题继续阅读 →</a></div>}
   </article>
 
