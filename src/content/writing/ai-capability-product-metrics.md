@@ -30,7 +30,7 @@ updatedAt: 2026-09-05
 ## 一张图先看清指标之间的关系
 
 ```mermaid
-flowchart TB
+flowchart LR
   U[用户工作与验收承诺] --> P[产品结果指标]
   P --> W[执行过程指标]
   W --> A[算法诊断指标]

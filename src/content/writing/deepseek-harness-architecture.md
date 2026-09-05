@@ -30,7 +30,7 @@ DeepSeek Harness 的核心问题不是“再加几个工具”，而是：**当�
 ## 总图：一个会行动的系统，需要两条不同主线
 
 ```mermaid
-flowchart TB
+flowchart LR
   U[用户目标与任务边界] --> A[Agent 执行循环]
   P[宿主配置与 Agent 配方] --> C[当前能力组合]
   C --> A

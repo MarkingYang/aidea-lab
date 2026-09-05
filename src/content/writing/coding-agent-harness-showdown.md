@@ -1,7 +1,8 @@
 ---
-title: Coding Agent Harness 对决：Claude Code、Codex 与三种开源答案
-description: 为什么相同模型装进不同 Harness 会像不同产品？从 Agent Loop、上下文、工具、验证、安全、并行和扩展七层，对比 Claude Code、Codex、Kimi Code、Hermes、Pi 与 DeepSeek Harness。
+title: Agent 工作系统全景（三）：Claude Code、Codex 与 Kimi Code 的 Harness 分歧
+description: 从循环、上下文、工具、验证、安全与协作出发，比较三种产品化 Coding Agent 的系统分歧。
 publishedAt: 2026-09-04
+updatedAt: 2026-09-05
 type: essay
 status: growing
 topics:
@@ -9,9 +10,11 @@ topics:
   - Agent Harness
   - Claude Code
   - Codex
-featured: false
-readingTime: 31 min
+featured: true
+readingTime: 10 min
 ---
+
+> 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
 
 如果只比较模型，Coding Agent 的产品差异会显得很小：无非是读文件、改代码、跑命令。但真实使用几天之后，差距往往不来自模型第一次写对了多少代码，而来自它如何理解项目、如何处理失败、如何证明完成、如何限制副作用，以及工作能否被另一个人接手。
 
@@ -20,16 +23,14 @@ readingTime: 31 min
 > [!IMPORTANT]
 > **结论先行：**Claude Code 与 Codex 目前是完成度最高的两种答案。Claude Code 更像一套可编程的工程制度，强在上下文、Skills、Hooks、MCP、Subagents 与权限体系的组合；Codex 更像 Agent 工作操作系统，强在本地与云端连续性、多任务监督、Worktree 隔离、Review 和 Automations。Kimi Code 是最有代表性的国产追赶者；Hermes、Pi、DeepSeek Harness 则分别代表“丰富自治”“极简内核”“万物插件”三条开源路线。
 
-本文是[八强竞品全景](/writing/ai-agent-landscape-2026/)的第二篇，也可以与[Anthropic Harness 建设](/writing/anthropic-harness/)配合阅读。
-
-## 一、Harness 到底在解决什么
+## Harness 到底在解决什么
 
 OpenAI 在[拆解 Codex Agent Loop](https://openai.com/index/unrolling-the-codex-agent-loop/)时，把 Harness 描述为连接用户、模型与工具的核心执行逻辑。Anthropic 的工程实践也反复强调，模型能力只有进入“收集上下文—行动—验证”的循环，才会成为可靠的 Agent 能力。
 
 一套成熟 Coding Agent 至少包含七层：
 
 ```mermaid
-flowchart TB
+flowchart LR
   I[交互与任务入口] --> C[上下文装配]
   C --> L[Agent Loop / 计划与纠偏]
   L --> T[文件、Shell、Web、MCP 工具]
@@ -40,9 +41,11 @@ flowchart TB
   O[并行、Session、Worktree、恢复] -.扩展.-> L
 ```
 
+*图 1｜Coding Agent Harness 的最小工作闭环。*
+
 模型决定“下一步想做什么”；Harness 决定模型看见什么、能做什么、做完如何验证、失败能否恢复。只看模型榜单，就像只看发动机马力来比较整辆车。
 
-## 二、七层对比：六款产品不是六种皮肤
+## 七层对比：六款产品不是六种皮肤
 
 | 层 | Claude Code | Codex | Kimi Code | Hermes | Pi | DeepSeek Harness |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -56,7 +59,7 @@ flowchart TB
 
 这张表最重要的信息不是谁的单元格更满，而是“默认产品意见”有多强。Claude Code、Codex 给出一套较完整的标准路径；Pi 故意不替用户决定；DeepSeek Harness 甚至允许替换路径本身。
 
-## 三、用户体验五要素：同一套功能为何成为不同产品
+## 用户体验五要素：同一套功能为何成为不同产品
 
 七层 Harness 表回答“系统由什么组成”，用户体验五要素则回答“用户如何感受到这套系统”。对 Coding Agent，五层应当从目标一路追踪到可见反馈，任何一层断裂都会让能力停留在 Demo。
 
@@ -82,7 +85,7 @@ flowchart TB
 
 五要素揭示了三个关键差异：Claude Code 把注意力放在“如何工作”，Codex 放在“如何监督工作”，Kimi Code 放在“模型与并行能力如何进入工作”；Hermes、Pi、DeepSeek Harness 则分别优化长期关系、最小控制和运行时可组合性。
 
-## 四、Claude Code：最像一套可执行的工程制度
+## Claude Code：最像一套可执行的工程制度
 
 Claude Code 的突出之处是，几乎每种“给 Agent 的信息”都有明确容器：
 
@@ -110,7 +113,7 @@ Claude Code 的能力面正在变大，配置体系也随之复杂。Skills、Pl
 
 更现实的限制是模型与商业服务绑定 Anthropic。CLI 的可配置性很强，不等于整套能力可以脱离 Claude 模型与 Anthropic 服务独立运行。
 
-## 五、Codex：最像多 Agent 时代的工作操作系统
+## Codex：最像多 Agent 时代的工作操作系统
 
 Codex 的产品重心已经从“一个终端 Agent”转向“人如何监督很多并行工作”。[Codex App](https://openai.com/index/introducing-the-codex-app/)把项目、线程、Worktree、Review 与 Automation 收进一个控制面；[Codex 云端 Agent](https://openai.com/index/introducing-codex/)则为每个任务准备隔离环境，并把结果交回审查。
 
@@ -130,7 +133,7 @@ Codex 的核心模型和云端控制面仍属于 OpenAI 生态。多 Agent 并�
 
 与 Claude Code 相比，Codex 的默认体验更偏“调度与接管”，Claude Code 的公开设计语言更偏“把团队工程方法编进 Harness”。两者不是简单的一强一弱，而是两个控制面中心不同。
 
-## 六、Kimi Code：模型—Harness 垂直整合的国产路线
+## Kimi Code：模型—Harness 垂直整合的国产路线
 
 Kimi Code 的战略意义大于“又一个 CLI”。月之暗面同时控制 Agentic 模型、API、Coding Agent 和 Kimi Work，因此可以让模型训练、工具协议和产品行为互相反馈。
 
@@ -145,255 +148,10 @@ Kimi 的强项是模型与产品联合优化、中文开发者体验、较低使
 
 因此，Kimi Code 是最值得进入实测名单的国内 Coding Agent，但不能仅凭模型参数或并发数量判定已经完成替代。
 
-## 七、Hermes、Pi、DeepSeek Harness：三种开源哲学
-
-### Hermes：Batteries included 的长期自治 Agent
-
-Hermes 默认提供的不是最小编码循环，而是一套可长期运行的个人 Agent：持久记忆、Skills、浏览器、消息平台、子 Agent、Checkpoint、Cron 和多模型 Provider。
-
-它最有辨识度的机制是把 Memory 与 Skills 分开：Memory 保存短小、常驻的事实，Skill 保存按需加载的程序性知识。Agent 可以从非平凡任务、错误修正和用户反馈中创建 Skill；用户也可以开启写入审批。参见[Hermes 功能总览](https://hermes-agent.nousresearch.com/docs/user-guide/features/overview)与[Skills 文档](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/)。
-
-这条路线特别适合个人自动化、跨渠道助理和重复工作积累，不应只用 Coding Agent 标尺评价。
-
-它的问题也来自“电池齐全”：能力越多，攻击面越大。官方安全文档提供危险命令审批、文件写入限制、容器隔离、MCP 凭证过滤、上下文扫描和跨 Session 隔离，但默认本地运行仍可能拥有当前用户的文件权限。部署者不能把“开源”误读为“默认安全”。
-
-### Pi：刻意保持空白的最小 Harness
-
-[Pi 官方文档](https://pi.dev/docs/latest)将自己定义为 minimal terminal coding harness。项目现由 Earendil Works 维护，原 `badlogic/pi-mono` 地址会重定向到 `earendil-works/pi`。默认只有少量文件与 Shell 工具；计划、待办、Subagents、MCP 和权限弹窗都不是强制内置，而由 Extensions、Skills、Packages、tmux 或外部隔离方案决定。
-
-这不是功能落后，而是一种架构立场：
-
-```text
-核心只保留普遍机制；工作流偏好、团队制度和安全策略由使用者显式添加。
-```
-
-Pi 适合 Harness 开发者、模型评测者和讨厌重型默认设置的高级用户。它也提供 RPC 与 SDK，便于嵌入自定义 UI 或流水线，参见[Pi SDK](https://pi.dev/docs/latest/sdk)。
-
-但“没有权限弹窗”不是安全特性。Pi 官方建议在容器中运行或自行构建确认流。对缺少平台工程能力的团队，极简会把产品复杂度转化为自建复杂度。
-
-### DeepSeek Harness：把运行时本身做成插件图
-
-DeepSeek Harness 的 Cordis 架构把模型、工具、文件访问、Agent Loop、Session、Sandbox、Storage、Scheduling 与 UI 都视为插件。Standard Mode 提供完整 Agent，Code Mode 让模型用代码编排多轮工具，Minimal Mode 用极少工具做基准，Creator Mode 用于检查和重组运行时。
-
-与 Pi 相比，Pi 是“稳定的小核心 + 外围扩展”，DeepSeek Harness 更接近“核心能力也可以被重新组合”。它对研究不同 Loop、工具暴露方式和运行时拓扑很有吸引力。
-
-但官方[README](https://github.com/deepseek-ai/deepseek-harness)明确写着 developer preview 和 compatibility-breaking changes。对生产采购而言，架构领先与运维成熟是两张不同的答卷。
-
-## 八、价值曲线：产品把资源投在了哪里
-
-价值曲线比较的是策略重心，而不是跑分。以下 1–5 分来自公开能力的编辑性编码：1 表示刻意弱化或并非核心，5 表示已经形成高投入、可辨识的产品机制。读图重点是曲线形状，而不是相差 1 分的精确性。
-
-### 产品化 Coding Agent 价值曲线
-
-```echarts
-{
-  "title": {
-    "text": "产品化 Coding Agent 价值曲线",
-    "subtext": "相对策略投入，1=非核心，5=高投入；截至 2026-09-04",
-    "left": "center"
-  },
-  "tooltip": { "trigger": "axis" },
-  "legend": {
-    "top": 50,
-    "data": ["Claude Code", "Codex", "Kimi Code"]
-  },
-  "grid": {
-    "left": 40,
-    "right": 24,
-    "top": 96,
-    "bottom": 60,
-    "containLabel": true
-  },
-  "xAxis": {
-    "type": "category",
-    "boundaryGap": false,
-    "data": ["工程\n闭环", "上下文\n可塑", "并行\n调度", "安全\n治理", "模型\n开放", "跨界\n工作"]
-  },
-  "yAxis": {
-    "type": "value",
-    "name": "相对投入",
-    "min": 1,
-    "max": 5,
-    "interval": 1
-  },
-  "series": [
-    {
-      "name": "Claude Code",
-      "type": "line",
-      "symbol": "circle",
-      "symbolSize": 8,
-      "lineStyle": { "width": 3, "color": "#b84d2e" },
-      "itemStyle": { "color": "#b84d2e" },
-      "data": [5, 5, 4, 5, 1, 3]
-    },
-    {
-      "name": "Codex",
-      "type": "line",
-      "symbol": "diamond",
-      "symbolSize": 9,
-      "lineStyle": { "width": 2, "type": "dashed", "color": "#77736d" },
-      "itemStyle": { "color": "#77736d" },
-      "data": [5, 4, 5, 5, 1, 4]
-    },
-    {
-      "name": "Kimi Code",
-      "type": "line",
-      "symbol": "emptyCircle",
-      "symbolSize": 9,
-      "lineStyle": { "width": 2, "color": "#9b756a" },
-      "itemStyle": { "color": "#9b756a" },
-      "data": [4, 3, 5, 3, 4, 4]
-    }
-  ]
-}
-```
-
-| 价值要素 | Claude Code | Codex | Kimi Code |
-| --- | ---: | ---: | ---: |
-| 工程闭环 | 5 | 5 | 4 |
-| 上下文可塑 | 5 | 4 | 3 |
-| 并行调度 | 4 | 5 | 5 |
-| 安全治理 | 5 | 5 | 3 |
-| 模型开放 | 1 | 1 | 4 |
-| 跨界工作 | 3 | 4 | 4 |
-
-Claude Code 的峰值在“上下文可塑与治理”，Codex 的曲线更偏“闭环与并行调度”，Kimi Code 则主动抬高“模型开放、并行和跨 Kimi 产品工作”。Kimi 若继续复制前两者的全部工程机制，曲线会趋同；更有战略价值的方向是把开放模型与中文知识工作形成真正不同的组合。
-
-### 开源 Harness 价值曲线
-
-```echarts
-{
-  "title": {
-    "text": "开源 Harness 价值曲线",
-    "subtext": "相对策略投入，1=非核心，5=高投入；截至 2026-09-04",
-    "left": "center"
-  },
-  "tooltip": { "trigger": "axis" },
-  "legend": {
-    "top": 50,
-    "data": ["Hermes", "Pi", "DeepSeek Harness"]
-  },
-  "grid": {
-    "left": 40,
-    "right": 24,
-    "top": 96,
-    "bottom": 60,
-    "containLabel": true
-  },
-  "xAxis": {
-    "type": "category",
-    "boundaryGap": false,
-    "data": ["开箱\n能力", "记忆与\n自动化", "核心\n精简", "运行时\n可组合", "默认\n安全", "生产\n成熟"]
-  },
-  "yAxis": {
-    "type": "value",
-    "name": "相对投入",
-    "min": 1,
-    "max": 5,
-    "interval": 1
-  },
-  "series": [
-    {
-      "name": "Hermes",
-      "type": "line",
-      "symbol": "circle",
-      "symbolSize": 8,
-      "lineStyle": { "width": 3, "color": "#b84d2e" },
-      "itemStyle": { "color": "#b84d2e" },
-      "data": [5, 5, 2, 4, 3, 3]
-    },
-    {
-      "name": "Pi",
-      "type": "line",
-      "symbol": "diamond",
-      "symbolSize": 9,
-      "lineStyle": { "width": 2, "type": "dashed", "color": "#77736d" },
-      "itemStyle": { "color": "#77736d" },
-      "data": [3, 2, 5, 4, 2, 3]
-    },
-    {
-      "name": "DeepSeek Harness",
-      "type": "line",
-      "symbol": "emptyCircle",
-      "symbolSize": 9,
-      "lineStyle": { "width": 2, "color": "#9b756a" },
-      "itemStyle": { "color": "#9b756a" },
-      "data": [4, 3, 3, 5, 3, 2]
-    }
-  ]
-}
-```
-
-| 价值要素 | Hermes | Pi | DeepSeek Harness |
-| --- | ---: | ---: | ---: |
-| 开箱能力 | 5 | 3 | 4 |
-| 记忆与自动化 | 5 | 2 | 3 |
-| 核心精简 | 2 | 5 | 3 |
-| 运行时可组合 | 4 | 4 | 5 |
-| 默认安全 | 3 | 2 | 3 |
-| 生产成熟 | 3 | 3 | 2 |
-
-三条开源曲线几乎是三种产品宣言：Hermes 用更大核心换取开箱自治，Pi 用更少默认换取可塑性，DeepSeek Harness 把最高投入放在运行时重组。它们不应该互相补齐成同一种“开源 Claude Code”，否则会失去各自最有价值的取舍。
-
-## 九、逐个产品 SWOT：从观察转成动作
-
-下表只放能够影响策略的因素。优势和劣势是内部能力，机会和威胁来自外部市场；“用户喜欢 AI”不会被当成任何一家独有的机会。
-
-| 产品 | Strengths 优势 | Weaknesses 劣势 | Opportunities 机会 | Threats 威胁 |
-| --- | --- | --- | --- | --- |
-| **Claude Code** | 上下文、Skills、Hooks、MCP、Subagents、权限形成完整设计语言；多入口连续 | 配置面扩大；模型与商业服务绑定 Anthropic；重度协作成本高 | 成为企业工程制度的执行层，并向数据、研究和运维延伸 | 模型能力被追平；插件与配置债降低可维护性；云端数据治理阻力 |
-| **Codex** | 本地—云端—App—Review 闭环；Worktree 与系统沙箱；多任务监督成熟 | 依赖 OpenAI 模型和配额；并行产出可能制造审查拥堵 | 从 Coding Agent 扩展为技术与知识工作的 Agent 操作系统 | Agent 数量增长快于验证能力；平台竞争压缩订阅差异 |
-| **Kimi Code** | 自研开放模型、中文体验、Agent Swarm、Kimi Work/Agent 协同潜力 | 新旧 CLI 迁移；治理与恢复机制仍需长期项目验证 | 用模型—Code—Work 一体化服务国内开发者和企业私有化需求 | 终端 Agent 高度拥挤；并行规模不能稳定转化为完成率 |
-| **Hermes** | 多模型、持久记忆、Skill 自生成、消息渠道与 Cron 开箱即用 | 权限面和部署面大；运维、安全配置与长期记忆治理负担高 | 成为个人和小团队长期自治 Agent 的开源标准 | 第三方工具与 Skill 供应链风险；平台产品快速吸收记忆与自动化 |
-| **Pi** | 核心小、行为透明、模型多样、Extensions/SDK 可塑性强 | 默认缺少团队编排、权限基线和企业控制面 | 成为模型评测、嵌入式 Agent 与定制 Coding Harness 的通用底座 | 高级用户市场有限；集成产品用更低配置成本覆盖主流需求 |
-| **DeepSeek Harness** | Cordis 全插件架构、模式可组合、Trace/Replay 与 Creator 思路鲜明 | Developer preview、兼容性破坏、生产运维经验有限 | 成为国产 Agent Runtime、教学研究和企业内部平台的公共底座 | 插件碎片化与版本震荡；架构复杂度超过实际业务收益 |
-
-SWOT 的输出应是组合策略，而不是表格本身：
-
-- **SO：**Claude Code 与 Codex 应利用完成闭环，把优势扩展到数据、研究、运维，但保留可验证的工程对象；Kimi 应利用模型—产品一体化，创造中英文知识工作与代码之间的连续路径。
-- **WO：**Kimi 的优先补课不是再加并发，而是统一 Session、权限、迁移与审计；Hermes 应把丰富默认能力收敛成可审计配置档。
-- **ST：**Pi 和 DeepSeek Harness 应利用模型无关与运行时开放，对抗平台锁定，并用可重复评测证明定制价值。
-- **WT：**开源项目需要提供 hardened profile、版本兼容策略和安全更新路径，否则“自由组合”会在企业环境中变成不可接受的维护成本。
-
-## 十、六款产品的相对优势，不用总分表达
-
-| 如果你最在意 | 首选 | 第二选择 | 需要接受的代价 |
-| --- | --- | --- | --- |
-| 成熟的可定制工程 Harness | Claude Code | Codex | 厂商模型与订阅绑定 |
-| 多任务监督与云地协同 | Codex | Claude Code | 配额、审查队列与任务切分成本 |
-| 国产模型—产品一体化 | Kimi Code | 自建 Pi + 国产模型 | 产品快速迭代与企业治理仍需实测 |
-| 长期个人 Agent 与跨渠道自动化 | Hermes | 自建 DeepSeek Harness | 权限面与持续运维责任 |
-| 极简、透明、可塑的 Coding 内核 | Pi | Codex CLI | 高级能力与安全治理需自行装配 |
-| 自研 Agent 平台或 Harness 实验 | DeepSeek Harness | Pi SDK | 版本兼容与生产化成本 |
-| 企业默认安全基线 | Claude Code / Codex | WorkBuddy Code | 仍需组织配置与人工审查 |
-
-“首选”也不意味着单一采购。很常见的一种组合是：用 Claude Code 或 Codex 作为工程师默认产品，用 Pi 或 DeepSeek Harness 做模型与运行时实验，用 Hermes 承担个人或团队的非代码自动化。
-
-## 十一、真正公平的 PoC：不要让六个 Agent 做同一道玩具题
-
-一个有效的两周 PoC，至少应包含四类任务：
-
-1. **定位型任务**：理解陌生代码、追踪跨模块调用、解释故障；
-2. **修改型任务**：实现中型功能，必须通过已有测试和静态检查；
-3. **长程任务**：需要多轮探索、重启、压缩或交接的迁移；
-4. **高风险任务**：包含外部网络、密钥边界、数据库或发布步骤，但设置明确禁止线。
-
-每个任务记录六个数字：一次完成率、测试通过率、人工接管次数、权限例外数、总模型成本、从失败到恢复的时间。并保留完整 Trace，抽样判断“通过”是否来自正确过程，而不是偶然绕过测试。
-
-对于并行能力，再单独测量：任务是否真正独立、冲突率、重复工作率、汇总遗漏率和人类最终审查时间。Agent 数量不是产出指标；**单位人类审查分钟换来的合格变更量**才是。
-
-## 十二、最后的判断：最好的 Harness 会逐渐隐形
-
-Claude Code 与 Codex 当前的领先，本质上是它们让更多工程约束进入了系统，而不需要用户每次提醒：项目知识有位置，危险动作有边界，并行修改有隔离，结果有 Diff 和测试，完成后有人类审查入口。
-
-开源三强提出的反问同样重要：
-
-- Hermes 问，Agent 能否积累长期关系和程序性记忆；
-- Pi 问，多少“高级功能”其实只是可以删除的产品意见；
-- DeepSeek Harness 问，为什么连 Agent Loop 本身都不能被热插拔。
-
-下一阶段不会由某一种哲学通吃。成熟产品会吸收开源 Harness 的可塑性，开源项目也会补齐产品的安全与治理。但无论路线如何，评价标准都应回到同一点：**不是 Agent 做了多少动作，而是它以多低的监督成本交付了多少可验证结果。**
-
 ---
 
-资料截至 2026-09-04。本文优先使用各厂商官方文档和开源仓库；涉及 experimental、research preview 或 developer preview 的能力均按官方状态标注，不把路线图当成已成熟能力。
+上一篇：[比较方法](/writing/agent-landscape-comparison-methods/)。
+
+产品化 Harness 把大量工程判断做成默认行为。下一篇转向开源路线：当默认意见减少，可塑性和维护责任会怎样重新分配？
+
+下一篇：[开源路线](/writing/open-source-agent-harness-routes/)。

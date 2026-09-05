@@ -1,5 +1,6 @@
 [
   {
+    "priority": 1,
     "original": "agent-system-evaluation-research",
     "articles": [
       {
@@ -25,6 +26,7 @@
     ]
   },
   {
+    "priority": 1,
     "original": "deepseek-harness-architecture",
     "articles": [
       {
@@ -50,6 +52,7 @@
     ]
   },
   {
+    "priority": 1,
     "original": "product-analysis-frameworks",
     "articles": [
       {
@@ -79,6 +82,7 @@
     ]
   },
   {
+    "priority": 1,
     "original": "claude-code-product-design",
     "articles": [
       {
@@ -104,6 +108,7 @@
     ]
   },
   {
+    "priority": 1,
     "original": "agent-memory-design-competitive-analysis",
     "articles": [
       {
@@ -129,6 +134,7 @@
     ]
   },
   {
+    "priority": 1,
     "original": "ai-capability-product-metrics",
     "articles": [
       {
@@ -150,6 +156,180 @@
       {
         "slug": "ai-value-synthesis",
         "title": "AI 产品价值（五）：能力进步，为什么未必等于交付变便宜"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "ai-agent-landscape-2026",
+    "articles": [
+      {
+        "slug": "ai-agent-landscape-2026",
+        "title": "Agent 工作系统全景（一）：先把八款产品放回三条赛道"
+      },
+      {
+        "slug": "agent-landscape-comparison-methods",
+        "title": "Agent 工作系统全景（二）：不用总分，如何比较不同 Agent"
+      },
+      {
+        "slug": "coding-agent-harness-showdown",
+        "title": "Agent 工作系统全景（三）：Claude Code、Codex 与 Kimi Code 的 Harness 分歧"
+      },
+      {
+        "slug": "open-source-agent-harness-routes",
+        "title": "Agent 工作系统全景（四）：Hermes、Pi 与 DeepSeek Harness 的三种路线"
+      },
+      {
+        "slug": "coding-agent-harness-poc",
+        "title": "Agent 工作系统全景（五）：两周 PoC 应该怎样比较 Coding Agent"
+      },
+      {
+        "slug": "china-work-agent-showdown",
+        "title": "Agent 工作系统全景（六）：Kimi Work、WorkBuddy 与豆包工作如何分工"
+      },
+      {
+        "slug": "china-work-agent-adoption",
+        "title": "Agent 工作系统全景（七）：办公 Agent 的落地取决于最后一公里"
+      },
+      {
+        "slug": "agent-work-system-synthesis",
+        "title": "Agent 工作系统全景（八）：真正需要选择的，是怎样完成工作"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "composable-agent-harness-architecture",
+    "articles": [
+      {
+        "slug": "composable-agent-harness-architecture",
+        "title": "可塑 Agent Harness（一）：先看三种“开放”如何分配复杂度"
+      },
+      {
+        "slug": "hermes-agent-architecture-deep-dive",
+        "title": "可塑 Agent Harness（二）：Hermes 如何维持长期运行的内核"
+      },
+      {
+        "slug": "hermes-agent-runtime-services",
+        "title": "可塑 Agent Harness（三）：Hermes 如何从工具循环变成常驻服务"
+      },
+      {
+        "slug": "hermes-agent-memory-governance",
+        "title": "可塑 Agent Harness（四）：Hermes 如何积累经验而不失去边界"
+      },
+      {
+        "slug": "pi-architecture-deep-dive",
+        "title": "可塑 Agent Harness（五）：Pi 如何用最小内核维持正确性"
+      },
+      {
+        "slug": "pi-session-extension-architecture",
+        "title": "可塑 Agent Harness（六）：Pi 如何把运行历史变成可扩展的 Session"
+      },
+      {
+        "slug": "pi-durable-harness-governance",
+        "title": "可塑 Agent Harness（七）：Pi 如何走向可恢复的多进程系统"
+      },
+      {
+        "slug": "ecc-architecture-deep-dive",
+        "title": "可塑 Agent Harness（八）：ECC 如何把工程经验编译到不同平台"
+      },
+      {
+        "slug": "ecc-hook-runtime-memory",
+        "title": "可塑 Agent Harness（九）：ECC 如何让规则在事件边界真正发生"
+      },
+      {
+        "slug": "ecc-memory-supply-chain",
+        "title": "可塑 Agent Harness（十）：ECC 如何治理配置供应链与控制平面"
+      },
+      {
+        "slug": "composable-agent-harness-synthesis",
+        "title": "可塑 Agent Harness（十一）：可塑性的终点不是配置更多"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "ai-agent-reliability-boundaries",
+    "articles": [
+      {
+        "slug": "ai-agent-reliability-boundaries",
+        "title": "可信 Agent 工程（一）：先看 Skills、RAG 与权限各自解决什么"
+      },
+      {
+        "slug": "agent-reliability-adoption",
+        "title": "可信 Agent 工程（二）：能力进入真实任务后，怎样逐步扩大自治"
+      },
+      {
+        "slug": "anthropic-harness",
+        "title": "可信 Agent 工程（三）：Anthropic 如何把可靠性写进 Harness"
+      },
+      {
+        "slug": "anthropic-harness-practice",
+        "title": "可信 Agent 工程（四）：从案例到一条可落地的 Harness 建设路径"
+      },
+      {
+        "slug": "trace-framework-deep-dive",
+        "title": "可信 Agent 工程（五）：TRACE 如何从“答对”走向“可信地答对”"
+      },
+      {
+        "slug": "trace-lite-production",
+        "title": "可信 Agent 工程（六）：把 TRACE 变成生产评测，而不是新排行榜"
+      },
+      {
+        "slug": "trustworthy-agent-engineering-synthesis",
+        "title": "可信 Agent 工程（七）：可靠性不是一个功能，而是一条证据链"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "llm-agent-capability-landscape-2026",
+    "articles": [
+      {
+        "slug": "llm-agent-capability-landscape-2026",
+        "title": "AI 能力与交付边界（一）：先分清“能做”与“可交付”"
+      },
+      {
+        "slug": "ai-capability-evidence-action",
+        "title": "AI 能力与交付边界（二）：用真实任务选择模型，而不是看一次演示"
+      },
+      {
+        "slug": "ai-capability-boundary-synthesis",
+        "title": "AI 能力与交付边界（三）：能力地图最终要回答什么值得委托"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "product-work-methodology",
+    "articles": [
+      {
+        "slug": "product-work-methodology",
+        "title": "AI 时代的产品工作（一）：产品经理开始设计工作系统"
+      },
+      {
+        "slug": "agent-product-contracts-context",
+        "title": "AI 时代的产品工作（二）：从需求文档走向结果契约"
+      },
+      {
+        "slug": "agent-product-evaluation-rhythm",
+        "title": "AI 时代的产品工作（三）：让任务评测进入产品工作节奏"
+      },
+      {
+        "slug": "lu-qi-researcher-founder",
+        "title": "AI 时代的产品工作（四）：为什么下一代组织要学会处理未知"
+      },
+      {
+        "slug": "researcher-founder-thinking",
+        "title": "AI 时代的产品工作（五）：研究、创新与斜率怎样变成行动"
+      },
+      {
+        "slug": "learning-organization-boundaries",
+        "title": "AI 时代的产品工作（六）：组织学习速度为什么可能成为新壁垒"
+      },
+      {
+        "slug": "ai-product-work-synthesis",
+        "title": "AI 时代的产品工作（七）：产品工作的终点，是组织学习"
       }
     ]
   }

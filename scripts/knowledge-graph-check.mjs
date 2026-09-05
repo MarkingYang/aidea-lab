@@ -19,6 +19,67 @@ const builtArticleIds = new Set(
 assert.equal(nodeIds.size, graph.nodes.length, 'Graph node ids must be unique');
 assert.deepEqual([...articleIds].sort(), [...builtArticleIds].sort(), 'Every built article must have exactly one graph node');
 assert.ok(graph.links.every(link => nodeIds.has(link.source) && nodeIds.has(link.target)), 'Every graph edge must point to existing nodes');
+
+const maintainedSeries = new Map([
+  ['agent-work-systems', [
+    'ai-agent-landscape-2026',
+    'agent-landscape-comparison-methods',
+    'coding-agent-harness-showdown',
+    'open-source-agent-harness-routes',
+    'coding-agent-harness-poc',
+    'china-work-agent-showdown',
+    'china-work-agent-adoption',
+    'agent-work-system-synthesis',
+  ]],
+  ['composable-agent-harness', [
+    'composable-agent-harness-architecture',
+    'hermes-agent-architecture-deep-dive',
+    'hermes-agent-runtime-services',
+    'hermes-agent-memory-governance',
+    'pi-architecture-deep-dive',
+    'pi-session-extension-architecture',
+    'pi-durable-harness-governance',
+    'ecc-architecture-deep-dive',
+    'ecc-hook-runtime-memory',
+    'ecc-memory-supply-chain',
+    'composable-agent-harness-synthesis',
+  ]],
+  ['trustworthy-agent-engineering', [
+    'ai-agent-reliability-boundaries',
+    'agent-reliability-adoption',
+    'anthropic-harness',
+    'anthropic-harness-practice',
+    'trace-framework-deep-dive',
+    'trace-lite-production',
+    'trustworthy-agent-engineering-synthesis',
+  ]],
+  ['ai-capability-boundaries', [
+    'llm-agent-capability-landscape-2026',
+    'ai-capability-evidence-action',
+    'ai-capability-boundary-synthesis',
+  ]],
+  ['ai-product-work', [
+    'product-work-methodology',
+    'agent-product-contracts-context',
+    'agent-product-evaluation-rhythm',
+    'lu-qi-researcher-founder',
+    'researcher-founder-thinking',
+    'learning-organization-boundaries',
+    'ai-product-work-synthesis',
+  ]],
+]);
+for (const [seriesId, expectedArticles] of maintainedSeries) {
+  const hubId = `series:${seriesId}`;
+  assert.ok(graph.nodes.some(node => node.id === hubId), `${seriesId} must become a graph hub`);
+  assert.deepEqual(
+    graph.nodes.filter(node => node.seriesId === seriesId && node.kind === 'article').map(node => node.id).sort(),
+    [...expectedArticles].sort(),
+    `All chapters must be maintained in the ${seriesId} knowledge circle`,
+  );
+  assert.ok(expectedArticles.every(id => graph.links.some(link =>
+    link.relation === 'series' && [link.source, link.target].includes(hubId) && [link.source, link.target].includes(id)
+  )), `Every ${seriesId} chapter must connect to its series hub`);
+}
 assert.equal(graph.layout?.type, 'clustered-circle-packing', 'The global graph must use hierarchical circle packing');
 assert.ok(Number.isFinite(graph.layout?.radius) && graph.layout.radius > 0, 'The graph layout must declare a valid radius');
 assert.ok(Array.isArray(graph.layout?.clusters) && graph.layout.clusters.length >= graph.stats.series, 'The layout must expose its local knowledge circles');

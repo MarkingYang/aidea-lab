@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/knowledge-graph-check.mjs",
+    "build": "astro build && npm run check:content && node scripts/knowledge-graph-check.mjs",
+    "check:content": "node docs/editorial-labs/check-series.mjs",
     "check:graph": "node scripts/knowledge-graph-check.mjs",
     "preview": "astro preview",
     "astro": "astro"

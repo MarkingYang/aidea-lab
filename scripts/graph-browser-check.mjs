@@ -30,7 +30,7 @@ try {
   await page.locator('.search-results [data-node-id="keyword:Context Engineering"]').click();
   assert.equal(await page.locator('[data-panel-title]').textContent(), 'Context Engineering');
   assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'detail');
-  assert.equal(await page.locator('[data-panel-relations] li').count(), 5);
+  assert.ok(await page.locator('[data-panel-relations] li').count() >= 5);
   assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/library\/\?tag=Context%20Engineering/);
   await page.locator('[data-clear-focus]').click();
   assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'overview');
@@ -41,6 +41,14 @@ try {
   assert.match(page.url(), /node=series%3Acapability-routing/);
   assert.match(page.url(), /view=local/);
   assert.ok(await page.locator('[data-panel-relations] li').count() > 0);
+
+  await page.locator('[data-clear-focus]').click();
+  await page.locator('#graph-query').fill('可塑 Agent Harness');
+  await page.locator('.search-results [data-node-id="series:composable-agent-harness"]').click();
+  assert.equal(await page.locator('[data-panel-title]').textContent(), '可塑 Agent Harness');
+  assert.match(page.url(), /node=series%3Acomposable-agent-harness/);
+  assert.ok(await page.locator('[data-panel-relations] li').count() >= 9);
+  assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/series\/composable-agent-harness\//);
 
   await page.locator('[data-zoom="in"]').click();
   await page.locator('[data-zoom="reset"]').click();

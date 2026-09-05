@@ -38,7 +38,7 @@ updatedAt: 2026-09-05
 名称、适用模型和可用端口以 [权限文档](https://code.claude.com/docs/en/permissions)为准。Bypass 不是更成熟的终点，也不代表授权扩大到用户未要求的任务。这里分析模式的产品含义，不提供绕过组织策略的操作指南。
 
 ```mermaid
-flowchart TB
+flowchart LR
   A[待执行动作] --> B{符合任务授权？}
   B -->|否| N[停止或澄清]
   B -->|是| C{满足权限与隔离策略？}
