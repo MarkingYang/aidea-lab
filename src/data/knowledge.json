@@ -75,7 +75,8 @@
         "harness-engineering-map",
         "harness-engineering-loop",
         "loop-graph-engineering",
-        "langchain-langgraph-frameworks-and-protocols"
+        "langchain-langgraph-frameworks-and-protocols",
+        "multi-agent-architecture-selection"
       ],
       "outcome": "能划分任务责任，设计有界循环、节点交接与可验收的执行结构。",
       "question": "Agent 怎样根据反馈持续推进，并组织有分支和依赖的复杂任务？"
