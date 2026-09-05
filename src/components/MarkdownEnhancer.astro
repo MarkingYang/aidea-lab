@@ -378,6 +378,7 @@
   if (articleImages.length > 0) {
     const dialog = document.createElement('dialog');
     dialog.className = 'image-lightbox';
+    dialog.setAttribute('aria-label', '文章图解查看器');
     const dialogBar = document.createElement('div');
     dialogBar.className = 'lightbox-toolbar';
     const dialogCaption = document.createElement('span');
@@ -386,18 +387,35 @@
     originalLink.target = '_blank';
     originalLink.rel = 'noreferrer';
     const close = makeButton('关闭', '关闭图片查看器');
+    const zoom = makeButton('放大细节', '放大图片细节');
+    const viewport = document.createElement('div');
+    viewport.className = 'image-lightbox-viewport';
+    viewport.tabIndex = 0;
+    viewport.setAttribute('role', 'region');
+    viewport.setAttribute('aria-label', '图解；放大后可滚动查看');
     const dialogImage = document.createElement('img');
+    const setZoom = (expanded: boolean) => {
+      viewport.classList.toggle('is-zoomed', expanded);
+      zoom.textContent = expanded ? '适应窗口' : '放大细节';
+      zoom.setAttribute('aria-label', expanded ? '图片适应窗口' : '放大图片细节');
+      zoom.setAttribute('aria-pressed', String(expanded));
+      viewport.scrollTo(0, 0);
+    };
+    const toggleZoom = () => setZoom(!viewport.classList.contains('is-zoomed'));
     close.addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
-    dialogImage.addEventListener('click', () => dialogImage.classList.toggle('is-zoomed'));
-    dialogBar.append(dialogCaption, originalLink, close);
-    dialog.append(dialogBar, dialogImage);
+    dialogImage.addEventListener('click', toggleZoom);
+    zoom.addEventListener('click', toggleZoom);
+    dialogBar.append(dialogCaption, zoom, originalLink, close);
+    viewport.append(dialogImage);
+    dialog.append(dialogBar, viewport);
     document.body.append(dialog);
 
     const openImage = (image: HTMLImageElement) => {
       dialogImage.src = image.currentSrc || image.src;
       dialogImage.alt = image.alt;
-      dialogImage.classList.remove('is-zoomed');
+      viewport.style.setProperty('--image-width', `${image.naturalWidth || image.width}px`);
+      setZoom(false);
       dialogCaption.textContent = image.title || image.alt || '文章图片';
       originalLink.href = image.currentSrc || image.src;
       dialog.showModal();
@@ -479,19 +497,23 @@
   .toc a[aria-current='location'] { color: var(--accent) !important; }
 
   .article-image { margin: 42px 0; }
-  .article-image img { margin: 0 !important; cursor: zoom-in; }
+  .article-image img { display: block; width: 100%; height: auto; margin: 0 !important; border: 1px solid var(--line); border-radius: 12px; cursor: zoom-in; }
+  .article-image img:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
   .article-image figcaption { max-width: 88%; margin: 12px auto 0; color: var(--text-soft); font-size: 12px; line-height: 1.65; text-align: center; }
   .prose p:has(> img + img), .prose p:has(> a > img):has(> a + a) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .prose p:has(> img + img) img, .prose p:has(> a > img):has(> a + a) img { height: 100%; margin: 0; object-fit: cover; }
 
   .image-lightbox { width: min(96vw, 1500px); max-width: none; height: min(94vh, 1100px); max-height: none; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--bg); color: var(--text); }
   .image-lightbox::backdrop { background: rgba(0, 0, 0, .72); backdrop-filter: blur(8px); }
+  .image-lightbox[open] { display: flex; flex-direction: column; }
   .lightbox-toolbar { min-height: 48px; padding: 0 12px 0 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); color: var(--text-soft); font-size: 12px; }
   .lightbox-toolbar span { min-width: 0; margin-right: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .lightbox-toolbar a { color: var(--text-soft); text-decoration: none; white-space: nowrap; }
   .lightbox-toolbar a:hover { color: var(--accent); }
-  .image-lightbox > img { width: 100%; height: calc(100% - 48px); display: block; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; }
-  .image-lightbox > img.is-zoomed { transform: scale(1.7); cursor: zoom-out; }
+  .lightbox-toolbar { flex-shrink: 0; }
+  .image-lightbox-viewport { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+  .image-lightbox-viewport img { display: block; width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; }
+  .image-lightbox-viewport.is-zoomed img { width: max(100%, var(--image-width)); max-width: none; height: auto; cursor: zoom-out; }
 
   @media (min-width: 1080px) {
     .prose .visual-frame { width: min(820px, calc(100vw - 360px)); }
@@ -508,6 +530,6 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .mermaid svg, .image-lightbox > img { transition: none; }
+    .mermaid svg { transition: none; }
   }
 </style>

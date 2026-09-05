@@ -32,21 +32,7 @@ readingTime: 7 min
 
 这些模块的依赖方向应清楚：模型返回提案；运行器决定是否派发；工具改变资源；验收器读取资源。运行器把关键状态和事件写入存储。模型输出不能自行变成执行许可或验收标准。
 
-```mermaid
-flowchart TD
-  I[任务字段与运行配置] --> E[lab.py：execute]
-  E --> M[model.py：propose]
-  M -->|合法提案| E
-  E <--> R[(store.py：Runs)]
-  E --> P[目标检查与执行开关]
-  P --> C[session_for 与 call]
-  C <-->|MCP stdio| S[server.py：两个业务工具]
-  S <--> T[(store.py：Tickets)]
-  C -->|查询到的工单| V[execute：对照 expected 验收]
-  V --> R
-```
-
-*图 1｜实验落地为运行器和工具服务两个进程。策略与验收都在 execute 内，不需要为每项职责建立独立服务。*
+![Mini Harness 的运行器接收模型提案，经策略检查后通过 MCP 调用工具服务；Runs 保存意图与进度，Tickets 保存工单与操作键，查询结果交给验收器。](../../assets/illustrations/mini-harness-assembly.png "装配图解｜按职责阅读编号；运行器与工具服务是两个进程，两份数据库分别记录运行和业务事实。")
 
 ## 当前适合这个起点的默认组合
 

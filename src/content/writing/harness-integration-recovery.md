@@ -2,7 +2,7 @@
 title: 状态、幂等与验收怎样闭环
 description: 拆开运行状态与业务资源，用持久化意图、稳定操作键和独立查询组装可恢复执行，并复现三个进程退出点。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-06
 type: essay
 status: growing
 topics:
@@ -14,6 +14,11 @@ readingTime: 5 min
 ---
 
 运行器记得“发过请求”，不等于业务系统已经完成；客户端没收到响应，也不等于业务系统没有写入。Mini Harness 的恢复模块要同时读取运行记录与业务事实。
+
+![服务端创建工单 T 后丢失响应。客户端恢复时保留操作键 K，按 K 查询已有工单，核对目标并保存验收结果，不再次创建。](../../assets/illustrations/write-reconcile.png "恢复图解｜对应服务端提交后丢响应这一条路径。K 是原操作键，T 是已经存在的工单。")
+
+<details>
+<summary>展开两份 SQLite 的读写时序</summary>
 
 ```mermaid
 sequenceDiagram
@@ -32,6 +37,8 @@ sequenceDiagram
 ```
 
 *图 1｜复现 server-after-commit：工单已经存在，恢复执行只读查询与验收，不能换键再创建。*
+
+</details>
 
 ## 两份存储各管什么
 
