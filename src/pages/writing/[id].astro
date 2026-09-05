@@ -4,6 +4,7 @@ import ArtalkComments from '../../components/ArtalkComments.astro';
 import MarkdownEnhancer from '../../components/MarkdownEnhancer.astro';
 import 'katex/dist/katex.min.css';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getKnowledge, topics as knowledgeTopics, shortTitle, articleHref, dateLabel, stageLabel } from '../../lib/knowledge';
 
 export async function getStaticPaths() {
   const entries = await getCollection('writing');
@@ -18,10 +19,21 @@ const typeLabels = { note: 'NOTE', essay: 'ESSAY', weekly: 'WEEKLY' };
 const statusLabels = { seed: '种子', growing: '生长中', evergreen: '常青', archived: '归档' };
 const published = entry.data.publishedAt.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
 const pageKey = `/writing/${entry.id}/`;
+const {seriesByArticle}=await getKnowledge();
+const series=seriesByArticle.get(entry.id);
+const chapter=series?.articles.findIndex(item=>item.id===entry.id) ?? -1;
+const topic=knowledgeTopics.find(item=>item.id===series?.topic);
+const previous=series?.articles[chapter-1];
+const next=series?.articles[chapter+1];
+const sectionHeadings=headings.filter(heading=>heading.depth===2);
+// Preserve portable Markdown navigation in source, suppress only the verified duplicate in this layout.
+const firstBlock=entry.body?.trimStart().split(/\n\s*\n/)[0] ?? '';
+const hasInlineSeriesNav=!!series && firstBlock.startsWith('> ') && firstBlock.includes('系列') && series.articles.every(item=>firstBlock.includes(articleHref(item.id)));
 ---
 
 <BaseLayout title={`${entry.data.title}｜大飞随笔`} description={entry.data.description} image={null} ogType="article">
   <article class="article-shell">
+    <nav class="breadcrumbs article-breadcrumbs" aria-label="面包屑"><a href="/topics/">知识目录</a>{topic && <><span>/</span><a href={`/topics/${topic.id}/`}>{topic.title}</a></>}{series ? <><span>/</span><a href={`/series/${series.id}/`}>{series.title}</a><span>/</span><span aria-current="page">第 {chapter+1} 篇</span></> : <><span>/</span><a href="/library/">全部文章</a></>}</nav>
     <header class="article-header">
       <div class="article-kicker">
         <span>{typeLabels[entry.data.type]}</span><span>·</span><time datetime={entry.data.publishedAt.toISOString()}>{published}</time>
@@ -29,7 +41,7 @@ const pageKey = `/writing/${entry.id}/`;
       <h1>{entry.data.title}</h1>
       <p>{entry.data.description}</p>
       <div class="article-info">
-        <div class="topics">{entry.data.topics.map((topic) => <a href="/topics/">#{topic}</a>)}</div>
+        <div class="topics">{entry.data.topics.map((topic) => <a href={`/library/?tag=${encodeURIComponent(topic)}`}>#{topic}</a>)}</div>
         <div>
           <span>{entry.data.readingTime}</span>
           <span class="article-view-count" title="累计阅读量">
@@ -41,17 +53,23 @@ const pageKey = `/writing/${entry.id}/`;
           <span class:list={['status', entry.data.status]}>{statusLabels[entry.data.status]}</span>
         </div>
       </div>
+      {entry.data.updatedAt && <p class="article-revised">最近修订：{dateLabel(entry.data.updatedAt)}</p>}
     </header>
+
+    {series && <div class="series-position"><a href={`/series/${series.id}/`}>{series.title} · 第 {chapter+1} / {series.articles.length} 篇</a><span>{stageLabel(chapter,series.articles.length)}</span></div>}
+    <details class="mobile-reading"><summary>阅读导航{series ? ` · 第 ${chapter+1} / ${series.articles.length} 篇` : ' · 本篇目录'}</summary>{series && <nav aria-label="移动端系列导航"><a href={`/series/${series.id}/`}>返回系列总目录 →</a><ol>{series.articles.map((item,index)=><li><a href={articleHref(item.id)} aria-current={item.id===entry.id?'page':undefined}>{index+1}. {shortTitle(item.data.title)}</a></li>)}</ol></nav>}<nav aria-label="移动端本篇目录"><p>本篇目录</p><ol>{sectionHeadings.map(heading=><li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav></details>
 
     <div class="article-layout">
       <aside class="toc">
+        {series && <details class="series-sidebar" open><summary>{series.title}<small>系列 · {series.articles.length} 篇</small></summary><ol>{series.articles.map((item,index)=><li><a href={articleHref(item.id)} aria-current={item.id===entry.id?'page':undefined}><span>{String(index+1).padStart(2,'0')}</span>{shortTitle(item.data.title)}</a></li>)}</ol><a class="series-directory-link" href={`/series/${series.id}/`}>系列总目录 ↗</a></details>}
         <p>CONTENTS · 目录</p>
         {headings.length > 0 ? (
-          <ol>{headings.filter((heading) => heading.depth === 2).map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
+          <ol>{sectionHeadings.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
         ) : <small>一则短笔记</small>}
       </aside>
-      <div class="prose"><Content /></div>
+      <div class:list={['prose', { 'has-inline-series-nav': hasInlineSeriesNav }]}><Content /></div>
     </div>
+    {series ? <nav class="article-pagination" aria-label="系列前后篇"><a href={previous ? articleHref(previous.id) : `/series/${series.id}/`} rel={previous?'prev':undefined}><small>{previous?'上一篇':'系列起点'}</small><span>{previous?shortTitle(previous.data.title):'回到全景目录'}</span></a><a href={next ? articleHref(next.id) : `/series/${series.id}/`} rel={next?'next':undefined}><small>{next?'下一篇 →':'全系列读毕 · 回看目录 →'}</small><span>{next?shortTitle(next.data.title):series.question}</span></a></nav> : <div class="article-pagination"><a href="/library/">← 返回文章目录</a><a href="/topics/">沿主题继续阅读 →</a></div>}
   </article>
 
   <ArtalkComments title={entry.data.title} />
@@ -60,20 +78,36 @@ const pageKey = `/writing/${entry.id}/`;
 
 <style>
   .article-shell { width: var(--page); margin: 0 auto; }
-  .article-header { max-width: 860px; padding: var(--space-page-top) 0 38px; }
+  .article-breadcrumbs { margin:32px 0 0; }
+  .article-header { max-width: 980px; padding: 30px 0 30px; }
   .article-kicker { display: flex; gap: 10px; color: var(--text-soft); font: 10px var(--mono); letter-spacing: .08em; }
   .article-header h1 { max-width: 800px; margin: 18px 0 16px; font-family: var(--display); font-size: var(--display-article-size); font-weight: 400; line-height: 1.13; letter-spacing: -.04em; text-wrap: balance; }
   .article-header > p { max-width: 640px; margin: 0; color: var(--text-body); font-size: 15px; line-height: 1.78; text-wrap: pretty; }
   .article-info { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--line); font: 10px var(--mono); }
-  .article-info > div { display: flex; align-items: center; gap: 10px; }
+  .article-info > div { display: flex; flex-wrap:wrap; align-items: center; gap: 10px; }
+  .article-header > .article-revised { margin-top:12px; color:var(--text-soft); font-size:11px; }
+  .series-position { max-width:980px; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:14px 0; border-top:1px solid var(--line); color:var(--accent); font-size:12px; }
+  .series-position a { text-decoration:none; } .series-position span { color:var(--text-soft); font-size:11px; }
+  .mobile-reading { display:none; }
+  .toc .series-sidebar { margin-bottom:28px; padding-bottom:25px; border-bottom:1px solid var(--line); }
+  .series-sidebar summary { cursor:pointer; font-size:13px; line-height:1.7; margin-bottom:16px; }
+  .series-sidebar summary small { display:block; color:var(--text-soft); font-size:10px; margin-top:4px; }
+  .series-sidebar a span { color:var(--text-muted); font:10px var(--mono); margin-right:8px; }
+  .series-sidebar a[aria-current='page'] { color:var(--accent); font-weight:500; }
+  .toc .series-directory-link { margin-top:18px; color:var(--accent); }
+  .article-pagination { display:grid; grid-template-columns:1fr 1fr; gap:30px; max-width:980px; margin:45px auto 0; padding:28px 0; border-block:1px solid var(--line); }
+  .article-pagination a { min-width:0; text-decoration:none; font-size:14px; line-height:1.8; }
+  .article-pagination a:last-child { text-align:right; }
+  .article-pagination small { display:block; color:var(--accent); font-size:11px; margin-bottom:10px; }
+  .article-pagination span { display:block; } .article-pagination a:hover { color:var(--accent); }
   .article-view-count, .article-comment-count { color: var(--text); }
   .article-view-count strong, .article-comment-count strong { font: inherit; }
   .topics a { color: var(--text-soft); text-underline-offset: 3px; }
   .status { padding: 5px 8px; border-radius: 6px; background: var(--surface); color: var(--text-soft); }
   .status.growing { background: var(--accent-soft); color: var(--accent); }
   .status.evergreen { background: var(--text); color: var(--bg); }
-  .article-layout { display: grid; grid-template-columns: 190px minmax(0, var(--measure)); justify-content: center; gap: clamp(56px, 7vw, 92px); padding: 44px 0 24px; border-top: 1px solid var(--line); }
-  .toc { align-self: start; position: sticky; top: 96px; padding-right: 24px; border-right: 1px solid var(--line); }
+  .article-layout { display: grid; grid-template-columns: 230px minmax(0, var(--measure)); justify-content: center; gap: clamp(35px, 5vw, 72px); padding: 44px 0 24px; border-top: 1px solid var(--line); }
+  .toc { align-self: start; position: sticky; top: 88px; max-height:calc(100dvh - 115px); overflow-y:auto; scrollbar-width:thin; padding-right: 24px; border-right: 1px solid var(--line); }
   .toc p { margin: 0 0 18px; color: var(--text-muted); font: 9px var(--mono); letter-spacing: .08em; }
   .toc ol { margin: 0; padding: 0; list-style: none; }
   .toc li + li { margin-top: 9px; }
@@ -81,6 +115,7 @@ const pageKey = `/writing/${entry.id}/`;
   .toc a:hover { color: var(--accent); }
   .toc a[aria-current='location'] { color: var(--accent); transform: translateX(4px); }
   .prose { min-width: 0; color: var(--text-body); font-size: 16.5px; line-height: 1.92; letter-spacing: .005em; }
+  .has-inline-series-nav :global(> blockquote:first-child) { display:none; }
   .prose :global(h2) { margin: 58px 0 20px; color: var(--text); font-family: var(--display); font-size: 27px; font-weight: 400; line-height: 1.42; letter-spacing: -.02em; }
   .prose :global(h2:first-child) { margin-top: 0; }
   .prose :global(h3) { margin: 44px 0 16px; color: var(--text); font-size: 20px; font-weight: 600; line-height: 1.5; letter-spacing: -.01em; }
@@ -127,11 +162,19 @@ const pageKey = `/writing/${entry.id}/`;
   .prose :global(summary) { cursor: pointer; font-weight: 600; }
   .prose :global(details[open] summary) { margin-bottom: 14px; }
   .prose :global(.footnotes) { margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 13px; }
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     .article-header { padding-bottom: 32px; }
     .article-info { align-items: flex-start; flex-direction: column; }
     .article-layout { grid-template-columns: 1fr; padding-top: 34px; }
     .toc { display: none; }
+    .mobile-reading { display:block; margin:0 0 20px; padding:15px 0; border-block:1px solid var(--line); color:var(--text-soft); font-size:12px; }
+    .mobile-reading summary { cursor:pointer; color:var(--text); }
+    .mobile-reading nav { margin-top:22px; }
+    .mobile-reading ol { list-style:none; padding:0; }
+    .mobile-reading li { margin:8px 0; }
+    .mobile-reading a { display:block; padding:4px 0; text-decoration:none; line-height:1.7; }
+    .mobile-reading a[aria-current='page'] { color:var(--accent); }
+    .article-pagination { gap:22px; }
     .prose { font-size: 16px; line-height: 1.88; }
     .prose :global(h2) { margin-top: 50px; font-size: 25px; }
     .prose :global(iframe) { min-height: 220px; }

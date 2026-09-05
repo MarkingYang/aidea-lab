@@ -12,7 +12,7 @@ interface Props {
 
 const {
   title = '大飞随笔｜AI 学习与思考',
-  description = '记录 AI 时代仍在生长的判断、实验与问题。',
+  description = '记录 AI 浪潮下的随想与观察，聚焦思考、沉淀与实践，探寻新的学习范式，见证 AI 如何重塑认知与成长。',
   currentPath = Astro.url.pathname,
   image = null,
   ogType = 'website',
@@ -21,12 +21,11 @@ const {
 const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
 const imageUrl = image ? new URL(image, pageUrl.origin) : null;
 const navItems = [
-  { href: '/', label: '首页', mobileHidden: true },
-  { href: '/notes/', label: '笔记' },
-  { href: '/essays/', label: '文章' },
-  { href: '/topics/', label: '主题', mobileHidden: true },
-  { href: '/timeline/', label: '时间线' },
-  { href: '/about/', label: '关于' },
+  { href: '/topics/', label: '知识目录', mobileHidden: false },
+  { href: '/series/', label: '系列阅读', mobileHidden: false },
+  { href: '/library/', label: '全部文章', mobileHidden: false },
+  { href: '/notes/', label: '随想', mobileHidden: true },
+  { href: '/about/', label: '关于', mobileHidden: true },
 ];
 ---
 
@@ -51,7 +50,8 @@ const navItems = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       (() => {
-        const saved = localStorage.getItem('theme');
+        let saved;
+        try { saved = localStorage.getItem('theme'); } catch {}
         const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
         document.documentElement.dataset.theme = theme;
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#111210' : '#fbfaf7');
@@ -71,7 +71,7 @@ const navItems = [
       <div class="header-actions">
         <nav class="site-nav" aria-label="主导航">
           {navItems.map((item) => (
-            <a class:list={{ 'mobile-hidden': item.mobileHidden }} href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.label}</a>
+            <a class:list={{ 'mobile-hidden': item.mobileHidden }} href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
           ))}
         </nav>
         <button class="theme-toggle" type="button" aria-label="切换深浅主题" title="切换深浅主题">
@@ -81,12 +81,13 @@ const navItems = [
       </div>
     </header>
     <main id="main"><slot /></main>
+    <footer class="site-footer"><div><a href="/" class="footer-name">大飞随笔</a><p>思考、沉淀与实践。让理解慢慢发生。</p><p lang="en">Reflections on AI, learning, and the way we grow.</p></div><nav aria-label="页脚导航"><a href="/topics/">知识目录</a><a href="/series/">系列阅读</a><a href="/library/">全部文章</a><a href="/notes/">随想</a><a href="/timeline/">时间线</a><a href="/about/">关于</a></nav></footer>
     <ArtalkStats />
     <script is:inline>
       document.querySelector('.theme-toggle')?.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = next;
-        localStorage.setItem('theme', next);
+        try { localStorage.setItem('theme', next); } catch {}
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#111210' : '#fbfaf7');
         window.dispatchEvent(new CustomEvent('site-theme-change', { detail: { theme: next } }));
       });

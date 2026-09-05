@@ -12,11 +12,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <aside><span>RECORDING PRINCIPLES</span><p>记录变化，而不只记录结论。</p></aside>
       <article>
         <h2>这是什么</h2>
-        <p>这是一个关于 AI、产品与人的个人研究花园。它收集短笔记、长篇思考和每周信号，也保存那些后来被证明并不准确的判断。</p>
+        <p>记录 AI 浪潮下的随想与观察，在技术迭代的洪流之中，探寻属于这个时代全新的学习范式。不追逐转瞬即逝的热点，聚焦思考、沉淀与实践，见证 AI 如何重塑认知、重构我们获取知识与成长的方式。</p>
+        <p class="english-mission" lang="en">Documenting reflections and observations amid the AI wave. Amid the torrent of technological iteration, I explore new-era learning paradigms. Rather than chasing fleeting trends, I focus on thinking, reflection and hands-on practice — witnessing how AI reshapes cognition and redefines the ways we acquire knowledge and grow.</p>
         <h2>如何阅读</h2>
-        <p>你可以按照时间阅读，也可以从一个主题出发。文章旁边的状态标记表达它目前的位置：“种子”只是直觉，“生长中”仍在修订，“常青”是暂时稳定的理解。</p>
-        <h2>如何开始写</h2>
-        <p>在 <code>src/content/writing</code> 中新建 Markdown 文件，填写标题、日期、类型、状态与主题，就会自动出现在对应页面中。</p>
+        <p>第一次来，可以从<a href="/topics/">知识目录</a>选一个正在思考的问题。希望系统理解，就沿<a href="/series/">系列</a>从全景走向实践，再回到整体；有具体关键词，可以直接<a href="/library/">检索文章</a>。零散的观察留在<a href="/notes/">随想</a>里，变化的轨迹留在<a href="/timeline/">时间线</a>里。</p>
+        <h2>理解没有完成时</h2>
+        <p>“种子”只是直觉，“生长中”仍在修订，“常青”是暂时稳定的理解，归档则保留过去的判断。系列有终篇，不代表问题已经终结。记录事实、标明推断、保留来源，让后来的人，也让未来的自己有机会重新检查。</p>
       </article>
     </div>
   </div>
@@ -31,6 +32,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   article h2 { margin: 0 0 12px; font-family: var(--display); font-size: 26px; font-weight: 400; }
   article h2:not(:first-child) { margin-top: 40px; }
   article p { margin: 0; color: var(--text-soft); font-size: 15px; line-height: 1.9; }
+  article .english-mission { margin-top:22px; font:15px/1.85 Georgia,serif; }
+  article a { color:var(--accent); text-underline-offset:4px; }
   code { padding: 3px 7px; border-radius: 5px; background: var(--surface); font: 12px var(--mono); }
   @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
 </style>

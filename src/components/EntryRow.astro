@@ -1,0 +1,19 @@
+---
+import { articleHref, dateLabel, updated, type Writing } from '../lib/knowledge';
+interface Props { entry: Writing; seriesTitle?: string; href?: string; }
+const { entry, seriesTitle, href = articleHref(entry.id) } = Astro.props;
+---
+<article class="entry-row">
+  <time datetime={updated(entry).toISOString()}>{dateLabel(updated(entry))}</time>
+  <div><p class="entry-context">{seriesTitle ? '系列修订' : entry.data.type === 'essay' ? '独立文章' : '随想笔记'} · {entry.data.topics[0]}</p><h3><a href={href}>{seriesTitle ?? entry.data.title}</a></h3><p class="entry-summary">{entry.data.description}</p></div>
+  <span class="entry-time">{seriesTitle ? '进入系列 →' : entry.data.readingTime}</span>
+</article>
+<style>
+  .entry-row { display:grid; grid-template-columns:96px minmax(0,1fr) 100px; gap:24px; padding:25px 0; border-bottom:1px solid var(--line); }
+  time { color:var(--text-soft); font:11px/1.7 var(--mono); padding-top:2px; }
+  .entry-context { margin:0 0 9px; font-size:11px; color:var(--text-soft); }
+  h3 { margin:0; font-size:17px; font-weight:500; line-height:1.6; } h3 a { text-decoration:none; } h3 a:hover { color:var(--accent); }
+  .entry-summary { max-width:740px; margin:7px 0 0; color:var(--text-soft); font-size:13px; line-height:1.8; }
+  .entry-time { align-self:center; text-align:right; color:var(--text-soft); font-size:11px; }
+  @media(max-width:640px) { .entry-row { grid-template-columns:1fr auto; gap:10px; } time { grid-column:1/-1; } .entry-time { align-self:start; max-width:65px; } }
+</style>

@@ -1,0 +1,156 @@
+[
+  {
+    "original": "agent-system-evaluation-research",
+    "articles": [
+      {
+        "slug": "agent-system-evaluation-research",
+        "title": "Agent 评测（一）：先搭一张从任务到上线决策的地图"
+      },
+      {
+        "slug": "agent-evaluation-metrics",
+        "title": "Agent 评测（二）：成功率、稳定性与成本，不能揉成一个分数"
+      },
+      {
+        "slug": "agent-evaluation-datasets",
+        "title": "Agent 评测（三）：先把题目和裁判做对，再谈排行榜"
+      },
+      {
+        "slug": "agent-evaluation-engineering",
+        "title": "Agent 评测（四）：把一次打分变成可重复的回归系统"
+      },
+      {
+        "slug": "agent-evaluation-synthesis",
+        "title": "Agent 评测（五）：高分为何不能直接兑换更大的行动权"
+      }
+    ]
+  },
+  {
+    "original": "deepseek-harness-architecture",
+    "articles": [
+      {
+        "slug": "deepseek-harness-architecture",
+        "title": "DeepSeek Harness 架构（一）：先理解能力组合与事实记录这两条主线"
+      },
+      {
+        "slug": "deepseek-harness-composition",
+        "title": "DeepSeek Harness 架构（二）：插件怎样出现、协作，并真正退出"
+      },
+      {
+        "slug": "deepseek-harness-state",
+        "title": "DeepSeek Harness 架构（三）：历史不能丢，模型又不能看全部历史"
+      },
+      {
+        "slug": "deepseek-harness-execution",
+        "title": "DeepSeek Harness 架构（四）：工具、PTC 和多 Agent，怎样不放大副作用"
+      },
+      {
+        "slug": "deepseek-harness-synthesis",
+        "title": "DeepSeek Harness 架构（五）：自由不会消灭复杂度，它会改变复杂度的归属"
+      }
+    ]
+  },
+  {
+    "original": "product-analysis-frameworks",
+    "articles": [
+      {
+        "slug": "product-analysis-frameworks",
+        "title": "产品分析框架（一）：先知道要做什么决定，再选择框架"
+      },
+      {
+        "slug": "product-frameworks-market",
+        "title": "产品分析框架（二）：从市场很大，到我们为什么能做"
+      },
+      {
+        "slug": "product-frameworks-prioritization",
+        "title": "产品分析框架（三）：从用户旅程到一次有边界的发布"
+      },
+      {
+        "slug": "product-frameworks-growth",
+        "title": "产品分析框架（四）：用户真的得到价值，生意才有机会成立"
+      },
+      {
+        "slug": "product-frameworks-delivery",
+        "title": "产品分析框架（五）：让一次发布留下结果，也留下可复用的认识"
+      },
+      {
+        "slug": "product-frameworks-synthesis",
+        "title": "产品分析框架（六）：框架的终点，不是确定性，而是更好的判断"
+      }
+    ]
+  },
+  {
+    "original": "claude-code-product-design",
+    "articles": [
+      {
+        "slug": "claude-code-product-design",
+        "title": "Claude Code 产品设计（一）：先看任务、执行与证据三个闭环"
+      },
+      {
+        "slug": "claude-code-task-experience",
+        "title": "Claude Code 产品设计（二）：从一句需求，到一条可以干预的任务旅程"
+      },
+      {
+        "slug": "claude-code-trust",
+        "title": "Claude Code 产品设计（三）：少一点确认，不等于少一点边界"
+      },
+      {
+        "slug": "claude-code-session-collaboration",
+        "title": "Claude Code 产品设计（四）：并行和跨端，首先是状态管理问题"
+      },
+      {
+        "slug": "claude-code-product-synthesis",
+        "title": "Claude Code 产品设计（五）：Agent 产品真正设计的是责任，而不只是操作"
+      }
+    ]
+  },
+  {
+    "original": "agent-memory-design-competitive-analysis",
+    "articles": [
+      {
+        "slug": "agent-memory-design-competitive-analysis",
+        "title": "Agent 记忆设计（一）：先把记忆放回完整生命周期"
+      },
+      {
+        "slug": "agent-memory-writing",
+        "title": "Agent 记忆设计（二）：保留历史，还是维护当前事实"
+      },
+      {
+        "slug": "agent-memory-retrieval",
+        "title": "Agent 记忆设计（三）：找到相关记忆，只完成了一半"
+      },
+      {
+        "slug": "agent-memory-governance",
+        "title": "Agent 记忆设计（四）：一条记忆开始跨团队流动之后"
+      },
+      {
+        "slug": "agent-memory-synthesis",
+        "title": "Agent 记忆设计（五）：长期记忆的价值，在于能够改变认识"
+      }
+    ]
+  },
+  {
+    "original": "ai-capability-product-metrics",
+    "articles": [
+      {
+        "slug": "ai-capability-product-metrics",
+        "title": "AI 产品价值（一）：先看交付结果，再给算法能力找位置"
+      },
+      {
+        "slug": "ai-value-coding",
+        "title": "AI 产品价值（二）：测试通过之后，还需要哪些交付证据"
+      },
+      {
+        "slug": "ai-value-voice",
+        "title": "AI 产品价值（三）：听懂一句话，不等于改对一个闹钟"
+      },
+      {
+        "slug": "ai-value-office",
+        "title": "AI 产品价值（四）：文件能打开，为什么仍然不能交付"
+      },
+      {
+        "slug": "ai-value-synthesis",
+        "title": "AI 产品价值（五）：能力进步，为什么未必等于交付变便宜"
+      }
+    ]
+  }
+]
