@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（八）：ECC 如何把工程经验编译到不同平台
+title: ECC 工程资产系统研究（二）：如何把工程经验编译到不同平台
 description: 从资产、安装计划与跨 Harness 适配出发，拆解 ECC 如何把工程意图投射为可安装、可恢复的系统。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -15,7 +15,7 @@ featured: true
 readingTime: 8 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)
 
 如果只看仓库名字，Everything Claude Code（下文简称 ECC）很容易被理解成一套 Claude Code 配置合集：很多 Agent、Skill、Command、Rule，再加一些 Hook。
 
@@ -183,7 +183,7 @@ ECC 的 Apply 层因此要处理：
 
 ---
 
-上一篇：[Pi 扩展](/writing/pi-durable-harness-governance/)。
+上一篇：[ECC 全景](/writing/ecc-series-overview/)。
 
 资产与安装器解决了“同一份工程意图怎样到达不同平台”。下一篇继续看 Hook 如何在确定性事件上执行约束，以及记忆为什么只能作为低信任输入。
 

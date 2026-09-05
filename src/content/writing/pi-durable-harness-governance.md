@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（七）：Pi 如何走向可恢复的多进程系统
+title: Pi Coding Agent 源码研究（四）：如何走向可恢复的多进程系统
 description: 从外置安全边界、Durable AgentHarness 与架构代价出发，理解 Pi 的可组合性如何延伸到持久任务和多端协作。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -14,7 +14,7 @@ featured: false
 readingTime: 8 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)
 
 扩展能力并不自动带来安全和持久性。Pi 正在通过另一条实验架构把 Session、Worker、协议与客户端拆开，同时把治理责任明确留给部署者。
 
@@ -141,6 +141,6 @@ Pi 最有意思的矛盾是：它用一套相当完整的架构，去保护用�
 
 上一篇：[Pi Session](/writing/pi-session-extension-architecture/)。
 
-Pi 让使用者从内核和扩展点装配工作方式。下一篇进入 ECC：它不掌握模型循环，而是把团队经验编译到多个既有 Harness。
+Pi 的稳定机制、扩展边界和持久任务路径已经展开。下一篇回到整体，判断极简究竟减少了什么，又把哪些责任留给了部署者。
 
-下一篇：[ECC 编译](/writing/ecc-architecture-deep-dive/)。
+下一篇：[Pi 整体判断](/writing/pi-series-synthesis/)。

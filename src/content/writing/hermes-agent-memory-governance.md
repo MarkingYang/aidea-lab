@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（四）：Hermes 如何积累经验而不失去边界
+title: Hermes Agent 源码研究（四）：经验如何积累而不失去边界
 description: 拆解 Hermes 的 Session、Memory、Skill、自我改进与安全模型，理解长期 Agent 如何保存经验并控制污染。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -14,7 +14,7 @@ featured: false
 readingTime: 9 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
 
 Hermes 真正不同于一次性工具的地方，是它试图让任务之间发生连接。但长期积累会把一次错误放大到未来，因此“记住什么”必须与“凭什么相信”一起设计。
 
@@ -136,6 +136,6 @@ Hermes 让 Memory、Skills、Session、Gateway 与 Cron 共同形成一条跨任
 
 上一篇：[Hermes 工具](/writing/hermes-agent-runtime-services/)。
 
-Hermes 用丰富默认能力回答长期协作。下一篇换到另一端：Pi 如何通过删除默认意见，让最小内核仍然维持正确性。
+三篇源码分析已经把运行、工具与学习接在一起。下一篇回到整体，判断 Hermes 的自我改进真正成立需要哪些治理条件。
 
-下一篇：[Pi 内核](/writing/pi-architecture-deep-dive/)。
+下一篇：[Hermes 整体判断](/writing/hermes-agent-series-synthesis/)。

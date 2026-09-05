@@ -86,7 +86,7 @@ DeepSeek Harness 的 Cordis 架构把模型、工具、文件访问、Agent Loop
 
 “首选”也不意味着单一采购。很常见的一种组合是：用 Claude Code 或 Codex 作为工程师默认产品，用 Pi 或 DeepSeek Harness 做模型与运行时实验，用 Hermes 承担个人或团队的非代码自动化。
 
-如果要继续进入架构内部，可以沿 [可塑 Agent Harness 系列](/writing/composable-agent-harness-architecture/)对照 Hermes、Pi 与 ECC，再进入 [DeepSeek Harness 架构系列](/writing/deepseek-harness-architecture/)理解全插件运行时。它们不是新的产品排名，而是对不同 Harness 取舍的纵向补充。
+如果要继续进入架构内部，可以先从 [可塑 Agent Harness 研究地图](/writing/composable-agent-harness-architecture/)选择一个独立项目系列，再进入 [DeepSeek Harness 架构系列](/writing/deepseek-harness-architecture/)理解全插件运行时。当前阶段先逐个建立事实，不把不同层次的项目提前做成产品排名。
 
 ---
 

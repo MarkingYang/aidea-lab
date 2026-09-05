@@ -1,0 +1,77 @@
+---
+title: Harness 工程基础与协议（三）：MCP 生命周期：从连通到具备调用条件
+description: 固定 MCP 2025-11-25 版本，梳理初始化、能力协商、请求关联与工具目录失效，并区分协议错误和工具执行错误。
+publishedAt: 2026-09-05
+updatedAt: 2026-09-05
+type: essay
+status: growing
+topics:
+  - Agent Harness
+  - AI 工程
+  - MCP
+featured: false
+readingTime: 7 min
+---
+
+> Harness 工程基础与协议系列：[1. 全景与并发](/writing/harness-foundations-concurrency/)｜[2. 一致性](/writing/harness-foundations-consistency/)｜[3. MCP 生命周期](/writing/harness-foundations-mcp-lifecycle/)｜[4. MCP 恢复](/writing/harness-foundations-mcp-recovery/)｜[5. 故障实验](/writing/harness-foundations-lab/)
+
+服务端口可访问，只能说明某种连接条件成立。Harness 还需要确认双方使用什么协议、提供哪些能力，以及工具定义是否仍然适用。
+
+本文固定采用 MCP **2025-11-25** 规范，核对日期为 2026-09-05。版本是本系列的学习基线，不声称覆盖所有后续修订。配套代码是状态模型，不是可连接 MCP 服务的客户端。
+
+## 初始化建立共同的运行前提
+
+```mermaid
+sequenceDiagram
+    participant H as Harness 客户端
+    participant S as MCP 服务端
+    H->>S: initialize（版本与客户端能力）
+    S-->>H: 初始化结果（版本与服务端能力）
+    H->>S: notifications/initialized
+    H->>S: tools/list（已协商 tools 能力）
+    S-->>H: 工具目录
+```
+
+*图 1｜握手完成后再进入工具发现；图中省略传输、身份验证和错误分支。*
+
+客户端提出版本，服务端返回所采用的版本与能力；客户端若不支持返回版本，应断开连接。收到初始化结果后，客户端必须发送 `notifications/initialized`。后续行为要遵守已协商的能力。[MCP 生命周期规范](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)
+
+实验采用更容易验证的工具闸门：完成上述步骤且服务端声明 `tools` 后才允许工具请求。它只实现工具子集，不能用来验证规范中 ping、日志等初始化阶段例外。
+
+## 请求 ID 只负责关联这一次往返
+
+JSON-RPC 请求带有 ID，响应用相同 ID 关联；通知没有 ID，也不要求对应响应。响应应包含 `result` 或 `error`，两者不能同时出现。[JSON-RPC 2.0 规范](https://www.jsonrpc.org/specification)
+
+两个工具请求先后发出，结果可能倒序到达。Harness 应按 ID 查找等待者，不能把第一个收到的结果交给第一个发出的调用。
+
+实验用“连接代次:序号”产生 ID，例如 `1:3`、`2:3`。这是教学实现的本地策略，不是 MCP 要求的格式。重新连接后旧响应无法命中新请求，有助于测试迟到消息的处理。
+
+但请求 ID 不能代替业务操作键。一次工单创建经过断线重试，可能涉及多个请求 ID，业务上仍是同一次创建意图。
+
+## 工具目录也有有效期
+
+服务端在支持相应能力时，可以通知工具列表发生变化。工具发现、输入 Schema 和执行错误格式由[工具规范](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)定义。
+
+Harness 还需要自己的缓存策略。假设目录请求已经发出，此时收到目录变化通知，随后旧请求的响应才到达；直接把这份响应标为最新目录，会覆盖刚刚获得的失效信息。
+
+实验为目录维护本地修订号。发请求时记住修订号，变化通知到达时递增；返回结果若对应旧修订，就不允许它重新使缓存有效。接着重新获取目录，再开放工具调用。
+
+这是本系列选择的保守策略，规范没有要求所有客户端采用这一缓存算法。真实目录还可能需要分页、权限过滤与 Schema 校验，本实验未实现这些部分。
+
+## 三层成功必须分别判断
+
+| 观察 | 可以说明 | 下一步仍需确认 |
+| --- | --- | --- |
+| 收到合法 JSON-RPC 响应 | 本次响应能够关联与解析 | 是否为协议错误 |
+| 收到工具结果且没有执行错误标记 | 工具返回了正常结果 | 业务对象是否符合目标 |
+| 权威读取和验收通过 | 当前证据支持目标已完成 | 是否还有任务级未完成条件 |
+
+协议层错误，例如无法识别的方法，进入 `error`；工具执行中的业务错误可以在 `result` 内使用 `isError: true`。本地模型分别返回 `protocol_error` 与 `tool_error`，正常结果也只记作 `tool_result_received`。
+
+这延续了[工具契约篇](/writing/harness-engineering-tools/)的原则：接口完成与任务完成由不同证据支持。错误分类也不自动决定能否重试，写操作是否已经产生副作用仍需单独确认。
+
+练习时，画出客户端当前允许发送的方法，并在每条边上注明前提。若图里只有“连接成功→调用工具”，就把初始化、能力缺失、目录变化和错误返回四条分支补上。
+
+上一篇：[一致性](/writing/harness-foundations-consistency/)。
+
+下一篇：[MCP 恢复](/writing/harness-foundations-mcp-recovery/)。

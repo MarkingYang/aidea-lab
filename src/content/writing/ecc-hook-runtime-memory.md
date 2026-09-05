@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（九）：ECC 如何让规则在事件边界真正发生
+title: ECC 工程资产系统研究（三）：规则如何在事件边界真正发生
 description: 沿 Hook 运行时、Memory Vault 与持续学习，理解 ECC 如何分离确定性约束、历史事实和经验候选。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -15,7 +15,7 @@ featured: false
 readingTime: 7 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)
 
 安装只决定资产到达哪里，运行时才决定规则是否真正发生。ECC 用 Hook 承担确定性事件，用 Memory Vault 保存事实，再把观察到的模式放入受控的学习链路。
 

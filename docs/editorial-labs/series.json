@@ -201,50 +201,112 @@
     "priority": 2,
     "original": "composable-agent-harness-architecture",
     "articles": [
-      {
-        "slug": "composable-agent-harness-architecture",
-        "title": "可塑 Agent Harness（一）：先看三种“开放”如何分配复杂度"
-      },
-      {
-        "slug": "hermes-agent-architecture-deep-dive",
-        "title": "可塑 Agent Harness（二）：Hermes 如何维持长期运行的内核"
-      },
-      {
-        "slug": "hermes-agent-runtime-services",
-        "title": "可塑 Agent Harness（三）：Hermes 如何从工具循环变成常驻服务"
-      },
-      {
-        "slug": "hermes-agent-memory-governance",
-        "title": "可塑 Agent Harness（四）：Hermes 如何积累经验而不失去边界"
-      },
-      {
-        "slug": "pi-architecture-deep-dive",
-        "title": "可塑 Agent Harness（五）：Pi 如何用最小内核维持正确性"
-      },
-      {
-        "slug": "pi-session-extension-architecture",
-        "title": "可塑 Agent Harness（六）：Pi 如何把运行历史变成可扩展的 Session"
-      },
-      {
-        "slug": "pi-durable-harness-governance",
-        "title": "可塑 Agent Harness（七）：Pi 如何走向可恢复的多进程系统"
-      },
-      {
-        "slug": "ecc-architecture-deep-dive",
-        "title": "可塑 Agent Harness（八）：ECC 如何把工程经验编译到不同平台"
-      },
-      {
-        "slug": "ecc-hook-runtime-memory",
-        "title": "可塑 Agent Harness（九）：ECC 如何让规则在事件边界真正发生"
-      },
-      {
-        "slug": "ecc-memory-supply-chain",
-        "title": "可塑 Agent Harness（十）：ECC 如何治理配置供应链与控制平面"
-      },
-      {
-        "slug": "composable-agent-harness-synthesis",
-        "title": "可塑 Agent Harness（十一）：可塑性的终点不是配置更多"
-      }
+      { "slug": "composable-agent-harness-architecture", "title": "可塑 Agent Harness（一）：先把十个项目放回各自的问题" },
+      { "slug": "composable-agent-harness-research-method", "title": "可塑 Agent Harness（二）：用同一张研究卡读不同仓库" },
+      { "slug": "composable-agent-harness-synthesis", "title": "可塑 Agent Harness（三）：先完成理解，再开始关联" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "hermes-agent-series-overview",
+    "articles": [
+      { "slug": "hermes-agent-series-overview", "title": "Hermes Agent 源码研究（一）：先看长期 Agent 的完整地图" },
+      { "slug": "hermes-agent-architecture-deep-dive", "title": "Hermes Agent 源码研究（二）：长期运行的内核如何维持" },
+      { "slug": "hermes-agent-runtime-services", "title": "Hermes Agent 源码研究（三）：从工具循环到常驻服务" },
+      { "slug": "hermes-agent-memory-governance", "title": "Hermes Agent 源码研究（四）：经验如何积累而不失去边界" },
+      { "slug": "hermes-agent-series-synthesis", "title": "Hermes Agent 源码研究（五）：自我改进必须先成为可治理过程" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "claude-code-internals-overview",
+    "articles": [
+      { "slug": "claude-code-internals-overview", "title": "Claude Code 系统研究（一）：先看编码 Agent 的扩展地图" },
+      { "slug": "claude-code-agent-loop", "title": "Claude Code 系统研究（二）：模型如何在工具证据中持续行动" },
+      { "slug": "claude-code-memory-extension", "title": "Claude Code 系统研究（三）：记忆、Skill 与 Hook 不应混成一层" },
+      { "slug": "claude-code-internals-synthesis", "title": "Claude Code 系统研究（四）：学习发生在可审计的外部资产中" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "codex-system-overview",
+    "articles": [
+      { "slug": "codex-system-overview", "title": "Codex 系统研究（一）：先区分开源运行时与协作产品" },
+      { "slug": "codex-runtime-sandbox", "title": "Codex 系统研究（二）：沙箱、审批与证据如何约束执行" },
+      { "slug": "codex-skills-memory-automation", "title": "Codex 系统研究（三）：Skills、Memory 与 Automations 如何延长任务" },
+      { "slug": "codex-system-synthesis", "title": "Codex 系统研究（四）：长期工作不能失去可接管性" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "opencode-system-overview",
+    "articles": [
+      { "slug": "opencode-system-overview", "title": "OpenCode 系统研究（一）：先看开放 Coding Agent 的地图" },
+      { "slug": "opencode-client-server-runtime", "title": "OpenCode 系统研究（二）：Client 与 Server 如何共享任务状态" },
+      { "slug": "opencode-agents-skills-plugins", "title": "OpenCode 系统研究（三）：Agents、Skills 与 Plugins 如何分工" },
+      { "slug": "opencode-system-synthesis", "title": "OpenCode 系统研究（四）：开放的价值是让边界可检查" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "kimi-code-system-overview",
+    "articles": [
+      { "slug": "kimi-code-system-overview", "title": "Kimi Code 系统研究（一）：先看新一代 CLI 的系统地图" },
+      { "slug": "kimi-code-session-runtime", "title": "Kimi Code 系统研究（二）：持久 Session 如何支持恢复与回放" },
+      { "slug": "kimi-code-skills-swarm", "title": "Kimi Code 系统研究（三）：Skills 与 Agent Swarm 如何组合" },
+      { "slug": "kimi-code-system-synthesis", "title": "Kimi Code 系统研究（四）：可恢复与会学习之间还有一步" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "pi-series-overview",
+    "articles": [
+      { "slug": "pi-series-overview", "title": "Pi Coding Agent 源码研究（一）：先看极简 Harness 的完整地图" },
+      { "slug": "pi-architecture-deep-dive", "title": "Pi Coding Agent 源码研究（二）：最小内核如何维持正确性" },
+      { "slug": "pi-session-extension-architecture", "title": "Pi Coding Agent 源码研究（三）：运行历史如何成为可扩展 Session" },
+      { "slug": "pi-durable-harness-governance", "title": "Pi Coding Agent 源码研究（四）：如何走向可恢复的多进程系统" },
+      { "slug": "pi-series-synthesis", "title": "Pi Coding Agent 源码研究（五）：极简的价值是暴露责任" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "addy-agent-skills-overview",
+    "articles": [
+      { "slug": "addy-agent-skills-overview", "title": "Addy Osmani Agent Skills 研究（一）：先看完整研发生命周期" },
+      { "slug": "addy-agent-skills-lifecycle", "title": "Addy Osmani Agent Skills 研究（二）：命令如何路由到阶段 Skills" },
+      { "slug": "addy-agent-skills-verification", "title": "Addy Osmani Agent Skills 研究（三）：验证门槛如何抵抗走捷径" },
+      { "slug": "addy-agent-skills-synthesis", "title": "Addy Osmani Agent Skills 研究（四）：Skill 应编码决策点而非口号" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "anthropic-skills-overview",
+    "articles": [
+      { "slug": "anthropic-skills-overview", "title": "Anthropic Agent Skills 研究（一）：先看标准、模板与示例地图" },
+      { "slug": "anthropic-skills-progressive-disclosure", "title": "Anthropic Agent Skills 研究（二）：渐进披露如何控制上下文成本" },
+      { "slug": "anthropic-skills-document-pipelines", "title": "Anthropic Agent Skills 研究（三）：复杂文档 Skill 如何组织产物链" },
+      { "slug": "anthropic-skills-synthesis", "title": "Anthropic Agent Skills 研究（四）：可移植能力不等于可复制文本" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "ecc-series-overview",
+    "articles": [
+      { "slug": "ecc-series-overview", "title": "ECC 工程资产系统研究（一）：先看跨 Harness 的完整地图" },
+      { "slug": "ecc-architecture-deep-dive", "title": "ECC 工程资产系统研究（二）：如何把工程经验编译到不同平台" },
+      { "slug": "ecc-hook-runtime-memory", "title": "ECC 工程资产系统研究（三）：规则如何在事件边界真正发生" },
+      { "slug": "ecc-memory-supply-chain", "title": "ECC 工程资产系统研究（四）：如何治理配置供应链与控制平面" },
+      { "slug": "ecc-series-synthesis", "title": "ECC 工程资产系统研究（五）：跨平台复用必须保留能力差异" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "mattpocock-skills-overview",
+    "articles": [
+      { "slug": "mattpocock-skills-overview", "title": "Matt Pocock Skills 研究（一）：先看真实工程失效地图" },
+      { "slug": "mattpocock-skills-alignment", "title": "Matt Pocock Skills 研究（二）：追问与共享语言如何降低误解" },
+      { "slug": "mattpocock-skills-feedback-loops", "title": "Matt Pocock Skills 研究（三）：反馈速度为什么决定 Agent 速度" },
+      { "slug": "mattpocock-skills-synthesis", "title": "Matt Pocock Skills 研究（四）：组合能力不应夺走人的控制权" }
     ]
   },
   {
@@ -330,6 +392,122 @@
       {
         "slug": "ai-product-work-synthesis",
         "title": "AI 时代的产品工作（七）：产品工作的终点，是组织学习"
+      }
+    ]
+  },
+  {
+    "priority": 1,
+    "original": "harness-engineering-map",
+    "articles": [
+      {
+        "slug": "harness-engineering-map",
+        "title": "Agent Harness 工程（一）：一条任务如何穿过整个系统"
+      },
+      {
+        "slug": "harness-engineering-loop",
+        "title": "Agent Harness 工程（二）：什么时候继续，什么时候停止"
+      },
+      {
+        "slug": "harness-engineering-recovery",
+        "title": "Agent Harness 工程（三）：Checkpoint 之后，怎样避免重复执行"
+      },
+      {
+        "slug": "harness-engineering-tools",
+        "title": "Agent Harness 工程（四）：工具调用之前，先写清执行契约"
+      },
+      {
+        "slug": "harness-engineering-security",
+        "title": "Agent Harness 工程（五）：从提示注入到凭证隔离，边界放在哪里"
+      },
+      {
+        "slug": "harness-engineering-lab",
+        "title": "Agent Harness 工程（六）：用一次故障实验，把五条边界接起来"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "harness-operations-context",
+    "articles": [
+      {
+        "slug": "harness-operations-context",
+        "title": "Harness 运行与演进（一）：先看全景，再决定模型应该看到什么"
+      },
+      {
+        "slug": "harness-operations-planning",
+        "title": "Harness 运行与演进（二）：规划怎样帮助完成任务，而不是增加步骤"
+      },
+      {
+        "slug": "harness-operations-observability",
+        "title": "Harness 运行与演进（三）：沿着一条失败任务，把故障定位到边界"
+      },
+      {
+        "slug": "harness-operations-multi-agent",
+        "title": "Harness 运行与演进（四）：增加一个 Agent，需要增加哪些责任"
+      },
+      {
+        "slug": "harness-operations-model-gateway",
+        "title": "Harness 运行与演进（五）：换一个模型，为什么不是改一个名字"
+      },
+      {
+        "slug": "harness-operations-production",
+        "title": "Harness 运行与演进（六）：从一个 Worker 到可恢复的任务服务"
+      },
+      {
+        "slug": "harness-operations-release",
+        "title": "Harness 运行与演进（七）：让每一次变化都有进入生产和退出生产的证据"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "harness-foundations-concurrency",
+    "articles": [
+      {
+        "slug": "harness-foundations-concurrency",
+        "title": "Harness 工程基础与协议（一）：全景与并发：多个动作怎样安全地一起发生"
+      },
+      {
+        "slug": "harness-foundations-consistency",
+        "title": "Harness 工程基础与协议（二）：一致性：版本、事务与幂等各自守住什么"
+      },
+      {
+        "slug": "harness-foundations-mcp-lifecycle",
+        "title": "Harness 工程基础与协议（三）：MCP 生命周期：从连通到具备调用条件"
+      },
+      {
+        "slug": "harness-foundations-mcp-recovery",
+        "title": "Harness 工程基础与协议（四）：MCP 恢复：断线、取消与业务对账不能混成一步"
+      },
+      {
+        "slug": "harness-foundations-lab",
+        "title": "Harness 工程基础与协议（五）：故障实验：用并发与协议反例检验运行边界"
+      }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "harness-integration-map",
+    "articles": [
+      {
+        "slug": "harness-integration-map",
+        "title": "Harness 接入与实战（一）：先把一条真实链路接起来"
+      },
+      {
+        "slug": "harness-integration-model",
+        "title": "Harness 接入与实战（二）：模型适配：把生成结果收敛为候选动作"
+      },
+      {
+        "slug": "harness-integration-mcp",
+        "title": "Harness 接入与实战（三）：真实 MCP 接入：让工具跨过进程边界"
+      },
+      {
+        "slug": "harness-integration-recovery",
+        "title": "Harness 接入与实战（四）：进程级恢复：重启后先读事实，再决定动作"
+      },
+      {
+        "slug": "harness-integration-lab",
+        "title": "Harness 接入与实战（五）：端到端实验：运行、复盘与下一步验证"
       }
     ]
   }

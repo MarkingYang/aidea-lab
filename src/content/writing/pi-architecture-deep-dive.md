@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（五）：Pi 如何用最小内核维持正确性
+title: Pi Coding Agent 源码研究（二）：最小内核如何维持正确性
 description: 从 Provider、Agent Loop 与事件协议出发，理解 Pi 的极简为什么不等于简单。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -14,7 +14,7 @@ featured: true
 readingTime: 8 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)
 
 很多 Coding Agent 都在增加功能：计划模式、子 Agent、权限弹窗、浏览器、MCP、云端沙箱、任务队列。Pi 选择了相反的产品姿态——默认只提供一条足够短的 Agent Loop、四个基础工具和一个终端界面，把其他能力留给扩展。
 
@@ -145,7 +145,7 @@ Pi 在 [`Agent`](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056
 
 ---
 
-上一篇：[Hermes 积累](/writing/hermes-agent-memory-governance/)。
+上一篇：[Pi 全景](/writing/pi-series-overview/)。
 
 Provider 与 Loop 定义了执行事实。下一篇继续进入 AgentSession、事件树与 Compaction，看运行历史如何成为可恢复、可投影的状态。
 

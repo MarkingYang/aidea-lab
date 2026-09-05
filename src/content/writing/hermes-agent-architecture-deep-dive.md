@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（二）：Hermes 如何维持长期运行的内核
+title: Hermes Agent 源码研究（二）：长期运行的内核如何维持
 description: 从六个平面、Agent Loop 与 Prompt 分层出发，理解 Hermes 如何把不同模型收敛为可中断、可续跑的行动协议。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -14,7 +14,7 @@ featured: true
 readingTime: 7 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
 
 很多人第一次看到 Hermes Agent，会把它理解成“支持很多模型、很多工具和很多聊天平台的开源 Agent”。这个描述没有错，却错过了它真正有辨识度的部分。
 
@@ -144,7 +144,7 @@ flowchart LR
 
 ---
 
-上一篇：[全局地图](/writing/composable-agent-harness-architecture/)。
+上一篇：[Hermes 全景](/writing/hermes-agent-series-overview/)。
 
 内核解释了模型如何持续行动，但长期 Agent 还需要连接真实能力与外部入口。下一篇进入工具 ABI、代码编排、子 Agent 与 Gateway。
 

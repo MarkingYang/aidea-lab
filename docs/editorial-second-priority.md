@@ -54,27 +54,18 @@
 
 ## 第二组：可塑 Agent Harness
 
-Hermes、Pi 与 ECC 原来分别是 26、24、28 分钟的独立架构长文。上一组的开源路线篇已经引用它们，但读者需要在三个“大而全”的项目报告之间自行建立比较尺度。
+原方案把 Hermes、Pi 与 ECC 编排成一个十一篇对照系列，过早建立了统一结论。本轮再次拆分：母系列只保留研究地图、统一研究卡与阶段结论；十个仓库分别形成独立的“总—分—分—总”单元，完成单项目理解后才启动关联研究。
 
-本轮将三篇重新编排为十一篇：新增一篇共同地图和一篇整体思考；三个原 slug 分别保留为 Hermes 内核、Pi 内核与 ECC 编译篇；原文其余章节按工具、Session、运行时、记忆或治理重新组合。第一次八篇方案在复核时仍有五篇超过 8,000 字符，因此继续拆到每个项目三篇，不用阅读时长标签掩盖实际负担。
+| 类型 | 独立系列 | 研究重点 |
+| --- | --- | --- |
+| 长期 Agent | Hermes Agent | Loop、Gateway、Memory、Skills 与学习治理 |
+| Coding Harness | Claude Code、Codex、OpenCode、Kimi Code、Pi | 执行、状态、权限、扩展与恢复 |
+| Skill 资产 | Addy Osmani、Anthropic、Matt Pocock | 流程、标准、渐进加载与反馈循环 |
+| 跨 Harness 工程层 | ECC | 安装编译、Hook、Memory 与供应链 |
 
-| 顺序 | 文章 | 角色 | 预计阅读 |
-| --- | --- | --- | ---: |
-| 1 | [先看三种“开放”如何分配复杂度](../src/content/writing/composable-agent-harness-architecture.md) | 总览：统一架构尺度 | 7 分钟 |
-| 2 | [Hermes 如何维持长期运行的内核](../src/content/writing/hermes-agent-architecture-deep-dive.md) | Hermes Loop 与 Prompt | 7 分钟 |
-| 3 | [Hermes 如何从工具循环变成常驻服务](../src/content/writing/hermes-agent-runtime-services.md) | Hermes 工具与 Gateway | 5 分钟 |
-| 4 | [Hermes 如何积累经验而不失去边界](../src/content/writing/hermes-agent-memory-governance.md) | Hermes 记忆与安全 | 9 分钟 |
-| 5 | [Pi 如何用最小内核维持正确性](../src/content/writing/pi-architecture-deep-dive.md) | Pi Provider 与 Loop | 8 分钟 |
-| 6 | [Pi 如何把运行历史变成可扩展的 Session](../src/content/writing/pi-session-extension-architecture.md) | Pi Session 与上下文 | 7 分钟 |
-| 7 | [Pi 如何走向可恢复的多进程系统](../src/content/writing/pi-durable-harness-governance.md) | Pi 扩展、安全与持久任务 | 8 分钟 |
-| 8 | [ECC 如何把工程经验编译到不同平台](../src/content/writing/ecc-architecture-deep-dive.md) | ECC 资产与安装器 | 8 分钟 |
-| 9 | [ECC 如何让规则在事件边界真正发生](../src/content/writing/ecc-hook-runtime-memory.md) | ECC Hook、记忆与学习 | 7 分钟 |
-| 10 | [ECC 如何治理配置供应链与控制平面](../src/content/writing/ecc-memory-supply-chain.md) | ECC 安全与长期演进 | 8 分钟 |
-| 11 | [可塑性的终点不是配置更多](../src/content/writing/composable-agent-harness-synthesis.md) | 总结：稳定与变化的边界 | 8 分钟 |
+知识图谱为母系列和十个项目分别建立局部圆。文章只按真实系列归属、关键词和正文引用连接；母系列不生成项目相似性结论。Kimi CLI 已并入 Kimi Code 的研究范围，`affaan-m/ECC` 使用仓库的正确所有者名称。
 
-知识图谱新增“可塑 Agent Harness”局部圆。上一组的开源路线篇显式连接新系列入口；系列各篇再通过 Hermes Agent、Pi、ECC、Agent Memory、Agent Skills 等关键词连接已有知识。构建校验负责保证十一篇完整归属，不需要手工编辑图数据。
-
-第二组 Review 重点：总览是否把三个不同层次的系统放到了同一尺度；拆分后的项目深度是否仍然完整；终篇提出的事件契约、事实与投影、经验晋升和总维护成本，是否确实由前三个案例共同推出。
+第二组 Review 重点：每个入口是否先画清系统边界；中间篇是否沿状态或数据主线进入机制；终篇是否只总结本项目；跨项目判断是否被明确推迟。
 
 ## 第三组：可信 Agent 工程
 

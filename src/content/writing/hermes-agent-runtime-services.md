@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（三）：Hermes 如何从工具循环变成常驻服务
+title: Hermes Agent 源码研究（三）：从工具循环到常驻服务
 description: 沿 Tool Schema、execute_code、子 Agent 与 Gateway，理解 Hermes 如何连接执行能力、控制流和跨渠道任务。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -14,7 +14,7 @@ featured: false
 readingTime: 5 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
 
 一个 Agent Loop 只有接触文件、Shell、浏览器和外部服务之后，才开始产生真实副作用。Hermes 的工具层因此不只是能力列表，还承担模型协议、控制流和运行环境之间的边界。
 

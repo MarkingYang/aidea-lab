@@ -1,5 +1,5 @@
 ---
-title: 可塑 Agent Harness（六）：Pi 如何把运行历史变成可扩展的 Session
+title: Pi Coding Agent 源码研究（三）：运行历史如何成为可扩展 Session
 description: 沿 AgentSession、追加事件树、Compaction 与扩展拦截点，理解 Pi 如何分离事实、上下文投影和产品策略。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -14,7 +14,7 @@ featured: false
 readingTime: 7 min
 ---
 
-> 系列：[1. 全局地图](/writing/composable-agent-harness-architecture/)｜[2. Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. Hermes 工具](/writing/hermes-agent-runtime-services/)｜[4. Hermes 积累](/writing/hermes-agent-memory-governance/)｜[5. Pi 内核](/writing/pi-architecture-deep-dive/)｜[6. Pi Session](/writing/pi-session-extension-architecture/)｜[7. Pi 扩展](/writing/pi-durable-harness-governance/)｜[8. ECC 编译](/writing/ecc-architecture-deep-dive/)｜[9. ECC 运行](/writing/ecc-hook-runtime-memory/)｜[10. ECC 治理](/writing/ecc-memory-supply-chain/)｜[11. 整体思考](/writing/composable-agent-harness-synthesis/)
+> 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)
 
 Pi 的最小内核没有把历史保存成最终 messages 数组，而是让 AgentSession 同时承担持久化、上下文投影、扩展和 UI 的产品语义。本篇关注这条状态主线。
 

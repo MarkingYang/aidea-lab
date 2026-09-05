@@ -127,7 +127,7 @@ function graphEdgeWeight(relation: GraphRelation) {
 }
 
 function assignCirclePackingLayout(nodes: KnowledgeGraphNode[], links: KnowledgeGraphLink[]) {
-  const graphRadius = 210;
+  let graphRadius = 210;
   const nodeById = new Map(nodes.map(node => [node.id, node]));
   const clusterForNode = new Map<string, string>();
   const clusterDefinitions = new Map<string, { id: string; label: string; topicId: string; hubId: string }>();
@@ -256,15 +256,25 @@ function assignCirclePackingLayout(nodes: KnowledgeGraphNode[], links: Knowledge
     });
   const arcWeights = outerCircles.map(circle => Math.pow(circle.radius, .82));
   const totalArcWeight = arcWeights.reduce((sum, weight) => sum + weight, 0) || 1;
-  let angleCursor = -Math.PI / 2;
-  outerCircles.forEach((circle, index) => {
-    const span = Math.PI * 2 * arcWeights[index] / totalArcWeight;
-    const angle = angleCursor + span / 2;
-    const orbit = graphRadius - circle.radius - 7;
-    circle.x = Math.cos(angle) * orbit;
-    circle.y = Math.sin(angle) * orbit;
-    angleCursor += span;
-  });
+  // Preserve the ordering and internal scale as the library grows. Enlarge the
+  // envelope until every pair (including the central circle) has clearance.
+  for (let attempt = 0; ; attempt++) {
+    let angleCursor = -Math.PI / 2;
+    outerCircles.forEach((circle, index) => {
+      const span = Math.PI * 2 * arcWeights[index] / totalArcWeight;
+      const angle = angleCursor + span / 2;
+      const orbit = graphRadius - circle.radius - 7;
+      circle.x = Math.cos(angle) * orbit;
+      circle.y = Math.sin(angle) * orbit;
+      angleCursor += span;
+    });
+    const overlaps = circles.some((a, index) => circles.slice(index + 1).some(b =>
+      Math.hypot(a.x - b.x, a.y - b.y) < a.radius + b.radius + 1
+    ));
+    if (!overlaps) break;
+    if (attempt >= 100) throw new Error('Knowledge graph circles could not be separated');
+    graphRadius *= 1.05;
+  }
 
   const scale = 1;
   for (const circle of circles) {
@@ -596,7 +606,7 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
       radius: packedLayout.radius,
       clusters: packedLayout.clusters,
       bridges: packedLayout.bridges,
-      version: 4,
+      version: 5,
     },
     generatedAt: new Date().toISOString(),
   };
