@@ -1,5 +1,5 @@
 ---
-title: ECC 工程资产系统研究（四）：如何治理配置供应链与控制平面
+title: ECC：如何治理配置供应链与控制平面
 description: 拆解 ECC 的配置安全、2.0 控制平面、结构性局限与借鉴顺序，判断工程资产怎样长期演进。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: false
 readingTime: 8 min
 ---
-
-> 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)
 
 当 Skill、Rule、Hook 和配置开始影响未来行动，它们就成为软件供应链的一部分。ECC 的最后一层问题不是“再增加多少资产”，而是资产怎样更新、验证、回滚并安全退出。
 
@@ -121,11 +119,3 @@ ECC 的重要性正在于此：它尝试把“一个优秀工程师通常怎么�
 - [ECC Memory Vault](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/design/ecc-memory-vault.md)
 - [Hooks Runtime](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/hooks/README.md)
 - [ECC 2.0 Alpha](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/ecc2/README.md)
-
----
-
-上一篇：[ECC 运行](/writing/ecc-hook-runtime-memory/)。
-
-安装、运行与供应链已经形成一条完整证据链。终篇回到 ECC 自身，判断它何时是工程资产层，何时开始承担平台责任。
-
-下一篇：[ECC 整体判断](/writing/ecc-series-synthesis/)。

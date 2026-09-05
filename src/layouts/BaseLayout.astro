@@ -22,7 +22,7 @@ const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url
 const imageUrl = image ? new URL(image, pageUrl.origin) : null;
 const navItems = [
   { href: '/topics/', label: '知识目录', mobileHidden: false },
-  { href: '/series/', label: '系列阅读', mobileHidden: false },
+  { href: '/series/', label: '专题阅读', mobileHidden: false },
   { href: '/library/', label: '全部文章', mobileHidden: true },
   { href: '/graph/', label: '知识星图', mobileHidden: false },
   { href: '/notes/', label: '随想', mobileHidden: true },
@@ -82,7 +82,7 @@ const navItems = [
       </div>
     </header>
     <main id="main"><slot /></main>
-    <footer class="site-footer"><div><a href="/" class="footer-name">大飞随笔</a><p>思考、沉淀与实践。让理解慢慢发生。</p><p lang="en">Reflections on AI, learning, and the way we grow.</p></div><nav aria-label="页脚导航"><a href="/topics/">知识目录</a><a href="/series/">系列阅读</a><a href="/library/">全部文章</a><a href="/graph/">知识星图</a><a href="/notes/">随想</a><a href="/timeline/">时间线</a><a href="/about/">关于</a></nav></footer>
+    <footer class="site-footer"><div><a href="/" class="footer-name">大飞随笔</a><p>思考、沉淀与实践。让理解慢慢发生。</p><p lang="en">Reflections on AI, learning, and the way we grow.</p></div><nav aria-label="页脚导航"><a href="/topics/">知识目录</a><a href="/series/">专题阅读</a><a href="/library/">全部文章</a><a href="/graph/">知识星图</a><a href="/notes/">随想</a><a href="/timeline/">时间线</a><a href="/about/">关于</a></nav></footer>
     <ArtalkStats />
     <script is:inline>
       document.querySelector('.theme-toggle')?.addEventListener('click', () => {

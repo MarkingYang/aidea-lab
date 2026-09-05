@@ -1,5 +1,5 @@
 ---
-title: DeepSeek Harness 架构（二）：插件怎样出现、协作，并真正退出
+title: DeepSeek Harness：插件怎样出现、协作，并真正退出
 description: 拆解 Cordis Effect、依赖、Waterfall、Profile 与 Preset，并通过能力接口控制替换成本。
 publishedAt: 2026-09-05
 type: essay
@@ -14,14 +14,30 @@ readingTime: 9 min
 updatedAt: 2026-09-05
 ---
 
-> DeepSeek Harness 架构系列：[1 · 系统全景](/writing/deepseek-harness-architecture/) · [2 · 组合与生命周期](/writing/deepseek-harness-composition/) · [3 · 状态与上下文](/writing/deepseek-harness-state/) · [4 · 执行与安全](/writing/deepseek-harness-execution/) · [5 · 深入思考](/writing/deepseek-harness-synthesis/)
+> 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
 
-> 版本边界：本系列沿用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
-
-
-上一篇把能力组合与事实记录分开。这一篇只处理前者：假设团队给 Agent 加一个工单查询插件，之后升级其实现。你最希望避免的不是“没有加载成功”，而是旧监听器仍在、另一个任务突然用了错误配置。
+DeepSeek Harness 用插件组合能力，用事件记录事实。这里先研究能力组合：假设团队给 Agent 加一个工单查询插件，之后升级其实现。你最希望避免的不是“没有加载成功”，而是旧监听器仍在、另一个任务突然用了错误配置。
 
 下面从这类故障理解 Cordis，而不是从 API 名称开始。
+
+## 每个模块负责什么
+
+| 模块 | 责任 | 不应承担的责任 |
+|---|---|---|
+| 宿主层 | 存储、执行环境、模型与审批等基础能力 | 让每个任务自行放宽基础边界 |
+| Agent 配方 | 当前任务的人设、工具、Skill 和上下文策略 | 替代操作系统隔离 |
+| 执行循环 | 调用模型、执行工具、响应反馈、判断继续 | 把所有可选策略写死 |
+| 事件日志 | 保存输入、调用、结果与控制事件 | 只保存最终聊天文本 |
+| 上下文投影 | 从完整历史组织模型当前需要的信息 | 为压缩而销毁审计事实 |
+| 验证与治理 | 核对产物、限制影响面、管理版本 | 用一条“允许”解释全部风险 |
+
+官方把这些责任拆进 session、system-prompt、tools、agent、agent-loop 与 scope 等包。这里的关键区分是：公共 Agent 契约与默认循环实现是分开的，使用方不必依赖某一个固定 Loop。[架构基线](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/architecture.md)
+
+## 用一次修复任务串起来
+
+用户要求“修复登录超时，只改仓库，不部署”。宿主先提供文件系统、模型和受限执行环境；Agent 配方暴露读取、编辑与测试能力；循环读取报错、提出修改、检查结果；事件日志保存输入和工具结果；上下文较长时，模型看到压缩视图，但原始证据仍可追溯。
+
+如果专项检查交给子 Agent，增加的是一个执行主体，不是自动增加权限。主任务仍需验收子方产物，工作区冲突和重复副作用也不会因为“多 Agent”自动消失。
 
 ## Cordis：把依赖注入升级成“时空可组合性”
 
@@ -107,7 +123,6 @@ Preset 的组合在 Session 产生任何消息或工具调用之后就不能再�
 
 这是一种运行时层面的依赖倒置。它比“接口 + 实现”多了生命周期、Scope、事件和配置组合，也比为每个工具写 `if (remote)` 更能控制复杂度。官方为此维护了完整的 [Capability Seams 图谱](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/capability-seams.md)。
 
-
 ## 实践：先写卸载与替换的验收表
 
 | 操作 | 应观察到的结果 | 暴露的问题 |
@@ -118,14 +133,6 @@ Preset 的组合在 Session 产生任何消息或工具调用之后就不能再�
 | 日志监听继续下游 | 正常工具调用仍然完成 | Waterfall 被意外短路 |
 | 卸载插件后检查远端 | 已发生的工单变更仍需独立处理 | 把资源释放误当业务回滚 |
 
-在隔离测试环境中逐项验证；不要在生产任务中测试热卸载。若要查看锁定版本的启动组合，官方架构文档给出的只读入口是 `dsh --profile web --dump-config`，需要先按该版本说明安装和配置。本系列不声称已经在本机部署该运行时。
+在隔离测试环境中逐项验证；不要在生产任务中测试热卸载。若要查看锁定版本的启动组合，官方架构文档给出的只读入口是 `dsh --profile web --dump-config`，需要先按该版本说明安装和配置。本文不声称已经在本机部署该运行时。
 
 本篇的关键结论是：可组合性的单位不是“一个函数”，而是包含依赖、生命周期与资源所有权的契约。外部业务副作用则需要幂等、对账或补偿机制另行处理。
-
----
-
-上一篇：[系统全景](/writing/deepseek-harness-architecture/)。
-
-能力组合现在可以解释了。但任务进行一半时依赖变化、进程退出或上下文被压缩，过去发生的事怎样保留下来？下一篇进入运行状态与事件日志。
-
-下一篇：[历史不能丢，模型又不能看全部历史](/writing/deepseek-harness-state/)。

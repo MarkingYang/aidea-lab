@@ -1,5 +1,5 @@
 ---
-title: Harness 运行与演进（六）：从一个 Worker 到可恢复的任务服务
+title: 从一个 Worker 到可恢复的任务服务
 description: 将队列、租约、陈旧执行者、幂等、背压和多租户配额接到任务生命周期，说明扩容为何必须同时维护执行权与数据边界。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Harness 运行与演进系列：[1. 全景与上下文](/writing/harness-operations-context/)｜[2. 规划与验证](/writing/harness-operations-planning/)｜[3. 观测与诊断](/writing/harness-operations-observability/)｜[4. 多 Agent 协作](/writing/harness-operations-multi-agent/)｜[5. 模型网关](/writing/harness-operations-model-gateway/)｜[6. 生产调度](/writing/harness-operations-production/)｜[7. 发布与演化](/writing/harness-operations-release/)
 
 单 Worker 实验中，同一时刻只有一个执行者。把它扩成两个进程后，新的问题出现了：旧 Worker 暂停太久，调度器把任务交给新 Worker；旧进程恢复，又继续写入。
 
@@ -86,11 +84,4 @@ fencing 与幂等也不能互换：前者判断执行者代次，后者判断是
 | 单个租户提交大量任务 | 其他租户仍满足约定服务目标 |
 | Worker 在等待审批时重启 | 状态可恢复，权限重新检查 |
 
-配套[工作簿](/labs/harness-operations-workbook.md)要求为每个反例写出执行权、操作键和验收证据。上一组[本地实验](/writing/harness-engineering-lab/)没有实现多 Worker，因此只能提供副作用恢复的基础，不能当成这些生产性质已经被证明。
-
-
----
-
-上一篇：[模型网关](/writing/harness-operations-model-gateway/)。
-
-下一篇：[发布与演化](/writing/harness-operations-release/)。
+配套[工作簿](/labs/harness-operations-workbook.md)要求为每个反例写出执行权、操作键和验收证据。上一组[本地实验](/writing/harness-foundations-lab/)没有实现多 Worker，因此只能提供副作用恢复的基础，不能当成这些生产性质已经被证明。

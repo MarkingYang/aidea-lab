@@ -1,5 +1,5 @@
 ---
-title: Agent 记忆设计（四）：一条记忆开始跨团队流动之后
+title: 一条记忆开始跨团队流动之后
 description: 从团队资产、Loadout 与 ACL 到删除传播和评测，检验长期记忆的治理边界。
 publishedAt: 2026-09-05
 type: essay
@@ -15,12 +15,9 @@ readingTime: 7 min
 updatedAt: 2026-09-05
 ---
 
-> Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
 > 单项目纵向阅读：[Mem0 生产边界](/writing/mem0-production-boundaries/) · [OpenViking Session 与权限](/writing/openviking-session-governance/) · [TencentDB 团队治理](/writing/tencentdb-agent-memory-governance/)
-
 
 一位 Agent 把解决登录故障的方法写成 Skill，另一位 Agent 下次自动使用。这看起来像组织学习，也可能把一次错误推广成默认行为。
 
@@ -59,7 +56,6 @@ Mem0 的身份 scope 适合应用级隔离；OpenViking 的 URI namespace 让内
 - 版本、变更 Diff 与回退依据；
 - 私有、团队与定向授权；
 - 被哪些 Agent、在哪些回答中使用过。
-
 
 ## Benchmark 为什么不能直接排冠军
 
@@ -106,10 +102,27 @@ flowchart TB
 
 这组实验比单一问答分数更接近团队系统的风险。如果读权限只依赖调用方传来的 user_id，而服务端没有可信身份绑定，就还没有形成安全隔离。
 
----
+## 怎样决定是否值得引入记忆
 
-上一篇：[检索与装配](/writing/agent-memory-retrieval/)。
+先用无记忆基线完成同一组跨会话任务，再比较记忆加入后减少了哪些重复解释、增加了哪些错误和维护成本。把模型、工具与预算尽量固定，记录正确性、延迟、人工纠错与隔离结果。
 
-到这里，记忆已经像一个有身份、时间、版本和纠错机制的数据系统。终篇追问：为什么“记得更多”并不是它的最终目标？
+如果任务每次都由最新外部系统状态决定，查权威数据可能比查旧对话更合适。如果一次任务没有复用价值，强行长期保存只会扩大治理面。
 
-下一篇：[长期记忆的价值，在于能够改变认识](/writing/agent-memory-synthesis/)。
+这不是反对记忆，而是要求它证明自己在特定工作中的收益。
+
+## 遗忘不是失败，而是一种控制能力
+
+```mermaid
+flowchart LR
+  E[(原始证据)] --> H[暂时认识]
+  H --> A[在适用范围内使用]
+  A --> V{新证据是否支持？}
+  V -->|支持| K[保留并明确范围]
+  V -->|冲突或过期| R[纠正、失效或遗忘]
+  K -. 持续核对 .-> H
+  R -. 重建派生状态 .-> H
+```
+
+*图 2｜新证据如何触发保留、纠正与遗忘。*
+
+一个能删除、回溯、失效和重建的记忆系统，比一个只会不断追加的系统更接近长期协作者。保留足够证据与减少不必要持有之间也存在张力，应按数据类别管理，而不是用“长期记忆”统一解释。

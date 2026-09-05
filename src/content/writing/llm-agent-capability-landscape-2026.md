@@ -1,5 +1,5 @@
 ---
-title: AI 能力与交付边界（一）：先分清“能做”与“可交付”
+title: 先分清“能做”与“可交付”
 description: 从任务责任、交付验收与模型差异出发，建立一张不依赖总榜单的 AI 能力地图。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: true
 readingTime: 8 min
 ---
-
-> 系列：[1. 能力地图](/writing/llm-agent-capability-landscape-2026/)｜[2. 证据与行动](/writing/ai-capability-evidence-action/)｜[3. 整体思考](/writing/ai-capability-boundary-synthesis/)
 
 **当前 AI 已经值得用于实际工作，但“能不能放手让它做”，应由任务是否清楚、结果是否能检查、错误是否能撤回决定，而不是由模型排名决定。**
 
@@ -91,9 +89,3 @@ Senior SWE-Bench 是一套软件工程评测，不只检查功能是否正确，
 还应给开放模型留位置。**开放权重**指核心模型参数可以获取，不自动等于软件、数据和使用许可都完全开放。Senior SWE-Bench 的 7 月更新中，Kimi K3 与 MiniMax M3 呈现了较低输出费用与较低通过率之间的取舍；它们值得进入成本敏感任务的候选集，但这组旧成绩不能代替当前版本复测。[官方对照](https://senior-swe-bench.snorkel.ai/blog/2026-07-30-refresh)
 
 这些证据的共同含义是：**前沿模型的优势开始分化，不是简单地一代全面替代一代。** 表中的独立评测、官方公共榜也不是同一套考试，不能把各行成绩拼成总分。
-
----
-
-能力地图已经建立，但它仍需要证据和实际任务校准。下一篇进入评测依据、成本变化与一组可以立即执行的选择方法。
-
-下一篇：[证据与行动](/writing/ai-capability-evidence-action/)。

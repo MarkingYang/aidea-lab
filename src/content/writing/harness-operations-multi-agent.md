@@ -1,5 +1,5 @@
 ---
-title: Harness 运行与演进（四）：增加一个 Agent，需要增加哪些责任
+title: 增加一个 Agent，需要增加哪些责任
 description: 从可分解任务出发设计委派、证据汇总、预算和取消传播，区分并行收益与共享状态代价，并明确跨系统协议的边界。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Harness 运行与演进系列：[1. 全景与上下文](/writing/harness-operations-context/)｜[2. 规划与验证](/writing/harness-operations-planning/)｜[3. 观测与诊断](/writing/harness-operations-observability/)｜[4. 多 Agent 协作](/writing/harness-operations-multi-agent/)｜[5. 模型网关](/writing/harness-operations-model-gateway/)｜[6. 生产调度](/writing/harness-operations-production/)｜[7. 发布与演化](/writing/harness-operations-release/)
 
 十份资料分别核验，可能适合并行；十个 Agent 同时修改同一篇文章，往往需要先解决协作问题。工作量大，并不自动意味着可以拆成独立任务。
 
@@ -30,7 +28,7 @@ readingTime: 5 min
 
 Anthropic 的研究系统使用协调者与并行子 Agent 探索多个方向，说明多上下文可以服务于广度搜索。这是特定任务中的设计经验，不能直接推导所有业务都应采用相同拓扑。[官方工程案例](https://www.anthropic.com/engineering/multi-agent-research-system)
 
-在本系列案例中，可让子 Agent 各自核验一个来源并返回证据，把文章更新或工单创建留在统一执行入口。这样先获得并行探索收益，再控制最终写入。
+在资料核验案例中，可让子 Agent 各自核验一个来源并返回证据，把文章更新或工单创建留在统一执行入口。这样先获得并行探索收益，再控制最终写入。
 
 ## 委派的是一个有边界的任务
 
@@ -77,10 +75,3 @@ A2A 提供跨 Agent 任务协作的协议对象，MCP 主要连接工具与数�
 用单 Agent、并行工具调用、多个 Agent 三种方案完成同一组资料核验。分别记录关键路径、总调用成本、重复检索比例、冲突数量和最终验收结果。
 
 并行工具已能解决的问题，不必增加独立 Agent。多 Agent 确有收益时，再为[工作簿](/labs/harness-operations-workbook.md)中的委派卡补上失联、取消、相互矛盾和父任务预算耗尽四个反例。
-
-
----
-
-上一篇：[观测与诊断](/writing/harness-operations-observability/)。
-
-下一篇：[模型网关](/writing/harness-operations-model-gateway/)。

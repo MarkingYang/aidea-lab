@@ -1,5 +1,5 @@
 ---
-title: Pi Coding Agent 源码研究（四）：如何走向可恢复的多进程系统
+title: Pi：如何走向可恢复的多进程系统
 description: 从外置安全边界、Durable AgentHarness 与架构代价出发，理解 Pi 的可组合性如何延伸到持久任务和多端协作。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: false
 readingTime: 8 min
 ---
-
-> 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)
 
 扩展能力并不自动带来安全和持久性。Pi 正在通过另一条实验架构把 Session、Worker、协议与客户端拆开，同时把治理责任明确留给部署者。
 
@@ -50,10 +48,10 @@ flowchart TB
   T2[TUI Presentation B] --> SERVER
   WEB[未来 Web / Remote UI] --> SERVER
 
-  SERVER --> W1[Session Worker A<br/>AgentHarness + Storage]
+SERVER --> W1[Session Worker A<br/>AgentHarness + Storage]
   SERVER --> W2[Session Worker B<br/>AgentHarness + Storage]
 
-  W1 <--> CHORD[Chord Services<br/>RPC + Replicated State]
+W1 <--> CHORD[Chord Services<br/>RPC + Replicated State]
   W2 <--> CHORD
   SERVER <--> PROTO[pi-protocol<br/>CBOR + Framing + Route]
 ```
@@ -136,11 +134,3 @@ Pi 最有意思的矛盾是：它用一套相当完整的架构，去保护用�
 - [Extensions 文档](https://pi.dev/docs/latest/extensions)
 - [Session Format](https://pi.dev/docs/latest/session-format)
 - [Coding Agent Harness 对决：Claude Code、Codex 与三种开源答案](/writing/coding-agent-harness-showdown/)
-
----
-
-上一篇：[Pi Session](/writing/pi-session-extension-architecture/)。
-
-Pi 的稳定机制、扩展边界和持久任务路径已经展开。下一篇回到整体，判断极简究竟减少了什么，又把哪些责任留给了部署者。
-
-下一篇：[Pi 整体判断](/writing/pi-series-synthesis/)。

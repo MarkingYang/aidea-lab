@@ -1,5 +1,5 @@
 ---
-title: Harness 运行与演进（三）：沿着一条失败任务，把故障定位到边界
+title: 沿着一条失败任务，把故障定位到边界
 description: 用任务、操作与 Trace 的关联关系诊断模型、工具、队列和验收故障，明确异步链路、采样偏差与敏感内容的记录边界。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 6 min
 ---
-
-> Harness 运行与演进系列：[1. 全景与上下文](/writing/harness-operations-context/)｜[2. 规划与验证](/writing/harness-operations-planning/)｜[3. 观测与诊断](/writing/harness-operations-observability/)｜[4. 多 Agent 协作](/writing/harness-operations-multi-agent/)｜[5. 模型网关](/writing/harness-operations-model-gateway/)｜[6. 生产调度](/writing/harness-operations-production/)｜[7. 发布与演化](/writing/harness-operations-release/)
 
 用户说“资料核验卡住了”，运维看见模型接口正常，开发看见工具没有报错。这两项信息都可能真实：任务也许还在队列里，也许等待审批，也许已经完成写入却迟迟没进入验收。
 
@@ -91,13 +89,6 @@ flowchart LR
 
 ## 本篇交付物：十分钟诊断路径
 
-选择上一组[故障实验](/writing/harness-engineering-lab/)的“写入后中断”场景，画出从 Run 到 Operation，再到实际工单的查询路径。接入真实观测平台时，补上 Trace 和故障分类，但保留独立账本。
+选择上一组[故障实验](/writing/harness-foundations-lab/)的“写入后中断”场景，画出从 Run 到 Operation，再到实际工单的查询路径。接入真实观测平台时，补上 Trace 和故障分类，但保留独立账本。
 
 在[工作簿](/labs/harness-operations-workbook.md)中写清三件事：一线人员先看哪里，什么证据允许安全重试，什么情况下应交给对账负责人。诊断完成后，把最小失败条件加入[回归系统](/writing/agent-evaluation-engineering/)。
-
-
----
-
-上一篇：[规划与验证](/writing/harness-operations-planning/)。
-
-下一篇：[多 Agent 协作](/writing/harness-operations-multi-agent/)。

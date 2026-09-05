@@ -1,20 +1,20 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getKnowledge, topics } from '../../lib/knowledge';
+import { getKnowledge, topics, articleHref } from '../../lib/knowledge';
 const { entries, series, topicIdsFor } = await getKnowledge();
 const tags = [...new Set(entries.flatMap(entry => entry.data.topics))].sort((a,b)=>a.localeCompare(b,'zh-CN'));
 ---
-<BaseLayout title="知识目录｜大飞随笔" description="从主题进入系列，再沿章节逐步深入。技术与系统、产品与实践、认知与观察。">
+<BaseLayout title="知识目录｜大飞随笔" description="知识域、专题、文章三级目录：Harness、评测、产品与研究。">
   <div class="page-shell">
-    <header class="page-intro"><p class="eyebrow">An atlas, not a feed</p><h1>用问题组织知识，<br />用实践连接理解。</h1><p class="intro-copy">这里有三条主线，也允许交叉与回访。选择一个方向，从全景开始；已有具体问题，就直接检索文章。</p></header>
+    <header class="page-intro"><p class="eyebrow">An atlas, not a feed</p><h1>用问题组织知识，<br />用实践连接理解。</h1><p class="intro-copy">目录分为知识域、专题、文章三级。先选方向，再展开对应专题；项目案例归到所研究的系统层级，关键词负责跨专题关联。</p></header>
     <nav class="directory-jump" aria-label="知识目录章节">{topics.map(topic => <a href={`#${topic.id}`}>{topic.title} ↓</a>)}<a href="/library/">搜索文章 ↗</a><a href="/graph/">进入知识星图 ↗</a></nav>
     <div class="knowledge-tree">
       {topics.map((topic,index) => {
         const children = series.filter(item => item.topic === topic.id);
         const count = entries.filter(entry => topicIdsFor(entry).includes(topic.id)).length;
         return <section class="domain-row" id={topic.id}>
-          <header><p class="eyebrow">0{index+1} / {topic.english}</p><h2><a href={`/topics/${topic.id}/`}>{topic.title} ↗</a></h2><p>{topic.description}</p><small>{children.length} 个系列 · {count} 篇记录</small></header>
-          <div class="domain-branches">{children.length ? children.map(item => <a class="branch" href={`/series/${item.id}/`}><div><h3>{item.title}</h3><p>{item.question}</p></div><span>{item.articles.length} 篇 →</span></a>) : <div class="open-question"><p>观察从一个问题开始，不必立即长成系列。</p><a class="text-link" href={`/topics/${topic.id}/`}>阅读这个方向的观察 →</a></div>}
+          <header><p class="eyebrow">0{index+1} / {topic.english}</p><h2><a href={`/topics/${topic.id}/`}>{topic.title} ↗</a></h2><p>{topic.description}</p><small>{children.length} 个专题 · {count} 篇记录</small></header>
+          <div class="domain-branches">{children.map(item => <details class="branch-topic"><summary><h3>{item.title}</h3><span>{item.articles.length} 篇</span></summary><p>{item.description}</p><ol>{item.articles.map(entry => <li><a href={articleHref(entry.id)}>{entry.data.title}</a></li>)}</ol><a class="topic-link" href={`/series/${item.id}/`}>打开专题 →</a></details>)}
             <a class="domain-more" href={`/topics/${topic.id}/`}>查看此方向的全部内容 →</a>
           </div>
         </section>;
@@ -29,6 +29,17 @@ const tags = [...new Set(entries.flatMap(entry => entry.data.topics))].sort((a,b
   .domain-row h2 { font:400 32px var(--display); margin:20px 0 16px; } h2 a { text-decoration:none; }
   header > p:not(.eyebrow) { max-width:350px; color:var(--text-body); font-size:14px; line-height:1.9; } header small { color:var(--text-soft); font-size:11px; }
   .domain-branches { padding-left:26px; border-left:1px solid var(--line-strong); }
+  .branch-topic { position:relative; border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:22px; }
+  .branch-topic summary { display:flex; align-items:baseline; justify-content:space-between; gap:18px; cursor:pointer; }
+  .branch-topic summary::before { content:"+"; position:absolute; left:-33px; color:var(--accent); background:var(--bg); }
+  .branch-topic[open] summary::before { content:"−"; }
+  .branch-topic h3 { font-size:17px; margin:0; font-weight:500; }
+  .branch-topic summary span { color:var(--text-soft); white-space:nowrap; font-size:11px; }
+  .branch-topic p { color:var(--text-soft); font-size:12px; line-height:1.8; }
+  .branch-topic ol { padding-left:20px; margin:18px 0; }
+  .branch-topic li { padding:6px 0; font-size:13px; line-height:1.7; }
+  .branch-topic li a { text-decoration:none; }
+  .topic-link { font-size:12px; color:var(--accent); }
   .branch { position:relative; display:flex; justify-content:space-between; gap:20px; padding:0 0 24px; margin-bottom:22px; border-bottom:1px solid var(--line); text-decoration:none; }
   .branch::before { content:''; position:absolute; top:10px; left:-30px; width:7px; height:7px; background:var(--accent); border-radius:50%; }
   .branch h3 { margin:0; font-size:17px; font-weight:500; } .branch p { margin:9px 0 0; font-size:12px; line-height:1.8; color:var(--text-soft); } .branch span { color:var(--text-soft); font-size:11px; white-space:nowrap; padding-top:4px; }

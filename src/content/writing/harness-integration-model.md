@@ -1,5 +1,5 @@
 ---
-title: Harness 接入与实战（二）：模型、上下文与有界循环怎样组合
+title: 模型、上下文与有界循环怎样组合
 description: 设计模型输入和候选动作接口，解释工具结果怎样进入下一轮，并把单动作实验与完整 Agent Loop 的实现范围分清。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Harness 接入与实战系列：[1. 模块与选型](/writing/harness-integration-map/)｜[2. 模型与循环](/writing/harness-integration-model/)｜[3. 工具与策略](/writing/harness-integration-mcp/)｜[4. 状态与验收](/writing/harness-integration-recovery/)｜[5. 组装与运行](/writing/harness-integration-lab/)
 
 模型模块的职责是提出下一步；运行器负责决定这一步能否发生。要把两者拆开，先约定输出结构，再接供应方 API。
 
@@ -91,7 +89,3 @@ propose(expected, provider, model) -> (action, metadata)
 默认 `fixture` 返回固定响应，用来稳定测试运行器；`anthropic` 是可选的在线提案适配器。两者输出同一份动作契约，因此工具、存储和验收可以复用。
 
 选模型时，用同一批任务比较合法提案率、目标符合率、完成成本和延迟。格式经常出错时先检查 Schema 与工具说明；提案正确但资源错误时检查执行和验收。不要把所有失败都归因于模型能力。更多网关设计见[模型网关](/writing/harness-operations-model-gateway/)。
-
-上一篇：[模块与选型](/writing/harness-integration-map/)。
-
-下一篇：[工具与策略](/writing/harness-integration-mcp/)。

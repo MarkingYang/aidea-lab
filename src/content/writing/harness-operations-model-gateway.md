@@ -1,5 +1,5 @@
 ---
-title: Harness 运行与演进（五）：换一个模型，为什么不是改一个名字
+title: 换一个模型，为什么不是改一个名字
 description: 用能力、协议、数据范围和预算约束模型路由，区分重试、降级与业务恢复，并按成功任务核算真实成本。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Harness 运行与演进系列：[1. 全景与上下文](/writing/harness-operations-context/)｜[2. 规划与验证](/writing/harness-operations-planning/)｜[3. 观测与诊断](/writing/harness-operations-observability/)｜[4. 多 Agent 协作](/writing/harness-operations-multi-agent/)｜[5. 模型网关](/writing/harness-operations-model-gateway/)｜[6. 生产调度](/writing/harness-operations-production/)｜[7. 发布与演化](/writing/harness-operations-release/)
 
 主模型限流后，网关切换到备用模型，接口重新返回了 200。但备用模型不能处理原请求中的图片，也没有维持相同的结构化工具参数。请求恢复可用，任务却可能失去可完成性。
 
@@ -78,17 +76,10 @@ LiteLLM 提供重试、回退、超时与冷却等机制，并区分上下文窗
 
 B 多完成一个任务，但推理费用也更高。这不足以直接选 A 或 B：还需要失败代价、人工复核和时延。费用分子应包含失败、重试、备用模型和必要评委消耗；成功数为零时，该比值不可计算，不应显示成零成本。
 
-已有[产品价值成本篇](/writing/ai-value-synthesis/)给出更完整的口径。这里补充一项路由要求：记录原请求路径、实际服务路径、切换原因及各次用量，才能解释成本变化来自价格、失败还是策略。
+已有[产品价值成本篇](/writing/ai-capability-product-metrics/)给出更完整的口径。这里补充一项路由要求：记录原请求路径、实际服务路径、切换原因及各次用量，才能解释成本变化来自价格、失败还是策略。
 
 ## 本篇交付物：带硬条件的降级表
 
 在[工作簿](/labs/harness-operations-workbook.md)中列出每种任务的允许模型集合和禁止切换条件。测试限流、超窗、流式中断、备用模型不支持工具，以及数据范围不匹配五个反例。
 
 先用固定响应验证路由与适配契约，再用真实任务比较质量。模拟请求通过不能证明备用模型具有足够能力；两种证据都需要保留。
-
-
----
-
-上一篇：[多 Agent 协作](/writing/harness-operations-multi-agent/)。
-
-下一篇：[生产调度](/writing/harness-operations-production/)。

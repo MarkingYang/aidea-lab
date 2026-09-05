@@ -1,5 +1,5 @@
 ---
-title: AI 时代的产品工作（六）：组织学习速度为什么可能成为新壁垒
+title: 组织学习速度为什么可能成为新壁垒
 description: 从反馈周期、组织学习与研究创业边界出发，判断 Researcher Founder 方法能够解释什么，又不能替代什么。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -11,10 +11,8 @@ topics:
   - 认知
   - 学习
 featured: false
-readingTime: 5 min
+readingTime: 4 min
 ---
-
-> 系列：[1. 工作系统](/writing/product-work-methodology/)｜[2. 结果契约](/writing/agent-product-contracts-context/)｜[3. 产品节奏](/writing/agent-product-evaluation-rhythm/)｜[4. 组织未知](/writing/lu-qi-researcher-founder/)｜[5. 思维与行动](/writing/researcher-founder-thinking/)｜[6. 学习边界](/writing/learning-organization-boundaries/)｜[7. 整体思考](/writing/ai-product-work-synthesis/)
 
 AI 提高了试验速度，却不会自动提高问题质量。越是在快速变化的叙事里，越需要区分可以复用的机制判断、仍待验证的趋势和不能跳过的商业边界。
 
@@ -70,12 +68,4 @@ AI 时代最大的机会，或许不只是使用一种新技术，而是重新�
 
 ---
 
-本系列引用的课件截图来自奇绩创坛公开发布的演讲整理，版权归原作者及发布方所有，仅用于内容评论与学习交流。建议结合[演讲全文](https://github.com/MiraclePlus/contents/blob/main/docs/%E7%A0%94%E7%A9%B6%E5%9E%8B%E5%88%9B%E4%B8%9A%E8%80%85%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BB%8E%20-1%20%E5%88%B0%201%20%E5%8A%A0%E9%80%9F%E5%88%9B%E6%96%B0%EF%BD%9C%E5%A5%87%E7%BB%A9%E5%88%9B%E4%B8%9A%E5%85%AC%E5%BC%80%E8%AF%BE%20Researcher%20Founder%20%E7%B3%BB%E5%88%97%E7%AC%AC%E4%B8%80%E8%AF%BE.md)阅读。
-
----
-
-上一篇：[思维与行动](/writing/researcher-founder-thinking/)。
-
-从结果契约到组织未知，产品工作的两条主线已经相遇。终篇讨论它们为什么都指向同一种能力：让组织通过更短、更可信的反馈循环持续学习。
-
-下一篇：[整体思考](/writing/ai-product-work-synthesis/)。
+研究型创业专题引用的课件截图来自奇绩创坛公开发布的演讲整理，版权归原作者及发布方所有，仅用于内容评论与学习交流。建议结合[演讲全文](https://github.com/MiraclePlus/contents/blob/main/docs/%E7%A0%94%E7%A9%B6%E5%9E%8B%E5%88%9B%E4%B8%9A%E8%80%85%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BB%8E%20-1%20%E5%88%B0%201%20%E5%8A%A0%E9%80%9F%E5%88%9B%E6%96%B0%EF%BD%9C%E5%A5%87%E7%BB%A9%E5%88%9B%E4%B8%9A%E5%85%AC%E5%BC%80%E8%AF%BE%20Researcher%20Founder%20%E7%B3%BB%E5%88%97%E7%AC%AC%E4%B8%80%E8%AF%BE.md)阅读。

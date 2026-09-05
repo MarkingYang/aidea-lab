@@ -1,5 +1,5 @@
 ---
-title: AI 时代的产品工作（三）：让任务评测进入产品工作节奏
+title: 让任务评测进入产品工作节奏
 description: 把任务级评测、过程可见和 0—90 天推进节奏连起来，让 Agent 产品从可用走向可托付。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: false
 readingTime: 6 min
 ---
-
-> 系列：[1. 工作系统](/writing/product-work-methodology/)｜[2. 结果契约](/writing/agent-product-contracts-context/)｜[3. 产品节奏](/writing/agent-product-evaluation-rhythm/)｜[4. 组织未知](/writing/lu-qi-researcher-founder/)｜[5. 思维与行动](/writing/researcher-founder-thinking/)｜[6. 学习边界](/writing/learning-organization-boundaries/)｜[7. 整体思考](/writing/ai-product-work-synthesis/)
 
 一份结果契约如果只在立项时出现，很快会退化成新的文档模板。产品团队需要把它变成样本、指标、失败记录和每一阶段的授权条件。
 
@@ -106,20 +104,6 @@ Agent 产品不能只用“回答是否正确”来评估，因为大量失败�
 
 每周评审时，我会要求团队带来的不是“这个版本回答更好了”，而是三样东西：**新增了哪些真实失败样本，哪一类失败显著下降，系统因此可以安全地多承担哪一段工作。**
 
-<details>
-  <summary>一页式 Agent 产品评审清单</summary>
-  <ul>
-    <li>任务：用户究竟委托了什么结果？</li>
-    <li>证据：系统如何证明自己完成了？</li>
-    <li>上下文：事实来自哪里，何时过期？</li>
-    <li>工具：每个工具的输入、输出、错误与幂等性是否清楚？</li>
-    <li>权限：什么可以自动做，什么必须批准，什么永远禁止？</li>
-    <li>评估：正常、边缘、对抗与恢复样本是否都被覆盖？</li>
-    <li>介入：用户何时能看见、暂停、修改、撤销与接管？</li>
-    <li>指标：成功是否以真实任务和最终状态计算？</li>
-  </ul>
-</details>
-
 ## 最后的判断：产品经理在设计责任，而不只是体验
 
 Agent Harness 时代，产品经理的价值不会因为模型更聪明而下降，反而会从功能定义扩展到系统治理。模型能够生成越来越多方案，但仍然需要有人决定：什么值得自动化，什么证据算完成，什么风险不能转嫁给用户，组织愿意把多大的行动权交给系统。
@@ -136,18 +120,24 @@ Agent Harness 时代，产品经理的价值不会因为模型更聪明而下降
 
 ---
 
-## 延伸阅读
+<details>
+  <summary>一页式 Agent 产品评审清单</summary>
+  <ul>
+    <li>任务：用户究竟委托了什么结果？</li>
+    <li>证据：系统如何证明自己完成了？</li>
+    <li>上下文：事实来自哪里，何时过期？</li>
+    <li>工具：每个工具的输入、输出、错误与幂等性是否清楚？</li>
+    <li>权限：什么可以自动做，什么必须批准，什么永远禁止？</li>
+    <li>评估：正常、边缘、对抗与恢复样本是否都被覆盖？</li>
+    <li>介入：用户何时能看见、暂停、修改、撤销与接管？</li>
+    <li>指标：成功是否以真实任务和最终状态计算？</li>
+  </ul>
+</details>
 
-- [OpenAI：Model guidance](https://developers.openai.com/api/docs/guides/latest-model)——工具范围、输出证据、重试、停止条件、状态与评估。
-- [Anthropic：How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)——工具、记忆、MCP、Skills 与子智能体如何构成执行环境。
-- [Anthropic：Configure permissions](https://code.claude.com/docs/en/permissions)——工具和子智能体的允许、询问与拒绝规则。
-- [Anthropic：Automate workflows with hooks](https://code.claude.com/docs/en/hooks-guide)——在工具调用、权限请求、会话与子智能体生命周期中加入确定性控制。
-- [Anthropic：Create custom subagents](https://code.claude.com/docs/en/subagents)——隔离上下文、限制工具和分派专门任务的产品机制。
+## 参考资料
 
----
-
-上一篇：[结果契约](/writing/agent-product-contracts-context/)。
-
-前三篇讨论了如何把已知问题做成可靠产品。但 AI 时代还有另一类工作：问题本身尚未被定义。下一篇沿陆奇的 Researcher Founder 观点进入“组织未知”。
-
-下一篇：[组织未知](/writing/lu-qi-researcher-founder/)。
+- [OpenAI：Model guidance](https://developers.openai.com/api/docs/guides/latest-model)
+- [Anthropic：How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
+- [Anthropic：Configure permissions](https://code.claude.com/docs/en/permissions)
+- [Anthropic：Automate workflows with hooks](https://code.claude.com/docs/en/hooks-guide)
+- [Anthropic：Create custom subagents](https://code.claude.com/docs/en/subagents)

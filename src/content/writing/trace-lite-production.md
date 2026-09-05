@@ -1,5 +1,5 @@
 ---
-title: 可信 Agent 工程（六）：把 TRACE 变成生产评测，而不是新排行榜
+title: 把 TRACE 变成生产评测，而不是新排行榜
 description: 从策略指纹、实验边界与 TRACE-Lite 出发，建立可解释、可抽样复核且成本可控的生产评测闭环。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: false
 readingTime: 8 min
 ---
-
-> 系列：[1. 可靠性地图](/writing/ai-agent-reliability-boundaries/)｜[2. 自治落地](/writing/agent-reliability-adoption/)｜[3. Harness 原理](/writing/anthropic-harness/)｜[4. Harness 实践](/writing/anthropic-harness-practice/)｜[5. TRACE 模型](/writing/trace-framework-deep-dive/)｜[6. TRACE 落地](/writing/trace-lite-production/)｜[7. 整体思考](/writing/trustworthy-agent-engineering-synthesis/)
 
 评测框架进入生产后，最容易从诊断工具重新退化为一个漂亮总分。本篇保留 TRACE 的限制与落地方法，区分论文发现、推断和团队可以持续维护的指标。
 
@@ -148,13 +146,6 @@ TRACE 最重要的提醒是：**“答对”只是一条轨迹的结果，不是
 
 ## 参考资料
 
-- Chen, Y., Jiang, J., Liu, J., Zhang, Y., Guo, X., & King, I. (2026). [TRACE: Trajectory-Aware Comprehensive Evaluation for Deep Research Agents](https://arxiv.org/abs/2602.21230). *Proceedings of the ACM Web Conference 2026*, 2524–2534. [DOI](https://doi.org/10.1145/3774904.3792738)
-- Du, M., Xu, B., Zhu, C., Wang, X., & Mao, Z. (2025). [DeepResearch Bench: A Comprehensive Benchmark for Deep Research Agents](https://arxiv.org/abs/2506.11763). 注：这是独立的 100 题报告质量基准，不是 TRACE 论文自建的 650 题同名数据集。
-
----
-
-上一篇：[TRACE 模型](/writing/trace-framework-deep-dive/)。
-
-从能力边界、Harness 建设到过程评测，三个层次已经连起来。终篇重新讨论可靠性的本质：它为什么不是一个功能，而是一条可以追溯和修正的证据链。
-
-下一篇：[整体思考](/writing/trustworthy-agent-engineering-synthesis/)。
+- [TRACE: Trajectory-Aware Comprehensive Evaluation for Deep Research Agents](https://arxiv.org/abs/2602.21230)
+- [DOI](https://doi.org/10.1145/3774904.3792738)
+- [DeepResearch Bench: A Comprehensive Benchmark for Deep Research Agents](https://arxiv.org/abs/2506.11763)

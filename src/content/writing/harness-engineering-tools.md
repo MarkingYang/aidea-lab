@@ -1,5 +1,5 @@
 ---
-title: Agent Harness 工程（四）：工具调用之前，先写清执行契约
+title: 工具契约：输入、结果与错误语义
 description: 在能力路由之后补齐工具接口工程，用输入、结果、错误、权限和幂等契约，让执行层保留真实业务语义。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,9 +13,7 @@ featured: false
 readingTime: 5 min
 ---
 
-> Agent Harness 工程系列：[1. 责任地图](/writing/harness-engineering-map/)｜[2. 运行循环](/writing/harness-engineering-loop/)｜[3. 恢复与副作用](/writing/harness-engineering-recovery/)｜[4. 工具契约](/writing/harness-engineering-tools/)｜[5. 安全边界](/writing/harness-engineering-security/)｜[6. 故障实验](/writing/harness-engineering-lab/)
-
-[能力路由系列](/writing/capability-routing-at-scale/)解决了从大量能力中寻找可执行方案的问题。选中 `create_review_ticket` 之后，系统仍然需要回答：参数从哪里来，出错能否重试，返回的编号是否可以查证？
+[能力路由架构](/writing/capability-routing-at-scale/)解决了从大量能力中寻找可执行方案的问题。选中 `create_review_ticket` 之后，系统仍然需要回答：参数从哪里来，出错能否重试，返回的编号是否可以查证？
 
 工具的名称、参数和文字说明是模型看到的接口；服务端的校验、授权、去重和查询能力决定真实行为。两边需要表达同一份契约。
 
@@ -29,7 +27,7 @@ Anthropic 的工具设计指南强调清楚的功能边界、高信号返回内�
 
 ## 输入分成候选参数与可信执行上下文
 
-下面是本系列推荐的逻辑分工，不是 MCP 标准字段：
+下面是这里推荐的逻辑分工，不是 MCP 标准字段：
 
 | 输入 | 来源 | 校验位置 |
 | --- | --- | --- |
@@ -86,10 +84,3 @@ CLI 适合已有命令和本地环境；直接 API 适合精确业务接口；�
 为每个可写工具记录六件事：业务动作、可信身份、候选参数、结果结构、错误分类、幂等与对账机制。再准备三个反例：缺参数、无权限、写入后丢响应。
 
 如果工具说明只写了“创建核验工单”，这张卡会暴露尚未被表达的工程责任。它也为后续协议适配提供稳定对象：更换 MCP 或 API 客户端时，保留业务契约，再验证传输差异。
-
-
----
-
-上一篇：[恢复与副作用](/writing/harness-engineering-recovery/)。
-
-下一篇：[安全边界](/writing/harness-engineering-security/)。

@@ -1,6 +1,6 @@
-# Harness 工程基础与协议：第三批知识补全
+# 并发与协议状态实验
 
-站点入口：`/series/harness-foundations/`。五篇文章依次讨论并发、一致性、MCP 生命周期、断线恢复与故障实验。承接前两批共 13 篇文章，本批完成后共新增 18 篇。
+集中说明页：`/writing/harness-foundations-lab/`。本实验验证并发冲突、业务身份和 MCP 协议状态；协议部分为受控状态模型。真实传输在 Mini Harness 实战中单独验证。
 
 ## 运行
 

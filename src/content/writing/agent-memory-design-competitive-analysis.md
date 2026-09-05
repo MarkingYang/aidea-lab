@@ -1,5 +1,5 @@
 ---
-title: Agent 记忆设计（一）：先把记忆放回完整生命周期
+title: 先把记忆放回完整生命周期
 description: 从证据、提炼、演化、检索和治理理解三类开源记忆方案，建立系统骨架。
 publishedAt: 2026-09-04
 type: essay
@@ -11,22 +11,19 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 6 min
+readingTime: 5 min
 updatedAt: 2026-09-05
 ---
-
-> Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
 > 单项目纵向阅读：[Mem0 源码研究](/writing/mem0-series-overview/) · [OpenViking 源码研究](/writing/openviking-series-overview/) · [TencentDB Agent Memory 研究](/writing/tencentdb-agent-memory-overview/)
 
-
 假设用户一月说“我住在上海”，六月说“搬到杭州了”。Agent 在九月被问到“现在住哪里”，检索到了两条语义都很相关的消息。哪条应该进入回答？如果同名用户属于另一个团队，又该怎样排除？
 
 向量相似度只能解释其中一小段。真正的记忆系统还要决定什么值得记、何时生效、怎样纠错、谁能读取以及多少内容值得进入上下文。
 
-本系列用“搬家事实”和“团队项目经验”两个连续案例，比较 Mem0、OpenViking 与 TencentDB Agent Memory 的设计选择，最后回到一个问题：**记忆是在储存事实，还是在维护可被修正的认识？**
+这里用“搬家事实”和“团队项目经验”两个连续案例，比较 Mem0、OpenViking 与 TencentDB Agent Memory 的设计选择，最后回到一个问题：**记忆是在储存事实，还是在维护可被修正的认识？**
 
 ## 先定义竞品框架：记忆系统要完成七件事
 
@@ -63,7 +60,6 @@ flowchart LR
 
 这个框架刻意把“检索”放在第五位。因为召回质量的上限，往往在写入和演化阶段就已经被决定了：没有保存的事实无法召回，被错误覆盖的历史也无法靠更强 Embedding 恢复。
 
-
 ## 三类产品，先看对象，不急着看算法
 
 | 参考项目 | 主要对象与入口 | 更值得观察的设计问题 |
@@ -87,11 +83,3 @@ OpenViking 的 L0/L1/L2 是读取精度；腾讯分支的 L0–L3 是从原始�
 写下三件事：哪些原始数据可以保存；哪些内容允许进入长期记忆；哪些身份能够跨会话读取。然后添加纠错和删除的验收条件。
 
 如果这三件事没有答案，先别把聊天记录全量写入向量库。一个更强的检索器，可能只是更稳定地把不该使用的信息召回。
-
-第二篇处理写入与演化，第三篇处理读取与预算，第四篇处理团队治理与验证；终篇把这些选择合起来讨论可追溯、可修正的长期协作。
-
----
-
-全景说明了记忆不只是搜索。下一篇先处理一个更早的问题：新事实到来时，旧事实究竟应该被覆盖、追加还是重新解释？
-
-下一篇：[保留历史，还是维护当前事实](/writing/agent-memory-writing/)。

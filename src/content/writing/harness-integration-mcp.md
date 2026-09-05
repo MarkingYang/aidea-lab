@@ -1,5 +1,5 @@
 ---
-title: Harness 接入与实战（三）：工具、执行策略与 MCP 怎样接线
+title: 工具、执行策略与 MCP 怎样接线
 description: 从直接函数到跨进程 MCP，定义查询与创建的工具契约，说明策略检查、结构化结果和传输模块的组合方式。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 4 min
 ---
-
-> Harness 接入与实战系列：[1. 模块与选型](/writing/harness-integration-map/)｜[2. 模型与循环](/writing/harness-integration-model/)｜[3. 工具与策略](/writing/harness-integration-mcp/)｜[4. 状态与验收](/writing/harness-integration-recovery/)｜[5. 组装与运行](/writing/harness-integration-lab/)
 
 工具模块应先有清楚的业务接口，再选择传输方式。第一版 Mini Harness 如果所有能力都在同一个 Python 进程里，直接函数调用通常最容易调试。需要让多个客户端共享能力，或由独立进程维护资源时，再引入 MCP。
 
@@ -46,7 +44,7 @@ async with session_for(root) as (session, version):
     )
 ```
 
-`root` 是状态目录的 `Path`；完整运行入口见第五篇。调用返回后，`call()` 先检查 `isError`，再检查 `structuredContent` 中是否包含 `ticket`。MCP 的工具结果可以包含文本与结构化内容；本应用主动选择后者作为机器判断接口。[MCP 工具规范](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
+`root` 是状态目录的 `Path`；完整运行入口见[组装与运行](/writing/harness-integration-lab/)。调用返回后，`call()` 先检查 `isError`，再检查 `structuredContent` 中是否包含 `ticket`。MCP 的工具结果可以包含文本与结构化内容；本应用主动选择后者作为机器判断接口。[MCP 工具规范](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
 
 ## stdio 与 HTTP 如何选择
 
@@ -71,9 +69,3 @@ stdio 测试会真正启动服务进程；HTTP 测试使用本机回环地址。
 ## 怎样替换为真实业务系统
 
 保留运行器面对的查询、创建和结果接口，在服务端替换 `Tickets` 的存储实现。接 CRM、任务系统或工单 SaaS 前，先确认四件事：是否支持业务幂等键；是否能按该键查询；写入后多久查询可见；冲突与限流怎样报告。
-
-若远端系统不支持幂等创建，客户端数据库记住“调用过”也不足以防止响应丢失后的重复。此时需要额外的业务唯一字段、服务端代理去重，或结果未知时人工对账。下一篇会展示这条边界如何影响恢复。
-
-上一篇：[模型与循环](/writing/harness-integration-model/)。
-
-下一篇：[状态与验收](/writing/harness-integration-recovery/)。

@@ -1,5 +1,5 @@
 ---
-title: Agent 记忆设计（二）：保留历史，还是维护当前事实
+title: 保留历史，还是维护当前事实
 description: 比较追加、合并和分层提炼的写入策略，建立有效时间、来源和纠错契约。
 publishedAt: 2026-09-05
 type: essay
@@ -11,16 +11,13 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 7 min
+readingTime: 6 min
 updatedAt: 2026-09-05
 ---
 
-> Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
-> 单项目纵向阅读：[Mem0 写入管线](/writing/mem0-add-pipeline/) · [OpenViking Session 提交](/writing/openviking-session-governance/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-layers/)
-
+> 单项目纵向阅读：[Mem0 写入管线](/writing/mem0-series-overview/) · [OpenViking Session 提交](/writing/openviking-session-governance/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-overview/)
 
 一月在上海、六月搬到杭州，这两条信息不一定互相矛盾。问题是查询要知道“现在”，还是要还原“一月”。如果写入时直接覆盖，历史丢了；如果只追加，读取时就需要更多判断。
 
@@ -80,7 +77,6 @@ Mem0 把触发权交给应用，最灵活，也最依赖接入方正确编排。
 
 一个成熟系统通常不会只选一边。更稳妥的组合是：原始事件 append-only；派生画像可更新；任何高层结论都保留来源、有效时间和生成版本。
 
-
 ## 来源时间、有效时间与记录时间必须分开
 
 `event_time` 表示来源事件发生的时间，`valid_time` 表示事实在业务上有效的时间或区间，`recorded_at` 表示系统记录它的时间。例如 7 月 2 日收到“6 月 10 日已经搬家”的消息，系统 7 月 3 日补录：消息事件时间是 7 月 2 日，住所生效时间是 6 月 10 日，记录时间是 7 月 3 日。字段名称属于这里的设计建议，不要求各框架同名。不能把最近写入的记录简单等同于现在最可信的事实。
@@ -114,11 +110,3 @@ Mem0 把触发权交给应用，最灵活，也最依赖接入方正确编排。
 如果来源无法确定“现在”，应承认未知或询问，而不是强行选最新一条。后台写入还需要暴露 accepted、processing、completed、failed 等状态；接收成功不等于新记忆已经可读。
 
 本篇的结论不是某一种策略获胜，而是：任何自动提炼都可能出错，系统必须明确错误保留在哪里、怎样撤回、哪些派生物需要重新生成。
-
----
-
-上一篇：[系统全景](/writing/agent-memory-design-competitive-analysis/)。
-
-事实即使正确保存，也可能在错误时机被使用。下一篇把时间、类型和权限加入检索，再讨论上下文预算。
-
-下一篇：[找到相关记忆，只完成了一半](/writing/agent-memory-retrieval/)。

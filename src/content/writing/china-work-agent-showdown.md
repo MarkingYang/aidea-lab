@@ -1,5 +1,5 @@
 ---
-title: Agent 工作系统全景（六）：Kimi Work、WorkBuddy 与豆包工作如何分工
+title: Kimi Work、WorkBuddy 与豆包工作如何分工
 description: 从研究、企业协作和多模态创作三个入口，比较国内办公 Agent 的产品定位与能力结构。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: true
 readingTime: 7 min
 ---
-
-> 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
 
 办公 Agent 最容易被误解成“更强的聊天机器人”：多一个任务面板，回答结束时顺便生成 PPT。但真正的产品分水岭是，它能否从一个含糊目标出发，持续读取材料、调用工具、处理失败，最后交付人类可以直接验收的文件或系统状态。
 
@@ -92,13 +90,3 @@ WorkBuddy 的关键不是某个通用模型，而是“工作环境已经在腾�
 | 企业知识、办公系统和组织协作 | WorkBuddy | 身份继承、连接器权限、审计、版本与私有化边界 |
 | 多模态创作、个人办公与跨设备连续任务 | 豆包工作 | 任务状态、关键动作确认、失败恢复与隐私范围 |
 | 仓库修改、测试与 CI 交付 | Claude Code / Codex 等 Coding Agent | Diff、测试、隔离、回归与审查成本 |
-
-这不是总冠军结论。候选产品只有进入同一批真实任务，记录成功、接管、审查与恢复成本后，才能形成采购判断。下一篇会把这些产品差异放进组织系统，继续检查最后一公里。
-
----
-
-上一篇：[工程验证](/writing/coding-agent-harness-poc/)。
-
-产品定位给出了候选方向，还需要真实任务验证。下一篇沿三类真实任务检查系统连接、治理与最后一公里。
-
-下一篇：[组织落地](/writing/china-work-agent-adoption/)。

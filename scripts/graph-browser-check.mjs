@@ -66,20 +66,20 @@ try {
   await page.locator('[data-clear-focus]').click();
   assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'overview');
 
-  await page.locator('#graph-query').fill('万级能力路由');
-  await page.locator('.search-results [data-node-id="series:capability-routing"]').click();
-  assert.equal(await page.locator('[data-panel-title]').textContent(), '万级能力路由');
-  assert.match(page.url(), /node=series%3Acapability-routing/);
+  await page.locator('#graph-query').fill('工具、协议与执行边界');
+  await page.locator('.search-results [data-node-id="series:harness-tools"]').click();
+  assert.equal(await page.locator('[data-panel-title]').textContent(), '工具、协议与执行边界');
+  assert.match(page.url(), /node=series%3Aharness-tools/);
   assert.match(page.url(), /view=local/);
   assert.ok(await page.locator('[data-panel-relations] li').count() > 0);
 
   await page.locator('[data-clear-focus]').click();
-  await page.locator('#graph-query').fill('可塑 Agent Harness');
-  await page.locator('.search-results [data-node-id="series:composable-agent-harness"]').click();
-  assert.equal(await page.locator('[data-panel-title]').textContent(), '可塑 Agent Harness');
-  assert.match(page.url(), /node=series%3Acomposable-agent-harness/);
+  await page.locator('#graph-query').fill('项目实现研究');
+  await page.locator('.search-results [data-node-id="series:harness-projects"]').click();
+  assert.equal(await page.locator('[data-panel-title]').textContent(), '项目实现研究');
+  assert.match(page.url(), /node=series%3Aharness-projects/);
   assert.ok(await page.locator('[data-panel-relations] li').count() >= 4);
-  assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/series\/composable-agent-harness\//);
+  assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/series\/harness-projects\//);
 
   await page.locator('[data-zoom="in"]').click();
   await page.locator('[data-zoom="reset"]').click();
@@ -101,11 +101,11 @@ try {
   assert.match(await page.locator('[data-panel-title]').textContent(), /成功率、稳定性/);
   await page.locator('[data-panel-link]').click();
   await page.waitForURL('**/writing/agent-evaluation-metrics/');
-  assert.equal(await page.locator('h1').textContent(), 'Agent 评测（二）：成功率、稳定性与成本，不能揉成一个分数');
+  assert.equal(await page.locator('h1').textContent(), '成功率、稳定性与成本，不能揉成一个分数');
 
   await page.goto(`${base}/graph/?node=agent-evaluation-metrics&view=local`);
   await page.locator('[data-graph-canvas] canvas').first().waitFor();
-  assert.equal(await page.locator('[data-panel-title]').textContent(), 'Agent 评测（二）：成功率、稳定性与成本，不能揉成一个分数');
+  assert.equal(await page.locator('[data-panel-title]').textContent(), '成功率、稳定性与成本，不能揉成一个分数');
 
   const originalTheme = await page.locator('html').getAttribute('data-theme');
   await page.locator('.theme-toggle').click();
@@ -121,6 +121,24 @@ try {
   await page.goto(`${base}/writing/agent-evaluation-metrics/`);
   assert.ok(await page.locator('.related-knowledge li').count() >= 2);
   assert.match(await page.locator('.related-knowledge header > a').getAttribute('href'), /\/graph\/\?node=agent-evaluation-metrics&view=local/);
+  for (const [legacy, destination] of [
+    ['claude-code-agent-loop', '/writing/claude-code-internals-overview/'],
+    ['series:harness-foundations', '/series/harness-recovery/'],
+    ['topic:systems', '/topics/harness/'],
+  ]) {
+    await page.goto(`${base}/graph/?node=${encodeURIComponent(legacy)}&view=local`);
+    await page.locator('[data-graph-canvas] canvas').first().waitFor();
+    assert.equal(await page.locator('[data-panel-link]').getAttribute('href'), destination, `Legacy graph node: ${legacy}`);
+  }
+  for (const [legacy, destination] of [
+    ['/writing/claude-code-agent-loop/', '/writing/claude-code-internals-overview/'],
+    ['/series/harness-foundations/', '/series/harness-recovery/'],
+    ['/topics/systems/', '/topics/harness/'],
+  ]) {
+    await page.goto(base + legacy);
+    await page.waitForURL(base + destination);
+    assert.equal(await page.locator('h1').count(), 1, `Legacy route: ${legacy}`);
+  }
   assert.deepEqual(errors, []);
   console.log('PASS Sigma graph render, force layout, relation filters, keyword regions, single search, article exploration and reading, region camera focus/reset, URL state, zoom, theme, mobile drawer and article relations');
 } finally {

@@ -1,5 +1,5 @@
 ---
-title: Agent 评测（四）：把一次打分变成可重复的回归系统
+title: 把一次打分变成可重复的回归系统
 description: 连接任务、试次、证据、评分与版本门禁，提供无需模型密钥的本地教学验收脚本。
 publishedAt: 2026-09-05
 type: essay
@@ -14,9 +14,7 @@ readingTime: 5 min
 updatedAt: 2026-09-05
 ---
 
-> Agent 评测系列：[1 · 系统全景](/writing/agent-system-evaluation-research/) · [2 · 指标口径](/writing/agent-evaluation-metrics/) · [3 · 数据集与评委](/writing/agent-evaluation-datasets/) · [4 · 工程闭环](/writing/agent-evaluation-engineering/) · [5 · 深入思考](/writing/agent-evaluation-synthesis/)
-
-前两篇解决了量尺和题目，现在需要一个每次都能按相同口径工作的流程。把一份输入、两份成品和独立检查跑通，比先画满仪表盘更有价值。
+前述讨论解决了量尺和题目，现在需要一个每次都能按相同口径工作的流程。把一份输入、两份成品和独立检查跑通，比先画满仪表盘更有价值。
 
 ## 运行器与 Agent 不应共享全部权力
 
@@ -45,7 +43,7 @@ sequenceDiagram
 
 ## 先跑一个不需要模型的实验
 
-本系列配套源码在仓库的 `docs/editorial-labs/`，说明文件为 `README.md`。在仓库根目录运行：
+配套源码在仓库的 `docs/editorial-labs/`，说明文件为 `README.md`。在仓库根目录运行：
 
 ```sh
 python3 -m unittest discover -s docs/editorial-labs -p 'test_*.py' -v
@@ -89,10 +87,22 @@ python3 docs/editorial-labs/evaluation_lab.py
 
 工程闭环的最小成果是：任何人拿到相同输入、版本和评分规则，都能解释本次通过或失败。它不要求先拥有最复杂的平台。
 
----
+## 过程证据帮助定位，却不自动证明因果
 
-上一篇：[数据集与评委](/writing/agent-evaluation-datasets/)。
+新版本使用更少工具且成功率更高，可能是检索更好，也可能是题目更简单、缓存命中更多或环境更稳定。轨迹相关性只提供假设。
 
-工程闭环跑起来后，指标可能持续上升。但分数改善能否授权无人值守？终篇从反例、分布变化和风险责任重新理解整个评测系统。
+验证检索策略的收益，应尽量固定模型、题集、权限和预算，改变检索因素，再观察结果与成本。结论只覆盖实验条件；不能从一次 PoC 推导所有部署的收益。
 
-下一篇：[高分为何不能直接兑换更大的行动权](/writing/agent-evaluation-synthesis/)。
+这也解释了为什么本文没有给平台和模型做统一总分：加权会隐藏决策者必须理解的冲突。
+
+## 零次事故不等于风险为零
+
+若每次事故概率独立且相同，在 n 次试验中观察到零事故，单侧 95% 上界可由下面的简化关系求得：
+
+$$
+(1-p)^n=0.05
+$$
+
+例如 n=100 时，上界约为 2.95%。这个推导只说明有限样本无法证明零风险；真实任务存在相关性和分布变化，不能把它当安全认证方法。
+
+对高代价动作还需要最小权限、限额、独立验证、人工审批与可恢复流程。评测提供证据，运行时边界限制损失，两者不可互换。

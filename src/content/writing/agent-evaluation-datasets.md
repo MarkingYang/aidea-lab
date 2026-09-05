@@ -1,5 +1,5 @@
 ---
-title: Agent 评测（三）：先把题目和裁判做对，再谈排行榜
+title: 先把题目和裁判做对，再谈排行榜
 description: 用分层样本、独立验收和评委校准建立可复用评测集，明确公开基准的用途与边界。
 publishedAt: 2026-09-05
 type: essay
@@ -10,11 +10,9 @@ topics:
   - 基准测试
   - LLMOps
 featured: false
-readingTime: 6 min
+readingTime: 5 min
 updatedAt: 2026-09-05
 ---
-
-> Agent 评测系列：[1 · 系统全景](/writing/agent-system-evaluation-research/) · [2 · 指标口径](/writing/agent-evaluation-metrics/) · [3 · 数据集与评委](/writing/agent-evaluation-datasets/) · [4 · 工程闭环](/writing/agent-evaluation-engineering/) · [5 · 深入思考](/writing/agent-evaluation-synthesis/)
 
 指标没有歧义，不代表评测已经可信。只测格式干净的表格，无法预测客户上传的混合月份文件；让模型根据自己的总结打分，也可能把同一个错误验证两遍。
 
@@ -93,11 +91,3 @@ review:
 ## 本篇交付物
 
 准备任务清单、版本化输入快照、验收量表和专门测试评委的错误成品。保留样本来源与变更记录。与其不断增加题量，不如先确认每道题输入完整、目标明确，评分器不会奖励错误。
-
----
-
-上一篇：[指标口径](/writing/agent-evaluation-metrics/)。
-
-现在我们有了任务集和评分规则。下一篇把它们连成能反复运行、记录失败并挡住回归的工程闭环。
-
-下一篇：[把一次打分变成可重复的回归系统](/writing/agent-evaluation-engineering/)。

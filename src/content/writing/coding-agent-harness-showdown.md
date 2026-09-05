@@ -1,5 +1,5 @@
 ---
-title: Agent 工作系统全景（三）：Claude Code、Codex 与 Kimi Code 的 Harness 分歧
+title: Claude Code、Codex 与 Kimi Code 的 Harness 分歧
 description: 从循环、上下文、工具、验证、安全与协作出发，比较三种产品化 Coding Agent 的系统分歧。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -11,17 +11,15 @@ topics:
   - Claude Code
   - Codex
 featured: true
-readingTime: 10 min
+readingTime: 9 min
 ---
-
-> 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
 
 如果只比较模型，Coding Agent 的产品差异会显得很小：无非是读文件、改代码、跑命令。但真实使用几天之后，差距往往不来自模型第一次写对了多少代码，而来自它如何理解项目、如何处理失败、如何证明完成、如何限制副作用，以及工作能否被另一个人接手。
 
 这就是 Harness 的竞争。
 
 > [!IMPORTANT]
-> **结论先行：**Claude Code 与 Codex 展示了两种值得比较的工程产品结构，本文没有同任务实测来判断总体完成度。Claude Code 更像一套可编程的工程制度，强在上下文、Skills、Hooks、MCP、Subagents 与权限体系的组合；Codex 更像 Agent 工作操作系统，强在本地与云端连续性、多任务监督、Worktree 隔离、Review 和 Automations。Kimi Code 是本系列选择的国产工程产品案例；Hermes、Pi、DeepSeek Harness 则分别代表“丰富自治”“极简内核”“万物插件”三条开源路线。
+> **结论先行：**Claude Code 与 Codex 展示了两种值得比较的工程产品结构，本文没有同任务实测来判断总体完成度。Claude Code 更像一套可编程的工程制度，强在上下文、Skills、Hooks、MCP、Subagents 与权限体系的组合；Codex 更像 Agent 工作操作系统，强在本地与云端连续性、多任务监督、Worktree 隔离、Review 和 Automations。Kimi Code 是这里选择的国产工程产品案例；Hermes、Pi、DeepSeek Harness 则分别代表“丰富自治”“极简内核”“万物插件”三条开源路线。
 
 ## Harness 到底在解决什么
 
@@ -72,8 +70,6 @@ flowchart LR
 | **结构层** | 单 Agent 循环按需升级为 Subagent、Agent View、Team 或 Batch | 项目—线程—Worktree—Review Queue，任务天然异步 | 主 Agent 调度内置子 Agent 与 Agent Swarm，新旧 CLI 逐步迁移 |
 | **框架层** | 终端、IDE、桌面和 Web 都强调计划、工具轨迹、Diff 与介入点 | App 侧栏承担多任务控制台，Diff、终端、浏览器与 Review 集中呈现 | TUI 与 IDE/ACP 为主，重点呈现任务过程与多 Agent 状态 |
 | **表现层** | 信息密度高、过程透明，工程师心智强 | 以任务状态和可审查结果为中心，监督感更强 | 中文友好、模型能力标签突出，产品仍在快速演化 |
-
-三个工程产品的比较重点分别是工作方法配置、多任务监督和模型与产品协同。开源项目的默认能力与自建责任放在[下一篇](/writing/open-source-agent-harness-routes/)展开。
 
 ## Claude Code：最像一套可执行的工程制度
 
@@ -137,11 +133,3 @@ Kimi Code 可以围绕模型与产品协同、中文开发体验和任务成本�
 - 模型开放与产品开放之间的边界是否足够清楚。
 
 因此，Kimi Code 可以进入国内 Coding Agent 的实测名单，但不能仅凭模型参数或并发数量判定已经完成替代。
-
----
-
-上一篇：[比较方法](/writing/agent-landscape-comparison-methods/)。
-
-产品化 Harness 把大量工程判断做成默认行为。下一篇转向开源路线：当默认意见减少，可塑性和维护责任会怎样重新分配？
-
-下一篇：[开源路线](/writing/open-source-agent-harness-routes/)。

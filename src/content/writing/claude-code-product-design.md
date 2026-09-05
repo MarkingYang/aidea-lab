@@ -1,5 +1,5 @@
 ---
-title: Claude Code 产品设计（一）：先看任务、执行与证据三个闭环
+title: Agent 任务体验：从目标输入到交付证据
 description: 从业务对象和模块职责理解 Claude Code，先搭架构骨架，再进入交互与实现。
 publishedAt: 2026-09-04
 type: essay
@@ -10,20 +10,17 @@ topics:
   - 产品设计
   - 开发者工具
 featured: true
-readingTime: 7 min
+readingTime: 9 min
 updatedAt: 2026-09-05
 ---
 
-> Claude Code 产品设计系列：[1 · 产品地图](/writing/claude-code-product-design/) · [2 · 任务体验](/writing/claude-code-task-experience/) · [3 · 信任与验证](/writing/claude-code-trust/) · [4 · 会话与协作](/writing/claude-code-session-collaboration/) · [5 · 深入思考](/writing/claude-code-product-synthesis/)
-
 > 范围：基于 2026-09-05 可访问的 Claude Code 官方文档做产品设计分析。CLI、Desktop、Web 的能力不完全相同；下文会区分已有机制、教学抽象与作者建议，不把界面草图当作官方截图。
-
 
 “修复登录超时，并补上回归测试，先不要提交。”这句话既有目标，也有禁止项。用户不只是请模型生成代码，而是在委托一段有边界的软件工程工作。
 
 理解 Claude Code 的产品设计，应先问：任务在哪里持续存在，行动如何推进，结果由什么证明？这比从菜单、插件和模型参数开始更有用。
 
-本系列用同一修复任务串起体验、信任、协作，最后讨论：**当 Agent 能自主选择执行路径，产品究竟在如何分配责任？**
+以下用同一修复任务分析用户输入、执行反馈和交付证据：**当 Agent 能自主选择执行路径，产品究竟在如何分配责任？**
 
 ## 先给结论：Claude Code 的设计由三个闭环组成
 
@@ -36,7 +33,7 @@ flowchart TB
   C -->|失败：证据回流| B
   C -->|通过：交付候选结果| D[交付<br/>按授权提交或合并]
 
-  G[治理边界<br/>Permissions · Sandbox · Policies] -.约束.-> B
+G[治理边界<br/>Permissions · Sandbox · Policies] -.约束.-> B
   G -.约束.-> D
   E[上下文系统<br/>CLAUDE.md · Memory · Skills] -.提供知识.-> B
   F[隔离与并行<br/>Session · Worktree · Subagent] -.提供运行空间.-> B
@@ -79,13 +76,91 @@ flowchart TB
 | 扩展平台 | CLAUDE.md、Skills、MCP、Hooks、Plugins、Agent SDK | 适配团队知识、工具和工作流 |
 | 安全治理 | Permission Modes、Sandbox、可信目录、企业策略 | 在提高自主性的同时限定影响范围 |
 
-
-## 首篇只需要记住四种对象
+## 任务体验中的四种对象
 
 任务契约保存目标与边界；Session 保存一次工作的上下文与进度；工作环境承载实际变更；测试、Diff 和审查提供验证证据。它们有关联，但不是同一个对象。
 
 特别是，Session 存在不等于对应工作区已隔离；Agent 结束不等于验收通过；验收通过也不等于拥有提交、推送和部署的授权。这三条边界会在后文逐步展开。
 
+## 核心调用链：一次任务如何从输入走到交付
+
+功能全景解决“有什么”，调用链解决“如何发生”。一次典型开发任务可以还原为下面的时序。
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor User as 开发者
+  participant UI as Session / Code UI
+  participant Ctx as Context Manager
+  participant Agent as Claude Agent
+  participant Guard as Permissions / Sandbox
+  participant Tools as Files · Shell · Git · MCP
+  participant Verify as Tests · Browser · CI
+  participant Repo as Branch · PR
+
+User->>UI: 输入目标、范围、环境与验收标准
+  UI->>Ctx: 绑定目录、模型、Effort、权限模式
+  Ctx->>Ctx: 加载 CLAUDE.md、Memory、相关 Skills
+  Ctx->>Agent: 组装当前任务上下文
+
+loop 探索—执行—验证，直到验收通过、预算耗尽或被停止
+    Agent->>Tools: 搜索代码、读取文件与 Git 历史
+    Tools-->>Agent: 返回事实和运行状态
+    Agent->>Agent: 规划下一步与选择工具
+    Agent->>Guard: 请求文件、命令、网络或 MCP 动作
+    alt 动作在可信边界内
+      Guard->>Tools: 允许执行
+    else 需要用户确认
+      Guard-->>UI: 展示动作、范围与风险
+      User->>UI: 允许、拒绝或调整方向
+      UI->>Guard: 更新本次授权
+      Guard->>Tools: 仅获批时执行；拒绝则不执行
+    end
+    Tools-->>Agent: 返回编辑结果、日志或错误
+    Agent->>Verify: 运行测试、构建、DOM 或截图验证
+    Verify-->>Agent: 返回通过/失败证据
+  end
+
+Agent->>Repo: 生成 Diff；按用户授权提交 Commit 或 PR
+  Repo->>Verify: 触发 CI / Review
+  Verify-->>UI: 汇总证据与交付状态
+  UI-->>User: 请求最终验收或继续修复
+```
+
+*图 2｜任务输入到候选交付的教学时序。*
+
+这条调用链里有四个产品关键点。
+
+第一，**输入框创建的不是消息，而是一份任务契约**。目录决定资源边界，权限决定动作边界，验收标准决定停止条件。
+
+第二，**上下文不是一次性塞满**。启动时加载稳定规则，相关 Skill 按需进入，Subagent 在独立上下文中工作，工具输出只在需要时回流。
+
+第三，**工具返回值是下一轮决策的输入**。测试失败、页面截图、命令退出码和 CI 日志都会改变 Agent 后续动作。
+
+第四，**人主要控制意图与例外**。用户不需要批准每个推理步骤，但应在越过可信边界、改变任务范围或最终交付时拥有决定权。
+
+## 实践：把输入框里的愿望改成契约
+
+```text
+目标：修复登录超时，不改认证规则
+环境：当前仓库的独立实验工作区
+步骤：先复现和定位，再提出修改与运行回归
+禁止：不提交、不推送、不部署，不读取无关凭证
+完成证据：复现用例由失败转通过；既有回归通过；提供 Diff
+停止条件：缺少必要服务、范围需要扩大或预算耗尽时说明
+```
+
+这段文本不是保证 Agent 正确的咒语，而是给执行和验收建立共同参照。若实际权限比文本更宽，平台仍需硬边界。
+
+本文中的页面线框是任务型工作台的教学抽象，按钮与布局会随端口变化。调用链也省略了部分错误分支；它不意味着每个用户都要经过同一条固定流程。
+
+## 用一次可用性测试检查渐进披露
+
+让不了解产品的读者完成三个动作：指出当前工作目录；说清 Agent 为什么停住；找到验证失败的证据。记录寻找时间、误解和错误点击。
+
+如果用户只能在完整日志里找到答案，渐进披露就没有真正减少负担。优秀的长任务界面应该先解释当前状态和下一项决定，详细工具记录则按需打开。
+
+本篇建议的 KANO 分类与可用性指标都是待验证假设；不以功能存在本身证明用户满意。
 ## 从五个问题开始自己的产品分析
 
 | 要问的问题 | 在修复任务中如何回答 |
@@ -98,14 +173,19 @@ flowchart TB
 
 这是作者的分析框架，不是 Anthropic 官方用户分类。具体端口的功能可查 [Claude Code 概述](https://code.claude.com/docs/en/overview)与 [Desktop 文档](https://code.claude.com/docs/en/desktop)。
 
-## 全系列的阅读路线
+## 一个容易被忽略的变量：证据债务
 
-第二篇看用户如何从意图走到行动；第三篇看权限和验证如何建立信任；第四篇看上下文、Worktree 与跨端协作；第五篇回到系统层面，讨论监督成本和责任边界。
+任务做得越快，未被理解的变更也可能堆得越快。测试绿色、Diff 很大、说明很长，仍可能没有人能解释关键行为。
 
-这里先不展开每种权限模式，也不追求列全每个按钮。架构的作用是让后续细节有位置，而不是把整份产品手册压进首篇。
+可以把这种状态称为“证据债务”：系统生成了结果，却没有生成足够容易理解、能支撑决策的证据。这是本文提出的分析概念，不是官方指标。
 
----
+治理它的办法不是让模型写更长的总结，而是缩小变更单元、保留独立验收、让关键风险可以定位，并限制超过团队审查能力的并行任务数。
 
-系统地图说明了需要哪些能力，但用户不应该先学完所有概念才能开始。下一篇沿一个修复任务，理解入口、渐进披露和任务旅程。
+## 反例：什么时候应该少一点 Agent
 
-下一篇：[从一句需求，到一条可以干预的任务旅程](/writing/claude-code-task-experience/)。
+目标很模糊、结果很难验收时，让 Agent 高速实现可能更快固化错误方向。任务高度耦合、共享状态很多时，增加子任务数可能只会放大协调成本。授权和数据边界尚不清楚时，扩展工具集可能先扩大风险。
+
+此时最好的产品动作可能是澄清、缩小范围、减少并发，或者保留人工处理，而不是继续增加自动化选项。
+
+
+权限与证据的界面设计见[信任机制](/writing/claude-code-trust/)，并行任务的接管方式见[会话与协作](/writing/claude-code-session-collaboration/)。

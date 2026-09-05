@@ -1,5 +1,5 @@
 ---
-title: Agent Harness 工程（三）：Checkpoint 之后，怎样避免重复执行
+title: 持久化与恢复：事务、幂等、对账和补偿
 description: 沿外部写入的四个中断点，区分状态恢复与副作用恢复，建立稳定操作键、参数一致性、对账与补偿的边界。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -10,10 +10,8 @@ topics:
   - AI 工程
   - 架构设计
 featured: false
-readingTime: 5 min
+readingTime: 7 min
 ---
-
-> Agent Harness 工程系列：[1. 责任地图](/writing/harness-engineering-map/)｜[2. 运行循环](/writing/harness-engineering-loop/)｜[3. 恢复与副作用](/writing/harness-engineering-recovery/)｜[4. 工具契约](/writing/harness-engineering-tools/)｜[5. 安全边界](/writing/harness-engineering-security/)｜[6. 故障实验](/writing/harness-engineering-lab/)
 
 工单服务已经写入成功，响应还没到 Harness，进程就退出了。重启后，本地日志只有“准备创建”，没有工单编号。
 
@@ -80,11 +78,36 @@ sequenceDiagram
 
 在自己的任务链上标出每个外部写入，逐项填写：操作键在哪里生成、谁做去重、查询是否权威、记录保留多久、无法确认时交给谁。
 
-第六篇实验会在上述四个边界注入中断，并额外用子进程退出验证“外部提交后、本地结果前”的恢复。验收看实际工单数量与内容，不只看运行状态是否显示成功。后续接入真实服务时，这份矩阵可以直接成为[回归系统](/writing/agent-evaluation-engineering/)的故障样本来源。
+[故障实验](/writing/harness-foundations-lab/)会在上述四个边界注入中断，并额外用子进程退出验证“外部提交后、本地结果前”的恢复。验收看实际工单数量与内容，不只看运行状态是否显示成功。后续接入真实服务时，这份矩阵可以直接成为[回归系统](/writing/agent-evaluation-engineering/)的故障样本来源。
 
+## 把依据放进提交条件
 
----
+配套实验采用一条原子条件更新，下面与实验采用相同的判断方式：
 
-上一篇：[运行循环](/writing/harness-engineering-loop/)。
+```sql
+UPDATE documents
+SET body = ?, version = version + 1
+WHERE id = 'source-001' AND version = ?;
+```
 
-下一篇：[工具契约](/writing/harness-engineering-tools/)。
+最后一个参数是生成结果时读到的版本。检查受影响行数：1 表示这次提交被接受；0 表示条件不再满足，需要重新读取并判断。
+
+对于本实验中始终存在的文档，0 就代表版本冲突。实际系统还可能发生删除或权限范围变化，应进一步分类，不能一概向用户报告“有人刚刚编辑过”。
+
+这种比较版本再更新的方式，只在所有相关写入者遵守版本规则时才成立。如果后台脚本直接覆盖正文而不改变版本，版本号就失去了证明价值。
+
+## 冲突之后重新判断，而不是只换版本号
+
+B 收到冲突后，如果只是读取最新版本号，把原摘要原样再提交，形式上通过了检查，语义上仍可能覆盖 A 的新证据。
+
+正确的后续取决于任务：重新生成、合并差异、保留两个候选，或者交给用户决定。实验的第二项测试验证“旧版本拒绝、明确使用新版本后可以更新”；它没有实现自然语言合并，也没有证明某个合并结果正确。
+
+应把三个对象留在提交记录里：输入版本、候选结果、冲突处理决定。这样才能区分正常竞争与错误重试。
+
+## 事务并不等于整段业务天然隔离
+
+事务定义一组数据库操作的提交边界，隔离级别还决定并发事务能观察到什么。例如 PostgreSQL 的 Read Committed 下，同一事务内两次查询可能看到不同的已提交数据。[PostgreSQL 隔离级别文档](https://www.postgresql.org/docs/current/transaction-iso.html)
+
+因此，“已经放进事务”还不足以说明先读取、长时间计算、再写回是安全的。需要继续说明是否锁行、是否检查版本，以及是否涉及多行约束。
+
+本地实验用 SQLite 验证单文档条件更新，不据此推导 PostgreSQL 多行不变量或跨服务事务已经成立。真正迁移时，要在目标数据库、隔离级别和写入路径上保留同样的竞争反例。

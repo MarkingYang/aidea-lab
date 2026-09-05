@@ -1,5 +1,5 @@
 ---
-title: TencentDB Agent Memory 研究（四）：资产、权限与 Loadout 如何组织团队经验
+title: TencentDB Agent Memory：资产权限与发布治理
 description: 从 Chat Memory、Skill、Wiki、CodeGraph 的所有权、版本、审核、ACL 与 Agent 装配理解团队治理。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -10,10 +10,8 @@ topics:
   - Agent Memory
   - 人机协同
 featured: false
-readingTime: 7 min
+readingTime: 3 min
 ---
-
-> TencentDB Agent Memory 研究系列：[1. 全景](/writing/tencentdb-agent-memory-overview/)｜[2. 接入链路](/writing/tencentdb-agent-memory-proxy/)｜[3. 分层记忆](/writing/tencentdb-agent-memory-layers/)｜[4. 团队治理](/writing/tencentdb-agent-memory-governance/)｜[5. 整体判断](/writing/tencentdb-agent-memory-synthesis/)
 
 团队记忆的难点不是让所有 Agent 看见同一份数据，而是让不同角色继承恰当的经验。TencentDB Agent Memory 用资产、可见性和 Loadout 把“共享”拆成一组显式动作。
 
@@ -54,6 +52,10 @@ Chat Memory 保存事实、偏好、决策和交互；Skill 保存带触发边�
 
 这把 [Agent 记忆设计：一条记忆跨团队流动之后](/writing/agent-memory-governance/)中的抽象治理问题具体化：Owner、状态、版本、可见性和 Agent 绑定都应成为一等字段，而不是埋在 Prompt 约定中。
 
+## Beta 阶段最重要的是保持可逆
+
+官方明确把 Team Memory 标注为 Beta，路线图仍包含记忆编辑、搜索和 Agent 模板等能力。这时最稳妥的采用方式是小范围、可观察、可退出：固定提交或版本；为关键资产保留原始来源；默认私有；共享需要审核；高风险 Skill 在隔离环境验证；Proxy 失败时能够绕过或降级。
+
 <details>
 <summary>官方资产与权限说明</summary>
 
@@ -62,9 +64,3 @@ Chat Memory 保存事实、偏好、决策和交互；Skill 保存带触发边�
 - [`MemoryKnowledge` 源码目录](https://github.com/TencentCloud/TencentDB-Agent-Memory/tree/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryKnowledge)
 
 </details>
-
----
-
-上一篇：[分层记忆](/writing/tencentdb-agent-memory-layers/)。
-
-下一篇：[记忆复利成立之前，先治理经验的行动权](/writing/tencentdb-agent-memory-synthesis/)。

@@ -1,5 +1,5 @@
 ---
-title: OpenViking 源码研究（四）：Session 提交如何连接记忆、事务与权限
+title: OpenViking：会话记忆、存储一致性与治理
 description: 从 Session commit 进入归档、记忆提炼、索引一致性、多租户与 ACL，理解长期上下文治理。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -10,10 +10,8 @@ topics:
   - Agent Memory
   - AI 工程
 featured: false
-readingTime: 7 min
+readingTime: 3 min
 ---
-
-> OpenViking 源码研究系列：[1. 全景](/writing/openviking-series-overview/)｜[2. 分层目录](/writing/openviking-context-layers/)｜[3. 分层检索](/writing/openviking-hierarchical-retrieval/)｜[4. 提交与治理](/writing/openviking-session-governance/)｜[5. 整体判断](/writing/openviking-series-synthesis/)
 
 `session.commit()` 是 OpenViking 的重要边界：此前是一次任务的消息、引用和工具记录，此后才可能成为摘要、长期 Memory 与未来检索对象。显式提交让“什么时候开始学习”可见，但不保证后台每一步天然原子。
 
@@ -54,6 +52,12 @@ sequenceDiagram
 
 这与 [Agent 记忆设计：治理与验证](/writing/agent-memory-governance/)形成呼应：长期记忆需要撤权、来源与删除；OpenViking 进一步把这些约束落到 URI、任务状态和共享目录上。
 
+## 真正的代价是持续维护结构
+
+分层目录并不会凭空出现。Parser 要正确保留材料结构，SemanticProcessor 要刷新摘要，索引要跟随文件变化，检索要处理陈旧父级，权限要同时作用于浏览与召回。任何一环失配，都可能让 Agent 看见一张漂亮但过期的地图。
+
+因此生产关注点应从“有没有 L0/L1/L2”转向四个可验证问题：摘要覆盖了多少子项；内容变化多久能进入父级语义；索引与 AGFS 是否一致；一次结果为何进入或离开候选集。只有这些证据存在，目录才是认知导航，而不是另一层不可见缓存。
+
 <details>
 <summary>官方机制说明</summary>
 
@@ -63,9 +67,3 @@ sequenceDiagram
 - [Resource ACL](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/15-acl.md)
 
 </details>
-
----
-
-上一篇：[分层检索](/writing/openviking-hierarchical-retrieval/)。
-
-下一篇：[上下文文件系统把复杂度放在结构维护上](/writing/openviking-series-synthesis/)。

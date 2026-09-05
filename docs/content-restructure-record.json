@@ -1,0 +1,386 @@
+[
+  {
+    "source": "addy-agent-skills-lifecycle",
+    "target": "addy-agent-skills-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "addy-agent-skills-synthesis",
+    "target": "addy-agent-skills-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "addy-agent-skills-verification",
+    "target": "addy-agent-skills-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "agent-evaluation-synthesis",
+    "target": "agent-evaluation-engineering",
+    "kept": [
+      "过程证据帮助定位，却不自动证明因果",
+      "零次事故不等于风险为零"
+    ]
+  },
+  {
+    "source": "agent-work-system-synthesis",
+    "target": "agent-landscape-comparison-methods",
+    "kept": [
+      "Agent 选型其实是责任分配"
+    ]
+  },
+  {
+    "source": "ai-agent-landscape-2026",
+    "target": "agent-landscape-comparison-methods",
+    "kept": [
+      "先把八款产品放回正确的赛道"
+    ]
+  },
+  {
+    "source": "coding-agent-harness-poc",
+    "target": "agent-landscape-comparison-methods",
+    "kept": [
+      "先定义 PoC 要决定什么",
+      "两周只做三轮，不追求覆盖所有功能",
+      "任务契约必须先于评分表",
+      "真正公平的 PoC：不要让六个 Agent 做同一道玩具题"
+    ]
+  },
+  {
+    "source": "agent-memory-synthesis",
+    "target": "agent-memory-governance",
+    "kept": [
+      "怎样决定是否值得引入记忆",
+      "遗忘不是失败，而是一种控制能力"
+    ]
+  },
+  {
+    "source": "agent-reliability-adoption",
+    "target": "ai-agent-reliability-boundaries",
+    "kept": [
+      "可靠落地应从验收出发，再逐步扩大自治范围"
+    ]
+  },
+  {
+    "source": "trustworthy-agent-engineering-synthesis",
+    "target": "ai-agent-reliability-boundaries",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "ai-capability-boundary-synthesis",
+    "target": "ai-capability-evidence-action",
+    "kept": [
+      "三条边界共同决定可委托范围",
+      "模型选择本质上是一种动态路由"
+    ]
+  },
+  {
+    "source": "ai-value-synthesis",
+    "target": "ai-capability-product-metrics",
+    "kept": [
+      "四个口径，把失败留在账上",
+      "假设案例：便宜的请求，不一定带来便宜的交付"
+    ]
+  },
+  {
+    "source": "anthropic-skills-document-pipelines",
+    "target": "anthropic-skills-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "anthropic-skills-progressive-disclosure",
+    "target": "anthropic-skills-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "anthropic-skills-synthesis",
+    "target": "anthropic-skills-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "capability-routing-synthesis",
+    "target": "capability-routing-evaluation",
+    "kept": [
+      "六、成熟架构也需要知道何时简化"
+    ]
+  },
+  {
+    "source": "claude-code-agent-loop",
+    "target": "claude-code-internals-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "claude-code-internals-synthesis",
+    "target": "claude-code-internals-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "claude-code-memory-extension",
+    "target": "claude-code-internals-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "claude-code-product-synthesis",
+    "target": "claude-code-product-design",
+    "kept": [
+      "一个容易被忽略的变量：证据债务",
+      "反例：什么时候应该少一点 Agent"
+    ]
+  },
+  {
+    "source": "claude-code-task-experience",
+    "target": "claude-code-product-design",
+    "kept": [
+      "核心调用链：一次任务如何从输入走到交付",
+      "实践：把输入框里的愿望改成契约",
+      "用一次可用性测试检查渐进披露"
+    ]
+  },
+  {
+    "source": "codex-runtime-sandbox",
+    "target": "codex-system-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "codex-skills-memory-automation",
+    "target": "codex-system-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "codex-system-synthesis",
+    "target": "codex-system-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "composable-agent-harness-architecture",
+    "target": "composable-agent-harness-research-method",
+    "kept": [
+      "十个独立问题"
+    ]
+  },
+  {
+    "source": "composable-agent-harness-synthesis",
+    "target": "composable-agent-harness-research-method",
+    "kept": [
+      "何时开始下一阶段"
+    ]
+  },
+  {
+    "source": "open-source-agent-harness-routes",
+    "target": "composable-agent-harness-research-method",
+    "kept": [
+      "按要控制的机制选择实验对象"
+    ]
+  },
+  {
+    "source": "deepseek-harness-architecture",
+    "target": "deepseek-harness-composition",
+    "kept": [
+      "每个模块负责什么",
+      "用一次修复任务串起来"
+    ]
+  },
+  {
+    "source": "deepseek-harness-synthesis",
+    "target": "deepseek-harness-execution",
+    "kept": [
+      "如果要用它建设自己的 Agent，应该怎样分阶段",
+      "真正的复杂度预算，是允许多少种组合进入生产"
+    ]
+  },
+  {
+    "source": "ecc-series-overview",
+    "target": "ecc-architecture-deep-dive",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "ecc-series-synthesis",
+    "target": "ecc-memory-supply-chain",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "harness-operations-planning",
+    "target": "harness-engineering-loop",
+    "kept": [
+      "先选择最小可用的控制方式",
+      "把计划节点写成执行契约",
+      "重规划应由事实触发",
+      "用同一组任务比较三种策略"
+    ]
+  },
+  {
+    "source": "anthropic-harness",
+    "target": "harness-engineering-map",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "anthropic-harness-practice",
+    "target": "harness-engineering-map",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "harness-foundations-consistency",
+    "target": "harness-engineering-recovery",
+    "kept": [
+      "把依据放进提交条件",
+      "冲突之后重新判断，而不是只换版本号",
+      "事务并不等于整段业务天然隔离"
+    ]
+  },
+  {
+    "source": "harness-engineering-lab",
+    "target": "harness-foundations-lab",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "harness-foundations-mcp-recovery",
+    "target": "harness-foundations-mcp-lifecycle",
+    "kept": [
+      "两种传输需要不同的运行管理",
+      "三种 ID 对应三种范围",
+      "取消是一场可能发生竞态的协作",
+      "重连后恢复的是观察能力",
+      "给连接恢复设置终点"
+    ]
+  },
+  {
+    "source": "hermes-agent-series-overview",
+    "target": "hermes-agent-architecture-deep-dive",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "hermes-agent-series-synthesis",
+    "target": "hermes-agent-memory-governance",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "kimi-code-session-runtime",
+    "target": "kimi-code-system-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "kimi-code-skills-swarm",
+    "target": "kimi-code-system-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "kimi-code-system-synthesis",
+    "target": "kimi-code-system-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "mattpocock-skills-alignment",
+    "target": "mattpocock-skills-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "mattpocock-skills-feedback-loops",
+    "target": "mattpocock-skills-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "mattpocock-skills-synthesis",
+    "target": "mattpocock-skills-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "mem0-series-synthesis",
+    "target": "mem0-production-boundaries",
+    "kept": [
+      "适合与不适合"
+    ]
+  },
+  {
+    "source": "mem0-add-pipeline",
+    "target": "mem0-series-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "mem0-hybrid-retrieval",
+    "target": "mem0-series-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "opencode-agents-skills-plugins",
+    "target": "opencode-system-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "opencode-client-server-runtime",
+    "target": "opencode-system-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "opencode-system-synthesis",
+    "target": "opencode-system-overview",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "openviking-context-layers",
+    "target": "openviking-series-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "openviking-hierarchical-retrieval",
+    "target": "openviking-series-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "openviking-series-synthesis",
+    "target": "openviking-session-governance",
+    "kept": [
+      "真正的代价是持续维护结构"
+    ]
+  },
+  {
+    "source": "pi-series-overview",
+    "target": "pi-architecture-deep-dive",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "pi-series-synthesis",
+    "target": "pi-durable-harness-governance",
+    "kept": "独有概念已融入目标正文；删除导航与重复总结"
+  },
+  {
+    "source": "product-frameworks-synthesis",
+    "target": "product-frameworks-delivery",
+    "kept": [
+      "三种看起来专业的误用",
+      "不是所有未知都值得先研究透"
+    ]
+  },
+  {
+    "source": "agent-product-contracts-context",
+    "target": "product-work-methodology",
+    "kept": [
+      "从“需求文档”转向“结果契约”",
+      "用“自治阶梯”决定人机边界",
+      "把上下文当作产品供应链"
+    ]
+  },
+  {
+    "source": "ai-product-work-synthesis",
+    "target": "product-work-methodology",
+    "kept": [
+      "产品经理开始设计反馈质量"
+    ]
+  },
+  {
+    "source": "tencentdb-agent-memory-synthesis",
+    "target": "tencentdb-agent-memory-governance",
+    "kept": [
+      "Beta 阶段最重要的是保持可逆"
+    ]
+  },
+  {
+    "source": "tencentdb-agent-memory-proxy",
+    "target": "tencentdb-agent-memory-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  },
+  {
+    "source": "tencentdb-agent-memory-layers",
+    "target": "tencentdb-agent-memory-overview",
+    "kept": "机制正文；去除分篇导航与过渡"
+  }
+]

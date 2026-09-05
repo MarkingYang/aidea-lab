@@ -1,6 +1,6 @@
 ---
-title: Matt Pocock Skills 研究（一）：先看真实工程失效地图
-description: 从需求误解、术语冗余、反馈不足和代码熵建立仓库全景，理解小型可组合 Skills 的出发点。
+title: Matt Pocock Skills：需求对齐与反馈循环
+description: 从需求和共享语言的对齐进入测试与反馈循环，理解小型 Skills 怎样减少误解和修改风险。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
 type: essay
@@ -10,10 +10,8 @@ topics:
   - AI 工程
   - 开发者工具
 featured: true
-readingTime: 2 min
+readingTime: 3 min
 ---
-
-> 系列：[1. 全景](/writing/mattpocock-skills-overview/)｜[2. 对齐与语言](/writing/mattpocock-skills-alignment/)｜[3. 反馈与设计](/writing/mattpocock-skills-feedback-loops/)｜[4. 整体判断](/writing/mattpocock-skills-synthesis/)
 
 [`mattpocock/skills`](https://github.com/mattpocock/skills)明确反对由庞大方法论接管完整开发过程，转而提供小型、可修改、可组合的个人工程 Skills。仓库从真实失败出发：Agent 没理解需求、不了解项目语言、缺少运行反馈，以及在高速度下制造结构熵。
 
@@ -31,10 +29,29 @@ flowchart TB
 
 *图 1｜Skills 不是完整流程引擎，而是对常见失效点的局部干预。*
 
-第二篇研究需求追问和共享语言，第三篇研究反馈循环和架构维护。终篇判断为什么“保留人的控制权”是这套仓库最核心的设计选择。
+## 需求与共享语言的对齐
 
----
+`grill-me`与`grill-with-docs`不急于给方案，而是通过连续问题暴露目标、边界和未知。它们把“需求不清”当作需要处理的工作状态，而不是让模型用默认假设填满空白。
 
-下一篇：[对齐与语言](/writing/mattpocock-skills-alignment/)。
+追问的产物不应只留在会话。仓库进一步把领域术语写进 CONTEXT.md，把难以解释的选择写进 ADR。共享语言减少 Agent 每次重新推断概念的成本，也让文件、函数和讨论使用相同词汇。
 
-下一篇先处理最昂贵的失败：代码写得很快，但问题从一开始就理解错了。
+这套方法的边界是不能无限访谈。好的 Skill 需要明确退出条件：关键用户、成功标准、不可接受结果和验证方式已经足够清楚，就进入小步实现；仍有高影响分歧，则把问题交还给人决定。
+
+## 反馈循环与局部修正
+
+代码生成变快后，系统真正的速度上限转移到反馈。TDD Skill 用失败测试建立目标，再用最小实现获得下一轮信号；Bug 诊断 Skill 分阶段复现、定位和验证，避免模型在多个假设之间同时修改。
+
+架构 Skill 则不承诺自动重构整个旧系统，而是调查深模块机会，把候选和理由交给人选择。这种克制很重要：Agent 能快速制造大范围变化，但结构判断需要业务语言、历史约束和迁移成本。
+
+```mermaid
+flowchart LR
+    H[假设] --> X[最小变化]
+    X --> E[测试 / 类型 / 运行证据]
+    E --> D{是否支持假设}
+    D -->|否| H
+    D -->|是| N[保留并进入下一步]
+```
+
+*图 2｜小步循环让错误尽早暴露，速度来自反馈频率而非单次变更规模。*
+
+Skill 可以规定循环，但证据仍必须来自真实工具。没有测试环境、浏览器或可观察系统，流程写得再好也只能得到语言上的“验证”。

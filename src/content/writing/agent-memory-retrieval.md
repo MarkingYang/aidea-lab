@@ -1,5 +1,5 @@
 ---
-title: Agent 记忆设计（三）：找到相关记忆，只完成了一半
+title: 找到相关记忆，只完成了一半
 description: 比较混合检索、目录导航与上下文装配，说明授权过滤、时间有效性和预算的不同责任。
 publishedAt: 2026-09-05
 type: essay
@@ -11,16 +11,13 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 7 min
+readingTime: 6 min
 updatedAt: 2026-09-05
 ---
 
-> Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
-> 单项目纵向阅读：[Mem0 多信号检索](/writing/mem0-hybrid-retrieval/) · [OpenViking 分层检索](/writing/openviking-hierarchical-retrieval/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-layers/)
-
+> 单项目纵向阅读：[Mem0 多信号检索](/writing/mem0-series-overview/) · [OpenViking 分层检索](/writing/openviking-series-overview/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-overview/)
 
 上一页保存了上海和杭州两条记录。现在查询“给我推荐附近的办公地点”，语义检索可能同时命中两座城市。候选相关，不代表当前有效；当前有效，也不代表查询者有权看到。
 
@@ -76,7 +73,6 @@ TopK(vector_similarity)
 
 这也是“Memory”逐渐与“Context Engineering”合流的原因：数据库返回什么只是中间结果，真正影响 Agent 的是最终装进模型窗口的那一组上下文。
 
-
 ## 把硬条件和软排序分开
 
 语义、关键词和实体匹配产生的分数通常不是同一量纲，不能未经处理直接相加。实践可以使用排名融合或经验证的归一化与重排；权重必须通过任务集验证。
@@ -117,11 +113,3 @@ python3 -m unittest discover -s docs/editorial-labs -p 'test_*.py' -v
 将来接入真实存储后，保留这些测试，同时增加同义词、实体歧义、多跳信息与长历史任务。候选召回率衡量检索，最终答案正确率衡量使用，二者分别报告。
 
 本篇最重要的分界线是：搜索返回候选，Context Assembler 决定模型最终看见什么。正确记忆如果被错误装配，同样会产生错误行动。
-
----
-
-上一篇：[写入与纠错](/writing/agent-memory-writing/)。
-
-读取链路已经有了，但团队共享会让一条记忆影响更多人。下一篇检查权限、删除传播和可复现的验证办法。
-
-下一篇：[一条记忆开始跨团队流动之后](/writing/agent-memory-governance/)。

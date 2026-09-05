@@ -4,10 +4,9 @@ import SeriesRow from '../../components/SeriesRow.astro';
 import { getKnowledge, topics } from '../../lib/knowledge';
 const {series} = await getKnowledge();
 ---
-<BaseLayout title="系列阅读｜大飞随笔" description="从全景、模块实践到整体思考，沿着完整的阅读路径建立理解。">
+<BaseLayout title="专题阅读｜大飞随笔" description="按知识域选择专题，再进入模块、方法或项目文章。">
   <div class="page-shell">
-    <header class="page-intro"><p class="eyebrow">A little further, one chapter at a time</p><h1>不是更多篇，<br />而是更深一层。</h1><p class="intro-copy">每个系列都从高层骨架开始，在中间章节进入细节与实践，最终回到整个体系。可以顺序读，也可以带着问题回访。</p></header>
-    <div class="reading-method"><div><small>01 / 总</small><strong>先建立地图</strong><span>知道每个模块在哪里。</span></div><div><small>02 / 分</small><strong>进入细节与实践</strong><span>用案例、图例和实验验证理解。</span></div><div><small>03 / 总</small><strong>带着证据重新思考</strong><span>看见关系、边界与取舍。</span></div></div>
+    <header class="page-intro"><p class="eyebrow">A little further, one chapter at a time</p><h1>按问题进入，<br />按模块深入。</h1><p class="intro-copy">每个专题都从高层骨架开始，在中间章节进入细节与实践，最终回到整个体系。可以顺序读，也可以带着问题回访。</p></header>
     {topics.map(topic=>{const items=series.filter(item=>item.topic===topic.id);return items.length>0 && <section class="directory-section"><div class="section-heading"><h2>{topic.title}</h2><a href={`/topics/${topic.id}/`}>此方向的更多观察 ↗</a></div><div class="ruled-list">{items.map((item,index)=><SeriesRow series={item} index={index}/>)}</div></section>})}
   </div>
 </BaseLayout>

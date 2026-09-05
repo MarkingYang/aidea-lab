@@ -1,5 +1,5 @@
 ---
-title: Mem0 源码研究（四）：可替换组件之后，生产责任落在哪里
+title: Mem0：部署、Provider 与生产边界
 description: 从库模式、自托管服务、组件替换、迁移和 OSS 平台差异，检查 Mem0 的真实生产边界。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -10,10 +10,8 @@ topics:
   - Agent Memory
   - LLMOps
 featured: false
-readingTime: 6 min
+readingTime: 3 min
 ---
-
-> Mem0 源码研究系列：[1. 全景](/writing/mem0-series-overview/)｜[2. 写入](/writing/mem0-add-pipeline/)｜[3. 检索](/writing/mem0-hybrid-retrieval/)｜[4. 生产边界](/writing/mem0-production-boundaries/)｜[5. 整体判断](/writing/mem0-series-synthesis/)
 
 Mem0 开源版既可以作为 Python/TypeScript 库嵌入应用，也可以运行自托管服务。LLM、Embedding、Vector Store 和 Reranker 都能替换。可替换性扩大了部署自由，也把组合验证交给了部署者。
 
@@ -48,6 +46,12 @@ Library 模式接入最短，适合在单个应用内验证 add/search 闭环，
 
 最可靠的生产清单不是“支持多少 Provider”，而是每次版本和配置变化之后，身份、当前性、召回、延迟、成本、删除与审计是否仍通过同一套回归。
 
+## 适合与不适合
+
+当核心对象是用户事实、偏好和 Agent 经验，数据主要按身份隔离，应用愿意自己维护时间与上下文预算时，Mem0 是清晰的起点。如果问题主要是大规模文档的层级导航、文件关系和逐层读取，应该先研究 [OpenViking 全景](/writing/openviking-series-overview/)；如果重点是团队资产、审核、角色装配与跨 Agent 共享，则应看 [TencentDB Agent Memory 全景](/writing/tencentdb-agent-memory-overview/)。
+
+这不是功能多少的排序，而是核心对象不同。Mem0 的主语是“某个身份拥有的记忆”，不是完整知识文件系统，也不是团队经验控制面。
+
 <details>
 <summary>官方部署与版本边界</summary>
 
@@ -56,9 +60,3 @@ Library 模式接入最短，适合在单个应用内验证 add/search 闭环，
 - [Self-hosted REST API](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/open-source/features/rest-api.mdx)
 
 </details>
-
----
-
-上一篇：[混合检索](/writing/mem0-hybrid-retrieval/)。
-
-下一篇：[更短的接口没有消灭记忆复杂度](/writing/mem0-series-synthesis/)。

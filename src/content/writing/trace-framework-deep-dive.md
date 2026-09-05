@@ -1,5 +1,5 @@
 ---
-title: 可信 Agent 工程（五）：TRACE 如何从“答对”走向“可信地答对”
+title: TRACE 如何从“答对”走向“可信地答对”
 description: 拆解 TRACE 的轨迹效用、过程效率、证据扎根、错误恢复与脚手架评测，理解结果指标之外的过程质量。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -11,10 +11,8 @@ topics:
   - Deep Research
   - 基准测试
 featured: true
-readingTime: 10 min
+readingTime: 9 min
 ---
-
-> 系列：[1. 可靠性地图](/writing/ai-agent-reliability-boundaries/)｜[2. 自治落地](/writing/agent-reliability-adoption/)｜[3. Harness 原理](/writing/anthropic-harness/)｜[4. Harness 实践](/writing/anthropic-harness-practice/)｜[5. TRACE 模型](/writing/trace-framework-deep-dive/)｜[6. TRACE 落地](/writing/trace-lite-production/)｜[7. 整体思考](/writing/trustworthy-agent-engineering-synthesis/)
 
 > [!NOTE]
 > **论文出处**：Yanyu Chen、Jiyue Jiang、Jiahong Liu、Yifei Zhang、Xiao Guo、Irwin King，*TRACE: Trajectory-Aware Comprehensive Evaluation for Deep Research Agents*，The Web Conference 2026（WWW ’26），pp. 2524–2534。论文：[arXiv:2602.21230](https://arxiv.org/abs/2602.21230)；正式 DOI：[10.1145/3774904.3792738](https://doi.org/10.1145/3774904.3792738)。本文依据 arXiv v1（2026-02-05）精读，实验数字均为论文自报结果。
@@ -45,7 +43,7 @@ flowchart TD
   N6 --> N7["证据扎根 G_E"]
   N6 --> N8["推理鲁棒性 R_R"]
 
-  N1 --> N9["诊断指标"]
+N1 --> N9["诊断指标"]
   N9 --> N10["最小提示率 λ_min"]
   N9 --> N11["熵适应性 E_A"]
   N9 --> N12["轨迹可复现性 TRS"]
@@ -203,11 +201,3 @@ $$
 - 没有高质量 oracle 轨迹，就无法构造可比较的脚手架。
 
 比单点 $\lambda_{min}$ 更稳妥的做法，是报告完整的“提示量—成功率曲线”、曲线下面积和置信区间。
-
----
-
-上一篇：[Harness 实践](/writing/anthropic-harness-practice/)。
-
-指标模型解释了 TRACE 在测什么。下一篇检查策略指纹和实验结论的边界，并把论文方法缩成可以持续运行的 TRACE-Lite。
-
-下一篇：[TRACE 落地](/writing/trace-lite-production/)。

@@ -1,5 +1,5 @@
 ---
-title: AI 时代的产品工作（四）：为什么下一代组织要学会处理未知
+title: 为什么下一代组织要学会处理未知
 description: 从研究成为直接生产力、NeoLab 与 Researcher Founder 出发，理解 AI 如何缩短研究、工程、产品和市场的反馈距离。
 publishedAt: 2026-09-03
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: true
 readingTime: 6 min
 ---
-
-> 系列：[1. 工作系统](/writing/product-work-methodology/)｜[2. 结果契约](/writing/agent-product-contracts-context/)｜[3. 产品节奏](/writing/agent-product-evaluation-rhythm/)｜[4. 组织未知](/writing/lu-qi-researcher-founder/)｜[5. 思维与行动](/writing/researcher-founder-thinking/)｜[6. 学习边界](/writing/learning-organization-boundaries/)｜[7. 整体思考](/writing/ai-product-work-synthesis/)
 
 陆奇这次关于 Researcher Founder 的分享，表面上谈的是“研究型创业者”，实际上讨论的是一个更大的变化：**当 AI 同时进入科研、工程和商业环节，创新不再是一场从实验室到市场的接力赛，而开始成为研究、产品、组织和资本同步迭代的过程。**
 
@@ -97,11 +95,3 @@ Researcher Founder 很容易被理解成“科学家出来创业”。但陆奇�
 - 能否在高度不确定中组织行动。
 
 这也是为什么分享中反复强调从 **Book Smart** 走向 **Street Smart**。后者不是世故，而是对用户、交易、预算、流程、组织和价值流动的真实理解。一个人可以非常聪明，却仍然不知道客户为什么付钱、产品为什么进不了工作流，或者组织内部为什么无法推动一个看似正确的方案。
-
----
-
-上一篇：[产品节奏](/writing/agent-product-evaluation-rhythm/)。
-
-组织形态的变化已经出现，但抽象判断还不能指导个人行动。下一篇把研究、创新与斜率三种思维，落到选择问题和接触真实世界的方法。
-
-下一篇：[思维与行动](/writing/researcher-founder-thinking/)。

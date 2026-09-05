@@ -1,5 +1,5 @@
 ---
-import { stageLabel, type KnowledgeSeries } from '../lib/knowledge';
+import { type KnowledgeSeries } from '../lib/knowledge';
 interface Props { series: KnowledgeSeries; index?: number; }
 const { series, index = 0 } = Astro.props;
 ---
@@ -9,10 +9,7 @@ const { series, index = 0 } = Astro.props;
     <p class="series-meta">{series.articles.length} 篇 · 约 {series.minutes} 分钟 · 可分次阅读</p>
     <h3><a href={`/series/${series.id}/`}>{series.title}<span aria-hidden="true">↗</span></a></h3>
     <p class="series-description">{series.description}</p>
-    <div class="chapter-track" aria-label="阅读结构">
-      {series.articles.map((_, i) => <span class:list={{ endpoint: i === 0 || i === series.articles.length - 1 }} title={`第 ${i + 1} 篇 · ${stageLabel(i, series.articles.length)}`}>{String(i + 1).padStart(2, '0')}</span>)}
-      <small>总览 → 实践 → 思考</small>
-    </div>
+    <details class="topic-articles"><summary>展开文章目录</summary><ol>{series.articles.map(entry => <li><a href={`/writing/${entry.id}/`}>{entry.data.title}</a><span>{entry.data.readingTime}</span></li>)}</ol></details>
   </div>
   <a class="series-enter" href={`/series/${series.id}/`}>打开目录 <span aria-hidden="true">→</span></a>
 </article>
@@ -24,6 +21,11 @@ const { series, index = 0 } = Astro.props;
   h3 a { text-decoration:none; } h3 span { margin-left:14px; color:var(--text-muted); font:18px var(--sans); }
   h3 a:hover, .series-enter:hover { color:var(--accent); }
   .series-description { max-width:620px; margin:12px 0 18px; color:var(--text-body); font-size:14px; line-height:1.8; }
+  .topic-articles summary { cursor:pointer; color:var(--accent); font-size:12px; }
+  .topic-articles ol { list-style:none; padding:8px 0 0; margin:0; }
+  .topic-articles li { display:flex; gap:18px; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:13px; line-height:1.6; }
+  .topic-articles li a { text-decoration:none; }
+  .topic-articles li span { color:var(--text-soft); font:10px var(--mono); white-space:nowrap; }
   .chapter-track { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
   .chapter-track span { padding:5px 7px; background:var(--surface); color:var(--text-soft); font:10px var(--mono); }
   .chapter-track .endpoint { background:var(--accent-soft); color:var(--accent); }

@@ -1,5 +1,5 @@
 ---
-title: Pi Coding Agent 源码研究（二）：最小内核如何维持正确性
+title: Pi：最小内核如何维持正确性
 description: 从 Provider、Agent Loop 与事件协议出发，理解 Pi 的极简为什么不等于简单。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -11,10 +11,8 @@ topics:
   - Agent Harness
   - 架构设计
 featured: true
-readingTime: 8 min
+readingTime: 7 min
 ---
-
-> 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)
 
 很多 Coding Agent 都在增加功能：计划模式、子 Agent、权限弹窗、浏览器、MCP、云端沙箱、任务队列。Pi 选择了相反的产品姿态——默认只提供一条足够短的 Agent Loop、四个基础工具和一个终端界面，把其他能力留给扩展。
 
@@ -46,12 +44,12 @@ flowchart TB
   M --> RPC[RPC]
   M --> SDK[SDK]
 
-  TUI --> S[AgentSession<br/>Coding 场景编排]
+TUI --> S[AgentSession<br/>Coding 场景编排]
   PRINT --> S
   RPC --> S
   SDK --> S
 
-  S --> A[Agent<br/>状态与队列]
+S --> A[Agent<br/>状态与队列]
   A --> L[Agent Loop<br/>模型 ↔ 工具循环]
   L --> AI[pi-ai<br/>Provider / API / Auth]
   L --> TOOL[read / write / edit / bash<br/>及扩展工具]
@@ -142,11 +140,3 @@ Agent 会发布 `agent_start`、`turn_start`、`message_update`、`tool_executio
 - **Follow-up**：等 Agent 原本准备结束时再开启新一轮。
 
 Pi 在 [`Agent`](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/agent.ts#L173) 内维护两条队列，并允许一次取一条或全部取出。它没有通过“中断当前 token 流”伪造实时控制，而是在稳定的 turn 边界合并新输入。这是一个小设计，却直接决定长任务能否被自然地纠偏。
-
----
-
-上一篇：[Pi 全景](/writing/pi-series-overview/)。
-
-Provider 与 Loop 定义了执行事实。下一篇继续进入 AgentSession、事件树与 Compaction，看运行历史如何成为可恢复、可投影的状态。
-
-下一篇：[Pi Session](/writing/pi-session-extension-architecture/)。

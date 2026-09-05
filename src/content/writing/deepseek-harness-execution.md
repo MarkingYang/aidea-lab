@@ -1,5 +1,5 @@
 ---
-title: DeepSeek Harness 架构（四）：工具、PTC 和多 Agent，怎样不放大副作用
+title: DeepSeek Harness：工具、PTC 和多 Agent，怎样不放大副作用
 description: 从冻结参数、单调 Guard、并发分类到沙箱边界，理解可扩展执行的约束。
 publishedAt: 2026-09-05
 type: essay
@@ -10,16 +10,13 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 10 min
+readingTime: 11 min
 updatedAt: 2026-09-05
 ---
 
-> DeepSeek Harness 架构系列：[1 · 系统全景](/writing/deepseek-harness-architecture/) · [2 · 组合与生命周期](/writing/deepseek-harness-composition/) · [3 · 状态与上下文](/writing/deepseek-harness-state/) · [4 · 执行与安全](/writing/deepseek-harness-execution/) · [5 · 深入思考](/writing/deepseek-harness-synthesis/)
+> 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
 
-> 版本边界：本系列沿用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
-
-
-上一页的日志可以证明“发生了什么”，却不能保证事情本来就应该发生。真正的执行边界必须在动作之前检查，动作之后再用证据核验。
+运行日志可以证明“发生了什么”，却不能保证事情本来就应该发生。真正的执行边界必须在动作之前检查，动作之后再用证据核验。
 
 ## 工具系统：先冻结事实，再允许策略介入
 
@@ -158,7 +155,6 @@ flowchart LR
 
 Harness 内策略用于表达业务意图，操作系统或云基础设施负责硬隔离，Git / 测试 / 外部状态读取负责验证结果。三者缺一不可。
 
-
 ## 一组必须分别验证的反例
 
 - 审批后参数被替换：执行应基于同一冻结事实，不能“批 A 做 B”。
@@ -171,10 +167,56 @@ Harness 内策略用于表达业务意图，操作系统或云基础设施负责
 
 本篇不是部署安全保证；上面的验收表应该进入隔离环境中的测试，并与真实数据流、凭证和出站策略一起审查。
 
----
+## 如果要用它建设自己的 Agent，应该怎样分阶段
 
-上一篇：[状态与上下文](/writing/deepseek-harness-state/)。
+### 阶段一：固定组合，先证明单 Agent 闭环
 
-执行边界越看越清楚，也会发现代价分散到了插件作者、平台和部署者身上。终篇把这些代价合起来，讨论什么时候值得选择可重组运行时。
+先选择应用 Profile，例如 `sdk-minimal`；再按任务选择 Preset，例如 `standard`，并确认该组合实际包含所需组件。Profile 与 Preset 属于两个层次，不能作为同级模式二选一。起步阶段不启用运行时自修改。只保留少量高质量工具，建立明确的任务完成条件、测试和 Diff 审查。Session Persistence、取消、超时和失败恢复必须先于多 Agent。
 
-下一篇：[自由不会消灭复杂度，它会改变复杂度的归属](/writing/deepseek-harness-synthesis/)。
+成功标准不是 Demo 能调用工具，而是：任务中断后可以恢复，模型可见输入能够重构，所有外部修改都有验证证据。
+
+### 阶段二：建立自己的 Capability Seams
+
+把企业能力拆成 Definition / Provider / Consumer：例如“读工单”是稳定接口，Jira 或 Linear 是 Provider，模型 Tool 与后台 Workflow 是不同 Consumer。不要让模型工具直接绑死底层 SaaS SDK。
+
+同时为每个 Tool 定义：输入 Schema、Canonical Output、模型投影、超时、并发属性、审批理由和最终 Guard。
+
+### 阶段三：按风险划分 Preset
+
+不要做一个拥有所有权限的万能 Agent。至少拆成：
+
+- 只读分析 Preset；
+- Workspace Write 编码 Preset；
+- 可访问生产 API、必须审批的运维 Preset；
+- 仅供平台开发者使用的 Creator Preset。
+
+Preset 决定模型看到的能力，外层 Sandbox、网络和凭证策略决定它实际上能影响什么。
+
+### 阶段四：用评测决定是否启用 PTC 与 Multi-Agent
+
+PTC 适合工具调用链长、中间结果大、控制流容易用代码表达的任务；Native Calling 更适合每一步都需要模型重新判断的任务。Subagent 适合上下文隔离和独立探索，Agent Team 只在共享任务图与持续通信确有价值时启用。
+
+对照实验至少记录：任务完成率、测试通过率、模型请求次数、总 Token、墙钟时间、人工接管次数、越权请求和恢复成功率。架构允许替换只是起点，评测才能决定哪种组合值得保留。
+
+### 阶段五：把插件发布当作供应链发布
+
+插件拥有与宿主同进程的能力，Preset 甚至可能等同 Shell 权限。企业需要锁定版本、审查来源、生成 SBOM、签名发布，并为配置变更保留可回滚记录。不要把“插件市场”当成低风险 Prompt 分享站。
+
+## 真正的复杂度预算，是允许多少种组合进入生产
+
+假设三个模型、三种工具集、两种存储、两种执行环境都可以独立替换，理论组合已有 36 种。这个数字只是乘法示例，不是该项目的部署统计；重要的是每个组合还带着取消、恢复、升级和权限例外。
+
+不需要测试所有想象中的组合。更实用的办法是区分“框架允许的组合”和“组织支持的组合”：后者是少量锁定版本、拥有负责人、通过契约测试、可回滚的配置。
+
+```mermaid
+flowchart LR
+  P[所有可表达组合] --> C[组织批准的有限配置]
+  C --> T[契约、恢复与权限验证]
+  T --> R[版本化发布]
+  R --> O[运行证据]
+  O -. 证明收益后扩展 .-> C
+```
+
+*图 2｜把可表达组合收敛成组织支持的有限配置。*
+
+如果没有这层收敛，灵活性会变成配置漂移；如果收敛过早，又会把平台重新做成不可替换的固定产品。合理的边界由实际任务变化和维护能力决定。

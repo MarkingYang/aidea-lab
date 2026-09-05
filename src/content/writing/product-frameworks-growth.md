@@ -1,5 +1,5 @@
 ---
-title: 产品分析框架（四）：用户真的得到价值，生意才有机会成立
+title: 用户真的得到价值，生意才有机会成立
 description: 用漏斗与根因假设定位价值断点，再用商业模式与成本口径检验持续性。
 publishedAt: 2026-09-05
 type: essay
@@ -10,16 +10,13 @@ topics:
   - 用户研究
   - 增长
 featured: false
-readingTime: 8 min
+readingTime: 7 min
 updatedAt: 2026-09-05
 ---
 
-> 产品分析框架系列：[1 · 决策地图](/writing/product-analysis-frameworks/) · [2 · 市场与定位](/writing/product-frameworks-market/) · [3 · 需求与取舍](/writing/product-frameworks-prioritization/) · [4 · 增长与商业](/writing/product-frameworks-growth/) · [5 · 执行与复盘](/writing/product-frameworks-delivery/) · [6 · 深入思考](/writing/product-frameworks-synthesis/)
-
 > 案例说明：MeetFlow 是虚构的 AI 会议助手，服务中小销售团队。以下市场变化、用户数据、财务数字与目标均为教学假设，不是市场调查、法律判断或收益承诺。
 
-
-前一篇决定先做确认后同步 CRM。上线之后，注册增长很好，但同步使用很少。此时不要急着做更多拉新：用户是否真的到达了价值发生的那一步？
+在 MeetFlow 案例中，团队决定先做确认后同步 CRM。上线之后，注册增长很好，但同步使用很少。此时不要急着做更多拉新：用户是否真的到达了价值发生的那一步？
 
 ## 做增长与问题诊断：AARRR、漏斗、5 Why 与 MECE
 
@@ -110,7 +107,6 @@ $$
 
 它适合产品组合层面的资源讨论，不适合给单个功能排优先级。市场份额也不等于用户价值，分类只是战略对话的起点。
 
-
 ## 区分症状、原因与经济结果
 
 漏斗中确认率低是症状，“责任人识别错误”是原因假设，净节省时间是价值证据，付费和服务成本则决定商业结果。它们不是同一个指标，不能用一条相关关系跳过中间验证。
@@ -124,11 +120,3 @@ $$
 产品负责人还要区分客户节省的时间价值、客户实际愿付价格与公司的毛利。三者有关，但不能直接画等号；节省的时间也未必能立即变为现金收益。
 
 画布的九个模块来自 [Strategyzer 商业模式画布](https://www.strategyzer.com/library/the-business-model-canvas)。对 MeetFlow，最值得更新的不是版式，而是每个模块背后的假设与验证记录。
-
----
-
-上一篇：[需求与取舍](/writing/product-frameworks-prioritization/)。
-
-我们知道应观察什么结果，也看到数据可能推翻需求判断。下一篇把这些结果变成目标、负责人和复盘机制，防止分析停在报告里。
-
-下一篇：[让一次发布留下结果，也留下可复用的认识](/writing/product-frameworks-delivery/)。

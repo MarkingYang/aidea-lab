@@ -1,5 +1,5 @@
 ---
-title: Harness 接入与实战（五）：从模块组装到运行：完成你的第一版 Mini Harness
+title: 从模块组装到运行：完成你的第一版 Mini Harness
 description: 按文件和调用顺序运行单动作 Mini Harness，检查模型、MCP、状态与验收的交接，并按具体需求扩展为多轮系统。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Harness 接入与实战系列：[1. 模块与选型](/writing/harness-integration-map/)｜[2. 模型与循环](/writing/harness-integration-model/)｜[3. 工具与策略](/writing/harness-integration-mcp/)｜[4. 状态与验收](/writing/harness-integration-recovery/)｜[5. 组装与运行](/writing/harness-integration-lab/)
 
 现在按模块图运行第一版 Mini Harness，再替换一个组件。学习目标是能够指出每次交接的输入、输出和失败处理，而不只是看到终端打印成功。
 
@@ -100,7 +98,7 @@ print(result['state'], result['attempts'])
 
 第一条预期非零退出；第二条查询已提交的工单并验收，`attempts` 仍为 1。再分别尝试 `client-after-result` 与 `client-after-intent`：前者恢复只需查询；后者资源尚不存在，恢复命令需要追加 `--execute`，最终 `attempts` 为 2。
 
-检查第四篇的资源数表，而不只看退出码。已经成功的运行直接返回终态，所以旧的成功目录不能用于重新触发故障。
+检查[状态与验收](/writing/harness-integration-recovery/)的资源数表，而不只看退出码。已经成功的运行直接返回终态，所以旧的成功目录不能用于重新触发故障。
 
 ## 第一次替换：接在线模型
 
@@ -126,7 +124,3 @@ print(result['state'], result['attempts'])
 | 引入 Skills 或记忆 | 上下文组装与来源管理 | 对相同任务集确实提高验收率或减少成本 |
 
 第一版的完成标准是：你能替换模型或工具，同时保持任务契约、执行策略、恢复和验收不被绕开。它仍是单用户、单动作的本地基线；上表提供了从这块切片扩展到多轮系统的具体路线。
-
-本系列到此完成。回到[模块与选型](/writing/harness-integration-map/)可以重新检查八项职责；需要更完整的运行治理时，再进入[Harness 运行与演进](/writing/harness-operations-context/)。
-
-上一篇：[状态与验收](/writing/harness-integration-recovery/)。

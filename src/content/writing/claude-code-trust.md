@@ -1,5 +1,5 @@
 ---
-title: Claude Code 产品设计（三）：少一点确认，不等于少一点边界
+title: 少一点确认，不等于少一点边界
 description: 区分权限模式、执行隔离和结果验证，用决策表取代线性的权限升级阶梯。
 publishedAt: 2026-09-05
 type: essay
@@ -10,14 +10,11 @@ topics:
   - 产品设计
   - 开发者工具
 featured: false
-readingTime: 7 min
+readingTime: 6 min
 updatedAt: 2026-09-05
 ---
 
-> Claude Code 产品设计系列：[1 · 产品地图](/writing/claude-code-product-design/) · [2 · 任务体验](/writing/claude-code-task-experience/) · [3 · 信任与验证](/writing/claude-code-trust/) · [4 · 会话与协作](/writing/claude-code-session-collaboration/) · [5 · 深入思考](/writing/claude-code-product-synthesis/)
-
 > 范围：基于 2026-09-05 可访问的 Claude Code 官方文档做产品设计分析。CLI、Desktop、Web 的能力不完全相同；下文会区分已有机制、教学抽象与作者建议，不把界面草图当作官方截图。
-
 
 任务契约写好了，Agent 请求运行一条命令。用户应该批准吗？难度不是风险：复杂代码分析可以只读，简单安装命令却可能下载并执行外部程序。
 
@@ -88,7 +85,6 @@ Claude Desktop 把大量上下文直接呈现在页面上：账户名称、头�
 
 这类能力在 KANO 中可能从兴奋需求快速转为基础需求：随着 Agent 被用于企业代码、客户数据和内部系统，安全分享不只是便利功能，也会影响组织是否允许员工使用产品。
 
-
 ## 实践：给信任机制一组反例
 
 | 测试请求 | 应看到的产品行为 |
@@ -102,11 +98,3 @@ Claude Desktop 把大量上下文直接呈现在页面上：账户名称、头�
 前面的 Presentation / Privacy Mode 是作者建议，不是对现有产品功能的断言。展示和分享的对象也需要单独授权；“可以读取”并不等于“可以公开”。
 
 可信界面的关键，不是让用户永远放心，而是让其在需要判断的地方有足够的事实和控制权。
-
----
-
-上一篇：[任务体验](/writing/claude-code-task-experience/)。
-
-单个任务能被授权与验收之后，如何让多个任务一起运行、长期上下文不混淆、跨端状态仍准确？下一篇进入会话与协作。
-
-下一篇：[并行和跨端，首先是状态管理问题](/writing/claude-code-session-collaboration/)。

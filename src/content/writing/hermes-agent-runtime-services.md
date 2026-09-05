@@ -1,5 +1,5 @@
 ---
-title: Hermes Agent 源码研究（三）：从工具循环到常驻服务
+title: Hermes：从工具循环到常驻服务
 description: 沿 Tool Schema、execute_code、子 Agent 与 Gateway，理解 Hermes 如何连接执行能力、控制流和跨渠道任务。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -11,10 +11,8 @@ topics:
   - 开发者工具
   - MCP
 featured: false
-readingTime: 5 min
+readingTime: 4 min
 ---
-
-> 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
 
 一个 Agent Loop 只有接触文件、Shell、浏览器和外部服务之后，才开始产生真实副作用。Hermes 的工具层因此不只是能力列表，还承担模型协议、控制流和运行环境之间的边界。
 
@@ -70,8 +68,4 @@ execute_code：一次写程序 → 程序完成多步确定性处理 → 只回�
 
 ---
 
-上一篇：[Hermes 内核](/writing/hermes-agent-architecture-deep-dive/)。
-
 执行链已经闭合，但 Hermes 最有辨识度的问题发生在任务之间：什么应该被记住，什么可以晋升为 Skill，又怎样阻止错误经验持续扩散？
-
-下一篇：[Hermes 积累](/writing/hermes-agent-memory-governance/)。

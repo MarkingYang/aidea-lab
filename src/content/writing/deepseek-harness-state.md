@@ -1,5 +1,5 @@
 ---
-title: DeepSeek Harness 架构（三）：历史不能丢，模型又不能看全部历史
+title: DeepSeek Harness：历史不能丢，模型又不能看全部历史
 description: 用 Turn、Step、Session Event 与上下文投影，理解恢复、压缩和多视图一致性。
 publishedAt: 2026-09-05
 type: essay
@@ -10,14 +10,11 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 8 min
+readingTime: 6 min
 updatedAt: 2026-09-05
 ---
 
-> DeepSeek Harness 架构系列：[1 · 系统全景](/writing/deepseek-harness-architecture/) · [2 · 组合与生命周期](/writing/deepseek-harness-composition/) · [3 · 状态与上下文](/writing/deepseek-harness-state/) · [4 · 执行与安全](/writing/deepseek-harness-execution/) · [5 · 深入思考](/writing/deepseek-harness-synthesis/)
-
-> 版本边界：本系列沿用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
-
+> 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
 
 工单插件已经装好，Agent 修改了文件，测试运行到一半进程退出。重启后，它该继续哪一步？如果只保留一句“正在修复”，就无法区分未执行、已执行但未确认，以及执行失败。
 
@@ -42,7 +39,7 @@ sequenceDiagram
   participant M as Model Adapter
   participant T as Tool Runtime
 
-  A->>S: turn/start
+A->>S: turn/start
   A->>U: claim next-step + one next-turn message
   A->>A: agent/pre-step
   A->>S: step/start + user/message
@@ -129,7 +126,6 @@ Prompt 装配也服务于缓存稳定性。固定 Identity、Persona、Prompt Se
 - 模型需要有限、高信号的当前视图；
 - Provider Cache 需要稳定前缀。
 
-
 ## 实践：用中断点检验恢复语义
 
 | 中断点 | 恢复时必须回答 |
@@ -148,11 +144,3 @@ Prompt 装配也服务于缓存稳定性。固定 Identity、Persona、Prompt Se
 完整日志也不是无限保留的许可：生产系统应按数据类别配置访问、保留与删除策略，并处理备份和派生视图。这里的 append-only 是运行时记录语义，不是对所有业务数据永久不可删除的要求。
 
 读完这部分，应能解释“历史完整”与“上下文变短”为什么不矛盾：它们服务不同消费者，却需要共同的来源与版本约束。
-
----
-
-上一篇：[组合与生命周期](/writing/deepseek-harness-composition/)。
-
-状态可以回放，不代表动作就被正确限制。下一篇沿着真正产生副作用的工具边界，检查参数、并发、PTC 和多 Agent 的风险。
-
-下一篇：[工具、PTC 和多 Agent，怎样不放大副作用](/writing/deepseek-harness-execution/)。

@@ -1,5 +1,5 @@
 ---
-title: 产品分析框架（三）：从用户旅程到一次有边界的发布
+title: 从用户旅程到一次有边界的发布
 description: 用 KANO、用户旅程、RICE 和 MoSCoW，把用户证据变成可解释的版本选择。
 publishedAt: 2026-09-05
 type: essay
@@ -10,14 +10,11 @@ topics:
   - 用户研究
   - 增长
 featured: false
-readingTime: 7 min
+readingTime: 6 min
 updatedAt: 2026-09-05
 ---
 
-> 产品分析框架系列：[1 · 决策地图](/writing/product-analysis-frameworks/) · [2 · 市场与定位](/writing/product-frameworks-market/) · [3 · 需求与取舍](/writing/product-frameworks-prioritization/) · [4 · 增长与商业](/writing/product-frameworks-growth/) · [5 · 执行与复盘](/writing/product-frameworks-delivery/) · [6 · 深入思考](/writing/product-frameworks-synthesis/)
-
 > 案例说明：MeetFlow 是虚构的 AI 会议助手，服务中小销售团队。以下市场变化、用户数据、财务数字与目标均为教学假设，不是市场调查、法律判断或收益承诺。
-
 
 市场篇让我们选择销售会议场景。现在回到一个人：销售经理李然开完会，究竟还要做什么？如果只问“你想要哪些功能”，容易得到很多愿望，得不到任务中的真实阻碍。
 
@@ -87,7 +84,6 @@ MoSCoW 把范围分为 Must have、Should have、Could have、Won't have this ti
 
 四象限简单直观，适合工作坊快速对齐，但坐标很容易被主观判断影响。重要需求仍应补充数据、风险和依赖分析。
 
-
 ## 两张表之间，不能缺少证据
 
 用户旅程中的“痛点”应能回到访谈、观察或日志。KANO 类型是对用户反应的假设，不应由产品经理凭感觉永久贴标签。旅程方法可参考 [NN/g 的说明](https://www.nngroup.com/articles/journey-mapping-101/)。
@@ -112,13 +108,3 @@ flowchart LR
 把 CRM 同步的 Reach 从 800 下调到 400，Effort 从 4 上调到 8，其他假设不变，得分从 320 变成 80。这个变化不自动推翻它，但会暴露团队对触达和成本的依赖。
 
 然后列出前置条件：身份与字段映射、用户确认、失败重试、对账。若只估算接口开发而忽略这些成本，分数本身就失去了比较意义。
-
-本轮可以交付“确认后同步一个 CRM”的窄闭环，同时明确不自动发送邮件、不覆盖全部定制字段。这样下一篇才能对同一个承诺追踪结果，而不是在上线后不断改变成功标准。
-
----
-
-上一篇：[市场与定位](/writing/product-frameworks-market/)。
-
-优先级决定了本次做什么，却没证明做完之后真的创造价值。下一篇追踪用户从试用到付费的链路，检验这些取舍。
-
-下一篇：[用户真的得到价值，生意才有机会成立](/writing/product-frameworks-growth/)。

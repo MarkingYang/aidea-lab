@@ -1,5 +1,5 @@
 ---
-title: Agent 工作系统全景（七）：办公 Agent 的落地取决于最后一公里
+title: 办公 Agent 的落地取决于最后一公里
 description: 沿研究、企业办公与多模态任务检查办公 Agent 的交付链，并给出个人与企业的采用方法。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: false
 readingTime: 10 min
 ---
-
-> 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
 
 办公 Agent 的竞争不会在“是否能生成文档”这里结束。材料从哪里来、结果写回哪里、异常由谁处理、权限怎样撤回，才决定它能否进入真实组织。
 
@@ -151,7 +149,7 @@ Claude Code 则在桌面端加入预览、Review、PR 跟踪和可分享 Artifac
 
 需要汇总时，先定义归一化与权重，再做敏感性检查；权限违规等硬门槛不参与分数补偿。
 
-当团队需要把这一轮比较沉淀为可复用的决策记录，可以沿 [产品分析框架系列](/writing/product-analysis-frameworks/)继续；如果争议集中在“能力提升是否真的降低交付成本”，则可回到 [AI 产品价值系列](/writing/ai-capability-product-metrics/)补齐指标口径。
+当团队需要把这一轮比较沉淀为可复用的决策记录，可以沿 [产品分析方法](/writing/product-analysis-frameworks/)继续；如果争议集中在“能力提升是否真的降低交付成本”，则可回到 [场景价值与交付成本](/writing/ai-capability-product-metrics/)补齐指标口径。
 
 ## 最后的判断：国产 Agent 的主场是“把工作接过来”
 
@@ -164,11 +162,3 @@ Claude Code 与 Codex 提供了一个值得借鉴的标准：完成不是生成�
 ---
 
 资料截至 2026-09-04。文中关于并发规模、产品覆盖与效率的描述均来自厂商公开资料；本文将其作为能力范围或市场定位，而非独立实测成绩。企业功能会因个人版、团队版、专享版和私有化版本而不同，采购时应以合同、控制台和实际 PoC 为准。
-
----
-
-上一篇：[办公产品](/writing/china-work-agent-showdown/)。
-
-工程与办公两条路径最终都指向同一个问题：我们购买的是更多能力，还是一种更低监督成本的工作完成方式？终篇回到整体重新回答。
-
-下一篇：[整体思考](/writing/agent-work-system-synthesis/)。

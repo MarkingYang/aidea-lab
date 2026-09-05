@@ -1,5 +1,6 @@
 import { createGraphSimulation } from './graphSimulation';
 import { getKnowledge, topics, articleHref, type Writing } from './knowledge';
+import contentRedirects from '../data/content-redirects.json';
 
 export type GraphNodeKind = 'topic' | 'series' | 'keyword' | 'article';
 export type GraphRelation = 'topic' | 'series' | 'keyword' | 'reference' | 'similarity';
@@ -49,6 +50,7 @@ export interface RelatedArticle {
 export interface KnowledgeGraphData {
   nodes: KnowledgeGraphNode[];
   links: KnowledgeGraphLink[];
+  aliases: Record<string, string>;
   stats: {
     articles: number;
     topics: number;
@@ -67,8 +69,8 @@ export interface KnowledgeGraphData {
 }
 
 const relationLabels: Record<GraphRelation, string> = {
-  topic: '主题归属',
-  series: '系列归属',
+  topic: '知识域归属',
+  series: '专题归属',
   keyword: '关键词关联',
   reference: '正文引用',
   similarity: '共享标签',
@@ -162,7 +164,7 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
       label: relationLabels.topic,
       reasons: [topics.find(topic => topic.id === item.topic)?.title ?? item.topic],
       weight: 4,
-      directed: false,
+      directed: true,
     });
   }
 
@@ -194,7 +196,7 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
         label: relationLabels.series,
         reasons: [`${parent.title} · 第 ${(chapter ?? 0) + 1} 篇`],
         weight: 3,
-        directed: false,
+        directed: true,
       });
     } else {
       addLink({
@@ -332,6 +334,13 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
   return {
     nodes,
     links,
+    aliases: Object.fromEntries(Object.entries(contentRedirects).map(([from, to]) => {
+      const nodeId = (url: string) => {
+        const [, kind, id] = url.split('/');
+        return kind === 'writing' ? id : `${kind === 'topics' ? 'topic' : 'series'}:${id}`;
+      };
+      return [nodeId(from), nodeId(to)];
+    })),
     stats: {
       articles: entries.length,
       topics: topics.length,
@@ -344,7 +353,7 @@ async function createKnowledgeGraph(): Promise<KnowledgeGraphData> {
     layout: {
       type: 'force-directed',
       radius: packedLayout.radius,
-      version: 6,
+      version: 7,
     },
     generatedAt: new Date().toISOString(),
   };

@@ -36,4 +36,4 @@
 
 ## 后续范围
 
-第三批已展开工程基础和 MCP 连接生命周期，入口为 `/series/harness-foundations/`，配套 16 项本地并发与协议状态测试。真实 MCP 传输仍未验证；真实模型与服务集成、调度与隔离测试未完成。P2 根据实际任务选择 Computer Use、实时语音与多模态、企业数据接入、经验学习与自动优化。
+并发、协议状态与业务恢复实验见 `/writing/harness-foundations-lab/`；真实 MCP、模型适配与进程恢复的组合见 `/series/harness-integration/`。工作簿的七张卡按职责保留，不等于七篇独立文章。

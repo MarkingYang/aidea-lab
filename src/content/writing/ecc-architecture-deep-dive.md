@@ -1,5 +1,5 @@
 ---
-title: ECC 工程资产系统研究（二）：如何把工程经验编译到不同平台
+title: ECC：如何把工程经验编译到不同平台
 description: 从资产、安装计划与跨 Harness 适配出发，拆解 ECC 如何把工程意图投射为可安装、可恢复的系统。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -14,8 +14,6 @@ topics:
 featured: true
 readingTime: 9 min
 ---
-
-> 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)
 
 如果只看仓库名字，Everything Claude Code（下文简称 ECC）很容易被理解成一套 Claude Code 配置合集：很多 Agent、Skill、Command、Rule，再加一些 Hook。
 
@@ -47,14 +45,14 @@ flowchart TB
   M[模型] <--> H
   H --> T[文件、Shell、MCP、浏览器等工具]
 
-  subgraph ECC[ECC Meta-Harness]
+subgraph ECC[ECC Meta-Harness]
     A[Skills / Agents / Rules<br/>描述应该怎样工作]
     R[Hooks / GateGuard<br/>约束实际怎样执行]
     I[Manifest / Installer / Adapter<br/>把资产编译到目标 Harness]
     S[Memory / Observations / Instincts<br/>保存与演进经验]
   end
 
-  I --> A
+I --> A
   I --> R
   A -.按需进入上下文.-> H
   R -.在事件边界拦截或反馈.-> H
@@ -180,11 +178,3 @@ ECC 的 Apply 层因此要处理：
 这种设计也形成了明显的风险集中点。`scripts/lib/install-lifecycle.js` 超过 2,000 行，负责发现已有安装、漂移诊断、修复计划、兼容迁移与安全卸载；不同平台的差异最终都会回流到这个生命周期内核。
 
 它带来的好处是行为统一，代价是回归半径很大。ECC 后续最值得做的重构不是继续增加 Adapter，而是进一步把生命周期内核拆成稳定的操作代数、文件安全层、状态投影层与平台迁移层，并用跨平台 Golden Fixtures 锁定它们之间的契约。
-
----
-
-上一篇：[ECC 全景](/writing/ecc-series-overview/)。
-
-资产与安装器解决了“同一份工程意图怎样到达不同平台”。下一篇继续看 Hook 如何在确定性事件上执行约束，以及记忆为什么只能作为低信任输入。
-
-下一篇：[ECC 运行](/writing/ecc-hook-runtime-memory/)。

@@ -1,5 +1,5 @@
 ---
-title: ECC 工程资产系统研究（三）：规则如何在事件边界真正发生
+title: ECC：规则如何在事件边界真正发生
 description: 沿 Hook 运行时、Memory Vault 与持续学习，理解 ECC 如何分离确定性约束、历史事实和经验候选。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,10 +12,8 @@ topics:
   - Agent Skills
   - AI 工程
 featured: false
-readingTime: 7 min
+readingTime: 6 min
 ---
-
-> 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)
 
 安装只决定资产到达哪里，运行时才决定规则是否真正发生。ECC 用 Hook 承担确定性事件，用 Memory Vault 保存事实，再把观察到的模式放入受控的学习链路。
 
@@ -34,7 +32,7 @@ sequenceDiagram
   participant O as PostToolUse Hooks
   participant L as Learning / State
 
-  U->>H: 提交目标
+U->>H: 提交目标
   H->>P: tool_name + tool_input
   P->>P: Profile / Disable List / GateGuard
   alt 高风险或不合规
@@ -114,11 +112,3 @@ Skill / Command（可复用工作流）
 真正好的地方是中间保留了 Instinct 层。一次成功操作可能只是偶然；重复成功也可能只适用于某个项目；只有在证据、作用域和验证方式都清楚后，它才应该扩大影响范围。
 
 这与 ECC 2.0 规划的“观察—提议—验证—晋升—回滚”循环一致：系统保存的不只是最后一份修改，还包括 Scenario、Trace、Candidate Playbook 与 Verifier Result。换句话说，**自我改进的产品不是会修改自己，而是能够证明为什么这次修改值得被保留。**
-
----
-
-上一篇：[ECC 编译](/writing/ecc-architecture-deep-dive/)。
-
-Hook 与记忆说明了系统怎样执行和学习。下一篇检查更难的长期问题：配置供应链、2.0 控制平面、版本成熟度和结构性代价。
-
-下一篇：[ECC 治理](/writing/ecc-memory-supply-chain/)。

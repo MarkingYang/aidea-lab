@@ -1,5 +1,5 @@
 ---
-title: Hermes Agent 源码研究（二）：长期运行的内核如何维持
+title: Hermes：长期运行的内核如何维持
 description: 从七个平面、Agent Loop 与 Prompt 分层出发，理解 Hermes 如何把不同模型收敛为可中断、可续跑的行动协议。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: true
 readingTime: 8 min
 ---
-
-> 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
 
 很多人第一次看到 Hermes Agent，会把它理解成“支持很多模型、很多工具和很多聊天平台的开源 Agent”。这个描述没有错，却错过了它真正有辨识度的部分。
 
@@ -73,7 +71,7 @@ sequenceDiagram
   participant Model as Model Provider
   participant Tools as Tool Runtime
 
-  User->>Agent: 目标与新输入
+User->>Agent: 目标与新输入
   Agent->>Context: 恢复会话、装配上下文、检查压缩
   Context-->>Agent: 内部统一消息
   Agent->>Model: 投影为 Provider API 格式
@@ -142,11 +140,3 @@ flowchart LR
 第二，Memory 写入与 Memory 生效被刻意分开。Agent 在本轮新增的记忆会立即落盘，但当前 Session 的 System Prompt 是冻结快照，通常要到新 Session 或重建路径才会重新注入。官方[记忆文档](https://hermes-agent.nousresearch.com/docs/user-guide/features/memory/)明确把这种延迟作为缓存稳定性的交换。
 
 第三，项目规则有明确优先级。Hermes 原生的 `.hermes.md` / `HERMES.md` 优先，其次才是 `AGENTS.md`、`CLAUDE.md` 和 Cursor Rules；上下文文件还会经过长度限制与注入模式扫描。换言之，项目文件不是“普通文本”，而是进入高权限 Prompt 的配置输入。
-
----
-
-上一篇：[Hermes 全景](/writing/hermes-agent-series-overview/)。
-
-内核解释了模型如何持续行动，但长期 Agent 还需要连接真实能力与外部入口。下一篇进入工具 ABI、代码编排、子 Agent 与 Gateway。
-
-下一篇：[Hermes 工具](/writing/hermes-agent-runtime-services/)。

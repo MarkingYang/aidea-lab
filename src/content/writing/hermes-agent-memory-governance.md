@@ -1,5 +1,5 @@
 ---
-title: Hermes Agent 源码研究（四）：经验如何积累而不失去边界
+title: Hermes：经验如何积累而不失去边界
 description: 拆解 Hermes 的 Session、Memory、Skill、自我改进与安全模型，理解长期 Agent 如何保存经验并控制污染。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -11,10 +11,8 @@ topics:
   - Agent Skills
   - Agent Harness
 featured: false
-readingTime: 9 min
+readingTime: 8 min
 ---
-
-> 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
 
 Hermes 真正不同于一次性工具的地方，是它试图让任务之间发生连接。但长期积累会把一次错误放大到未来，因此“记住什么”必须与“凭什么相信”一起设计。
 
@@ -135,11 +133,3 @@ Hermes 让 Memory、Skills、Session、Gateway 与 Cron 共同形成一条跨任
 ---
 
 资料截至 2026-09-04。优先引用 Nous Research 官方仓库与官方文档；关于架构优缺点、模块化单体和 Artifact Learning 的表述属于基于源码的分析判断，不是官方自我定义。
-
----
-
-上一篇：[Hermes 工具](/writing/hermes-agent-runtime-services/)。
-
-三篇源码分析已经把运行、工具与学习接在一起。下一篇回到整体，判断 Hermes 的自我改进真正成立需要哪些治理条件。
-
-下一篇：[Hermes 整体判断](/writing/hermes-agent-series-synthesis/)。

@@ -6,21 +6,21 @@ const graph = await getKnowledgeGraph();
 const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
 ---
 
-<BaseLayout title="知识星图｜大飞随笔" description="从主题、系列、关键词与正文引用出发，在一张可缩放的知识地图中探索文章。">
+<BaseLayout title="知识星图｜大飞随笔" description="从知识域、专题、文章、关键词与正文引用出发，在一张可缩放的知识地图中探索文章。">
   <div class="graph-page">
     <section class="graph-experience" data-graph-root aria-labelledby="graph-title">
       <div class="graph-atmosphere" aria-hidden="true"></div>
       <header class="graph-heading">
         <p class="eyebrow">Knowledge constellation</p>
         <h1 id="graph-title">知识星图</h1>
-        <p class="graph-summary"><strong>{graph.stats.articles}</strong> 篇文章，<strong>{graph.stats.keywords}</strong> 个关键词，<strong>{graph.stats.references}</strong> 条正文引用</p>
+        <p class="graph-summary"><strong>{graph.stats.articles}</strong> 篇文章，<strong>{graph.stats.topics}</strong> 个知识域 · <strong>{graph.stats.series}</strong> 个专题，<strong>{graph.stats.references}</strong> 条正文引用</p>
       </header>
 
       <div class="graph-search">
-        <label class="sr-only" for="graph-query">搜索文章、系列或主题</label>
+        <label class="sr-only" for="graph-query">搜索文章、专题或知识域</label>
         <div class="search-field">
           <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"></circle><path d="m13 13 4 4"></path></svg>
-          <input id="graph-query" type="search" autocomplete="off" placeholder="搜索文章、系列或主题" aria-controls="graph-search-results" aria-expanded="false" />
+          <input id="graph-query" type="search" autocomplete="off" placeholder="搜索文章、专题或知识域" aria-controls="graph-search-results" aria-expanded="false" />
           <kbd>⌘ K</kbd>
         </div>
         <div class="search-results" id="graph-search-results" role="listbox" hidden></div>
@@ -49,7 +49,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       <div class="graph-filters" aria-label="显示关系">
         <span>关系</span>
         <label><input type="checkbox" data-relation-filter="reference" checked />正文引用</label>
-        <label><input type="checkbox" data-relation-filter="series,topic" checked />系列与主题</label>
+        <label><input type="checkbox" data-relation-filter="series,topic" checked />目录层级</label>
         <label><input type="checkbox" data-relation-filter="keyword" checked />关键词</label>
         <label><input type="checkbox" data-relation-filter="similarity" />推测关联</label>
       </div>
@@ -61,7 +61,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
 
       <button class="legend-toggle" type="button" data-legend-toggle aria-expanded="false" aria-controls="graph-legend"><span aria-hidden="true">?</span><span class="sr-only">查看图例</span></button>
       <div class="graph-legend" id="graph-legend" data-graph-legend hidden>
-        <div><strong>节点</strong><span><i class="topic-node"></i>主题</span><span><i class="series-node"></i>系列</span><span><i class="keyword-node"></i>关键词</span><span><i class="article-node"></i>文章</span></div>
+        <div><strong>节点</strong><span><i class="topic-node"></i>知识域</span><span><i class="series-node"></i>专题</span><span><i class="keyword-node"></i>关键词</span><span><i class="article-node"></i>文章</span></div>
         <div><strong>关系</strong><span><i class="belongs-line"></i>归属</span><span><i class="keyword-line"></i>关键词</span><span><i class="reference-line"></i>引用</span><span><i class="similarity-line"></i>相似</span></div>
         <p>连线表示正文引用、系列归属或关键词。悬停突出直接关联；点击节点展开详情，从详情进入阅读。共享标签仅代表可能相关，可按需开启。</p>
       </div>
@@ -87,10 +87,10 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       <div class="graph-note-grid">
         <article><h3>从领域进入</h3><p>较大的铜橙色节点代表主题。点击它，镜头会聚焦这一知识区域，但不会割裂它与全局的联系。</p></article>
         <article><h3>沿系列深入</h3><p>青绿色节点代表系列。关联文章自然聚集，点击后可沿章节继续阅读。</p></article>
-        <article><h3>从关键词横向探索</h3><p>金色关键词把不同系列的文章连接起来；点击它会展开局部关系，再从文章标题直接进入阅读。</p></article>
+        <article><h3>从关键词横向探索</h3><p>金色关键词把不同专题的文章连接起来；点击它会展开局部关系，再从文章标题直接进入阅读。</p></article>
       </div>
-      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容生成。正文引用与系列关系拉近节点，节点间的排斥保持阅读空间，自然形成疏密不同的知识区域。主题归属采用较弱的牵引，共享标签的推测关联默认关闭。</p></details>
-      <details class="graph-method graph-automation"><summary>新增文章后，图谱如何更新？</summary><p>把 Markdown 放入文章目录并保存即可。开发模式会随内容变更重新生成；正式发布时，构建过程会重新扫描全部文章，计算节点、关系、主题分区和二维坐标，再校验每篇文章都已进入图谱。独立文章不需要维护额外清单，只有加入有顺序的系列时才需要指定章节位置。</p></details>
+      <details class="graph-method"><summary>这些关系是如何生成的？</summary><p>节点与连线从当前 Markdown 内容生成。正文引用与专题关系拉近节点，节点间的排斥保持阅读空间，自然形成疏密不同的知识区域。知识域归属采用较弱的牵引，共享标签的推测关联默认关闭。</p></details>
+      <details class="graph-method graph-automation"><summary>新增文章后，图谱如何更新？</summary><p>把 Markdown 放入文章目录并保存即可。开发模式会随内容变更重新生成；正式发布时，构建过程会重新扫描全部文章，计算节点、关系、主题分区和二维坐标，再校验每篇文章都已进入图谱。每篇文章在知识目录中指定一个归属；知识域、专题和文章组成三级结构。合并后的旧地址保留跳转，但不再生成重复节点。</p></details>
     </section>
   </div>
   <script type="application/json" id="knowledge-graph-data" set:html={serializedGraph}></script>
@@ -108,8 +108,8 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
   if (root instanceof HTMLElement && canvas instanceof HTMLElement && dataElement?.textContent) {
     const graphData = JSON.parse(dataElement.textContent);
     const nodeById = new Map(graphData.nodes.map((node) => [node.id, node]));
-    const relationNames = { topic: '主题归属', series: '系列归属', keyword: '关键词关联', reference: '正文引用', similarity: '共享标签' };
-    const kindNames = { topic: '阅读主题', series: '文章系列', keyword: '关键词', article: '文章' };
+    const relationNames = { topic: '知识域归属', series: '专题归属', keyword: '关键词关联', reference: '正文引用', similarity: '共享标签' };
+    const kindNames = { topic: '知识域', series: '专题', keyword: '关键词', article: '文章' };
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const network = new Graph({ type: 'undirected', multi: true });
 
@@ -267,7 +267,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         panelDescription.textContent = node.description || '从这里继续探索与它直接相连的内容。';
         panelTags.replaceChildren(...node.tags.slice(0, 5).map((tag) => { const item = document.createElement('span'); item.textContent = tag; return item; }));
         panelLink.href = node.href;
-        panelLink.firstChild.textContent = node.kind === 'article' ? '阅读这篇文章 ' : node.kind === 'series' ? '打开系列目录 ' : node.kind === 'keyword' ? '查看关键词文章 ' : '打开主题目录 ';
+        panelLink.firstChild.textContent = node.kind === 'article' ? '阅读这篇文章 ' : node.kind === 'series' ? '打开专题目录 ' : node.kind === 'keyword' ? '查看关键词文章 ' : '打开知识域目录 ';
         panelCount.textContent = `${links.length} 个节点`;
         panelRelations.replaceChildren(...links.map(({ link, node: target, relations }) => {
           const item = document.createElement('li'); const button = document.createElement('button');
@@ -495,7 +495,11 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       const closeResults = () => { results.hidden = true; query.setAttribute('aria-expanded', 'false'); };
       const search = () => {
         const value = query.value.trim().toLocaleLowerCase('zh-CN'); if (!value) return closeResults();
-        const matches = graphData.nodes.filter((node) => `${node.title} ${node.description} ${node.tags.join(' ')}`.toLocaleLowerCase('zh-CN').includes(value)).sort((a, b) => b.degree - a.degree).slice(0, 7);
+        const relevance = (node) => {
+          const title = node.title.toLocaleLowerCase('zh-CN');
+          return title === value ? 3 : title.startsWith(value) ? 2 : title.includes(value) ? 1 : 0;
+        };
+        const matches = graphData.nodes.filter((node) => `${node.title} ${node.description} ${node.tags.join(' ')}`.toLocaleLowerCase('zh-CN').includes(value)).sort((a, b) => relevance(b) - relevance(a) || b.degree - a.degree).slice(0, 7);
         results.replaceChildren(...matches.map((node) => {
           const button = document.createElement('button'); button.type = 'button'; button.role = 'option'; button.dataset.nodeId = node.id;
           const type = document.createElement('span'); type.textContent = kindNames[node.kind]; const title = document.createElement('strong'); title.textContent = node.title;
@@ -523,7 +527,8 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         if (event.key === 'Escape') { closeResults(); query?.blur(); if (selectedId) resetView(); }
       });
 
-      const requestedNode = new URL(location.href).searchParams.get('node');
+      const legacyNode = new URL(location.href).searchParams.get('node');
+      const requestedNode = graphData.aliases?.[legacyNode] ?? legacyNode;
       if (requestedNode && nodeById.has(requestedNode)) setSelection(requestedNode, { move: true, sync: false });
       root.querySelector('[data-graph-loading]')?.setAttribute('hidden', '');
       window.addEventListener('site-theme-change', () => {

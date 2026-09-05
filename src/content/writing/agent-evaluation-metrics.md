@@ -1,5 +1,5 @@
 ---
-title: Agent 评测（二）：成功率、稳定性与成本，不能揉成一个分数
+title: 成功率、稳定性与成本，不能揉成一个分数
 description: 正确区分 pass@k 与 pass^k，明确任务分母、失败成本和轨迹诊断边界。
 publishedAt: 2026-09-05
 type: essay
@@ -10,13 +10,11 @@ topics:
   - 基准测试
   - LLMOps
 featured: false
-readingTime: 6 min
+readingTime: 5 min
 updatedAt: 2026-09-05
 ---
 
-> Agent 评测系列：[1 · 系统全景](/writing/agent-system-evaluation-research/) · [2 · 指标口径](/writing/agent-evaluation-metrics/) · [3 · 数据集与评委](/writing/agent-evaluation-datasets/) · [4 · 工程闭环](/writing/agent-evaluation-engineering/) · [5 · 深入思考](/writing/agent-evaluation-synthesis/)
-
-上一篇给月报任务写了契约。现在假设它运行三次：第一次成功，第二次月份错误，第三次成功。你可以说“三次至少成功一次”，却不能说“每次都可靠”。这两句话的差别，决定产品应该提供草稿辅助还是无人值守执行。
+以有明确月份与字段要求的月报任务为例。现在假设它运行三次：第一次成功，第二次月份错误，第三次成功。你可以说“三次至少成功一次”，却不能说“每次都可靠”。这两句话的差别，决定产品应该提供草稿辅助还是无人值守执行。
 
 ## 成功率先守住分母
 
@@ -98,11 +96,3 @@ $$
 ```
 
 样本较少时，不必报很多位小数制造精确感。比较版本时按相同任务配对，报告样本量和差值不确定性；重采样也应考虑同一任务多试次的相关性，不能把它们当成大量全新题目。
-
----
-
-上一篇：[系统全景](/writing/agent-system-evaluation-research/)。
-
-指标口径明确之后，新的问题出现了：题目是否代表真实工作，打分者是否可靠？下一篇从样本和评委入手。
-
-下一篇：[先把题目和裁判做对，再谈排行榜](/writing/agent-evaluation-datasets/)。

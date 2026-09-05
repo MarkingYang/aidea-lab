@@ -7,6 +7,7 @@ const {chromium}=require('playwright');
 const base=process.env.BLOG_BASE_URL || 'http://127.0.0.1:4322';
 const screenshots=process.env.BLOG_SCREENSHOTS;
 const registry=JSON.parse(fs.readFileSync('src/data/knowledge.json','utf8'));
+const evaluationCount=registry.series.find(item=>item.id==='agent-evaluation').articles.length;
 const browser=await chromium.launch({headless:true,channel:process.env.BLOG_BROWSER_CHANNEL || 'chrome'});
 let checks=0;
 try {
@@ -27,13 +28,19 @@ try {
     for(const href of hrefs) {const url=new URL(href,base);assert.ok(fs.existsSync(path.join('dist',decodeURIComponent(url.pathname),'index.html')),`${route}: broken link ${href}`);}
     checks++;
   }
+  await visit('/topics/');
+  assert.equal(await page.locator('.domain-row').count(),registry.topics.length);
+  assert.equal(await page.locator('.branch-topic').count(),registry.series.length);
+  await page.locator('.branch-topic summary').first().click();
+  assert.ok(await page.locator('.branch-topic').first().getAttribute('open')!==null);
+  assert.equal(await page.locator('.branch-topic').first().locator('li a').count(),registry.series[0].articles.length);
   console.log('PASS desktop directory routes and internal links:',routes.length);
   await visit('/library/');await page.locator('.library-controls').waitFor({state:'visible'});
   const searchBounds=await page.locator('.library-controls').boundingBox();
   assert.ok(searchBounds.width<=721 && searchBounds.height<=90,'Library search must remain a compact reading tool');
   const totalArticles=await page.locator('[data-library-index]').evaluate(node=>JSON.parse(node.textContent).length);
   assert.equal(await page.locator('.library-result').count(),12);
-  await visit('/library/?series=agent-evaluation');await page.waitForFunction(()=>document.querySelectorAll('.library-result').length===5);
+  await visit('/library/?series=agent-evaluation');await page.waitForFunction(n=>document.querySelectorAll('.library-result').length===n,evaluationCount);
   const chapterLinks=await page.locator('.library-result h2 a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
   assert.deepEqual(chapterLinks,registry.series.find(x=>x.id==='agent-evaluation').articles.map(id=>`/writing/${id}/`));
   await page.reload();await page.locator('.library-controls').waitFor({state:'visible'});assert.equal(await page.locator('[data-context-label]').textContent(),'agent-evaluation');
@@ -50,6 +57,10 @@ try {
   for(const series of registry.series) {
     for(const [i,id] of series.articles.entries()) {
       await visit(`/writing/${id}/`);
+      const source=fs.readFileSync(`src/content/writing/${id}.md`,'utf8');
+      const expectedDiagrams=(source.match(/^```mermaid/gm)||[]).length;
+      await page.waitForFunction(n=>document.querySelectorAll('.mermaid svg').length===n,expectedDiagrams);
+      assert.equal(await page.locator('.mermaid .error-icon, .mermaid .error-text, .katex-error').count(),0,`${id}: rendered figure or formula error`);
       assert.match(await page.locator('.series-position').textContent(),new RegExp(`第 ${i+1} / ${series.articles.length} 篇`));
       assert.equal(await page.locator('.series-sidebar a[aria-current="page"]').count(),1);
       const expectedPrevious=i ? `/writing/${series.articles[i-1]}/` : `/series/${series.id}/`;

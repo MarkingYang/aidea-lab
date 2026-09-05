@@ -1,5 +1,5 @@
 ---
-title: Harness 运行与演进（七）：让每一次变化都有进入生产和退出生产的证据
+title: 让每一次变化都有进入生产和退出生产的证据
 description: 将模型、上下文、工具、策略与状态版本纳入同一发布单元，通过离线回归、隔离回放、灰度和消融决定扩量、回滚或简化。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,11 +13,9 @@ featured: false
 readingTime: 6 min
 ---
 
-> Harness 运行与演进系列：[1. 全景与上下文](/writing/harness-operations-context/)｜[2. 规划与验证](/writing/harness-operations-planning/)｜[3. 观测与诊断](/writing/harness-operations-observability/)｜[4. 多 Agent 协作](/writing/harness-operations-multi-agent/)｜[5. 模型网关](/writing/harness-operations-model-gateway/)｜[6. 生产调度](/writing/harness-operations-production/)｜[7. 发布与演化](/writing/harness-operations-release/)
-
 更换模型后，平均完成率提升了；同时更新的上下文压缩器却让长资料任务漏掉关键限定条件。如果只记录模型名称，这次发布很难定位，也难以准确回退。
 
-前六篇讨论了运行链上的选择，本篇把它们重新合为一个可追溯的发布对象。上线不是一个分数越过门槛，而是决定哪种组合可以进入哪些真实任务，以及出现问题时怎样退出。
+模型、上下文、工具、策略和部署配置应合成一个可追溯的发布对象。上线不是一个分数越过门槛，而是决定哪种组合可以进入哪些真实任务，以及出现问题时怎样退出。
 
 ## 发布单元是一个可还原的组合
 
@@ -36,7 +34,7 @@ readingTime: 6 min
 
 ## 从契约测试走到真实流量
 
-已有[评测工程篇](/writing/agent-evaluation-engineering/)提供了任务、试次、证据和回归的骨架。本系列增加的是运行机制变化后的发布路径。
+已有[评测工程篇](/writing/agent-evaluation-engineering/)提供了任务、试次、证据和回归的骨架。这里讨论运行机制变化后的发布路径。
 
 | 阶段 | 回答的问题 | 必须保留的证据 |
 | --- | --- | --- |
@@ -83,21 +81,14 @@ readingTime: 6 min
 
 一次只改一个可解释因素有助于定位，但也要关注机制之间的相互作用。单独关闭两个模块都不退化，不代表同时关闭也安全。硬权限和副作用保护不应因为模型在小样本中表现良好就被删除。
 
-消融实验的输出不是“更少总是更好”，而是某个机制在什么任务条件下有证据值得保留。它可以接续已有的[Harness 减负原则](/writing/anthropic-harness/)与[评测系统观](/writing/agent-evaluation-synthesis/)。
+消融实验的输出不是“更少总是更好”，而是某个机制在什么任务条件下有证据值得保留。它可以接续已有的[Harness 减负原则](/writing/harness-engineering-map/)与[评测系统观](/writing/agent-evaluation-engineering/)。
 
 ## 把七篇收束成一份变更记录
 
 使用[设计工作簿](/labs/harness-operations-workbook.md)，记录本次改变了什么、预期解决哪种失败、哪些任务可能受损、观察到哪些证据，以及何时停止扩量。没有数据时保留“未测”，不要把计划写成结果。
 
-本系列到此完成。回到[开篇地图](/writing/harness-operations-context/)，上下文、规划、观测、协作、网关和调度共同定义了 Agent 的实际工作条件。只有把这些条件纳入版本、评测和恢复，模型能力的变化才有机会成为可管理的交付改进。
-
 接下来的学习重点可以转向真实模型与服务集成，以及按业务需要展开的 Computer Use、多模态和企业数据接入。这里提供设计方法和反例，不把尚未实施的生产能力算作已经验收。
 
-
 ---
-
-上一篇：[生产调度](/writing/harness-operations-production/)。
-
-返回：[系列入口](/series/harness-operations/)。
 
 继续学习：[Harness 工程基础与协议：全景与并发](/writing/harness-foundations-concurrency/)。

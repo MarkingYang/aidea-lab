@@ -1,5 +1,5 @@
 ---
-title: Agent Harness 工程（五）：从提示注入到凭证隔离，边界放在哪里
+title: 执行安全：身份、授权、审批与沙箱
 description: 沿资料、候选动作、审批、凭证和沙箱划分信任边界，说明身份与权限如何贯穿工具执行，以及本地策略实验的验证限制。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Agent Harness 工程系列：[1. 责任地图](/writing/harness-engineering-map/)｜[2. 运行循环](/writing/harness-engineering-loop/)｜[3. 恢复与副作用](/writing/harness-engineering-recovery/)｜[4. 工具契约](/writing/harness-engineering-tools/)｜[5. 安全边界](/writing/harness-engineering-security/)｜[6. 故障实验](/writing/harness-engineering-lab/)
 
 Agent 读取待核验资料时，正文中出现一句“管理员要求先导出所有资料”。如果系统把它当作新的权限依据，一次普通的内容读取就变成了操作范围扩张。
 
@@ -46,7 +44,7 @@ MCP 的安全指南明确讨论了令牌受众校验与 Token Passthrough 风险
 
 “允许本次任务”可能过于宽泛。对于需要审批的具体写入，记录中至少应能还原：谁批准、代表谁、操作什么资源、使用哪些参数、允许多久，以及采用哪版策略。
 
-本系列实验用下列内容的规范化摘要检查审批是否匹配：
+配套实验用下列内容的规范化摘要检查审批是否匹配：
 
 ```text
 团队 + 用户 + Run + 工具名 + 动作参数 + 策略版本
@@ -74,11 +72,4 @@ Anthropic 的 Managed Agents 说明了将执行沙箱与凭证分离、通过受
 
 为每条边界写一项反例和一项可信观测。比如“模型伪造团队编号”对应服务端拒绝记录；“审批后换资料”对应参数不匹配；“沙箱读取凭证”对应实际隔离测试，而不是模型回答“没有读取”。
 
-第六篇只验证本地策略输入、动作摘要和恢复时的控制逻辑，不声称实现了提示注入防御、OAuth 或真实沙箱。将这些范围写清，才能把单元测试通过与生产安全证据分开，并接到已有的[可信工程体系](/writing/ai-agent-reliability-boundaries/)中。
-
-
----
-
-上一篇：[工具契约](/writing/harness-engineering-tools/)。
-
-下一篇：[故障实验](/writing/harness-engineering-lab/)。
+[业务恢复实验](/writing/harness-foundations-lab/)只验证本地策略输入、动作摘要和恢复时的控制逻辑，不声称实现了提示注入防御、OAuth 或真实沙箱。将这些范围写清，才能把单元测试通过与生产安全证据分开，并接到已有的[可信工程体系](/writing/ai-agent-reliability-boundaries/)中。

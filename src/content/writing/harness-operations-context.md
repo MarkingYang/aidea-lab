@@ -1,5 +1,5 @@
 ---
-title: Harness 运行与演进（一）：先看全景，再决定模型应该看到什么
+title: 先看全景，再决定模型应该看到什么
 description: 从单次执行走向持续运行，建立七个进阶专题的地图，并用上下文装配契约连接任务、证据、状态、记忆与预算。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -10,30 +10,12 @@ topics:
   - Context Engineering
   - AI 工程
 featured: true
-readingTime: 6 min
+readingTime: 5 min
 ---
 
-> Harness 运行与演进系列：[1. 全景与上下文](/writing/harness-operations-context/)｜[2. 规划与验证](/writing/harness-operations-planning/)｜[3. 观测与诊断](/writing/harness-operations-observability/)｜[4. 多 Agent 协作](/writing/harness-operations-multi-agent/)｜[5. 模型网关](/writing/harness-operations-model-gateway/)｜[6. 生产调度](/writing/harness-operations-production/)｜[7. 发布与演化](/writing/harness-operations-release/)
-
-[上一组工程文章](/writing/harness-engineering-map/)用资料核验工单建立了执行与恢复的主干。现在把任务扩展成“核验多份资料，找出冲突，再形成可审查的更新建议”。系统开始面对资料选择、任务拆分、并发、模型切换与长期运行。
-
-这组文章讨论增加机制的条件。衡量标准仍然是同一件事：在既定权限、预算和验收条件下，任务是否更容易完成，以及失败是否更容易解释。
+核验多份资料时，模型每一步需要看到的内容都在变化：先确认版本与范围，再保留冲突证据，最后带着当前处理状态形成更新建议。上下文组装负责把这些信息放进一次请求，并说明哪些材料被选入、排除或压缩。
 
 如果需要先区分提示词、上下文与运行系统的职责，可以从 [Prompt、Context 与 Harness 总览](/writing/prompt-context-harness-engineering/)进入；本文进一步展开每一步输入的装配机制。
-
-## 七个专题，其实是同一条运行链
-
-| 专题 | 要做的决定 | 读后交付物 |
-| --- | --- | --- |
-| 上下文 | 这一步需要看到什么 | 装配清单与遗漏反例 |
-| 规划 | 哪些步骤固定，哪些需要探索 | 计划状态与重规划条件 |
-| 可观测性 | 怎样还原延迟与失败 | 关联标识和诊断路径 |
-| 多 Agent | 哪些工作值得独立委派 | 子任务契约与汇总规则 |
-| 模型网关 | 哪些模型可以互相替代 | 能力矩阵与降级规则 |
-| 生产调度 | 谁获得资源和执行权 | 租约、配额与恢复表 |
-| 发布与演化 | 哪个变化值得进入真实任务 | 版本清单和发布门槛 |
-
-这是一条学习顺序，不要求每个系统都实现七套组件。一个只处理少量资料的个人工具，可以先保留单模型、单 Worker 和固定工作流。复杂度应由真实失败或明确约束提出需求。
 
 ## 上下文是装配结果，不是资料仓库
 
@@ -91,8 +73,3 @@ Anthropic 将压缩、结构化笔记等作为长任务上下文管理方法，�
 这个清单能区分三类失败：必要资料没有被召回，召回后被装配器排除，资料已进入请求但后续判断错误。第三类也不能直接证明模型内部为什么出错，只能说明调查应往后推进。
 
 本篇的练习是为同一任务准备三组输入：正确资料被大量相似内容淹没、最新资料与旧摘要冲突、曾经可见的资料被撤权。先检查进入模型的清单，再检查任务结果。配套[设计工作簿](/labs/harness-operations-workbook.md)提供记录格式。
-
-
----
-
-下一篇：[规划与验证](/writing/harness-operations-planning/)。

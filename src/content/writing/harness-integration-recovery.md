@@ -1,5 +1,5 @@
 ---
-title: Harness 接入与实战（四）：状态、幂等与验收怎样闭环
+title: 状态、幂等与验收怎样闭环
 description: 拆开运行状态与业务资源，用持久化意图、稳定操作键和独立查询组装可恢复执行，并复现三个进程退出点。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -12,8 +12,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> Harness 接入与实战系列：[1. 模块与选型](/writing/harness-integration-map/)｜[2. 模型与循环](/writing/harness-integration-model/)｜[3. 工具与策略](/writing/harness-integration-mcp/)｜[4. 状态与验收](/writing/harness-integration-recovery/)｜[5. 组装与运行](/writing/harness-integration-lab/)
 
 运行器记得“发过请求”，不等于业务系统已经完成；客户端没收到响应，也不等于业务系统没有写入。Mini Harness 的恢复模块要同时读取运行记录与业务事实。
 
@@ -81,7 +79,3 @@ readingTime: 5 min
 单 Worker 可以使用这里的小状态机。多 Worker 会引入新的问题：谁拥有运行、谁能消耗预算、旧 Worker 恢复后是否还能写。此时需要租约、版本或 fencing 等所有权设计，单靠工单唯一键只能阻止同键重复资源，管不了调度竞争。
 
 分支、暂停和消息历史增多时，可以把运行状态交给工作流框架；工具的幂等和业务验收仍需保留。先以[并发与一致性](/writing/harness-foundations-concurrency/)中的反例确定需要的保证，再换数据库或编排器。
-
-上一篇：[工具与策略](/writing/harness-integration-mcp/)。
-
-下一篇：[组装与运行](/writing/harness-integration-lab/)。

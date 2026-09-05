@@ -1,5 +1,5 @@
 ---
-title: Claude Code 产品设计（四）：并行和跨端，首先是状态管理问题
+title: 并行和跨端，首先是状态管理问题
 description: 拆解 Worktree、上下文寿命、可组合扩展和远程控制，避免把聊天并发当成任务隔离。
 publishedAt: 2026-09-05
 type: essay
@@ -10,14 +10,11 @@ topics:
   - 产品设计
   - 开发者工具
 featured: false
-readingTime: 8 min
+readingTime: 7 min
 updatedAt: 2026-09-05
 ---
 
-> Claude Code 产品设计系列：[1 · 产品地图](/writing/claude-code-product-design/) · [2 · 任务体验](/writing/claude-code-task-experience/) · [3 · 信任与验证](/writing/claude-code-trust/) · [4 · 会话与协作](/writing/claude-code-session-collaboration/) · [5 · 深入思考](/writing/claude-code-product-synthesis/)
-
 > 范围：基于 2026-09-05 可访问的 Claude Code 官方文档做产品设计分析。CLI、Desktop、Web 的能力不完全相同；下文会区分已有机制、教学抽象与作者建议，不把界面草图当作官方截图。
-
 
 登录问题修复还没结束，团队又启动依赖升级和专项审查。三个聊天窗口不等于三个互不干扰的任务；任务在手机上可见，也不等于它已经迁到了云端。
 
@@ -32,7 +29,7 @@ flowchart TB
   R --> S2[Session B<br/>升级依赖]
   R --> S3[Session C<br/>编写测试]
 
-  S1 --> W1[Worktree A] --> B1[Branch A] --> PR1[PR A]
+S1 --> W1[Worktree A] --> B1[Branch A] --> PR1[PR A]
   S2 --> W2[Worktree B] --> B2[Branch B] --> PR2[PR B]
   S3 --> W3[Worktree C] --> B3[Branch C] --> PR3[PR C]
 ```
@@ -89,7 +86,6 @@ Claude Code 早期的产品定位有两个关键词：**low-level** 和 **unopin
 
 用户真正需要的不是在手机上写代码，而是在离开电脑后知道任务是否完成、证据是否通过、是否需要一次关键确认。跨端设计因此应优先传递状态和决策，而不是复制全部工具界面。
 
-
 Remote Control 连接的是仍在本机运行的会话，并不把执行迁到云端；本地进程退出会影响可用性。[Remote Control 边界](https://code.claude.com/docs/en/remote-control)
 
 ## 工作目录隔离，还没有覆盖全部共享状态
@@ -113,11 +109,3 @@ Worktree 隔离的是文件工作副本，不自动隔离数据库、端口、�
 把跨端也纳入这张表：关闭本地进程后，远程控制界面是否正确显示不可用？云端与本地凭据是否分开？下一位审查者能否恢复任务目标、未决问题和证据？
 
 这些问题回答清楚之后，并行与跨端才从功能卖点变成可靠的协作机制。
-
----
-
-上一篇：[信任与验证](/writing/claude-code-trust/)。
-
-会话、权限、证据与协作各自成立后，整体体验仍可能更费人。终篇把这些模块重新合起来，讨论监督成本与责任分配。
-
-下一篇：[Agent 产品真正设计的是责任，而不只是操作](/writing/claude-code-product-synthesis/)。

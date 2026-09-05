@@ -1,5 +1,5 @@
 ---
-title: Pi Coding Agent 源码研究（三）：运行历史如何成为可扩展 Session
+title: Pi：运行历史如何成为可扩展 Session
 description: 沿 AgentSession、追加事件树、Compaction 与扩展拦截点，理解 Pi 如何分离事实、上下文投影和产品策略。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -11,10 +11,8 @@ topics:
   - Agent Harness
   - Context Engineering
 featured: false
-readingTime: 7 min
+readingTime: 6 min
 ---
-
-> 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)
 
 Pi 的最小内核没有把历史保存成最终 messages 数组，而是让 AgentSession 同时承担持久化、上下文投影、扩展和 UI 的产品语义。本篇关注这条状态主线。
 
@@ -42,7 +40,7 @@ sequenceDiagram
   participant T as Tool
   participant H as SessionManager
 
-  U->>S: prompt(text)
+U->>S: prompt(text)
   S->>X: input / command interception
   S->>S: expand skill & prompt template
   S->>X: before_agent_start
@@ -131,11 +129,3 @@ Custom UI      = TUI component + lifecycle events
 ```
 
 但这里也存在最重要的边界条件：**Extension 是进程内受信代码，不是沙箱插件。** 它能访问 Node.js、文件系统、网络和凭证，权限与 Pi 进程相同。强扩展性与强隔离不是同一件事。
-
----
-
-上一篇：[Pi 内核](/writing/pi-architecture-deep-dive/)。
-
-Session 与扩展解释了单进程产品如何被塑形。下一篇进入安全外置和 Durable AgentHarness，看 Pi 如何把持久任务推进到多进程系统。
-
-下一篇：[Pi 扩展](/writing/pi-durable-harness-governance/)。

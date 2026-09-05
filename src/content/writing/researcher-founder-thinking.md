@@ -1,5 +1,5 @@
 ---
-title: AI 时代的产品工作（五）：研究、创新与斜率怎样变成行动
+title: 研究、创新与斜率怎样变成行动
 description: 把研究思维、创新思维与斜率思维落到选题、真实需求、跨界学习和同行网络。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
@@ -13,8 +13,6 @@ topics:
 featured: false
 readingTime: 5 min
 ---
-
-> 系列：[1. 工作系统](/writing/product-work-methodology/)｜[2. 结果契约](/writing/agent-product-contracts-context/)｜[3. 产品节奏](/writing/agent-product-evaluation-rhythm/)｜[4. 组织未知](/writing/lu-qi-researcher-founder/)｜[5. 思维与行动](/writing/researcher-founder-thinking/)｜[6. 学习边界](/writing/learning-organization-boundaries/)｜[7. 整体思考](/writing/ai-product-work-synthesis/)
 
 Researcher Founder 不是职位名称，而是一组面对未知的能力。真正可复用的部分，是怎样选择问题、把技术能力放回需求，并让自己的学习速度持续提高。
 
@@ -96,11 +94,3 @@ FDE，前线部署工程师，只是一个具体角色。更广义的趋势是 *
 前沿创业不是个人英雄主义。越是不确定的问题，越需要高密度的人才、信息、反馈和信任。
 
 人脉在这里不是简单的社交资源，而是一张认知网络和行动网络。好的社区真正提供的也不是热闹，而是让判断和行动共同加速的环境。
-
----
-
-上一篇：[组织未知](/writing/lu-qi-researcher-founder/)。
-
-三种思维给出了行动方向，却仍可能被宏大叙事放大。下一篇回到分享中最值得保留的判断、证据边界与组织学习速度。
-
-下一篇：[学习边界](/writing/learning-organization-boundaries/)。

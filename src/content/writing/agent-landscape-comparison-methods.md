@@ -1,6 +1,6 @@
 ---
-title: Agent 工作系统全景（二）：不用总分，如何比较不同 Agent
-description: 用任务契约、体验分层和证据矩阵比较不同 Agent，区分公开机制、候选假设与真实任务结果。
+title: Agent 选型：比较维度、任务契约与 PoC
+description: 按研究对象和任务证据比较 Agent，用明确契约、分项指标和分轮 PoC 形成可复核的采用决定。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
 type: essay
@@ -11,10 +11,8 @@ topics:
   - 产品战略
   - 产品方法论
 featured: false
-readingTime: 8 min
+readingTime: 12 min
 ---
-
-> 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
 
 同一张功能清单无法公平比较 Coding Agent、办公 Agent 与开源 Harness。真正有用的比较，必须先声明决策对象，再让不同框架各自回答一个问题。
 
@@ -22,7 +20,7 @@ readingTime: 8 min
 
 体验分层、证据记录和策略分析承担不同职责：
 
-| 框架 | 回答的问题 | 在本系列中的用法 | 不负责什么 |
+| 框架 | 回答的问题 | 使用方法 | 不负责什么 |
 | --- | --- | --- | --- |
 | 用户体验五要素 | 用户究竟经历了怎样的产品？ | 从战略层、范围层、结构层、框架层到表现层逐层比较 | 不直接判断企业外部机会 |
 | 价值要素表 | 产品公开强调哪些价值？ | 记录功能、来源与待验证差异 | 不由文档推算研发投入或性能分数 |
@@ -60,7 +58,7 @@ readingTime: 8 min
 
 ### 候选产品按研究对象分组
 
-| 研究对象 | 本系列案例 | 比较前需要控制的差异 |
+| 研究对象 | 资料核验案例 | 比较前需要控制的差异 |
 | --- | --- | --- |
 | 产品化工程任务 | Claude Code、Codex、Kimi Code | 模型、套餐、本地或云端环境、工具权限 |
 | 办公任务交付 | Kimi Work、WorkBuddy、豆包工作 | 文件格式、企业版本、连接器与地区可用性 |
@@ -94,10 +92,92 @@ Codex 可重点检查多任务调度和结果审查的衔接。CLI 负责本地�
 
 如果团队确实需要加权决策，应先约定每项指标的单位、归一化方法、方向和权重理由，并检查权重小幅变化是否就改变选择。未经校准的“强、中、弱”也不是证据。
 
----
+## Agent 选型其实是责任分配
 
-上一篇：[三条赛道](/writing/ai-agent-landscape-2026/)。
+传统软件选型常问功能、价格和集成。Agent 还要多问三件事：谁定义完成，谁批准不可逆动作，谁在证据不足时接管。因为 Agent 不只展示信息，它开始代表人行动。
 
-比较框架已经建立。下一篇把镜头推近工程场景，看 Claude Code、Codex 与 Kimi Code 如何用不同产品结构完成同一类工作。
+| 系统选择 | 组织得到什么 | 同时接过什么责任 |
+| --- | --- | --- |
+| 产品化 Coding Agent | 成熟默认值、代码闭环与审查入口 | 接受平台边界，并管理账号、数据和配额 |
+| 开源 Harness | 模型、Loop 与工具的可塑性 | 自建安全基线、版本治理和运行保障 |
+| 办公 Agent | 更低门槛的跨文档与多模态执行 | 定义业务验收、数据流与外部发送边界 |
+| 自研 Agent 平台 | 与内部系统深度结合 | 长期承担评测、运维和责任追踪 |
 
-下一篇：[工程产品](/writing/coding-agent-harness-showdown/)。
+如果系统默认自治，却把验证成本全部留给使用者，它只是把操作负担换成监督负担。如果系统层层确认，却没有提供足够证据，确认也只是把责任推回给人。成熟的工作系统应让权限、证据和恢复能力一起增长。
+
+## 先把八款产品放回正确的赛道
+
+### 第一层：工程 Agent——把需求变成可验证的代码变更
+
+Claude Code、Codex 和 Kimi Code 的核心工作对象是代码仓库。它们要完成的不是“写一段代码”，而是读取项目、修改多个文件、运行命令和测试、解释差异，并把结果交到人类可审查的位置。
+
+[Claude Code 官方产品页](https://claude.com/product/claude-code)已经把入口扩展到终端、IDE、桌面、Web、GitHub、Slack 和移动端；[Codex App](https://openai.com/index/introducing-the-codex-app/)则明确把产品定义成并行管理多个 Agent 的 command center。两者都已超越单一 CLI。
+
+[Kimi Code](https://www.kimi.com/resources/kimi-code-introduction)走的是模型与产品垂直整合路线：月之暗面既提供 Agentic 模型，也提供终端和 IDE Agent。它不再只是“国产模型接进第三方 CLI”，而是在补齐自己的执行层。
+
+### 第二层：工作 Agent——把自然语言目标变成办公制品
+
+Kimi Work、WorkBuddy 和豆包工作的用户通常不从 Git 仓库开始，而从本地文件、浏览器、企业知识库、聊天记录、表格、PPT 或一项模糊业务目标开始。
+
+[Kimi Work](https://www.kimi.com/zh-hans/resources/kimi-work-introduction)强调本地桌面、开放网络、专业数据集与 Agent Swarm；[WorkBuddy](https://cloud.tencent.com/product/workbuddy)强调“办公、代码、设计”统一工作台、腾讯生态和 SkillHub；字节 Seed 团队则把豆包“办公任务”描述为面向真实生产力场景的通用 Agent，突出项目规划、文件处理、工具调用和多模态交付，参见[Seed2.1 发布说明](https://seed.bytedance.com/zh/blog/seed2-1-officially-released-advancing-ai-productivity)。
+
+它们真正争夺的是：**用户愿不愿意把一项完整工作交出去，而不只是把一个问题问出去。**
+
+### 第三层：开源 Harness——把 Agent 本身变成可改造的基础设施
+
+Hermes、Pi 与 DeepSeek Harness 都开源，但哲学差异极大：
+
+| 产品 | 核心主张 | 更像什么 | 默认取舍 |
+| --- | --- | --- | --- |
+| [Hermes Agent](https://github.com/NousResearch/hermes-agent) | “会记住、会沉淀技能的个人 Agent” | 电池齐全的自治助理 | 能力面广，部署与安全责任也更重 |
+| [Pi](https://pi.dev/docs/latest) | “最小终端 Coding Harness” | 可编程的 Agent 内核 | 核心克制，把工作流和治理交给扩展 |
+| [DeepSeek Harness](https://www.deepseek.com/harness/) | “Everything is a plugin” | Agent 运行时与插件实验场 | 组合自由度高，但仍是 developer preview |
+
+它们不以“开箱即用的企业席位”取胜，而以源码可见、模型可换、运行时可改、部署可控取胜。
+
+## 先定义 PoC 要决定什么
+
+PoC 不是把公开资料里的价值曲线再画一遍，而是回答一个具体决定：**哪套系统能在我们的任务、权限和成本边界内稳定交付？** 因此，开始前要冻结四项内容：候选产品、任务范围、允许动作和通过门槛。
+
+同一产品可以有多种配置。Claude Code 的权限模式、Codex 的执行环境、Kimi Code 的模型与并发设置都要记录；不能让一个候选使用团队精心准备的项目说明，另一个只拿到一句临时提示。公平不是配置完全相同，而是每个候选都获得完成任务所需、且能在生产中持续维护的配置。
+
+## 两周只做三轮，不追求覆盖所有功能
+
+| 时间 | 目标 | 产物 |
+| --- | --- | --- |
+| 第 1—2 天 | 固定仓库快照、任务契约与基线 | 任务清单、权限表、人工基线 |
+| 第 3—6 天 | 每个候选完成同一批任务，多次独立运行 | 产物、Trace、费用、接管与失败记录 |
+| 第 7—8 天 | 将代表性失败变成回归样本 | 失败分类、复现步骤、恢复测试 |
+| 第 9—10 天 | 复测改进并做选型复盘 | 决策记录、适用范围、退出条件 |
+
+第一轮不要调到“终于通过”为止。先记录默认状态的真实摩擦，再允许一次有边界的配置改进；否则测到的是评测人员的调参能力，而不是团队未来可以复用的系统能力。
+
+## 任务契约必须先于评分表
+
+每项任务至少写清输入快照、目标状态、禁止动作、预算和验收证据。例如“修复登录超时”不能只写成一句需求，而要说明允许修改的目录、必须通过的测试、是否允许联网、交付 Diff 由谁审查，以及超时后怎样停止。
+
+```yaml
+task: fix-login-timeout
+snapshot: repo@known-commit
+allowed: [read_repo, edit_workspace, run_tests]
+forbidden: [push_remote, read_secrets, deploy]
+budget: { minutes: 30, retries: 1 }
+evidence: [targeted_test, regression_suite, diff_review]
+```
+
+这份 YAML 是教学格式，不属于任何候选产品。它的意义是让评测运行器与人类审查者使用同一份完成定义。
+
+## 真正公平的 PoC：不要让六个 Agent 做同一道玩具题
+
+一个有效的两周 PoC，至少应包含四类任务：
+
+1. **定位型任务**：理解陌生代码、追踪跨模块调用、解释故障；
+2. **修改型任务**：实现中型功能，必须通过已有测试和静态检查；
+3. **长程任务**：需要多轮探索、重启、压缩或交接的迁移；
+4. **高风险任务**：包含外部网络、密钥边界、数据库或发布步骤，但设置明确禁止线。
+
+每个任务记录六个数字：一次完成率、测试通过率、人工接管次数、权限例外数、总模型成本、从失败到恢复的时间。并保留完整 Trace，抽样判断“通过”是否来自正确过程，而不是偶然绕过测试。
+
+这里的任务契约、样本分层和回归方法，可以直接复用 [评测体系设计](/writing/agent-system-evaluation-research/)；PoC 不应建立另一套只服务于采购演示的评分语言。
+
+对于并行能力，再单独测量：任务是否真正独立、冲突率、重复工作率、汇总遗漏率和人类最终审查时间。Agent 数量不是产出指标；**单位人类审查分钟换来的合格变更量**才是。

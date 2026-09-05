@@ -1,6 +1,6 @@
-# 万级能力路由：五篇文章与离线实验
+# 能力路由：架构、发现、执行与评测
 
-这组文章采用“总—分—分—分—总”：先建立全景，分别展开发现、执行和验证，最后讨论受约束的任务决策。
+路由文章归入“Agent Harness → 工具、协议与执行边界”。四篇分别处理架构、发现、执行与评测，复杂度取舍已合入评测篇。
 
 ## 阅读路线
 
@@ -10,7 +10,6 @@
 | [② 发现与检索](../../src/content/writing/capability-routing-discovery.md) | 描述、召回、正文与精排 | Mermaid 检索流程图 |
 | [③ 方案与执行](../../src/content/writing/capability-routing-execution.md) | Skill / MCP / Agent 不同执行语义 | Mermaid 时序图 |
 | [④ 评测与治理](../../src/content/writing/capability-routing-evaluation.md) | 失败定位、授权、状态与测量 | Mermaid 诊断流程图、状态图 |
-| [⑤ 整体思考](../../src/content/writing/capability-routing-synthesis.md) | 优化目标、信息价值、系统复杂度 | Mermaid 决策闭环图 |
 
 图示源码直接保存在文章的 Mermaid 代码块中。每幅图包含图例或读图说明，站点已有缩放、复制、SVG 导出与全屏功能，不需要额外图表服务。公式使用站点现有 KaTeX。
 
