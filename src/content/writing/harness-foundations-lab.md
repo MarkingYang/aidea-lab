@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - MCP
 featured: false
-readingTime: 7 min
+readingTime: 5 min
 ---
 
 > Harness 工程基础与协议系列：[1. 全景与并发](/writing/harness-foundations-concurrency/)｜[2. 一致性](/writing/harness-foundations-consistency/)｜[3. MCP 生命周期](/writing/harness-foundations-mcp-lifecycle/)｜[4. MCP 恢复](/writing/harness-foundations-mcp-recovery/)｜[5. 故障实验](/writing/harness-foundations-lab/)

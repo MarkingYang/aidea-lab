@@ -12,7 +12,7 @@ topics:
   - Codex
   - AI 工程
 featured: true
-readingTime: 8 min
+readingTime: 9 min
 ---
 
 > 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)
@@ -105,7 +105,7 @@ references / scripts / examples
 - Prompt 仓库保存的是“某次应该说什么”；
 - Skill 保存的是“某类任务如何被发现、执行与验证”；
 - Rule 保存的是“长期默认成立的约束”；
-- Hook 保存的是“无论模型怎么判断都要发生的检查”；
+- Hook 定义配置匹配时触发的检查，实际执行与阻断能力取决于事件类型和运行配置；
 - Memory 保存的是“未来可能有用、但尚未成为规则的上下文”。
 
 这套分类把知识的**适用范围、加载时机、可信度与执行强度**分开了。

@@ -11,7 +11,7 @@ topics:
   - AI 产品
   - 产品方法论
 featured: false
-readingTime: 7 min
+readingTime: 3 min
 ---
 
 > 系列：[1. 能力地图](/writing/llm-agent-capability-landscape-2026/)｜[2. 证据与行动](/writing/ai-capability-evidence-action/)｜[3. 整体思考](/writing/ai-capability-boundary-synthesis/)

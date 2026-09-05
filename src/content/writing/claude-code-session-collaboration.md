@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > Claude Code 产品设计系列：[1 · 产品地图](/writing/claude-code-product-design/) · [2 · 任务体验](/writing/claude-code-task-experience/) · [3 · 信任与验证](/writing/claude-code-trust/) · [4 · 会话与协作](/writing/claude-code-session-collaboration/) · [5 · 深入思考](/writing/claude-code-product-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 范围：基于 2026-09-05 可访问的 Claude Code 官方文档做产品设计分析。CLI、Desktop、Web 的能力不完全相同；下文会区分已有机制、教学抽象与作者建议，不把界面草图当作官方截图。
 
 
@@ -39,7 +37,7 @@ flowchart TB
   S3 --> W3[Worktree C] --> B3[Branch C] --> PR3[PR C]
 ```
 
-*图 1｜采用独立 Worktree 时的并行任务映射。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜采用独立 Worktree 时的并行任务映射。*
 
 多 Agent 并行最大的工程风险不是“它们会不会聊天”，而是文件状态相互污染。在 Desktop 的 Git 项目并行会话等受支持场景中，Worktree 可为任务提供独立工作目录与变更空间。普通 CLI 会话、非 Git 目录和显式共享目录不能因此被推断为自动隔离；应检查所用端口与配置。[Desktop 会话说明](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions)
 
@@ -64,7 +62,7 @@ flowchart TB
 | Hook | 生命周期事件 | 格式化、Lint、拦截危险动作、审计 | 确定性规则 |
 | Plugin | 安装与分发周期 | Skills、Hooks、Agents 与 MCP 的组合 | 团队分发单元 |
 
-这里最关键的是 Skill 与 Hook 的区别：Skill 告诉模型“应该怎样做”，仍依赖理解与判断；Hook 则规定“事件发生时必须执行什么”，强调确定性。
+这里最关键的是 Skill 与 Hook 的区别：Skill 告诉模型“应该怎样做”，仍依赖理解与判断；Hook 则配置事件匹配后的处理。执行前同步检查可以参与阻断，事后或异步反馈不能替代门禁；是否实际生效还取决于启用状态、事件覆盖与失败处理。
 
 这种分层背后的技术约束是 Context Window。若把所有规则、知识和工具说明都永久加载，成本会上升，注意力被稀释，长任务后半程还可能遗忘早期约束。按寿命与相关性加载，本质上是一种 Agent 信息架构设计。[Claude Code 扩展体系](https://code.claude.com/docs/zh-CN/features-overview)
 

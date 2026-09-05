@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 架构设计
 featured: false
-readingTime: 7 min
+readingTime: 5 min
 ---
 
 > Agent Harness 工程系列：[1. 责任地图](/writing/harness-engineering-map/)｜[2. 运行循环](/writing/harness-engineering-loop/)｜[3. 恢复与副作用](/writing/harness-engineering-recovery/)｜[4. 工具契约](/writing/harness-engineering-tools/)｜[5. 安全边界](/writing/harness-engineering-security/)｜[6. 故障实验](/writing/harness-engineering-lab/)

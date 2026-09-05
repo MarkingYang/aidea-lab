@@ -17,9 +17,9 @@ updatedAt: 2026-09-05
 
 > Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
+
+> 单项目纵向阅读：[Mem0 写入管线](/writing/mem0-add-pipeline/) · [OpenViking Session 提交](/writing/openviking-session-governance/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-layers/)
 
 
 一月在上海、六月搬到杭州，这两条信息不一定互相矛盾。问题是查询要知道“现在”，还是要还原“一月”。如果写入时直接覆盖，历史丢了；如果只追加，读取时就需要更多判断。
@@ -75,15 +75,15 @@ Mem0 把触发权交给应用，最灵活，也最依赖接入方正确编排。
 | 策略 | 代表 | 优点 | 风险 |
 | --- | --- | --- | --- |
 | 追加历史，读取时判定 | Mem0 v3 自动抽取 | 不丢时间序列，写入简单 | 冲突累积，依赖时间排序与查询理解 |
-| 写入时合并、更新或删除 | OpenViking | 当前知识更紧凑，可直接浏览 | LLM 误判可能不可逆地改变记忆 |
+| 写入时合并、更新或删除 | OpenViking | 当前知识更紧凑，可直接浏览 | LLM 误合并会改变当前记忆；恢复依赖原始消息与差异记录是否保留 |
 | 原始层保留，高层逐级归纳 | TencentDB Agent Memory | 兼顾证据与快速画像 | 层间漂移、更新策略和回溯链更复杂 |
 
 一个成熟系统通常不会只选一边。更稳妥的组合是：原始事件 append-only；派生画像可更新；任何高层结论都保留来源、有效时间和生成版本。
 
 
-## 两种时间必须分开
+## 来源时间、有效时间与记录时间必须分开
 
-`event_time` 表示事件或来源发生的时间，`valid_time` 表示事实在业务上何时有效。七月补录“六月搬家”，写入时间是七月，住所变化的有效时间却是六月。不能把最近写入的记录简单等同于现在最可信的事实。
+`event_time` 表示来源事件发生的时间，`valid_time` 表示事实在业务上有效的时间或区间，`recorded_at` 表示系统记录它的时间。例如 7 月 2 日收到“6 月 10 日已经搬家”的消息，系统 7 月 3 日补录：消息事件时间是 7 月 2 日，住所生效时间是 6 月 10 日，记录时间是 7 月 3 日。字段名称属于这里的设计建议，不要求各框架同名。不能把最近写入的记录简单等同于现在最可信的事实。
 
 再加入来源和状态：用户明确纠正、文件推断与模型猜测不应拥有相同可信度。模型输出的 confidence 也不是经过校准的事实概率。
 

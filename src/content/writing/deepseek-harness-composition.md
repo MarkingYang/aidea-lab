@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > DeepSeek Harness 架构系列：[1 · 系统全景](/writing/deepseek-harness-architecture/) · [2 · 组合与生命周期](/writing/deepseek-harness-composition/) · [3 · 状态与上下文](/writing/deepseek-harness-state/) · [4 · 执行与安全](/writing/deepseek-harness-execution/) · [5 · 深入思考](/writing/deepseek-harness-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本边界：本系列沿用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
 
 
@@ -29,7 +27,7 @@ updatedAt: 2026-09-05
 
 DeepSeek Harness 底层使用 Cordis。配套论文 [A Programming Paradigm for Spatiotemporal Composability](https://arxiv.org/abs/2608.25512)把动态组合拆成两个正交问题：
 
-- **时间可组合性**：组件移除时，能否完整撤销它造成的副作用；
+- **时间可组合性**：组件移除时，能否清理其生命周期内注册的监听器、服务和受管理资源；这不等于撤销已经提交的文件或远端业务写入；
 - **空间可组合性**：组件能否声明自己需要什么，并随依赖的出现和消失自动激活或停用。
 
 这两个词听起来抽象，但对应的是插件系统里最常见的两类事故。
@@ -49,7 +47,7 @@ flowchart LR
   DISPOSED --> FINISH((结束))
 ```
 
-*图 1｜一次依赖就绪、激活与退出的简化路径。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜一次依赖就绪、激活与退出的简化路径。*
 
 Cordis 的 Fiber 状态机和自动清理机制见官方[生命周期教程](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/cordis-tutorial/02-lifecycle-and-effects.md)。它带来一个很深的架构变化：**扩展不再只是调用 Host API，而是在一个受生命周期管理的 Context 中声明能力。**
 
@@ -76,7 +74,7 @@ Profile 的覆盖顺序是：Profile 声明的 Bundles → Profile 自己的 `co
 - Host Plane 放跨 Session 共享或必须由宿主控制的能力，如注册表、持久化、Sandbox、Approval、模型路由和 Subagent Provider；
 - Agent Plane 放某个 Session 才应该拥有的 Persona、Prompt Section、Tools、Skills、Plan、Compaction 和委派入口。
 
-Preset 在独立 Scope 中挂载，作用域内的注册会覆盖同名全局注册。需要私有 Service 的插件组必须声明 `isolate` Realm，否则 Service 会泄露到 Root Context，与其他 Preset 冲突。这个限制并非代码风格偏好，而是多租户 Agent 组合的基本隔离规则。
+Preset 在独立 Scope 中挂载，作用域内的注册会覆盖同名全局注册。需要私有 Service 的插件组必须声明 `isolate` Realm，否则 Service 会泄露到 Root Context，与其他 Preset 冲突。这个限制并非代码风格偏好，而是避免服务名称和生命周期互相干扰的组合规则。这里的逻辑作用域隔离不等于多租户安全隔离。
 
 官方目前附带四种 Preset：
 

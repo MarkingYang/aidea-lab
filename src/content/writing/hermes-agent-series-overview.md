@@ -10,7 +10,7 @@ topics:
   - Agent Harness
   - Agent Memory
 featured: true
-readingTime: 5 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)

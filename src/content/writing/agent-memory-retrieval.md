@@ -17,9 +17,9 @@ updatedAt: 2026-09-05
 
 > Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
+
+> 单项目纵向阅读：[Mem0 多信号检索](/writing/mem0-hybrid-retrieval/) · [OpenViking 分层检索](/writing/openviking-hierarchical-retrieval/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-layers/)
 
 
 上一页保存了上海和杭州两条记录。现在查询“给我推荐附近的办公地点”，语义检索可能同时命中两座城市。候选相关，不代表当前有效；当前有效，也不代表查询者有权看到。
@@ -79,7 +79,7 @@ TopK(vector_similarity)
 
 ## 把硬条件和软排序分开
 
-前面的“得分 = 语义 + 关键词 + 实体……”只是概念示意，不代表可以直接相加不同量纲分数。实践可以使用排名融合或经验证的归一化与重排；权重必须通过任务集验证。
+语义、关键词和实体匹配产生的分数通常不是同一量纲，不能未经处理直接相加。实践可以使用排名融合或经验证的归一化与重排；权重必须通过任务集验证。
 
 身份权限不是相关性特征，不能通过更高相似度抵消。检索可见性过滤应发生在候选内容暴露给模型之前；注入和执行时还需检查权限是否已经变化。
 
@@ -93,7 +93,7 @@ flowchart LR
   E --> A[回答与独立核验]
 ```
 
-*图 1｜先过滤硬条件，再排序并装配上下文。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜先过滤硬条件，再排序并装配上下文。*
 
 ## 预算不是简单截断字符串
 

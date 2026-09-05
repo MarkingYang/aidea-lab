@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 5 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/claude-code-internals-overview/)｜[2. 执行循环](/writing/claude-code-agent-loop/)｜[3. 记忆与扩展](/writing/claude-code-memory-extension/)｜[4. 整体判断](/writing/claude-code-internals-synthesis/)

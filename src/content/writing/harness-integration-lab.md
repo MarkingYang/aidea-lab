@@ -1,6 +1,6 @@
 ---
-title: Harness 接入与实战（五）：端到端实验：运行、复盘与下一步验证
-description: 下载固定依赖的集成实验，运行真实 MCP 与进程恢复测试，区分已通过的本地契约和未实测的在线模型及生产能力。
+title: Harness 接入与实战（五）：从模块组装到运行：完成你的第一版 Mini Harness
+description: 按文件和调用顺序运行单动作 Mini Harness，检查模型、MCP、状态与验收的交接，并按具体需求扩展为多轮系统。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
 type: essay
@@ -10,18 +10,32 @@ topics:
   - AI 工程
   - MCP
 featured: false
-readingTime: 7 min
+readingTime: 5 min
 ---
 
-> Harness 接入与实战系列：[1. 链路全景](/writing/harness-integration-map/)｜[2. 模型适配](/writing/harness-integration-model/)｜[3. MCP 实接](/writing/harness-integration-mcp/)｜[4. 持久化恢复](/writing/harness-integration-recovery/)｜[5. 端到端实验](/writing/harness-integration-lab/)
+> Harness 接入与实战系列：[1. 模块与选型](/writing/harness-integration-map/)｜[2. 模型与循环](/writing/harness-integration-model/)｜[3. 工具与策略](/writing/harness-integration-mcp/)｜[4. 状态与验收](/writing/harness-integration-recovery/)｜[5. 组装与运行](/writing/harness-integration-lab/)
 
-本篇把安装、执行和复盘放在同一条路径上。先运行固定响应模式，确认协议和恢复行为，再按需要配置在线模型。
+现在按模块图运行第一版 Mini Harness，再替换一个组件。学习目标是能够指出每次交接的输入、输出和失败处理，而不只是看到终端打印成功。
 
-[下载集成实验包](/labs/harness-integration.zip)。包内提供运行器、模型适配器、MCP 服务、存储模块、测试和固定依赖清单。
+[下载 Mini Harness 实验包](/labs/harness-integration.zip)。包内默认使用固定模型响应，MCP 子进程、传输和 SQLite 写入真实执行。
 
-## 使用独立环境运行
+## 先对照装配清单
 
-本次实测环境是 Python 3.11.9。解压进入 `harness-integration` 目录，建议使用 Python 3.11 创建环境：
+```text
+lab.py: execute()               组装入口与运行状态机
+  ├─ model.py: propose()       上下文、模型调用与严格提案解析
+  ├─ store.py: Runs            契约、提案、意图、预算与事件
+  ├─ session_for() → call()    MCP 连接与结构化结果
+  │    └─ server.py            查询、创建两个工具
+  │         └─ store.py: Tickets   幂等业务资源
+  └─ 查询结果对照 expected       完成验收与记录终态
+```
+
+没有单独的策略服务：目标一致性检查与 `execute_write` 在运行器内。没有独立上下文框架：单动作任务的输入在 `propose()` 内组装。先保留这种紧凑实现，职责增长后再拆文件。
+
+## 安装并验证各模块契约
+
+解压进入 `harness-integration` 目录；已记录的实验环境为 Python 3.11.9。以下使用 macOS/Linux 路径：
 
 ```sh
 python3 -m venv .venv
@@ -29,68 +43,90 @@ python3 -m venv .venv
 .venv/bin/python -m unittest discover -p 'test_*.py' -v
 ```
 
-这些命令使用 macOS/Linux 路径；Windows 的解释器位于虚拟环境的 `Scripts` 目录。依赖安装需要网络，测试本身不调用外部模型服务。
+Windows 使用虚拟环境中的 `Scripts/python.exe`。固定依赖包含 `mcp==1.29.1`；客户端检查协议基线 `2025-11-25`。安装需要网络，默认测试不调用外部模型。
 
-依赖清单记录本次环境解析出的版本，不包含跨平台包哈希，因此不能宣称在所有操作系统上逐字节可复现。SDK 基线固定为 1.29.1，协商版本固定检查为 2025-11-25。
+16 项测试分为：8 项模型输入输出边界、2 项默认与正常运行、3 项真实退出恢复、2 项目标一致性、1 项本机 HTTP 正常路径。测试文件与 `VERIFICATION.md` 提供对应证据。
 
-## 先观察，再允许本地写入
+## 按两步完成一次任务
 
 ```sh
 .venv/bin/python lab.py --state-dir ./state-demo
 .venv/bin/python lab.py --state-dir ./state-demo --execute
 ```
 
-第一条保存固定提案并查询资源，停在 `waiting_execution`。第二条创建本地工单，独立查询通过后返回 `succeeded`。
+第一条把模型提案交给状态库，查询为空后返回 `waiting_execution`。第二条复用已保存提案，允许创建，独立查询通过后返回 `succeeded`。事件中应依次出现提案保存、会话初始化、执行意图和验收通过；跨两次运行会有多次会话初始化。
 
-状态目录保存 `runs.sqlite` 与 `tickets.sqlite`。演示命令保留它们以便跨进程恢复；自动测试则使用会被清理的临时目录。两者的生命周期不同。
+这时检查 `attempts` 为 1，并读实际资源：
 
-本包只创建“待核验工单”，没有自动检索或核验资料。成功意味着资源符合给定的创建目标。
+```sh
+.venv/bin/python - <<'PYCODE'
+import sqlite3
+with sqlite3.connect('state-demo/tickets.sqlite') as db:
+    print(db.execute('SELECT id, op, payload FROM tickets').fetchall())
+PYCODE
+```
 
-## 重现提交后丢失响应
+应只有一行，操作键为 `review-001:ticket`，字段匹配默认目标。查询数据库用于学习和测试；在真实远端系统中应使用受授权的资源查询接口。
 
-选择一个尚未使用的状态目录：
+## 从代码调用组装入口
+
+在实验目录另存 `run_example.py`，即可用不同任务调用同一组模块：
+
+```python
+import asyncio
+from pathlib import Path
+from lab import execute
+
+result = asyncio.run(execute(
+    Path('state-example'),
+    run='review-002',
+    expected={'source': 'source-002', 'title': '检查报告的来源'},
+    provider='fixture',
+    execute_write=True,
+))
+print(result['state'], result['attempts'])
+```
+
+用 `.venv/bin/python run_example.py` 运行。这个接口示例对应现有实现；复用同一 run ID 时保持任务配置一致。
+
+## 让模块在退出后重新接上
+
+每个故障选择一个从未使用过的状态目录：
 
 ```sh
 .venv/bin/python lab.py --state-dir ./state-crash --execute --fault server-after-commit
 .venv/bin/python lab.py --state-dir ./state-crash
 ```
 
-第一条预期非零退出，因为服务端在提交之后终止。第二条启动新连接，找到已存在工单，完成验收，不需要再次允许写入。
+第一条预期非零退出；第二条查询已提交的工单并验收，`attempts` 仍为 1。再分别尝试 `client-after-result` 与 `client-after-intent`：前者恢复只需查询；后者资源尚不存在，恢复命令需要追加 `--execute`，最终 `attempts` 为 2。
 
-还可以使用 `client-after-intent` 和 `client-after-result`。每种故障都应使用新的状态目录；已经成功的运行会直接返回终态，不会再次触发故障。
+检查第四篇的资源数表，而不只看退出码。已经成功的运行直接返回终态，所以旧的成功目录不能用于重新触发故障。
 
-客户端保存意图后退出的场景尚未创建资源，因此恢复命令还需要 `--execute`。测试检查最终工单数量和派发次数，而不是只匹配命令输出中的“成功”。
+## 第一次替换：接在线模型
 
-## 16 项测试怎样分布
-
-| 组别 | 数量 | 覆盖 |
-| --- | --- | --- |
-| 模型边界 | 8 | 完整提案、截断、普通文本、多提案、错误工具、额外权限字段、空参数、缺配置不发送 |
-| 默认与正常运行 | 2 | 默认不写入、stdio 成功及终态重读 |
-| 真实退出恢复 | 3 | 服务端提交后、客户端意图后、客户端结果后退出 |
-| 目标一致性 | 2 | 变更任务拒绝恢复、错误既有资源验收失败 |
-| HTTP 接入 | 1 | 本机 Streamable HTTP 正常执行路径 |
-
-编写时这 16 项全部通过。HTTP 测试会自动启动并清理测试服务，不要求手动保留后台进程。测试结果不代表所有 MCP 传输故障都已覆盖。
-
-## 可选在线模型模式
-
-在自己的终端设置 `ANTHROPIC_API_KEY` 与 `ANTHROPIC_MODEL`，模型标识应来自账号实际可用的列表，然后执行：
+在终端设置 `ANTHROPIC_API_KEY` 和账号实际可用的 `ANTHROPIC_MODEL`，再运行：
 
 ```sh
-.venv/bin/python lab.py --state-dir ./state-live   --provider anthropic --model "$ANTHROPIC_MODEL"
+.venv/bin/python lab.py --state-dir ./state-live --provider anthropic --model "$ANTHROPIC_MODEL"
 ```
 
-该命令会向模型服务发送合成任务，并可能产生模型费用，但默认仍不会创建工单。检查已保存动作后，用相同参数附加 `--execute` 继续；不要切换回默认 fixture，否则会与原任务契约冲突。
+这会把合成任务发往 Anthropic Messages API，并可能产生模型费用。默认只保存提案和查询；确认动作后，保留相同参数追加 `--execute`。其他模块无需改动。
 
-当前没有执行在线调用，因此没有模型成功率、实际 token 费用或时延数据。适配器是非流式、单次提案接口，没有实现工具结果回传给模型后的多轮循环。
+本次没有调用在线模型，不能据此给出真实模型的成功率、费用或延迟。接入后应另外保留响应类型、提案通过率和用量证据，密钥与完整敏感输入不要进入事件日志。
 
-## 下一轮实验应增加哪些证据
+## 下一步按需求扩展哪一块
 
-优先保留这条已通过的基线，再增加：在线模型样本与脱敏诊断；HTTP 会话失效与 SSE 恢复；多 Worker 所有权和预算竞争；真实认证、撤权与隔离；任务级超时和取消传播。
+| 你要增加的任务能力 | 先改的模块 | 增加的验收证据 |
+| --- | --- | --- |
+| 读材料后再决定下一步 | 模型接口、消息历史、有界循环 | 工具结果进入下一轮，轮数和总截止时间有效 |
+| 更换真实工单系统 | 工具服务与幂等映射 | 响应丢失后能查询；同键同参数不重复 |
+| 长任务暂停后继续 | 状态存储、消息与预算检查点 | 重启不丢决定性上下文，不重置额度 |
+| 开放文件与 Shell | 执行策略、沙箱 | 越界路径和网络动作被执行层拒绝 |
+| 多 Worker 调度 | 所有权、并发状态更新 | 旧 Worker 不能继续提交过期动作 |
+| 引入 Skills 或记忆 | 上下文组装与来源管理 | 对相同任务集确实提高验收率或减少成本 |
 
-这些都需要具体运行环境。不要把 SDK 的能力列表当成当前应用已经通过的测试清单，也不要把本地固定任务的成功当成真实业务质量。
+第一版的完成标准是：你能替换模型或工具，同时保持任务契约、执行策略、恢复和验收不被绕开。它仍是单用户、单动作的本地基线；上表提供了从这块切片扩展到多轮系统的具体路线。
 
-本系列到此完成。回到[链路全景](/writing/harness-integration-map/)，现在可以把每条“已经接入”的说法对应到进程、协议、存储和验收证据。再结合[发布与演化](/writing/harness-operations-release/)，为下一次变化保留可重复的基线。
+本系列到此完成。回到[模块与选型](/writing/harness-integration-map/)可以重新检查八项职责；需要更完整的运行治理时，再进入[Harness 运行与演进](/writing/harness-operations-context/)。
 
-上一篇：[持久化恢复](/writing/harness-integration-recovery/)。
+上一篇：[状态与验收](/writing/harness-integration-recovery/)。

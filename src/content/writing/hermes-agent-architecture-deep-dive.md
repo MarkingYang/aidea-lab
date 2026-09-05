@@ -1,6 +1,6 @@
 ---
 title: Hermes Agent 源码研究（二）：长期运行的内核如何维持
-description: 从六个平面、Agent Loop 与 Prompt 分层出发，理解 Hermes 如何把不同模型收敛为可中断、可续跑的行动协议。
+description: 从七个平面、Agent Loop 与 Prompt 分层出发，理解 Hermes 如何把不同模型收敛为可中断、可续跑的行动协议。
 publishedAt: 2026-09-04
 updatedAt: 2026-09-05
 type: essay
@@ -11,7 +11,7 @@ topics:
   - Agent Harness
   - 开源架构
 featured: true
-readingTime: 7 min
+readingTime: 8 min
 ---
 
 > 系列：[1. 全景](/writing/hermes-agent-series-overview/)｜[2. 运行内核](/writing/hermes-agent-architecture-deep-dive/)｜[3. 工具与服务](/writing/hermes-agent-runtime-services/)｜[4. 记忆与学习](/writing/hermes-agent-memory-governance/)｜[5. 整体判断](/writing/hermes-agent-series-synthesis/)
@@ -27,9 +27,9 @@ Hermes 的核心不是多接几个 API，而是试图回答一个更难的问题
 
 本文基于 Nous Research 官方仓库 `v0.21.0` 开发线的 [2026-09-03 代码快照](https://github.com/NousResearch/hermes-agent/tree/63279301bcbdc185c1b07b98a9312eb0c862f26d)与官方文档。Hermes 仍在快速演进，因此文中的数字和默认值都应结合版本理解。
 
-## 先看全局：Hermes 不是一个 Loop，而是六个平面
+## 先看全局：Hermes 不是一个 Loop，而是七个平面
 
-官方架构图把 CLI、Gateway、ACP、API、Batch 等入口汇聚到 `AIAgent`，再连接 Provider、工具后端和 SQLite Session。这个视角适合找代码入口，但要理解产品，我更愿意把 Hermes 分成六个相互约束的平面：
+官方架构图把 CLI、Gateway、ACP、API、Batch 等入口汇聚到 `AIAgent`，再连接 Provider、工具后端和 SQLite Session。这个视角适合找代码入口，但要理解产品，我更愿意把 Hermes 分成七个相互约束的平面：
 
 ```mermaid
 flowchart TB
@@ -45,9 +45,9 @@ flowchart TB
   A -->|会话与经验| C
 ```
 
-*图 1｜Hermes 的六个平面：交互、控制、推理、上下文、能力与执行共同受治理层约束。*
+*图 1｜Hermes 的七个分析平面：六个运行平面加一个治理平面，与下表逐项对应。*
 
-这六个平面分别回答不同问题：
+这七个平面分别回答不同问题：
 
 | 平面 | 核心问题 | Hermes 的主要机制 |
 | --- | --- | --- |
@@ -56,6 +56,7 @@ flowchart TB
 | 推理 | 模型如何在反馈中连续行动？ | `AIAgent`、多 Provider 适配、重试、Fallback、Iteration Budget |
 | 上下文 | 什么信息在何时进入模型？ | Prompt 分层、会话历史、压缩、Memory、Skills、项目规则 |
 | 能力 | Agent 能调用哪些外部能力？ | Tool Registry、Toolsets、MCP、Plugins、`execute_code`、Subagents |
+| 执行 | 工具在哪种环境运行？ | Local、Docker、SSH、Serverless |
 | 治理 | 谁可以触发什么，副作用到哪里为止？ | 用户授权、危险命令审批、写入保护、容器、凭证过滤、Checkpoint |
 
 这也解释了为什么只看 `run_agent.py` 会误判 Hermes。Agent Loop 是心脏，但 Gateway 决定它能否长期在线，Session 决定它能否连续，Skills 决定经验能否复用，安全边界则决定自治是否可接受。官方的[架构总览](https://hermes-agent.nousresearch.com/docs/developer-guide/architecture)也把这些模块视为同一运行系统，而不是一组彼此独立的功能。

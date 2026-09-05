@@ -10,7 +10,7 @@ topics:
   - Agent Harness
   - Agent Memory
 featured: false
-readingTime: 5 min
+readingTime: 1 min
 ---
 
 > 系列：[1. 全景](/writing/codex-system-overview/)｜[2. 运行与沙箱](/writing/codex-runtime-sandbox/)｜[3. Skills 与长期工作](/writing/codex-skills-memory-automation/)｜[4. 整体判断](/writing/codex-system-synthesis/)

@@ -68,16 +68,20 @@ flowchart LR
   A[完成真实任务] --> E[收集成功、失败与用户纠正]
   E --> R[后台 Review Fork]
   R --> D{值得持久化吗}
-  D -->|短事实| M[更新 MEMORY / USER]
-  D -->|可复用方法| K[创建或修补 Skill]
+  D -->|短事实| M[候选 MEMORY / USER 变更]
+  D -->|可复用方法| K[候选 Skill 变更]
   D -->|无稳定信号| N[Nothing to save]
-  M --> G[写入审批 / 暂存 / 审计]
+  M --> G{是否开启写入审批}
   K --> G
-  G --> F[未来 Session 按需读取]
+  G -->|是| P[暂存并等待批准]
+  P -->|批准| W[写入长期制品]
+  P -->|拒绝| N
+  G -->|否| W
+  W --> F[未来 Session 按需读取]
   F --> A
 ```
 
-*图 1｜Hermes 的 Artifact Learning：候选经验经过核验与审批后才进入长期行为资产。*
+*图 1｜Hermes 的 Artifact Learning：开启写入审批时先暂存、获批后生效；未开启时可以自动写入。审批不是所有配置的必经步骤。*
 
 我把这种模式称为 **Artifact Learning**：模型参数不变，外部认知制品变了，因此系统行为随经验改变。它有四个优点：
 

@@ -10,14 +10,14 @@ topics:
   - 开源架构
   - Agent Skills
 featured: true
-readingTime: 6 min
+readingTime: 3 min
 ---
 
 > 系列：[1. 研究地图](/writing/composable-agent-harness-architecture/)｜[2. 研究方法](/writing/composable-agent-harness-research-method/)｜[3. 阶段结论](/writing/composable-agent-harness-synthesis/)
 
 把十个热门仓库放进一张功能表，会很快得到大量勾选，却很难真正理解它们。Hermes Agent 管长期在线的个人 Agent；Claude Code、Codex、OpenCode、Kimi Code 与 Pi 管编码任务的执行环境；三个 Skills 仓库维护可复用方法；ECC 则试图把方法安装到多个 Harness。它们不在同一层，不能直接用功能数量排名。
 
-这次重构先取消原来“Hermes、Pi、ECC 三者对照”的长系列。每个仓库成为独立研究单元，按“全景—机制—边界—总结”推进；母系列只保留研究坐标，不提前输出赢家。
+先按项目自己的目标阅读代码，再比较跨项目机制。Harness 运行时与 Skill 资产仓库承担的职责不同，不能因为都能影响 Agent 行为，就把它们放进同一张功能排名表。
 
 ```mermaid
 flowchart TB

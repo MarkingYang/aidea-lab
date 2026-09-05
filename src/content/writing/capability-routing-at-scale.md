@@ -11,7 +11,7 @@ topics:
   - Agent Skills
   - AI 架构
 featured: true
-readingTime: 8 min
+readingTime: 6 min
 ---
 
 > 万级能力路由系列：[① 系统全景](/writing/capability-routing-at-scale/) · [② 发现与检索](/writing/capability-routing-discovery/) · [③ 方案与执行](/writing/capability-routing-execution/) · [④ 评测与治理](/writing/capability-routing-evaluation/) · [⑤ 整体思考](/writing/capability-routing-synthesis/)

@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 5 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/pi-series-overview/)｜[2. 最小内核](/writing/pi-architecture-deep-dive/)｜[3. Session 与扩展](/writing/pi-session-extension-architecture/)｜[4. Durable Harness](/writing/pi-durable-harness-governance/)｜[5. 整体判断](/writing/pi-series-synthesis/)

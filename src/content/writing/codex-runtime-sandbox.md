@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: false
-readingTime: 6 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/codex-system-overview/)｜[2. 运行与沙箱](/writing/codex-runtime-sandbox/)｜[3. Skills 与长期工作](/writing/codex-skills-memory-automation/)｜[4. 整体判断](/writing/codex-system-synthesis/)

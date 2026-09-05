@@ -10,7 +10,7 @@ topics:
   - Agent Skills
   - Agent Harness
 featured: true
-readingTime: 5 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/ecc-series-overview/)｜[2. 安装编译](/writing/ecc-architecture-deep-dive/)｜[3. Hook 与记忆](/writing/ecc-hook-runtime-memory/)｜[4. 供应链治理](/writing/ecc-memory-supply-chain/)｜[5. 整体判断](/writing/ecc-series-synthesis/)

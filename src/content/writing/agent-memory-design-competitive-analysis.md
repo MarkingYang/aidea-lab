@@ -17,9 +17,9 @@ updatedAt: 2026-09-05
 
 > Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
+
+> 单项目纵向阅读：[Mem0 源码研究](/writing/mem0-series-overview/) · [OpenViking 源码研究](/writing/openviking-series-overview/) · [TencentDB Agent Memory 研究](/writing/tencentdb-agent-memory-overview/)
 
 
 假设用户一月说“我住在上海”，六月说“搬到杭州了”。Agent 在九月被问到“现在住哪里”，检索到了两条语义都很相关的消息。哪条应该进入回答？如果同名用户属于另一个团队，又该怎样排除？
@@ -47,7 +47,7 @@ flowchart LR
   I -.-> G
 ```
 
-*图 1｜从写入触发到使用反馈的记忆生命周期。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜从写入触发到使用反馈的记忆生命周期。*
 
 由此得到本文的七维竞品框架。
 

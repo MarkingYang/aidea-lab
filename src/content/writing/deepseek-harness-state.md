@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > DeepSeek Harness 架构系列：[1 · 系统全景](/writing/deepseek-harness-architecture/) · [2 · 组合与生命周期](/writing/deepseek-harness-composition/) · [3 · 状态与上下文](/writing/deepseek-harness-state/) · [4 · 执行与安全](/writing/deepseek-harness-execution/) · [5 · 深入思考](/writing/deepseek-harness-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本边界：本系列沿用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
 
 
@@ -65,7 +63,7 @@ sequenceDiagram
   end
 ```
 
-*图 1｜一个 Turn 内的模型请求、工具结果与继续条件。竖线表示参与者，实线箭头表示请求，虚线箭头表示返回；按从上到下的时间顺序阅读。图为教学抽象，不代表全部实现细节。*
+*图 1｜一个 Turn 内的模型请求、工具结果与继续条件。*
 
 这套定义解决了几个容易被忽略的边界问题：
 

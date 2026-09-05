@@ -10,13 +10,11 @@ topics:
   - 产品设计
   - 开发者工具
 featured: false
-readingTime: 9 min
+readingTime: 7 min
 updatedAt: 2026-09-05
 ---
 
 > Claude Code 产品设计系列：[1 · 产品地图](/writing/claude-code-product-design/) · [2 · 任务体验](/writing/claude-code-task-experience/) · [3 · 信任与验证](/writing/claude-code-trust/) · [4 · 会话与协作](/writing/claude-code-session-collaboration/) · [5 · 深入思考](/writing/claude-code-product-synthesis/)
-
-> 阅读时间为估计，包含图表理解；动手实验另计。
 
 > 范围：基于 2026-09-05 可访问的 Claude Code 官方文档做产品设计分析。CLI、Desktop、Web 的能力不完全相同；下文会区分已有机制、教学抽象与作者建议，不把界面草图当作官方截图。
 
@@ -68,7 +66,7 @@ sequenceDiagram
   UI-->>User: 请求最终验收或继续修复
 ```
 
-*图 1｜任务输入到候选交付的教学时序。竖线表示参与者，实线箭头表示请求，虚线箭头表示返回；按从上到下的时间顺序阅读。图为教学抽象，不代表全部实现细节。*
+*图 1｜任务输入到候选交付的教学时序。*
 
 这条调用链里有四个产品关键点。
 

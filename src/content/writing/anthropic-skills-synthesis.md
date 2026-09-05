@@ -10,7 +10,7 @@ topics:
   - Anthropic
   - Agent Harness
 featured: false
-readingTime: 5 min
+readingTime: 1 min
 ---
 
 > 系列：[1. 全景](/writing/anthropic-skills-overview/)｜[2. 渐进加载](/writing/anthropic-skills-progressive-disclosure/)｜[3. 复杂产物](/writing/anthropic-skills-document-pipelines/)｜[4. 整体判断](/writing/anthropic-skills-synthesis/)

@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > DeepSeek Harness 架构系列：[1 · 系统全景](/writing/deepseek-harness-architecture/) · [2 · 组合与生命周期](/writing/deepseek-harness-composition/) · [3 · 状态与上下文](/writing/deepseek-harness-state/) · [4 · 执行与安全](/writing/deepseek-harness-execution/) · [5 · 深入思考](/writing/deepseek-harness-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本边界：本系列沿用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
 
 
@@ -44,7 +42,7 @@ flowchart LR
   G{权限与外层隔离} -. 约束 .-> E
 ```
 
-*图 1｜能力组合与事实记录共同支撑执行循环。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜能力组合与事实记录共同支撑执行循环。*
 
 图里有两条不可混淆的主线：**配置形成能力，执行留下事实。** 更换工具实现是在改变未来怎么做；删除过去失败记录是在改变历史。前者可以是扩展机制，后者会破坏审计。
 

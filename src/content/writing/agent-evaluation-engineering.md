@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > Agent 评测系列：[1 · 系统全景](/writing/agent-system-evaluation-research/) · [2 · 指标口径](/writing/agent-evaluation-metrics/) · [3 · 数据集与评委](/writing/agent-evaluation-datasets/) · [4 · 工程闭环](/writing/agent-evaluation-engineering/) · [5 · 深入思考](/writing/agent-evaluation-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 前两篇解决了量尺和题目，现在需要一个每次都能按相同口径工作的流程。把一份输入、两份成品和独立检查跑通，比先画满仪表盘更有价值。
 
 ## 运行器与 Agent 不应共享全部权力
@@ -41,7 +39,7 @@ sequenceDiagram
   R->>R: 记录结果后回收环境
 ```
 
-*图 1｜运行器、执行环境与独立评分器的交接。竖线表示参与者，实线箭头表示请求，虚线箭头表示返回；按从上到下的时间顺序阅读。图为教学抽象，不代表全部实现细节。*
+*图 1｜运行器、执行环境与独立评分器的交接。*
 
 重置不是删除客户数据，重试也不是重复执行真实外发。教学和回归先使用隔离环境与模拟连接器。
 

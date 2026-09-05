@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 开发者工具
 featured: true
-readingTime: 5 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/mattpocock-skills-overview/)｜[2. 对齐与语言](/writing/mattpocock-skills-alignment/)｜[3. 反馈与设计](/writing/mattpocock-skills-feedback-loops/)｜[4. 整体判断](/writing/mattpocock-skills-synthesis/)

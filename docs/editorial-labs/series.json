@@ -134,6 +134,39 @@
     ]
   },
   {
+    "priority": 2,
+    "original": "mem0-series-overview",
+    "articles": [
+      { "slug": "mem0-series-overview", "title": "Mem0 源码研究（一）：先看事实记忆层的完整地图" },
+      { "slug": "mem0-add-pipeline", "title": "Mem0 源码研究（二）：一次 add 如何变成可检索事实" },
+      { "slug": "mem0-hybrid-retrieval", "title": "Mem0 源码研究（三）：多信号检索如何把旧事实重新排序" },
+      { "slug": "mem0-production-boundaries", "title": "Mem0 源码研究（四）：可替换组件之后，生产责任落在哪里" },
+      { "slug": "mem0-series-synthesis", "title": "Mem0 源码研究（五）：更短的接口没有消灭记忆复杂度" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "openviking-series-overview",
+    "articles": [
+      { "slug": "openviking-series-overview", "title": "OpenViking 源码研究（一）：先看上下文数据库的完整地图" },
+      { "slug": "openviking-context-layers", "title": "OpenViking 源码研究（二）：L0、L1、L2 如何形成可导航目录" },
+      { "slug": "openviking-hierarchical-retrieval", "title": "OpenViking 源码研究（三）：检索为什么要先走目录再读全文" },
+      { "slug": "openviking-session-governance", "title": "OpenViking 源码研究（四）：Session 提交如何连接记忆、事务与权限" },
+      { "slug": "openviking-series-synthesis", "title": "OpenViking 源码研究（五）：上下文文件系统把复杂度放在结构维护上" }
+    ]
+  },
+  {
+    "priority": 2,
+    "original": "tencentdb-agent-memory-overview",
+    "articles": [
+      { "slug": "tencentdb-agent-memory-overview", "title": "TencentDB Agent Memory 研究（一）：先看团队记忆基础设施的完整地图" },
+      { "slug": "tencentdb-agent-memory-proxy", "title": "TencentDB Agent Memory 研究（二）：Proxy 如何让不同 Agent 共享一条记忆链路" },
+      { "slug": "tencentdb-agent-memory-layers", "title": "TencentDB Agent Memory 研究（三）：L0 到 L3 如何把对话沉淀为可召回认识" },
+      { "slug": "tencentdb-agent-memory-governance", "title": "TencentDB Agent Memory 研究（四）：资产、权限与 Loadout 如何组织团队经验" },
+      { "slug": "tencentdb-agent-memory-synthesis", "title": "TencentDB Agent Memory 研究（五）：记忆复利成立之前，先治理经验的行动权" }
+    ]
+  },
+  {
     "priority": 1,
     "original": "ai-capability-product-metrics",
     "articles": [
@@ -491,23 +524,23 @@
     "articles": [
       {
         "slug": "harness-integration-map",
-        "title": "Harness 接入与实战（一）：先把一条真实链路接起来"
+        "title": "Harness 接入与实战（一）：Mini Harness 的模块、接口与默认选型"
       },
       {
         "slug": "harness-integration-model",
-        "title": "Harness 接入与实战（二）：模型适配：把生成结果收敛为候选动作"
+        "title": "Harness 接入与实战（二）：模型、上下文与有界循环怎样组合"
       },
       {
         "slug": "harness-integration-mcp",
-        "title": "Harness 接入与实战（三）：真实 MCP 接入：让工具跨过进程边界"
+        "title": "Harness 接入与实战（三）：工具、执行策略与 MCP 怎样接线"
       },
       {
         "slug": "harness-integration-recovery",
-        "title": "Harness 接入与实战（四）：进程级恢复：重启后先读事实，再决定动作"
+        "title": "Harness 接入与实战（四）：状态、幂等与验收怎样闭环"
       },
       {
         "slug": "harness-integration-lab",
-        "title": "Harness 接入与实战（五）：端到端实验：运行、复盘与下一步验证"
+        "title": "Harness 接入与实战（五）：从模块组装到运行：完成你的第一版 Mini Harness"
       }
     ]
   }

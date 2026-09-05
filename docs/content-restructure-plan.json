@@ -1,0 +1,952 @@
+{
+  "baselineCount": 145,
+  "articleCount": 83,
+  "groups": [
+    {
+      "id": "harness-engineering",
+      "topic": "harness",
+      "title": "架构与运行循环",
+      "description": "任务契约、控制循环与停止条件。",
+      "articles": [
+        "harness-engineering-map",
+        "harness-engineering-loop"
+      ]
+    },
+    {
+      "id": "harness-tools",
+      "topic": "harness",
+      "title": "工具、协议与执行边界",
+      "description": "工具契约、MCP 生命周期、安全边界与能力路由。",
+      "articles": [
+        "harness-engineering-tools",
+        "harness-foundations-mcp-lifecycle",
+        "harness-engineering-security",
+        "capability-routing-at-scale",
+        "capability-routing-discovery",
+        "capability-routing-execution",
+        "capability-routing-evaluation"
+      ]
+    },
+    {
+      "id": "harness-recovery",
+      "topic": "harness",
+      "title": "状态、并发与恢复",
+      "description": "区分运行状态和业务事实，处理竞争、重复与结果未知。",
+      "articles": [
+        "harness-foundations-concurrency",
+        "harness-engineering-recovery",
+        "harness-foundations-lab"
+      ]
+    },
+    {
+      "id": "agent-memory",
+      "topic": "harness",
+      "title": "上下文与记忆机制",
+      "description": "按装配、写入、检索和治理组织记忆生命周期。",
+      "articles": [
+        "harness-operations-context",
+        "agent-memory-design-competitive-analysis",
+        "agent-memory-writing",
+        "agent-memory-retrieval",
+        "agent-memory-governance"
+      ]
+    },
+    {
+      "id": "harness-operations",
+      "topic": "harness",
+      "title": "运行治理与发布",
+      "description": "模型网关、协作、观测、调度和版本发布。",
+      "articles": [
+        "harness-operations-model-gateway",
+        "harness-operations-multi-agent",
+        "harness-operations-observability",
+        "harness-operations-production",
+        "harness-operations-release"
+      ]
+    },
+    {
+      "id": "harness-integration",
+      "topic": "harness",
+      "title": "Mini Harness 实战",
+      "description": "按模块选型、模型循环、工具策略、状态验收与运行步骤组装。",
+      "articles": [
+        "harness-integration-map",
+        "harness-integration-model",
+        "harness-integration-mcp",
+        "harness-integration-recovery",
+        "harness-integration-lab"
+      ]
+    },
+    {
+      "id": "harness-projects",
+      "topic": "harness",
+      "title": "项目实现研究",
+      "description": "沿实际项目研究循环、状态、扩展和执行边界。",
+      "articles": [
+        "composable-agent-harness-research-method",
+        "claude-code-internals-overview",
+        "codex-system-overview",
+        "kimi-code-system-overview",
+        "opencode-system-overview",
+        "deepseek-harness-composition",
+        "deepseek-harness-state",
+        "deepseek-harness-execution",
+        "hermes-agent-architecture-deep-dive",
+        "hermes-agent-runtime-services",
+        "hermes-agent-memory-governance",
+        "pi-architecture-deep-dive",
+        "pi-session-extension-architecture",
+        "pi-durable-harness-governance"
+      ]
+    },
+    {
+      "id": "harness-skills",
+      "topic": "harness",
+      "title": "Skills 与工程资产",
+      "description": "标准、工程方法、Hook 运行时与跨平台资产治理。",
+      "articles": [
+        "anthropic-skills-overview",
+        "addy-agent-skills-overview",
+        "mattpocock-skills-overview",
+        "ecc-architecture-deep-dive",
+        "ecc-hook-runtime-memory",
+        "ecc-memory-supply-chain"
+      ]
+    },
+    {
+      "id": "memory-systems",
+      "topic": "harness",
+      "title": "记忆系统实现",
+      "description": "对照 Mem0、OpenViking、TencentDB 的数据流与治理边界。",
+      "articles": [
+        "mem0-series-overview",
+        "mem0-production-boundaries",
+        "openviking-series-overview",
+        "openviking-session-governance",
+        "tencentdb-agent-memory-overview",
+        "tencentdb-agent-memory-governance"
+      ]
+    },
+    {
+      "id": "agent-evaluation",
+      "topic": "evaluation",
+      "title": "评测体系与可靠性",
+      "description": "任务边界、指标、样本、回归与 TRACE 过程评测。",
+      "articles": [
+        "ai-agent-reliability-boundaries",
+        "agent-system-evaluation-research",
+        "agent-evaluation-metrics",
+        "agent-evaluation-datasets",
+        "agent-evaluation-engineering",
+        "trace-framework-deep-dive",
+        "trace-lite-production"
+      ]
+    },
+    {
+      "id": "ai-capability-boundaries",
+      "topic": "evaluation",
+      "title": "模型能力与任务边界",
+      "description": "将公开评测转成带场景、证据与责任条件的使用判断。",
+      "articles": [
+        "llm-agent-capability-landscape-2026",
+        "ai-capability-evidence-action"
+      ]
+    },
+    {
+      "id": "product-frameworks",
+      "topic": "practice",
+      "title": "产品分析方法",
+      "description": "市场、优先级、增长和复盘，按实际决策组织框架。",
+      "articles": [
+        "product-analysis-frameworks",
+        "product-frameworks-market",
+        "product-frameworks-prioritization",
+        "product-frameworks-growth",
+        "product-frameworks-delivery"
+      ]
+    },
+    {
+      "id": "ai-product-work",
+      "topic": "practice",
+      "title": "任务契约与产品节奏",
+      "description": "把目标、上下文与评测接进产品团队工作。",
+      "articles": [
+        "product-work-methodology",
+        "agent-product-evaluation-rhythm"
+      ]
+    },
+    {
+      "id": "claude-code-design",
+      "topic": "practice",
+      "title": "Agent 交互与协作",
+      "description": "以 Claude Code 为案例分析任务旅程、信任与并行协作。",
+      "articles": [
+        "claude-code-product-design",
+        "claude-code-trust",
+        "claude-code-session-collaboration"
+      ]
+    },
+    {
+      "id": "ai-product-value",
+      "topic": "practice",
+      "title": "场景价值与交付成本",
+      "description": "用编程、语音和办公案例计算真实交付价值。",
+      "articles": [
+        "ai-capability-product-metrics",
+        "ai-value-coding",
+        "ai-value-voice",
+        "ai-value-office"
+      ]
+    },
+    {
+      "id": "agent-work-systems",
+      "topic": "practice",
+      "title": "产品比较与采用",
+      "description": "比较方法与 PoC、工程产品、办公产品和组织采用。",
+      "articles": [
+        "agent-landscape-comparison-methods",
+        "coding-agent-harness-showdown",
+        "china-work-agent-showdown",
+        "china-work-agent-adoption"
+      ]
+    },
+    {
+      "id": "researcher-founder",
+      "topic": "perspectives",
+      "title": "研究、创业与组织学习",
+      "description": "研究型创业的原始观点、推演方法和组织边界。",
+      "articles": [
+        "lu-qi-researcher-founder",
+        "researcher-founder-thinking",
+        "learning-organization-boundaries"
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "source": "addy-agent-skills-lifecycle",
+      "action": "merge",
+      "target": "addy-agent-skills-overview"
+    },
+    {
+      "source": "addy-agent-skills-overview",
+      "action": "retain",
+      "target": "addy-agent-skills-overview"
+    },
+    {
+      "source": "addy-agent-skills-synthesis",
+      "action": "remove-redundant",
+      "target": "addy-agent-skills-overview"
+    },
+    {
+      "source": "addy-agent-skills-verification",
+      "action": "merge",
+      "target": "addy-agent-skills-overview"
+    },
+    {
+      "source": "agent-evaluation-datasets",
+      "action": "retain",
+      "target": "agent-evaluation-datasets"
+    },
+    {
+      "source": "agent-evaluation-engineering",
+      "action": "retain",
+      "target": "agent-evaluation-engineering"
+    },
+    {
+      "source": "agent-evaluation-metrics",
+      "action": "retain",
+      "target": "agent-evaluation-metrics"
+    },
+    {
+      "source": "agent-evaluation-synthesis",
+      "action": "remove-redundant",
+      "target": "agent-evaluation-engineering"
+    },
+    {
+      "source": "agent-landscape-comparison-methods",
+      "action": "retain",
+      "target": "agent-landscape-comparison-methods"
+    },
+    {
+      "source": "agent-memory-design-competitive-analysis",
+      "action": "retain",
+      "target": "agent-memory-design-competitive-analysis"
+    },
+    {
+      "source": "agent-memory-governance",
+      "action": "retain",
+      "target": "agent-memory-governance"
+    },
+    {
+      "source": "agent-memory-retrieval",
+      "action": "retain",
+      "target": "agent-memory-retrieval"
+    },
+    {
+      "source": "agent-memory-synthesis",
+      "action": "remove-redundant",
+      "target": "agent-memory-governance"
+    },
+    {
+      "source": "agent-memory-writing",
+      "action": "retain",
+      "target": "agent-memory-writing"
+    },
+    {
+      "source": "agent-product-contracts-context",
+      "action": "merge",
+      "target": "product-work-methodology"
+    },
+    {
+      "source": "agent-product-evaluation-rhythm",
+      "action": "retain",
+      "target": "agent-product-evaluation-rhythm"
+    },
+    {
+      "source": "agent-reliability-adoption",
+      "action": "merge",
+      "target": "ai-agent-reliability-boundaries"
+    },
+    {
+      "source": "agent-system-evaluation-research",
+      "action": "retain",
+      "target": "agent-system-evaluation-research"
+    },
+    {
+      "source": "agent-work-system-synthesis",
+      "action": "remove-redundant",
+      "target": "agent-landscape-comparison-methods"
+    },
+    {
+      "source": "ai-agent-landscape-2026",
+      "action": "merge",
+      "target": "agent-landscape-comparison-methods"
+    },
+    {
+      "source": "ai-agent-reliability-boundaries",
+      "action": "retain",
+      "target": "ai-agent-reliability-boundaries"
+    },
+    {
+      "source": "ai-capability-boundary-synthesis",
+      "action": "remove-redundant",
+      "target": "ai-capability-evidence-action"
+    },
+    {
+      "source": "ai-capability-evidence-action",
+      "action": "retain",
+      "target": "ai-capability-evidence-action"
+    },
+    {
+      "source": "ai-capability-product-metrics",
+      "action": "retain",
+      "target": "ai-capability-product-metrics"
+    },
+    {
+      "source": "ai-product-work-synthesis",
+      "action": "remove-redundant",
+      "target": "product-work-methodology"
+    },
+    {
+      "source": "ai-value-coding",
+      "action": "retain",
+      "target": "ai-value-coding"
+    },
+    {
+      "source": "ai-value-office",
+      "action": "retain",
+      "target": "ai-value-office"
+    },
+    {
+      "source": "ai-value-synthesis",
+      "action": "remove-redundant",
+      "target": "ai-capability-product-metrics"
+    },
+    {
+      "source": "ai-value-voice",
+      "action": "retain",
+      "target": "ai-value-voice"
+    },
+    {
+      "source": "anthropic-harness",
+      "action": "merge",
+      "target": "harness-engineering-map"
+    },
+    {
+      "source": "anthropic-harness-practice",
+      "action": "merge",
+      "target": "harness-engineering-map"
+    },
+    {
+      "source": "anthropic-skills-document-pipelines",
+      "action": "merge",
+      "target": "anthropic-skills-overview"
+    },
+    {
+      "source": "anthropic-skills-overview",
+      "action": "retain",
+      "target": "anthropic-skills-overview"
+    },
+    {
+      "source": "anthropic-skills-progressive-disclosure",
+      "action": "merge",
+      "target": "anthropic-skills-overview"
+    },
+    {
+      "source": "anthropic-skills-synthesis",
+      "action": "remove-redundant",
+      "target": "anthropic-skills-overview"
+    },
+    {
+      "source": "capability-routing-at-scale",
+      "action": "retain",
+      "target": "capability-routing-at-scale"
+    },
+    {
+      "source": "capability-routing-discovery",
+      "action": "retain",
+      "target": "capability-routing-discovery"
+    },
+    {
+      "source": "capability-routing-evaluation",
+      "action": "retain",
+      "target": "capability-routing-evaluation"
+    },
+    {
+      "source": "capability-routing-execution",
+      "action": "retain",
+      "target": "capability-routing-execution"
+    },
+    {
+      "source": "capability-routing-synthesis",
+      "action": "remove-redundant",
+      "target": "capability-routing-evaluation"
+    },
+    {
+      "source": "china-work-agent-adoption",
+      "action": "retain",
+      "target": "china-work-agent-adoption"
+    },
+    {
+      "source": "china-work-agent-showdown",
+      "action": "retain",
+      "target": "china-work-agent-showdown"
+    },
+    {
+      "source": "claude-code-agent-loop",
+      "action": "merge",
+      "target": "claude-code-internals-overview"
+    },
+    {
+      "source": "claude-code-internals-overview",
+      "action": "retain",
+      "target": "claude-code-internals-overview"
+    },
+    {
+      "source": "claude-code-internals-synthesis",
+      "action": "remove-redundant",
+      "target": "claude-code-internals-overview"
+    },
+    {
+      "source": "claude-code-memory-extension",
+      "action": "merge",
+      "target": "claude-code-internals-overview"
+    },
+    {
+      "source": "claude-code-product-design",
+      "action": "retain",
+      "target": "claude-code-product-design"
+    },
+    {
+      "source": "claude-code-product-synthesis",
+      "action": "remove-redundant",
+      "target": "claude-code-product-design"
+    },
+    {
+      "source": "claude-code-session-collaboration",
+      "action": "retain",
+      "target": "claude-code-session-collaboration"
+    },
+    {
+      "source": "claude-code-task-experience",
+      "action": "merge",
+      "target": "claude-code-product-design"
+    },
+    {
+      "source": "claude-code-trust",
+      "action": "retain",
+      "target": "claude-code-trust"
+    },
+    {
+      "source": "codex-runtime-sandbox",
+      "action": "merge",
+      "target": "codex-system-overview"
+    },
+    {
+      "source": "codex-skills-memory-automation",
+      "action": "merge",
+      "target": "codex-system-overview"
+    },
+    {
+      "source": "codex-system-overview",
+      "action": "retain",
+      "target": "codex-system-overview"
+    },
+    {
+      "source": "codex-system-synthesis",
+      "action": "remove-redundant",
+      "target": "codex-system-overview"
+    },
+    {
+      "source": "coding-agent-harness-poc",
+      "action": "merge",
+      "target": "agent-landscape-comparison-methods"
+    },
+    {
+      "source": "coding-agent-harness-showdown",
+      "action": "retain",
+      "target": "coding-agent-harness-showdown"
+    },
+    {
+      "source": "composable-agent-harness-architecture",
+      "action": "merge",
+      "target": "composable-agent-harness-research-method"
+    },
+    {
+      "source": "composable-agent-harness-research-method",
+      "action": "retain",
+      "target": "composable-agent-harness-research-method"
+    },
+    {
+      "source": "composable-agent-harness-synthesis",
+      "action": "remove-redundant",
+      "target": "composable-agent-harness-research-method"
+    },
+    {
+      "source": "deepseek-harness-architecture",
+      "action": "merge",
+      "target": "deepseek-harness-composition"
+    },
+    {
+      "source": "deepseek-harness-composition",
+      "action": "retain",
+      "target": "deepseek-harness-composition"
+    },
+    {
+      "source": "deepseek-harness-execution",
+      "action": "retain",
+      "target": "deepseek-harness-execution"
+    },
+    {
+      "source": "deepseek-harness-state",
+      "action": "retain",
+      "target": "deepseek-harness-state"
+    },
+    {
+      "source": "deepseek-harness-synthesis",
+      "action": "remove-redundant",
+      "target": "deepseek-harness-execution"
+    },
+    {
+      "source": "ecc-architecture-deep-dive",
+      "action": "retain",
+      "target": "ecc-architecture-deep-dive"
+    },
+    {
+      "source": "ecc-hook-runtime-memory",
+      "action": "retain",
+      "target": "ecc-hook-runtime-memory"
+    },
+    {
+      "source": "ecc-memory-supply-chain",
+      "action": "retain",
+      "target": "ecc-memory-supply-chain"
+    },
+    {
+      "source": "ecc-series-overview",
+      "action": "remove-redundant",
+      "target": "ecc-architecture-deep-dive"
+    },
+    {
+      "source": "ecc-series-synthesis",
+      "action": "remove-redundant",
+      "target": "ecc-memory-supply-chain"
+    },
+    {
+      "source": "harness-engineering-lab",
+      "action": "merge",
+      "target": "harness-foundations-lab"
+    },
+    {
+      "source": "harness-engineering-loop",
+      "action": "retain",
+      "target": "harness-engineering-loop"
+    },
+    {
+      "source": "harness-engineering-map",
+      "action": "retain",
+      "target": "harness-engineering-map"
+    },
+    {
+      "source": "harness-engineering-recovery",
+      "action": "retain",
+      "target": "harness-engineering-recovery"
+    },
+    {
+      "source": "harness-engineering-security",
+      "action": "retain",
+      "target": "harness-engineering-security"
+    },
+    {
+      "source": "harness-engineering-tools",
+      "action": "retain",
+      "target": "harness-engineering-tools"
+    },
+    {
+      "source": "harness-foundations-concurrency",
+      "action": "retain",
+      "target": "harness-foundations-concurrency"
+    },
+    {
+      "source": "harness-foundations-consistency",
+      "action": "merge",
+      "target": "harness-engineering-recovery"
+    },
+    {
+      "source": "harness-foundations-lab",
+      "action": "retain",
+      "target": "harness-foundations-lab"
+    },
+    {
+      "source": "harness-foundations-mcp-lifecycle",
+      "action": "retain",
+      "target": "harness-foundations-mcp-lifecycle"
+    },
+    {
+      "source": "harness-foundations-mcp-recovery",
+      "action": "merge",
+      "target": "harness-foundations-mcp-lifecycle"
+    },
+    {
+      "source": "harness-integration-lab",
+      "action": "retain",
+      "target": "harness-integration-lab"
+    },
+    {
+      "source": "harness-integration-map",
+      "action": "retain",
+      "target": "harness-integration-map"
+    },
+    {
+      "source": "harness-integration-mcp",
+      "action": "retain",
+      "target": "harness-integration-mcp"
+    },
+    {
+      "source": "harness-integration-model",
+      "action": "retain",
+      "target": "harness-integration-model"
+    },
+    {
+      "source": "harness-integration-recovery",
+      "action": "retain",
+      "target": "harness-integration-recovery"
+    },
+    {
+      "source": "harness-operations-context",
+      "action": "retain",
+      "target": "harness-operations-context"
+    },
+    {
+      "source": "harness-operations-model-gateway",
+      "action": "retain",
+      "target": "harness-operations-model-gateway"
+    },
+    {
+      "source": "harness-operations-multi-agent",
+      "action": "retain",
+      "target": "harness-operations-multi-agent"
+    },
+    {
+      "source": "harness-operations-observability",
+      "action": "retain",
+      "target": "harness-operations-observability"
+    },
+    {
+      "source": "harness-operations-planning",
+      "action": "merge",
+      "target": "harness-engineering-loop"
+    },
+    {
+      "source": "harness-operations-production",
+      "action": "retain",
+      "target": "harness-operations-production"
+    },
+    {
+      "source": "harness-operations-release",
+      "action": "retain",
+      "target": "harness-operations-release"
+    },
+    {
+      "source": "hermes-agent-architecture-deep-dive",
+      "action": "retain",
+      "target": "hermes-agent-architecture-deep-dive"
+    },
+    {
+      "source": "hermes-agent-memory-governance",
+      "action": "retain",
+      "target": "hermes-agent-memory-governance"
+    },
+    {
+      "source": "hermes-agent-runtime-services",
+      "action": "retain",
+      "target": "hermes-agent-runtime-services"
+    },
+    {
+      "source": "hermes-agent-series-overview",
+      "action": "remove-redundant",
+      "target": "hermes-agent-architecture-deep-dive"
+    },
+    {
+      "source": "hermes-agent-series-synthesis",
+      "action": "remove-redundant",
+      "target": "hermes-agent-memory-governance"
+    },
+    {
+      "source": "kimi-code-session-runtime",
+      "action": "merge",
+      "target": "kimi-code-system-overview"
+    },
+    {
+      "source": "kimi-code-skills-swarm",
+      "action": "merge",
+      "target": "kimi-code-system-overview"
+    },
+    {
+      "source": "kimi-code-system-overview",
+      "action": "retain",
+      "target": "kimi-code-system-overview"
+    },
+    {
+      "source": "kimi-code-system-synthesis",
+      "action": "remove-redundant",
+      "target": "kimi-code-system-overview"
+    },
+    {
+      "source": "learning-organization-boundaries",
+      "action": "retain",
+      "target": "learning-organization-boundaries"
+    },
+    {
+      "source": "llm-agent-capability-landscape-2026",
+      "action": "retain",
+      "target": "llm-agent-capability-landscape-2026"
+    },
+    {
+      "source": "lu-qi-researcher-founder",
+      "action": "retain",
+      "target": "lu-qi-researcher-founder"
+    },
+    {
+      "source": "mattpocock-skills-alignment",
+      "action": "merge",
+      "target": "mattpocock-skills-overview"
+    },
+    {
+      "source": "mattpocock-skills-feedback-loops",
+      "action": "merge",
+      "target": "mattpocock-skills-overview"
+    },
+    {
+      "source": "mattpocock-skills-overview",
+      "action": "retain",
+      "target": "mattpocock-skills-overview"
+    },
+    {
+      "source": "mattpocock-skills-synthesis",
+      "action": "remove-redundant",
+      "target": "mattpocock-skills-overview"
+    },
+    {
+      "source": "mem0-add-pipeline",
+      "action": "merge",
+      "target": "mem0-series-overview"
+    },
+    {
+      "source": "mem0-hybrid-retrieval",
+      "action": "merge",
+      "target": "mem0-series-overview"
+    },
+    {
+      "source": "mem0-production-boundaries",
+      "action": "retain",
+      "target": "mem0-production-boundaries"
+    },
+    {
+      "source": "mem0-series-overview",
+      "action": "retain",
+      "target": "mem0-series-overview"
+    },
+    {
+      "source": "mem0-series-synthesis",
+      "action": "remove-redundant",
+      "target": "mem0-production-boundaries"
+    },
+    {
+      "source": "open-source-agent-harness-routes",
+      "action": "merge",
+      "target": "composable-agent-harness-research-method"
+    },
+    {
+      "source": "opencode-agents-skills-plugins",
+      "action": "merge",
+      "target": "opencode-system-overview"
+    },
+    {
+      "source": "opencode-client-server-runtime",
+      "action": "merge",
+      "target": "opencode-system-overview"
+    },
+    {
+      "source": "opencode-system-overview",
+      "action": "retain",
+      "target": "opencode-system-overview"
+    },
+    {
+      "source": "opencode-system-synthesis",
+      "action": "remove-redundant",
+      "target": "opencode-system-overview"
+    },
+    {
+      "source": "openviking-context-layers",
+      "action": "merge",
+      "target": "openviking-series-overview"
+    },
+    {
+      "source": "openviking-hierarchical-retrieval",
+      "action": "merge",
+      "target": "openviking-series-overview"
+    },
+    {
+      "source": "openviking-series-overview",
+      "action": "retain",
+      "target": "openviking-series-overview"
+    },
+    {
+      "source": "openviking-series-synthesis",
+      "action": "remove-redundant",
+      "target": "openviking-session-governance"
+    },
+    {
+      "source": "openviking-session-governance",
+      "action": "retain",
+      "target": "openviking-session-governance"
+    },
+    {
+      "source": "pi-architecture-deep-dive",
+      "action": "retain",
+      "target": "pi-architecture-deep-dive"
+    },
+    {
+      "source": "pi-durable-harness-governance",
+      "action": "retain",
+      "target": "pi-durable-harness-governance"
+    },
+    {
+      "source": "pi-series-overview",
+      "action": "remove-redundant",
+      "target": "pi-architecture-deep-dive"
+    },
+    {
+      "source": "pi-series-synthesis",
+      "action": "remove-redundant",
+      "target": "pi-durable-harness-governance"
+    },
+    {
+      "source": "pi-session-extension-architecture",
+      "action": "retain",
+      "target": "pi-session-extension-architecture"
+    },
+    {
+      "source": "product-analysis-frameworks",
+      "action": "retain",
+      "target": "product-analysis-frameworks"
+    },
+    {
+      "source": "product-frameworks-delivery",
+      "action": "retain",
+      "target": "product-frameworks-delivery"
+    },
+    {
+      "source": "product-frameworks-growth",
+      "action": "retain",
+      "target": "product-frameworks-growth"
+    },
+    {
+      "source": "product-frameworks-market",
+      "action": "retain",
+      "target": "product-frameworks-market"
+    },
+    {
+      "source": "product-frameworks-prioritization",
+      "action": "retain",
+      "target": "product-frameworks-prioritization"
+    },
+    {
+      "source": "product-frameworks-synthesis",
+      "action": "remove-redundant",
+      "target": "product-frameworks-delivery"
+    },
+    {
+      "source": "product-work-methodology",
+      "action": "retain",
+      "target": "product-work-methodology"
+    },
+    {
+      "source": "researcher-founder-thinking",
+      "action": "retain",
+      "target": "researcher-founder-thinking"
+    },
+    {
+      "source": "tencentdb-agent-memory-governance",
+      "action": "retain",
+      "target": "tencentdb-agent-memory-governance"
+    },
+    {
+      "source": "tencentdb-agent-memory-layers",
+      "action": "merge",
+      "target": "tencentdb-agent-memory-overview"
+    },
+    {
+      "source": "tencentdb-agent-memory-overview",
+      "action": "retain",
+      "target": "tencentdb-agent-memory-overview"
+    },
+    {
+      "source": "tencentdb-agent-memory-proxy",
+      "action": "merge",
+      "target": "tencentdb-agent-memory-overview"
+    },
+    {
+      "source": "tencentdb-agent-memory-synthesis",
+      "action": "remove-redundant",
+      "target": "tencentdb-agent-memory-governance"
+    },
+    {
+      "source": "trace-framework-deep-dive",
+      "action": "retain",
+      "target": "trace-framework-deep-dive"
+    },
+    {
+      "source": "trace-lite-production",
+      "action": "retain",
+      "target": "trace-lite-production"
+    },
+    {
+      "source": "trustworthy-agent-engineering-synthesis",
+      "action": "remove-redundant",
+      "target": "ai-agent-reliability-boundaries"
+    }
+  ]
+}

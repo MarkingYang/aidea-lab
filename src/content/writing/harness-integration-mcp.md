@@ -1,6 +1,6 @@
 ---
-title: Harness 接入与实战（三）：真实 MCP 接入：让工具跨过进程边界
-description: 使用固定版本官方 SDK 运行真实 stdio 和本机 Streamable HTTP 工具调用，验证结构化输出并说明认证与恢复的剩余边界。
+title: Harness 接入与实战（三）：工具、执行策略与 MCP 怎样接线
+description: 从直接函数到跨进程 MCP，定义查询与创建的工具契约，说明策略检查、结构化结果和传输模块的组合方式。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-05
 type: essay
@@ -10,62 +10,70 @@ topics:
   - AI 工程
   - MCP
 featured: false
-readingTime: 7 min
+readingTime: 4 min
 ---
 
-> Harness 接入与实战系列：[1. 链路全景](/writing/harness-integration-map/)｜[2. 模型适配](/writing/harness-integration-model/)｜[3. MCP 实接](/writing/harness-integration-mcp/)｜[4. 持久化恢复](/writing/harness-integration-recovery/)｜[5. 端到端实验](/writing/harness-integration-lab/)
+> Harness 接入与实战系列：[1. 模块与选型](/writing/harness-integration-map/)｜[2. 模型与循环](/writing/harness-integration-model/)｜[3. 工具与策略](/writing/harness-integration-mcp/)｜[4. 状态与验收](/writing/harness-integration-recovery/)｜[5. 组装与运行](/writing/harness-integration-lab/)
 
-上一批协议模型可以精确安排消息顺序，却没有让一条消息穿过标准输入输出。本批启动真正的 Python 子进程，由 SDK 完成初始化、工具发现和调用，再用独立的 HTTP 测试覆盖另一种传输入口。
+工具模块应先有清楚的业务接口，再选择传输方式。第一版 Mini Harness 如果所有能力都在同一个 Python 进程里，直接函数调用通常最容易调试。需要让多个客户端共享能力，或由独立进程维护资源时，再引入 MCP。
 
-这里使用官方 Python SDK 中的 `FastMCP`，不是另一个同名独立包。安装依赖时固定版本，避免名称相近造成误判。
+## 先定义两个业务工具
 
-## 让 SDK 负责协议，让应用保留业务契约
+本实验只暴露两个工具，把读取和写入分开：
 
-实验客户端使用 `ClientSession`，stdio 连接通过 `StdioServerParameters` 指向当前 Python 解释器及测试服务脚本。服务端注册查询和创建两个工具。[SDK v1.29.1](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.1/README.md)
+| 工具 | 参数 | 输出 | 副作用 |
+| --- | --- | --- | --- |
+| `lookup_review_ticket` | `operation_key` | `{"ticket": null}` 或工单对象 | 读取 |
+| `create_review_ticket` | `operation_key, source, title` | `{"ticket": {"id": 整数, "action": {...}}}` | 创建，或返回同键的既有工单 |
 
-初始化后，客户端检查协商版本，再读取目录，确认需要的工具存在。客户端没有实现通用工具路由，也没有把模型返回的任意名称转发给服务器。
+同键同参数返回同一资源；同键不同参数拒绝执行。这条规则由服务端 `Tickets.create()` 和唯一约束落实，不能只写在工具说明里。
 
-| SDK 管理的边界 | 本实验应用管理的边界 |
-| --- | --- |
-| 消息编码与请求关联 | 同一业务操作的稳定身份 |
-| 初始化与传输会话 | 允许使用哪些业务动作 |
-| 工具调用返回结构 | 返回资源是否满足原任务 |
-| 连接上下文清理 | 已提交副作用怎样恢复 |
+工具层不要顺便判断任务完成。创建接口可能成功创建了错误标题；是否符合任务仍由验收器对照原始目标判断。工具错误也要显式返回或抛出，不能把失败信息包装成看似成功的业务对象。
 
-使用 SDK 可以减少协议代码，但不能替应用决定业务成功、重试或授权。
+## 把本地函数包成 MCP 服务
 
-## 结构化输出需要在服务端明确定义
+`server.py` 使用官方 Python SDK 中的 `FastMCP`，将 `Tickets.lookup()` 与 `Tickets.create()` 包装成两个工具。返回值通过 `TicketEnvelope` 提供结构化 `ticket` 字段。
 
-接入时遇到的一个具体问题是：仅把 Python 返回值标注为宽泛的 `dict`，在本次固定版本运行中得到的是文本内容，`structuredContent` 为空。
+客户端的连接顺序是：启动传输 → 建立 `ClientSession` → `initialize()` → 读取工具目录 → 检查需要的工具 → 发起调用。实验的 `session_for()` 管连接生命周期，`call()` 管工具结果解析，`execute()` 管业务流程。这三层分开后，换传输不必改任务验收。
 
-实验改用明确的 Pydantic 返回模型 `TicketEnvelope`，其中包含 `ticket` 字段。客户端检查工具执行错误标记，再读取结构化结果，并要求存在该字段。
+```python
+# 在实验目录中使用的真实客户端接口片段
+async with session_for(root) as (session, version):
+    ticket = await call(
+        session,
+        'lookup_review_ticket',
+        {'operation_key': 'review-001:ticket'},
+    )
+```
 
-这项观察来自本地运行，不应外推为所有 SDK 版本的共同表现。升级依赖后，必须重新检查目录中的输出 Schema 和实际返回结构。不能把一段“看起来像 JSON”的文本无条件当成已验证结果。
+`root` 是状态目录的 `Path`；完整运行入口见第五篇。调用返回后，`call()` 先检查 `isError`，再检查 `structuredContent` 中是否包含 `ticket`。MCP 的工具结果可以包含文本与结构化内容；本应用主动选择后者作为机器判断接口。[MCP 工具规范](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
 
-## stdio 的进程边界是真实存在的
+## stdio 与 HTTP 如何选择
 
-stdio 服务的协议消息经过子进程标准输入输出。普通日志不能混入标准输出，否则会干扰协议解析；这是[MCP 传输规范](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)定义的边界。
+| 条件 | 默认组合 | 应验证的边界 |
+| --- | --- | --- |
+| Harness 自己启动本地工具服务 | SDK stdio 客户端 + 子进程 FastMCP | 启停、退出码、标准输出不能混入普通日志 |
+| 多个客户端访问共享工具服务 | Streamable HTTP + 服务身份与认证 | 会话、超时、代理、访问控制与资源归属 |
+| 一次性同进程业务函数 | 直接调用函数 | 参数、错误、副作用与结果契约 |
 
-本地故障开关让服务端在 SQLite 提交后直接退出。客户端实际失去响应，运行库保留此前提交的意图。恢复时启动新服务进程，查询同一份工单库。
+实验固定 `mcp==1.29.1` 与 MCP `2025-11-25` 协商基线，用于复现已记录结果，不把这个固定版本称为所有新项目的最佳版本。[对应 SDK](https://github.com/modelcontextprotocol/python-sdk/blob/v1.29.1/README.md)
 
-故障开关属于测试服务启动参数，不暴露为工具参数。模型无法要求服务端退出。
+stdio 测试会真正启动服务进程；HTTP 测试使用本机回环地址。两者复用工具逻辑，但 HTTP 当前只覆盖正常路径。生产 HTTP 还需要认证、会话失效、撤权和代理环境测试。本机监听不提供身份认证。
 
-## HTTP 正常路径与流恢复不是同一个测试
+## 执行策略应插在哪里
 
-集成测试还启动绑定到 `127.0.0.1` 的服务，通过 Streamable HTTP 完成初始化、查询、创建和验收。响应配置采用 JSON 模式。
+顺序是：校验模型动作 → 检查业务目标 → 检查执行许可 → 保存派发意图 → 调用工具。策略检查应紧邻实际派发；恢复后也要重新判断当前是否允许新增写入。
 
-它证明本机 HTTP 正常路径可运行，没有证明 SSE 事件重放、代理缓冲、会话过期后的重建或远程负载均衡都正确。本包的进程退出恢复测试走 stdio，不能把结果自动算到 HTTP 故障覆盖里。
+实验里，`--execute` 控制是否允许创建本地工单，查询不需要该开关。操作键由运行器根据 run ID 生成，数据库路径由命令行配置。模型只提供工单内容，没有通用 Shell，也不能指定任意文件路径。
 
-HTTP 测试客户端仅为回环流量关闭环境代理，避免本机请求被送往外部代理。模型 API 请求不采用这项本地测试配置。
+这是一份小型业务白名单。将来增加文件或 Shell 工具时，需要同时加入路径限制、环境变量过滤、网络范围和操作系统隔离；仅在提示词里写“不要越权”不能限制进程权限。Hook 可以在配置匹配的调用路径执行检查，但不能替代服务端授权或沙箱。[执行安全篇](/writing/harness-engineering-security/)
 
-## 连通以后仍要补的生产问题
+## 怎样替换为真实业务系统
 
-当前服务没有 OAuth、租户隔离、沙箱或业务撤权。回环监听减少了暴露范围，但本机其他进程仍可能访问它，不能把它当成认证措施。
+保留运行器面对的查询、创建和结果接口，在服务端替换 `Tickets` 的存储实现。接 CRM、任务系统或工单 SaaS 前，先确认四件事：是否支持业务幂等键；是否能按该键查询；写入后多久查询可见；冲突与限流怎样报告。
 
-工具存在也不代表目录兼容性已经充分检查。本实验只读取一次目录并验证需要的名称；分页、运行中目录变化、跨版本输入结构漂移和完整能力策略都需要独立测试。
+若远端系统不支持幂等创建，客户端数据库记住“调用过”也不足以防止响应丢失后的重复。此时需要额外的业务唯一字段、服务端代理去重，或结果未知时人工对账。下一篇会展示这条边界如何影响恢复。
 
-继续参照[生命周期篇](/writing/harness-foundations-mcp-lifecycle/)与[安全篇](/writing/harness-engineering-security/)补反例时，每增加一个能力，都应写明它在真实传输上测过，还是仍停留在受控模型中。
+上一篇：[模型与循环](/writing/harness-integration-model/)。
 
-上一篇：[模型适配](/writing/harness-integration-model/)。
-
-下一篇：[持久化恢复](/writing/harness-integration-recovery/)。
+下一篇：[状态与验收](/writing/harness-integration-recovery/)。

@@ -10,12 +10,12 @@ topics:
   - 开源架构
   - Agent Skills
 featured: false
-readingTime: 4 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 研究地图](/writing/composable-agent-harness-architecture/)｜[2. 研究方法](/writing/composable-agent-harness-research-method/)｜[3. 阶段结论](/writing/composable-agent-harness-synthesis/)
 
-原来的系列过早把 Hermes、Pi 与 ECC 放进同一结论，容易让读者沿比较维度理解项目，而不是沿项目自己的问题理解设计。这次拆分最重要的变化，不是文章数量增加，而是推迟综合判断。
+跨项目关联应从可比机制出发。例如比较记忆时，先确认写入对象、读取时机和撤销方式；比较扩展时，先区分运行时代码、提示资产与外部工具。名称相同并不表示生命周期相同。
 
 十个系列完成后，每个项目至少应留下三类可复核产物：一张系统边界图、一条状态或数据主线、一组已实现能力与分析推断的分界。缺少其中任何一项，横向表格都会把未知包装成差异。
 

@@ -67,7 +67,7 @@ evidence: [targeted_test, regression_suite, diff_review]
 
 ## 最后的判断：最好的 Harness 会逐渐隐形
 
-Claude Code 与 Codex 当前的领先，本质上是它们让更多工程约束进入了系统，而不需要用户每次提醒：项目知识有位置，危险动作有边界，并行修改有隔离，结果有 Diff 和测试，完成后有人类审查入口。
+Claude Code 与 Codex 提供的工程机制可转成 PoC 检查项：项目知识有位置，危险动作有边界，并行修改有隔离，结果有 Diff 和测试，完成后有人类审查入口。
 
 开源三强提出的反问同样重要：
 

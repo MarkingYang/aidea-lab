@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > 产品分析框架系列：[1 · 决策地图](/writing/product-analysis-frameworks/) · [2 · 市场与定位](/writing/product-frameworks-market/) · [3 · 需求与取舍](/writing/product-frameworks-prioritization/) · [4 · 增长与商业](/writing/product-frameworks-growth/) · [5 · 执行与复盘](/writing/product-frameworks-delivery/) · [6 · 深入思考](/writing/product-frameworks-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 案例说明：MeetFlow 是虚构的 AI 会议助手，服务中小销售团队。以下市场变化、用户数据、财务数字与目标均为教学假设，不是市场调查、法律判断或收益承诺。
 
 
@@ -92,7 +90,7 @@ flowchart LR
   F -. 新证据 .-> U
 ```
 
-*图 1｜按错误代价与可逆性决定验证深度。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜按错误代价与可逆性决定验证深度。*
 
 一个好问题是：“再收集这份数据，会改变哪一个决定？”如果答案是不会，就应考虑停止分析；如果一个未知可能让整个方案失效，就应优先验证。
 

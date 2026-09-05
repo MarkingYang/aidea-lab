@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: false
-readingTime: 6 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/claude-code-internals-overview/)｜[2. 执行循环](/writing/claude-code-agent-loop/)｜[3. 记忆与扩展](/writing/claude-code-memory-extension/)｜[4. 整体判断](/writing/claude-code-internals-synthesis/)
@@ -35,7 +35,7 @@ sequenceDiagram
 
 这里必须区分“完成动作”和“完成任务”。写入文件只证明工具成功，测试、构建、运行结果和 Diff Review 才构成交付证据。Hook 可以在工具前后追加检查，Subagent 可以隔离大范围探索，但最终仍需主循环把结果纳入任务判断。
 
-官方文档也提醒，项目规则进入上下文后属于模型要遵循的指令，并非强制配置。真正不能被绕过的安全要求，应放进权限规则或能够阻断动作的 Hook，而不是只写一句“不要这样做”。
+官方文档也提醒，项目规则进入上下文后属于模型要遵循的指令，并非强制配置。安全要求应落实到权限规则、工具后端和操作系统隔离；能够阻断动作的同步 Hook 可补充路径内检查，但需验证事件覆盖、禁用和失败处理，不能把它视为不可绕过的总边界。
 
 ---
 

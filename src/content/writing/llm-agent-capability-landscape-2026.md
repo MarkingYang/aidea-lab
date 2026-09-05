@@ -11,7 +11,7 @@ topics:
   - Coding Agent
   - AI 趋势
 featured: true
-readingTime: 7 min
+readingTime: 8 min
 ---
 
 > 系列：[1. 能力地图](/writing/llm-agent-capability-landscape-2026/)｜[2. 证据与行动](/writing/ai-capability-evidence-action/)｜[3. 整体思考](/writing/ai-capability-boundary-synthesis/)
@@ -24,7 +24,7 @@ readingTime: 7 min
 2. **长任务可以委派，但要分段验收。** “完成一份方案”与“连续执行方案并承担后果”，不是同一种能力。
 3. **挑选模型时看具体任务，不追总冠军。** 最强、最便宜、最适合你的材料和流程，往往不是同一个选项。
 
-这里的三条是本文依据公开评测提出的使用建议，不是对所有产品的性能保证。下文先解释能力边界，再给模型画像；八类评测的细节放在文末，供需要核对证据的读者展开。
+这里的三条是本文依据公开评测提出的使用建议，不是对所有产品的性能保证。下文先解释能力边界，再给模型画像；八类评测的细节放在[证据与行动篇](/writing/ai-capability-evidence-action/)，供需要核对证据的读者继续阅读。
 
 > [!NOTE]
 > **先认识三个词。** 大语言模型（LLM）负责理解、生成内容和推理；智能体（Agent）是让模型调用搜索、文件、代码等工具，连续执行任务的系统；基准评测（benchmark）是一套固定考题，用来比较特定能力。比如，“告诉我怎么做报表”主要考模型，“读取文件、核算、生成报表并检查”则在考 Agent。

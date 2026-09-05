@@ -11,32 +11,13 @@ topics:
   - Hermes Agent
   - Pi
 featured: false
-readingTime: 7 min
+readingTime: 4 min
 ---
 
 > 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
 
 开源 Harness 的价值不是免费复制商业产品，而是允许开发者重新决定哪些机制进入内核、哪些策略留给扩展，以及由谁承担安全和运维责任。
 
-## 开源三强代表三种完全不同的未来
-
-### Hermes：Agent 会不会越用越像你的同事
-
-Hermes 把持久记忆、Skill、消息渠道、浏览器、定时任务和子 Agent 放在同一套系统里。官方文档明确把 Agent 创建和修改 Skill 视为“程序性记忆”，同时提供 Skill 与 Memory 写入审批，参见[Hermes Skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/)和[安全模型](https://hermes-agent.nousresearch.com/docs/user-guide/security)。
-
-它押注的不是最小工具，而是长期关系：Agent 通过任务历史逐步积累用户事实和做事方法。代价是更大的权限面、更多运行服务，以及更高的部署维护责任。
-
-### Pi：最少的内置意见，最大的可塑空间
-
-Pi 刻意不内置 Plan Mode、Subagents、MCP 和权限弹窗，而是鼓励通过 TypeScript Extensions、Skills、Prompt Templates 与 Packages 构建自己的工作方式。它适合认为“通用产品的默认流程就是限制”的开发者，也意味着权限、并行、审批和企业治理不会凭空出现。
-
-Pi 的价值不是“功能少”，而是让每个高级机制都必须证明自己值得进入系统。
-
-### DeepSeek Harness：把 Agent 的每一层都变成插件
-
-DeepSeek Harness 基于 Cordis，模型、工具、Skill、Session、Sandbox、Storage、Loop、Scheduling 和 UI 都可以组合替换。它甚至提供 Standard、Code、Minimal 与 Creator 等运行模式，见[官方开发者预览](https://www.deepseek.com/harness/)。
-
-这让它非常适合 Harness 研究、内部平台原型和运行时实验。但官方 README 同样明确提示仍处于 developer preview，存在兼容性破坏。把架构潜力等同于生产成熟度，是评估它时最大的风险。
 
 ## Hermes、Pi、DeepSeek Harness：三种开源哲学
 
@@ -72,19 +53,15 @@ DeepSeek Harness 的 Cordis 架构把模型、工具、文件访问、Agent Loop
 
 但官方[README](https://github.com/deepseek-ai/deepseek-harness)明确写着 developer preview 和 compatibility-breaking changes。对生产采购而言，架构领先与运维成熟是两张不同的答卷。
 
-## 六款产品的相对优势，不用总分表达
+## 按要控制的机制选择实验对象
 
-| 如果你最在意 | 首选 | 第二选择 | 需要接受的代价 |
-| --- | --- | --- | --- |
-| 成熟的可定制工程 Harness | Claude Code | Codex | 厂商模型与订阅绑定 |
-| 多任务监督与云地协同 | Codex | Claude Code | 配额、审查队列与任务切分成本 |
-| 国产模型—产品一体化 | Kimi Code | 自建 Pi + 国产模型 | 产品快速迭代与企业治理仍需实测 |
-| 长期个人 Agent 与跨渠道自动化 | Hermes | 自建 DeepSeek Harness | 权限面与持续运维责任 |
-| 极简、透明、可塑的 Coding 内核 | Pi | Codex CLI | 高级能力与安全治理需自行装配 |
-| 自研 Agent 平台或 Harness 实验 | DeepSeek Harness | Pi SDK | 版本兼容与生产化成本 |
-| 企业默认安全基线 | Claude Code / Codex | WorkBuddy Code | 仍需组织配置与人工审查 |
+| 你想控制什么 | 可研究的项目 | 先验证的代价 |
+| --- | --- | --- |
+| 长期个人助理的记忆、技能与消息入口 | Hermes | 权限面、后台服务与持续维护 |
+| 小型 Coding Loop 与 TypeScript 扩展 | Pi | 高级能力、安全策略需要自行装配 |
+| 可替换的 Loop、服务与插件拓扑 | DeepSeek Harness | 版本兼容、插件组合与生产化成本 |
 
-“首选”也不意味着单一采购。很常见的一种组合是：用 Claude Code 或 Codex 作为工程师默认产品，用 Pi 或 DeepSeek Harness 做模型与运行时实验，用 Hermes 承担个人或团队的非代码自动化。
+这里选的是研究入口，没有跨项目统一基准，不给出第一、第二名。研究完成后，再拿业务任务比较自建成本与商业产品的默认能力。
 
 如果要继续进入架构内部，可以先从 [可塑 Agent Harness 研究地图](/writing/composable-agent-harness-architecture/)选择一个独立项目系列，再进入 [DeepSeek Harness 架构系列](/writing/deepseek-harness-architecture/)理解全插件运行时。当前阶段先逐个建立事实，不把不同层次的项目提前做成产品排名。
 

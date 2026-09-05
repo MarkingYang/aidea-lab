@@ -11,7 +11,7 @@ topics:
   - Agent Harness
   - 产品战略
 featured: true
-readingTime: 7 min
+readingTime: 5 min
 ---
 
 > 系列：[1. 三条赛道](/writing/ai-agent-landscape-2026/)｜[2. 比较方法](/writing/agent-landscape-comparison-methods/)｜[3. 工程产品](/writing/coding-agent-harness-showdown/)｜[4. 开源路线](/writing/open-source-agent-harness-routes/)｜[5. 工程验证](/writing/coding-agent-harness-poc/)｜[6. 办公产品](/writing/china-work-agent-showdown/)｜[7. 组织落地](/writing/china-work-agent-adoption/)｜[8. 整体思考](/writing/agent-work-system-synthesis/)
@@ -27,7 +27,7 @@ readingTime: 7 min
 Kimi Code 又跨进了开发者战场，Claude Code 与 Codex 也正从代码仓库向研究、数据、文档和自动化外溢。真正发生的不是八款产品排成一列，而是三条战线逐渐互相吞并。
 
 > [!IMPORTANT]
-> **本文的核心判断：**截至 2026 年 9 月，Claude Code 与 Codex 是综合完成度最高的两套 Agent 工作系统。前者胜在可组合、可定制的工程 Harness，后者胜在本地—云端—多任务—审查—自动化的一体化操作系统。国内代表的优势不主要是“模型追平”，而是中文工作流、办公套件、组织连接和本地分发；开源代表的价值则是控制权、可研究性和新架构试验。
+> **本文的核心判断：**本系列以 Claude Code 的可组合工程机制、Codex 的任务调度与审查路径作为两组产品案例。公开机制能帮助建立候选清单，综合完成度仍需同一任务集验证。国内代表的优势不主要是“模型追平”，而是中文工作流、办公套件、组织连接和本地分发；开源代表的价值则是控制权、可研究性和新架构试验。
 
 这篇只搭高层骨架：先判断产品在争夺什么，再列出贯穿后续七篇的比较问题。具体矩阵、工程产品、开源路线、办公落地和 PoC 分别留给后文。
 

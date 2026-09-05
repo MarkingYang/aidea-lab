@@ -10,7 +10,7 @@ topics:
   - Agent Harness
   - Agent Skills
 featured: false
-readingTime: 5 min
+readingTime: 1 min
 ---
 
 > 系列：[1. 全景](/writing/kimi-code-system-overview/)｜[2. Session 与运行](/writing/kimi-code-session-runtime/)｜[3. Skills 与 Swarm](/writing/kimi-code-skills-swarm/)｜[4. 整体判断](/writing/kimi-code-system-synthesis/)

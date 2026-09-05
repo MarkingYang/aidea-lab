@@ -10,12 +10,12 @@ topics:
   - Agent Memory
   - Agent Skills
 featured: false
-readingTime: 7 min
+readingTime: 2 min
 ---
 
 > 系列：[1. 全景](/writing/claude-code-internals-overview/)｜[2. 执行循环](/writing/claude-code-agent-loop/)｜[3. 记忆与扩展](/writing/claude-code-memory-extension/)｜[4. 整体判断](/writing/claude-code-internals-synthesis/)
 
-Claude Code 的扩展体系按加载时机分层。CLAUDE.md 保存每次会话都需要的项目规则；Auto Memory 由 Claude 根据纠正与经验维护；Skill 的描述常驻而正文按需加载；Subagent 在隔离上下文中工作；Hook 则在生命周期事件上确定性触发。[官方 Memory 文档](https://code.claude.com/docs/en/memory)明确区分人工规则与自动记忆。
+Claude Code 的扩展体系按加载时机分层。CLAUDE.md 保存每次会话都需要的项目规则；Auto Memory 由 Claude 根据纠正与经验维护；Skill 的描述常驻而正文按需加载；Subagent 在隔离上下文中工作；Hook 则按配置匹配生命周期事件并触发处理。[官方 Memory 文档](https://code.claude.com/docs/en/memory)明确区分人工规则与自动记忆。
 
 | 机制 | 谁写入 | 何时生效 | 主要风险 |
 | --- | --- | --- | --- |
@@ -27,7 +27,7 @@ Claude Code 的扩展体系按加载时机分层。CLAUDE.md 保存每次会话�
 
 官方把 Auto Memory 保存为可读 Markdown，并允许用户审计、编辑和删除，这是重要的可治理基础；但“可见”仍不等于“已验证”。经验进入记忆后会影响未来上下文，因此还需要来源、冲突和失效策略。
 
-Skills 与 Hooks 的差异尤其关键：Skill 让模型决定如何执行工作流，Hook 保证事件发生时一定运行某段检查。需要推理的流程放 Skill，需要强制的边界放 Hook，才能避免用提示词冒充控制机制。[扩展总览](https://code.claude.com/docs/en/features-overview)
+Skills 与 Hooks 的差异尤其关键：Skill 为模型提供工作流方法，Hook 在配置匹配的事件上触发检查。执行前的同步 Hook 可以参与阻断；事后或异步 Hook 不能承担同样的门禁。需要强制的约束还应落实到权限、工具服务和操作系统隔离，并测试禁用、超时和错误退出时的行为。[Hook 事件、退出码与异步行为](https://code.claude.com/docs/en/hooks)
 
 ---
 

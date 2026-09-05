@@ -28,7 +28,7 @@ Hermes 的工具模块通过中央 Registry 自注册。Registry 保存名称、
 - JSON Schema 是函数签名；
 - Description 是模型选择工具的语义类型；
 - Handler 是具体实现；
-- Toolset 是能力包与权限边界；
+- Toolset 负责能力分组和模型可见工具筛选；实际授权仍需工具后端与执行环境校验；
 - Hook 是调用前后的策略切面；
 - Environment 是副作用真正发生的位置。
 

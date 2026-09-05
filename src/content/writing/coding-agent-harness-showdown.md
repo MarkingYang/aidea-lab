@@ -21,13 +21,13 @@ readingTime: 10 min
 这就是 Harness 的竞争。
 
 > [!IMPORTANT]
-> **结论先行：**Claude Code 与 Codex 目前是完成度最高的两种答案。Claude Code 更像一套可编程的工程制度，强在上下文、Skills、Hooks、MCP、Subagents 与权限体系的组合；Codex 更像 Agent 工作操作系统，强在本地与云端连续性、多任务监督、Worktree 隔离、Review 和 Automations。Kimi Code 是最有代表性的国产追赶者；Hermes、Pi、DeepSeek Harness 则分别代表“丰富自治”“极简内核”“万物插件”三条开源路线。
+> **结论先行：**Claude Code 与 Codex 展示了两种值得比较的工程产品结构，本文没有同任务实测来判断总体完成度。Claude Code 更像一套可编程的工程制度，强在上下文、Skills、Hooks、MCP、Subagents 与权限体系的组合；Codex 更像 Agent 工作操作系统，强在本地与云端连续性、多任务监督、Worktree 隔离、Review 和 Automations。Kimi Code 是本系列选择的国产工程产品案例；Hermes、Pi、DeepSeek Harness 则分别代表“丰富自治”“极简内核”“万物插件”三条开源路线。
 
 ## Harness 到底在解决什么
 
 OpenAI 在[拆解 Codex Agent Loop](https://openai.com/index/unrolling-the-codex-agent-loop/)时，把 Harness 描述为连接用户、模型与工具的核心执行逻辑。Anthropic 的工程实践也反复强调，模型能力只有进入“收集上下文—行动—验证”的循环，才会成为可靠的 Agent 能力。
 
-一套成熟 Coding Agent 至少包含七层：
+Coding Agent 可以按下列职责拆解：
 
 ```mermaid
 flowchart LR
@@ -45,7 +45,7 @@ flowchart LR
 
 模型决定“下一步想做什么”；Harness 决定模型看见什么、能做什么、做完如何验证、失败能否恢复。只看模型榜单，就像只看发动机马力来比较整辆车。
 
-## 七层对比：六款产品不是六种皮肤
+## 系统职责对比：内置能力与自建范围
 
 | 层 | Claude Code | Codex | Kimi Code | Hermes | Pi | DeepSeek Harness |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -61,7 +61,7 @@ flowchart LR
 
 ## 用户体验五要素：同一套功能为何成为不同产品
 
-七层 Harness 表回答“系统由什么组成”，用户体验五要素则回答“用户如何感受到这套系统”。对 Coding Agent，五层应当从目标一路追踪到可见反馈，任何一层断裂都会让能力停留在 Demo。
+上面的职责表回答“系统由什么组成”，用户体验五要素则回答“用户如何感受到这套系统”。对 Coding Agent，五层应当从目标一路追踪到可见反馈，任何一层断裂都会让能力停留在 Demo。
 
 ### 产品化 Coding Agent 逐层对比
 
@@ -73,17 +73,7 @@ flowchart LR
 | **框架层** | 终端、IDE、桌面和 Web 都强调计划、工具轨迹、Diff 与介入点 | App 侧栏承担多任务控制台，Diff、终端、浏览器与 Review 集中呈现 | TUI 与 IDE/ACP 为主，重点呈现任务过程与多 Agent 状态 |
 | **表现层** | 信息密度高、过程透明，工程师心智强 | 以任务状态和可审查结果为中心，监督感更强 | 中文友好、模型能力标签突出，产品仍在快速演化 |
 
-### 开源 Harness 逐层对比
-
-| 五要素 | Hermes | Pi | DeepSeek Harness |
-| --- | --- | --- | --- |
-| **战略层** | 成为会记忆、会学习、可跨渠道常驻的个人 Agent | 给高级用户一个不规定工作法的最小 Coding Harness | 给 Agent 开发者一套可重组运行时 |
-| **范围层** | 记忆、Skills、浏览器、IM、Cron、子 Agent、多模型 | 文件、Shell、Session、Skills、Extensions、Packages、SDK | 模型、工具、Session、Sandbox、Storage、Loop、Scheduling、UI 插件 |
-| **结构层** | 丰富默认工具围绕长期 Session、Gateway 与定时任务组织 | 极简 Loop 为核心，高级能力从外部组合 | Cordis 共享上下文挂载插件，以 Preset 组合不同运行模式 |
-| **框架层** | CLI、桌面与消息入口统一回到 Agent 会话 | 终端界面、树状 Session、RPC/SDK，界面可由扩展改变 | Web UI 暴露 Session、Trace、插件与模式，Creator 可检查运行时 |
-| **表现层** | 助理感和长期关系强，设置面也更复杂 | 克制、快速、接近开发者工具原语 | 系统实验台感强，对普通用户仍偏技术化 |
-
-五要素揭示了三个关键差异：Claude Code 把注意力放在“如何工作”，Codex 放在“如何监督工作”，Kimi Code 放在“模型与并行能力如何进入工作”；Hermes、Pi、DeepSeek Harness 则分别优化长期关系、最小控制和运行时可组合性。
+三个工程产品的比较重点分别是工作方法配置、多任务监督和模型与产品协同。开源项目的默认能力与自建责任放在[下一篇](/writing/open-source-agent-harness-routes/)展开。
 
 ## Claude Code：最像一套可执行的工程制度
 
@@ -92,7 +82,7 @@ Claude Code 的突出之处是，几乎每种“给 Agent 的信息”都有明�
 - 每次都需要的项目约定放在 `CLAUDE.md`；
 - 偶尔需要的流程与领域知识放在 Skill；
 - 外部系统连接放在 MCP；
-- 必须发生的检查放在 Hook；
+- 配置匹配事件的检查放在 Hook，并明确同步阻断与事后反馈的区别；
 - 大量探索放在 Subagent；
 - 真正需要协作的复杂任务才使用 Agent Team；
 - 对 Bash 子进程的硬限制交给 Sandbox。
@@ -139,14 +129,14 @@ Kimi Code 的战略意义大于“又一个 CLI”。月之暗面同时控制 Ag
 
 [Kimi Code 文档](https://www.kimi.com/code/docs/en/kimi-code-cli/customization/agents)展示了内置子 Agent、自定义 Agent、Skills 与多层委派；它也支持 MCP 和 ACP，能够进入不同 IDE。旧版 Kimi CLI 的仓库采用 Apache-2.0 许可证，当前产品正在向新版 Kimi Code 迁移，见[官方仓库说明](https://github.com/MoonshotAI/kimi-cli)。
 
-Kimi 的强项是模型与产品联合优化、中文开发者体验、较低使用成本和大规模并行叙事。需要验证的则是：
+Kimi Code 可以围绕模型与产品协同、中文开发体验和任务成本提出验证假设：
 
-- 300 个 Agent 的上限能否在真实工程里带来更高完成率，而非更多重复探索；
+- Kimi Code 当前版本实际支持怎样的并行调度，以及它能否提高工程完成率；Kimi Work 公布的 300 个子 Agent 上限不能直接套用到 Code；
 - 新旧 CLI 迁移期间的接口稳定性与生态兼容性；
 - 企业权限、沙箱、审计与跨任务恢复是否达到与能力增长相匹配的成熟度；
 - 模型开放与产品开放之间的边界是否足够清楚。
 
-因此，Kimi Code 是最值得进入实测名单的国内 Coding Agent，但不能仅凭模型参数或并发数量判定已经完成替代。
+因此，Kimi Code 可以进入国内 Coding Agent 的实测名单，但不能仅凭模型参数或并发数量判定已经完成替代。
 
 ---
 

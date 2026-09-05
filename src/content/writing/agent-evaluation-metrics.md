@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > Agent 评测系列：[1 · 系统全景](/writing/agent-system-evaluation-research/) · [2 · 指标口径](/writing/agent-evaluation-metrics/) · [3 · 数据集与评委](/writing/agent-evaluation-datasets/) · [4 · 工程闭环](/writing/agent-evaluation-engineering/) · [5 · 深入思考](/writing/agent-evaluation-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 上一篇给月报任务写了契约。现在假设它运行三次：第一次成功，第二次月份错误，第三次成功。你可以说“三次至少成功一次”，却不能说“每次都可靠”。这两句话的差别，决定产品应该提供草稿辅助还是无人值守执行。
 
 ## 成功率先守住分母
@@ -65,7 +63,7 @@ flowchart LR
   D --> R
 ```
 
-*图 1｜由失败证据定位待验证的改进因素。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜由失败证据定位待验证的改进因素。*
 
 | 诊断面 | 应记录 | 不应直接推导 |
 |---|---|---|

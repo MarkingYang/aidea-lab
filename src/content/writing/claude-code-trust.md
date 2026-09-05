@@ -16,8 +16,6 @@ updatedAt: 2026-09-05
 
 > Claude Code 产品设计系列：[1 · 产品地图](/writing/claude-code-product-design/) · [2 · 任务体验](/writing/claude-code-task-experience/) · [3 · 信任与验证](/writing/claude-code-trust/) · [4 · 会话与协作](/writing/claude-code-session-collaboration/) · [5 · 深入思考](/writing/claude-code-product-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 范围：基于 2026-09-05 可访问的 Claude Code 官方文档做产品设计分析。CLI、Desktop、Web 的能力不完全相同；下文会区分已有机制、教学抽象与作者建议，不把界面草图当作官方截图。
 
 
@@ -50,7 +48,7 @@ flowchart LR
   E --> V[独立验证结果]
 ```
 
-*图 1｜授权、权限、隔离与验证分别回答不同问题。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜授权、权限、隔离与验证分别回答不同问题。*
 
 这是一张参考决策图，不是 Claude Code 内部分类器的实现图。权限决定可否行动，沙箱限制影响范围，验证决定结果是否正确，三者互不替代。
 

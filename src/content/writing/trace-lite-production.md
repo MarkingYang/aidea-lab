@@ -11,7 +11,7 @@ topics:
   - LLMOps
   - 基准测试
 featured: false
-readingTime: 7 min
+readingTime: 8 min
 ---
 
 > 系列：[1. 可靠性地图](/writing/ai-agent-reliability-boundaries/)｜[2. 自治落地](/writing/agent-reliability-adoption/)｜[3. Harness 原理](/writing/anthropic-harness/)｜[4. Harness 实践](/writing/anthropic-harness-practice/)｜[5. TRACE 模型](/writing/trace-framework-deep-dive/)｜[6. TRACE 落地](/writing/trace-lite-production/)｜[7. 整体思考](/writing/trustworthy-agent-engineering-synthesis/)
@@ -43,7 +43,7 @@ TRACE 还提出两个诊断维度：
 | ReSum-GRPO | 58.8 | 0.75 | 0.86 | 0.82 | 0.88 | 0.76 | 0.33 |
 | GLM-4.5-355B | 55.2 | 0.62 | 0.70 | 0.80 | 0.85 | 0.75 | 0.41 |
 
-按 Pass@1，DeepSeek-V3.1 排名第一；按 Utility，它降到第 4。AgentFounder 则从 Pass@1 第 3 升到 Utility 第 1。这确实展示了 TRACE 的核心价值：单一正确率会掩盖过程差异。
+按 Pass@1，DeepSeek-V3.1 排名第一；按 Utility，它降到第 4。AgentFounder 则从 Pass@1 第 3 升到 Utility 第 1。这说明论文报告的两种排序不同，但不能单凭该表确认 Utility 聚合合理。前篇指出，表中 Utility 与 Pass@1、逐任务聚合的关系仍需原始数据澄清；这里保留作者报告值，不视为已独立复算的排名。
 
 需要纠正一个容易传播的说法：**DeepSeek 的 Utility 并非这 5 个开源 SOTA 中“垫底”，GLM-4.5 的 0.62 更低。** 更准确的表述是“DeepSeek 从正确率第一下降到综合效用第四”。
 
@@ -108,13 +108,13 @@ flowchart LR
 如果团队资源有限，我会先落地 6 项，不急着合成总分：
 
 1. **任务成功率**：以环境终态或可执行测试为准；
-2. **成功条件下的 P50/P95 成本**：Token、延迟、工具费分别报告；
+2. **完整成本口径**：报告包含失败、重试和人工修正的总成本，并除以成功任务数得到每次成功交付成本；再分别报告成功与失败任务的成本、延迟分布。零成功时该单位成本不可计算；
 3. **无效工具调用率**：未推进任何子目标的调用占比；
 4. **声明支持率**：有可访问证据且证据确实支持的原子声明比例；
 5. **干扰恢复率与恢复延迟**：是否识别、是否撤销、花了几步；
-6. **重复运行可靠性**：至少 5 次运行，报告均值、方差和最差一次。
+6. **重复运行可靠性**：每题先重复 5 次用于发现不稳定性，报告分布和最差一次；这只是探索起点。发布判断需按误差容忍度增加样本，尤其不能用五个样本稳定估计 P95。
 
-等这些指标稳定后，再引入几何平均作为发布门禁。否则，一个漂亮的总分很容易掩盖评测器本身还不可靠。
+发布先检查结果正确性、关键权限和成本上限等独立门槛，再看过程指标。指标稳定后可以增加汇总分用于趋势观察，但不能让效率分抵消安全或证据门槛失败。
 
 ### 成本控制策略
 

@@ -70,7 +70,7 @@ AI 时代最大的机会，或许不只是使用一种新技术，而是重新�
 
 ---
 
-本文课件截图均来自奇绩创坛公开发布的演讲整理，版权归原作者及发布方所有，仅用于内容评论与学习交流。建议结合[演讲全文](https://github.com/MiraclePlus/contents/blob/main/docs/%E7%A0%94%E7%A9%B6%E5%9E%8B%E5%88%9B%E4%B8%9A%E8%80%85%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BB%8E%20-1%20%E5%88%B0%201%20%E5%8A%A0%E9%80%9F%E5%88%9B%E6%96%B0%EF%BD%9C%E5%A5%87%E7%BB%A9%E5%88%9B%E4%B8%9A%E5%85%AC%E5%BC%80%E8%AF%BE%20Researcher%20Founder%20%E7%B3%BB%E5%88%97%E7%AC%AC%E4%B8%80%E8%AF%BE.md)阅读。
+本系列引用的课件截图来自奇绩创坛公开发布的演讲整理，版权归原作者及发布方所有，仅用于内容评论与学习交流。建议结合[演讲全文](https://github.com/MiraclePlus/contents/blob/main/docs/%E7%A0%94%E7%A9%B6%E5%9E%8B%E5%88%9B%E4%B8%9A%E8%80%85%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BB%8E%20-1%20%E5%88%B0%201%20%E5%8A%A0%E9%80%9F%E5%88%9B%E6%96%B0%EF%BD%9C%E5%A5%87%E7%BB%A9%E5%88%9B%E4%B8%9A%E5%85%AC%E5%BC%80%E8%AF%BE%20Researcher%20Founder%20%E7%B3%BB%E5%88%97%E7%AC%AC%E4%B8%80%E8%AF%BE.md)阅读。
 
 ---
 

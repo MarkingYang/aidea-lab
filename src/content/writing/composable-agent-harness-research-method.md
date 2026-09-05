@@ -10,7 +10,7 @@ topics:
   - 开源架构
   - AI 工程
 featured: false
-readingTime: 5 min
+readingTime: 3 min
 ---
 
 > 系列：[1. 研究地图](/writing/composable-agent-harness-architecture/)｜[2. 研究方法](/writing/composable-agent-harness-research-method/)｜[3. 阶段结论](/writing/composable-agent-harness-synthesis/)

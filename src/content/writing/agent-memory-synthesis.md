@@ -11,15 +11,15 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 8 min
+readingTime: 6 min
 updatedAt: 2026-09-05
 ---
 
 > Agent 记忆设计系列：[1 · 系统全景](/writing/agent-memory-design-competitive-analysis/) · [2 · 写入与纠错](/writing/agent-memory-writing/) · [3 · 检索与装配](/writing/agent-memory-retrieval/) · [4 · 治理与验证](/writing/agent-memory-governance/) · [5 · 深入思考](/writing/agent-memory-synthesis/)
 
-> 阅读时间为估计，包含图表理解；动手实验另计。
-
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
+
+> 单项目纵向阅读：[Mem0 整体判断](/writing/mem0-series-synthesis/) · [OpenViking 整体判断](/writing/openviking-series-synthesis/) · [TencentDB Agent Memory 整体判断](/writing/tencentdb-agent-memory-synthesis/)
 
 
 首篇里，上海和杭州看起来只是两条相似消息。经过写入、读取和治理之后，我们发现它们还包含身份、生效时间、来源、权限、版本与纠错状态。
@@ -55,7 +55,7 @@ flowchart LR
   G -.-> P
 ```
 
-*图 1｜证据、事实、场景与程序性经验的分层责任。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜证据、事实、场景与程序性经验的分层责任。*
 
 其中证据层在有效保留周期内应保持可追溯，正常更新采用追加记录；依法依约的删除和到期清理需另行覆盖原始与派生数据。事实与场景是可重新生成的派生状态；Skill 应在成功轨迹经过验证后才晋升。每条派生记忆建议保留：`source_refs`、`event_time`、`valid_time`、`scope`、`confidence`、`version` 与 `status`。召回先做权限和类型过滤，再做混合排序，最后由独立的 Context Assembler 执行 Token 预算与去冗余。
 
@@ -89,7 +89,7 @@ flowchart LR
   R -. 重建派生状态 .-> H
 ```
 
-*图 2｜新证据如何触发保留、纠正与遗忘。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 2｜新证据如何触发保留、纠正与遗忘。*
 
 一个能删除、回溯、失效和重建的记忆系统，比一个只会不断追加的系统更接近长期协作者。保留足够证据与减少不必要持有之间也存在张力，应按数据类别管理，而不是用“长期记忆”统一解释。
 

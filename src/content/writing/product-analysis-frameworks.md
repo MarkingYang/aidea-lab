@@ -10,13 +10,11 @@ topics:
   - 用户研究
   - 增长
 featured: true
-readingTime: 7 min
+readingTime: 5 min
 updatedAt: 2026-09-05
 ---
 
 > 产品分析框架系列：[1 · 决策地图](/writing/product-analysis-frameworks/) · [2 · 市场与定位](/writing/product-frameworks-market/) · [3 · 需求与取舍](/writing/product-frameworks-prioritization/) · [4 · 增长与商业](/writing/product-frameworks-growth/) · [5 · 执行与复盘](/writing/product-frameworks-delivery/) · [6 · 深入思考](/writing/product-frameworks-synthesis/)
-
-> 阅读时间为估计，包含图表理解；动手实验另计。
 
 > 案例说明：MeetFlow 是虚构的 AI 会议助手，服务中小销售团队。以下市场变化、用户数据、财务数字与目标均为教学假设，不是市场调查、法律判断或收益承诺。
 
@@ -58,7 +56,7 @@ flowchart LR
   H -.新证据反馈.-> D
 ```
 
-*图 1｜从战略到执行，证据如何反向修正判断。矩形表示模块或步骤，圆柱表示存储，菱形表示判断；实线表示主路径，虚线表示约束、信息支撑或反馈。图为教学抽象，不代表全部实现细节。*
+*图 1｜从战略到执行，证据如何反向修正判断。*
 
 这不是一条只能从左到右走一次的瀑布流程。成熟产品经常从漏斗异常出发，回到用户旅程重新理解问题；新政策出现时，也要重新检查 PEST 和商业模式。框架之间真正的关系是：**前面的框架帮助选择方向，后面的框架帮助验证和修正方向。**
 

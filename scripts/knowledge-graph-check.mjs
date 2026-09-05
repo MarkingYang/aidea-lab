@@ -36,6 +36,27 @@ const maintainedSeries = new Map([
     'composable-agent-harness-research-method',
     'composable-agent-harness-synthesis',
   ]],
+  ['mem0-system', [
+    'mem0-series-overview',
+    'mem0-add-pipeline',
+    'mem0-hybrid-retrieval',
+    'mem0-production-boundaries',
+    'mem0-series-synthesis',
+  ]],
+  ['openviking-system', [
+    'openviking-series-overview',
+    'openviking-context-layers',
+    'openviking-hierarchical-retrieval',
+    'openviking-session-governance',
+    'openviking-series-synthesis',
+  ]],
+  ['tencentdb-agent-memory-system', [
+    'tencentdb-agent-memory-overview',
+    'tencentdb-agent-memory-proxy',
+    'tencentdb-agent-memory-layers',
+    'tencentdb-agent-memory-governance',
+    'tencentdb-agent-memory-synthesis',
+  ]],
   ['hermes-agent-system', [
     'hermes-agent-series-overview',
     'hermes-agent-architecture-deep-dive',
