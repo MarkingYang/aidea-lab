@@ -69,14 +69,15 @@
       "id": "harness-engineering",
       "topic": "harness",
       "title": "架构与运行循环",
-      "description": "任务契约、控制循环与停止条件。",
+      "description": "从 Prompt、Context 与 Harness 进入任务契约、反馈循环、执行图与停止条件。",
       "articles": [
         "prompt-context-harness-engineering",
         "harness-engineering-map",
-        "harness-engineering-loop"
+        "harness-engineering-loop",
+        "loop-graph-engineering"
       ],
-      "outcome": "任务契约、控制循环与停止条件。",
-      "question": "任务契约、控制循环与停止条件。"
+      "outcome": "能划分任务责任，设计有界循环、节点交接与可验收的执行结构。",
+      "question": "Agent 怎样根据反馈持续推进，并组织有分支和依赖的复杂任务？"
     },
     {
       "id": "harness-tools",

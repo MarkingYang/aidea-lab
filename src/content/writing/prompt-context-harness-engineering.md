@@ -227,6 +227,8 @@ flowchart TB
 
 ## 参考资料
 
+继续阅读 [Loop Engineering 与 Graph Engineering](/writing/loop-graph-engineering/)，从指令、上下文和 Harness 的分工，进入反馈循环、执行依赖与状态交接。
+
 资料核对日期：2026-09-05。上述三层划分、资料核验案例和练习方案为本文的工程归纳；下列材料提供方法、实践与协议依据，不代表这些方案已经在本站完成模型效果评测。
 
 - [Anthropic：Prompt engineering overview](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview)，明确成功标准与提示词优化的适用范围。
