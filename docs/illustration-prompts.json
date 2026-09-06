@@ -8,15 +8,15 @@
       "id": "engineering-scopes",
       "article": "prompt-context-harness-engineering",
       "dimension": "职责总览",
-      "purpose": "同一核验任务的三种工程职责",
-      "prompt": "Create an original educational infographic for a Chinese engineering article. Style reference: white paper, hand-drawn black ink outlines, rounded boxes, gentle mint / powder blue / lavender / pale yellow marker fills, large friendly hand-lettered headings, tiny simple line icons, generous whitespace. Similar visual language to the supplied cache explainer examples, but original composition and content. No logos, watermarks, website names, fake UI, gradients or photorealism. Wide landscape 1536 x 1024 or similar 3:2 canvas. All content inside ample margins. Chinese labels must be correct, large, crisp and easy to read at article width. Use the EXACT short labels specified below, no extra paragraphs or invented claims. Colored badges and arrow directions have semantic meaning. One clear concept per image. Prioritize correctness over decorative detail. Title: “Prompt、Context、Harness 各管什么”. Three horizontal pastel lanes with a left category tab and a simple illustrated example to the right. Mint lane “Prompt” with subtitle “明确判断规则”: document icon “发布日 ≠ 生效日” → outlined proposal note “分别核对字段”. Blue lane “Context” with subtitle “提供有效证据”: two source cards “有效公告 v2” and “待核验记录 r7”, both arrows into a reading tray “本轮输入”; a small grey separate card “旧公告 v1” labeled “仅作历史”. Lavender lane “Harness” with subtitle “控制执行与验收”: “提案” → “检查许可” → “创建工单” → “回读验收”. Under lanes a small shared caption “三种职责相互配合”. Do not portray these as three products or a mandatory chronological upgrade path.",
-      "asset": "src/assets/illustrations/engineering-scopes.png",
-      "generation_file": "exec-62826424-8bc5-4697-87cc-49e86db22d74.png",
-      "alt": "Prompt 规定怎样判断字段，Context 提供有效公告与待核验记录，Harness 检查许可、执行创建并回读验收。",
-      "caption": "职责图解｜以资料核验为例；发布日与生效日是不同字段，三种职责共同完成任务。",
+      "purpose": "购物车 Bug 修复任务中的三种工程职责",
+      "prompt": "Create an original Chinese educational infographic, 1536 x 1024 landscape. White paper, hand-drawn black ink, rounded boxes, soft mint, powder blue and lavender fills, friendly large handwritten Chinese labels, ample whitespace; match a concise hand-drawn engineering explainer. No logos or watermarks. Title exactly “修复购物车：三种工程职责”. Three horizontal pastel lanes with left category tabs. Mint lane “Prompt” / “定义正确行为”: a simple shopping cart icon beside “数量改为 0”, arrow to an empty item row icon with text “移除商品 · 重算总价”. Blue lane “Context” / “提供当前依据”: two document cards “当前代码” and “现有测试” plus a third small page “项目约定”, each with arrows into an input tray labeled “本轮输入”. A separate grey card “旧接口文档” with small label “已失效”, no arrow to the tray. Lavender lane “Harness” / “执行并验证”: “修改代码” → “运行测试” → “提交 PR” → “查询确认”. Above arrow into 提交 PR a small label “验收通过”; imply publish only after tests succeed, no automatic merge. At bottom short sentence “规则要清楚，依据要有效，结果要验证”. Use only these short labels, correct readable Chinese. Do not add code paths, numeric scores, issue tickets or an API architecture. The task is fixing a cart bug, testing and submitting a pull request; three responsibilities work together, not successive product levels.",
+      "asset": "src/assets/illustrations/engineering-scopes-cart.png",
+      "generation_file": "exec-2b4f0e7f-9f85-49f6-8ba9-d794f5345944.png",
+      "alt": "Prompt 定义数量为零时移除商品并重算总价；Context 提供当前代码、测试和项目约定；Harness 修改代码、运行测试，验收通过后提交并查询 PR。",
+      "caption": "职责图解｜沿用单件商品购物车的修复任务。移除后总价为零；提交 PR 前先通过约定验收，提交后再查询确认。",
       "placement": "论点后的示例图解",
-      "asset_sha256": "ec9b0bf4065031009ae6a257cbd712bf0be073d38775276ae204d160f690f215",
-      "article_sha256": "e803c7d240ee0888d37ce330d5a6ce24dde9a12826eae34c4935d976c89d84a8"
+      "asset_sha256": "8b74bcd66c2bb4085c91484f3ae43d819402ca37b2430a56598746b3a64bcc88",
+      "article_sha256": "bf624b1673539d9c7dad0bb2c13b55f73071ce3faf44f67e6e12a8115fbe1acb"
     },
     {
       "id": "mini-harness-assembly",

@@ -15,7 +15,7 @@ readingTime: 6 min
 
 Harness 是围绕模型组织任务的运行系统。模型提出下一步，Harness 负责装配上下文、限制执行范围、保存运行状态，并用实际结果决定继续还是结束。要理解它，先把职责和接口画清，再选择实现组件。
 
-它与提示词工程、上下文工程的关联，可先阅读 [从 Prompt 到 Context，再到 Harness](/writing/prompt-context-harness-engineering/)，沿同一个资料核验任务理解三者的分工与演变。
+它与提示词工程、上下文工程的关联，可先阅读 [从 Prompt 到 Context，再到 Harness](/writing/prompt-context-harness-engineering/)，沿同一个购物车 Bug 修复任务理解三者的分工与配合。
 
 ```mermaid
 flowchart TD

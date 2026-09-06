@@ -21,7 +21,7 @@
 
 | 专题 | 文章 | 保留 Mermaid 数 | 本轮处理 |
 | --- | --- | ---: | --- |
-| 架构与运行循环 | [从 Prompt 到 Context，再到 Harness：Agent 工程如何走向任务闭环](../src/content/writing/prompt-context-harness-engineering.md) | 1 | 论点后的示例图解：同一核验任务的三种工程职责 |
+| 架构与运行循环 | [从 Prompt 到 Context，再到 Harness：Agent 工程如何走向任务闭环](../src/content/writing/prompt-context-harness-engineering.md) | 1 | 论点后的示例图解：购物车 Bug 修复任务中的三种工程职责 |
 | 架构与运行循环 | [Harness 架构：任务契约、模块职责与建设顺序](../src/content/writing/harness-engineering-map.md) | 1 | 保留现有机制图；具体对照由正文与表格承接 |
 | 架构与运行循环 | [运行循环与规划：状态、进展和停止条件](../src/content/writing/harness-engineering-loop.md) | 1 | 保留现有机制图；具体对照由正文与表格承接 |
 | 架构与运行循环 | [Loop Engineering 与 Graph Engineering：Agent 如何持续推进，又怎样组织复杂任务](../src/content/writing/loop-graph-engineering.md) | 2 | 保留现有机制图；具体对照由正文与表格承接 |
@@ -128,3 +128,7 @@ BLOG_BASE_URL=http://localhost:4321 node scripts/knowledge-browser-check.mjs
 ```
 
 浏览器脚本需要 Playwright 与 Chrome；Playwright 不在项目依赖中时可通过 `BLOG_PLAYWRIGHT_ROOT` 指向已安装的运行时依赖目录。人工图文复核与自动浏览器检查各自记录，自动检查不验证图中文字的事实准确性。
+
+## 案例修订：购物车 Bug
+
+按读者反馈，将 Prompt／Context／Harness 总览全文改用购物车零数量 Bug、回归测试与 PR 交付；同步替换职责图、反例和工程主文的导读。旧版资料核验职责 PNG 保留为历史原稿，当前文章引用 `engineering-scopes-cart.png`。本地工单实验保留其原有验证范围，与购物车练习明确区分。新案例及图中的数据均为教学设定。
