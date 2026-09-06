@@ -20,571 +20,970 @@
       "series": "harness-engineering",
       "title": "Harness 架构：任务契约、模块职责与建设顺序",
       "asset": "src/assets/illustrations/articles/harness-engineering-map.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “Harness 的四份记录”. Four separate pastel illustrated record cards in a 2x2 grid, NO arrows. Labels: “任务契约 / 要交付什么”; “运行状态 / 进行到哪里”; “业务资源 / 实际发生什么”; “验收记录 / 哪些要求已通过”. Center short note “模型提案不等于实际交付”. Footer “职责可以同进程，记录不能混为一谈”. No database transactional guarantee.",
       "alt": "任务契约记录目标，运行状态记录进度，业务资源记录实际结果，验收记录说明哪些要求已通过。",
-      "caption": "图解｜四份记录分别回答目标、进度、事实与验收；模型提案不能代替业务资源。"
+      "caption": "图解｜四份记录分别回答目标、进度、事实与验收；模型提案不能代替业务资源。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-35387118-d743-4135-b02a-e2b28d4ec1da.png",
+      "sha256": "e009a4f8ebce2642530687d1b806508c7b88a82074f276fd9f8016a2fc99801c",
+      "placement": "after-opening"
     },
     {
       "article": "harness-engineering-loop",
       "series": "harness-engineering",
       "title": "运行循环与规划：状态、进展和停止条件",
       "asset": "src/assets/illustrations/articles/harness-engineering-loop.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “下一步：继续、等待，还是结束”. Three horizontal numbered lanes, NOT connected with arrows. Mint “继续” with small cards “有新进展”“有权限”“有预算” and an action icon. Blue “等待” with “缺信息或许可” and an event bell “有效事件到达后恢复”. Lavender “结束” splits two boxes “验收通过：交付证据” and “取消或预算耗尽：报告未完成”. Footer “模型停止生成，不等于任务成功”.",
       "alt": "运行器在有进展且权限与预算允许时继续，缺信息或许可时等待；验收通过才能交付成功，取消或预算耗尽应报告未完成。",
-      "caption": "图解｜三种出口取决于当前事实；已经派发但未确认的写入仍需对账。"
+      "caption": "图解｜三种出口取决于当前事实；已经派发但未确认的写入仍需对账。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-81543c1a-fd89-4049-adaa-acc133e7dcbe.png",
+      "sha256": "92b89f53eb3ecd8addcb9765a2c8f6a36829053e43057d75009f007a0160e72e",
+      "placement": "after-opening"
     },
     {
       "article": "loop-graph-engineering",
       "series": "harness-engineering",
       "title": "Loop Engineering 与 Graph Engineering：Agent 如何持续推进，又怎样组织复杂任务",
       "asset": "src/assets/illustrations/articles/loop-graph-engineering.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “Loop 与 Graph 怎样配合”. Top blue lane titled “Graph：组织依赖” with a split into three document cards “公告 A”“公告 B”“公告 C” and all converge into “按分支身份汇总”. Bottom mint lane titled “Loop：利用反馈”, three boxes “读取证据” → “发现缺口” → “补充查找”, with simple curved return arrow to 读取证据, a side note “有界探索”. No arrows connecting the two lanes. Footer “每个核验分支可有自己的 Loop”.",
       "alt": "Graph 把三份公告的核验分开并按分支身份汇总；每个分支内部可以用有界 Loop 根据证据缺口继续查找。",
-      "caption": "图解｜外层组织依赖，内层利用反馈；收到三个结果不代表三个不同分支都已完成。"
+      "caption": "图解｜外层组织依赖，内层利用反馈；收到三个结果不代表三个不同分支都已完成。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-6533c2db-44c5-4fff-85f8-5e1130155741.png",
+      "sha256": "3ef13e0b31ba61ffce1c58960cc50570d3d715c8a0f27a0dde70de1b960d0115",
+      "placement": "after-opening"
     },
     {
       "article": "langchain-langgraph-frameworks-and-protocols",
       "series": "harness-engineering",
       "title": "LangChain 与 LangGraph：从模型调用到可恢复的 Agent，协议处在哪一层？",
       "asset": "src/assets/illustrations/articles/langchain-langgraph-frameworks-and-protocols.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “框架、运行时、协议各管什么”. Four pastel horizontal lanes with icons, NO arrows between lanes: “LangChain / 模型与工具循环”; “LangGraph / 状态、节点与暂停”; “MCP / 跨系统交换消息”; “业务后端 / 授权与真实资源”. Bottom sentence “接通协议，不代表完成业务”. Do not depict strict stack, versions, performance ranks or mandatory dependencies.",
       "alt": "LangChain 组织模型与工具，LangGraph 管理有状态流程，MCP 约定消息交换，业务后端负责权限和真实资源。",
-      "caption": "图解｜四种职责可以配合；协议不是编排框架，检查点也不能代替业务存储。"
+      "caption": "图解｜四种职责可以配合；协议不是编排框架，检查点也不能代替业务存储。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-f6e2201a-9391-4dc8-bd90-fd9296dcc25c.png",
+      "sha256": "0b24bf85a333f53b1e0c7b367ff1c174e3d81b7cc1a9599c84fdff156542b3a9",
+      "placement": "before-architecture"
     },
     {
       "article": "multi-agent-architecture-selection",
       "series": "harness-engineering",
       "title": "Multi-Agent 技术架构选型：从任务拆分到框架与部署决策",
       "asset": "src/assets/illustrations/articles/multi-agent-architecture-selection.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “什么时候值得增加 Agent”. Two pastel comparison lanes. Top mint “固定字段核对” shows 3 document icons → one gear “并行工具” → report “汇总”. Bottom blue “各自需要多步查证” shows 3 separate boxed small loops labeled “独立上下文 A”“独立上下文 B”“独立上下文 C”, all feed ONE person clipboard “协调与验收”. Footer “收益要覆盖：上下文、协调、重试成本”. No claim more agents more accurate.",
       "alt": "字段固定的三份材料可通过并行工具核对；各分支都需要独立多步查证时，才考虑独立上下文与 Agent，并由协调者汇总验收。",
-      "caption": "图解｜并行调用与多 Agent 是不同选择；拆分后必须核算协调成本与交付责任。"
+      "caption": "图解｜并行调用与多 Agent 是不同选择；拆分后必须核算协调成本与交付责任。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-790f03fe-4e6c-4e76-b7ac-0b1f03303b94.png",
+      "sha256": "347c4ce1a22f9e61c37af75b25923411d8646654a5ddcc0a70ad74e090c47b34",
+      "placement": "after-opening"
     },
     {
       "article": "harness-engineering-tools",
       "series": "harness-tools",
       "title": "工具契约：输入、结果与错误语义",
       "asset": "src/assets/illustrations/articles/harness-engineering-tools.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “工具输入：哪些能由模型填写”. Two input cards side by side: mint “候选参数 / 资料编号 · 标题”; blue “可信执行上下文 / 身份 · 操作键 · 审批”. Both arrows into a wide gate “校验与授权”, then arrow to “业务执行”, then arrow to “查询验收”. Grey small note under first card “模型不能自填身份来授权”. Footer “Schema 合法 ≠ 有权执行”. Do not show API standard fields.",
       "alt": "资料编号和标题是待校验的候选参数；身份、操作键与审批来自可信运行上下文，两者在校验授权后进入业务执行和查询验收。",
-      "caption": "图解｜这是应用的逻辑分工；字段格式合法不证明身份、权限或最终结果正确。"
+      "caption": "图解｜这是应用的逻辑分工；字段格式合法不证明身份、权限或最终结果正确。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-e5f91751-3125-4ef0-9f0c-2fc09ec92ee9.png",
+      "sha256": "b92761a4dc9e0c91eda91db08046c6cd072f2254ed5a03cf7c4523cb936ed545",
+      "placement": "after-opening"
     },
     {
       "article": "harness-foundations-mcp-lifecycle",
       "series": "harness-tools",
       "title": "MCP 生命周期：握手、目录、断线与取消",
       "asset": "src/assets/illustrations/articles/harness-foundations-mcp-lifecycle.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “三种 ID，别混着用”. Three distinct pastel ID badges in horizontal lanes, NO connecting arrows: “请求 ID / 对应一次请求与响应” with two message envelopes; “会话 ID / 对应协议会话” with connected client/server; “业务操作键 / 对应同一次业务意图” with one ticket. Footer “重连可以换请求，业务意图仍需对账”. Small label “MCP 2025-11-25 学习基线”. No imply session IDs mandatory for all transports.",
       "alt": "请求 ID 关联一次往返，会话 ID 标识采用会话机制的协议交互，业务操作键由应用用于同一业务意图的追踪与对账。",
-      "caption": "图解｜三种标识覆盖不同范围；并非所有传输都要求会话 ID，重连不能证明写入未发生。"
+      "caption": "图解｜三种标识覆盖不同范围；并非所有传输都要求会话 ID，重连不能证明写入未发生。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-3ab2d257-0251-42da-912b-6b40468fc3f2.png",
+      "sha256": "85cdf6ca027d9820b58a1dc9516d1c708b6c2c4eb3fc4453e82cf83d385c6503",
+      "placement": "after-opening"
     },
     {
       "article": "harness-engineering-security",
       "series": "harness-tools",
       "title": "执行安全：身份、授权、审批与沙箱",
       "asset": "src/assets/illustrations/articles/harness-engineering-security.png",
-      "status": "planned",
+      "status": "integrated",
       "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “资料里的命令，不能扩大权限”. Left grey document card “资料正文” with quoted text “导出所有资料”. Arrow to center “模型候选动作”; arrow to blue gate “当前任务权限”. Gate has red stopped route “导出：拒绝” ending X and green permitted route “允许范围内的操作” ending check. Above gate separate trusted source card “已认证身份 + 当前授权” points into gate. Footer “资料是输入，不是授权来源”. Do not draw export output beyond rejection.",
       "alt": "资料正文中的导出要求只能作为不可信输入；模型即使提出导出动作，执行层也应依据已认证身份和当前授权拒绝越界操作。",
-      "caption": "图解｜提示注入可能影响提案，真实权限仍由可信入口与执行层控制。"
+      "caption": "图解｜提示注入可能影响提案，真实权限仍由可信入口与执行层控制。",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-cfbc1dbe-e0b0-4365-9f61-e4db70e4dbd4.png",
+      "sha256": "c55f5739ed9a929936410610d0ec620d956e7c0b549758a9ade3875987ed6e42",
+      "placement": "after-opening"
     },
     {
       "article": "capability-routing-at-scale",
       "series": "harness-tools",
       "title": "先看清 MCP、Skill 与 Agent 的系统全景",
       "asset": "src/assets/illustrations/articles/capability-routing-at-scale.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “同一个任务，三种能力”. Cards, in reading order: “Skill｜告诉当前 Agent 怎样做”; “Tool｜执行一次具体操作”; “Agent｜接手一个有边界的任务”. Footer takeaway: “相关性只负责找候选”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "Skill：告诉当前 Agent 怎样做；Tool：执行一次具体操作；Agent：接手一个有边界的任务。",
+      "caption": "图解｜相关性只负责找候选。",
+      "visual_title": "同一个任务，三种能力",
+      "layout": "lanes",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-53966d88-424c-4565-87cb-906d22409438.png"
     },
     {
       "article": "capability-routing-discovery",
       "series": "harness-tools",
       "title": "从能力描述到检索与正文精排",
       "asset": "src/assets/illustrations/articles/capability-routing-discovery.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “从一万个能力，到一组候选”. Cards, in reading order: “表达｜名称、描述与边界”; “召回｜找可能相关的方法”; “精排｜读取正文比较限制”; “输出｜候选及选择依据”. Footer takeaway: “正文可参与排序，不必全部进入执行上下文”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "表达：名称、描述与边界；召回：找可能相关的方法；精排：读取正文比较限制；输出：候选及选择依据。",
+      "caption": "图解｜正文可参与排序，不必全部进入执行上下文。",
+      "visual_title": "从一万个能力，到一组候选",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-a8cd203c-fb32-4990-a929-373a6329a719.png"
     },
     {
       "article": "capability-routing-execution",
       "series": "harness-tools",
       "title": "从候选列表到可执行方案",
       "asset": "src/assets/illustrations/articles/capability-routing-execution.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “选择能完成任务的路径”. Cards, in reading order: “目标｜会议整理成文档”; “依赖｜取得材料与写入权限”; “执行｜总结、创建、回读”; “边界｜先不要发群”. Footer takeaway: “选中创建工具，还没有完成整个任务”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "目标：会议整理成文档；依赖：取得材料与写入权限；执行：总结、创建、回读；边界：先不要发群。",
+      "caption": "图解｜选中创建工具，还没有完成整个任务。",
+      "visual_title": "选择能完成任务的路径",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-74b8ac19-b479-4dd5-9b78-2f4a637c7115.png"
     },
     {
       "article": "capability-routing-evaluation",
       "series": "harness-tools",
       "title": "用评测与治理建立生产信心",
       "asset": "src/assets/illustrations/articles/capability-routing-evaluation.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “失败应该修在哪一层”. Cards, in reading order: “没找到｜目录与召回”; “选不对｜方案与依赖”; “做不了｜参数与权限”; “交付差｜内容与验收”. Footer takeaway: “分层定位，再比较成功任务成本”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "没找到：目录与召回；选不对：方案与依赖；做不了：参数与权限；交付差：内容与验收。",
+      "caption": "图解｜分层定位，再比较成功任务成本。",
+      "visual_title": "失败应该修在哪一层",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-c2288e17-dcb6-4d7f-ab7a-755e7f7f5227.png"
     },
     {
       "article": "harness-foundations-concurrency",
       "series": "harness-recovery",
       "title": "并发控制：版本冲突、锁与背压",
       "asset": "src/assets/illustrations/articles/harness-foundations-concurrency.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “同一版本，只能接受一次更新”. Cards, in reading order: “任务 A｜读取版本 7”; “任务 B｜读取版本 7”; “A 提交成功｜资源变成版本 8”; “B 版本冲突｜重新读取并判断”. Footer takeaway: “冲突后重算内容，不只是换版本号”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "任务 A：读取版本 7；任务 B：读取版本 7；A 提交成功：资源变成版本 8；B 版本冲突：重新读取并判断。",
+      "caption": "图解｜冲突后重算内容，不只是换版本号。",
+      "visual_title": "同一版本，只能接受一次更新",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-13646193-8de6-4f5f-9023-578eeed3297e.png"
     },
     {
       "article": "harness-engineering-recovery",
       "series": "harness-recovery",
       "title": "持久化与恢复：事务、幂等、对账和补偿",
       "asset": "src/assets/illustrations/articles/harness-engineering-recovery.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “超时以后，先查发生了什么”. Cards, in reading order: “准备｜保存原操作键”; “发送｜请求外部写入”; “结果未知｜按原键查询”; “已有结果｜回读并完成记录”. Footer takeaway: “结果未知时，不直接再创建一次”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "准备：保存原操作键；发送：请求外部写入；结果未知：按原键查询；已有结果：回读并完成记录。",
+      "caption": "图解｜结果未知时，不直接再创建一次。",
+      "visual_title": "超时以后，先查发生了什么",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-e066040e-382d-4de2-a7ac-3f5c611271b4.png"
     },
     {
       "article": "harness-foundations-lab",
       "series": "harness-recovery",
       "title": "故障实验：并发冲突、业务恢复与协议状态",
       "asset": "src/assets/illustrations/articles/harness-foundations-lab.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “把故障放到可观察的位置”. Cards, in reading order: “并发｜两个任务争同一版本”; “恢复｜写入后丢失响应”; “协议｜连接恢复而会话失效”; “检查｜资源、日志与状态一致”. Footer takeaway: “实验验证边界，不能代替全部生产条件”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "并发：两个任务争同一版本；恢复：写入后丢失响应；协议：连接恢复而会话失效；检查：资源、日志与状态一致。",
+      "caption": "图解｜实验验证边界，不能代替全部生产条件。",
+      "visual_title": "把故障放到可观察的位置",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-3f28beec-6f4f-4cee-ab47-b5122df1ddb3.png"
     },
     {
       "article": "harness-operations-context",
       "series": "agent-memory",
       "title": "上下文组装：材料、状态与输入预算",
       "asset": "src/assets/illustrations/articles/harness-operations-context.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “一次请求，需要四类输入”. Cards, in reading order: “目标｜范围与完成条件”; “依据｜当前资料与来源”; “状态｜已做与尚未解决”; “能力｜本轮工具与预算”. Footer takeaway: “先保留必要事实，再压缩篇幅”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "目标：范围与完成条件；依据：当前资料与来源；状态：已做与尚未解决；能力：本轮工具与预算。",
+      "caption": "图解｜先保留必要事实，再压缩篇幅。",
+      "visual_title": "一次请求，需要四类输入",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-75f8ca2b-8461-4765-ac7e-0e93b6e2c318.png"
     },
     {
       "article": "agent-memory-design-competitive-analysis",
       "series": "agent-memory",
       "title": "先把记忆放回完整生命周期",
       "asset": "src/assets/illustrations/articles/agent-memory-design-competitive-analysis.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “历史、记忆、能力分别是什么”. Cards, in reading order: “历史｜一月住在上海”; “当前记忆｜六月已搬到杭州”; “任务方法｜如何核对有效时间”. Footer takeaway: “回答现在，要区分记录时间与有效时间”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "历史：一月住在上海；当前记忆：六月已搬到杭州；任务方法：如何核对有效时间。",
+      "caption": "图解｜回答现在，要区分记录时间与有效时间。",
+      "visual_title": "历史、记忆、能力分别是什么",
+      "layout": "lanes",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-372d0429-0722-492d-83a1-d61d62356d75.png"
     },
     {
       "article": "agent-memory-writing",
       "series": "agent-memory",
       "title": "保留历史，还是维护当前事实",
       "asset": "src/assets/illustrations/articles/agent-memory-writing.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “同一组记录，两种问题”. Cards, in reading order: “一月记录｜住在上海”; “六月记录｜搬到杭州”; “问一月｜还原当时事实”; “问现在｜采用当前有效事实”. Footer takeaway: “覆盖会丢历史，追加需要读取规则”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "一月记录：住在上海；六月记录：搬到杭州；问一月：还原当时事实；问现在：采用当前有效事实。",
+      "caption": "图解｜覆盖会丢历史，追加需要读取规则。",
+      "visual_title": "同一组记录，两种问题",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-4a9309db-edbc-499a-9012-c5d6f494327e.png"
     },
     {
       "article": "agent-memory-governance",
       "series": "agent-memory",
       "title": "一条记忆开始跨团队流动之后",
       "asset": "src/assets/illustrations/articles/agent-memory-governance.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “一条经验怎样进入团队”. Cards, in reading order: “来源｜保留原始任务证据”; “审核｜检查范围和失败条件”; “装配｜只交给适用的 Agent”; “撤回｜同步处理索引与缓存”. Footer takeaway: “共享之前，先说明谁可以怎样使用”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "来源：保留原始任务证据；审核：检查范围和失败条件；装配：只交给适用的 Agent；撤回：同步处理索引与缓存。",
+      "caption": "图解｜共享之前，先说明谁可以怎样使用。",
+      "visual_title": "一条经验怎样进入团队",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-0aca7906-1065-44f5-8e59-183491134e02.png"
     },
     {
       "article": "harness-operations-model-gateway",
       "series": "harness-operations",
       "title": "换一个模型，为什么不是改一个名字",
       "asset": "src/assets/illustrations/articles/harness-operations-model-gateway.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “备用模型必须满足哪些条件”. Cards, in reading order: “输入｜能处理原资料”; “工具｜保留参数和调用语义”; “范围｜符合数据去向限制”; “预算｜时延与费用仍可接受”. Footer takeaway: “接口恢复可用，不代表任务仍可完成”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "输入：能处理原资料；工具：保留参数和调用语义；范围：符合数据去向限制；预算：时延与费用仍可接受。",
+      "caption": "图解｜接口恢复可用，不代表任务仍可完成。",
+      "visual_title": "备用模型必须满足哪些条件",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-afc954c1-ee95-4e68-a8c0-78f1edbf2656.png"
     },
     {
       "article": "harness-operations-multi-agent",
       "series": "harness-operations",
       "title": "增加一个 Agent，需要增加哪些责任",
       "asset": "src/assets/illustrations/articles/harness-operations-multi-agent.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “增加 Agent，也增加交接责任”. Cards, in reading order: “输入｜独立且边界清楚”; “输出｜可检查的子任务产物”; “写入｜文件归属与合并规则”; “控制｜预算、取消与验收者”. Footer takeaway: “独立子任务才适合并行”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "输入：独立且边界清楚；输出：可检查的子任务产物；写入：文件归属与合并规则；控制：预算、取消与验收者。",
+      "caption": "图解｜独立子任务才适合并行。",
+      "visual_title": "增加 Agent，也增加交接责任",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-0094edf4-0633-4ae3-9a06-c088d25e09d7.png"
     },
     {
       "article": "harness-operations-observability",
       "series": "harness-operations",
       "title": "沿着一条失败任务，把故障定位到边界",
       "asset": "src/assets/illustrations/articles/harness-operations-observability.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “三种 ID，串起不同事实”. Cards, in reading order: “Run ID｜这一次任务”; “Operation ID｜同一次业务意图”; “Trace ID｜这一次观测调用”. Footer takeaway: “同一操作可以经历多次网络尝试”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "Run ID：这一次任务；Operation ID：同一次业务意图；Trace ID：这一次观测调用。",
+      "caption": "图解｜同一操作可以经历多次网络尝试。",
+      "visual_title": "三种 ID，串起不同事实",
+      "layout": "lanes",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-a72d6883-dc35-4985-87d8-6c7ab50800d2.png"
     },
     {
       "article": "harness-operations-production",
       "series": "harness-operations",
       "title": "从一个 Worker 到可恢复的任务服务",
       "asset": "src/assets/illustrations/articles/harness-operations-production.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “旧 Worker 恢复后，谁能写”. Cards, in reading order: “旧 Worker｜租约已失效”; “新 Worker｜持有新的执行代次”; “资源端｜拒绝过时代次的提交”. Footer takeaway: “租约管活性，资源端校验约束旧写入”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "旧 Worker：租约已失效；新 Worker：持有新的执行代次；资源端：拒绝过时代次的提交。",
+      "caption": "图解｜租约管活性，资源端校验约束旧写入。",
+      "visual_title": "旧 Worker 恢复后，谁能写",
+      "layout": "lanes",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-a6aed3f3-d81c-4c40-b1d2-91f810e4fb16.png"
     },
     {
       "article": "harness-operations-release",
       "series": "harness-operations",
       "title": "让每一次变化都有进入生产和退出生产的证据",
       "asset": "src/assets/illustrations/articles/harness-operations-release.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “发布的是一整套组合”. Cards, in reading order: “模型｜版本与路由”; “上下文｜规则与压缩策略”; “工具｜定义与执行策略”; “运行｜存储与部署配置”. Footer takeaway: “回滚时要能还原同一组合”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "模型：版本与路由；上下文：规则与压缩策略；工具：定义与执行策略；运行：存储与部署配置。",
+      "caption": "图解｜回滚时要能还原同一组合。",
+      "visual_title": "发布的是一整套组合",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-ec90327c-c740-44ca-844f-a7a414f69112.png"
     },
     {
       "article": "harness-integration-model",
       "series": "harness-integration",
       "title": "模型、上下文与有界循环怎样组合",
       "asset": "src/assets/illustrations/articles/harness-integration-model.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “模型接进循环之前”. Cards, in reading order: “任务｜输入与停止条件”; “上下文｜有限且带来源”; “适配器｜保留调用与错误语义”; “循环｜根据工具结果继续”. Footer takeaway: “模型适配与任务调度各有职责”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "任务：输入与停止条件；上下文：有限且带来源；适配器：保留调用与错误语义；循环：根据工具结果继续。",
+      "caption": "图解｜模型适配与任务调度各有职责。",
+      "visual_title": "模型接进循环之前",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-1caf6990-05b1-42d4-9fbc-ac13e2a62d8f.png"
     },
     {
       "article": "harness-integration-mcp",
       "series": "harness-integration",
       "title": "工具、执行策略与 MCP 怎样接线",
       "asset": "src/assets/illustrations/articles/harness-integration-mcp.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “工具调用必须经过执行检查”. Cards, in reading order: “提案｜模型给出参数”; “校验｜类型、身份与当前权限”; “调用｜本地工具或 MCP”; “回读｜真实结果进入状态”. Footer takeaway: “MCP 连接成功，不会自动批准动作”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "提案：模型给出参数；校验：类型、身份与当前权限；调用：本地工具或 MCP；回读：真实结果进入状态。",
+      "caption": "图解｜MCP 连接成功，不会自动批准动作。",
+      "visual_title": "工具调用必须经过执行检查",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-89385cd0-a643-4805-8335-74e5da0bfc35.png"
     },
     {
       "article": "harness-integration-lab",
       "series": "harness-integration",
       "title": "从模块组装到运行：完成你的第一版 Mini Harness",
       "asset": "src/assets/illustrations/articles/harness-integration-lab.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “第一版 Mini Harness 怎样验收”. Cards, in reading order: “装配｜任务、模型与工具”; “运行｜按预算推进循环”; “故障｜在写入边界中断”; “恢复｜查询资源并验收”. Footer takeaway: “同一实验，同时检查正常与失败路径”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "装配：任务、模型与工具；运行：按预算推进循环；故障：在写入边界中断；恢复：查询资源并验收。",
+      "caption": "图解｜同一实验，同时检查正常与失败路径。",
+      "visual_title": "第一版 Mini Harness 怎样验收",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-4365b1d5-7507-4f1d-964a-3fb24139c951.png"
     },
     {
       "article": "composable-agent-harness-research-method",
       "series": "harness-projects",
       "title": "Harness 源码研究：对象分层、证据卡与实现路线",
       "asset": "src/assets/illustrations/articles/composable-agent-harness-research-method.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “讲清一个 GitHub 项目”. Cards, in reading order: “定位｜用途与边界”; “架构｜职责与数据流”; “机制｜一两个关键流程”; “上手｜短代码与三个配置”; “生态｜维护与许可证”; “源码｜入口到实现和测试”. Footer takeaway: “先给地图，再沿一条任务验证”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "定位：用途与边界；架构：职责与数据流；机制：一两个关键流程；上手：短代码与三个配置；生态：维护与许可证；源码：入口到实现和测试。",
+      "caption": "图解｜先给地图，再沿一条任务验证。",
+      "visual_title": "讲清一个 GitHub 项目",
+      "layout": "grid",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-7ee104db-285e-4834-822d-ff9e5d6fa9da.png"
     },
     {
       "article": "claude-code-internals-overview",
       "series": "harness-projects",
       "title": "Claude Code：执行循环、记忆与扩展机制",
       "asset": "src/assets/illustrations/articles/claude-code-internals-overview.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “Claude Code 的三种扩展职责”. Cards, in reading order: “规则与记忆｜进入上下文”; “Skills｜按需提供方法”; “Hooks｜响应工具和会话事件”. Footer takeaway: “执行边界还需权限与运行环境落实”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "规则与记忆：进入上下文；Skills：按需提供方法；Hooks：响应工具和会话事件。",
+      "caption": "图解｜执行边界还需权限与运行环境落实。",
+      "visual_title": "Claude Code 的三种扩展职责",
+      "layout": "lanes",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-f3807aef-55be-4b5f-9ec3-c2d0a328f383.png"
     },
     {
       "article": "codex-system-overview",
       "series": "harness-projects",
       "title": "Codex：运行时、沙箱与持续任务",
       "asset": "src/assets/illustrations/articles/codex-system-overview.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “Codex：执行与验收分开看”. Cards, in reading order: “模型提案｜想执行什么”; “执行策略｜可以触达什么”; “工具结果｜实际发生什么”; “测试与审查｜是否完成目标”. Footer takeaway: “获准执行，不代表结果合格”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "模型提案：想执行什么；执行策略：可以触达什么；工具结果：实际发生什么；测试与审查：是否完成目标。",
+      "caption": "图解｜获准执行，不代表结果合格。",
+      "visual_title": "Codex：执行与验收分开看",
+      "layout": "flow",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-7a026b57-4354-4cb7-bc24-434b973ae10a.png"
     },
     {
       "article": "kimi-code-system-overview",
       "series": "harness-projects",
       "title": "Kimi Code：Session、Skills 与任务委派",
       "asset": "src/assets/illustrations/articles/kimi-code-system-overview.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “Kimi Code：会话、方法与委派”. Cards, in reading order: “Session｜保存本次运行记录”; “Skill｜告诉模型怎样做”; “Agent｜接手独立子任务”. Footer takeaway: “恢复历史后，仍要检查外部实际状态”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "Session：保存本次运行记录；Skill：告诉模型怎样做；Agent：接手独立子任务。",
+      "caption": "图解｜恢复历史后，仍要检查外部实际状态。",
+      "visual_title": "Kimi Code：会话、方法与委派",
+      "layout": "lanes"
     },
     {
       "article": "opencode-system-overview",
       "series": "harness-projects",
       "title": "OpenCode：客户端、服务端与扩展系统",
       "asset": "src/assets/illustrations/articles/opencode-system-overview.png",
-      "status": "planned"
+      "status": "generated-local-unreviewed",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “OpenCode：多个界面，同一会话”. Cards, in reading order: “客户端｜TUI、桌面与 SDK”; “服务端｜Session、消息和运行”; “适配层｜模型、工具与 MCP”. Footer takeaway: “界面重连，不等于工具动作已完成”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "客户端：TUI、桌面与 SDK；服务端：Session、消息和运行；适配层：模型、工具与 MCP。",
+      "caption": "图解｜界面重连，不等于工具动作已完成。",
+      "visual_title": "OpenCode：多个界面，同一会话",
+      "layout": "lanes",
+      "source": "/Users/fei/.codex/generated_images/01a071a0-711a-7b03-81ee-418111bf1ecf/exec-d091449a-80ed-4078-99b2-3888ae4cb0a8.png"
     },
     {
       "article": "deepseek-harness-composition",
       "series": "harness-projects",
       "title": "DeepSeek Harness：插件怎样出现、协作，并真正退出",
       "asset": "src/assets/illustrations/articles/deepseek-harness-composition.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “插件替换，不能只换一个文件”. Cards, in reading order: “挂载｜等待依赖可用”; “运行｜登记监听和资源”; “卸载｜释放作用域内 Effect”; “替换｜检查旧实现已退出”. Footer takeaway: “外部副作用要有自己的清理策略”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "挂载：等待依赖可用；运行：登记监听和资源；卸载：释放作用域内 Effect；替换：检查旧实现已退出。",
+      "caption": "图解｜外部副作用要有自己的清理策略。",
+      "visual_title": "插件替换，不能只换一个文件",
+      "layout": "flow"
     },
     {
       "article": "deepseek-harness-state",
       "series": "harness-projects",
       "title": "DeepSeek Harness：历史不能丢，模型又不能看全部历史",
       "asset": "src/assets/illustrations/articles/deepseek-harness-state.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “一份完整历史，多种有限视图”. Cards, in reading order: “事件日志｜保留发生过的事实”; “上下文视图｜供当前模型使用”; “恢复判断｜检查未完成操作”. Footer takeaway: “压缩视图，不销毁原始证据”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "事件日志：保留发生过的事实；上下文视图：供当前模型使用；恢复判断：检查未完成操作。",
+      "caption": "图解｜压缩视图，不销毁原始证据。",
+      "visual_title": "一份完整历史，多种有限视图",
+      "layout": "lanes"
     },
     {
       "article": "deepseek-harness-execution",
       "series": "harness-projects",
       "title": "DeepSeek Harness：工具、PTC 和多 Agent，怎样不放大副作用",
       "asset": "src/assets/illustrations/articles/deepseek-harness-execution.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “工具参数必须是一份事实”. Cards, in reading order: “模型提出｜参数内容”; “运行时冻结｜形成调用事实”; “策略检查｜允许、询问或拒绝”; “获准执行｜使用同一份参数”. Footer takeaway: “权限收紧不能被后续插件重新放宽”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "模型提出：参数内容；运行时冻结：形成调用事实；策略检查：允许、询问或拒绝；获准执行：使用同一份参数。",
+      "caption": "图解｜权限收紧不能被后续插件重新放宽。",
+      "visual_title": "工具参数必须是一份事实",
+      "layout": "flow"
     },
     {
       "article": "hermes-agent-architecture-deep-dive",
       "series": "harness-projects",
       "title": "Hermes：长期运行的内核如何维持",
       "asset": "src/assets/illustrations/articles/hermes-agent-architecture-deep-dive.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “Hermes：任务跨会话继续”. Cards, in reading order: “Gateway｜触发与路由”; “Agent Loop｜模型和工具往返”; “Session｜保留任务过程”; “Memory 与 Skills｜复用背景和方法”. Footer takeaway: “能再次启动，不等于自动扩大授权”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "Gateway：触发与路由；Agent Loop：模型和工具往返；Session：保留任务过程；Memory 与 Skills：复用背景和方法。",
+      "caption": "图解｜能再次启动，不等于自动扩大授权。",
+      "visual_title": "Hermes：任务跨会话继续",
+      "layout": "grid"
     },
     {
       "article": "hermes-agent-runtime-services",
       "series": "harness-projects",
       "title": "Hermes：从工具循环到常驻服务",
       "asset": "src/assets/illustrations/articles/hermes-agent-runtime-services.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “工具先可用，再向模型展示”. Cards, in reading order: “工具登记｜名称、Schema 与 Handler”; “可用性检查｜依赖和环境就绪”; “选择集合｜本轮允许看到的能力”; “执行返回｜真实结果与错误”. Footer takeaway: “不要让模型围绕不存在的工具制定计划”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "工具登记：名称、Schema 与 Handler；可用性检查：依赖和环境就绪；选择集合：本轮允许看到的能力；执行返回：真实结果与错误。",
+      "caption": "图解｜不要让模型围绕不存在的工具制定计划。",
+      "visual_title": "工具先可用，再向模型展示",
+      "layout": "flow"
     },
     {
       "article": "hermes-agent-memory-governance",
       "series": "harness-projects",
       "title": "Hermes：经验如何积累而不失去边界",
       "asset": "src/assets/illustrations/articles/hermes-agent-memory-governance.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “Hermes 的四类记忆”. Cards, in reading order: “当前会话｜本次工作输入”; “Session 历史｜过去的证据”; “常驻 Memory｜短事实与偏好”; “Skills｜按需调用的方法”. Footer takeaway: “原始记录支持纠错，经验需要适用边界”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "当前会话：本次工作输入；Session 历史：过去的证据；常驻 Memory：短事实与偏好；Skills：按需调用的方法。",
+      "caption": "图解｜原始记录支持纠错，经验需要适用边界。",
+      "visual_title": "Hermes 的四类记忆",
+      "layout": "grid"
     },
     {
       "article": "pi-architecture-deep-dive",
       "series": "harness-projects",
       "title": "Pi：最小内核如何维持正确性",
       "asset": "src/assets/illustrations/articles/pi-architecture-deep-dive.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “Pi：把产品策略留在扩展点”. Cards, in reading order: “pi-ai｜模型协议适配”; “Agent Core｜消息、工具与循环”; “Coding Session｜压缩、重试和扩展”; “CLI 与 SDK｜不同接入方式”. Footer takeaway: “复用内核，不等于内置全部治理策略”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "pi-ai：模型协议适配；Agent Core：消息、工具与循环；Coding Session：压缩、重试和扩展；CLI 与 SDK：不同接入方式。",
+      "caption": "图解｜复用内核，不等于内置全部治理策略。",
+      "visual_title": "Pi：把产品策略留在扩展点",
+      "layout": "grid"
     },
     {
       "article": "pi-session-extension-architecture",
       "series": "harness-projects",
       "title": "Pi：运行历史如何成为可扩展 Session",
       "asset": "src/assets/illustrations/articles/pi-session-extension-architecture.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “会话是一棵树，不是一段文本”. Cards, in reading order: “共同历史｜已经发生的事件”; “分支 A｜原来的实现方案”; “分支 B｜重新选择的方案”; “当前上下文｜沿选定分支组织”. Footer takeaway: “保留旧分支，模型只读本轮需要的路径”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "共同历史：已经发生的事件；分支 A：原来的实现方案；分支 B：重新选择的方案；当前上下文：沿选定分支组织。",
+      "caption": "图解｜保留旧分支，模型只读本轮需要的路径。",
+      "visual_title": "会话是一棵树，不是一段文本",
+      "layout": "grid"
     },
     {
       "article": "pi-durable-harness-governance",
       "series": "harness-projects",
       "title": "Pi：如何走向可恢复的多进程系统",
       "asset": "src/assets/illustrations/articles/pi-durable-harness-governance.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “Pi 的两条实现线”. Cards, in reading order: “经典路径｜CLI 与本地 AgentSession”; “实验路径｜持久会话与 Worker”; “共同责任｜宿主落实权限和隔离”. Footer takeaway: “experimental 设计不能当作默认稳定能力”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "经典路径：CLI 与本地 AgentSession；实验路径：持久会话与 Worker；共同责任：宿主落实权限和隔离。",
+      "caption": "图解｜experimental 设计不能当作默认稳定能力。",
+      "visual_title": "Pi 的两条实现线",
+      "layout": "lanes"
     },
     {
       "article": "addy-agent-skills-overview",
       "series": "harness-skills",
       "title": "Addy Skills：工程生命周期与验证门槛",
       "asset": "src/assets/illustrations/articles/addy-agent-skills-overview.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “Addy Skills：工程阶段要有交付物”. Cards, in reading order: “定义｜明确问题与范围”; “计划｜拆出验证路径”; “构建｜形成最小修改”; “验证｜测试与评审证据”. Footer takeaway: “Skill 提供方法，CI 才能执行强制门槛”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "定义：明确问题与范围；计划：拆出验证路径；构建：形成最小修改；验证：测试与评审证据。",
+      "caption": "图解｜Skill 提供方法，CI 才能执行强制门槛。",
+      "visual_title": "Addy Skills：工程阶段要有交付物",
+      "layout": "flow"
     },
     {
       "article": "mattpocock-skills-overview",
       "series": "harness-skills",
       "title": "Matt Pocock Skills：需求对齐与反馈循环",
       "asset": "src/assets/illustrations/articles/mattpocock-skills-overview.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “先问清楚，再用测试推进”. Cards, in reading order: “澄清｜登录超时怎样触发”; “复现｜测试明确失败”; “修复｜只改必要实现”; “验证｜同一测试确认结果”. Footer takeaway: “例子中的输入和验收条件要保持一致”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "澄清：登录超时怎样触发；复现：测试明确失败；修复：只改必要实现；验证：同一测试确认结果。",
+      "caption": "图解｜例子中的输入和验收条件要保持一致。",
+      "visual_title": "先问清楚，再用测试推进",
+      "layout": "flow"
     },
     {
       "article": "ecc-architecture-deep-dive",
       "series": "harness-skills",
       "title": "ECC：如何把工程经验编译到不同平台",
       "asset": "src/assets/illustrations/articles/ecc-architecture-deep-dive.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “ECC 把资产装进不同宿主”. Cards, in reading order: “选择｜Profile 与目标平台”; “计划｜解析依赖和文件动作”; “检查｜冲突、路径与所有权”; “应用｜写入并保存安装记录”. Footer takeaway: “计划可检查，升级才能知道改了什么”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "选择：Profile 与目标平台；计划：解析依赖和文件动作；检查：冲突、路径与所有权；应用：写入并保存安装记录。",
+      "caption": "图解｜计划可检查，升级才能知道改了什么。",
+      "visual_title": "ECC 把资产装进不同宿主",
+      "layout": "flow"
     },
     {
       "article": "ecc-hook-runtime-memory",
       "series": "harness-skills",
       "title": "ECC：规则如何在事件边界真正发生",
       "asset": "src/assets/illustrations/articles/ecc-hook-runtime-memory.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “Hook 的时机决定能做什么”. Cards, in reading order: “执行前｜同步检查可参与阻断”; “执行后｜核对结果并留下反馈”; “异步任务｜补充记录和后续处理”. Footer takeaway: “事后反馈不能替代执行前的门禁”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "执行前：同步检查可参与阻断；执行后：核对结果并留下反馈；异步任务：补充记录和后续处理。",
+      "caption": "图解｜事后反馈不能替代执行前的门禁。",
+      "visual_title": "Hook 的时机决定能做什么",
+      "layout": "lanes"
     },
     {
       "article": "ecc-memory-supply-chain",
       "series": "harness-skills",
       "title": "ECC：如何治理配置供应链与控制平面",
       "asset": "src/assets/illustrations/articles/ecc-memory-supply-chain.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “配置资产也需要供应链治理”. Cards, in reading order: “来源｜是谁发布的版本”; “安装｜是否覆盖用户文件”; “运行｜脚本有哪些权限”; “退出｜能否撤回与恢复”. Footer takeaway: “Skill、Hook 和配置都可能影响行动”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "来源：是谁发布的版本；安装：是否覆盖用户文件；运行：脚本有哪些权限；退出：能否撤回与恢复。",
+      "caption": "图解｜Skill、Hook 和配置都可能影响行动。",
+      "visual_title": "配置资产也需要供应链治理",
+      "layout": "grid"
     },
     {
       "article": "mem0-series-overview",
       "series": "memory-systems",
       "title": "Mem0：身份过滤、ADD-only 写入与混合检索",
       "asset": "src/assets/illustrations/articles/mem0-series-overview.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “Mem0：短接口背后的责任”. Cards, in reading order: “add｜抽取并保存事实”; “user_id｜限定数据范围”; “search｜返回相关候选”; “应用｜检查身份、来源和当前性”. Footer takeaway: “user_id 是数据范围，不是认证凭证”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "add：抽取并保存事实；user_id：限定数据范围；search：返回相关候选；应用：检查身份、来源和当前性。",
+      "caption": "图解｜user_id 是数据范围，不是认证凭证。",
+      "visual_title": "Mem0：短接口背后的责任",
+      "layout": "grid"
     },
     {
       "article": "mem0-production-boundaries",
       "series": "memory-systems",
       "title": "Mem0：部署、Provider 与生产边界",
       "asset": "src/assets/illustrations/articles/mem0-production-boundaries.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “Mem0 两种部署方式”. Cards, in reading order: “Library｜宿主管理进程与凭证”; “Server｜增加接口和运维责任”; “共同检查｜身份、故障与删除传播”. Footer takeaway: “Provider 可替换，质量仍需重新验证”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "Library：宿主管理进程与凭证；Server：增加接口和运维责任；共同检查：身份、故障与删除传播。",
+      "caption": "图解｜Provider 可替换，质量仍需重新验证。",
+      "visual_title": "Mem0 两种部署方式",
+      "layout": "lanes"
     },
     {
       "article": "openviking-series-overview",
       "series": "memory-systems",
       "title": "OpenViking：上下文分层、URI 与层级检索",
       "asset": "src/assets/illustrations/articles/openviking-series-overview.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “OpenViking：先摘要，再深入”. Cards, in reading order: “L0｜快速判断是否相关”; “L1｜了解目录与内容概要”; “L2｜按需读取完整内容”. Footer takeaway: “URI 保留定位，摘要需要随原文更新”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "L0：快速判断是否相关；L1：了解目录与内容概要；L2：按需读取完整内容。",
+      "caption": "图解｜URI 保留定位，摘要需要随原文更新。",
+      "visual_title": "OpenViking：先摘要，再深入",
+      "layout": "lanes"
     },
     {
       "article": "openviking-session-governance",
       "series": "memory-systems",
       "title": "OpenViking：会话记忆、存储一致性与治理",
       "asset": "src/assets/illustrations/articles/openviking-session-governance.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “一次 commit，两个完成时刻”. Cards, in reading order: “同步归档｜保存原始消息”; “返回任务 ID｜请求已接收”; “后台提炼｜生成摘要和记忆”; “查询状态｜检查索引是否完成”. Footer takeaway: “接收成功，不等于记忆已经可检索”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "同步归档：保存原始消息；返回任务 ID：请求已接收；后台提炼：生成摘要和记忆；查询状态：检查索引是否完成。",
+      "caption": "图解｜接收成功，不等于记忆已经可检索。",
+      "visual_title": "一次 commit，两个完成时刻",
+      "layout": "flow"
     },
     {
       "article": "tencentdb-agent-memory-overview",
       "series": "memory-systems",
       "title": "TencentDB Agent Memory：协议代理与分层记忆",
       "asset": "src/assets/illustrations/articles/tencentdb-agent-memory-overview.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “记忆代理怎样连接 Agent”. Cards, in reading order: “Agent 请求｜保持原协议语义”; “检索注入｜只加入可访问记忆”; “模型响应｜流式返回给客户端”; “异步回写｜单独记录写入结果”. Footer takeaway: “主响应和记忆回写分别处理失败”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "Agent 请求：保持原协议语义；检索注入：只加入可访问记忆；模型响应：流式返回给客户端；异步回写：单独记录写入结果。",
+      "caption": "图解｜主响应和记忆回写分别处理失败。",
+      "visual_title": "记忆代理怎样连接 Agent",
+      "layout": "flow"
     },
     {
       "article": "tencentdb-agent-memory-governance",
       "series": "memory-systems",
       "title": "TencentDB Agent Memory：资产权限与发布治理",
       "asset": "src/assets/illustrations/articles/tencentdb-agent-memory-governance.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “可见性与 Loadout 分别决定什么”. Cards, in reading order: “可见性｜这个身份能否读取”; “Loadout｜这个 Agent 应加载什么”; “版本治理｜新经验何时替换旧版本”. Footer takeaway: “有权访问，不代表默认全部加载”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "可见性：这个身份能否读取；Loadout：这个 Agent 应加载什么；版本治理：新经验何时替换旧版本。",
+      "caption": "图解｜有权访问，不代表默认全部加载。",
+      "visual_title": "可见性与 Loadout 分别决定什么",
+      "layout": "lanes"
     },
     {
       "article": "ai-agent-reliability-boundaries",
       "series": "agent-evaluation",
       "title": "可靠性边界：验收、风险与自治范围",
       "asset": "src/assets/illustrations/articles/ai-agent-reliability-boundaries.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “自治范围要跟证据匹配”. Cards, in reading order: “低影响｜可检查的只读任务”; “可逆修改｜清晰边界与回滚”; “高影响写入｜当前授权与验收”. Footer takeaway: “任务越难，不代表应该给越大权限”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "低影响：可检查的只读任务；可逆修改：清晰边界与回滚；高影响写入：当前授权与验收。",
+      "caption": "图解｜任务越难，不代表应该给越大权限。",
+      "visual_title": "自治范围要跟证据匹配",
+      "layout": "lanes"
     },
     {
       "article": "agent-system-evaluation-research",
       "series": "agent-evaluation",
       "title": "先搭一张从任务到上线决策的地图",
       "asset": "src/assets/illustrations/articles/agent-system-evaluation-research.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “从任务定义到上线判断”. Cards, in reading order: “任务契约｜正确结果是什么”; “测试样本｜覆盖哪些失败”; “裁判证据｜依据什么判定”; “采用决策｜允许哪些任务上线”. Footer takeaway: “指标服务决策，不是只生成一个总分”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "任务契约：正确结果是什么；测试样本：覆盖哪些失败；裁判证据：依据什么判定；采用决策：允许哪些任务上线。",
+      "caption": "图解｜指标服务决策，不是只生成一个总分。",
+      "visual_title": "从任务定义到上线判断",
+      "layout": "flow"
     },
     {
       "article": "agent-evaluation-datasets",
       "series": "agent-evaluation",
       "title": "先把题目和裁判做对，再谈排行榜",
       "asset": "src/assets/illustrations/articles/agent-evaluation-datasets.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “先把题目和裁判做对”. Cards, in reading order: “代表性｜覆盖真实任务”; “边界例｜无解、冲突与缺信息”; “判定规则｜证据与人工校准”; “版本记录｜输入、模型和裁判”. Footer takeaway: “同一个分数，必须能追溯到同一口径”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "代表性：覆盖真实任务；边界例：无解、冲突与缺信息；判定规则：证据与人工校准；版本记录：输入、模型和裁判。",
+      "caption": "图解｜同一个分数，必须能追溯到同一口径。",
+      "visual_title": "先把题目和裁判做对",
+      "layout": "grid"
     },
     {
       "article": "agent-evaluation-engineering",
       "series": "agent-evaluation",
       "title": "把一次打分变成可重复的回归系统",
       "asset": "src/assets/illustrations/articles/agent-evaluation-engineering.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “把一次打分变成回归”. Cards, in reading order: “固定输入｜任务和环境快照”; “执行记录｜配置、日志与产物”; “独立判定｜按验收规则检查”; “比较改动｜保留失败样本”. Footer takeaway: “重复运行，才能区分改善与波动”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "固定输入：任务和环境快照；执行记录：配置、日志与产物；独立判定：按验收规则检查；比较改动：保留失败样本。",
+      "caption": "图解｜重复运行，才能区分改善与波动。",
+      "visual_title": "把一次打分变成回归",
+      "layout": "flow"
     },
     {
       "article": "trace-framework-deep-dive",
       "series": "agent-evaluation",
       "title": "TRACE 如何从“答对”走向“可信地答对”",
       "asset": "src/assets/illustrations/articles/trace-framework-deep-dive.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “答对之外，还要检查什么”. Cards, in reading order: “答案｜是否回应问题”; “过程｜推理与行动是否可靠”; “证据｜来源是否支持结论”; “范围｜结论适用于哪些条件”. Footer takeaway: “这是理解 TRACE 的阅读地图，不是评分公式”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "答案：是否回应问题；过程：推理与行动是否可靠；证据：来源是否支持结论；范围：结论适用于哪些条件。",
+      "caption": "图解｜这是理解 TRACE 的阅读地图，不是评分公式。",
+      "visual_title": "答对之外，还要检查什么",
+      "layout": "grid"
     },
     {
       "article": "trace-lite-production",
       "series": "agent-evaluation",
       "title": "TRACE 的实验边界与业务评测改造",
       "asset": "src/assets/illustrations/articles/trace-lite-production.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “论文实验怎样变成业务评测”. Cards, in reading order: “论文任务｜原始设定与限制”; “业务任务｜真实输入与权限”; “验收改造｜产物和副作用证据”; “回归运行｜失败类型与改进”. Footer takeaway: “实验结论不能直接当作生产承诺”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "论文任务：原始设定与限制；业务任务：真实输入与权限；验收改造：产物和副作用证据；回归运行：失败类型与改进。",
+      "caption": "图解｜实验结论不能直接当作生产承诺。",
+      "visual_title": "论文实验怎样变成业务评测",
+      "layout": "flow"
     },
     {
       "article": "llm-agent-capability-landscape-2026",
       "series": "ai-capability-boundaries",
       "title": "先分清“能做”与“可交付”",
       "asset": "src/assets/illustrations/articles/llm-agent-capability-landscape-2026.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “从能力展示到可靠交付”. Cards, in reading order: “能做｜一次成功的演示”; “可重复｜同题多次仍成立”; “有边界｜权限与失败可处理”; “可交付｜结果符合用户验收”. Footer takeaway: “演示证明可能性，采用需要任务证据”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "能做：一次成功的演示；可重复：同题多次仍成立；有边界：权限与失败可处理；可交付：结果符合用户验收。",
+      "caption": "图解｜演示证明可能性，采用需要任务证据。",
+      "visual_title": "从能力展示到可靠交付",
+      "layout": "flow"
     },
     {
       "article": "ai-capability-evidence-action",
       "series": "ai-capability-boundaries",
       "title": "用真实任务选择模型，而不是看一次演示",
       "asset": "src/assets/illustrations/articles/ai-capability-evidence-action.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “用同一任务选择模型”. Cards, in reading order: “固定任务｜输入与验收不变”; “核对能力｜资料、工具与输出”; “运行对照｜记录错误和人工修正”; “比较成本｜按合格交付计算”. Footer takeaway: “改变模型时，先保留其他主要条件”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "固定任务：输入与验收不变；核对能力：资料、工具与输出；运行对照：记录错误和人工修正；比较成本：按合格交付计算。",
+      "caption": "图解｜改变模型时，先保留其他主要条件。",
+      "visual_title": "用同一任务选择模型",
+      "layout": "flow"
     },
     {
       "article": "product-analysis-frameworks",
       "series": "product-frameworks",
       "title": "先知道要做什么决定，再选择框架",
       "asset": "src/assets/illustrations/articles/product-analysis-frameworks.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “先决定问题，再选择分析工具”. Cards, in reading order: “看市场｜机会与进入条件”; “排需求｜价值、成本与证据”; “看增长｜价值到达与留存”; “做复盘｜目标、结果与下一步”. Footer takeaway: “框架帮助组织证据，不能代替证据”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "看市场：机会与进入条件；排需求：价值、成本与证据；看增长：价值到达与留存；做复盘：目标、结果与下一步。",
+      "caption": "图解｜框架帮助组织证据，不能代替证据。",
+      "visual_title": "先决定问题，再选择分析工具",
+      "layout": "grid"
     },
     {
       "article": "product-frameworks-market",
       "series": "product-frameworks",
       "title": "从市场很大，到我们为什么能做",
       "asset": "src/assets/illustrations/articles/product-frameworks-market.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “市场很大，还缺三项判断”. Cards, in reading order: “需求｜谁遇到什么具体问题”; “竞争｜现有替代方案是什么”; “进入｜我们能凭什么交付”. Footer takeaway: “机会判断要落到可验证的客户任务”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "需求：谁遇到什么具体问题；竞争：现有替代方案是什么；进入：我们能凭什么交付。",
+      "caption": "图解｜机会判断要落到可验证的客户任务。",
+      "visual_title": "市场很大，还缺三项判断",
+      "layout": "lanes"
     },
     {
       "article": "product-frameworks-prioritization",
       "series": "product-frameworks",
       "title": "从用户旅程到一次有边界的发布",
       "asset": "src/assets/illustrations/articles/product-frameworks-prioritization.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “从用户旅程到一版发布”. Cards, in reading order: “旅程｜发现真正卡住的步骤”; “价值｜说明改动解决的痛点”; “取舍｜比较投入与证据强度”; “范围｜形成可验收的一版”. Footer takeaway: “优先级分数不能替代用户证据”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "旅程：发现真正卡住的步骤；价值：说明改动解决的痛点；取舍：比较投入与证据强度；范围：形成可验收的一版。",
+      "caption": "图解｜优先级分数不能替代用户证据。",
+      "visual_title": "从用户旅程到一版发布",
+      "layout": "flow"
     },
     {
       "article": "product-frameworks-growth",
       "series": "product-frameworks",
       "title": "用户真的得到价值，生意才有机会成立",
       "asset": "src/assets/illustrations/articles/product-frameworks-growth.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “注册增长，价值真的发生了吗”. Cards, in reading order: “获客｜用户来到产品”; “激活｜完成第一次有效任务”; “留存｜下一次仍然使用”; “收入｜持续价值支持付费”. Footer takeaway: “先定位漏斗断点，再决定是否加大拉新”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "获客：用户来到产品；激活：完成第一次有效任务；留存：下一次仍然使用；收入：持续价值支持付费。",
+      "caption": "图解｜先定位漏斗断点，再决定是否加大拉新。",
+      "visual_title": "注册增长，价值真的发生了吗",
+      "layout": "flow"
     },
     {
       "article": "product-frameworks-delivery",
       "series": "product-frameworks",
       "title": "让一次发布留下结果，也留下可复用的认识",
       "asset": "src/assets/illustrations/articles/product-frameworks-delivery.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “发布以后，留下什么认识”. Cards, in reading order: “目标｜希望改变什么”; “结果｜用户实际得到什么”; “差距｜哪条假设没有成立”; “行动｜下一次怎样验证”. Footer takeaway: “功能按时上线，不等于用户目标达成”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "目标：希望改变什么；结果：用户实际得到什么；差距：哪条假设没有成立；行动：下一次怎样验证。",
+      "caption": "图解｜功能按时上线，不等于用户目标达成。",
+      "visual_title": "发布以后，留下什么认识",
+      "layout": "flow"
     },
     {
       "article": "product-work-methodology",
       "series": "ai-product-work",
       "title": "Agent 产品工作：结果契约、自治阶梯与上下文",
       "asset": "src/assets/illustrations/articles/product-work-methodology.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “委托任务，先讲清四件事”. Cards, in reading order: “目标｜要交付的结果”; “范围｜可以访问和修改什么”; “输入｜来源、版本与缺口”; “验收｜凭什么判断完成”. Footer takeaway: “自治来自明确契约与有效授权”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "目标：要交付的结果；范围：可以访问和修改什么；输入：来源、版本与缺口；验收：凭什么判断完成。",
+      "caption": "图解｜自治来自明确契约与有效授权。",
+      "visual_title": "委托任务，先讲清四件事",
+      "layout": "grid"
     },
     {
       "article": "agent-product-evaluation-rhythm",
       "series": "ai-product-work",
       "title": "让任务评测进入产品工作节奏",
       "asset": "src/assets/illustrations/articles/agent-product-evaluation-rhythm.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “让评测进入每一次产品迭代”. Cards, in reading order: “定义｜任务与验收条件”; “采样｜正常与失败场景”; “观察｜日志、产物和用户修正”; “调整｜方法与授权范围”. Footer takeaway: “失败记录必须能改变下一次决策”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "定义：任务与验收条件；采样：正常与失败场景；观察：日志、产物和用户修正；调整：方法与授权范围。",
+      "caption": "图解｜失败记录必须能改变下一次决策。",
+      "visual_title": "让评测进入每一次产品迭代",
+      "layout": "flow"
     },
     {
       "article": "claude-code-product-design",
       "series": "claude-code-design",
       "title": "Agent 任务体验：从目标输入到交付证据",
       "asset": "src/assets/illustrations/articles/claude-code-product-design.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “用户需要看见三种进展”. Cards, in reading order: “目标｜系统理解了什么”; “过程｜正在做什么、为何等待”; “交付｜结果在哪里、如何检查”. Footer takeaway: “把状态和证据连到同一个任务”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "目标：系统理解了什么；过程：正在做什么、为何等待；交付：结果在哪里、如何检查。",
+      "caption": "图解｜把状态和证据连到同一个任务。",
+      "visual_title": "用户需要看见三种进展",
+      "layout": "lanes"
     },
     {
       "article": "claude-code-trust",
       "series": "claude-code-design",
       "title": "少一点确认，不等于少一点边界",
       "asset": "src/assets/illustrations/articles/claude-code-trust.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “少弹窗之后，边界放在哪里”. Cards, in reading order: “授权规则｜明确允许哪些动作”; “执行检查｜按当前范围约束操作”; “验收界面｜展示 Diff、测试与影响”. Footer takeaway: “复杂程度和副作用风险是两回事”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "授权规则：明确允许哪些动作；执行检查：按当前范围约束操作；验收界面：展示 Diff、测试与影响。",
+      "caption": "图解｜复杂程度和副作用风险是两回事。",
+      "visual_title": "少弹窗之后，边界放在哪里",
+      "layout": "lanes"
     },
     {
       "article": "claude-code-session-collaboration",
       "series": "claude-code-design",
       "title": "并行和跨端，首先是状态管理问题",
       "asset": "src/assets/illustrations/articles/claude-code-session-collaboration.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “三个任务，不共享同一份修改”. Cards, in reading order: “任务 A｜登录修复 / Worktree A”; “任务 B｜依赖升级 / Worktree B”; “任务 C｜专项测试 / Worktree C”. Footer takeaway: “目录隔离之后，仍需检查共享端口与外部资源”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "任务 A：登录修复 / Worktree A；任务 B：依赖升级 / Worktree B；任务 C：专项测试 / Worktree C。",
+      "caption": "图解｜目录隔离之后，仍需检查共享端口与外部资源。",
+      "visual_title": "三个任务，不共享同一份修改",
+      "layout": "lanes"
     },
     {
       "article": "ai-capability-product-metrics",
       "series": "ai-product-value",
       "title": "AI 交付价值：指标口径、失败成本与人工基线",
       "asset": "src/assets/illustrations/articles/ai-capability-product-metrics.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Stacked wide pastel comparison lanes. NO arrows between lanes. Title: “三层指标，对应三类判断”. Cards, in reading order: “算法｜模型哪里出错”; “过程｜执行哪里卡住”; “产品｜用户是否拿到合格结果”. Footer takeaway: “成本分母是合格交付，失败投入也要计入”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "算法：模型哪里出错；过程：执行哪里卡住；产品：用户是否拿到合格结果。",
+      "caption": "图解｜成本分母是合格交付，失败投入也要计入。",
+      "visual_title": "三层指标，对应三类判断",
+      "layout": "lanes"
     },
     {
       "article": "ai-value-coding",
       "series": "ai-product-value",
       "title": "测试通过之后，还需要哪些交付证据",
       "asset": "src/assets/illustrations/articles/ai-value-coding.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “代码交付需要四份证据”. Cards, in reading order: “需求｜登录超时的验收条件”; “修改｜只改允许的文件范围”; “测试｜复现失败并验证修复”; “边界｜未执行禁止的推送”. Footer takeaway: “测试通过之外，还要检查任务范围”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "需求：登录超时的验收条件；修改：只改允许的文件范围；测试：复现失败并验证修复；边界：未执行禁止的推送。",
+      "caption": "图解｜测试通过之外，还要检查任务范围。",
+      "visual_title": "代码交付需要四份证据",
+      "layout": "grid"
     },
     {
       "article": "ai-value-voice",
       "series": "ai-product-value",
       "title": "听懂一句话，不等于改对一个闹钟",
       "asset": "src/assets/illustrations/articles/ai-value-voice.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “改对一个闹钟，需要前后状态”. Cards, in reading order: “原状态｜明天 7:00 的指定闹钟”; “理解｜目标时间为 7:30”; “执行｜修改同一个闹钟”; “回读｜7:30，其他闹钟不变”. Footer takeaway: “听懂时间，不等于改对对象”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "原状态：明天 7:00 的指定闹钟；理解：目标时间为 7:30；执行：修改同一个闹钟；回读：7:30，其他闹钟不变。",
+      "caption": "图解｜听懂时间，不等于改对对象。",
+      "visual_title": "改对一个闹钟，需要前后状态",
+      "layout": "flow"
     },
     {
       "article": "ai-value-office",
       "series": "ai-product-value",
       "title": "文件能打开，为什么仍然不能交付",
       "asset": "src/assets/illustrations/articles/ai-value-office.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “月报可以交付，要过哪些检查”. Cards, in reading order: “数字｜月份和总额正确”; “论据｜来源支撑结论”; “范围｜必要内容完整”; “格式｜能编辑、能打开、能继续使用”. Footer takeaway: “精美排版不能抵消关键数据错误”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "数字：月份和总额正确；论据：来源支撑结论；范围：必要内容完整；格式：能编辑、能打开、能继续使用。",
+      "caption": "图解｜精美排版不能抵消关键数据错误。",
+      "visual_title": "月报可以交付，要过哪些检查",
+      "layout": "grid"
     },
     {
       "article": "agent-landscape-comparison-methods",
       "series": "agent-work-systems",
       "title": "Agent 选型：比较维度、任务契约与 PoC",
       "asset": "src/assets/illustrations/articles/agent-landscape-comparison-methods.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “选型先过门槛，再比高低”. Cards, in reading order: “范围｜同类产品与同一任务”; “硬条件｜数据、权限和环境”; “实验｜固定输入与验收运行”; “决策｜合格结果、人工投入和成本”. Footer takeaway: “未过硬条件，其他高分不能抵消”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "范围：同类产品与同一任务；硬条件：数据、权限和环境；实验：固定输入与验收运行；决策：合格结果、人工投入和成本。",
+      "caption": "图解｜未过硬条件，其他高分不能抵消。",
+      "visual_title": "选型先过门槛，再比高低",
+      "layout": "flow"
     },
     {
       "article": "coding-agent-harness-showdown",
       "series": "agent-work-systems",
       "title": "Claude Code、Codex 与 Kimi Code 的 Harness 分歧",
       "asset": "src/assets/illustrations/articles/coding-agent-harness-showdown.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. Independent comparison cards in a balanced grid. NO arrows between cards. Title: “比较 Coding Harness 的共同责任”. Cards, in reading order: “上下文｜依据怎样进入模型”; “执行｜权限和工具怎样落实”; “验证｜修改由什么证据证明”; “协作｜状态怎样保存和交接”. Footer takeaway: “这是比较维度，不是产品能力排名”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "上下文：依据怎样进入模型；执行：权限和工具怎样落实；验证：修改由什么证据证明；协作：状态怎样保存和交接。",
+      "caption": "图解｜这是比较维度，不是产品能力排名。",
+      "visual_title": "比较 Coding Harness 的共同责任",
+      "layout": "grid"
     },
     {
       "article": "china-work-agent-showdown",
       "series": "agent-work-systems",
       "title": "Kimi Work、WorkBuddy 与豆包工作如何分工",
       "asset": "src/assets/illustrations/articles/china-work-agent-showdown.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “办公 Agent 用同一份任务验证”. Cards, in reading order: “读取｜哪些资料能够接入”; “处理｜如何提炼与核查”; “交付｜文件是否可编辑可用”; “写回｜保存到哪里、权限是否正确”. Footer takeaway: “公开定位是候选假设，同题实验决定采用”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "读取：哪些资料能够接入；处理：如何提炼与核查；交付：文件是否可编辑可用；写回：保存到哪里、权限是否正确。",
+      "caption": "图解｜公开定位是候选假设，同题实验决定采用。",
+      "visual_title": "办公 Agent 用同一份任务验证",
+      "layout": "flow"
     },
     {
       "article": "learning-organization-boundaries",
       "series": "researcher-founder",
       "title": "组织学习速度为什么可能成为新壁垒",
       "asset": "src/assets/illustrations/articles/learning-organization-boundaries.png",
-      "status": "planned"
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic on white paper. Hand-drawn black outlines, rounded panels, soft mint, powder blue, lavender and pale yellow marker fills, simple explanatory line icons. 1536 x 1024 landscape. Very large crisp Chinese labels and generous whitespace. No logos, watermarks, invented numbers, rankings or extra text. Use exactly the supplied Chinese labels and takeaway. A left-to-right or two-row numbered process. Connect only successive steps with clear directional arrows. Do not connect footer as a step. Title: “组织怎样把反馈变成能力”. Cards, in reading order: “发现｜识别真实问题”; “实验｜进入具体使用场景”; “反馈｜记录结果和失败”; “改变｜修正方法与决策”. Footer takeaway: “循环更快，仍要检查是否解决原问题”. Icons must clarify labels, not be decorative. These are conceptual teaching diagrams, not actual product UI screenshots.",
+      "alt": "发现：识别真实问题；实验：进入具体使用场景；反馈：记录结果和失败；改变：修正方法与决策。",
+      "caption": "图解｜循环更快，仍要检查是否解决原问题。",
+      "visual_title": "组织怎样把反馈变成能力",
+      "layout": "flow"
     }
   ],
-  "style": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. "
+  "style": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. ",
+  "status": "paused-by-user",
+  "pause_reason": "2026-09-06 用户要求暂停生图，先完成内容收尾并推送。保留已审核接入的 8 张新增图，其余不发布。"
 }

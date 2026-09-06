@@ -37,7 +37,7 @@ flowchart TB
  L -->|结果或中断状态| U
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
 
@@ -181,20 +181,19 @@ pnpm exec vitest run packages/core/session/tests/session.spec.ts
 
 检查追加事件与恢复语义；测试通过不证明外部写入可安全重试。
 
-模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/deepseek-harness-composition/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/deepseek-harness-composition/#快速上手)。本轮已核对测试文件与运行入口，未在本文环境执行这条上游测试命令。
 
 ## 生态与社区
 
-许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/deepseek-harness-composition/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/deepseek-harness-composition/#生态与社区)。
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+公共安装入口见项目总览。本篇沿相关模块追踪到具体实现与测试：
 
-| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| 顺序 | 目录 → 文件 | 函数、对象或验证重点 |
 | --- | --- | --- |
-| 1 | [package.json](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/package.json) | CLI 与构建脚本入口 |
-| 2 | [vendor/cordis/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/vendor/cordis/src/index.ts) | Cordis 公共导出 |
-| 3 | [packages/core/agent-loop/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/agent-loop/src/index.ts) | AgentLoop：默认循环服务 |
-| 4 | [packages/core/tools/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/index.ts) | ToolDefinition 与工具运行时 |
-| 5 | [packages/core/session/tests/session.spec.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/session/tests/session.spec.ts) | 检查追加事件与恢复语义；测试通过不证明外部写入可安全重试。 |
+| 1 | [packages/core/session/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/session/src/index.ts) | Session / SessionStore：事件与恢复入口 |
+| 2 | [packages/core/session/src/surface.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/session/src/surface.ts) | foldSurface：从日志派生上下文 |
+| 3 | [packages/session/session-persistence-jsonl/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/session/session-persistence-jsonl/src/index.ts) | JSONL 持久化适配 |
+| 4 | [packages/core/session/tests/session.spec.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/session/tests/session.spec.ts) | 会话与事件断言 |

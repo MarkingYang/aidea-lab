@@ -35,7 +35,7 @@ flowchart TB
  X[独立 AgentShield 扫描入口] -.检查配置.-> D
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
 
@@ -124,20 +124,18 @@ node tests/scripts/install-apply.test.js
 
 检查安装变更的文件边界；在独立克隆中运行。
 
-模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/ecc-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/ecc-architecture-deep-dive/#快速上手)。本轮在固定源码的独立副本中实际运行该命令：40 项通过、0 项失败。测试使用临时夹具，不代表真实模型或生产环境已通过验收。
 
 ## 生态与社区
 
-许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/ecc-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/ecc-architecture-deep-dive/#生态与社区)。
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+公共安装入口见项目总览。本篇沿相关模块追踪到具体实现与测试：
 
-| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| 顺序 | 目录 → 文件 | 函数、对象或验证重点 |
 | --- | --- | --- |
-| 1 | [package.json](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/package.json) | ecc-universal 的命令入口 |
-| 2 | [scripts/install-plan.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/install-plan.js) | main：解析安装选择并生成计划 |
-| 3 | [scripts/install-apply.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/install-apply.js) | main：应用计划 |
-| 4 | [scripts/hooks/run-with-flags.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/hooks/run-with-flags.js) | main：按开关执行 Hook |
-| 5 | [tests/scripts/install-apply.test.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/tests/scripts/install-apply.test.js) | 检查安装变更的文件边界；在独立克隆中运行。 |
+| 1 | [scripts/install-apply.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/install-apply.js) | main：计划落盘入口 |
+| 2 | [scripts/lib/install/config.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/lib/install/config.js) | 配置与安装计划校验 |
+| 3 | [tests/scripts/install-apply.test.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/tests/scripts/install-apply.test.js) | 所有权、路径与安装失败用例 |

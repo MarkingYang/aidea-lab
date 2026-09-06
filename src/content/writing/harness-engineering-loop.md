@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 架构设计
 featured: false
-readingTime: 8 min
+readingTime: 9 min
 ---
 
 用户要求在工单系统创建一张待核验工单，并返回可查询的编号。模型只生成了标题和来源，却回答“完成了”。此时任务尚未完成：运行器还需检查许可、实际创建，再查询工单核对字段。
@@ -18,6 +18,8 @@ readingTime: 8 min
 循环设计首先要表达这些未完成责任，再决定下一次模型调用。否则，模型停止生成、工具不再被调用和任务成功很容易混成一个状态。
 
 当任务进一步出现多条分支与汇合，可以接续 [Loop Engineering 与 Graph Engineering](/writing/loop-graph-engineering/)，理解局部反馈循环怎样与全局执行结构组合。
+
+![运行器在有进展且权限与预算允许时继续，缺信息或许可时等待；验收通过才能交付成功，取消或预算耗尽应报告未完成。](../../assets/illustrations/articles/harness-engineering-loop.png "图解｜三种出口取决于当前事实；已经派发但未确认的写入仍需对账。")
 
 ## 先统一四个时间尺度
 

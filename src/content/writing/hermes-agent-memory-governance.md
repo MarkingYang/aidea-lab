@@ -35,7 +35,7 @@ flowchart TB
  R -->|通过采用规则后更新| D
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
 
@@ -88,21 +88,22 @@ Hermes 把自己描述为 self-improving agent。这个说法很容易被误解�
 一次前台任务结束后，后台 Review Fork 可以重放会话，判断是否出现了值得长期保存的用户事实或通用方法。如果有，它通过 `memory` 或 `skill_manage` 修改 Memory 与 Skills；未来 Session 再把这些制品装配进 Prompt。`agent/background_review.py` 的[源码说明](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/agent/background_review.py)清楚表明，这个 Fork 与主对话隔离，只开放记忆和技能管理等窄工具面。
 
 ```mermaid
-flowchart LR
-  A[完成真实任务] --> E[收集成功、失败与用户纠正]
-  E --> R[后台 Review Fork]
-  R --> D{值得持久化吗}
-  D -->|短事实| M[候选 MEMORY / USER 变更]
-  D -->|可复用方法| K[候选 Skill 变更]
-  D -->|无稳定信号| N[Nothing to save]
-  M --> G{是否开启写入审批}
-  K --> G
-  G -->|是| P[暂存并等待批准]
-  P -->|批准| W[写入长期制品]
-  P -->|拒绝| N
-  G -->|否| W
-  W --> F[未来 Session 按需读取]
-  F --> A
+stateDiagram-v2
+  direction LR
+  state "后台 Review" as Review
+  state "候选事实或 Skill" as Candidate
+  state "等待写入批准" as Pending
+  state "长期制品已更新" as Written
+  state "不保存" as Discarded
+  [*] --> Review: 任务结束
+  Review --> Candidate: 有稳定且可复用信号
+  Review --> Discarded: 只有瞬态或未解决故障
+  Candidate --> Pending: 开启对应写入审批
+  Candidate --> Written: 未开启对应写入审批
+  Pending --> Written: 批准
+  Pending --> Discarded: 拒绝
+  Written --> [*]: 未来会话读取
+  Discarded --> [*]
 ```
 
 *图 2｜Hermes 的 Artifact Learning：开启写入审批时先暂存、获批后生效；未开启时可以自动写入。审批不是所有配置的必经步骤。*
@@ -158,20 +159,17 @@ python -m pytest tests/test_session_skill_previews.py -q
 
 观察 Session 中技能预览的边界；不把预览成功当作技能质量通过。
 
-模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/hermes-agent-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/hermes-agent-architecture-deep-dive/#快速上手)。本轮已核对测试文件与运行入口，未在本文环境执行这条上游测试命令。
 
 ## 生态与社区
 
-许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/hermes-agent-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/hermes-agent-architecture-deep-dive/#生态与社区)。
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+公共安装入口见项目总览。本篇沿相关模块追踪到具体实现与测试：
 
-| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| 顺序 | 目录 → 文件 | 函数、对象或验证重点 |
 | --- | --- | --- |
-| 1 | [pyproject.toml](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/pyproject.toml) | project.scripts 的 hermes 入口 |
-| 2 | [hermes_cli/main.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/hermes_cli/main.py) | main：CLI 分派 |
-| 3 | [run_agent.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/run_agent.py) | AIAgent：模型与工具循环 |
-| 4 | [agent/memory_manager.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/agent/memory_manager.py) | 记忆管理实现 |
-| 5 | [tests/test_session_skill_previews.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/tests/test_session_skill_previews.py) | 观察 Session 中技能预览的边界；不把预览成功当作技能质量通过。 |
+| 1 | [agent/memory_manager.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/agent/memory_manager.py) | MemoryManager.build_system_prompt：组织记忆上下文 |
+| 2 | [tests/test_session_skill_previews.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/tests/test_session_skill_previews.py) | 会话中的技能预览用例 |

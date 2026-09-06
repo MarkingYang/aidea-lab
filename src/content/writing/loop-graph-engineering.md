@@ -21,6 +21,8 @@ readingTime: 24 min
 
 **Loop Engineering 设计持续工作的触发、反馈与控制机制，Graph Engineering 设计执行结构与协作契约。** 本文先用“词源 → 本质 → 类比 → 要素 → 边界 → 应用”六个维度讲清 Loop，再拆解 Graph，并用同一个案例说明两者如何组合。它接续[从 Prompt 到 Context，再到 Harness](/writing/prompt-context-harness-engineering/)：当指令和材料已经组织好，运行系统还要决定事情怎样一步步发生。
 
+![Graph 把三份公告的核验分开并按分支身份汇总；每个分支内部可以用有界 Loop 根据证据缺口继续查找。](../../assets/illustrations/articles/loop-graph-engineering.png "图解｜外层组织依赖，内层利用反馈；收到三个结果不代表三个不同分支都已完成。")
+
 ## 一、总览：反馈的时间顺序与任务的依赖结构
 
 先约定术语。本文把 **Loop Engineering** 用作“围绕任务触发、执行反馈、验证、状态与退出设计持续工作机制”的工程称呼；把 **Graph Engineering** 用作“围绕节点、边、共享状态和调度设计 Agent 执行图”的工程称呼。这是便于讨论的工作定义，不是两个已经统一标准化的学科分类。这里讨论的 Graph 是执行图，知识图谱中的实体与关系属于另一种图。

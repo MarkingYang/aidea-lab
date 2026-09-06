@@ -8,7 +8,11 @@ const require = createRequire(process.env.BLOG_PLAYWRIGHT_ROOT
 const { chromium } = require('playwright');
 const base = process.env.BLOG_BASE_URL || 'http://localhost:4321';
 const screenshots = process.env.BLOG_SCREENSHOTS;
-const { illustrations } = JSON.parse(fs.readFileSync('docs/illustration-prompts.json', 'utf8'));
+const original = JSON.parse(fs.readFileSync('docs/illustration-prompts.json', 'utf8')).illustrations;
+const completion = JSON.parse(fs.readFileSync('docs/illustration-completion.json', 'utf8'));
+const illustrations = [...original, ...completion.illustrations.filter(item => item.status === 'integrated')];
+assert.equal(new Set(illustrations.map(item => item.article)).size, illustrations.length,
+  'Each generated illustration must belong to a distinct article');
 const browser = await chromium.launch({ headless: true, channel: 'chrome' });
 let checks = 0;
 try {
@@ -63,6 +67,21 @@ try {
       if (screenshots && item.id === 'mini-harness-assembly') {
         await page.screenshot({ path: path.join(screenshots, `illustration-article-${width}.png`) });
       }
+      checks++;
+    }
+    // These two essays retain their original explanatory figures at their source dimensions.
+    for (const article of ['lu-qi-researcher-founder', 'researcher-founder-thinking']) {
+      const response = await page.goto(`${base}/writing/${article}/`);
+      assert.equal(response.status(), 200);
+      const images = page.locator('.prose img');
+      assert.ok(await images.count() > 0);
+      for (const img of await images.all()) {
+        await img.scrollIntoViewIfNeeded();
+        await img.evaluate(image => image.decode());
+        assert.ok((await img.getAttribute('alt'))?.trim());
+        assert.ok(await img.evaluate(image => image.naturalWidth > 0));
+      }
+      assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
       checks++;
     }
   }

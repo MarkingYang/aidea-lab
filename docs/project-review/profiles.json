@@ -516,7 +516,7 @@
       "Claude / Codex 等宿主适配",
       "配置目录、资产文件与运行日志"
     ],
-    "quick": "node scripts/install-plan.js --list-profiles\nnode scripts/install-plan.js --profile minimal --target claude --json",
+    "quick": "npm install --ignore-scripts --omit=dev\nnode scripts/install-plan.js --list-profiles\nnode scripts/install-plan.js --profile minimal --target claude --json",
     "configs": [
       [
         "--profile",
@@ -557,7 +557,7 @@
     ],
     "configdoc": "scripts/install-plan.js",
     "lang": "bash",
-    "prereq": "先克隆并切换到本文固定提交，在仓库根目录运行。此最小示例只生成安装计划；实际安装入口为 npx ecc-universal@2.2.1 setup。"
+    "prereq": "先克隆并切换到本文固定提交，在仓库根目录先安装依赖再运行。此最小示例只生成安装计划；实际安装入口为 npx ecc-universal@2.2.1 setup。"
   },
   "mem0ai/mem0": {
     "intro": "Mem0 是可嵌入应用的记忆抽取与检索库；add/search 接口封装了事实抽取、身份过滤和索引，减少应用直接拼装这些模块的代码。",

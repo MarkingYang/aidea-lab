@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 11 min
+readingTime: 12 min
 updatedAt: 2026-09-06
 ---
 
@@ -34,9 +34,27 @@ flowchart TB
   C -->|回答 / 产物| E
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
+
+```mermaid
+sequenceDiagram
+ participant H as 宿主
+ participant C as Cordis Context
+ participant P as 插件作用域
+ participant S as 依赖服务
+ H->>C: 挂载插件和配置
+ C->>S: 检查声明的依赖
+ S-->>C: 依赖可用
+ C->>P: 激活插件并登记 Effect
+ H->>C: 卸载或替换插件
+ C->>P: 释放作用域资源
+ P-->>C: 清理监听与可释放句柄
+ Note over H,P: 自定义外部副作用仍需插件显式提供清理与恢复逻辑
+```
+
+*图 2｜关键控制流程；失败返回和资源释放必须与插件声明的契约一起验证。*
 
 ### 插件组合与生命周期
 
@@ -83,7 +101,7 @@ flowchart LR
   DISPOSED --> FINISH((结束))
 ```
 
-*图 2｜一次依赖就绪、激活与退出的简化路径。*
+*图 3｜一次依赖就绪、激活与退出的简化路径。*
 
 Cordis 的 Fiber 状态机和自动清理机制见官方[生命周期教程](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/cordis-tutorial/02-lifecycle-and-effects.md)。它带来一个很深的架构变化：**扩展不再只是调用 Host API，而是在一个受生命周期管理的 Context 中声明能力。**
 
@@ -194,7 +212,7 @@ Issue 取 08-08 至 08-30 UTC 创建的最近最多 3 条非 PR 条目，排除�
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+阅读顺序：入口 → 核心抽象 → 具体实现 → 测试。
 
 | 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
 | --- | --- | --- |

@@ -34,7 +34,7 @@ flowchart TB
  C -->|管理结果| U
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
 
@@ -94,22 +94,26 @@ Chat Memory 保存事实、偏好、决策和交互；Skill 保存带触发边�
 
 ## 快速上手
 
+在固定提交的 MemoryProxy 目录安装开发依赖后运行。此最小实验只检查查询抽取，团队 ACL 与 Loadout 仍按本篇场景另行验收。
+
+```bash
+npx vitest run src/common/__tests__/user-query-extractor.test.ts
+```
+
 安装与基础示例见[项目总览](/writing/tencentdb-agent-memory-overview/#快速上手)。本篇从同一环境继续，按文中的故障场景检查结果。
 
-模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/tencentdb-agent-memory-overview/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/tencentdb-agent-memory-overview/#快速上手)。本轮已核对测试文件与运行入口，未在本文环境执行这条上游测试命令。
 
 ## 生态与社区
 
-许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/tencentdb-agent-memory-overview/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/tencentdb-agent-memory-overview/#生态与社区)。
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+公共安装入口见项目总览。本篇沿相关模块追踪到具体实现与测试：
 
-| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| 顺序 | 目录 → 文件 | 函数、对象或验证重点 |
 | --- | --- | --- |
-| 1 | [MemoryProxy/package.json](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryProxy/package.json) | Proxy 启动与构建入口 |
-| 2 | [MemoryProxy/src/index.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryProxy/src/index.ts) | 服务启动与退出 |
-| 3 | [MemoryProxy/src/injection/pipeline.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryProxy/src/injection/pipeline.ts) | InjectionPipeline：注入管线 |
-| 4 | [MemoryProxy/src/injection/adapters/openai.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryProxy/src/injection/adapters/openai.ts) | OpenAIAdapter：协议具体实现 |
-| 5 | [MemoryProxy/src/common/__tests__/user-query-extractor.test.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryProxy/src/common/__tests__/user-query-extractor.test.ts) | 用户查询抽取用例 |
+| 1 | [MemoryCore/src/metadata/service/permission-checker.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryCore/src/metadata/service/permission-checker.ts) | 资产可见性与权限检查 |
+| 2 | [MemoryCore/src/core/skill/skill-permission.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryCore/src/core/skill/skill-permission.ts) | Skill 具体权限规则 |
+| 3 | [MemoryProxy/src/common/__tests__/user-query-extractor.test.ts](https://github.com/TencentCloud/TencentDB-Agent-Memory/blob/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94/MemoryProxy/src/common/__tests__/user-query-extractor.test.ts) | 代理查询抽取测试；不覆盖完整团队 ACL |

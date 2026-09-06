@@ -37,7 +37,7 @@ flowchart TB
  B[宿主的权限与隔离策略] -.约束.-> I
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
 
@@ -159,20 +159,18 @@ npx vitest run test/experimental-session-worker-lifecycle.test.ts
 
 在 packages/coding-agent 目录运行，检查实验性 Worker 生命周期。
 
-模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/pi-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/pi-architecture-deep-dive/#快速上手)。本轮已核对测试文件与运行入口，未在本文环境执行这条上游测试命令。
 
 ## 生态与社区
 
-许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/pi-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/pi-architecture-deep-dive/#生态与社区)。
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+公共安装入口见项目总览。本篇沿相关模块追踪到具体实现与测试：
 
-| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| 顺序 | 目录 → 文件 | 函数、对象或验证重点 |
 | --- | --- | --- |
-| 1 | [packages/coding-agent/package.json](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/package.json) | bin → 打包后的 cli.js |
-| 2 | [packages/coding-agent/src/cli.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/cli.ts) | CLI 入口 |
-| 3 | [packages/agent/src/agent-loop.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/agent-loop.ts) | agentLoop：通用循环 |
-| 4 | [packages/coding-agent/src/core/agent-session.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/core/agent-session.ts) | AgentSession：产品会话语义 |
-| 5 | [packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts) | 在 packages/coding-agent 目录运行，检查实验性 Worker 生命周期。 |
+| 1 | [packages/agent/src/harness/agent-harness.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/harness/agent-harness.ts) | AgentHarness 公共入口 |
+| 2 | [packages/agent/src/harness/runtime/harness.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/harness/runtime/harness.ts) | 持久运行时具体实现 |
+| 3 | [packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts) | Worker 生命周期测试 |

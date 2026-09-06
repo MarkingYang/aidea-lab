@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 12 min
+readingTime: 11 min
 updatedAt: 2026-09-06
 ---
 
@@ -36,9 +36,32 @@ flowchart TB
  R --> U
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
+
+```mermaid
+sequenceDiagram
+ participant M as 模型调用
+ participant R as Tool Runtime
+ participant G as 策略与 Guard
+ participant T as 工具实现
+ M->>R: 工具名与参数
+ R->>R: 物化并冻结参数
+ R->>G: pre-execute 与单调检查
+ alt 拒绝
+ G-->>R: deny
+ R-->>M: 阻断结果
+ else 允许
+ G-->>R: allow
+ R->>T: 执行同一份参数
+ T-->>R: Canonical Output
+ R->>R: 后处理与结果冻结
+ R-->>M: 结果投影并写入 Session
+ end
+```
+
+*图 2｜关键控制流程；失败返回和资源释放必须与插件声明的契约一起验证。*
 
 ### 工具调用与程序化编排
 
@@ -178,7 +201,7 @@ flowchart LR
   K --> V
 ```
 
-*图 2｜业务策略、外层隔离和结果验证的分工。*
+*图 3｜业务策略、外层隔离和结果验证的分工。*
 
 Harness 内策略用于表达业务意图，操作系统或云基础设施负责硬隔离，Git / 测试 / 外部状态读取负责验证结果。三者缺一不可。
 
@@ -199,22 +222,26 @@ Harness 内策略用于表达业务意图，操作系统或云基础设施负责
 
 ## 快速上手
 
+在固定提交的仓库根目录，按官方测试指南安装 pnpm 依赖后运行。此实验检查工具不变量，不需要创建真实工单。
+
+```bash
+pnpm exec vitest run packages/core/tools/tests/invariant.spec.ts
+```
+
 安装与基础示例见[项目总览](/writing/deepseek-harness-composition/#快速上手)。本篇从同一环境继续，按文中的故障场景检查结果。
 
-模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/deepseek-harness-composition/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/deepseek-harness-composition/#快速上手)。本轮已核对测试文件与运行入口，未在本文环境执行这条上游测试命令。
 
 ## 生态与社区
 
-许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/deepseek-harness-composition/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/deepseek-harness-composition/#生态与社区)。
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+公共安装入口见项目总览。本篇沿相关模块追踪到具体实现与测试：
 
-| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| 顺序 | 目录 → 文件 | 函数、对象或验证重点 |
 | --- | --- | --- |
-| 1 | [package.json](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/package.json) | CLI 与构建脚本入口 |
-| 2 | [vendor/cordis/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/vendor/cordis/src/index.ts) | Cordis 公共导出 |
-| 3 | [packages/core/agent-loop/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/agent-loop/src/index.ts) | AgentLoop：默认循环服务 |
-| 4 | [packages/core/tools/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/index.ts) | ToolDefinition 与工具运行时 |
-| 5 | [docs/testing.md](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/testing.md) | 测试分类与执行入口 |
+| 1 | [packages/core/tools/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/index.ts) | ToolRuntime / ToolDefinition：调用契约 |
+| 2 | [packages/core/tools/src/ptc.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/ptc.ts) | 程序化工具调用实现 |
+| 3 | [packages/core/tools/tests/invariant.spec.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/tests/invariant.spec.ts) | 工具运行时不变量测试 |

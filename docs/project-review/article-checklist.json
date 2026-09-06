@@ -1,399 +1,685 @@
 [
   {
     "article": "claude-code-internals-overview",
-    "repo": "anthropics/claude-code",
-    "mechanisms": [
-      "执行循环怎样取得证据",
-      "记忆与扩展怎样加载"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 5,
+    "quickstart_lines": [
+      5
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "plugins/hookify/.claude-plugin/plugin.json",
       "plugins/hookify/hooks/hooks.json",
       "plugins/hookify/hooks/pretooluse.py",
       "plugins/hookify/core/rule_engine.py",
       "plugins/plugin-dev/skills/hook-development/scripts/test-hook.sh"
+    ],
+    "mechanisms": [
+      "执行循环怎样取得证据",
+      "记忆与扩展怎样加载"
     ]
   },
   {
     "article": "codex-system-overview",
-    "repo": "openai/codex",
-    "mechanisms": [
-      "执行策略与交付证据",
-      "长期协作资产的生命周期"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 6,
+    "quickstart_lines": [
+      6
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "codex-cli/package.json",
       "codex-rs/cli/src/main.rs",
       "codex-rs/core/src/session/mod.rs",
       "codex-rs/core/src/tasks/user_shell.rs",
       "codex-rs/core/tests/suite/exec.rs"
+    ],
+    "mechanisms": [
+      "执行策略与交付证据",
+      "长期协作资产的生命周期"
     ]
   },
   {
     "article": "kimi-code-system-overview",
-    "repo": "MoonshotAI/kimi-code",
-    "mechanisms": [
-      "Session 怎样恢复工作",
-      "Skills 与子任务怎样交接"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 5,
+    "quickstart_lines": [
+      5
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "apps/kimi-code/package.json",
       "apps/kimi-code/src/main.ts",
       "packages/agent-core/src/index.ts",
       "packages/agent-core/src/tools/builtin/collaboration/agent.ts",
       "packages/agent-core/test/harness/skill-session.test.ts"
+    ],
+    "mechanisms": [
+      "Session 怎样恢复工作",
+      "Skills 与子任务怎样交接"
     ]
   },
   {
     "article": "opencode-system-overview",
-    "repo": "anomalyco/opencode",
-    "mechanisms": [
-      "扩展如何影响执行",
-      "多个客户端怎样共用 Session"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 5,
+    "quickstart_lines": [
+      5
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "packages/opencode/package.json",
       "packages/opencode/src/index.ts",
       "packages/core/src/session/prompt.ts",
       "packages/opencode/src/session/processor.ts",
       "packages/opencode/test/session/prompt.test.ts"
+    ],
+    "mechanisms": [
+      "扩展如何影响执行",
+      "多个客户端怎样共用 Session"
     ]
   },
   {
     "article": "deepseek-harness-composition",
-    "repo": "deepseek-ai/deepseek-harness",
-    "mechanisms": [
-      "插件组合与生命周期",
-      "能力接口怎样降低替换成本"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 1,
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "package.json",
       "vendor/cordis/src/index.ts",
       "packages/core/agent-loop/src/index.ts",
       "packages/core/tools/src/index.ts",
       "docs/testing.md"
+    ],
+    "mechanisms": [
+      "插件组合与生命周期",
+      "能力接口怎样降低替换成本"
     ]
   },
   {
     "article": "deepseek-harness-state",
-    "repo": "deepseek-ai/deepseek-harness",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "packages/core/session/src/index.ts",
+      "packages/core/session/src/surface.ts",
+      "packages/session/session-persistence-jsonl/src/index.ts",
+      "packages/core/session/tests/session.spec.ts"
+    ],
     "mechanisms": [
       "Turn 与事件日志",
       "有限上下文与恢复投影"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "package.json",
-      "vendor/cordis/src/index.ts",
-      "packages/core/agent-loop/src/index.ts",
-      "packages/core/tools/src/index.ts",
-      "packages/core/session/tests/session.spec.ts"
     ]
   },
   {
     "article": "deepseek-harness-execution",
-    "repo": "deepseek-ai/deepseek-harness",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "packages/core/tools/src/index.ts",
+      "packages/core/tools/src/ptc.ts",
+      "packages/core/tools/tests/invariant.spec.ts"
+    ],
     "mechanisms": [
       "工具调用与程序化编排",
       "委派如何保留执行边界"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "package.json",
-      "vendor/cordis/src/index.ts",
-      "packages/core/agent-loop/src/index.ts",
-      "packages/core/tools/src/index.ts",
-      "docs/testing.md"
     ]
   },
   {
     "article": "hermes-agent-architecture-deep-dive",
-    "repo": "NousResearch/hermes-agent",
-    "mechanisms": [
-      "循环与模型适配",
-      "Prompt 按更新频率组织"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 4,
+    "quickstart_lines": [
+      4
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "pyproject.toml",
       "hermes_cli/main.py",
       "run_agent.py",
       "agent/memory_manager.py",
       "tests/run_agent/test_run_agent.py"
+    ],
+    "mechanisms": [
+      "循环与模型适配",
+      "Prompt 按更新频率组织"
     ]
   },
   {
     "article": "hermes-agent-runtime-services",
-    "repo": "NousResearch/hermes-agent",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "gateway/run.py",
+      "tools/registry.py",
+      "tools/terminal_tool.py",
+      "tests/test_toolsets.py"
+    ],
     "mechanisms": [
       "工具可用性与执行",
       "Gateway 的会话路由"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "pyproject.toml",
-      "hermes_cli/main.py",
-      "run_agent.py",
-      "agent/memory_manager.py",
-      "tests/test_toolsets.py"
     ]
   },
   {
     "article": "hermes-agent-memory-governance",
-    "repo": "NousResearch/hermes-agent",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "agent/memory_manager.py",
+      "tests/test_session_skill_previews.py"
+    ],
     "mechanisms": [
       "四种记忆的更新路径",
       "经验晋升与治理"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "pyproject.toml",
-      "hermes_cli/main.py",
-      "run_agent.py",
-      "agent/memory_manager.py",
-      "tests/test_session_skill_previews.py"
     ]
   },
   {
     "article": "pi-architecture-deep-dive",
-    "repo": "earendil-works/pi",
-    "mechanisms": [
-      "模型适配与消息投影",
-      "循环、工具顺序与输入队列"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 5,
+    "quickstart_lines": [
+      5
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "packages/coding-agent/package.json",
       "packages/coding-agent/src/cli.ts",
       "packages/agent/src/agent-loop.ts",
       "packages/coding-agent/src/core/agent-session.ts",
       "packages/agent/test/agent-loop.test.ts"
+    ],
+    "mechanisms": [
+      "模型适配与消息投影",
+      "循环、工具顺序与输入队列"
     ]
   },
   {
     "article": "pi-session-extension-architecture",
-    "repo": "earendil-works/pi",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "packages/coding-agent/src/core/agent-session.ts",
+      "packages/coding-agent/src/core/session-manager.ts",
+      "packages/coding-agent/test/session-manager/tree-traversal.test.ts"
+    ],
     "mechanisms": [
       "会话事件树与当前分支",
       "压缩和扩展如何改变会话"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "packages/coding-agent/package.json",
-      "packages/coding-agent/src/cli.ts",
-      "packages/agent/src/agent-loop.ts",
-      "packages/coding-agent/src/core/agent-session.ts",
-      "packages/coding-agent/test/session-manager/tree-traversal.test.ts"
     ]
   },
   {
     "article": "pi-durable-harness-governance",
-    "repo": "earendil-works/pi",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "packages/agent/src/harness/agent-harness.ts",
+      "packages/agent/src/harness/runtime/harness.ts",
+      "packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts"
+    ],
     "mechanisms": [
       "经典路径的隔离责任",
       "Durable 路径与多端恢复"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "packages/coding-agent/package.json",
-      "packages/coding-agent/src/cli.ts",
-      "packages/agent/src/agent-loop.ts",
-      "packages/coding-agent/src/core/agent-session.ts",
-      "packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts"
     ]
   },
   {
     "article": "anthropic-skills-overview",
-    "repo": "anthropics/skills",
-    "mechanisms": [
-      "方法如何连接工具资源",
-      "渐进加载怎样控制上下文"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 2,
+    "quickstart_lines": [
+      2
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       ".claude-plugin/marketplace.json",
       "skills/webapp-testing/SKILL.md",
       "skills/webapp-testing/scripts/with_server.py",
       "skills/skill-creator/scripts/quick_validate.py"
+    ],
+    "mechanisms": [
+      "方法如何连接工具资源",
+      "渐进加载怎样控制上下文"
     ]
   },
   {
     "article": "addy-agent-skills-overview",
-    "repo": "addyosmani/agent-skills",
-    "mechanisms": [
-      "工程阶段怎样交接",
-      "验证门槛怎样形成证据"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 2,
+    "quickstart_lines": [
+      2
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       ".claude-plugin/marketplace.json",
       "skills/code-review-and-quality/SKILL.md",
       "evals/cases/test-driven-development.json",
       "evals/fixtures/test-driven-development/test/split.test.js"
+    ],
+    "mechanisms": [
+      "工程阶段怎样交接",
+      "验证门槛怎样形成证据"
     ]
   },
   {
     "article": "mattpocock-skills-overview",
-    "repo": "mattpocock/skills",
-    "mechanisms": [
-      "需求和语言怎样对齐",
-      "测试怎样驱动局部修正"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 1,
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "package.json",
       "skills/productivity/grill-me/SKILL.md",
       "skills/engineering/tdd/SKILL.md",
       "skills/engineering/tdd/tests.md"
+    ],
+    "mechanisms": [
+      "需求和语言怎样对齐",
+      "测试怎样驱动局部修正"
     ]
   },
   {
     "article": "ecc-architecture-deep-dive",
-    "repo": "affaan-m/ECC",
-    "mechanisms": [
-      "资产怎样按需加载",
-      "安装计划怎样落到文件"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 2,
+    "quickstart_lines": [
+      3
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "package.json",
       "scripts/install-plan.js",
       "scripts/install-apply.js",
       "scripts/hooks/run-with-flags.js",
       "tests/scripts/install-plan.test.js"
+    ],
+    "mechanisms": [
+      "资产怎样按需加载",
+      "安装计划怎样落到文件"
     ]
   },
   {
     "article": "ecc-hook-runtime-memory",
-    "repo": "affaan-m/ECC",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "hooks/hooks.json",
+      "scripts/hooks/run-with-flags.js",
+      "scripts/memory.js",
+      "tests/scripts/memory.test.js"
+    ],
     "mechanisms": [
       "Hook 的事件与阻断语义",
       "记录怎样成为候选经验"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "package.json",
-      "scripts/install-plan.js",
-      "scripts/install-apply.js",
-      "scripts/hooks/run-with-flags.js",
-      "tests/scripts/memory.test.js"
     ]
   },
   {
     "article": "ecc-memory-supply-chain",
-    "repo": "affaan-m/ECC",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "scripts/install-apply.js",
+      "scripts/lib/install/config.js",
+      "tests/scripts/install-apply.test.js"
+    ],
     "mechanisms": [
       "安装与运行的供应链边界",
       "Alpha 控制面与采用验证"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "package.json",
-      "scripts/install-plan.js",
-      "scripts/install-apply.js",
-      "scripts/hooks/run-with-flags.js",
-      "tests/scripts/install-apply.test.js"
     ]
   },
   {
     "article": "mem0-series-overview",
-    "repo": "mem0ai/mem0",
-    "mechanisms": [
-      "写入如何形成可检索事实",
-      "检索怎样结合身份和相关性"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 6,
+    "quickstart_lines": [
+      6
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "pyproject.toml",
       "mem0/memory/main.py",
       "mem0/configs/base.py",
       "mem0/utils/factory.py",
       "tests/test_memory.py"
+    ],
+    "mechanisms": [
+      "写入如何形成可检索事实",
+      "检索怎样结合身份和相关性"
     ]
   },
   {
     "article": "mem0-production-boundaries",
-    "repo": "mem0ai/mem0",
-    "mechanisms": [
-      "Library 与 Server 的部署边界",
-      "更换组件后的契约回归"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": null,
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "pyproject.toml",
       "mem0/memory/main.py",
       "mem0/configs/base.py",
       "mem0/utils/factory.py",
       "tests/test_memory.py"
+    ],
+    "mechanisms": [
+      "Library 与 Server 的部署边界",
+      "更换组件后的契约回归"
     ]
   },
   {
     "article": "openviking-series-overview",
-    "repo": "volcengine/OpenViking",
-    "mechanisms": [
-      "内容如何获得 URI 与摘要层",
-      "层级检索如何缩小范围"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 4,
+    "quickstart_lines": [
+      4
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "pyproject.toml",
       "crates/ov_cli/src/main.rs",
       "openviking/retrieve/hierarchical_retriever.py",
       "openviking/session/session.py",
       "tests/retrieve/test_hierarchical_retriever_rerank.py"
+    ],
+    "mechanisms": [
+      "内容如何获得 URI 与摘要层",
+      "层级检索如何缩小范围"
     ]
   },
   {
     "article": "openviking-session-governance",
-    "repo": "volcengine/OpenViking",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "openviking/session/session.py",
+      "openviking/service/session_service.py",
+      "tests/session/test_session_lifecycle.py"
+    ],
     "mechanisms": [
       "提交怎样形成长期记忆",
       "索引与权限怎样保持一致"
-    ],
-    "quickstart_lines": null,
-    "source_paths": [
-      "pyproject.toml",
-      "crates/ov_cli/src/main.rs",
-      "openviking/retrieve/hierarchical_retriever.py",
-      "openviking/session/session.py",
-      "tests/session/test_session_lifecycle.py"
     ]
   },
   {
     "article": "tencentdb-agent-memory-overview",
-    "repo": "TencentCloud/TencentDB-Agent-Memory",
-    "mechanisms": [
-      "代理怎样注入并回写",
-      "记忆如何分层提炼"
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": 7,
+    "quickstart_lines": [
+      7
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
       "MemoryProxy/package.json",
       "MemoryProxy/src/index.ts",
       "MemoryProxy/src/injection/pipeline.ts",
       "MemoryProxy/src/injection/adapters/openai.ts",
       "MemoryProxy/src/common/__tests__/user-query-extractor.test.ts"
+    ],
+    "mechanisms": [
+      "代理怎样注入并回写",
+      "记忆如何分层提炼"
     ]
   },
   {
     "article": "tencentdb-agent-memory-governance",
-    "repo": "TencentCloud/TencentDB-Agent-Memory",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
+    ],
+    "quickstart_lines": [
+      1
+    ],
+    "architecture": true,
+    "dynamic": true,
+    "source_paths": [
+      "MemoryCore/src/metadata/service/permission-checker.ts",
+      "MemoryCore/src/core/skill/skill-permission.ts",
+      "MemoryProxy/src/common/__tests__/user-query-extractor.test.ts"
+    ],
     "mechanisms": [
       "资产与可见性的分工",
       "Loadout 与发布验证"
+    ]
+  },
+  {
+    "article": "langchain-langgraph-frameworks-and-protocols",
+    "sections": [
+      "定位与价值",
+      "技术架构",
+      "核心机制",
+      "快速上手",
+      "生态与社区",
+      "源码阅读路径"
     ],
-    "quickstart_lines": null,
+    "quickstart_lines": [
+      17,
+      18
+    ],
+    "architecture": true,
+    "dynamic": true,
     "source_paths": [
-      "MemoryProxy/package.json",
-      "MemoryProxy/src/index.ts",
-      "MemoryProxy/src/injection/pipeline.ts",
-      "MemoryProxy/src/injection/adapters/openai.ts",
-      "MemoryProxy/src/common/__tests__/user-query-extractor.test.ts"
+      "libs/langchain_v1/pyproject.toml",
+      "libs/langchain_v1/langchain/agents/factory.py",
+      "libs/langgraph/langgraph/graph/state.py",
+      "libs/langgraph/langgraph/types.py",
+      "libs/checkpoint/langgraph/checkpoint/memory/__init__.py",
+      "libs/langgraph/tests/test_pregel.py"
+    ],
+    "mechanisms": [
+      "机制一：模型提出调用，工具提供事实",
+      "机制二：暂停保存状态，恢复重新进入节点"
     ]
   }
 ]

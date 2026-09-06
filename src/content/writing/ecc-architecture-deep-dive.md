@@ -35,7 +35,7 @@ flowchart TB
   C -->|回答 / 产物| E
 ```
 
-*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+*图 1｜职责与数据流；逻辑分层不要求分开部署。*
 
 ## 核心机制
 
@@ -194,9 +194,10 @@ ECC 的 Apply 层因此要处理：
 
 ## 快速上手
 
-先克隆并切换到本文固定提交，在仓库根目录运行。此最小示例只生成安装计划；实际安装入口为 npx ecc-universal@2.2.1 setup。
+先克隆并切换到本文固定提交，在仓库根目录运行，先安装运行依赖。此最小示例只生成安装计划；实际安装入口为 npx ecc-universal@2.2.1 setup。
 
 ```bash
+npm install --ignore-scripts --omit=dev
 node scripts/install-plan.js --list-profiles
 node scripts/install-plan.js --profile minimal --target claude --json
 ```
@@ -213,7 +214,7 @@ node scripts/install-plan.js --profile minimal --target claude --json
 
 常见坑：先看计划再 Apply；存在同名用户文件时应核对所有权与冲突，不要直接覆盖。
 
-验证范围：已核对固定源码的入口、参数与依赖；未以本文示例调用真实模型或部署外部服务。
+验证范围：已实际运行 minimal / claude 的计划命令，返回有效 JSON、6 个选中模块且 warnings 为空；未执行真实宿主目录安装。
 
 ## 生态与社区
 
@@ -227,7 +228,7 @@ Issue 取 08-08 至 08-30 UTC 创建的最近最多 3 条非 PR 条目，排除�
 
 ## 源码阅读路径
 
-按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+阅读顺序：入口 → 核心抽象 → 具体实现 → 测试。
 
 | 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
 | --- | --- | --- |
