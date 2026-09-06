@@ -2,7 +2,10 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import registry from '../data/knowledge.json';
 
 export const topics = registry.topics;
-export const seriesDefinitions = registry.series;
+export const seriesDefinitions: Array<{
+  id: string; topic: string; title: string; description: string;
+  articles: string[]; outcome: string; question: string;
+}> = registry.series;
 export type Writing = CollectionEntry<'writing'>;
 export const articleHref = (id: string) => `/writing/${id}/`;
 export const shortTitle = (title: string) => title.replace(/^.+?[（(][一二三四五六七八九十\d]+[）)]\s*[：:]\s*/, '');

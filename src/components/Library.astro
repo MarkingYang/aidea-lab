@@ -18,6 +18,7 @@ const pageHref=(n:number)=>n===1?'/library/':`/library/${n}/`;
   <div class="library-context" data-library-context hidden><span>当前关键词</span><strong data-context-label></strong><button type="button" data-reset>查看全部</button></div>
   <noscript><p class="empty-note">当前显示静态文章目录，可使用下方页码浏览全部记录。搜索与筛选需要启用 JavaScript；也可前往<a href="/topics/">知识目录</a>按主题阅读。</p></noscript>
   <div class="library-summary"><p data-result-count role="status" aria-live="polite">{entries.length} 篇记录 · 第 {currentPage} / {totalPages} 页</p><span>每页 {PAGE_SIZE} 篇</span></div>
+  {entries.length === 0 && <p class="empty-note">暂无文章。</p>}
   <div data-results>
     {initialEntries.map(entry=>{const parent=seriesByArticle.get(entry.id);return <article class="library-result"><div class="result-body"><p class="result-context">{parent ? <a href={`/series/${parent.id}/`}>{parent.title} · 第 {parent.articles.findIndex(item=>item.id===entry.id)+1} 篇</a> : '独立记录'}<span> / {entry.data.topics[0]}</span></p><h2><a href={articleHref(entry.id)}>{entry.data.title}</a></h2><p class="result-description">{entry.data.description}</p></div><div class="result-meta"><time datetime={updated(entry).toISOString()}>{dateLabel(updated(entry))}</time><span>{entry.data.readingTime}</span></div></article>})}
   </div>

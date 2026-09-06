@@ -1,25 +1,18 @@
 # Markdown 深度写作指南
 
-站点文章统一放在 `src/content/writing/`。Markdown 保持可移植，图表和增强交互通过代码围栏或标准 HTML 表达。
+站点文章统一放在 `src/content/writing/`。当前写作方向以 [Blog 写作规范](blog-rewrite/README.md) 为准；正文使用模型可直接理解的语言，Markdown 保持可移植。
 
-## 1. 图片、图注与画廊
+## 1. 不使用图片，直接表达信息
 
-图片建议放在 `public/images/`：
+Blog 文章不使用截图、课件图片、装饰插图或图片形式的图表。原有图片和画廊能力不再作为写作方式。
 
-```md
-![Agent Harness 结构](/images/agent-harness.png "Agent Harness 的核心模块")
-```
+- 概念用文字定义，术语保持一致，指代明确。
+- 架构用文字或 Markdown 表格说明模块责任、接口与依赖。
+- 流程用有序步骤说明执行主体、输入、输出、分支、失败与恢复条件。
+- 数据用 Markdown 表格保留数值、单位、口径和来源，并用文字解释结论。
+- 原始资料中的图片信息应融入连续正文，保留来源链接，区分事实与推演。
 
-- 方括号内容是无障碍替代文本，必须准确描述图片。
-- 引号内的 title 会显示成图注。
-- 点击图片会打开大图查看器。
-- 图片自动启用懒加载和异步解码。
-
-将两张图片写在同一个段落中，会形成双列画廊：
-
-```md
-![方案 A](/images/plan-a.png "方案 A") ![方案 B](/images/plan-b.png "方案 B")
-```
+以下 Mermaid 与 ECharts 章节记录现有技术能力。写作优先采用上述文本表达，核心信息必须能在不渲染图形的情况下完整理解，不将图形导出为图片插入文章。
 
 ## 2. Mermaid 流程图
 
@@ -142,7 +135,7 @@ const result = await harness.run({ goal, context, tools });
 Markdown 允许直接写 HTML：
 
 ```html
-<video controls poster="/images/demo-cover.jpg">
+<video controls>
   <source src="/media/demo.mp4" type="video/mp4" />
 </video>
 

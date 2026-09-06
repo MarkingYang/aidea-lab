@@ -1,10 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve('src/content/writing');
 const registry = JSON.parse(fs.readFileSync('src/data/knowledge.json', 'utf8'));
 const redirects = JSON.parse(fs.readFileSync('src/data/content-redirects.json', 'utf8'));
-const migration = JSON.parse(fs.readFileSync('docs/content-restructure-plan.json', 'utf8'));
 const files = fs.readdirSync(root).filter(file => file.endsWith('.md'));
 const articles = new Set(files.map(file => file.slice(0, -3)));
 const domains = new Set(registry.topics.map(item => item.id));
@@ -13,6 +13,9 @@ const errors = [];
 const titles = new Set();
 const assigned = new Set();
 const estimates = [];
+const historicalEditorialNotes = [];
+const restoration = JSON.parse(fs.readFileSync('docs/blog-rewrite/september-originals-restoration.json', 'utf8'));
+const originalHashes = new Map(restoration.articles.map(item => [path.basename(item.path), item.sha256]));
 if (domains.size !== registry.topics.length || groups.size !== registry.series.length) errors.push('Duplicate directory IDs');
 for (const group of registry.series) {
   if (!domains.has(group.topic)) errors.push(`${group.id}: missing domain`);
@@ -34,6 +37,10 @@ function canonicalRoute(href) {
 }
 for (const file of files) {
   const source = fs.readFileSync(path.join(root, file), 'utf8');
+  // Preserve user-requested originals; edited articles must satisfy current editorial rules.
+  // Structure, dates, routes and links remain errors for all articles.
+  const isOriginal = originalHashes.get(file) === createHash('sha256').update(source).digest('hex');
+  const editorialIssue = message => (isOriginal ? historicalEditorialNotes : errors).push(message);
   const match = source.match(/^---\n([\s\S]*?)\n---\n/);
   if (!match) { errors.push(`${file}: missing frontmatter`); continue; }
   const front = match[1], body = source.slice(match[0].length);
@@ -41,19 +48,25 @@ for (const file of files) {
   const description = front.match(/^description: (.+)$/m)?.[1];
   if (!title || titles.has(title)) errors.push(`${file}: missing or duplicate title`);
   titles.add(title);
-  if (!description || description.length < 20 || description.length > 120) errors.push(`${file}: description must be 20–120 characters`);
-  if (!/^updatedAt: \d{4}-\d{2}-\d{2}$/m.test(front)) errors.push(`${file}: missing revision date`);
+  if (!description) errors.push(`${file}: missing description`);
+  else if (description.length < 20 || description.length > 120) editorialIssue(`${file}: description must be 20–120 characters`);
+  if (!/^publishedAt: \d{4}-\d{2}-\d{2}$/m.test(front)) errors.push(`${file}: missing publication date`);
+  if (/^updatedAt:/m.test(front) && !/^updatedAt: \d{4}-\d{2}-\d{2}$/m.test(front)) errors.push(`${file}: invalid revision date`);
   const minutes = Number(front.match(/^readingTime: (\d+) min$/m)?.[1]);
   const estimate = estimateMainReadingMinutes(body);
-  if (!minutes || minutes + 1 < estimate) errors.push(`${file}: reading time ${minutes} underestimates ${estimate}`);
+  if (!minutes) errors.push(`${file}: missing reading time`);
+  else if (minutes + 1 < estimate) editorialIssue(`${file}: reading time ${minutes} underestimates ${estimate}`);
   estimates.push({ article:file.slice(0,-3), minutes, estimate });
   if ((body.match(/^```/gm) || []).length % 2) errors.push(`${file}: unbalanced code fences`);
   const prose = body.replace(/```[\s\S]*?```/g,'');
   if (/^> .*系列：|^上一篇：|^下一篇：/m.test(prose)) errors.push(`${file}: stale duplicated navigation`);
   const headings = [...prose.matchAll(/^(#{2,6}) (.+)$/gm)];
   for (let i=1; i<headings.length; i++) if(headings[i][1].length>headings[i-1][1].length+1) errors.push(`${file}: heading hierarchy jumps`);
-  const diagrams = (body.match(/^```mermaid/gm)||[]).length;
-  if ((body.match(/\*图 \d+｜/g)||[]).length!==diagrams) errors.push(`${file}: diagram/caption count differs`);
+  // A diagram may be explained by a caption or the immediately following prose.
+  for (const diagram of body.matchAll(/^```mermaid[^\n]*\n[\s\S]*?^```[^\n]*$/gm)) {
+    const explanation = body.slice(diagram.index + diagram[0].length).trimStart().split('\n')[0];
+    if (!explanation || /^(?:#|```|!\[|<|\|)/.test(explanation)) editorialIssue(`${file}: diagram needs a caption or following explanation`);
+  }
   for (const link of body.matchAll(/\]\((\/[^)\s]+)\)/g)) {
     const href = link[1].split(/[?#]/)[0];
     if (redirects[href]) errors.push(`${file}: internal link still uses retired route ${href}`);
@@ -64,11 +77,7 @@ for (const [from,to] of Object.entries(redirects)) {
   if (from===to || redirects[to] || !canonicalRoute(to)) errors.push(`Redirect must resolve directly: ${from} → ${to}`);
   if (from.startsWith('/writing/') && articles.has(from.split('/')[2])) errors.push(`Retired article is still published: ${from}`);
 }
-for (const item of migration.articles) {
-  if (!articles.has(item.target)) errors.push(`Migration destination is missing: ${item.target}`);
-  if (item.source!==item.target && redirects[`/writing/${item.source}/`]!==`/writing/${item.target}/`) errors.push(`Migration redirect mismatch: ${item.source}`);
-}
-console.log(JSON.stringify({ domains:domains.size, topics:groups.size, articles:articles.size, redirects:Object.keys(redirects).length, readingMinutes:[Math.min(...estimates.map(x=>x.estimate)),Math.max(...estimates.map(x=>x.estimate))], errors },null,2));
+console.log(JSON.stringify({ domains:domains.size, topics:groups.size, articles:articles.size, redirects:Object.keys(redirects).length, readingMinutes:estimates.length ? [Math.min(...estimates.map(x=>x.estimate)),Math.max(...estimates.map(x=>x.estimate))] : [], historicalEditorialNotes, errors },null,2));
 if(errors.length) process.exitCode=1;
 function estimateMainReadingMinutes(body) {
   // Collapsed evidence appendices and source lists are optional reading; navigation is interface chrome.

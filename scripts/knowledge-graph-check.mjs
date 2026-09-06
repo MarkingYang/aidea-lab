@@ -12,7 +12,7 @@ const nodeIds = new Set(graph.nodes.map(node => node.id));
 const articleIds = new Set(graph.nodes.filter(node => node.kind === 'article').map(node => node.id));
 const redirectsForArticles = new Set(Object.keys(JSON.parse(fs.readFileSync('src/data/content-redirects.json','utf8'))).filter(url=>url.startsWith('/writing/')).map(url=>url.split('/')[2]));
 const builtArticleIds = new Set(
-  fs.readdirSync(path.join(outputRoot, 'writing'), { withFileTypes: true })
+  (fs.existsSync(path.join(outputRoot, 'writing')) ? fs.readdirSync(path.join(outputRoot, 'writing'), { withFileTypes: true }) : [])
     .filter(entry => entry.isDirectory() && fs.existsSync(path.join(outputRoot, 'writing', entry.name, 'index.html')))
     .map(entry => entry.name)
     .filter(id => !redirectsForArticles.has(id)),
@@ -59,7 +59,9 @@ for (let i = 0; i < graph.nodes.length; i++) {
     assert.ok(Math.hypot(a.x - b.x, a.y - b.y) > 18, `Nodes overlap: ${a.id}, ${b.id}`);
   }
 }
-assert.ok(graph.links.some(link => link.relation === 'reference'), 'Preserve real article references');
+const references = graph.links.filter(link => link.relation === 'reference');
+assert.ok(references.every(link => articleIds.has(link.source) && articleIds.has(link.target) && link.source !== link.target), 'References must connect distinct existing articles');
+assert.equal(graph.stats.references, references.length, 'Reference statistics must match graph data, including a manuscript with no cross-article references');
 
 assert.equal(graph.stats.articles, articleIds.size, 'Article statistics must match graph data');
 assert.equal(graph.stats.keywords, graph.nodes.filter(node => node.kind === 'keyword').length, 'Keyword statistics must match graph data');

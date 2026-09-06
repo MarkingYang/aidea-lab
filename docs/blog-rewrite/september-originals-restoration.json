@@ -1,0 +1,136 @@
+{
+  "action": "Restore the 19 original articles listed to the user, first published September 1–4, 2026. Preserve original text, dates, images and standalone report. Keep the current Reading homepage and site UI.",
+  "articles": [
+    {
+      "path": "src/content/writing/ai-agent-reliability-boundaries.md",
+      "commit": "500fc32f6dd9dec612275732bcff9f375d030416",
+      "sha256": "ec53cba4ddf4c781a94e236eda18f52b6c621e89cdcb568f40bd73973519e065"
+    },
+    {
+      "path": "src/content/writing/ai-capability-product-metrics.md",
+      "commit": "074e7f6cd5e8b40498d6b8fe89bbc9a1e592d4ba",
+      "sha256": "42d58516eda033cc110c6f1d8432674cbb6060b89bd6df96f55a6d9568aa659c"
+    },
+    {
+      "path": "src/content/writing/capability-routing-at-scale.md",
+      "commit": "8fb2d5ca1f62a0abd1af8760defd4af0aea893ef",
+      "sha256": "4202fb8a28831fb5d41b3e97f83fb01463d4f71ad4ca9172579afaea27ed7902"
+    },
+    {
+      "path": "src/content/writing/ecc-architecture-deep-dive.md",
+      "commit": "e06c65192c3ba0e497868ef58b8397c8973e0029",
+      "sha256": "5bc6def09839bb0704acf1ef3838470eb9d958df629dbe5bac7b67931f1e3b60"
+    },
+    {
+      "path": "src/content/writing/agent-memory-design-competitive-analysis.md",
+      "commit": "54b03dbede444aa01db714e572dd936798009d36",
+      "sha256": "fb249df8f0c3bcb5b60d55001d3be5d4fc8309f10022bae923415cefffd9f2cb"
+    },
+    {
+      "path": "src/content/writing/pi-architecture-deep-dive.md",
+      "commit": "590984fa9e08c126d6829e3b1f5912b97c8a51d4",
+      "sha256": "604ef8fa36534229a4d009e95bffb628045a4fb76d52005d596f4ffa8cafe786"
+    },
+    {
+      "path": "src/content/writing/deepseek-harness-architecture.md",
+      "commit": "54e07a8f06213d4d66c466482eb9f1a8126d7989",
+      "sha256": "08d2e0c6784a2fdf4c6b5d4a21282defb1aabfe9af66379a69317a7790342b19"
+    },
+    {
+      "path": "src/content/writing/claude-code-product-design.md",
+      "commit": "844bf27fd1d3854d685046e5791a6c8b726a3589",
+      "sha256": "222d6c7a6c8a87e0a09dc01f278e294304d7fe43584b15faea68606293fcc1b8"
+    },
+    {
+      "path": "src/content/writing/hermes-agent-architecture-deep-dive.md",
+      "commit": "5a2d46dd19dddd76322d80647c1330074d56ea45",
+      "sha256": "f7807d7866080f235018cc0f7e3ef535277f936680bb90a3c8acd140b9485999"
+    },
+    {
+      "path": "src/content/writing/llm-agent-capability-landscape-2026.md",
+      "commit": "dd023a034540f548fdd3e63314fb5117ad35d8f8",
+      "sha256": "3b6aac725ee8b335c4505e6982b0be59c5745141769e5141d2a5696c2ded8002"
+    },
+    {
+      "path": "src/content/writing/ai-agent-landscape-2026.md",
+      "commit": "9cd5ed332fec8446575211d94c1bdfdc7279f111",
+      "sha256": "84acbcae1a0cfd27780ed69656d3ff67235abc665ea9137a26721deececc54e2"
+    },
+    {
+      "path": "src/content/writing/china-work-agent-showdown.md",
+      "commit": "9cd5ed332fec8446575211d94c1bdfdc7279f111",
+      "sha256": "bfb9ff0701daed46b263af220a91d5fe570bb49fbedc0abde1e5e9a9e697ac97"
+    },
+    {
+      "path": "src/content/writing/coding-agent-harness-showdown.md",
+      "commit": "9cd5ed332fec8446575211d94c1bdfdc7279f111",
+      "sha256": "c963d054e5c76d82d4a508c82d7a32b27bb4dd06b5e0158bc7ebda816beaf737"
+    },
+    {
+      "path": "src/content/writing/trace-framework-deep-dive.md",
+      "commit": "91287ad29cea6de1de85eace9e92d53b9c0047f0",
+      "sha256": "f7b4607209a00a9b7cc9ce8a970908bab7cd5d6242ccf63b96c724ac9b6b8615"
+    },
+    {
+      "path": "src/content/writing/agent-system-evaluation-research.md",
+      "commit": "295a3e2be3568055373a2975260c42902295b822",
+      "sha256": "a0cd3118700fc1ffcb0b2959f1d406a1951ace09c98bbf7c27e676367d39f104"
+    },
+    {
+      "path": "src/content/writing/lu-qi-researcher-founder.md",
+      "commit": "d8274cb0b025d681839b594b12745f3680e0fbcf",
+      "sha256": "f26916a6a86a9fca0d15aacda3ff0717d27611e537c3fb23502f1ac0c9974934"
+    },
+    {
+      "path": "src/content/writing/product-analysis-frameworks.md",
+      "commit": "bbdec534d42d421ffbe8992851ff7eea8e59b9ae",
+      "sha256": "07a668f4b6f2fdc678aaa3288af9fcba37935f589190f324ae54c6382b4fa4bb"
+    },
+    {
+      "path": "src/content/writing/anthropic-harness.md",
+      "commit": "2409f90dc43dab5bf91a1c6d3452e6cf25d87514",
+      "sha256": "ba69710519c6c1dcd898d8bb6f4b1635618c87cf63aaa9fe54b95cca4ad2e234"
+    },
+    {
+      "path": "src/content/writing/product-work-methodology.md",
+      "commit": "7362783ec7e3e16b36222de1ab43cea5aa14c3b5",
+      "sha256": "9b573bb34c344cad86a199b6700e44a16e51ef33344827a606310929048d1da2"
+    }
+  ],
+  "assets": [
+    {
+      "path": "src/pages/writing/agent-system-evaluation-research.astro",
+      "commit": "295a3e2be3568055373a2975260c42902295b822",
+      "sha256": "b371940c7a3a0020e9328d9d555964f588c81501dba43f056b36fc160ac7a9e2"
+    },
+    {
+      "path": "public/images/researcher-founder/cross-the-river.png",
+      "commit": "d8274cb0b025d681839b594b12745f3680e0fbcf",
+      "sha256": "89d9a106156dcb77dd51460e2dfb7744b614f801c604f654a0c3b70fde67bcfc"
+    },
+    {
+      "path": "public/images/researcher-founder/from-minus-one-to-one.png",
+      "commit": "d8274cb0b025d681839b594b12745f3680e0fbcf",
+      "sha256": "e9322a424b2572567c5f973a25b064750460843f9330b619c783a01aca15ccf8"
+    },
+    {
+      "path": "public/images/researcher-founder/choose-direction.png",
+      "commit": "d8274cb0b025d681839b594b12745f3680e0fbcf",
+      "sha256": "094a59666879c12a86175b4910a9a5fd59f73a0850e9f7cb62a46fd6b43d4436"
+    },
+    {
+      "path": "public/images/researcher-founder/slope-thinking.png",
+      "commit": "d8274cb0b025d681839b594b12745f3680e0fbcf",
+      "sha256": "bdcaead4e3e9a9b753ca4f0b884467d0b549366fd5782cd3c85b3ec18f959933"
+    }
+  ],
+  "validation": {
+    "original_files_match_git": "24 files passed",
+    "build_and_content_check": "passed; original editorial differences retained",
+    "knowledge_graph": "19 articles, 53 nodes, 93 links",
+    "homepage": "all 19 article links present",
+    "built_internal_links_and_assets": "passed",
+    "live_article_routes": "19 HTTP 200 responses with article headings",
+    "standalone_report": "all eight original sections present"
+  }
+}

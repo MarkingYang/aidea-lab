@@ -18,7 +18,7 @@ const entries = (await getCollection('writing', ({ data }) => data.type !== 'ess
     <section class="content-grid" aria-label="笔记列表">
       {entries.slice(0,12).map((entry, index) => <ContentCard entry={entry} index={index} />)}
     </section>
-    {entries.length===0 && <div class="empty-note"><p>这里留给尚未长成文章的观察。目前还没有单独发布的短笔记，不必为了填满目录而匆忙写下结论。</p><a class="text-link" href="/topics/perspectives/">先读认知与观察方向的文章 →</a></div>}
+    {entries.length===0 && <div class="empty-note"><p>暂无短笔记。</p><a class="text-link" href="/library/">浏览文章 →</a></div>}
     {entries.length>12 && <a class="text-link" href="/library/">进入完整归档，按类型检索更多记录 →</a>}
   </div>
 </BaseLayout>

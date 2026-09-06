@@ -4,8 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Library from '../../components/Library.astro';
 import { getKnowledge, type Writing } from '../../lib/knowledge';
 import { PAGE_SIZE } from '../../lib/library';
-export const getStaticPaths = (async ({paginate}) => { const {entries}=await getKnowledge();return paginate(entries,{pageSize:PAGE_SIZE}); }) satisfies GetStaticPaths;
-interface Props {page:Page<Writing>}
+export const getStaticPaths = (async ({paginate}) => { const {entries}=await getKnowledge();return entries.length ? paginate(entries,{pageSize:PAGE_SIZE}) : [{params:{page:undefined},props:{page:{data:[],currentPage:1,lastPage:1}}}]; }) satisfies GetStaticPaths;
+interface Props {page:Pick<Page<Writing>, 'data' | 'currentPage' | 'lastPage'>}
 const {page}=Astro.props;
 ---
 <BaseLayout title={`全部文章${page.currentPage>1 ? ` · 第 ${page.currentPage} 页`:''}｜大飞随笔`} description="输入一个关键词，查找相关文章与随想。">

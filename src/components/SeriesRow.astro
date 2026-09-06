@@ -2,16 +2,18 @@
 import { type KnowledgeSeries } from '../lib/knowledge';
 interface Props { series: KnowledgeSeries; index?: number; }
 const { series, index = 0 } = Astro.props;
+const isSingleArticle = series.articles.length === 1;
+const destination = isSingleArticle ? `/writing/${series.articles[0].id}/` : `/series/${series.id}/`;
 ---
 <article class="series-row">
   <span class="row-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
   <div>
     <p class="series-meta">{series.articles.length} 篇 · 约 {series.minutes} 分钟 · 可分次阅读</p>
-    <h3><a href={`/series/${series.id}/`}>{series.title}<span aria-hidden="true">↗</span></a></h3>
+    <h3><a href={destination}>{series.title}<span aria-hidden="true">↗</span></a></h3>
     <p class="series-description">{series.description}</p>
-    <details class="topic-articles"><summary>展开文章目录</summary><ol>{series.articles.map(entry => <li><a href={`/writing/${entry.id}/`}>{entry.data.title}</a><span>{entry.data.readingTime}</span></li>)}</ol></details>
+    {!isSingleArticle && <details class="topic-articles"><summary>展开文章目录</summary><ol>{series.articles.map(entry => <li><a href={`/writing/${entry.id}/`}>{entry.data.title}</a><span>{entry.data.readingTime}</span></li>)}</ol></details>}
   </div>
-  <a class="series-enter" href={`/series/${series.id}/`}>打开目录 <span aria-hidden="true">→</span></a>
+  <a class="series-enter" href={destination}>{isSingleArticle ? '阅读文章' : '打开目录'} <span aria-hidden="true">→</span></a>
 </article>
 <style>
   .series-row { display:grid; grid-template-columns:36px minmax(0,1fr) auto; gap:24px; padding:30px 0; border-bottom:1px solid var(--line); }

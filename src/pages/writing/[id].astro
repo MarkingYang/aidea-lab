@@ -10,7 +10,7 @@ import { getKnowledgeGraph, getRelatedArticles } from '../../lib/knowledgeGraph'
 
 export async function getStaticPaths() {
   const entries = await getCollection('writing');
-  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  return entries.filter(entry => !entry.data.standalone).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
 
 interface Props { entry: CollectionEntry<'writing'>; }
@@ -27,6 +27,7 @@ const chapter=series?.articles.findIndex(item=>item.id===entry.id) ?? -1;
 const topic=knowledgeTopics.find(item=>item.id===series?.topic);
 const previous=series?.articles[chapter-1];
 const next=series?.articles[chapter+1];
+const hasMultipleArticles = !!series && series.articles.length > 1;
 const sectionHeadings=headings.filter(heading=>heading.depth===2);
 // Preserve portable Markdown navigation in source, suppress only the verified duplicate in this layout.
 const firstBlock=entry.body?.trimStart().split(/\n\s*\n/)[0] ?? '';
@@ -59,12 +60,12 @@ const related=getRelatedArticles(await getKnowledgeGraph(),entry.id,4);
       {entry.data.updatedAt && <p class="article-revised">最近修订：{dateLabel(entry.data.updatedAt)}</p>}
     </header>
 
-    {series && <div class="series-position"><a href={`/series/${series.id}/`}>{series.title} · 第 {chapter+1} / {series.articles.length} 篇</a><span>{stageLabel(chapter,series.articles.length)}</span></div>}
-    <details class="mobile-reading"><summary>阅读导航{series ? ` · 第 ${chapter+1} / ${series.articles.length} 篇` : ' · 本篇目录'}</summary>{series && <nav aria-label="移动端专题导航"><a href={`/series/${series.id}/`}>返回专题目录 →</a><ol>{series.articles.map((item,index)=><li><a href={articleHref(item.id)} aria-current={item.id===entry.id?'page':undefined}>{index+1}. {shortTitle(item.data.title)}</a></li>)}</ol></nav>}<nav aria-label="移动端本篇目录"><p>本篇目录</p><ol>{sectionHeadings.map(heading=><li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav></details>
+    {hasMultipleArticles && series && <div class="series-position"><a href={`/series/${series.id}/`}>{series.title} · 第 {chapter+1} / {series.articles.length} 篇</a><span>{stageLabel(chapter,series.articles.length)}</span></div>}
+    <details class="mobile-reading"><summary>阅读导航{hasMultipleArticles && series ? ` · 第 ${chapter+1} / ${series.articles.length} 篇` : ' · 本篇目录'}</summary>{hasMultipleArticles && series && <nav aria-label="移动端专题导航"><a href={`/series/${series.id}/`}>返回专题目录 →</a><ol>{series.articles.map((item,index)=><li><a href={articleHref(item.id)} aria-current={item.id===entry.id?'page':undefined}>{index+1}. {shortTitle(item.data.title)}</a></li>)}</ol></nav>}<nav aria-label="移动端本篇目录"><p>本篇目录</p><ol>{sectionHeadings.map(heading=><li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav></details>
 
     <div class="article-layout">
       <aside class="toc">
-        {series && <details class="series-sidebar" open><summary>{series.title}<small>专题 · {series.articles.length} 篇</small></summary><ol>{series.articles.map((item,index)=><li><a href={articleHref(item.id)} aria-current={item.id===entry.id?'page':undefined}><span>{String(index+1).padStart(2,'0')}</span>{shortTitle(item.data.title)}</a></li>)}</ol><a class="series-directory-link" href={`/series/${series.id}/`}>专题目录 ↗</a></details>}
+        {hasMultipleArticles && series && <details class="series-sidebar" open><summary>{series.title}<small>专题 · {series.articles.length} 篇</small></summary><ol>{series.articles.map((item,index)=><li><a href={articleHref(item.id)} aria-current={item.id===entry.id?'page':undefined}><span>{String(index+1).padStart(2,'0')}</span>{shortTitle(item.data.title)}</a></li>)}</ol><a class="series-directory-link" href={`/series/${series.id}/`}>专题目录 ↗</a></details>}
         <p>CONTENTS · 目录</p>
         {headings.length > 0 ? (
           <ol>{sectionHeadings.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol>
@@ -73,7 +74,7 @@ const related=getRelatedArticles(await getKnowledgeGraph(),entry.id,4);
       <div class:list={['prose', { 'has-inline-series-nav': hasInlineSeriesNav }]}><Content /></div>
     </div>
     <RelatedKnowledge articleId={entry.id} related={related} />
-    {series ? <nav class="article-pagination" aria-label="专题前后篇"><a href={previous ? articleHref(previous.id) : `/series/${series.id}/`} rel={previous?'prev':undefined}><small>{previous?'上一篇':'专题目录'}</small><span>{previous?shortTitle(previous.data.title):'回到专题目录'}</span></a><a href={next ? articleHref(next.id) : `/series/${series.id}/`} rel={next?'next':undefined}><small>{next?'下一篇 →':'返回专题目录 →'}</small><span>{next?shortTitle(next.data.title):series.question}</span></a></nav> : <div class="article-pagination"><a href="/library/">← 返回文章目录</a><a href="/topics/">沿主题继续阅读 →</a></div>}
+    {hasMultipleArticles && series ? <nav class="article-pagination" aria-label="专题前后篇"><a href={previous ? articleHref(previous.id) : `/series/${series.id}/`} rel={previous?'prev':undefined}><small>{previous?'上一篇':'专题目录'}</small><span>{previous?shortTitle(previous.data.title):'回到专题目录'}</span></a><a href={next ? articleHref(next.id) : `/series/${series.id}/`} rel={next?'next':undefined}><small>{next?'下一篇 →':'返回专题目录 →'}</small><span>{next?shortTitle(next.data.title):series.question}</span></a></nav> : <div class="article-pagination"><a href="/library/">← 返回文章目录</a><a href="/topics/">沿主题继续阅读 →</a></div>}
   </article>
 
   <ArtalkComments title={entry.data.title} />

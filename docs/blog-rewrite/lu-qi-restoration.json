@@ -1,0 +1,46 @@
+{
+  "action": "User-requested restoration and consolidation of Lu Qi articles",
+  "source_commit": "e40772ce6f6f627151321d85215979f54a2d7c47",
+  "sources": [
+    "src/content/writing/lu-qi-researcher-founder.md",
+    "src/content/writing/researcher-founder-thinking.md",
+    "src/content/writing/learning-organization-boundaries.md"
+  ],
+  "destination": "src/content/writing/lu-qi-researcher-founder.md",
+  "preserved_images": 4,
+  "structure": "研究与价值 → NeoLab → 能力结构 → 三种思维 → 一线实践 → 组织学习 → 边界",
+  "entry": "Reading at /; /series/ redirects to /",
+  "validation": {
+    "build": "passed",
+    "content_and_graph_checks": "passed",
+    "internal_links_and_images": "passed",
+    "homepage_reading_navigation": "passed"
+  },
+  "subsequent_revision": {
+    "date": "2026-09-06",
+    "reason": "User established a no-images principle for all Blog articles; use model-readable language.",
+    "removed_article_images": 4,
+    "remaining_article_images": 0,
+    "content": "Necessary information expressed in prose; source links retained."
+  },
+  "original_version_restoration": {
+    "reason": "User requested the earliest unsplit version with screenshots and original dates. This supersedes the merged rewrite for this article.",
+    "source_commit": "d8274cb0b025d681839b594b12745f3680e0fbcf",
+    "publishedAt": "2026-09-03",
+    "updatedAt": null,
+    "sha256": {
+      "src/content/writing/lu-qi-researcher-founder.md": "f26916a6a86a9fca0d15aacda3ff0717d27611e537c3fb23502f1ac0c9974934",
+      "public/images/researcher-founder/from-minus-one-to-one.png": "e9322a424b2572567c5f973a25b064750460843f9330b619c783a01aca15ccf8",
+      "public/images/researcher-founder/choose-direction.png": "094a59666879c12a86175b4910a9a5fd59f73a0850e9f7cb62a46fd6b43d4436",
+      "public/images/researcher-founder/slope-thinking.png": "bdcaead4e3e9a9b753ca4f0b884467d0b549366fd5782cd3c85b3ec18f959933",
+      "public/images/researcher-founder/cross-the-river.png": "89d9a106156dcb77dd51460e2dfb7744b614f801c604f654a0c3b70fde67bcfc"
+    },
+    "validation": {
+      "build": "passed",
+      "content_and_graph_checks": "passed",
+      "article_and_four_images_match_original_commit": "passed",
+      "original_date_and_no_revision_date": "passed",
+      "homepage_original_date": "passed"
+    }
+  }
+}

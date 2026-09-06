@@ -4,9 +4,9 @@ import { getKnowledge, topics, articleHref } from '../../lib/knowledge';
 const { entries, series, topicIdsFor } = await getKnowledge();
 const tags = [...new Set(entries.flatMap(entry => entry.data.topics))].sort((a,b)=>a.localeCompare(b,'zh-CN'));
 ---
-<BaseLayout title="知识目录｜大飞随笔" description="知识域、专题、文章三级目录：Harness、评测、产品与研究。">
+<BaseLayout title="知识目录｜大飞随笔" description="Harness 与工作型 Agent 研究：从业界实践到架构、产品设计与验证。">
   <div class="page-shell">
-    <header class="page-intro"><p class="eyebrow">An atlas, not a feed</p><h1>用问题组织知识，<br />用实践连接理解。</h1><p class="intro-copy">目录分为知识域、专题、文章三级。先选方向，再展开对应专题；项目案例归到所研究的系统层级，关键词负责跨专题关联。</p></header>
+    <header class="page-intro"><p class="eyebrow">Research in context</p><h1>用问题组织知识，<br />用实践连接理解。</h1><p class="intro-copy">围绕 Agent 的运行机制、产品协作与交付展开阅读，结合开源实现和实际任务理解设计取舍。</p></header>
     <nav class="directory-jump" aria-label="知识目录章节">{topics.map(topic => <a href={`#${topic.id}`}>{topic.title} ↓</a>)}<a href="/library/">搜索文章 ↗</a><a href="/graph/">进入知识星图 ↗</a></nav>
     <div class="knowledge-tree">
       {topics.map((topic,index) => {
