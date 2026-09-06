@@ -14,11 +14,35 @@ readingTime: 12 min
 updatedAt: 2026-09-06
 ---
 
-> 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
+## 定位与价值
 
-运行日志可以证明“发生了什么”，却不能保证事情本来就应该发生。真正的执行边界必须在动作之前检查，动作之后再用证据核验。
+本篇追踪模型提出一个工具调用之后，参数、审批和结果如何保持一致，再讨论 PTC 与子 Agent 如何复用这条边界。
 
-## 工具系统：先冻结事实，再允许策略介入
+完整定位与安装见[项目总览](/writing/deepseek-harness-composition/)。
+
+研究基线：[deepseek-ai/deepseek-harness @ 76fda72](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：模型工具调用] --> F[核心：冻结参数与 Tool Definition]
+ F --> G{策略与单调 Guard}
+ G -->|拒绝| R[返回阻断证据]
+ G -->|允许| A[适配：工具 / PTC / Subagent]
+ A --> I[基础设施：Sandbox / 外部工具后端]
+ I -->|规范输出| C[结果投影与 Session 记录]
+ C -->|工具结果| U
+ R --> U
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+### 工具调用与程序化编排
+
+#### 工具系统：先冻结事实，再允许策略介入
 
 工具调用是 Agent 最危险也最容易失真的边界：模型看到的参数、UI 展示的参数、审批时判断的参数和实际执行的参数，必须是同一个事实。
 
@@ -41,25 +65,25 @@ model tool call
 
 这里有三个成熟的设计信号。
 
-### Tool Definition 同时约束输入、规范输出和展示
+##### Tool Definition 同时约束输入、规范输出和展示
 
 一个工具不只声明名字、描述和参数，还必须声明 Canonical Output Schema，以及如何把规范值渲染成模型可见的 `ContentBlock`。运行时回调、超时、并发安全分类和 UI Presenter 永远不会泄漏给模型，模型只看到白名单生成的 Schema。
 
 这样一来，“工具返回了对象，但模型只该看到摘要”成为显式投影；原始结构可以在执行链中保持类型化，展示也可以在 Replay 时纯函数重建。
 
-### Guard 只能单调收紧权限
+##### Guard 只能单调收紧权限
 
 `tools/pre-execute` 是可排序的插件策略，适合 Allow / Deny / Ask。随后执行的 `ToolGuard` 刻意没有 Allow 返回值：它只能不表态或给出拒绝原因。于是无论 Listener 顺序如何，一个安全 Guard 的拒绝都不能被后加载插件翻回允许。
 
 这是“万物插件”架构不可缺少的补丁：扩展性允许多方参与决策，**单调策略**保证安全边界不会因为组合顺序意外变宽。
 
-### 并行安全先由工具声明，再用冲突测试验证
+##### 并行安全先由工具声明，再用冲突测试验证
 
 只有工具的 `isConcurrencySafe(args)` 明确返回 `true`，调用才能和兄弟调用重叠；省略、异常或任何非 `true` 结果都按 Exclusive 处理。并行因此不是模型一句“请并行”就能获得的权力，而是工具作者对共享状态和副作用作出的声明。
 
 这些细节都记录在官方 [Tools 子系统](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/subsystems/tools.md)中。它们反映出 DeepSeek Harness 的设计重心：模型协议要短，Host 侧契约要严格。
 
-## PTC：把确定性工具编排移入程序
+#### PTC：把确定性工具编排移入程序
 
 PTC，即 Programmatic Tool Calling，是 DeepSeek Harness 区别于普通 Native Function Calling 的另一条路线。
 
@@ -86,11 +110,14 @@ return files
 
 因此 PTC 的本质是**性能与上下文工程机制**，不是权限机制。它是否真的提高任务成功率，还需要针对具体模型和任务做评测。官方仓库当前只提供[运行 Benchmark 的说明](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/BENCHMARK.md)，没有公布足以支持横向性能结论的结果，所以不能仅从架构推导收益数字。
 
-## 多 Agent：先统一委派语义，再叠加团队协作
+
+### 委派如何保留执行边界
+
+#### 多 Agent：先统一委派语义，再叠加团队协作
 
 DeepSeek Harness 把 Subagent 和 Agent Team 分成两层。
 
-### Subagent 是能力接口
+##### Subagent 是能力接口
 
 `ctx.subagents` 可以同时挂载多个 Provider：
 
@@ -102,7 +129,7 @@ DeepSeek Harness 把 Subagent 和 Agent Team 分成两层。
 
 Provider 可以是一轮即结束，也可以是可继续的 Child。父 Agent 通过同一接口发现、发送后续消息、中断和读取状态，而不需要知道子方运行在当前进程、另一个进程还是另一个产品中。详见官方 [Subagent 包总览](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/subagent/README.md)。
 
-### Agent Team 是有状态协作域
+##### Agent Team 是有状态协作域
 
 实验性的 Agent Team 在 Subagent 之上增加：
 
@@ -116,7 +143,7 @@ Provider 可以是一轮即结束，也可以是可继续的 Child。父 Agent �
 
 它和普通“并行调用多个 Agent”最大的不同是：团队状态也进入可重放日志。代价则是协调协议、恢复语义和共享工作区冲突都变成平台责任。官方仍将它标为 Experimental，见 [Agent Teams 文档](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/subsystems/agent-team.md)。
 
-## 安全架构：插件策略与外层隔离分别验证
+#### 安全架构：插件策略与外层隔离分别验证
 
 DeepSeek Harness 的工具流水线已经体现了 Fail-closed 思想：没有审批通道、审批者异常、返回非法结果或请求被取消，都不能放行动作；只有 `allowed-once` 是授权。
 
@@ -151,11 +178,11 @@ flowchart LR
   K --> V
 ```
 
-*图 1｜业务策略、外层隔离和结果验证的分工。*
+*图 2｜业务策略、外层隔离和结果验证的分工。*
 
 Harness 内策略用于表达业务意图，操作系统或云基础设施负责硬隔离，Git / 测试 / 外部状态读取负责验证结果。三者缺一不可。
 
-## 一组必须分别验证的反例
+#### 一组必须分别验证的反例
 
 - 审批后参数被替换：执行应基于同一冻结事实，不能“批 A 做 B”。
 - 查询工具共享一个可变游标却标为可并行：用交错请求检查漏读与重复，分类函数不是自动证明器。
@@ -167,56 +194,27 @@ Harness 内策略用于表达业务意图，操作系统或云基础设施负责
 
 本篇不是部署安全保证；上面的验收表应该进入隔离环境中的测试，并与真实数据流、凭证和出站策略一起审查。
 
-## 如果要用它建设自己的 Agent，应该怎样分阶段
 
-### 阶段一：固定组合，先证明单 Agent 闭环
+将这些机制组成应用时，继续阅读[Mini Harness 装配](/writing/harness-integration-map/)与[架构选型](/writing/harness-architecture-selection/)。
 
-先选择应用 Profile，例如 `sdk-minimal`；再按任务选择 Preset，例如 `standard`，并确认该组合实际包含所需组件。Profile 与 Preset 属于两个层次，不能作为同级模式二选一。起步阶段不启用运行时自修改。只保留少量高质量工具，建立明确的任务完成条件、测试和 Diff 审查。Session Persistence、取消、超时和失败恢复必须先于多 Agent。
+## 快速上手
 
-成功标准不是 Demo 能调用工具，而是：任务中断后可以恢复，模型可见输入能够重构，所有外部修改都有验证证据。
+安装与基础示例见[项目总览](/writing/deepseek-harness-composition/#快速上手)。本篇从同一环境继续，按文中的故障场景检查结果。
 
-### 阶段二：建立自己的 Capability Seams
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/deepseek-harness-composition/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
 
-把企业能力拆成 Definition / Provider / Consumer：例如“读工单”是稳定接口，Jira 或 Linear 是 Provider，模型 Tool 与后台 Workflow 是不同 Consumer。不要让模型工具直接绑死底层 SaaS SDK。
+## 生态与社区
 
-同时为每个 Tool 定义：输入 Schema、Canonical Output、模型投影、超时、并发属性、审批理由和最终 Guard。
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/deepseek-harness-composition/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
 
-### 阶段三：按风险划分 Preset
+## 源码阅读路径
 
-不要做一个拥有所有权限的万能 Agent。至少拆成：
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
 
-- 只读分析 Preset；
-- Workspace Write 编码 Preset；
-- 可访问生产 API、必须审批的运维 Preset；
-- 仅供平台开发者使用的 Creator Preset。
-
-Preset 决定模型看到的能力，外层 Sandbox、网络和凭证策略决定它实际上能影响什么。
-
-### 阶段四：用评测决定是否启用 PTC 与 Multi-Agent
-
-PTC 适合工具调用链长、中间结果大、控制流容易用代码表达的任务；Native Calling 更适合每一步都需要模型重新判断的任务。Subagent 适合上下文隔离和独立探索，Agent Team 只在共享任务图与持续通信确有价值时启用。
-
-对照实验至少记录：任务完成率、测试通过率、模型请求次数、总 Token、墙钟时间、人工接管次数、越权请求和恢复成功率。架构允许替换只是起点，评测才能决定哪种组合值得保留。
-
-### 阶段五：把插件发布当作供应链发布
-
-插件拥有与宿主同进程的能力，Preset 甚至可能等同 Shell 权限。企业需要锁定版本、审查来源、生成 SBOM、签名发布，并为配置变更保留可回滚记录。不要把“插件市场”当成低风险 Prompt 分享站。
-
-## 真正的复杂度预算，是允许多少种组合进入生产
-
-假设三个模型、三种工具集、两种存储、两种执行环境都可以独立替换，理论组合已有 36 种。这个数字只是乘法示例，不是该项目的部署统计；重要的是每个组合还带着取消、恢复、升级和权限例外。
-
-不需要测试所有想象中的组合。更实用的办法是区分“框架允许的组合”和“组织支持的组合”：后者是少量锁定版本、拥有负责人、通过契约测试、可回滚的配置。
-
-```mermaid
-flowchart LR
-  P[所有可表达组合] --> C[组织批准的有限配置]
-  C --> T[契约、恢复与权限验证]
-  T --> R[版本化发布]
-  R --> O[运行证据]
-  O -. 证明收益后扩展 .-> C
-```
-
-*图 2｜把可表达组合收敛成组织支持的有限配置。*
-
-如果没有这层收敛，灵活性会变成配置漂移；如果收敛过早，又会把平台重新做成不可替换的固定产品。合理的边界由实际任务变化和维护能力决定。
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [package.json](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/package.json) | CLI 与构建脚本入口 |
+| 2 | [vendor/cordis/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/vendor/cordis/src/index.ts) | Cordis 公共导出 |
+| 3 | [packages/core/agent-loop/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/agent-loop/src/index.ts) | AgentLoop：默认循环服务 |
+| 4 | [packages/core/tools/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/index.ts) | ToolDefinition 与工具运行时 |
+| 5 | [docs/testing.md](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/testing.md) | 测试分类与执行入口 |

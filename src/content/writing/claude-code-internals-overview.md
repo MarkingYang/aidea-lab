@@ -10,29 +10,34 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 4 min
+readingTime: 6 min
 ---
 
-Claude Code 的核心实现并未完整开源，公开仓库主要承担分发、Issue、插件和部分工具，因此本文不声称完成逐行源码分析。可验证材料来自[官方仓库](https://github.com/anthropics/claude-code)与[官方架构文档](https://code.claude.com/docs/en/how-claude-code-works)。
+## 定位与价值
 
-研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下图是职责归纳，不是完整部署图，也不作为未运行路径的实测证明。
+Claude Code 是在代码仓库中执行读取、修改与验证任务的编程 Agent；它把手工复制文件、追问模型和运行命令的往返组织成工具循环。
 
-设用户要求修复登录请求超时并运行回归，不推送代码。Claude Code 可以读取实现、提出修改并调用测试；模型提出 Git 推送时，应由当前权限与任务约束阻止。下文以这条任务说明上下文、工具和扩展的分工。
+适合交互式开发与受控自动化；不适合要求审计完整核心源码或仅凭提示词实现强隔离的场景。
+
+研究基线：[anthropics/claude-code @ d7dbd9a](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
 
 ```mermaid
 flowchart TB
-    U[用户任务] --> L[Agent Loop]
-    L --> T[文件 / Shell / Web / MCP]
-    P[Permission Rules] --> T
-    C[CLAUDE.md / Rules] --> L
-    M[Auto Memory] --> L
-    S[Skills / Subagents] --> L
-    H[Hooks] --> T
+  E["入口：终端任务与会话"] -->|任务或调用| C["核心：Agent Loop 与上下文组织"]
+  C -->|调用 / 加载| A["适配：权限检查、Hooks 与工具调用"]
+  A -->|请求 / 读写| I["基础设施：模型服务、文件系统与 Shell"]
+  I -->|结果 / 状态| A
+  A -->|规范化结果| C
+  C -->|回答 / 产物| E
 ```
 
-*图 1｜Claude Code 把提示上下文、按需能力与确定性自动化放在不同扩展层。*
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
 
-## 执行循环：工具证据与停止条件
+## 核心机制
+
+### 执行循环怎样取得证据
 
 Claude Code 每轮都在重复一个短循环：收集当前上下文，选择工具，获得真实结果，再决定继续、修正或结束。模型负责开放式判断，工具负责让判断接触文件、Git 和运行环境；权限规则则在副作用发生前限制行动范围。
 
@@ -56,7 +61,8 @@ sequenceDiagram
 
 官方文档也提醒，项目规则进入上下文后属于模型要遵循的指令，并非强制配置。安全要求应落实到权限规则、工具后端和操作系统隔离；能够阻断动作的同步 Hook 可补充路径内检查，但需验证事件覆盖、禁用和失败处理，不能把它视为不可绕过的总边界。
 
-## 记忆与扩展：信息加载和执行边界
+
+### 记忆与扩展怎样加载
 
 Claude Code 的扩展体系按加载时机分层。CLAUDE.md 保存每次会话都需要的项目规则；Auto Memory 由 Claude 根据纠正与经验维护；Skill 的描述常驻而正文按需加载；Subagent 在隔离上下文中工作；Hook 则按配置匹配生命周期事件并触发处理。[官方 Memory 文档](https://code.claude.com/docs/en/memory)明确区分人工规则与自动记忆。
 
@@ -71,3 +77,51 @@ Claude Code 的扩展体系按加载时机分层。CLAUDE.md 保存每次会话�
 官方把 Auto Memory 保存为可读 Markdown，并允许用户审计、编辑和删除，这是重要的可治理基础；但“可见”仍不等于“已验证”。经验进入记忆后会影响未来上下文，因此还需要来源、冲突和失效策略。
 
 Skills 与 Hooks 的差异尤其关键：Skill 为模型提供工作流方法，Hook 在配置匹配的事件上触发检查。执行前的同步 Hook 可以参与阻断；事后或异步 Hook 不能承担同样的门禁。需要强制的约束还应落实到权限、工具服务和操作系统隔离，并测试禁用、超时和错误退出时的行为。[Hook 事件、退出码与异步行为](https://code.claude.com/docs/en/hooks)
+
+## 快速上手
+
+先按官方 README 安装 Claude Code 并完成登录。下面在新建教学目录运行，只验证读取与回答。
+
+```bash
+claude --version
+mkdir -p claude-demo
+cd claude-demo
+printf "# Demo\nThis project has no source files yet.\n" > README.md
+claude -p "只读取 README.md，用一句话说明项目现状"
+```
+
+三个常用配置：
+
+| 配置或安装选项 | 作用 |
+| --- | --- |
+| `model` | 选用账号可用的模型，影响质量与费用 |
+| `permissions.allow` | 预先允许的工具规则；缩小到所需操作 |
+| `permissions.deny` | 明确拒绝的工具规则，如禁止推送 |
+
+其余选项见 [配置参考](https://code.claude.com/docs/en/settings)。
+
+常见坑：首次运行先完成登录；README 已将 npm 安装列为弃用方式，优先按官方原生安装说明操作。
+
+验证范围：已核对固定源码的入口、参数与依赖；未以本文示例调用真实模型或部署外部服务。
+
+## 生态与社区
+
+截至 2026-09-06，2026-08-08 至 09-06 UTC 的抽样取得 至少 30 条默认分支提交（上限 30 条）。见 [提交记录](https://github.com/anthropics/claude-code/commits/main/)。
+
+Issue 取 08-08 至 08-30 UTC 创建的最近最多 3 条非 PR 条目，排除机器人和提问者自答；3 条中 0 条观察到维护者文字回复。 样本：[#90859](https://github.com/anthropics/claude-code/issues/90859)、[#90858](https://github.com/anthropics/claude-code/issues/90858)、[#90857](https://github.com/anthropics/claude-code/issues/90857)。小样本不代表 SLA，“未观察到”也不代表其他渠道无人处理。
+
+固定快照许可证：[自定义商业条款；核心产品未完整开源](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/LICENSE.md)。
+
+仓库维护插件示例与 Hook 开发资源；核心产品的 MCP、IDE 等集成以官方文档为准。第三方市场插件并不因此获得官方质量保证。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [plugins/hookify/.claude-plugin/plugin.json](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/plugins/hookify/.claude-plugin/plugin.json) | 插件元数据：公开扩展入口 |
+| 2 | [plugins/hookify/hooks/hooks.json](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/plugins/hookify/hooks/hooks.json) | PreToolUse 等事件绑定 |
+| 3 | [plugins/hookify/hooks/pretooluse.py](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/plugins/hookify/hooks/pretooluse.py) | main：读取事件并调用规则引擎 |
+| 4 | [plugins/hookify/core/rule_engine.py](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/plugins/hookify/core/rule_engine.py) | RuleEngine.evaluate_rules：检查规则 |
+| 5 | [plugins/plugin-dev/skills/hook-development/scripts/test-hook.sh](https://github.com/anthropics/claude-code/blob/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b/plugins/plugin-dev/skills/hook-development/scripts/test-hook.sh) | 公开 Hook 测试脚本；并非核心运行时测试 |

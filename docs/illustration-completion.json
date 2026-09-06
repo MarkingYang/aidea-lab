@@ -1,0 +1,590 @@
+{
+  "date": "2026-09-06",
+  "mode": "built-in image_gen",
+  "scope": "每篇至少一张解释性图例；已有十篇保留，补齐其余七十八篇。",
+  "retained": [
+    "agent-evaluation-metrics",
+    "agent-memory-retrieval",
+    "anthropic-skills-overview",
+    "china-work-agent-adoption",
+    "harness-architecture-selection",
+    "harness-integration-map",
+    "harness-integration-recovery",
+    "lu-qi-researcher-founder",
+    "prompt-context-harness-engineering",
+    "researcher-founder-thinking"
+  ],
+  "illustrations": [
+    {
+      "article": "harness-engineering-map",
+      "series": "harness-engineering",
+      "title": "Harness 架构：任务契约、模块职责与建设顺序",
+      "asset": "src/assets/illustrations/articles/harness-engineering-map.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “Harness 的四份记录”. Four separate pastel illustrated record cards in a 2x2 grid, NO arrows. Labels: “任务契约 / 要交付什么”; “运行状态 / 进行到哪里”; “业务资源 / 实际发生什么”; “验收记录 / 哪些要求已通过”. Center short note “模型提案不等于实际交付”. Footer “职责可以同进程，记录不能混为一谈”. No database transactional guarantee.",
+      "alt": "任务契约记录目标，运行状态记录进度，业务资源记录实际结果，验收记录说明哪些要求已通过。",
+      "caption": "图解｜四份记录分别回答目标、进度、事实与验收；模型提案不能代替业务资源。"
+    },
+    {
+      "article": "harness-engineering-loop",
+      "series": "harness-engineering",
+      "title": "运行循环与规划：状态、进展和停止条件",
+      "asset": "src/assets/illustrations/articles/harness-engineering-loop.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “下一步：继续、等待，还是结束”. Three horizontal numbered lanes, NOT connected with arrows. Mint “继续” with small cards “有新进展”“有权限”“有预算” and an action icon. Blue “等待” with “缺信息或许可” and an event bell “有效事件到达后恢复”. Lavender “结束” splits two boxes “验收通过：交付证据” and “取消或预算耗尽：报告未完成”. Footer “模型停止生成，不等于任务成功”.",
+      "alt": "运行器在有进展且权限与预算允许时继续，缺信息或许可时等待；验收通过才能交付成功，取消或预算耗尽应报告未完成。",
+      "caption": "图解｜三种出口取决于当前事实；已经派发但未确认的写入仍需对账。"
+    },
+    {
+      "article": "loop-graph-engineering",
+      "series": "harness-engineering",
+      "title": "Loop Engineering 与 Graph Engineering：Agent 如何持续推进，又怎样组织复杂任务",
+      "asset": "src/assets/illustrations/articles/loop-graph-engineering.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “Loop 与 Graph 怎样配合”. Top blue lane titled “Graph：组织依赖” with a split into three document cards “公告 A”“公告 B”“公告 C” and all converge into “按分支身份汇总”. Bottom mint lane titled “Loop：利用反馈”, three boxes “读取证据” → “发现缺口” → “补充查找”, with simple curved return arrow to 读取证据, a side note “有界探索”. No arrows connecting the two lanes. Footer “每个核验分支可有自己的 Loop”.",
+      "alt": "Graph 把三份公告的核验分开并按分支身份汇总；每个分支内部可以用有界 Loop 根据证据缺口继续查找。",
+      "caption": "图解｜外层组织依赖，内层利用反馈；收到三个结果不代表三个不同分支都已完成。"
+    },
+    {
+      "article": "langchain-langgraph-frameworks-and-protocols",
+      "series": "harness-engineering",
+      "title": "LangChain 与 LangGraph：从模型调用到可恢复的 Agent，协议处在哪一层？",
+      "asset": "src/assets/illustrations/articles/langchain-langgraph-frameworks-and-protocols.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “框架、运行时、协议各管什么”. Four pastel horizontal lanes with icons, NO arrows between lanes: “LangChain / 模型与工具循环”; “LangGraph / 状态、节点与暂停”; “MCP / 跨系统交换消息”; “业务后端 / 授权与真实资源”. Bottom sentence “接通协议，不代表完成业务”. Do not depict strict stack, versions, performance ranks or mandatory dependencies.",
+      "alt": "LangChain 组织模型与工具，LangGraph 管理有状态流程，MCP 约定消息交换，业务后端负责权限和真实资源。",
+      "caption": "图解｜四种职责可以配合；协议不是编排框架，检查点也不能代替业务存储。"
+    },
+    {
+      "article": "multi-agent-architecture-selection",
+      "series": "harness-engineering",
+      "title": "Multi-Agent 技术架构选型：从任务拆分到框架与部署决策",
+      "asset": "src/assets/illustrations/articles/multi-agent-architecture-selection.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “什么时候值得增加 Agent”. Two pastel comparison lanes. Top mint “固定字段核对” shows 3 document icons → one gear “并行工具” → report “汇总”. Bottom blue “各自需要多步查证” shows 3 separate boxed small loops labeled “独立上下文 A”“独立上下文 B”“独立上下文 C”, all feed ONE person clipboard “协调与验收”. Footer “收益要覆盖：上下文、协调、重试成本”. No claim more agents more accurate.",
+      "alt": "字段固定的三份材料可通过并行工具核对；各分支都需要独立多步查证时，才考虑独立上下文与 Agent，并由协调者汇总验收。",
+      "caption": "图解｜并行调用与多 Agent 是不同选择；拆分后必须核算协调成本与交付责任。"
+    },
+    {
+      "article": "harness-engineering-tools",
+      "series": "harness-tools",
+      "title": "工具契约：输入、结果与错误语义",
+      "asset": "src/assets/illustrations/articles/harness-engineering-tools.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “工具输入：哪些能由模型填写”. Two input cards side by side: mint “候选参数 / 资料编号 · 标题”; blue “可信执行上下文 / 身份 · 操作键 · 审批”. Both arrows into a wide gate “校验与授权”, then arrow to “业务执行”, then arrow to “查询验收”. Grey small note under first card “模型不能自填身份来授权”. Footer “Schema 合法 ≠ 有权执行”. Do not show API standard fields.",
+      "alt": "资料编号和标题是待校验的候选参数；身份、操作键与审批来自可信运行上下文，两者在校验授权后进入业务执行和查询验收。",
+      "caption": "图解｜这是应用的逻辑分工；字段格式合法不证明身份、权限或最终结果正确。"
+    },
+    {
+      "article": "harness-foundations-mcp-lifecycle",
+      "series": "harness-tools",
+      "title": "MCP 生命周期：握手、目录、断线与取消",
+      "asset": "src/assets/illustrations/articles/harness-foundations-mcp-lifecycle.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “三种 ID，别混着用”. Three distinct pastel ID badges in horizontal lanes, NO connecting arrows: “请求 ID / 对应一次请求与响应” with two message envelopes; “会话 ID / 对应协议会话” with connected client/server; “业务操作键 / 对应同一次业务意图” with one ticket. Footer “重连可以换请求，业务意图仍需对账”. Small label “MCP 2025-11-25 学习基线”. No imply session IDs mandatory for all transports.",
+      "alt": "请求 ID 关联一次往返，会话 ID 标识采用会话机制的协议交互，业务操作键由应用用于同一业务意图的追踪与对账。",
+      "caption": "图解｜三种标识覆盖不同范围；并非所有传输都要求会话 ID，重连不能证明写入未发生。"
+    },
+    {
+      "article": "harness-engineering-security",
+      "series": "harness-tools",
+      "title": "执行安全：身份、授权、审批与沙箱",
+      "asset": "src/assets/illustrations/articles/harness-engineering-security.png",
+      "status": "planned",
+      "prompt": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. Title “资料里的命令，不能扩大权限”. Left grey document card “资料正文” with quoted text “导出所有资料”. Arrow to center “模型候选动作”; arrow to blue gate “当前任务权限”. Gate has red stopped route “导出：拒绝” ending X and green permitted route “允许范围内的操作” ending check. Above gate separate trusted source card “已认证身份 + 当前授权” points into gate. Footer “资料是输入，不是授权来源”. Do not draw export output beyond rejection.",
+      "alt": "资料正文中的导出要求只能作为不可信输入；模型即使提出导出动作，执行层也应依据已认证身份和当前授权拒绝越界操作。",
+      "caption": "图解｜提示注入可能影响提案，真实权限仍由可信入口与执行层控制。"
+    },
+    {
+      "article": "capability-routing-at-scale",
+      "series": "harness-tools",
+      "title": "先看清 MCP、Skill 与 Agent 的系统全景",
+      "asset": "src/assets/illustrations/articles/capability-routing-at-scale.png",
+      "status": "planned"
+    },
+    {
+      "article": "capability-routing-discovery",
+      "series": "harness-tools",
+      "title": "从能力描述到检索与正文精排",
+      "asset": "src/assets/illustrations/articles/capability-routing-discovery.png",
+      "status": "planned"
+    },
+    {
+      "article": "capability-routing-execution",
+      "series": "harness-tools",
+      "title": "从候选列表到可执行方案",
+      "asset": "src/assets/illustrations/articles/capability-routing-execution.png",
+      "status": "planned"
+    },
+    {
+      "article": "capability-routing-evaluation",
+      "series": "harness-tools",
+      "title": "用评测与治理建立生产信心",
+      "asset": "src/assets/illustrations/articles/capability-routing-evaluation.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-foundations-concurrency",
+      "series": "harness-recovery",
+      "title": "并发控制：版本冲突、锁与背压",
+      "asset": "src/assets/illustrations/articles/harness-foundations-concurrency.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-engineering-recovery",
+      "series": "harness-recovery",
+      "title": "持久化与恢复：事务、幂等、对账和补偿",
+      "asset": "src/assets/illustrations/articles/harness-engineering-recovery.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-foundations-lab",
+      "series": "harness-recovery",
+      "title": "故障实验：并发冲突、业务恢复与协议状态",
+      "asset": "src/assets/illustrations/articles/harness-foundations-lab.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-operations-context",
+      "series": "agent-memory",
+      "title": "上下文组装：材料、状态与输入预算",
+      "asset": "src/assets/illustrations/articles/harness-operations-context.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-memory-design-competitive-analysis",
+      "series": "agent-memory",
+      "title": "先把记忆放回完整生命周期",
+      "asset": "src/assets/illustrations/articles/agent-memory-design-competitive-analysis.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-memory-writing",
+      "series": "agent-memory",
+      "title": "保留历史，还是维护当前事实",
+      "asset": "src/assets/illustrations/articles/agent-memory-writing.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-memory-governance",
+      "series": "agent-memory",
+      "title": "一条记忆开始跨团队流动之后",
+      "asset": "src/assets/illustrations/articles/agent-memory-governance.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-operations-model-gateway",
+      "series": "harness-operations",
+      "title": "换一个模型，为什么不是改一个名字",
+      "asset": "src/assets/illustrations/articles/harness-operations-model-gateway.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-operations-multi-agent",
+      "series": "harness-operations",
+      "title": "增加一个 Agent，需要增加哪些责任",
+      "asset": "src/assets/illustrations/articles/harness-operations-multi-agent.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-operations-observability",
+      "series": "harness-operations",
+      "title": "沿着一条失败任务，把故障定位到边界",
+      "asset": "src/assets/illustrations/articles/harness-operations-observability.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-operations-production",
+      "series": "harness-operations",
+      "title": "从一个 Worker 到可恢复的任务服务",
+      "asset": "src/assets/illustrations/articles/harness-operations-production.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-operations-release",
+      "series": "harness-operations",
+      "title": "让每一次变化都有进入生产和退出生产的证据",
+      "asset": "src/assets/illustrations/articles/harness-operations-release.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-integration-model",
+      "series": "harness-integration",
+      "title": "模型、上下文与有界循环怎样组合",
+      "asset": "src/assets/illustrations/articles/harness-integration-model.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-integration-mcp",
+      "series": "harness-integration",
+      "title": "工具、执行策略与 MCP 怎样接线",
+      "asset": "src/assets/illustrations/articles/harness-integration-mcp.png",
+      "status": "planned"
+    },
+    {
+      "article": "harness-integration-lab",
+      "series": "harness-integration",
+      "title": "从模块组装到运行：完成你的第一版 Mini Harness",
+      "asset": "src/assets/illustrations/articles/harness-integration-lab.png",
+      "status": "planned"
+    },
+    {
+      "article": "composable-agent-harness-research-method",
+      "series": "harness-projects",
+      "title": "Harness 源码研究：对象分层、证据卡与实现路线",
+      "asset": "src/assets/illustrations/articles/composable-agent-harness-research-method.png",
+      "status": "planned"
+    },
+    {
+      "article": "claude-code-internals-overview",
+      "series": "harness-projects",
+      "title": "Claude Code：执行循环、记忆与扩展机制",
+      "asset": "src/assets/illustrations/articles/claude-code-internals-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "codex-system-overview",
+      "series": "harness-projects",
+      "title": "Codex：运行时、沙箱与持续任务",
+      "asset": "src/assets/illustrations/articles/codex-system-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "kimi-code-system-overview",
+      "series": "harness-projects",
+      "title": "Kimi Code：Session、Skills 与任务委派",
+      "asset": "src/assets/illustrations/articles/kimi-code-system-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "opencode-system-overview",
+      "series": "harness-projects",
+      "title": "OpenCode：客户端、服务端与扩展系统",
+      "asset": "src/assets/illustrations/articles/opencode-system-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "deepseek-harness-composition",
+      "series": "harness-projects",
+      "title": "DeepSeek Harness：插件怎样出现、协作，并真正退出",
+      "asset": "src/assets/illustrations/articles/deepseek-harness-composition.png",
+      "status": "planned"
+    },
+    {
+      "article": "deepseek-harness-state",
+      "series": "harness-projects",
+      "title": "DeepSeek Harness：历史不能丢，模型又不能看全部历史",
+      "asset": "src/assets/illustrations/articles/deepseek-harness-state.png",
+      "status": "planned"
+    },
+    {
+      "article": "deepseek-harness-execution",
+      "series": "harness-projects",
+      "title": "DeepSeek Harness：工具、PTC 和多 Agent，怎样不放大副作用",
+      "asset": "src/assets/illustrations/articles/deepseek-harness-execution.png",
+      "status": "planned"
+    },
+    {
+      "article": "hermes-agent-architecture-deep-dive",
+      "series": "harness-projects",
+      "title": "Hermes：长期运行的内核如何维持",
+      "asset": "src/assets/illustrations/articles/hermes-agent-architecture-deep-dive.png",
+      "status": "planned"
+    },
+    {
+      "article": "hermes-agent-runtime-services",
+      "series": "harness-projects",
+      "title": "Hermes：从工具循环到常驻服务",
+      "asset": "src/assets/illustrations/articles/hermes-agent-runtime-services.png",
+      "status": "planned"
+    },
+    {
+      "article": "hermes-agent-memory-governance",
+      "series": "harness-projects",
+      "title": "Hermes：经验如何积累而不失去边界",
+      "asset": "src/assets/illustrations/articles/hermes-agent-memory-governance.png",
+      "status": "planned"
+    },
+    {
+      "article": "pi-architecture-deep-dive",
+      "series": "harness-projects",
+      "title": "Pi：最小内核如何维持正确性",
+      "asset": "src/assets/illustrations/articles/pi-architecture-deep-dive.png",
+      "status": "planned"
+    },
+    {
+      "article": "pi-session-extension-architecture",
+      "series": "harness-projects",
+      "title": "Pi：运行历史如何成为可扩展 Session",
+      "asset": "src/assets/illustrations/articles/pi-session-extension-architecture.png",
+      "status": "planned"
+    },
+    {
+      "article": "pi-durable-harness-governance",
+      "series": "harness-projects",
+      "title": "Pi：如何走向可恢复的多进程系统",
+      "asset": "src/assets/illustrations/articles/pi-durable-harness-governance.png",
+      "status": "planned"
+    },
+    {
+      "article": "addy-agent-skills-overview",
+      "series": "harness-skills",
+      "title": "Addy Skills：工程生命周期与验证门槛",
+      "asset": "src/assets/illustrations/articles/addy-agent-skills-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "mattpocock-skills-overview",
+      "series": "harness-skills",
+      "title": "Matt Pocock Skills：需求对齐与反馈循环",
+      "asset": "src/assets/illustrations/articles/mattpocock-skills-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "ecc-architecture-deep-dive",
+      "series": "harness-skills",
+      "title": "ECC：如何把工程经验编译到不同平台",
+      "asset": "src/assets/illustrations/articles/ecc-architecture-deep-dive.png",
+      "status": "planned"
+    },
+    {
+      "article": "ecc-hook-runtime-memory",
+      "series": "harness-skills",
+      "title": "ECC：规则如何在事件边界真正发生",
+      "asset": "src/assets/illustrations/articles/ecc-hook-runtime-memory.png",
+      "status": "planned"
+    },
+    {
+      "article": "ecc-memory-supply-chain",
+      "series": "harness-skills",
+      "title": "ECC：如何治理配置供应链与控制平面",
+      "asset": "src/assets/illustrations/articles/ecc-memory-supply-chain.png",
+      "status": "planned"
+    },
+    {
+      "article": "mem0-series-overview",
+      "series": "memory-systems",
+      "title": "Mem0：身份过滤、ADD-only 写入与混合检索",
+      "asset": "src/assets/illustrations/articles/mem0-series-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "mem0-production-boundaries",
+      "series": "memory-systems",
+      "title": "Mem0：部署、Provider 与生产边界",
+      "asset": "src/assets/illustrations/articles/mem0-production-boundaries.png",
+      "status": "planned"
+    },
+    {
+      "article": "openviking-series-overview",
+      "series": "memory-systems",
+      "title": "OpenViking：上下文分层、URI 与层级检索",
+      "asset": "src/assets/illustrations/articles/openviking-series-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "openviking-session-governance",
+      "series": "memory-systems",
+      "title": "OpenViking：会话记忆、存储一致性与治理",
+      "asset": "src/assets/illustrations/articles/openviking-session-governance.png",
+      "status": "planned"
+    },
+    {
+      "article": "tencentdb-agent-memory-overview",
+      "series": "memory-systems",
+      "title": "TencentDB Agent Memory：协议代理与分层记忆",
+      "asset": "src/assets/illustrations/articles/tencentdb-agent-memory-overview.png",
+      "status": "planned"
+    },
+    {
+      "article": "tencentdb-agent-memory-governance",
+      "series": "memory-systems",
+      "title": "TencentDB Agent Memory：资产权限与发布治理",
+      "asset": "src/assets/illustrations/articles/tencentdb-agent-memory-governance.png",
+      "status": "planned"
+    },
+    {
+      "article": "ai-agent-reliability-boundaries",
+      "series": "agent-evaluation",
+      "title": "可靠性边界：验收、风险与自治范围",
+      "asset": "src/assets/illustrations/articles/ai-agent-reliability-boundaries.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-system-evaluation-research",
+      "series": "agent-evaluation",
+      "title": "先搭一张从任务到上线决策的地图",
+      "asset": "src/assets/illustrations/articles/agent-system-evaluation-research.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-evaluation-datasets",
+      "series": "agent-evaluation",
+      "title": "先把题目和裁判做对，再谈排行榜",
+      "asset": "src/assets/illustrations/articles/agent-evaluation-datasets.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-evaluation-engineering",
+      "series": "agent-evaluation",
+      "title": "把一次打分变成可重复的回归系统",
+      "asset": "src/assets/illustrations/articles/agent-evaluation-engineering.png",
+      "status": "planned"
+    },
+    {
+      "article": "trace-framework-deep-dive",
+      "series": "agent-evaluation",
+      "title": "TRACE 如何从“答对”走向“可信地答对”",
+      "asset": "src/assets/illustrations/articles/trace-framework-deep-dive.png",
+      "status": "planned"
+    },
+    {
+      "article": "trace-lite-production",
+      "series": "agent-evaluation",
+      "title": "TRACE 的实验边界与业务评测改造",
+      "asset": "src/assets/illustrations/articles/trace-lite-production.png",
+      "status": "planned"
+    },
+    {
+      "article": "llm-agent-capability-landscape-2026",
+      "series": "ai-capability-boundaries",
+      "title": "先分清“能做”与“可交付”",
+      "asset": "src/assets/illustrations/articles/llm-agent-capability-landscape-2026.png",
+      "status": "planned"
+    },
+    {
+      "article": "ai-capability-evidence-action",
+      "series": "ai-capability-boundaries",
+      "title": "用真实任务选择模型，而不是看一次演示",
+      "asset": "src/assets/illustrations/articles/ai-capability-evidence-action.png",
+      "status": "planned"
+    },
+    {
+      "article": "product-analysis-frameworks",
+      "series": "product-frameworks",
+      "title": "先知道要做什么决定，再选择框架",
+      "asset": "src/assets/illustrations/articles/product-analysis-frameworks.png",
+      "status": "planned"
+    },
+    {
+      "article": "product-frameworks-market",
+      "series": "product-frameworks",
+      "title": "从市场很大，到我们为什么能做",
+      "asset": "src/assets/illustrations/articles/product-frameworks-market.png",
+      "status": "planned"
+    },
+    {
+      "article": "product-frameworks-prioritization",
+      "series": "product-frameworks",
+      "title": "从用户旅程到一次有边界的发布",
+      "asset": "src/assets/illustrations/articles/product-frameworks-prioritization.png",
+      "status": "planned"
+    },
+    {
+      "article": "product-frameworks-growth",
+      "series": "product-frameworks",
+      "title": "用户真的得到价值，生意才有机会成立",
+      "asset": "src/assets/illustrations/articles/product-frameworks-growth.png",
+      "status": "planned"
+    },
+    {
+      "article": "product-frameworks-delivery",
+      "series": "product-frameworks",
+      "title": "让一次发布留下结果，也留下可复用的认识",
+      "asset": "src/assets/illustrations/articles/product-frameworks-delivery.png",
+      "status": "planned"
+    },
+    {
+      "article": "product-work-methodology",
+      "series": "ai-product-work",
+      "title": "Agent 产品工作：结果契约、自治阶梯与上下文",
+      "asset": "src/assets/illustrations/articles/product-work-methodology.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-product-evaluation-rhythm",
+      "series": "ai-product-work",
+      "title": "让任务评测进入产品工作节奏",
+      "asset": "src/assets/illustrations/articles/agent-product-evaluation-rhythm.png",
+      "status": "planned"
+    },
+    {
+      "article": "claude-code-product-design",
+      "series": "claude-code-design",
+      "title": "Agent 任务体验：从目标输入到交付证据",
+      "asset": "src/assets/illustrations/articles/claude-code-product-design.png",
+      "status": "planned"
+    },
+    {
+      "article": "claude-code-trust",
+      "series": "claude-code-design",
+      "title": "少一点确认，不等于少一点边界",
+      "asset": "src/assets/illustrations/articles/claude-code-trust.png",
+      "status": "planned"
+    },
+    {
+      "article": "claude-code-session-collaboration",
+      "series": "claude-code-design",
+      "title": "并行和跨端，首先是状态管理问题",
+      "asset": "src/assets/illustrations/articles/claude-code-session-collaboration.png",
+      "status": "planned"
+    },
+    {
+      "article": "ai-capability-product-metrics",
+      "series": "ai-product-value",
+      "title": "AI 交付价值：指标口径、失败成本与人工基线",
+      "asset": "src/assets/illustrations/articles/ai-capability-product-metrics.png",
+      "status": "planned"
+    },
+    {
+      "article": "ai-value-coding",
+      "series": "ai-product-value",
+      "title": "测试通过之后，还需要哪些交付证据",
+      "asset": "src/assets/illustrations/articles/ai-value-coding.png",
+      "status": "planned"
+    },
+    {
+      "article": "ai-value-voice",
+      "series": "ai-product-value",
+      "title": "听懂一句话，不等于改对一个闹钟",
+      "asset": "src/assets/illustrations/articles/ai-value-voice.png",
+      "status": "planned"
+    },
+    {
+      "article": "ai-value-office",
+      "series": "ai-product-value",
+      "title": "文件能打开，为什么仍然不能交付",
+      "asset": "src/assets/illustrations/articles/ai-value-office.png",
+      "status": "planned"
+    },
+    {
+      "article": "agent-landscape-comparison-methods",
+      "series": "agent-work-systems",
+      "title": "Agent 选型：比较维度、任务契约与 PoC",
+      "asset": "src/assets/illustrations/articles/agent-landscape-comparison-methods.png",
+      "status": "planned"
+    },
+    {
+      "article": "coding-agent-harness-showdown",
+      "series": "agent-work-systems",
+      "title": "Claude Code、Codex 与 Kimi Code 的 Harness 分歧",
+      "asset": "src/assets/illustrations/articles/coding-agent-harness-showdown.png",
+      "status": "planned"
+    },
+    {
+      "article": "china-work-agent-showdown",
+      "series": "agent-work-systems",
+      "title": "Kimi Work、WorkBuddy 与豆包工作如何分工",
+      "asset": "src/assets/illustrations/articles/china-work-agent-showdown.png",
+      "status": "planned"
+    },
+    {
+      "article": "learning-organization-boundaries",
+      "series": "researcher-founder",
+      "title": "组织学习速度为什么可能成为新壁垒",
+      "asset": "src/assets/illustrations/articles/learning-organization-boundaries.png",
+      "status": "planned"
+    }
+  ],
+  "style": "Original Chinese educational infographic. White paper, hand-drawn black outlines, rounded panels, soft mint/powder-blue/lavender/pale-yellow marker fills, small simple line icons. 1536 x 1024 landscape. Very large crisp readable Chinese. Spacious margins and short labels. No logos, watermark, fake data, performance score or decorative filler. Use only the specified text. Arrow direction must exactly match the description. "
+}

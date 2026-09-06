@@ -34,3 +34,6 @@ src/content/private-writing/
 
 # Local architecture index and work memory
 graphify-out/
+
+# Local private knowledge base (never publish or commit)
+/private/

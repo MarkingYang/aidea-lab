@@ -11,12 +11,51 @@ topics:
   - 开发者工具
   - 架构设计
 featured: false
-readingTime: 6 min
+readingTime: 8 min
 ---
 
-本文沿用 `e44d75c` / `0.84.4` 源码快照，区分默认 CLI 与 experimental durable 路径。扩展能力并不自动带来安全和持久性。Pi 正在通过另一条实验架构把 Session、Worker、协议与客户端拆开，同时把治理责任明确留给部署者。
+## 定位与价值
 
-## 安全模型：Pi 选择诚实地外置边界
+本篇分别检查经典 Pi 的外部隔离责任和 experimental AgentHarness 的多进程恢复，避免把两条实现线混成默认产品。
+
+完整定位与安装见[项目总览](/writing/pi-architecture-deep-dive/)。
+
+研究基线：[earendil-works/pi @ e44d75c](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：多个前端] --> C[适配：Client / Protocol]
+ C --> H[核心：experimental AgentHarness]
+ H --> W[Session Worker]
+ W --> I[基础设施：进程 / 存储 / 外部执行环境]
+ I -->|运行结果| W
+ W -->|追加事件| H
+ H -->|状态同步| C
+ C --> U
+ B[宿主的权限与隔离策略] -.约束.-> I
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+```mermaid
+sequenceDiagram
+  participant U as 前端
+  participant C as 持久会话服务
+  participant T as Worker
+  U->>C: 连接已有会话
+  C->>C: 读取已记录状态
+  C->>T: 派发会话工作
+  T-->>C: 追加运行事件与结果
+  C-->>U: 向前端同步状态
+```
+
+*图 2｜本篇关键流程的职责示意；部署者提出的验收要求与框架内建行为需按正文区分。*
+
+### 经典路径的隔离责任
 
 Pi 明确说明自己没有内置的文件系统、进程、网络或凭证沙箱，默认继承启动用户的权限。Project Trust 只控制项目本地设置、扩展与 Packages 是否在启动时加载，它不是工具执行沙箱。官方 [Security 文档](https://pi.dev/docs/latest/security) 也强调，仓库文件、构建输出和模型结果中的 prompt injection 属于本地 Agent 的预期风险。
 
@@ -31,7 +70,10 @@ Project Trust 与执行沙箱保护不同边界，不能互相替代。Pi 把真
 
 对个人高级用户，这种模型简单透明；对企业默认部署，它则意味着必须额外建设沙箱、审批、凭证最小化和审计。Pi 是可组合的 Harness，不是开箱即用的治理平台。
 
-## 不能忽略的第二条线：Durable AgentHarness 正在把 Pi 拆成多进程系统
+
+### Durable 路径与多端恢复
+
+#### 不能忽略的第二条线：Durable AgentHarness 正在把 Pi 拆成多进程系统
 
 截至本文分析的提交，经典 `Agent + AgentSession` 仍是默认 CLI 主路径；但仓库中已经存在另一套更系统的 durable 架构：
 
@@ -56,7 +98,7 @@ W1 <--> CHORD[Chord Services<br/>RPC + Replicated State]
   SERVER <--> PROTO[pi-protocol<br/>CBOR + Framing + Route]
 ```
 
-*图 1｜Pi 的 Durable AgentHarness 将 Session、Worker、协议与多个客户端拆成可恢复的进程边界。*
+*图 3｜Pi 的 Durable AgentHarness 将 Session、Worker、协议与多个客户端拆成可恢复的进程边界。*
 
 实验性 `mini` 的拓扑说明得很直白：Presentation 只渲染复制过来的 `LaneSnapshot`，不持有 Agent 状态；Server 负责路由和 Worker 生命周期；每个 Session Worker 持有 Harness、Storage 与 Model Runtime。两个 TUI 可以连接同一个 Session，并看到同一份实时 Transcript。
 
@@ -71,7 +113,7 @@ Chord 的 replicated state 也很讲究：生产者维护可变 state proxy，�
 
 但必须强调：这些包和命令仍被官方标成 experimental，协议也声明没有兼容性保证。文章读者不应该据此认定 Pi 的默认 CLI 已经是分布式架构。更准确的判断是：**经典架构证明了产品形态，durable 架构正在把同一套原则推广到跨进程和多端场景。**
 
-## 架构代价与风险
+#### 架构代价与风险
 
 Pi 的设计并非没有成本。
 
@@ -85,7 +127,7 @@ Pi 的设计并非没有成本。
 
 第五，**Provider 统一层要持续追赶厂商差异**。Reasoning replay、cache、deferred response、tool schema、usage 和错误语义一直变化。Pi 保留差异的设计是正确的，但维护成本不会因为接口统一而消失。
 
-## 多端恢复应验证什么
+#### 多端恢复应验证什么
 
 假设两个终端观察同一个 Session，Worker 在工具写入之后退出。新 Worker 接管时，应核对以下状态，而不只验证两个屏幕重新出现相同文字：
 
@@ -106,3 +148,31 @@ Pi 的设计并非没有成本。
 - [Extensions 文档](https://pi.dev/docs/latest/extensions)
 - [Session Format](https://pi.dev/docs/latest/session-format)
 - [Coding Agent Harness 对决：Claude Code、Codex 与三种开源答案](/writing/coding-agent-harness-showdown/)
+
+## 快速上手
+
+先按[项目总览](/writing/pi-architecture-deep-dive/#快速上手)准备运行环境；本篇的最小实验直接执行固定快照中的测试。另需按仓库贡献指南安装开发与测试依赖。
+
+```bash
+npx vitest run test/experimental-session-worker-lifecycle.test.ts
+```
+
+在 packages/coding-agent 目录运行，检查实验性 Worker 生命周期。
+
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/pi-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+
+## 生态与社区
+
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/pi-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [packages/coding-agent/package.json](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/package.json) | bin → 打包后的 cli.js |
+| 2 | [packages/coding-agent/src/cli.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/cli.ts) | CLI 入口 |
+| 3 | [packages/agent/src/agent-loop.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/agent-loop.ts) | agentLoop：通用循环 |
+| 4 | [packages/coding-agent/src/core/agent-session.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/core/agent-session.ts) | AgentSession：产品会话语义 |
+| 5 | [packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/test/experimental-session-worker-lifecycle.test.ts) | 在 packages/coding-agent 目录运行，检查实验性 Worker 生命周期。 |

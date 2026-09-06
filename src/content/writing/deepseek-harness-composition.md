@@ -10,17 +10,37 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 9 min
+readingTime: 11 min
 updatedAt: 2026-09-06
 ---
 
-> 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
+## 定位与价值
 
-DeepSeek Harness 用插件组合能力，用事件记录事实。这里先研究能力组合：假设团队给 Agent 加一个工单查询插件，之后升级其实现。你最希望避免的不是“没有加载成功”，而是旧监听器仍在、另一个任务突然用了错误配置。
+DeepSeek Harness 是以 Cordis 插件装配 Agent 的开发框架；相较把工具、状态和审批写进一个大循环，它用服务契约与生命周期拆开替换点。
 
-下面从这类故障理解 Cordis，而不是从 API 名称开始。
+适合研究或定制可组合运行时；当前快照是 developer preview，不适合直接承担未经故障测试的高风险写入。
 
-## 每个模块负责什么
+研究基线：[deepseek-ai/deepseek-harness @ 76fda72](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+  E["入口：CLI / Web 与 Profile"] -->|任务或调用| C["核心：Cordis 服务、Agent Loop 与 Session"]
+  C -->|调用 / 加载| A["适配：模型、Tools 与执行能力接口"]
+  A -->|请求 / 读写| I["基础设施：模型端点、Sandbox 和事件日志"]
+  I -->|结果 / 状态| A
+  A -->|规范化结果| C
+  C -->|回答 / 产物| E
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+### 插件组合与生命周期
+
+#### 每个模块负责什么
 
 | 模块 | 责任 | 不应承担的责任 |
 |---|---|---|
@@ -33,13 +53,13 @@ DeepSeek Harness 用插件组合能力，用事件记录事实。这里先研究
 
 官方把这些责任拆进 session、system-prompt、tools、agent、agent-loop 与 scope 等包。这里的关键区分是：公共 Agent 契约与默认循环实现是分开的，使用方不必依赖某一个固定 Loop。[架构基线](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/architecture.md)
 
-## 用一次修复任务串起来
+#### 用一次修复任务串起来
 
 用户要求“修复登录超时，只改仓库，不部署”。宿主先提供文件系统、模型和受限执行环境；Agent 配方暴露读取、编辑与测试能力；循环读取报错、提出修改、检查结果；事件日志保存输入和工具结果；上下文较长时，模型看到压缩视图，但原始证据仍可追溯。
 
 如果专项检查交给子 Agent，增加的是一个执行主体，不是自动增加权限。主任务仍需验收子方产物，工作区冲突和重复副作用也不会因为“多 Agent”自动消失。
 
-## Cordis：把依赖注入升级成“时空可组合性”
+#### Cordis：把依赖注入升级成“时空可组合性”
 
 DeepSeek Harness 底层使用 Cordis。配套论文 [A Programming Paradigm for Spatiotemporal Composability](https://arxiv.org/abs/2608.25512)把动态组合拆成两个正交问题：
 
@@ -63,11 +83,11 @@ flowchart LR
   DISPOSED --> FINISH((结束))
 ```
 
-*图 1｜一次依赖就绪、激活与退出的简化路径。*
+*图 2｜一次依赖就绪、激活与退出的简化路径。*
 
 Cordis 的 Fiber 状态机和自动清理机制见官方[生命周期教程](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/cordis-tutorial/02-lifecycle-and-effects.md)。它带来一个很深的架构变化：**扩展不再只是调用 Host API，而是在一个受生命周期管理的 Context 中声明能力。**
 
-### Waterfall：插件怎样共同决定一次行动
+##### Waterfall：插件怎样共同决定一次行动
 
 普通事件广播只能通知，Agent Runtime 还需要拦截、改写和否决。Cordis 为此提供 `waterfall`：每个 Listener 接收 `next()`，可以把决定交给下游、包装下游结果，也可以不调用 `next()` 而直接短路。
 
@@ -75,7 +95,7 @@ DeepSeek Harness 用 Waterfall 处理 `agent/pre-step`、`agent/request`、`llm/
 
 代价也很明确：一个本想“只记录日志”的 Listener 如果忘记调用 `next()`，就会吞掉整个下游行为。官方[事件教程](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/cordis-tutorial/04-events.md)把这条纪律写成了常驻规则。可组合性没有消灭复杂度，只是把复杂度从隐式调用顺序变成显式协议。
 
-## Profile、Bundle 与 Preset：应用配置和 Agent 配方是两回事
+#### Profile、Bundle 与 Preset：应用配置和 Agent 配方是两回事
 
 DeepSeek Harness 没有把所有配置塞进一个巨大 YAML，而是分成三个层级：
 
@@ -103,7 +123,10 @@ Preset 在独立 Scope 中挂载，作用域内的注册会覆盖同名全局注
 
 Preset 的组合在 Session 产生任何消息或工具调用之后就不能再切换，因为旧日志里可能包含新工具集无法解释的调用。这个细节很重要：**能力配置可以动态化，但一次对话的语义世界必须稳定。** 具体机制见 [`dsh-agent-presets`](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/preset/agent-presets/README.md)。
 
-## Capability Seam：为什么更换 Sandbox 不该修改 Bash
+
+### 能力接口怎样降低替换成本
+
+#### Capability Seam：为什么更换 Sandbox 不该修改 Bash
 
 “Everything is a Plugin”很容易退化成一堆互相引用的 NPM 包。DeepSeek Harness 用 Capability Seam 约束插件之间的结构。一个完整 Seam 通常包含三种角色：
 
@@ -123,7 +146,7 @@ Preset 的组合在 Session 产生任何消息或工具调用之后就不能再�
 
 这是一种运行时层面的依赖倒置。它比“接口 + 实现”多了生命周期、Scope、事件和配置组合，也比为每个工具写 `if (remote)` 更能控制复杂度。官方为此维护了完整的 [Capability Seams 图谱](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/capability-seams.md)。
 
-## 实践：先写卸载与替换的验收表
+#### 实践：先写卸载与替换的验收表
 
 | 操作 | 应观察到的结果 | 暴露的问题 |
 |---|---|---|
@@ -136,3 +159,47 @@ Preset 的组合在 Session 产生任何消息或工具调用之后就不能再�
 在隔离测试环境中逐项验证；不要在生产任务中测试热卸载。若要查看锁定版本的启动组合，官方架构文档给出的只读入口是 `dsh --profile web --dump-config`，需要先按该版本说明安装和配置。本文不声称已经在本机部署该运行时。
 
 本篇的关键结论是：可组合性的单位不是“一个函数”，而是包含依赖、生命周期与资源所有权的契约。外部业务副作用则需要幂等、对账或补偿机制另行处理。
+
+## 快速上手
+
+需要 Node/npm、模型凭证与可访问的模型端点。此命令启动 Web；随后选择模型，发送“列出教学工作区文件，不修改”。
+
+```bash
+npx @deepseek-ai/dsh@0.1.2-rc.1 web
+```
+
+三个常用配置：
+
+| 配置或安装选项 | 作用 |
+| --- | --- |
+| `agent-default-model.config.model` | 默认模型 ID；位于对应插件的 config 下 |
+| `agent-loop.config.maxParallelToolCalls` | 限制同时执行的工具数 |
+| `agent-presets.config.default` | 默认配方；以配置目录列出的字段为准 |
+
+其余选项见 [配置参考](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/config-catalog.md)。
+
+常见坑：配置键属于各插件，不是同一组顶层字段；先在 Web 完成模型与凭证配置，再在临时工作区尝试读取任务。
+
+验证范围：已核对固定源码的入口、参数与依赖；未以本文示例调用真实模型或部署外部服务。
+
+## 生态与社区
+
+截至 2026-09-06，2026-08-08 至 09-06 UTC 的抽样取得 至少 30 条默认分支提交（上限 30 条）。见 [提交记录](https://github.com/deepseek-ai/deepseek-harness/commits/master/)。
+
+Issue 取 08-08 至 08-30 UTC 创建的最近最多 3 条非 PR 条目，排除机器人和提问者自答；窗口内未取到符合条件的 Issue，无法评估回复时间。小样本不代表 SLA，“未观察到”也不代表其他渠道无人处理。
+
+固定快照许可证：[MIT](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/LICENSE)。允许商业使用，但分发时仍须保留版权与许可声明。
+
+同仓提供 Web、ACP、会话持久化与执行插件；插件存在不代表所有组合均经生产验证。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [package.json](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/package.json) | CLI 与构建脚本入口 |
+| 2 | [vendor/cordis/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/vendor/cordis/src/index.ts) | Cordis 公共导出 |
+| 3 | [packages/core/agent-loop/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/agent-loop/src/index.ts) | AgentLoop：默认循环服务 |
+| 4 | [packages/core/tools/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/index.ts) | ToolDefinition 与工具运行时 |
+| 5 | [docs/testing.md](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/testing.md) | 测试分类与执行入口 |

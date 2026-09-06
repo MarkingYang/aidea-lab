@@ -1,6 +1,6 @@
 ---
 title: Multi-Agent 技术架构选型：从任务拆分到框架与部署决策
-description: 从资料核验场景出发，对比多 Agent 协作拓扑与主流框架，拆解状态、权限、部署和恢复边界，并用成本模型与 PoC 验收方法支持架构决策。
+description: 用五个问题明确 Multi-Agent 需求，比较协作拓扑与主流框架的持久化、人工介入和部署边界，再用资料核验案例、成本模型与 PoC 验收形成选型决策。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-06
 type: essay
@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 架构设计
 featured: true
-readingTime: 19 min
+readingTime: 24 min
 ---
 
 一个团队准备做资料研究助手：读取多个来源，比较相互矛盾的结论，形成报告，必要时创建工单。原型里安排了研究员、分析师、审稿人和执行员，几轮对话之后，报告看起来不错。进入业务环境后，问题变成了：为什么重复搜索？谁决定研究已经足够？某个分支超时后要不要交付？创建工单成功但响应丢失，重跑会不会多建一张？
@@ -19,7 +19,23 @@ readingTime: 19 min
 
 **对于需要可追踪业务交付的系统，本文建议先建立单 Agent 基线，再采用“显式流程控制 + 有界专业子任务 + 集中写入”的组合，用评测证明哪些环节值得增加 Agent。** 这是面向本文场景的工程建议，不是对所有任务的统一排名。
 
-本文接续[Loop 与 Graph Engineering](/writing/loop-graph-engineering/)，聚焦选型决策；委派字段、预算传播等细节可结合[多 Agent 协作责任](/writing/harness-operations-multi-agent/)阅读。框架与协议资料核验于 **2026 年 9 月 5 日**，产品能力以所链接的官方文档为准，文中的案例、容量和门槛均为设计示例，未经线上性能验证。
+本文接续[Loop 与 Graph Engineering](/writing/loop-graph-engineering/)，聚焦选型决策；委派字段、预算传播等细节可结合[多 Agent 协作责任](/writing/harness-operations-multi-agent/)阅读。框架选型资料补充核验于 **2026 年 9 月 6 日**，产品能力以所链接的官方文档为准，文中的案例、容量和门槛均为设计示例，未经线上性能验证。
+
+## 先回答五个问题，缩小候选范围
+
+选型的顺序是：明确任务约束，确定控制权和恢复边界，再选框架。先把下面五个问题写成可验证的条件，通常比同时安装十个 SDK 更有帮助。
+
+| 筛选问题 | 需要写清楚的条件 | 对架构选择的影响 |
+| --- | --- | --- |
+| 任务有多复杂？ | 固定步骤、独立分支，还是需要反复补证据？ | 固定步骤先用普通代码；独立探索考虑 Supervisor；依赖与汇合复杂时考虑执行图 |
+| 任务要运行多久？ | 响应期限、最长等待、失败后允许重做多少工作？ | 秒级任务关注调用开销；跨进程或长时间等待需要持久状态与恢复入口 |
+| 哪些步骤必须受控？ | 哪些可自由探索，哪些必须按 SOP、审批或业务规则执行？ | 程序控制业务状态迁移，在明确预算内开放局部 Agent 循环 |
+| 团队能维护什么？ | 语言、现有任务平台、模型端点、工具集成与维护人力？ | 优先能复用现有能力的实现，再比较引入 SDK 后省下和新增的工作 |
+| 必须怎样部署？ | 自托管或托管、数据去向、租户隔离、RBAC 与审计要求？ | 同时筛选 SDK、存储和运行平台，确认每一项能力由谁提供 |
+
+对于本文的资料核验助手，答案是：三个可独立探索的来源，分钟级交付，业务写入必须受控，沿用现有后端服务，任务和证据需要持久保存。由此得到初始方向：**外层显式流程，内部有界并行，集中汇总和写入。** LangGraph 可以进入候选，但还要与现有任务平台上的普通代码比较。
+
+运行时长只是信号，真正决定是否需要恢复能力的是重做代价、外部副作用和等待方式。两秒的支付动作也需要对账；十分钟的只读离线分析如果允许整体重跑，则未必需要复杂工作流引擎。对不能丢失进度的任务，应排除没有可靠恢复路径的整体方案；恢复能力可以来自框架，也可以来自外部任务平台。
 
 ## 先把三个选型层次分开
 
@@ -33,7 +49,7 @@ readingTime: 19 min
 
 这三层可以自由组合。Supervisor 可以写在普通 Python 服务里，也可以是图中的节点；同一个图既可以进程内运行，也可以将重型任务交给外部 Worker。选了支持检查点的框架，仍然需要决定检查点存在哪里、谁触发恢复，以及恢复时哪些外部动作可能再次执行。
 
-在比较 SDK 之前，先为任务写出六项约束：交付结果、可独立拆分的部分、需要读取的数据、允许产生的外部动作、时间与成本预算、失败后的处理方式。无法回答这些问题时，框架功能表很难帮助决策。
+“状态图”“角色团队”“插件化”也不属于同一层次：状态图描述控制流，角色团队描述组织任务的抽象，插件化描述能力怎样扩展。它们可以同时出现在一个系统中，不能作为互斥的五选一选项。
 
 ## 判断是否需要多个 Agent
 
@@ -60,6 +76,7 @@ Anthropic 的研究系统采用协调者与并行子 Agent，服务于多方向�
 | 结构 | 控制权与结果去向 | 适合的任务 | 主要代价 |
 | --- | --- | --- | --- |
 | Supervisor / Manager | 协调者委派，子任务返回，协调者汇总 | 多方向研究、多个专业分析合成一个交付物 | 协调者成为瓶颈，摘要可能丢证据 |
+| Hierarchical / 层级委派 | Manager 将大任务交给下级 Manager，逐层返回结果 | 子项目能独立计划、执行和验收的复杂任务 | 多层协调增加延迟，预算与证据可能在交接中丢失 |
 | Handoff | 当前 Agent 将后续对话交给另一 Agent | 客服分流、专业咨询接管 | 上下文与权限交接复杂，容易来回转交 |
 | Workflow / Graph | 程序维护依赖、路由、汇合和终态 | 有明确步骤、等待和恢复要求的业务流程 | 需要显式建模状态和异常分支 |
 | Peer-to-peer / 共享黑板 | 多个参与者交换消息或更新共同任务板 | 分工动态、需要反复协商的探索任务 | 消息增多，冲突与结束条件难控制 |
@@ -71,6 +88,8 @@ Anthropic 的研究系统采用协调者与并行子 Agent，服务于多方向�
 关键是让返回值足以检查：资料版本、判断依据、引用、未解决问题和完成状态。只有一段流畅摘要时，Manager 很难区分“没找到”与“已证实不存在”。如果协调者必须重新读完所有原文，拆分可能没有减少认知负担，只增加了一层调用。
 
 OpenAI Agents SDK 区分 agents as tools 与 handoffs：前者由 Manager 保留控制权并调用专业 Agent；后者切换当前活动 Agent，让接手者继续处理对话。对于本例，优先采用前者，因为三份核验都应返回给同一个交付责任人。[Agent orchestration](https://openai.github.io/openai-agents-python/multi_agent/)
+
+层级委派是在这一结构上增加协调层。只有下级任务足够独立、需要自己的计划与验收时，多一层 Manager 才有价值。企业有三级组织，并不意味着系统也应有三级 Agent；本文的三个核验分支先保持一层委派即可。
 
 ### Handoff：需要专业 Agent 接管后续交互
 
@@ -96,25 +115,62 @@ LangGraph 的 Graph API 用状态、节点和边描述执行，并通过 reducer
 
 ## 将拓扑落到框架
 
-下表比较与本场景有关的抽象和需要验证的边界。“适合”是基于这些抽象的工程判断，不是功能排他声明，也不是性能测评结果。
+下表列出值得进入候选的方向。“优先评估”是基于任务的工程判断，不是性能排名。普通代码也保留在表中，便于判断引入框架究竟减少了多少维护工作。
 
-| 候选 | 值得优先评估的原因 | PoC 必须验证的边界 |
-| --- | --- | --- |
-| 普通代码 + 模型 SDK | 团队已有可靠任务平台，协作路径少且清楚 | 是否开始重复实现复杂的恢复、交接和状态合并 |
-| LangGraph | 需要显式状态、分支、汇合和检查点 | reducer 的重放行为、恢复入口、存储与版本迁移 |
-| OpenAI Agents SDK | 希望用较少概念表达工具式子 Agent 与对话转交 | 子任务边界、长任务托管、取消传播、观测数据归属 |
-| CrewAI Flows | 团队偏好 Flow 组织步骤，并在步骤内组合 Crew | Flow 状态恢复与业务动作重放是否符合预期 |
-| Microsoft Agent Framework | 已有 Microsoft 技术栈，或正在评估 AutoGen 的迁移路径 | 目标语言和模型接入、工作流恢复、现有集成的迁移成本 |
+### 按任务选择入口
 
-LangGraph 官方区分保存线程图状态的 checkpointer 与保存跨线程数据的 store。前者可用于对话连续性、中断恢复等场景，后者用于应用定义的长期信息。生产环境应选择满足自身持久性和隔离要求的存储实现。[Persistence](https://docs.langchain.com/oss/python/langgraph/persistence)
+| 候选 | 主要组织方式 | 何时优先评估 | 采用时的主要工作 |
+| --- | --- | --- | --- |
+| 普通代码 + 模型 SDK | 函数、路由与现有任务平台 | 路径少，团队已有可靠调度与存储 | 避免逐渐重复实现复杂状态管理 |
+| LangGraph | 显式 State、Node、Edge | 复杂分支、汇合、循环与中断恢复 | 状态设计、合并规则、检查点与版本迁移 |
+| CrewAI Crews + Flows | 角色与任务，由 Flow 组织控制流 | 分工容易表达，团队愿意以 Flow 管理业务步骤 | 明确 Crew 自治范围与 Flow 的恢复边界 |
+| OpenAI Agents SDK | Agents as tools、Handoff | 专业子任务调用或对话接管 | 对接业务状态、审批入口和运行平台 |
+| Google ADK | Agent 组合、工作流与路由 | 希望复用 ADK 工具及部署生态 | 按目标语言核验功能，测试会话后端兼容性 |
+| Microsoft Agent Framework | Agent 与 Workflow | 已有 .NET / Microsoft 集成，或评估 AutoGen 迁移 | 检查目标 SDK、模型接入与迁移回归 |
+| AG2 | 对话、GroupChat 与发言者选择 | 多方讨论及动态协商本身有价值 | 控制发言路由、终止条件与上下文开销 |
 
-CrewAI Flows 提供结构化状态及 `@persist` 持久化机制，也允许 Flow 编排 Crew。选型时应在目标版本上实际测试恢复入口和重新执行的范围，不能仅凭“存在持久化装饰器”认定外部写入不会重复。[Flows 官方文档](https://docs.crewai.com/en/concepts/flows)
+LangGraph 的状态与检查点见[Persistence](https://docs.langchain.com/oss/python/langgraph/persistence)；CrewAI 的两层组合见[Flows](https://docs.crewai.com/en/concepts/flows)；OpenAI 的两种控制权安排见[Agent orchestration](https://openai.github.io/openai-agents-python/multi_agent/)。Google ADK 同时提供固定工作流与动态路由，并不限于层级树，见[Agent routing](https://adk.dev/agents/routing/)；Microsoft 的构建入口见[官方概览](https://learn.microsoft.com/en-us/agent-framework/overview/)。
 
-Microsoft Agent Framework 官方将 Agent 与 Workflow 作为主要构建方式，提供 Python 与 .NET 支持。需要结合团队的运行环境和既有依赖评估，不能仅凭“企业级”描述直接判定适合自己的业务。[Microsoft Agent Framework 概览](https://learn.microsoft.com/en-us/agent-framework/overview/)
+AG2 的 GroupChat 可以由 GroupChatManager 选择下一位发言者，因此“对话驱动”也不等于“没有中心节点”。要比较的是实际采用的路由机制。[AG2 GroupChat](https://ag2ai.mintlify.app/docs/user-guide/advanced-concepts/groupchat/groupchat)
 
-**AutoGen 的生命周期需要单独考虑。** 本次核验时，其官方仓库已声明进入维护模式，不再接收新功能增强，并建议新用户从 Microsoft Agent Framework 开始。新项目应将维护状态与迁移成本纳入筛选；已有 AutoGen 系统则先验证迁移收益与回归风险，不必仅因名称变化立即重写。[AutoGen 官方仓库](https://github.com/microsoft/autogen)
+### 持久化和人工介入要看具体机制
 
-实际筛选时，先用语言、模型接入、数据存放和许可要求排除不合适的候选，再留下两种方案完成同一个端到端任务。大量框架都能画出“研究员 → 分析师 → 审稿人”，差异更容易在中断、恢复、检查状态和替换模型时暴露。
+“支持持久化”可能只表示保存聊天记录，也可能表示保存待恢复的执行状态。“支持人工介入”可能只是终端输入，也可能包含跨进程审批。选型表需要写清保存对象、恢复入口和适用限制。
+
+| 候选 | 状态与恢复机制 | 人工介入机制 | 必测边界 |
+| --- | --- | --- | --- |
+| LangGraph | Checkpointer 保存线程图状态；Store 保存跨线程数据 | `interrupt` 暂停，提交恢复值后继续 | 持久存储、恢复时节点重跑与副作用幂等 |
+| CrewAI Flows | `@persist` 保存 Flow 状态，默认 SQLite 后端 | `@human_feedback` 收集审核反馈并可路由 | 所用版本、异步反馈入口、恢复范围 |
+| OpenAI Agents SDK | Sessions 管理会话；`RunState` 可序列化暂停中的运行 | 工具审批可批准、拒绝并恢复运行 | 运行状态的存储与重建、嵌套审批、取消传播 |
+| Google ADK | SessionService 有内存、数据库等实现 | Action confirmations 请求工具执行确认 | 确认机制与会话后端能否同时使用 |
+
+LangGraph 的中断恢复依赖检查点和线程标识，恢复时包含中断的节点会从头执行，需要处理中断之前可能重复发生的动作。[Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts)
+
+CrewAI 的 Flow 持久化已在公开文档中提供，不能归为“仅企业版支持”。`@human_feedback` 文档标注要求 1.8.0 及以上；如果通过模型把自由文本归类为批准或拒绝，还应另外实现业务认可的明确授权记录。[Flow Persistence](https://docs.crewai.com/en/concepts/flows#flow-persistence)、[Human Feedback](https://docs.crewai.com/en/learn/human-feedback-in-flows)
+
+OpenAI Agents SDK 的人工审批是独立的暂停与恢复机制，不能用 Guardrail 一项代替。Guardrail 用于校验和拦截；人工审批还需要可信的决策人、具体调用参数及批准记录。`RunState` 可以保存后在后续进程恢复，但应用仍需安排持久存储和唤醒执行。[Human-in-the-loop](https://openai.github.io/openai-agents-python/human_in_the_loop/)
+
+Google ADK 的数据库会话服务可以持久保存会话，但本次核验时，Action confirmations 文档仍列出不支持 `DatabaseSessionService` 与 `VertexAiSessionService` 的限制。两个能力各自存在，不代表可以直接组合成跨重启的审批流程；必须在锁定版本和后端上验证。[SessionService](https://adk.dev/sessions/session/)、[确认机制的已知限制](https://adk.dev/tools-custom/confirmation/#known-limitations)
+
+### 技术栈和扩展需求怎样收窄候选
+
+Python 团队可从上面的任务入口筛选；已有 .NET 服务和 Microsoft 集成的团队可把 Microsoft Agent Framework 纳入首轮。TypeScript 团队还可以评估 Mastra，其工作流通过配置的存储保存暂停快照，再从指定步骤恢复。[Mastra Suspend and resume](https://mastra.ai/docs/workflows/suspend-and-resume)
+
+Java / Spring 团队可以评估 Spring AI Alibaba：官方将 Graph 作为 Agent Framework 的底层运行时，提供状态持久化与工作流编排。是否引入跨语言服务，应由现有能力和维护成本决定。[Spring AI Alibaba 官方仓库](https://github.com/alibaba/spring-ai-alibaba)
+
+**DeepSeek Harness 更适合放在“是否需要定制运行内核”这一轮比较。** 它通过 Cordis 组合插件，官方仓库仍标为开发者预览并提示兼容性破坏；会话持久化有独立机制。若目标只是串联几个专业 Agent，需要先证明替换 Loop、工具或会话机制的需求值得承担这部分维护成本。[官方仓库](https://github.com/deepseek-ai/deepseek-harness)、[Session Persistence](https://deepseek-harness.github.io/deepseek-harness/en/reference/subsystems/persistence)。架构细节可继续阅读本站的[插件组合分析](/writing/deepseek-harness-composition/)。
+
+模型接入也应与部署绑定分开比较。OpenAI Agents SDK 支持扩展模型提供商；接入其他模型后，仍要实测工具调用、结构化输出、流式行为和用量统计。能切换模型不意味着所有功能等价，也不能据默认提供商就断言无法替换。[Models](https://openai.github.io/openai-agents-python/models/)
+
+对 RBAC、审计和数据驻留等要求，分别核验 SDK、托管平台、模型请求和观测服务。自托管编排器并不说明模型请求也在本地；购买托管平台也不自动完成业务授权设计。
+
+### 把项目生命周期和迁移成本纳入决策
+
+**AutoGen 与 AG2 应分别评估。** 本次核验时，Microsoft AutoGen 官方仓库已声明进入维护模式，不再接收新功能增强，并建议新用户从 Microsoft Agent Framework 开始。AG2 有独立仓库和文档，不能把 Microsoft AutoGen 的维护状态直接套用到 AG2。[AutoGen 官方仓库](https://github.com/microsoft/autogen)、[AG2 官方仓库](https://github.com/ag2ai/ag2)
+
+已有系统先验证迁移收益与回归风险。CrewAI 原型跑通后，也没有必然迁移到 LangGraph 的理由；只有恢复能力、控制流表达或维护成本出现了可测量的缺口，迁移才值得进入计划。
+
+最后留下两种候选，完成同一个端到端任务。学习成本用首次实现、定位故障、恢复任务和升级版本的实际工时衡量。大量框架都能画出“研究员 → 分析师 → 审稿人”，差异更容易在这些操作中暴露。
 
 ## 部署边界跟随故障与权限边界
 
@@ -210,6 +266,8 @@ $$
 例如三个分支分别需要 20、25、30 秒，规划 5 秒、汇总 10 秒、验收 5 秒，则顺序方案约 95 秒，并行方案约 50 秒。**这些是手工设定的算例，不是框架跑分。** 如果某一分支延长到 90 秒，全部收齐才交付的策略就会受它支配。
 
 费用则应覆盖规划、全部分支、汇总、重试与验收。多 Agent 的额外开销来自重复指令、上下文传递、结果压缩和协调，也可能因专业模型与上下文缩短而部分抵消，必须按实际计费口径统计。
+
+不能把“CrewAI 的 Token 消耗是 LangGraph 的三倍”写成普遍结论。缺少同任务、同模型、同工具、相同验收标准和重复运行记录时，这个倍率无法指导选型。应比较最终通过验收的交付成本，并单独记录协调开销。
 
 按[任务成本口径](/writing/ai-capability-product-metrics/)统计单位验收交付成本，分子包含失败和返工，分母只计通过验收的交付。这里的拓扑比较额外关注协调、重复上下文和尾部等待的增量，避免再次只比单次模型价格。
 

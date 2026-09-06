@@ -10,28 +10,50 @@ topics:
   - Agent Memory
   - Context Engineering
 featured: true
-readingTime: 7 min
+readingTime: 10 min
 ---
 
-> 版本范围：2026-09-05 核查的 `volcengine/OpenViking` 提交 [`0c5147c`](https://github.com/volcengine/OpenViking/tree/0c5147cae26aec8d6d93445ec6ad86d5faff4035)。本文只描述该快照已经公开的实现；文档中标注为规划或后续优化的能力不当作已完成特性。
+## 定位与价值
 
-OpenViking 不把自己限制为“记忆 SDK”。它把 Resource、Memory 与 Skill 统一成 Agent 可浏览的上下文文件系统：内容有 URI、目录、摘要层和原文层，既能语义检索，也能像文件一样确定性地读取。
+OpenViking 是用 URI、目录和分层摘要组织 Agent 上下文的服务；相较把所有内容切成平铺向量块，它保留浏览结构和按层读取的入口。
+
+适合文档、记忆与技能需要统一定位的系统；结构维护会增加摄取和更新成本，不适合只想增加一个无运维的进程内检索函数。
+
+研究基线：[volcengine/OpenViking @ 0c5147c](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
 
 ```mermaid
 flowchart TB
-  A[Resource / Memory / Skill] --> B[Parse 与 TreeBuilder]
-  B --> C[AGFS 内容层]
-  B --> D[Vector Index 索引层]
-  E[Query] --> F[Intent + Hierarchical Retrieval]
-  F --> D
-  F --> C
-  G[Session] --> H[Compress / Memory Extraction]
-  H --> C
+  E["入口：ov CLI / SDK / HTTP"] -->|任务或调用| C["核心：资源组织、Session 与层级检索"]
+  C -->|调用 / 加载| A["适配：解析、摘要、Embedding 与存储适配"]
+  A -->|请求 / 读写| I["基础设施：模型端点、内容存储与向量索引"]
+  I -->|结果 / 状态| A
+  A -->|规范化结果| C
+  C -->|回答 / 产物| E
 ```
 
-*图 1｜逻辑结构示意；三类对象的具体摄取路径不同，并非全部经过同一个 Parser。*
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
 
-## 先把三个对象分开
+## 核心机制
+
+```mermaid
+sequenceDiagram
+  participant U as 调用方
+  participant C as 层级检索器
+  participant T as 目录与索引
+  U->>C: 提交查询和可访问范围
+  C->>C: 分析查询意图
+  C->>T: 选择目录并逐层检索
+  T-->>C: 取得摘要与候选内容
+  C-->>U: 返回可定位的 URI 和结果
+```
+
+*图 2｜本篇关键流程的职责示意；部署者提出的验收要求与框架内建行为需按正文区分。*
+
+### 内容如何获得 URI 与摘要层
+
+#### 先把三个对象分开
 
 Resource 是用户主动加入、相对稳定的外部知识；Memory 是从交互和任务中持续提炼的长期认知；Skill 是相对稳定、可声明和调用的能力配置。三者可以统一搜索，却拥有不同来源、更新节奏与默认路径。
 
@@ -39,7 +61,7 @@ Resource 是用户主动加入、相对稳定的外部知识；Memory 是从交�
 
 例如，团队把接口手册作为 Resource，保存“上次部署使用接口 v2”为 Memory，再把发布检查方法作为 Skill。回答接口用法时读取手册，准备部署时核对历史版本与当前配置；发布权限仍由可信策略与当前授权决定，不能由检索出的 Memory 授予或覆盖。统一检索入口不能消除三者的职责差异。这是对象划分的教学例子，不是项目内置的发布流程。
 
-## 系统有四条主线
+#### 系统有四条主线
 
 | 主线 | 关键模块 | 核心问题 |
 |---|---|---|
@@ -62,9 +84,9 @@ flowchart BT
   D --> E[上级目录 L0]
 ```
 
-*图 2｜子内容先形成目录 Overview，再以 Abstract 参与上层目录聚合。*
+*图 3｜子内容先形成目录 Overview，再以 Abstract 参与上层目录聚合。*
 
-## 三层分别回答三个问题
+#### 三层分别回答三个问题
 
 | 层 | 默认形态 | 回答的问题 |
 |---|---|---|
@@ -74,13 +96,13 @@ flowchart BT
 
 这种设计让 Agent 可以先用少量 Token 认识空间，再把预算花在少数候选目录。L0/L1 采用带 metadata 的 Markdown sidecar；语义访问通常只返回正文，直接读取 sidecar 才能看到来源、生成器与 freshness 等元数据。
 
-## URI 是定位契约
+#### URI 是定位契约
 
 所有内容使用 `viking://{scope}/{path}`。`resources` 承载共享资源，`user` 承载用户数据与 Session，`agent` 承载共享能力；`viking://~` 由服务端根据认证身份展开为当前用户根目录。它不是 UI 上的漂亮路径，而是所有文件操作、检索与权限判断共同使用的定位边界。
 
 内容本体写入 AGFS，向量索引只保存 URI、向量和 metadata。由此形成单一内容真相：索引可以重建，完整内容仍从文件层读取。反过来，这也要求写入、移动和删除正确维护两层状态。
 
-## 摘要是一份需要维护的数据
+#### 摘要是一份需要维护的数据
 
 SemanticProcessor 自底向上生成目录语义。内容变化后，父目录摘要需要逐级刷新；大目录还会稳定采样并记录未采样和待处理子项。当前文档也明确标注，向上冒泡的刷新频率仍有优化空间。
 
@@ -101,21 +123,24 @@ flowchart LR
   C --> L[按需读取 L2]
 ```
 
-*图 3｜先路由类型和目录，再进入细节，避免把整个资料库直接压入候选集。*
+*图 4｜先路由类型和目录，再进入细节，避免把整个资料库直接压入候选集。*
 
-## Typed Query 先拆搜索意图
+
+### 层级检索如何缩小范围
+
+#### Typed Query 先拆搜索意图
 
 系统可以结合 Session 摘要、最近消息与当前问题，生成少量带目标类型和优先级的查询。某个问题可能同时需要用户 Memory、项目 Resource 和操作 Skill；拆分让它们分别在合适的命名空间搜索，再汇合为上下文。
 
 这种路由不是为了把简单问题复杂化。对明确 URI 的读取，可以直接走确定性路径；只有跨类型、跨目录的模糊问题才值得支付意图分析与多路召回成本。
 
-## 层级检索用目录控制搜索空间
+#### 层级检索用目录控制搜索空间
 
 HierarchicalRetriever 从高分目录起步，把候选放进优先队列，读取 L1 判断是否继续下钻。目录分数、类型、深度与预算共同决定下一步，最后再由 rerank 对候选排序。L0 负责便宜地发现方向，L1 负责导航，L2 在真正需要时加载。
 
 它的优势不只是省 Token，还保留了来源结构：命中一段内容时，Agent 同时知道它属于哪个项目、目录和上下文类型。对于多文档推理，这比一堆失去父级关系的 chunk 更容易解释。
 
-## 目录也可能制造召回盲区
+#### 目录也可能制造召回盲区
 
 如果父目录摘要漏掉一个重要子项，层级检索可能根本不会走到正确文件；目录太深会增加决策次数，太扁又退化为平面候选池。因此需要监控三类失败：目标 L2 存在但祖先未召回；L1 召回但没有继续下钻；候选正确却被 reranker 降权。
 
@@ -138,3 +163,50 @@ HierarchicalRetriever 从高分目录起步，把候选放进优先队列，读�
 - [`IntentAnalyzer`](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/retrieve/intent_analyzer.py)
 
 </details>
+
+## 快速上手
+
+需要 Python ≥3.10、模型凭证和本地存储空间。服务启动后在另一个终端运行 ov status；再按 README 的 ov add-resource / ov find 示例验证读取。
+
+```bash
+python -m pip install openviking
+openviking-server init
+openviking-server doctor
+openviking-server
+```
+
+三个常用配置：
+
+| 配置或安装选项 | 作用 |
+| --- | --- |
+| `storage` | 内容与索引存储配置 |
+| `embedding` | 向量模型与维度 |
+| `vlm` | 理解和摘要所用模型 |
+
+其余选项见 [配置参考](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/README.md)。
+
+常见坑：init 完成模型配置后再启动；doctor 检查配置不等于已验证检索质量。安装的发行版可能晚于本文快照，升级时重跑摄取与回读样本。
+
+验证范围：已核对固定源码的入口、参数与依赖；未以本文示例调用真实模型或部署外部服务。
+
+## 生态与社区
+
+截至 2026-09-06，2026-08-08 至 09-06 UTC 的抽样取得 至少 30 条默认分支提交（上限 30 条）。见 [提交记录](https://github.com/volcengine/OpenViking/commits/main/)。
+
+Issue 取 08-08 至 08-30 UTC 创建的最近最多 3 条非 PR 条目，排除机器人和提问者自答；3 条中 0 条观察到维护者文字回复。 样本：[#4504](https://github.com/volcengine/OpenViking/issues/4504)、[#4503](https://github.com/volcengine/OpenViking/issues/4503)、[#4502](https://github.com/volcengine/OpenViking/issues/4502)。小样本不代表 SLA，“未观察到”也不代表其他渠道无人处理。
+
+固定快照许可证：[AGPL-3.0](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/LICENSE)。并非禁止商业使用；修改后通过网络提供交互服务时需关注第 13 条的对应源码提供义务。
+
+同仓维护 Rust CLI、Python SDK、服务端与 LangChain 检索集成；其他 Agent 集成应逐一核查维护归属。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [pyproject.toml](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/pyproject.toml) | ov 与 server 命令声明 |
+| 2 | [crates/ov_cli/src/main.rs](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/crates/ov_cli/src/main.rs) | Rust CLI main |
+| 3 | [openviking/retrieve/hierarchical_retriever.py](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/retrieve/hierarchical_retriever.py) | HierarchicalRetriever.retrieve：层级检索 |
+| 4 | [openviking/session/session.py](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/session/session.py) | Session.commit：会话提交 |
+| 5 | [tests/retrieve/test_hierarchical_retriever_rerank.py](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/tests/retrieve/test_hierarchical_retriever_rerank.py) | 检索重排用例 |

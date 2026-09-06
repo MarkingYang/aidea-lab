@@ -11,12 +11,49 @@ topics:
   - Agent Harness
   - AI 工程
 featured: false
-readingTime: 5 min
+readingTime: 7 min
 ---
 
-当 Skill、Rule、Hook 和配置开始影响未来行动，它们就成为软件供应链的一部分。ECC 的最后一层问题不是“再增加多少资产”，而是资产怎样更新、验证、回滚并安全退出。
+## 定位与价值
 
-## 安全模型：把 Agent 自己的配置也当作供应链
+本篇关注配置资产的升级和退出：安装器能否保留用户文件，经验更新能否回滚，Alpha 控制面提供了哪些可验证机制。
+
+完整定位与安装见[项目总览](/writing/ecc-architecture-deep-dive/)。
+
+研究基线：[affaan-m/ECC @ 22e8cf0](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：安装 / 升级 / 卸载] --> P[核心：计划与所有权检查]
+ P --> A[适配：目标宿主目录规则]
+ A --> D[基础设施：资产文件与安装记录]
+ D -->|现有版本和用户修改| P
+ P -->|允许管理的文件变更| D
+ P -->|冲突报告与变更结果| U
+ X[独立 AgentShield 扫描入口] -.检查配置.-> D
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+```mermaid
+sequenceDiagram
+  participant U as 部署者
+  participant C as 安装内核
+  participant T as 目标文件
+  U->>C: 请求升级配置资产
+  C->>C: 读取历史安装记录
+  C->>T: 核对当前文件与所有权
+  T-->>C: 仅变更允许管理的文件
+  C-->>U: 报告冲突并保留可回滚记录
+```
+
+*图 2｜本篇关键流程的职责示意；部署者提出的验收要求与框架内建行为需按正文区分。*
+
+### 安装与运行的供应链边界
 
 AI 编程工具的攻击面不只在生成的业务代码。一个恶意 Skill、过宽的 MCP 权限、一段被篡改的 Hook 或一个允许任意 Shell 的配置，都可能在模型真正开始写代码之前突破边界。
 
@@ -33,7 +70,10 @@ ECC 的安全模型分成四层：
 
 ECC 的安全取向不是声称“所有攻击都能检测”，而是尽量缩小每一步的权力：安装器只写受信根目录，Memory 不自动成为指令，MCP 不默认开放，强制门禁放在 PreToolUse，扫描器提供独立证据，未来的策略变更还要经过评估与晋升。
 
-## ECC 2.0：Rust 控制平面是真实 Alpha，不是现有系统的同义词
+
+### Alpha 控制面与采用验证
+
+#### ECC 2.0：Rust 控制平面是真实 Alpha，不是现有系统的同义词
 
 仓库里最容易被误读的是 `ecc2/`。
 
@@ -60,7 +100,7 @@ ECC 2.0 的[参考架构](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b
 | Manifest Installer / Hooks / Memory CLI | 已有真实实现与测试 | 当前工程内核 |
 | ECC 2.0 Control Plane / Hosted Platform | Rust Alpha 与路线图并存 | 需要继续验证，不能按 GA 能力采购 |
 
-## 采用时验证五个故障场景
+#### 采用时验证五个故障场景
 
 以下是基于固定提交 `22e8cf0` 的采用建议，不是本文完成过的测试结果。先选择一个目标 Harness 和最小安装 Profile，再检查：
 
@@ -74,12 +114,30 @@ ECC 2.0 的[参考架构](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b
 
 ECC 的可复用部分是资产类型、可预览安装计划、文件所有权和平台适配边界。代价是维护多平台语义差异、资产过期与额外的安装生命周期。需要自有模型循环时，应另选运行框架；需要生产级多会话控制面时，应单独验证 ECC 2.0，而不能从成熟的 Skills 目录推断 Alpha 的可靠性。
 
-## 参考源码
+## 快速上手
 
-- [ECC Repository and README](https://github.com/affaan-m/ECC/tree/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e)
-- [Cross-Harness Architecture](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/architecture/cross-harness.md)
-- [ECC 2.0 Reference Architecture](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/ECC-2.0-REFERENCE-ARCHITECTURE.md)
-- [Selective Install Architecture](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/SELECTIVE-INSTALL-ARCHITECTURE.md)
-- [ECC Memory Vault](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/docs/design/ecc-memory-vault.md)
-- [Hooks Runtime](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/hooks/README.md)
-- [ECC 2.0 Alpha](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/ecc2/README.md)
+先按[项目总览](/writing/ecc-architecture-deep-dive/#快速上手)准备运行环境；本篇的最小实验直接执行固定快照中的测试。另需按仓库贡献指南安装开发与测试依赖。
+
+```bash
+node tests/scripts/install-apply.test.js
+```
+
+检查安装变更的文件边界；在独立克隆中运行。
+
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/ecc-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+
+## 生态与社区
+
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/ecc-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [package.json](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/package.json) | ecc-universal 的命令入口 |
+| 2 | [scripts/install-plan.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/install-plan.js) | main：解析安装选择并生成计划 |
+| 3 | [scripts/install-apply.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/install-apply.js) | main：应用计划 |
+| 4 | [scripts/hooks/run-with-flags.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/scripts/hooks/run-with-flags.js) | main：按开关执行 Hook |
+| 5 | [tests/scripts/install-apply.test.js](https://github.com/affaan-m/ECC/blob/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e/tests/scripts/install-apply.test.js) | 检查安装变更的文件边界；在独立克隆中运行。 |

@@ -14,9 +14,35 @@ featured: false
 readingTime: 6 min
 ---
 
-Pi 的最小内核没有把历史保存成最终 messages 数组，而是让 AgentSession 同时承担持久化、上下文投影、扩展和 UI 的产品语义。本篇沿用[内核篇](/writing/pi-architecture-deep-dive/)的 `e44d75c` / `0.84.4` 快照，关注这条状态主线。
+## 定位与价值
 
-## AgentSession：真正的产品语义集中层
+本篇从一份修改方案被放弃、改走另一个分支的会话出发，追踪历史保留、当前上下文和扩展事件。
+
+完整定位与安装见[项目总览](/writing/pi-architecture-deep-dive/)。
+
+研究基线：[earendil-works/pi @ e44d75c](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：CLI / SDK / RPC] --> S[核心：AgentSession]
+ S --> E[适配：SessionManager / Extensions]
+ E --> D[基础设施：追加 JSONL 事件树]
+ D -->|当前分支| E
+ E -->|消息与扩展结果| S
+ S --> L[Agent Loop / Provider]
+ L -->|运行事件| S
+ S -->|状态与回答| U
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+### 会话事件树与当前分支
+
+#### AgentSession：真正的产品语义集中层
 
 如果 `Agent` 是通用发动机，那么 `AgentSession` 是 Pi Coding Agent 的整车控制器。它负责：
 
@@ -59,13 +85,13 @@ U->>S: prompt(text)
   S-->>U: agent_settled
 ```
 
-*图 1｜AgentSession 位于工具、模型、扩展、持久化与 UI 之间，是产品语义的集中层。*
+*图 2｜AgentSession 位于工具、模型、扩展、持久化与 UI 之间，是产品语义的集中层。*
 
 这里最值得借鉴的是 **所有跨层动作都有明确的稳定点**：扩展在模型调用前修改上下文，在工具执行前阻止调用，在结果入库前变换结果；自定义消息要等一个 turn 的全部 tool result 写入后才落盘，避免把消息插进 tool call 与 tool result 之间，造成 Provider 拒绝历史。
 
 例如用户在工具调用期间追加说明，应等这批工具结果配对落盘后再插入新消息，避免恢复时产生无法解释的历史。
 
-## Session 不是聊天记录，而是一棵追加写入的事件树
+#### Session 不是聊天记录，而是一棵追加写入的事件树
 
 Pi 把 Session 存成 JSONL。除头部外，每个条目都有 `id` 和 `parentId`；`leafId` 表示当前工作位置。追加消息就是给当前叶子增加子节点，跳到历史节点后继续对话则自然产生新分支。
 
@@ -79,7 +105,7 @@ flowchart LR
   F --> G[Branch Summary<br/>带回旧分支经验]
 ```
 
-*图 2｜追加写入的 Session 事件树允许分支、回溯与上下文投影同时存在。*
+*图 3｜追加写入的 Session 事件树允许分支、回溯与上下文投影同时存在。*
 
 [`SessionManager`](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/core/session-manager.ts#L856) 的注释直接把它定义为 “append-only trees stored in JSONL files”。这个选择带来几个好处：
 
@@ -90,7 +116,10 @@ flowchart LR
 
 代价也很明确：每次给模型的并不是整棵树，而是从根到当前 leaf 的一条路径。Session 层必须负责解析模型切换、压缩边界和自定义事件，才能重建正确上下文。换句话说，Pi 用更简单、可审计的写入模型，换来了更复杂的读取投影。
 
-## Compaction：不是把旧消息删掉，而是增加一个新的语义检查点
+
+### 压缩和扩展如何改变会话
+
+#### Compaction：不是把旧消息删掉，而是增加一个新的语义检查点
 
 长会话真正困难的地方，不是“总结一下聊天”，而是不能破坏工具调用配对、当前任务状态和文件操作历史。
 
@@ -102,7 +131,7 @@ Pi 的自动压缩会从新到旧计算 token，保留最近一段上下文，�
 
 这说明 Pi 把 Compaction 当成 Agent Loop 的恢复协议，而不是一个 UI 命令。
 
-## 扩展系统：用事件拦截和依赖注入承载“产品意见”
+#### 扩展系统：用事件拦截和依赖注入承载“产品意见”
 
 Pi 官方首页把它概括为 [“Primitives, not features”](https://pi.dev/)：不内置 plan mode、sub-agents、permission gates 等固定实现，而是提供构造这些功能的原语。
 
@@ -129,3 +158,31 @@ Custom UI      = TUI component + lifecycle events
 ```
 
 但这里也存在最重要的边界条件：**Extension 是进程内受信代码，不是沙箱插件。** 它能访问 Node.js、文件系统、网络和凭证，权限与 Pi 进程相同。强扩展性与强隔离不是同一件事。
+
+## 快速上手
+
+先按[项目总览](/writing/pi-architecture-deep-dive/#快速上手)准备运行环境；本篇的最小实验直接执行固定快照中的测试。另需按仓库贡献指南安装开发与测试依赖。
+
+```bash
+npx vitest run test/session-manager/tree-traversal.test.ts
+```
+
+在 packages/coding-agent 目录运行，检查事件树遍历。
+
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/pi-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+
+## 生态与社区
+
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/pi-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [packages/coding-agent/package.json](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/package.json) | bin → 打包后的 cli.js |
+| 2 | [packages/coding-agent/src/cli.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/cli.ts) | CLI 入口 |
+| 3 | [packages/agent/src/agent-loop.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/agent/src/agent-loop.ts) | agentLoop：通用循环 |
+| 4 | [packages/coding-agent/src/core/agent-session.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/src/core/agent-session.ts) | AgentSession：产品会话语义 |
+| 5 | [packages/coding-agent/test/session-manager/tree-traversal.test.ts](https://github.com/earendil-works/pi/blob/e44d75c20a51142abc056c243b13c1d7bb4be687/packages/coding-agent/test/session-manager/tree-traversal.test.ts) | 在 packages/coding-agent 目录运行，检查事件树遍历。 |

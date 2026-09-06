@@ -1,0 +1,718 @@
+{
+  "anthropics/claude-code": {
+    "intro": "Claude Code 是在代码仓库中执行读取、修改与验证任务的编程 Agent；它把手工复制文件、追问模型和运行命令的往返组织成工具循环。",
+    "boundary": "适合交互式开发与受控自动化；不适合要求审计完整核心源码或仅凭提示词实现强隔离的场景。",
+    "layers": [
+      "终端任务与会话",
+      "Agent Loop 与上下文组织",
+      "权限检查、Hooks 与工具调用",
+      "模型服务、文件系统与 Shell"
+    ],
+    "quick": "claude --version\nmkdir -p claude-demo\ncd claude-demo\nprintf \"# Demo\\nThis project has no source files yet.\\n\" > README.md\nclaude -p \"只读取 README.md，用一句话说明项目现状\"",
+    "configs": [
+      [
+        "model",
+        "选用账号可用的模型，影响质量与费用"
+      ],
+      [
+        "permissions.allow",
+        "预先允许的工具规则；缩小到所需操作"
+      ],
+      [
+        "permissions.deny",
+        "明确拒绝的工具规则，如禁止推送"
+      ]
+    ],
+    "pitfall": "首次运行先完成登录；README 已将 npm 安装列为弃用方式，优先按官方原生安装说明操作。",
+    "integrations": "仓库维护插件示例与 Hook 开发资源；核心产品的 MCP、IDE 等集成以官方文档为准。第三方市场插件并不因此获得官方质量保证。",
+    "sources": [
+      [
+        "plugins/hookify/.claude-plugin/plugin.json",
+        "插件元数据：公开扩展入口"
+      ],
+      [
+        "plugins/hookify/hooks/hooks.json",
+        "PreToolUse 等事件绑定"
+      ],
+      [
+        "plugins/hookify/hooks/pretooluse.py",
+        "main：读取事件并调用规则引擎"
+      ],
+      [
+        "plugins/hookify/core/rule_engine.py",
+        "RuleEngine.evaluate_rules：检查规则"
+      ],
+      [
+        "plugins/plugin-dev/skills/hook-development/scripts/test-hook.sh",
+        "公开 Hook 测试脚本；并非核心运行时测试"
+      ]
+    ],
+    "configdoc": "https://code.claude.com/docs/en/settings",
+    "lang": "bash",
+    "prereq": "先按官方 README 安装 Claude Code 并完成登录。下面在新建教学目录运行，只验证读取与回答。"
+  },
+  "openai/codex": {
+    "intro": "Codex CLI 是可在本地仓库执行开发任务的开源 Agent；它统一模型调用、命令执行与会话事件，减少手工拼接模型 SDK、终端和执行策略的工作。",
+    "boundary": "适合需要检查和扩展本地执行链的团队；CLI 源码不等于 Codex App 的全部协作功能，也不替代业务验收。",
+    "layers": [
+      "CLI / TUI 与任务输入",
+      "Core Session 与任务调度",
+      "模型客户端、工具和执行策略",
+      "模型服务、受限进程与会话存储"
+    ],
+    "quick": "codex --version\nmkdir -p codex-demo\ncd codex-demo\nprintf \"# Demo\\nNo source files yet.\\n\" > README.md\ngit init -q\ncodex exec --sandbox read-only \"读取 README.md，说明目前有什么\"",
+    "configs": [
+      [
+        "model",
+        "所选模型；使用当前账号可用的 ID"
+      ],
+      [
+        "sandbox_mode",
+        "控制进程的文件与网络可达范围"
+      ],
+      [
+        "approval_policy",
+        "决定哪些动作需要额外审批"
+      ]
+    ],
+    "pitfall": "首次运行需完成登录；read-only 是执行环境约束，不能把自然语言中的“只读”当作同一机制。",
+    "integrations": "同仓维护 Rust CLI、app-server 和 SDK 等接入代码；App 的任务组织及订阅功能应单独按产品文档确认。",
+    "sources": [
+      [
+        "codex-cli/package.json",
+        "bin 指向 npm 启动包装器"
+      ],
+      [
+        "codex-rs/cli/src/main.rs",
+        "cli_main：分派子命令"
+      ],
+      [
+        "codex-rs/core/src/session/mod.rs",
+        "Session：运行时会话抽象"
+      ],
+      [
+        "codex-rs/core/src/tasks/user_shell.rs",
+        "Shell 任务实现"
+      ],
+      [
+        "codex-rs/core/tests/suite/exec.rs",
+        "执行集成测试"
+      ]
+    ],
+    "configdoc": "codex-rs/core/config.schema.json",
+    "lang": "bash",
+    "prereq": "按官方 README 安装 Codex CLI 并登录。下面创建独立 Git 教学目录，不访问真实业务服务。"
+  },
+  "MoonshotAI/kimi-code": {
+    "intro": "Kimi Code 是带持久会话和任务委派能力的编程 Agent；CLI 与 SDK 复用运行状态，省去接入方自行维护一份终端历史、一份模型历史的同步代码。",
+    "boundary": "适合继续长会话与扩展编码工作流；恢复会话不提供外部写入的恰好一次保证。",
+    "layers": [
+      "Kimi CLI / SDK",
+      "Agent Runtime 与 Session",
+      "Kosong 模型适配与 Tools",
+      "模型端点、工作区和 wire.jsonl"
+    ],
+    "quick": "kimi --version\nmkdir -p kimi-demo\ncd kimi-demo\nprintf \"# Demo\\nNo source files yet.\\n\" > README.md\nkimi -p \"读取 README.md 并解释项目现状，不修改文件\"",
+    "configs": [
+      [
+        "--model",
+        "选择已配置的模型别名"
+      ],
+      [
+        "--session",
+        "恢复指定会话；不等于重新执行所有动作"
+      ],
+      [
+        "--agent",
+        "新会话选择 Agent 配方；恢复会话不再指定"
+      ]
+    ],
+    "pitfall": "先在交互模式执行 /login；旧 kimi-cli 教程的安装和配置不能直接套到 Kimi Code。",
+    "integrations": "同仓维护 VS Code、Node SDK 与 ACP 接入；AgentSwarm 是运行时委派能力，不是外部协议保证。",
+    "sources": [
+      [
+        "apps/kimi-code/package.json",
+        "CLI 构建与启动声明"
+      ],
+      [
+        "apps/kimi-code/src/main.ts",
+        "CLI 主入口"
+      ],
+      [
+        "packages/agent-core/src/index.ts",
+        "核心运行时导出"
+      ],
+      [
+        "packages/agent-core/src/tools/builtin/collaboration/agent.ts",
+        "子 Agent 工具实现"
+      ],
+      [
+        "packages/agent-core/test/harness/skill-session.test.ts",
+        "Skill 与 Session 交互用例"
+      ]
+    ],
+    "configdoc": "docs/en/reference/kimi-command.md",
+    "lang": "bash",
+    "prereq": "先安装官方 Kimi Code CLI，在 kimi 交互界面完成 /login。示例需要可用模型。"
+  },
+  "anomalyco/opencode": {
+    "intro": "OpenCode 是采用客户端／服务端结构的开源编程 Agent；多种界面共用服务端 Session 和模型适配，减少每个客户端各写一套执行循环的成本。",
+    "boundary": "适合多客户端和多模型接入；不适合把 Provider 可切换当作行为完全一致，或把插件当作无权限的普通文本。",
+    "layers": [
+      "TUI / Desktop / SDK",
+      "Server 与 Session",
+      "Provider、Tools / MCP 与权限",
+      "模型端点、工作区与持久数据"
+    ],
+    "quick": "npm install -g opencode-ai@1.18.29\nmkdir -p opencode-demo\ncd opencode-demo\nprintf \"# Demo\\nNo source files yet.\\n\" > README.md\nopencode run --agent plan \"解释 README.md，不修改文件\"",
+    "configs": [
+      [
+        "model",
+        "provider/model 格式的模型选择"
+      ],
+      [
+        "permission",
+        "控制工具的 allow、ask、deny 行为"
+      ],
+      [
+        "mcp",
+        "注册工具服务及其连接配置"
+      ]
+    ],
+    "pitfall": "先运行 opencode auth login 配置供应商；plan 模式仍需核对自定义 Agent 和权限覆盖。",
+    "integrations": "仓库维护桌面端、TUI、JavaScript SDK 和插件接口；具体 Provider 与社区插件需分别验证。",
+    "sources": [
+      [
+        "packages/opencode/package.json",
+        "bin 与开发入口"
+      ],
+      [
+        "packages/opencode/src/index.ts",
+        "CLI 启动"
+      ],
+      [
+        "packages/core/src/session/prompt.ts",
+        "Session Prompt 核心实现"
+      ],
+      [
+        "packages/opencode/src/session/processor.ts",
+        "会话处理接口"
+      ],
+      [
+        "packages/opencode/test/session/prompt.test.ts",
+        "提示和工具循环用例"
+      ]
+    ],
+    "configdoc": "https://opencode.ai/docs/config/",
+    "lang": "bash",
+    "prereq": "需要 Node/npm 和一个模型供应商账号；安装版本与本文源码 package.json 一致，先完成供应商登录。"
+  },
+  "deepseek-ai/deepseek-harness": {
+    "intro": "DeepSeek Harness 是以 Cordis 插件装配 Agent 的开发框架；相较把工具、状态和审批写进一个大循环，它用服务契约与生命周期拆开替换点。",
+    "boundary": "适合研究或定制可组合运行时；当前快照是 developer preview，不适合直接承担未经故障测试的高风险写入。",
+    "layers": [
+      "CLI / Web 与 Profile",
+      "Cordis 服务、Agent Loop 与 Session",
+      "模型、Tools 与执行能力接口",
+      "模型端点、Sandbox 和事件日志"
+    ],
+    "quick": "npx @deepseek-ai/dsh@0.1.2-rc.1 web",
+    "configs": [
+      [
+        "agent-default-model.config.model",
+        "默认模型 ID；位于对应插件的 config 下"
+      ],
+      [
+        "agent-loop.config.maxParallelToolCalls",
+        "限制同时执行的工具数"
+      ],
+      [
+        "agent-presets.config.default",
+        "默认配方；以配置目录列出的字段为准"
+      ]
+    ],
+    "pitfall": "配置键属于各插件，不是同一组顶层字段；先在 Web 完成模型与凭证配置，再在临时工作区尝试读取任务。",
+    "integrations": "同仓提供 Web、ACP、会话持久化与执行插件；插件存在不代表所有组合均经生产验证。",
+    "sources": [
+      [
+        "package.json",
+        "CLI 与构建脚本入口"
+      ],
+      [
+        "vendor/cordis/src/index.ts",
+        "Cordis 公共导出"
+      ],
+      [
+        "packages/core/agent-loop/src/index.ts",
+        "AgentLoop：默认循环服务"
+      ],
+      [
+        "packages/core/tools/src/index.ts",
+        "ToolDefinition 与工具运行时"
+      ],
+      [
+        "docs/testing.md",
+        "测试分类与执行入口"
+      ]
+    ],
+    "configdoc": "docs/config-catalog.md",
+    "lang": "bash",
+    "prereq": "需要 Node/npm、模型凭证与可访问的模型端点。此命令启动 Web；随后选择模型，发送“列出教学工作区文件，不修改”。"
+  },
+  "NousResearch/hermes-agent": {
+    "intro": "Hermes 是把工具循环、会话、消息入口与记忆连成常驻系统的 Agent 框架；相较单次模型脚本，它已提供消息路由和跨会话资产管理。",
+    "boundary": "适合个人助手或受控团队服务；不适合把自动保存的经验直接视为已审核的生产规则。",
+    "layers": [
+      "CLI / Gateway / ACP",
+      "AIAgent 与 Session 路由",
+      "Provider、Tool Registry 与执行后端",
+      "模型服务、SQLite 与工作目录"
+    ],
+    "quick": "hermes --version\nhermes model\nhermes tools\nhermes",
+    "configs": [
+      [
+        "model",
+        "选择供应商与模型"
+      ],
+      [
+        "terminal.backend",
+        "选择本地、容器等执行后端"
+      ],
+      [
+        "agent.max_turns",
+        "限制单次运行的轮数预算"
+      ]
+    ],
+    "pitfall": "启用工具不等于后端依赖已就绪；先检查 hermes doctor，再在聊天中要求“只读取教学目录并生成摘要”。",
+    "integrations": "同仓提供 Telegram、Discord 等 Gateway 适配、ACP 和工具后端；各通道的凭证、平台限流与授权仍需独立配置。",
+    "sources": [
+      [
+        "pyproject.toml",
+        "project.scripts 的 hermes 入口"
+      ],
+      [
+        "hermes_cli/main.py",
+        "main：CLI 分派"
+      ],
+      [
+        "run_agent.py",
+        "AIAgent：模型与工具循环"
+      ],
+      [
+        "agent/memory_manager.py",
+        "记忆管理实现"
+      ],
+      [
+        "tests/run_agent/test_run_agent.py",
+        "循环测试"
+      ]
+    ],
+    "configdoc": "cli-config.yaml.example",
+    "lang": "bash",
+    "prereq": "按官方安装说明安装 Hermes，并准备模型账号。下面用交互向导选模型和工具，再发送只读教学任务。"
+  },
+  "earendil-works/pi": {
+    "intro": "Pi 是把模型适配、通用 Agent 循环和 Coding Session 分层的可扩展编程框架；相较分叉一个完整助手，扩展可在公共事件和工具接口上加入工作流。",
+    "boundary": "适合需要掌握运行策略的开发者；经典 CLI 不内置完整审批与隔离系统，experimental durable 路径也不是默认稳定实现。",
+    "layers": [
+      "CLI / RPC / SDK",
+      "AgentSession 与 Agent Loop",
+      "pi-ai Provider 与四种基础工具",
+      "模型端点、Shell 与 Session JSONL"
+    ],
+    "quick": "npm install -g @earendil-works/pi-coding-agent@0.84.4\nmkdir -p pi-demo\ncd pi-demo\nprintf \"# Demo\\nNo source files yet.\\n\" > README.md\npi",
+    "configs": [
+      [
+        "--provider",
+        "选择模型供应商"
+      ],
+      [
+        "--model",
+        "选择该供应商的模型"
+      ],
+      [
+        "--tools",
+        "限制本次暴露的基础工具，如 read"
+      ]
+    ],
+    "pitfall": "在交互模式先 /login，再请求读取 README；默认工具能写文件和运行命令，隔离需由宿主落实。",
+    "integrations": "同仓维护 pi-ai、Agent Core、Coding Agent、TUI 及 RPC/SDK；第三方 Pi Packages 中的审批或子 Agent 扩展不是核心默认保证。",
+    "sources": [
+      [
+        "packages/coding-agent/package.json",
+        "bin → 打包后的 cli.js"
+      ],
+      [
+        "packages/coding-agent/src/cli.ts",
+        "CLI 入口"
+      ],
+      [
+        "packages/agent/src/agent-loop.ts",
+        "agentLoop：通用循环"
+      ],
+      [
+        "packages/coding-agent/src/core/agent-session.ts",
+        "AgentSession：产品会话语义"
+      ],
+      [
+        "packages/agent/test/agent-loop.test.ts",
+        "循环测试"
+      ]
+    ],
+    "configdoc": "packages/coding-agent/README.md",
+    "lang": "bash",
+    "prereq": "需要 Node/npm 与模型账号。安装固定版本后在新目录启动，使用 /login 完成认证。"
+  },
+  "anthropics/skills": {
+    "intro": "Anthropic Skills 是按需加载的任务方法与脚本资源库；相较把整份文档塞进系统提示词，宿主先读描述，选中后再读正文和所需资源。",
+    "boundary": "适合复用文档制作、开发与检查方法；它不是独立 Agent Runtime，也不保证提示中的约束一定被执行。",
+    "layers": [
+      "宿主发现 Skill 描述",
+      "选中后的 SKILL.md 方法",
+      "references 与 scripts 资源",
+      "宿主模型、工具及输出文件"
+    ],
+    "quick": "/plugin marketplace add anthropics/skills\n/plugin install example-skills@anthropic-agent-skills",
+    "configs": [
+      [
+        "name",
+        "技能标识，避免与已安装技能重名"
+      ],
+      [
+        "description",
+        "描述适用任务，影响宿主发现与选择"
+      ],
+      [
+        "license",
+        "声明该技能适用许可，不能只看仓库名称"
+      ]
+    ],
+    "pitfall": "命令输入 Claude Code 会话而不是系统 Shell；安装后尝试“使用 webapp-testing 检查本地教学网页”，网页服务和浏览器依赖需先准备好。",
+    "integrations": "这是 Anthropic 维护的示例与文档技能库；能被其他宿主发现不等于每个脚本和权限约定都跨宿主兼容。",
+    "sources": [
+      [
+        ".claude-plugin/marketplace.json",
+        "市场声明：插件包含哪些资产"
+      ],
+      [
+        "skills/webapp-testing/SKILL.md",
+        "从任务说明进入测试方法"
+      ],
+      [
+        "skills/webapp-testing/scripts/with_server.py",
+        "main：带服务启动的命令执行"
+      ],
+      [
+        "skills/skill-creator/scripts/quick_validate.py",
+        "validate_skill：结构校验，不是任务质量评测"
+      ]
+    ],
+    "configdoc": "README.md",
+    "lang": "text",
+    "prereq": "需要已安装并登录的 Claude Code。这里运行的是技能安装流程；仓库本身没有独立模型循环。"
+  },
+  "addyosmani/agent-skills": {
+    "intro": "Addy Agent Skills 是覆盖定义、计划、构建和验证的软件工程技能库；相较每个任务重写评审提示，它把检查顺序与产物要求保存为可版本化方法。",
+    "boundary": "适合已有 Coding Agent 的工程团队；Skill 里的“必须验证”不等同于 CI 强制门禁。",
+    "layers": [
+      "宿主命令或技能匹配",
+      "工程阶段对应的 SKILL.md",
+      "评审清单、示例与评测资源",
+      "现有 Agent、代码仓库和测试工具"
+    ],
+    "quick": "npx skills add addyosmani/agent-skills --list\nnpx skills add addyosmani/agent-skills --skill code-review-and-quality",
+    "configs": [
+      [
+        "name",
+        "一个工程动作一个清晰标识"
+      ],
+      [
+        "description",
+        "说明触发阶段和输入"
+      ],
+      [
+        "--skill",
+        "安装时只选本次需要的技能"
+      ]
+    ],
+    "pitfall": "技能安装器是外部工具；安装后在宿主中明确要求“用 code-review-and-quality 审查当前 diff，并指出测试证据”。",
+    "integrations": "作者仓库提供 Claude 插件入口、跨宿主资源及 evals；skills 安装器和其他 Agent 宿主由各自项目维护。",
+    "sources": [
+      [
+        ".claude-plugin/marketplace.json",
+        "插件资产声明"
+      ],
+      [
+        "skills/code-review-and-quality/SKILL.md",
+        "评审步骤与输出要求"
+      ],
+      [
+        "evals/cases/test-driven-development.json",
+        "评测案例定义"
+      ],
+      [
+        "evals/fixtures/test-driven-development/test/split.test.js",
+        "具体测试夹具；不能代表所有技能已通过评测"
+      ]
+    ],
+    "configdoc": "README.md",
+    "lang": "bash",
+    "prereq": "需要 Node/npm 与支持 Skills 的宿主；先列出技能，再只安装评审技能。"
+  },
+  "mattpocock/skills": {
+    "intro": "Matt Pocock Skills 是围绕需求澄清、设计与 TDD 的工作方法库；相较让模型一次生成整套实现，它把关键决策和反馈拆成可检查步骤。",
+    "boundary": "适合需要把问题问清、以测试约束实现的团队；它不提供后台调度、工具隔离或持久工作流引擎。",
+    "layers": [
+      "宿主匹配技能",
+      "grill-me / TDD 方法",
+      "问题清单、设计说明与测试原则",
+      "现有 Coding Agent 和项目测试"
+    ],
+    "quick": "npx skills@latest add mattpocock/skills",
+    "configs": [
+      [
+        "name",
+        "技能标识，对应要调用的方法"
+      ],
+      [
+        "description",
+        "明确需求澄清或开发阶段"
+      ],
+      [
+        "--skill",
+        "用安装器选择所需技能，避免无关方法常驻"
+      ]
+    ],
+    "pitfall": "安装完成不代表技能已经被调用；在宿主中说明“使用 grill-me 澄清登录超时修复范围，先不要改代码”。",
+    "integrations": "作者维护技能正文与 Claude 插件分发；宿主模型和工具由调用方提供，仓库中的 tests.md 是写作指导而非自动测试结果。",
+    "sources": [
+      [
+        "package.json",
+        "插件版本与校验脚本"
+      ],
+      [
+        "skills/productivity/grill-me/SKILL.md",
+        "需求澄清方法入口"
+      ],
+      [
+        "skills/engineering/tdd/SKILL.md",
+        "TDD 的主流程"
+      ],
+      [
+        "skills/engineering/tdd/tests.md",
+        "测试质量指导；并非可执行测试套件"
+      ]
+    ],
+    "configdoc": "README.md",
+    "lang": "bash",
+    "prereq": "需要 Node/npm 与支持 Skills 的宿主。命令进入安装向导，选择要使用的宿主与技能。"
+  },
+  "affaan-m/ECC": {
+    "intro": "ECC 是给现有 Coding Agent 安装规则、技能和 Hooks 的配置与资产系统；它用安装计划和所有权记录替代手工复制、覆盖与清理配置文件。",
+    "boundary": "适合统一团队开发环境；它不是新的模型循环，也不能把本地 Hook 等同于不可绕过的组织安全边界。",
+    "layers": [
+      "setup / install 与目标选择",
+      "计划、依赖解析与 Apply",
+      "Claude / Codex 等宿主适配",
+      "配置目录、资产文件与运行日志"
+    ],
+    "quick": "node scripts/install-plan.js --list-profiles\nnode scripts/install-plan.js --profile minimal --target claude --json",
+    "configs": [
+      [
+        "--profile",
+        "按使用场景选择安装集合"
+      ],
+      [
+        "--target",
+        "选择目标宿主，避免混用路径"
+      ],
+      [
+        "--modules",
+        "显式选择模块；与 profile 方案按 CLI 规则使用"
+      ]
+    ],
+    "pitfall": "先看计划再 Apply；存在同名用户文件时应核对所有权与冲突，不要直接覆盖。",
+    "integrations": "同仓维护多宿主安装与 Hook 适配；AgentShield 是独立项目，不能把其路线图算成 ECC 已有能力。",
+    "sources": [
+      [
+        "package.json",
+        "ecc-universal 的命令入口"
+      ],
+      [
+        "scripts/install-plan.js",
+        "main：解析安装选择并生成计划"
+      ],
+      [
+        "scripts/install-apply.js",
+        "main：应用计划"
+      ],
+      [
+        "scripts/hooks/run-with-flags.js",
+        "main：按开关执行 Hook"
+      ],
+      [
+        "tests/scripts/install-plan.test.js",
+        "安装计划用例"
+      ]
+    ],
+    "configdoc": "scripts/install-plan.js",
+    "lang": "bash",
+    "prereq": "先克隆并切换到本文固定提交，在仓库根目录运行。此最小示例只生成安装计划；实际安装入口为 npx ecc-universal@2.2.1 setup。"
+  },
+  "mem0ai/mem0": {
+    "intro": "Mem0 是可嵌入应用的记忆抽取与检索库；add/search 接口封装了事实抽取、身份过滤和索引，减少应用直接拼装这些模块的代码。",
+    "boundary": "适合快速验证跨会话事实复用；不替应用认证调用者、裁定事实真伪或完成删除传播。",
+    "layers": [
+      "应用 add / search",
+      "Memory 抽取与检索",
+      "LLM、Embedder、Vector Store 适配",
+      "模型端点、向量库与历史数据"
+    ],
+    "quick": "from mem0 import Memory\n\nmemory = Memory()\nmemory.add(\"教学用户喜欢简短的技术回答\", user_id=\"demo-user\")\nresult = memory.search(\"教学用户偏好什么回答？\", user_id=\"demo-user\")\nprint(result)",
+    "configs": [
+      [
+        "llm",
+        "抽取模型及其 provider/config"
+      ],
+      [
+        "embedder",
+        "向量模型；更换时需考虑历史索引"
+      ],
+      [
+        "vector_store",
+        "索引后端、连接与存储位置"
+      ]
+    ],
+    "pitfall": "先配置默认 OpenAI 模型所需的 OPENAI_API_KEY；user_id 是数据范围，不是认证凭证。",
+    "integrations": "同仓有 Python/TypeScript SDK 与自托管 server；Mem0 Platform 是另一种托管产品，其能力与商业条款需单独确认。",
+    "sources": [
+      [
+        "pyproject.toml",
+        "mem0ai 包与 Python 版本要求"
+      ],
+      [
+        "mem0/memory/main.py",
+        "Memory.add / search：公开入口"
+      ],
+      [
+        "mem0/configs/base.py",
+        "MemoryConfig：组件配置"
+      ],
+      [
+        "mem0/utils/factory.py",
+        "Provider 工厂"
+      ],
+      [
+        "tests/test_memory.py",
+        "记忆 API 测试"
+      ]
+    ],
+    "configdoc": "mem0/configs/base.py",
+    "lang": "python",
+    "prereq": "Python ≥3.10；在虚拟环境安装 mem0ai==2.0.20 并配置 OPENAI_API_KEY。示例会调用模型并写入教学记忆，请使用独立存储目录。"
+  },
+  "volcengine/OpenViking": {
+    "intro": "OpenViking 是用 URI、目录和分层摘要组织 Agent 上下文的服务；相较把所有内容切成平铺向量块，它保留浏览结构和按层读取的入口。",
+    "boundary": "适合文档、记忆与技能需要统一定位的系统；结构维护会增加摄取和更新成本，不适合只想增加一个无运维的进程内检索函数。",
+    "layers": [
+      "ov CLI / SDK / HTTP",
+      "资源组织、Session 与层级检索",
+      "解析、摘要、Embedding 与存储适配",
+      "模型端点、内容存储与向量索引"
+    ],
+    "quick": "python -m pip install openviking\nopenviking-server init\nopenviking-server doctor\nopenviking-server",
+    "configs": [
+      [
+        "storage",
+        "内容与索引存储配置"
+      ],
+      [
+        "embedding",
+        "向量模型与维度"
+      ],
+      [
+        "vlm",
+        "理解和摘要所用模型"
+      ]
+    ],
+    "pitfall": "init 完成模型配置后再启动；doctor 检查配置不等于已验证检索质量。安装的发行版可能晚于本文快照，升级时重跑摄取与回读样本。",
+    "integrations": "同仓维护 Rust CLI、Python SDK、服务端与 LangChain 检索集成；其他 Agent 集成应逐一核查维护归属。",
+    "sources": [
+      [
+        "pyproject.toml",
+        "ov 与 server 命令声明"
+      ],
+      [
+        "crates/ov_cli/src/main.rs",
+        "Rust CLI main"
+      ],
+      [
+        "openviking/retrieve/hierarchical_retriever.py",
+        "HierarchicalRetriever.retrieve：层级检索"
+      ],
+      [
+        "openviking/session/session.py",
+        "Session.commit：会话提交"
+      ],
+      [
+        "tests/retrieve/test_hierarchical_retriever_rerank.py",
+        "检索重排用例"
+      ]
+    ],
+    "configdoc": "README.md",
+    "lang": "bash",
+    "prereq": "需要 Python ≥3.10、模型凭证和本地存储空间。服务启动后在另一个终端运行 ov status；再按 README 的 ov add-resource / ov find 示例验证读取。"
+  },
+  "TencentCloud/TencentDB-Agent-Memory": {
+    "intro": "TencentDB Agent Memory 是通过协议代理给多种 Agent 接入团队记忆的服务系统；它集中处理检索注入、回写和资产装配，减少每个客户端分别修改记忆逻辑的工作。",
+    "boundary": "适合愿意维护代理与团队资产控制面的部署；当前 Team Memory 为 Beta，不适合将接入成功直接当作隔离、治理和生产 SLA 已满足。",
+    "layers": [
+      "Coding Agent 的模型请求",
+      "Memory Proxy 与注入管线",
+      "Memory Core / Hub 与模型协议适配",
+      "上游模型、知识数据与持久存储"
+    ],
+    "quick": "git clone https://github.com/TencentCloud/TencentDB-Agent-Memory.git\ncd TencentDB-Agent-Memory\ngit checkout 2ee22397f6091b8cd3ea847bc1edb04d3bec0c94\ncd deploy/global-images\ncp .env.example .env\n# 编辑 .env，填完 MEMORY_* 和 PROXY_* 两组模型参数\n./start-all.sh",
+    "configs": [
+      [
+        "MEMORY_LLM_MODEL",
+        "记忆提炼使用的模型；配套填写同组 URL/KEY"
+      ],
+      [
+        "PROXY_UPSTREAM_MODEL",
+        "主请求转发模型；配套填写同组 URL/KEY"
+      ],
+      [
+        "PROXY_PORT",
+        "客户端应连接的代理端口，默认 8096"
+      ]
+    ],
+    "pitfall": "不要把客户端模型地址指向 Memory Core；应按启动输出连接 Proxy。默认 latest 镜像不是源码提交锁定，复现实验需额外固定镜像摘要。",
+    "integrations": "仓库维护 Proxy 的 Agent 协议适配、Memory Panel 和 SDK；各 Agent 本体由各自厂商维护。",
+    "sources": [
+      [
+        "MemoryProxy/package.json",
+        "Proxy 启动与构建入口"
+      ],
+      [
+        "MemoryProxy/src/index.ts",
+        "服务启动与退出"
+      ],
+      [
+        "MemoryProxy/src/injection/pipeline.ts",
+        "InjectionPipeline：注入管线"
+      ],
+      [
+        "MemoryProxy/src/injection/adapters/openai.ts",
+        "OpenAIAdapter：协议具体实现"
+      ],
+      [
+        "MemoryProxy/src/common/__tests__/user-query-extractor.test.ts",
+        "用户查询抽取用例"
+      ]
+    ],
+    "configdoc": "deploy/global-images/.env.example",
+    "lang": "bash",
+    "prereq": "需要 Git、Docker Compose 与两组模型配置；启动脚本会拉取镜像和创建本地服务。配置好后用教学请求确认代理响应与记忆回读。"
+  }
+}

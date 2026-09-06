@@ -1,0 +1,2831 @@
+{
+  "date": "2026-09-06",
+  "commit_window": "2026-08-08..2026-09-06 UTC",
+  "commit_sample_limit": 30,
+  "issue_window": "2026-08-08..2026-08-30 UTC",
+  "issue_sample": "按创建时间倒序最多3条非PR issue；用于小样本个案，不估计总体SLA。",
+  "projects": [
+    {
+      "repo": "anthropics/claude-code",
+      "default_branch": "main",
+      "canonical_repo": "anthropics/claude-code",
+      "archived": false,
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "homepage": "https://code.claude.com/docs/en/overview",
+      "commits": [
+        {
+          "sha": "d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b",
+          "date": "2026-09-04T19:58:03Z",
+          "url": "https://github.com/anthropics/claude-code/commit/d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b"
+        },
+        {
+          "sha": "b3f0e501b79fe5cfc8c10d18cf3b0b6715c5c2fb",
+          "date": "2026-09-03T23:48:05Z",
+          "url": "https://github.com/anthropics/claude-code/commit/b3f0e501b79fe5cfc8c10d18cf3b0b6715c5c2fb"
+        },
+        {
+          "sha": "ee2a058351fbd15f6a8360be4139b333d3b8d9c6",
+          "date": "2026-09-03T20:10:26Z",
+          "url": "https://github.com/anthropics/claude-code/commit/ee2a058351fbd15f6a8360be4139b333d3b8d9c6"
+        },
+        {
+          "sha": "f173a697aa6486945f1b9c4aa9ce5383d2c87db6",
+          "date": "2026-09-02T22:33:43Z",
+          "url": "https://github.com/anthropics/claude-code/commit/f173a697aa6486945f1b9c4aa9ce5383d2c87db6"
+        },
+        {
+          "sha": "dbdd79cebfae5891f5b0fab6f7773ea520d289a7",
+          "date": "2026-09-02T19:49:36Z",
+          "url": "https://github.com/anthropics/claude-code/commit/dbdd79cebfae5891f5b0fab6f7773ea520d289a7"
+        },
+        {
+          "sha": "aef74afe01f65b602258d6102b0da9730ac6f0aa",
+          "date": "2026-09-01T22:33:14Z",
+          "url": "https://github.com/anthropics/claude-code/commit/aef74afe01f65b602258d6102b0da9730ac6f0aa"
+        },
+        {
+          "sha": "a1e64dc407dd57dfb4ea283b0f8049adf3eabee5",
+          "date": "2026-09-01T17:53:45Z",
+          "url": "https://github.com/anthropics/claude-code/commit/a1e64dc407dd57dfb4ea283b0f8049adf3eabee5"
+        },
+        {
+          "sha": "f275fa282e76c5e5456912268f2c367a7f4f4797",
+          "date": "2026-08-31T19:46:49Z",
+          "url": "https://github.com/anthropics/claude-code/commit/f275fa282e76c5e5456912268f2c367a7f4f4797"
+        },
+        {
+          "sha": "f1af9b1f4b1fd4c776135381606edada82ef638e",
+          "date": "2026-08-28T18:19:26Z",
+          "url": "https://github.com/anthropics/claude-code/commit/f1af9b1f4b1fd4c776135381606edada82ef638e"
+        },
+        {
+          "sha": "92bb6850f1bb51f4d18b03b23d643642f9d687b6",
+          "date": "2026-08-28T00:49:10Z",
+          "url": "https://github.com/anthropics/claude-code/commit/92bb6850f1bb51f4d18b03b23d643642f9d687b6"
+        },
+        {
+          "sha": "c336b74efcb15cdbacab427d277d5ebed11ddbec",
+          "date": "2026-08-27T22:12:10Z",
+          "url": "https://github.com/anthropics/claude-code/commit/c336b74efcb15cdbacab427d277d5ebed11ddbec"
+        },
+        {
+          "sha": "cad6304e85e2767eac20044e752b010fff1bb4c3",
+          "date": "2026-08-26T23:06:33Z",
+          "url": "https://github.com/anthropics/claude-code/commit/cad6304e85e2767eac20044e752b010fff1bb4c3"
+        },
+        {
+          "sha": "005c5dade90c2c59c88d819d8723e7b579addb5e",
+          "date": "2026-08-25T22:31:44Z",
+          "url": "https://github.com/anthropics/claude-code/commit/005c5dade90c2c59c88d819d8723e7b579addb5e"
+        },
+        {
+          "sha": "1af51fd77b7e40017c1032249db75fe582d23283",
+          "date": "2026-08-25T05:13:17Z",
+          "url": "https://github.com/anthropics/claude-code/commit/1af51fd77b7e40017c1032249db75fe582d23283"
+        },
+        {
+          "sha": "3bbe157cea35aa206d3a63efafeeee6dd96d3dc5",
+          "date": "2026-08-25T03:38:20Z",
+          "url": "https://github.com/anthropics/claude-code/commit/3bbe157cea35aa206d3a63efafeeee6dd96d3dc5"
+        },
+        {
+          "sha": "8b6ef81f636a7697e5ae2338428fa0b272993845",
+          "date": "2026-08-24T23:40:18Z",
+          "url": "https://github.com/anthropics/claude-code/commit/8b6ef81f636a7697e5ae2338428fa0b272993845"
+        },
+        {
+          "sha": "45bdfa96ca415da92e62b6ca85a1d6e29adf3c44",
+          "date": "2026-08-23T00:52:11Z",
+          "url": "https://github.com/anthropics/claude-code/commit/45bdfa96ca415da92e62b6ca85a1d6e29adf3c44"
+        },
+        {
+          "sha": "5cfc0a1905ce0c0a9bd81d8a90fe6b62ff614357",
+          "date": "2026-08-22T14:45:21Z",
+          "url": "https://github.com/anthropics/claude-code/commit/5cfc0a1905ce0c0a9bd81d8a90fe6b62ff614357"
+        },
+        {
+          "sha": "16440d0f6ee8c47f34169687044b89eafa8b0f8d",
+          "date": "2026-08-21T19:54:17Z",
+          "url": "https://github.com/anthropics/claude-code/commit/16440d0f6ee8c47f34169687044b89eafa8b0f8d"
+        },
+        {
+          "sha": "8a8e81d098cbd0fae4ee5b9c853542945fe87016",
+          "date": "2026-08-20T20:33:43Z",
+          "url": "https://github.com/anthropics/claude-code/commit/8a8e81d098cbd0fae4ee5b9c853542945fe87016"
+        },
+        {
+          "sha": "770933ea1ad2fa7b858191e397a65e6644771c64",
+          "date": "2026-08-20T00:54:35Z",
+          "url": "https://github.com/anthropics/claude-code/commit/770933ea1ad2fa7b858191e397a65e6644771c64"
+        },
+        {
+          "sha": "084ca20bcf90249ecfcc01efe5c899554c400a85",
+          "date": "2026-08-19T20:01:58Z",
+          "url": "https://github.com/anthropics/claude-code/commit/084ca20bcf90249ecfcc01efe5c899554c400a85"
+        },
+        {
+          "sha": "c3d2e35e554060b5a20ee6b28140fbdbd4eb0048",
+          "date": "2026-08-18T20:38:47Z",
+          "url": "https://github.com/anthropics/claude-code/commit/c3d2e35e554060b5a20ee6b28140fbdbd4eb0048"
+        },
+        {
+          "sha": "354757e5b2d9aa1ebb62e5d05ecd384f0e11c0f7",
+          "date": "2026-08-17T20:20:52Z",
+          "url": "https://github.com/anthropics/claude-code/commit/354757e5b2d9aa1ebb62e5d05ecd384f0e11c0f7"
+        },
+        {
+          "sha": "ae58f7a0a23f0fddedd668de74622ff46646526b",
+          "date": "2026-08-17T05:40:39Z",
+          "url": "https://github.com/anthropics/claude-code/commit/ae58f7a0a23f0fddedd668de74622ff46646526b"
+        },
+        {
+          "sha": "0fa8c19d50f70f9f383fb6ff5ce5209575267d21",
+          "date": "2026-08-14T22:20:50Z",
+          "url": "https://github.com/anthropics/claude-code/commit/0fa8c19d50f70f9f383fb6ff5ce5209575267d21"
+        },
+        {
+          "sha": "1f6015b5d578adf79c8527443328a216d6b6a3f1",
+          "date": "2026-08-13T23:29:53Z",
+          "url": "https://github.com/anthropics/claude-code/commit/1f6015b5d578adf79c8527443328a216d6b6a3f1"
+        },
+        {
+          "sha": "be90077c6a353f292fa612d97173865a9ab21b83",
+          "date": "2026-08-13T08:38:44Z",
+          "url": "https://github.com/anthropics/claude-code/commit/be90077c6a353f292fa612d97173865a9ab21b83"
+        },
+        {
+          "sha": "9923819368179d7bb11b9d623fb480bf009b2e87",
+          "date": "2026-08-12T20:56:14Z",
+          "url": "https://github.com/anthropics/claude-code/commit/9923819368179d7bb11b9d623fb480bf009b2e87"
+        },
+        {
+          "sha": "681a8be245e7759a405e276b16ae69ea6b75076f",
+          "date": "2026-08-11T19:50:51Z",
+          "url": "https://github.com/anthropics/claude-code/commit/681a8be245e7759a405e276b16ae69ea6b75076f"
+        }
+      ],
+      "issues": [
+        {
+          "number": 90859,
+          "url": "https://github.com/anthropics/claude-code/issues/90859",
+          "created_at": "2026-08-30T23:43:34Z",
+          "author": "maurosergiosilva",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 90858,
+          "url": "https://github.com/anthropics/claude-code/issues/90858",
+          "created_at": "2026-08-30T23:41:14Z",
+          "author": "CharlieOktopous",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 90857,
+          "url": "https://github.com/anthropics/claude-code/issues/90857",
+          "created_at": "2026-08-30T23:03:47Z",
+          "author": "PointyKominski",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 5881,
+      "errors": []
+    },
+    {
+      "repo": "openai/codex",
+      "default_branch": "main",
+      "canonical_repo": "openai/codex",
+      "archived": false,
+      "license_spdx": "Apache-2.0",
+      "description": "Lightweight coding agent that runs in your terminal",
+      "homepage": "",
+      "commits": [
+        {
+          "sha": "008bbd5884122dc95aaece19ecfe0fc6a59dcf36",
+          "date": "2026-09-05T23:58:01Z",
+          "url": "https://github.com/openai/codex/commit/008bbd5884122dc95aaece19ecfe0fc6a59dcf36"
+        },
+        {
+          "sha": "aa4a870e0663edf9efc8a33035236c657f66f06d",
+          "date": "2026-09-05T23:49:23Z",
+          "url": "https://github.com/openai/codex/commit/aa4a870e0663edf9efc8a33035236c657f66f06d"
+        },
+        {
+          "sha": "e01f38c388f4907f02ac5b4980a37487686204c8",
+          "date": "2026-09-05T23:09:26Z",
+          "url": "https://github.com/openai/codex/commit/e01f38c388f4907f02ac5b4980a37487686204c8"
+        },
+        {
+          "sha": "f6976ab0369921a59e23416083587149807d8f93",
+          "date": "2026-09-05T22:53:48Z",
+          "url": "https://github.com/openai/codex/commit/f6976ab0369921a59e23416083587149807d8f93"
+        },
+        {
+          "sha": "f5a71ff40a713eff0bb3feeb22e2ca0e1c208a08",
+          "date": "2026-09-05T22:42:31Z",
+          "url": "https://github.com/openai/codex/commit/f5a71ff40a713eff0bb3feeb22e2ca0e1c208a08"
+        },
+        {
+          "sha": "a947db131b62ab04a265d120b5d2dfd01dbcb414",
+          "date": "2026-09-05T22:27:22Z",
+          "url": "https://github.com/openai/codex/commit/a947db131b62ab04a265d120b5d2dfd01dbcb414"
+        },
+        {
+          "sha": "fc748ab8d55091e6b969929463b7e8084467358b",
+          "date": "2026-09-05T22:16:26Z",
+          "url": "https://github.com/openai/codex/commit/fc748ab8d55091e6b969929463b7e8084467358b"
+        },
+        {
+          "sha": "a31c18ab7a5d8bb5da8e67e20261aa14d91aa3b2",
+          "date": "2026-09-05T22:07:21Z",
+          "url": "https://github.com/openai/codex/commit/a31c18ab7a5d8bb5da8e67e20261aa14d91aa3b2"
+        },
+        {
+          "sha": "56a8470aa0b0c5b9f174f449a697fe6ccc6d9462",
+          "date": "2026-09-05T21:56:43Z",
+          "url": "https://github.com/openai/codex/commit/56a8470aa0b0c5b9f174f449a697fe6ccc6d9462"
+        },
+        {
+          "sha": "e67a8ae6c9977ba911f77dcc2bc44707d1dbe091",
+          "date": "2026-09-05T21:47:17Z",
+          "url": "https://github.com/openai/codex/commit/e67a8ae6c9977ba911f77dcc2bc44707d1dbe091"
+        },
+        {
+          "sha": "e4ce83419b416f6e8c1cec77f1f6eeef0f304313",
+          "date": "2026-09-05T21:28:11Z",
+          "url": "https://github.com/openai/codex/commit/e4ce83419b416f6e8c1cec77f1f6eeef0f304313"
+        },
+        {
+          "sha": "47ca4619be10c20c1cec6ee9944738c5b961fa1d",
+          "date": "2026-09-05T21:18:44Z",
+          "url": "https://github.com/openai/codex/commit/47ca4619be10c20c1cec6ee9944738c5b961fa1d"
+        },
+        {
+          "sha": "64b482500d00b331189beefd173a5e08b4060ff2",
+          "date": "2026-09-05T20:58:32Z",
+          "url": "https://github.com/openai/codex/commit/64b482500d00b331189beefd173a5e08b4060ff2"
+        },
+        {
+          "sha": "5d358057152d5e2950f20a25cb6cf050ed5b5d85",
+          "date": "2026-09-05T20:54:13Z",
+          "url": "https://github.com/openai/codex/commit/5d358057152d5e2950f20a25cb6cf050ed5b5d85"
+        },
+        {
+          "sha": "64e9a68987b198c17d9c53e3117e96b459adebf1",
+          "date": "2026-09-05T20:39:46Z",
+          "url": "https://github.com/openai/codex/commit/64e9a68987b198c17d9c53e3117e96b459adebf1"
+        },
+        {
+          "sha": "7dc7c7a7566a970f6d4d09e1384f854aebaf39e0",
+          "date": "2026-09-05T20:02:55Z",
+          "url": "https://github.com/openai/codex/commit/7dc7c7a7566a970f6d4d09e1384f854aebaf39e0"
+        },
+        {
+          "sha": "068336858475fd96e20e5b2590da869326822826",
+          "date": "2026-09-05T19:31:24Z",
+          "url": "https://github.com/openai/codex/commit/068336858475fd96e20e5b2590da869326822826"
+        },
+        {
+          "sha": "19b62211d9f5999f8d74298f78097e8aeb0e3009",
+          "date": "2026-09-05T19:11:52Z",
+          "url": "https://github.com/openai/codex/commit/19b62211d9f5999f8d74298f78097e8aeb0e3009"
+        },
+        {
+          "sha": "51c97f3a67621aab788fb83d6ef90cf795f12177",
+          "date": "2026-09-05T18:38:41Z",
+          "url": "https://github.com/openai/codex/commit/51c97f3a67621aab788fb83d6ef90cf795f12177"
+        },
+        {
+          "sha": "dfea98597619c9060ad7169e9ed5e6ba076864ad",
+          "date": "2026-09-05T18:16:09Z",
+          "url": "https://github.com/openai/codex/commit/dfea98597619c9060ad7169e9ed5e6ba076864ad"
+        },
+        {
+          "sha": "3525845978210579572bd8ec4fe8c8296445fb8f",
+          "date": "2026-09-05T18:06:26Z",
+          "url": "https://github.com/openai/codex/commit/3525845978210579572bd8ec4fe8c8296445fb8f"
+        },
+        {
+          "sha": "52e73e3a548ae5310c7765995b9803dd538b82b0",
+          "date": "2026-09-05T16:43:40Z",
+          "url": "https://github.com/openai/codex/commit/52e73e3a548ae5310c7765995b9803dd538b82b0"
+        },
+        {
+          "sha": "89208f09f819c0ff00c2608a33422a5f6b885c76",
+          "date": "2026-09-05T15:54:44Z",
+          "url": "https://github.com/openai/codex/commit/89208f09f819c0ff00c2608a33422a5f6b885c76"
+        },
+        {
+          "sha": "2cfee7de25d98b20c55ced2ed82736d4c452f8a0",
+          "date": "2026-09-05T15:30:18Z",
+          "url": "https://github.com/openai/codex/commit/2cfee7de25d98b20c55ced2ed82736d4c452f8a0"
+        },
+        {
+          "sha": "32351a7b1ae3d6106fb2b7adccfbd6051e375ce6",
+          "date": "2026-09-05T15:04:46Z",
+          "url": "https://github.com/openai/codex/commit/32351a7b1ae3d6106fb2b7adccfbd6051e375ce6"
+        },
+        {
+          "sha": "588b781ab4924ce7352488394028e63d74cf807f",
+          "date": "2026-09-05T13:11:59Z",
+          "url": "https://github.com/openai/codex/commit/588b781ab4924ce7352488394028e63d74cf807f"
+        },
+        {
+          "sha": "dee21ec1bc26cdf9f3c4d77a17706cd19dcf05de",
+          "date": "2026-09-05T13:02:49Z",
+          "url": "https://github.com/openai/codex/commit/dee21ec1bc26cdf9f3c4d77a17706cd19dcf05de"
+        },
+        {
+          "sha": "a7a4321593c77933c18f84ba9bd28eba095759d8",
+          "date": "2026-09-05T12:58:26Z",
+          "url": "https://github.com/openai/codex/commit/a7a4321593c77933c18f84ba9bd28eba095759d8"
+        },
+        {
+          "sha": "531f3836a1e38ea61eaaba3dccda6711eb6c0dca",
+          "date": "2026-09-05T12:17:32Z",
+          "url": "https://github.com/openai/codex/commit/531f3836a1e38ea61eaaba3dccda6711eb6c0dca"
+        },
+        {
+          "sha": "2bd71f96d41809b95ea881429a1b68eb48d089b6",
+          "date": "2026-09-05T12:08:18Z",
+          "url": "https://github.com/openai/codex/commit/2bd71f96d41809b95ea881429a1b68eb48d089b6"
+        }
+      ],
+      "issues": [
+        {
+          "number": 41739,
+          "url": "https://github.com/openai/codex/issues/41739",
+          "created_at": "2026-08-30T23:03:09Z",
+          "author": "Eiji-Kudo",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 41738,
+          "url": "https://github.com/openai/codex/issues/41738",
+          "created_at": "2026-08-30T22:57:27Z",
+          "author": "bsfleck-stack",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 41737,
+          "url": "https://github.com/openai/codex/issues/41737",
+          "created_at": "2026-08-30T22:51:52Z",
+          "author": "jrcrowe",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 3073,
+      "errors": []
+    },
+    {
+      "repo": "MoonshotAI/kimi-code",
+      "default_branch": "main",
+      "canonical_repo": "MoonshotAI/kimi-code",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "Kimi Code CLI  —  The Starting Point for Next-Gen Agents",
+      "homepage": "https://www.kimi.com/code/docs/",
+      "commits": [
+        {
+          "sha": "f9ca33376604ae91ea35a4ac1d6f1d4425a5aead",
+          "date": "2026-09-04T15:36:22Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/f9ca33376604ae91ea35a4ac1d6f1d4425a5aead"
+        },
+        {
+          "sha": "2fbb2714af5289bdaab7173da3fc16e94c3120fa",
+          "date": "2026-09-04T13:14:59Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/2fbb2714af5289bdaab7173da3fc16e94c3120fa"
+        },
+        {
+          "sha": "95478e8c7ba248fd2470d5bb151555ec7fedd19d",
+          "date": "2026-09-04T10:46:22Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/95478e8c7ba248fd2470d5bb151555ec7fedd19d"
+        },
+        {
+          "sha": "29e1875919a6b2a734d6ae1c0d8694a98dd80933",
+          "date": "2026-09-04T10:38:40Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/29e1875919a6b2a734d6ae1c0d8694a98dd80933"
+        },
+        {
+          "sha": "51bd52a589089f99a941e0d3285b0cf638e5b1a0",
+          "date": "2026-09-04T10:31:42Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/51bd52a589089f99a941e0d3285b0cf638e5b1a0"
+        },
+        {
+          "sha": "ac01bc4c0a0bbd0e15b5904c379ef3751b9518f7",
+          "date": "2026-09-04T09:24:45Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/ac01bc4c0a0bbd0e15b5904c379ef3751b9518f7"
+        },
+        {
+          "sha": "eba23edb93ec00aa11ffa288e2b89ebbf3d77a70",
+          "date": "2026-09-04T07:57:59Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/eba23edb93ec00aa11ffa288e2b89ebbf3d77a70"
+        },
+        {
+          "sha": "60136588a4218bc2423b93467c4fae8c6554219c",
+          "date": "2026-09-04T04:32:24Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/60136588a4218bc2423b93467c4fae8c6554219c"
+        },
+        {
+          "sha": "b184b31497949ac019ac43d5a3dfe2ab87dbebc4",
+          "date": "2026-09-04T03:33:11Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/b184b31497949ac019ac43d5a3dfe2ab87dbebc4"
+        },
+        {
+          "sha": "523d35b54b25a0b4589388a2b6c8c4261f1ef7db",
+          "date": "2026-09-03T12:53:09Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/523d35b54b25a0b4589388a2b6c8c4261f1ef7db"
+        },
+        {
+          "sha": "744b718b672199f407786f3b5f789fb3caf4b2a7",
+          "date": "2026-09-03T11:53:30Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/744b718b672199f407786f3b5f789fb3caf4b2a7"
+        },
+        {
+          "sha": "b199e3326de28d5094ca5f18816a74ab336c51e0",
+          "date": "2026-09-03T11:26:30Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/b199e3326de28d5094ca5f18816a74ab336c51e0"
+        },
+        {
+          "sha": "ed215c61cb54f094ee2c45dbfbe70ee997804d94",
+          "date": "2026-09-03T09:54:19Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/ed215c61cb54f094ee2c45dbfbe70ee997804d94"
+        },
+        {
+          "sha": "a0209469160770ad7440f1ad41eb8e35b8426b03",
+          "date": "2026-09-03T09:51:10Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/a0209469160770ad7440f1ad41eb8e35b8426b03"
+        },
+        {
+          "sha": "26dd6ce6aec4456867af010b55dff92ba58f04ee",
+          "date": "2026-09-03T08:49:27Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/26dd6ce6aec4456867af010b55dff92ba58f04ee"
+        },
+        {
+          "sha": "494df61ce9858c70a9f37a996614534bc9b1cd12",
+          "date": "2026-09-03T08:12:29Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/494df61ce9858c70a9f37a996614534bc9b1cd12"
+        },
+        {
+          "sha": "ca5cc76211b29760448f5d5ec35087a9e7c95035",
+          "date": "2026-09-03T07:28:11Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/ca5cc76211b29760448f5d5ec35087a9e7c95035"
+        },
+        {
+          "sha": "a3b48a7272880dafb64e4c403006d94dc781d05c",
+          "date": "2026-09-03T06:57:24Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/a3b48a7272880dafb64e4c403006d94dc781d05c"
+        },
+        {
+          "sha": "20a0ba9b173b78d69c0fb9464a18bb0bfe8ff020",
+          "date": "2026-09-03T06:32:28Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/20a0ba9b173b78d69c0fb9464a18bb0bfe8ff020"
+        },
+        {
+          "sha": "ff7ed1cc86da454c72e74ebdafabaec9dd4b6cc3",
+          "date": "2026-09-03T03:20:07Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/ff7ed1cc86da454c72e74ebdafabaec9dd4b6cc3"
+        },
+        {
+          "sha": "052e98ec17ac8d931873ef892fb0e1912aa401e0",
+          "date": "2026-09-02T15:22:22Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/052e98ec17ac8d931873ef892fb0e1912aa401e0"
+        },
+        {
+          "sha": "0faa878f282bdcb2b8f77251f944bfc393ff4ad6",
+          "date": "2026-09-02T13:57:23Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/0faa878f282bdcb2b8f77251f944bfc393ff4ad6"
+        },
+        {
+          "sha": "b6f78f9fc80671483f2d28b7e69ee658d128908b",
+          "date": "2026-09-02T13:43:09Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/b6f78f9fc80671483f2d28b7e69ee658d128908b"
+        },
+        {
+          "sha": "c52d583143ed99f3e8deb087a97c909439b424c9",
+          "date": "2026-09-02T13:33:58Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/c52d583143ed99f3e8deb087a97c909439b424c9"
+        },
+        {
+          "sha": "75708925a59150813f4e4585aefc488618627430",
+          "date": "2026-09-02T13:16:58Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/75708925a59150813f4e4585aefc488618627430"
+        },
+        {
+          "sha": "8057d30afbd2942f7c2e647f33a9dc7401af2b43",
+          "date": "2026-09-02T13:16:14Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/8057d30afbd2942f7c2e647f33a9dc7401af2b43"
+        },
+        {
+          "sha": "eb4cd4b38efcd122a88cc59656d1274f54aa4ffd",
+          "date": "2026-09-02T13:09:35Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/eb4cd4b38efcd122a88cc59656d1274f54aa4ffd"
+        },
+        {
+          "sha": "9f866cb7f4e656d4069e3f7865e9b610ab284724",
+          "date": "2026-09-02T12:50:23Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/9f866cb7f4e656d4069e3f7865e9b610ab284724"
+        },
+        {
+          "sha": "e2e5859815135043a340f6757f7990e7a61f82c8",
+          "date": "2026-09-02T12:19:50Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/e2e5859815135043a340f6757f7990e7a61f82c8"
+        },
+        {
+          "sha": "d567a6a4fdaeb052deae9d9b313df0d922105799",
+          "date": "2026-09-02T11:44:18Z",
+          "url": "https://github.com/MoonshotAI/kimi-code/commit/d567a6a4fdaeb052deae9d9b313df0d922105799"
+        }
+      ],
+      "issues": [
+        {
+          "number": 3378,
+          "url": "https://github.com/MoonshotAI/kimi-code/issues/3378",
+          "created_at": "2026-08-30T21:37:10Z",
+          "author": "yukishama9",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 3376,
+          "url": "https://github.com/MoonshotAI/kimi-code/issues/3376",
+          "created_at": "2026-08-30T14:45:34Z",
+          "author": "Love4yzp",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 3373,
+          "url": "https://github.com/MoonshotAI/kimi-code/issues/3373",
+          "created_at": "2026-08-30T09:33:20Z",
+          "author": "Themoonshinesontheriver",
+          "author_type": "User",
+          "comments": 3
+        }
+      ],
+      "issue_window_total": 262,
+      "errors": []
+    },
+    {
+      "repo": "anomalyco/opencode",
+      "default_branch": "dev",
+      "canonical_repo": "anomalyco/opencode",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "The open source coding agent.",
+      "homepage": "https://opencode.ai",
+      "commits": [
+        {
+          "sha": "7c2199d84a5830f70a8250731a42ff958145b4d6",
+          "date": "2026-09-05T23:29:29Z",
+          "url": "https://github.com/anomalyco/opencode/commit/7c2199d84a5830f70a8250731a42ff958145b4d6"
+        },
+        {
+          "sha": "bbd72fb8b0bb6de580d2041a0150016227c63ac0",
+          "date": "2026-09-05T13:51:32Z",
+          "url": "https://github.com/anomalyco/opencode/commit/bbd72fb8b0bb6de580d2041a0150016227c63ac0"
+        },
+        {
+          "sha": "e2894562f8ba943d72172d10b727c24d5f650c16",
+          "date": "2026-09-05T03:36:32Z",
+          "url": "https://github.com/anomalyco/opencode/commit/e2894562f8ba943d72172d10b727c24d5f650c16"
+        },
+        {
+          "sha": "70b4ca8c181e4c1ac6d8993b86249d824487ec65",
+          "date": "2026-09-05T01:49:05Z",
+          "url": "https://github.com/anomalyco/opencode/commit/70b4ca8c181e4c1ac6d8993b86249d824487ec65"
+        },
+        {
+          "sha": "4db1eec32137d4c8790dd3171e24dbc4beabc236",
+          "date": "2026-09-05T01:48:55Z",
+          "url": "https://github.com/anomalyco/opencode/commit/4db1eec32137d4c8790dd3171e24dbc4beabc236"
+        },
+        {
+          "sha": "79903a4cf77a411d57f064a17a66cb02d927774d",
+          "date": "2026-09-05T01:40:11Z",
+          "url": "https://github.com/anomalyco/opencode/commit/79903a4cf77a411d57f064a17a66cb02d927774d"
+        },
+        {
+          "sha": "e8548ae8b2f93c49379be3c48a95330f9e77fdfe",
+          "date": "2026-09-05T01:38:36Z",
+          "url": "https://github.com/anomalyco/opencode/commit/e8548ae8b2f93c49379be3c48a95330f9e77fdfe"
+        },
+        {
+          "sha": "7774580e61a26752306c8bd7ff34591dc966e743",
+          "date": "2026-09-05T01:32:15Z",
+          "url": "https://github.com/anomalyco/opencode/commit/7774580e61a26752306c8bd7ff34591dc966e743"
+        },
+        {
+          "sha": "5b1e31988ed74b821b3a7ca6647188446992aafc",
+          "date": "2026-09-04T23:47:13Z",
+          "url": "https://github.com/anomalyco/opencode/commit/5b1e31988ed74b821b3a7ca6647188446992aafc"
+        },
+        {
+          "sha": "02a167e048d3bd7299225068d79e4fce5c830d67",
+          "date": "2026-09-04T23:22:56Z",
+          "url": "https://github.com/anomalyco/opencode/commit/02a167e048d3bd7299225068d79e4fce5c830d67"
+        },
+        {
+          "sha": "500c46ec79b818a44f7962e0707415ac3227c753",
+          "date": "2026-09-04T23:14:21Z",
+          "url": "https://github.com/anomalyco/opencode/commit/500c46ec79b818a44f7962e0707415ac3227c753"
+        },
+        {
+          "sha": "5cf9f517cfec3ef68d3e68a12a6a4b3163947f44",
+          "date": "2026-09-04T18:47:06Z",
+          "url": "https://github.com/anomalyco/opencode/commit/5cf9f517cfec3ef68d3e68a12a6a4b3163947f44"
+        },
+        {
+          "sha": "5d5c35ee71c095464b9eb3c3e991df906f12a152",
+          "date": "2026-09-04T17:50:14Z",
+          "url": "https://github.com/anomalyco/opencode/commit/5d5c35ee71c095464b9eb3c3e991df906f12a152"
+        },
+        {
+          "sha": "51f86c853791c41656fb0adcf9413291e4996b87",
+          "date": "2026-09-04T15:38:19Z",
+          "url": "https://github.com/anomalyco/opencode/commit/51f86c853791c41656fb0adcf9413291e4996b87"
+        },
+        {
+          "sha": "20a77438762cba25f428871dcc17ac18337a4099",
+          "date": "2026-09-04T13:31:04Z",
+          "url": "https://github.com/anomalyco/opencode/commit/20a77438762cba25f428871dcc17ac18337a4099"
+        },
+        {
+          "sha": "31afdd5938a6105e6b8246c861555caa84bdfe81",
+          "date": "2026-09-04T12:34:53Z",
+          "url": "https://github.com/anomalyco/opencode/commit/31afdd5938a6105e6b8246c861555caa84bdfe81"
+        },
+        {
+          "sha": "4178fd74f126ce791bcf8fc8c73d6e5de947ae6a",
+          "date": "2026-09-04T12:33:04Z",
+          "url": "https://github.com/anomalyco/opencode/commit/4178fd74f126ce791bcf8fc8c73d6e5de947ae6a"
+        },
+        {
+          "sha": "3f311390647337d0ddaeeb9be45ede8e5f468209",
+          "date": "2026-09-04T10:42:58Z",
+          "url": "https://github.com/anomalyco/opencode/commit/3f311390647337d0ddaeeb9be45ede8e5f468209"
+        },
+        {
+          "sha": "475b408119fc1dad4ecabbc37ed9e0fe45d00df3",
+          "date": "2026-09-04T10:41:12Z",
+          "url": "https://github.com/anomalyco/opencode/commit/475b408119fc1dad4ecabbc37ed9e0fe45d00df3"
+        },
+        {
+          "sha": "70f74112e3f4a33ea1af8209c979a5060d7d2a36",
+          "date": "2026-09-04T08:22:48Z",
+          "url": "https://github.com/anomalyco/opencode/commit/70f74112e3f4a33ea1af8209c979a5060d7d2a36"
+        },
+        {
+          "sha": "03cb6324352b5e09477e56324aaaefb9e149b298",
+          "date": "2026-09-04T05:34:37Z",
+          "url": "https://github.com/anomalyco/opencode/commit/03cb6324352b5e09477e56324aaaefb9e149b298"
+        },
+        {
+          "sha": "dd417f1a6b9264a2e70ffd16ccfce41dcd3bb86f",
+          "date": "2026-09-04T05:09:10Z",
+          "url": "https://github.com/anomalyco/opencode/commit/dd417f1a6b9264a2e70ffd16ccfce41dcd3bb86f"
+        },
+        {
+          "sha": "8b9f89e7e8011dfe5b1350c92a6311e39b39d723",
+          "date": "2026-09-04T05:07:43Z",
+          "url": "https://github.com/anomalyco/opencode/commit/8b9f89e7e8011dfe5b1350c92a6311e39b39d723"
+        },
+        {
+          "sha": "c0f09afef5056cfbebdf5123162267cb6efbd960",
+          "date": "2026-09-04T04:24:55Z",
+          "url": "https://github.com/anomalyco/opencode/commit/c0f09afef5056cfbebdf5123162267cb6efbd960"
+        },
+        {
+          "sha": "8a6cf2c9aa1aa407129efc4e875a6ce6ab32ef72",
+          "date": "2026-09-03T21:03:32Z",
+          "url": "https://github.com/anomalyco/opencode/commit/8a6cf2c9aa1aa407129efc4e875a6ce6ab32ef72"
+        },
+        {
+          "sha": "a935432b5ce337523dfc5014629a09bc16784c42",
+          "date": "2026-09-03T19:58:32Z",
+          "url": "https://github.com/anomalyco/opencode/commit/a935432b5ce337523dfc5014629a09bc16784c42"
+        },
+        {
+          "sha": "7561b4a050f6697a2ffc2ad9c188fe8d5935e919",
+          "date": "2026-09-03T19:56:40Z",
+          "url": "https://github.com/anomalyco/opencode/commit/7561b4a050f6697a2ffc2ad9c188fe8d5935e919"
+        },
+        {
+          "sha": "d8eb3b80fb1bd8235809d78b62474008fb7a2e46",
+          "date": "2026-09-03T17:42:08Z",
+          "url": "https://github.com/anomalyco/opencode/commit/d8eb3b80fb1bd8235809d78b62474008fb7a2e46"
+        },
+        {
+          "sha": "08c483dc36951349b0d686b162685bdab2e805b1",
+          "date": "2026-09-03T17:38:24Z",
+          "url": "https://github.com/anomalyco/opencode/commit/08c483dc36951349b0d686b162685bdab2e805b1"
+        },
+        {
+          "sha": "d2efd81fb3e153a51165b8589c4658107002817e",
+          "date": "2026-09-03T15:04:58Z",
+          "url": "https://github.com/anomalyco/opencode/commit/d2efd81fb3e153a51165b8589c4658107002817e"
+        }
+      ],
+      "issues": [
+        {
+          "number": 46314,
+          "url": "https://github.com/anomalyco/opencode/issues/46314",
+          "created_at": "2026-08-30T22:25:38Z",
+          "author": "AnshulJ999",
+          "author_type": "User",
+          "comments": 3
+        },
+        {
+          "number": 46313,
+          "url": "https://github.com/anomalyco/opencode/issues/46313",
+          "created_at": "2026-08-30T22:12:00Z",
+          "author": "GenjiruSUchiwa",
+          "author_type": "User",
+          "comments": 3
+        },
+        {
+          "number": 46311,
+          "url": "https://github.com/anomalyco/opencode/issues/46311",
+          "created_at": "2026-08-30T21:41:23Z",
+          "author": "nate-sentjens",
+          "author_type": "User",
+          "comments": 1
+        }
+      ],
+      "issue_window_total": 2367,
+      "errors": []
+    },
+    {
+      "repo": "deepseek-ai/deepseek-harness",
+      "default_branch": "master",
+      "canonical_repo": "deepseek-ai/deepseek-harness",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "DeepSeek Harness: Everything is a Plugin.",
+      "homepage": "https://deepseek.com/harness",
+      "commits": [
+        {
+          "sha": "d347e703908d0406b7a7ef80e3a0e594d86b2215",
+          "date": "2026-09-04T09:16:23Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/d347e703908d0406b7a7ef80e3a0e594d86b2215"
+        },
+        {
+          "sha": "5aff05a92fe9730813890045306c0ddc4bb2f1fc",
+          "date": "2026-09-04T08:58:08Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/5aff05a92fe9730813890045306c0ddc4bb2f1fc"
+        },
+        {
+          "sha": "2f77acb9ab0e443517d9619b614b6f7369d2061b",
+          "date": "2026-09-04T08:58:00Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/2f77acb9ab0e443517d9619b614b6f7369d2061b"
+        },
+        {
+          "sha": "c42ab9e14ed2002236a7805f8b26b4dffe6b1fb9",
+          "date": "2026-09-04T08:38:22Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/c42ab9e14ed2002236a7805f8b26b4dffe6b1fb9"
+        },
+        {
+          "sha": "6a82a3b3e23cfd0d092ce2fb0331742a89dd18e9",
+          "date": "2026-09-04T08:24:04Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/6a82a3b3e23cfd0d092ce2fb0331742a89dd18e9"
+        },
+        {
+          "sha": "0180c5cdea7eefc6fec5eef043529a6a856f58e3",
+          "date": "2026-09-04T08:23:14Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/0180c5cdea7eefc6fec5eef043529a6a856f58e3"
+        },
+        {
+          "sha": "e94f938c054e9e2b6bd311659c7a96e0be2ba918",
+          "date": "2026-09-04T08:21:09Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/e94f938c054e9e2b6bd311659c7a96e0be2ba918"
+        },
+        {
+          "sha": "14befe7ff7671ed7ea1062eb851eaa5356504145",
+          "date": "2026-09-04T08:16:15Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/14befe7ff7671ed7ea1062eb851eaa5356504145"
+        },
+        {
+          "sha": "9c1370370871c6e2eec9c74ff3757251bea9ffc3",
+          "date": "2026-09-04T08:16:08Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/9c1370370871c6e2eec9c74ff3757251bea9ffc3"
+        },
+        {
+          "sha": "53f6590f76ad83eba08ea71a874d5af6fe2745fa",
+          "date": "2026-09-04T08:06:32Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/53f6590f76ad83eba08ea71a874d5af6fe2745fa"
+        },
+        {
+          "sha": "75d3402b846d59a946ad1149ef0cd7a30f171dae",
+          "date": "2026-09-04T07:59:33Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/75d3402b846d59a946ad1149ef0cd7a30f171dae"
+        },
+        {
+          "sha": "8ffdee4fe5d86cd1e4695a2b3ae14183c8319cdd",
+          "date": "2026-09-04T07:55:49Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/8ffdee4fe5d86cd1e4695a2b3ae14183c8319cdd"
+        },
+        {
+          "sha": "e28b58f8c0011d8358a090b536b2a5b2bd409e93",
+          "date": "2026-09-04T07:41:57Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/e28b58f8c0011d8358a090b536b2a5b2bd409e93"
+        },
+        {
+          "sha": "58ec1f08677359f2b5edb47f62b0777972de0a91",
+          "date": "2026-09-04T07:41:25Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/58ec1f08677359f2b5edb47f62b0777972de0a91"
+        },
+        {
+          "sha": "ed67c22496f6aa14fc4091f06711b0ec9210eb31",
+          "date": "2026-09-04T07:38:55Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/ed67c22496f6aa14fc4091f06711b0ec9210eb31"
+        },
+        {
+          "sha": "267d755bee572898096f3d9d749f2fe668a5db23",
+          "date": "2026-09-04T07:31:46Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/267d755bee572898096f3d9d749f2fe668a5db23"
+        },
+        {
+          "sha": "1b470211ada8956ed8afbbc7943d1e8b29383572",
+          "date": "2026-09-04T07:15:51Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/1b470211ada8956ed8afbbc7943d1e8b29383572"
+        },
+        {
+          "sha": "d976849a6be8489e78b3f0102b81cee5a17856d7",
+          "date": "2026-09-04T06:56:46Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/d976849a6be8489e78b3f0102b81cee5a17856d7"
+        },
+        {
+          "sha": "b4517feed5e5a92087e4c6642dd9225e3e2a1340",
+          "date": "2026-09-04T06:46:36Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/b4517feed5e5a92087e4c6642dd9225e3e2a1340"
+        },
+        {
+          "sha": "7acc038beb83030940bd4547da877b5c49dd705d",
+          "date": "2026-09-04T06:45:03Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/7acc038beb83030940bd4547da877b5c49dd705d"
+        },
+        {
+          "sha": "9d947bd9cf09a9969a5eb0578248aab377fea5dd",
+          "date": "2026-09-04T06:43:20Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/9d947bd9cf09a9969a5eb0578248aab377fea5dd"
+        },
+        {
+          "sha": "d0da8ccf40c16c411d062a4046975ac9cdc486f7",
+          "date": "2026-09-04T06:38:30Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/d0da8ccf40c16c411d062a4046975ac9cdc486f7"
+        },
+        {
+          "sha": "645c68daf25136e3a5719cb02e92ede4aaea1d9a",
+          "date": "2026-09-04T06:35:52Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/645c68daf25136e3a5719cb02e92ede4aaea1d9a"
+        },
+        {
+          "sha": "46d20f8bee8d842d77f4a3a771d1c83900546bb5",
+          "date": "2026-09-04T06:31:54Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/46d20f8bee8d842d77f4a3a771d1c83900546bb5"
+        },
+        {
+          "sha": "c58097a8267ef299e03494f26801d76c1ba73ca9",
+          "date": "2026-09-04T06:12:14Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/c58097a8267ef299e03494f26801d76c1ba73ca9"
+        },
+        {
+          "sha": "268cf0101e51b3d4268fb3e57c24c0b5ea4c2f00",
+          "date": "2026-09-04T05:08:41Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/268cf0101e51b3d4268fb3e57c24c0b5ea4c2f00"
+        },
+        {
+          "sha": "f0e52c2731a9074e6217c800b1f05d3bd92e4eac",
+          "date": "2026-09-04T05:08:25Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/f0e52c2731a9074e6217c800b1f05d3bd92e4eac"
+        },
+        {
+          "sha": "b6b2ec4a9082d12df95b80ef222bac362de2da29",
+          "date": "2026-09-04T04:18:21Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/b6b2ec4a9082d12df95b80ef222bac362de2da29"
+        },
+        {
+          "sha": "bee0c13f2813d6fdae548027359adb81a40e47aa",
+          "date": "2026-09-04T04:11:53Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/bee0c13f2813d6fdae548027359adb81a40e47aa"
+        },
+        {
+          "sha": "1f0a87eb06f18bfa930114e8f3c963032ad87c25",
+          "date": "2026-09-04T03:58:16Z",
+          "url": "https://github.com/deepseek-ai/deepseek-harness/commit/1f0a87eb06f18bfa930114e8f3c963032ad87c25"
+        }
+      ],
+      "issues": [],
+      "issue_window_total": 0,
+      "errors": []
+    },
+    {
+      "repo": "NousResearch/hermes-agent",
+      "default_branch": "main",
+      "canonical_repo": "NousResearch/hermes-agent",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "The agent that grows with you",
+      "homepage": "https://hermes-agent.nousresearch.com",
+      "commits": [
+        {
+          "sha": "245e48008fa814b3251f50755eb656bd9fb86cb1",
+          "date": "2026-09-06T00:00:18Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/245e48008fa814b3251f50755eb656bd9fb86cb1"
+        },
+        {
+          "sha": "3f880550352b09f000f4bcaca0d4472a883ba5bc",
+          "date": "2026-09-06T00:00:18Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/3f880550352b09f000f4bcaca0d4472a883ba5bc"
+        },
+        {
+          "sha": "3bc1780f2d3ec3df795a3d205e84f63c0fa768a8",
+          "date": "2026-09-06T00:00:18Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/3bc1780f2d3ec3df795a3d205e84f63c0fa768a8"
+        },
+        {
+          "sha": "96ed0e71ea2d75d325cc05c3e6468d213de2408d",
+          "date": "2026-09-05T23:17:23Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/96ed0e71ea2d75d325cc05c3e6468d213de2408d"
+        },
+        {
+          "sha": "ee5b5ec21e576ccf9b941f9ff71330418415a5cb",
+          "date": "2026-09-05T21:01:34Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/ee5b5ec21e576ccf9b941f9ff71330418415a5cb"
+        },
+        {
+          "sha": "4dc9988f7870b1a02e3987d6cd6ec9f93364273c",
+          "date": "2026-09-05T21:01:34Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/4dc9988f7870b1a02e3987d6cd6ec9f93364273c"
+        },
+        {
+          "sha": "463292351fec7ea74013e8ff6080eba82806cab3",
+          "date": "2026-09-05T20:51:06Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/463292351fec7ea74013e8ff6080eba82806cab3"
+        },
+        {
+          "sha": "9dd6634c5635321cf38840cc30e9b51226689128",
+          "date": "2026-09-05T15:37:14Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/9dd6634c5635321cf38840cc30e9b51226689128"
+        },
+        {
+          "sha": "84b70e473e36cdb3aadf5f2e049f5fdb8c3a1624",
+          "date": "2026-09-05T15:37:14Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/84b70e473e36cdb3aadf5f2e049f5fdb8c3a1624"
+        },
+        {
+          "sha": "9c4c548cd555905563b146a6974932b0c5eb8a01",
+          "date": "2026-09-05T15:30:19Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/9c4c548cd555905563b146a6974932b0c5eb8a01"
+        },
+        {
+          "sha": "b800fdf9a80bbb0948feb078088d72cb8dd28f80",
+          "date": "2026-09-05T15:30:19Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/b800fdf9a80bbb0948feb078088d72cb8dd28f80"
+        },
+        {
+          "sha": "256bd1adc9612ce81cf545e4b5e1a977f128af71",
+          "date": "2026-09-05T15:30:19Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/256bd1adc9612ce81cf545e4b5e1a977f128af71"
+        },
+        {
+          "sha": "431978d47b8018d6334e02c681bbdb70d1435cbb",
+          "date": "2026-09-05T15:19:29Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/431978d47b8018d6334e02c681bbdb70d1435cbb"
+        },
+        {
+          "sha": "1bfbe19f5fec5966411e9b7269fb8773f2899805",
+          "date": "2026-09-05T15:19:29Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/1bfbe19f5fec5966411e9b7269fb8773f2899805"
+        },
+        {
+          "sha": "f77e2a57ed7dc8dce608a35c1b6e19afc123cf7e",
+          "date": "2026-09-05T15:14:51Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/f77e2a57ed7dc8dce608a35c1b6e19afc123cf7e"
+        },
+        {
+          "sha": "16759c0ec66db93aa155d6c0abb4b8126981e4b2",
+          "date": "2026-09-05T15:14:51Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/16759c0ec66db93aa155d6c0abb4b8126981e4b2"
+        },
+        {
+          "sha": "fca7fdd35d6867fa75c1ea66ab21aea0ec19cb4d",
+          "date": "2026-09-05T15:14:51Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/fca7fdd35d6867fa75c1ea66ab21aea0ec19cb4d"
+        },
+        {
+          "sha": "52840577704522ee146dcae553dc3fc231ba6560",
+          "date": "2026-09-05T15:14:51Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/52840577704522ee146dcae553dc3fc231ba6560"
+        },
+        {
+          "sha": "006b1beb00d9d25230571d14277aca3d70e5e11f",
+          "date": "2026-09-05T13:36:57Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/006b1beb00d9d25230571d14277aca3d70e5e11f"
+        },
+        {
+          "sha": "b1ea9bc47ba472a9e1835b83a946b057db7fefae",
+          "date": "2026-09-05T13:36:57Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/b1ea9bc47ba472a9e1835b83a946b057db7fefae"
+        },
+        {
+          "sha": "935e10c20ec7816dd688d64b439744b9165a1050",
+          "date": "2026-09-05T13:36:57Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/935e10c20ec7816dd688d64b439744b9165a1050"
+        },
+        {
+          "sha": "370ad21deac86c109de243114fe007e75cb9516b",
+          "date": "2026-09-05T13:31:22Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/370ad21deac86c109de243114fe007e75cb9516b"
+        },
+        {
+          "sha": "60ca93cebd7a770acb1c232d0a369438ed63fb84",
+          "date": "2026-09-05T13:31:22Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/60ca93cebd7a770acb1c232d0a369438ed63fb84"
+        },
+        {
+          "sha": "337113c1b8e26ed621a663eb5678822810d2523f",
+          "date": "2026-09-05T13:31:22Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/337113c1b8e26ed621a663eb5678822810d2523f"
+        },
+        {
+          "sha": "bb504a2e14c34afce893d74f568a51433f190515",
+          "date": "2026-09-05T13:31:22Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/bb504a2e14c34afce893d74f568a51433f190515"
+        },
+        {
+          "sha": "21bcd0ce6c94da5b67a4ceab46dbd51fdcd29340",
+          "date": "2026-09-05T13:20:45Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/21bcd0ce6c94da5b67a4ceab46dbd51fdcd29340"
+        },
+        {
+          "sha": "7b8cf4c6314fd29d734acf24aa70cf361743a693",
+          "date": "2026-09-05T13:16:53Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/7b8cf4c6314fd29d734acf24aa70cf361743a693"
+        },
+        {
+          "sha": "c99dbba33e509e5faaa5ad23ef67900d02cd44ee",
+          "date": "2026-09-05T13:16:53Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/c99dbba33e509e5faaa5ad23ef67900d02cd44ee"
+        },
+        {
+          "sha": "a2ff25a8b143c9125371cbb41cfcaa56b55ddba9",
+          "date": "2026-09-05T13:16:53Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/a2ff25a8b143c9125371cbb41cfcaa56b55ddba9"
+        },
+        {
+          "sha": "ef89a7f1c9ef61c3d84c6471d321a0b1d565f263",
+          "date": "2026-09-05T13:16:16Z",
+          "url": "https://github.com/NousResearch/hermes-agent/commit/ef89a7f1c9ef61c3d84c6471d321a0b1d565f263"
+        }
+      ],
+      "issues": [
+        {
+          "number": 98936,
+          "url": "https://github.com/NousResearch/hermes-agent/issues/98936",
+          "created_at": "2026-08-30T23:58:38Z",
+          "author": "DesarrolloProsis",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 98934,
+          "url": "https://github.com/NousResearch/hermes-agent/issues/98934",
+          "created_at": "2026-08-30T23:49:11Z",
+          "author": "randyhoulahan",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 98931,
+          "url": "https://github.com/NousResearch/hermes-agent/issues/98931",
+          "created_at": "2026-08-30T23:39:11Z",
+          "author": "truerender",
+          "author_type": "User",
+          "comments": 1
+        }
+      ],
+      "issue_window_total": 4867,
+      "errors": []
+    },
+    {
+      "repo": "earendil-works/pi",
+      "default_branch": "main",
+      "canonical_repo": "earendil-works/pi",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
+      "homepage": "",
+      "commits": [
+        {
+          "sha": "9767ba275f3e9a5ee0f5c5342249b629ab1b2282",
+          "date": "2026-09-05T22:30:17Z",
+          "url": "https://github.com/earendil-works/pi/commit/9767ba275f3e9a5ee0f5c5342249b629ab1b2282"
+        },
+        {
+          "sha": "fcff255b004a6cde812b5b7a714e0bfe9c540986",
+          "date": "2026-09-05T21:54:20Z",
+          "url": "https://github.com/earendil-works/pi/commit/fcff255b004a6cde812b5b7a714e0bfe9c540986"
+        },
+        {
+          "sha": "caf6dfe7310c2860b152ed286f83eeb19ca6631c",
+          "date": "2026-09-05T21:52:32Z",
+          "url": "https://github.com/earendil-works/pi/commit/caf6dfe7310c2860b152ed286f83eeb19ca6631c"
+        },
+        {
+          "sha": "da840b6216578c2a571d0374ac6a2091a83f9d91",
+          "date": "2026-09-05T11:54:52Z",
+          "url": "https://github.com/earendil-works/pi/commit/da840b6216578c2a571d0374ac6a2091a83f9d91"
+        },
+        {
+          "sha": "d981de1229ef899957bbe968bc8dcda02a21f477",
+          "date": "2026-09-05T11:54:46Z",
+          "url": "https://github.com/earendil-works/pi/commit/d981de1229ef899957bbe968bc8dcda02a21f477"
+        },
+        {
+          "sha": "fbc87d25a8254cf82590e7279285e89889f1e445",
+          "date": "2026-09-05T11:52:54Z",
+          "url": "https://github.com/earendil-works/pi/commit/fbc87d25a8254cf82590e7279285e89889f1e445"
+        },
+        {
+          "sha": "cce65539877fe11423463a508c6f54a28ad50abb",
+          "date": "2026-09-05T11:40:22Z",
+          "url": "https://github.com/earendil-works/pi/commit/cce65539877fe11423463a508c6f54a28ad50abb"
+        },
+        {
+          "sha": "082f7577c23e5e7d1575292f1ab16b718dcb3b57",
+          "date": "2026-09-05T11:40:16Z",
+          "url": "https://github.com/earendil-works/pi/commit/082f7577c23e5e7d1575292f1ab16b718dcb3b57"
+        },
+        {
+          "sha": "6f11c31d1134a32e64bf221baeec38e431091e05",
+          "date": "2026-09-05T11:32:44Z",
+          "url": "https://github.com/earendil-works/pi/commit/6f11c31d1134a32e64bf221baeec38e431091e05"
+        },
+        {
+          "sha": "1a46b923d7c725e4d0759139f8687f04797a33d4",
+          "date": "2026-09-05T11:32:44Z",
+          "url": "https://github.com/earendil-works/pi/commit/1a46b923d7c725e4d0759139f8687f04797a33d4"
+        },
+        {
+          "sha": "ab9e6f89b45344f5e84e33eb6140f3e6e4c8d81e",
+          "date": "2026-09-05T11:14:11Z",
+          "url": "https://github.com/earendil-works/pi/commit/ab9e6f89b45344f5e84e33eb6140f3e6e4c8d81e"
+        },
+        {
+          "sha": "1382777ed8000e8a84f81053d66f6bb713dccd92",
+          "date": "2026-09-05T10:45:04Z",
+          "url": "https://github.com/earendil-works/pi/commit/1382777ed8000e8a84f81053d66f6bb713dccd92"
+        },
+        {
+          "sha": "9841914c71a74d81abe07f751aefd271fd924e63",
+          "date": "2026-09-04T22:46:34Z",
+          "url": "https://github.com/earendil-works/pi/commit/9841914c71a74d81abe07f751aefd271fd924e63"
+        },
+        {
+          "sha": "17de82d7bea18a6589677a9761baabc2060c9efb",
+          "date": "2026-09-04T20:08:06Z",
+          "url": "https://github.com/earendil-works/pi/commit/17de82d7bea18a6589677a9761baabc2060c9efb"
+        },
+        {
+          "sha": "92d8e2d17d4f357788381c49ce2cdb3f4ed1f21c",
+          "date": "2026-09-04T16:06:21Z",
+          "url": "https://github.com/earendil-works/pi/commit/92d8e2d17d4f357788381c49ce2cdb3f4ed1f21c"
+        },
+        {
+          "sha": "47236c84450656043dd8fb21c8513d1421505ae3",
+          "date": "2026-09-04T13:27:32Z",
+          "url": "https://github.com/earendil-works/pi/commit/47236c84450656043dd8fb21c8513d1421505ae3"
+        },
+        {
+          "sha": "dd7e816b57dedbe971d159b388f48317a6139079",
+          "date": "2026-09-04T09:57:42Z",
+          "url": "https://github.com/earendil-works/pi/commit/dd7e816b57dedbe971d159b388f48317a6139079"
+        },
+        {
+          "sha": "107d79f11072bbc8a3a757ed7fd69596bee7d68c",
+          "date": "2026-09-04T09:57:38Z",
+          "url": "https://github.com/earendil-works/pi/commit/107d79f11072bbc8a3a757ed7fd69596bee7d68c"
+        },
+        {
+          "sha": "1148f7958c260188b03488496044dcfa852ef580",
+          "date": "2026-09-04T09:28:00Z",
+          "url": "https://github.com/earendil-works/pi/commit/1148f7958c260188b03488496044dcfa852ef580"
+        },
+        {
+          "sha": "744a94d7d4e6d4231fd7c1ea5738dedde79e0762",
+          "date": "2026-09-04T09:19:20Z",
+          "url": "https://github.com/earendil-works/pi/commit/744a94d7d4e6d4231fd7c1ea5738dedde79e0762"
+        },
+        {
+          "sha": "ef41a24b391bb90043e28eb8925911bb3f8acf2a",
+          "date": "2026-09-04T09:15:20Z",
+          "url": "https://github.com/earendil-works/pi/commit/ef41a24b391bb90043e28eb8925911bb3f8acf2a"
+        },
+        {
+          "sha": "2d41163332c1a6d11c45911a92100fd2a55e4d1a",
+          "date": "2026-09-04T08:22:04Z",
+          "url": "https://github.com/earendil-works/pi/commit/2d41163332c1a6d11c45911a92100fd2a55e4d1a"
+        },
+        {
+          "sha": "0dbf2b76fe7919d5fe4184523898507b4ae19ee0",
+          "date": "2026-09-04T08:18:26Z",
+          "url": "https://github.com/earendil-works/pi/commit/0dbf2b76fe7919d5fe4184523898507b4ae19ee0"
+        },
+        {
+          "sha": "6aedd1066e540642165aa30fa7b4a1b863778aa7",
+          "date": "2026-09-03T22:17:51Z",
+          "url": "https://github.com/earendil-works/pi/commit/6aedd1066e540642165aa30fa7b4a1b863778aa7"
+        },
+        {
+          "sha": "c2d3dc55b0b20af5aa3bb1d25774968116c9733f",
+          "date": "2026-09-03T22:06:16Z",
+          "url": "https://github.com/earendil-works/pi/commit/c2d3dc55b0b20af5aa3bb1d25774968116c9733f"
+        },
+        {
+          "sha": "457ae8c79c2e3c570a36d305095afa18d3791dd1",
+          "date": "2026-09-03T22:05:47Z",
+          "url": "https://github.com/earendil-works/pi/commit/457ae8c79c2e3c570a36d305095afa18d3791dd1"
+        },
+        {
+          "sha": "79680533c6b898894f2d2421c7f640b212d3dfdd",
+          "date": "2026-09-03T20:54:59Z",
+          "url": "https://github.com/earendil-works/pi/commit/79680533c6b898894f2d2421c7f640b212d3dfdd"
+        },
+        {
+          "sha": "1d9787c11fb91ecf7c892050f4c0607a995dd15b",
+          "date": "2026-09-03T18:34:04Z",
+          "url": "https://github.com/earendil-works/pi/commit/1d9787c11fb91ecf7c892050f4c0607a995dd15b"
+        },
+        {
+          "sha": "e44d75c20a51142abc056c243b13c1d7bb4be687",
+          "date": "2026-09-03T13:14:51Z",
+          "url": "https://github.com/earendil-works/pi/commit/e44d75c20a51142abc056c243b13c1d7bb4be687"
+        },
+        {
+          "sha": "7d399e7be83cb7ffb0236b2925ba21f2bc9efe18",
+          "date": "2026-09-03T13:09:51Z",
+          "url": "https://github.com/earendil-works/pi/commit/7d399e7be83cb7ffb0236b2925ba21f2bc9efe18"
+        }
+      ],
+      "issues": [
+        {
+          "number": 8871,
+          "url": "https://github.com/earendil-works/pi/issues/8871",
+          "created_at": "2026-08-30T21:51:57Z",
+          "author": "piclaw-bot",
+          "author_type": "User",
+          "comments": 2
+        },
+        {
+          "number": 8869,
+          "url": "https://github.com/earendil-works/pi/issues/8869",
+          "created_at": "2026-08-30T20:20:29Z",
+          "author": "gabriel-imascono",
+          "author_type": "User",
+          "comments": 3
+        },
+        {
+          "number": 8868,
+          "url": "https://github.com/earendil-works/pi/issues/8868",
+          "created_at": "2026-08-30T19:52:30Z",
+          "author": "jyatesdotdev",
+          "author_type": "User",
+          "comments": 1
+        }
+      ],
+      "issue_window_total": 740,
+      "errors": []
+    },
+    {
+      "repo": "anthropics/skills",
+      "default_branch": "main",
+      "canonical_repo": "anthropics/skills",
+      "archived": false,
+      "description": "Public repository for Agent Skills",
+      "homepage": "",
+      "commits": [
+        {
+          "sha": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+          "date": "2026-09-03T16:37:13Z",
+          "url": "https://github.com/anthropics/skills/commit/41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f"
+        },
+        {
+          "sha": "53048666b05b4799081517d00e09e0a2dd688678",
+          "date": "2026-09-01T18:30:38Z",
+          "url": "https://github.com/anthropics/skills/commit/53048666b05b4799081517d00e09e0a2dd688678"
+        },
+        {
+          "sha": "3b3fad96af16a10759d930941b4520ba0c40edae",
+          "date": "2026-08-21T17:10:53Z",
+          "url": "https://github.com/anthropics/skills/commit/3b3fad96af16a10759d930941b4520ba0c40edae"
+        },
+        {
+          "sha": "0a64e398ec6bb34a494f0c347e8ccae53a862f8e",
+          "date": "2026-08-18T16:02:05Z",
+          "url": "https://github.com/anthropics/skills/commit/0a64e398ec6bb34a494f0c347e8ccae53a862f8e"
+        },
+        {
+          "sha": "f379e5ad66e2febc1616cf8d6284666fecbe514e",
+          "date": "2026-08-17T17:23:10Z",
+          "url": "https://github.com/anthropics/skills/commit/f379e5ad66e2febc1616cf8d6284666fecbe514e"
+        },
+        {
+          "sha": "89dcaa3a283f79ed84fd8fe53e2208b9442a6427",
+          "date": "2026-08-17T13:03:59Z",
+          "url": "https://github.com/anthropics/skills/commit/89dcaa3a283f79ed84fd8fe53e2208b9442a6427"
+        },
+        {
+          "sha": "f6656c1256d5a8adfa37db9110046ef20bac644c",
+          "date": "2026-08-13T18:09:54Z",
+          "url": "https://github.com/anthropics/skills/commit/f6656c1256d5a8adfa37db9110046ef20bac644c"
+        }
+      ],
+      "issues": [
+        {
+          "number": 1692,
+          "url": "https://github.com/anthropics/skills/issues/1692",
+          "created_at": "2026-08-30T19:24:41Z",
+          "author": "almezaniy",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 1691,
+          "url": "https://github.com/anthropics/skills/issues/1691",
+          "created_at": "2026-08-30T08:57:48Z",
+          "author": "Luma92-ops",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 1689,
+          "url": "https://github.com/anthropics/skills/issues/1689",
+          "created_at": "2026-08-29T15:36:28Z",
+          "author": "huss312-oss",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 27,
+      "errors": []
+    },
+    {
+      "repo": "addyosmani/agent-skills",
+      "default_branch": "main",
+      "canonical_repo": "addyosmani/agent-skills",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "Production-grade engineering skills for AI coding agents.",
+      "homepage": "https://skills.addy.ie",
+      "commits": [
+        {
+          "sha": "469d00f4e67ff4a21eb6e6e467a086c9a1f1deb8",
+          "date": "2026-09-05T19:22:59Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/469d00f4e67ff4a21eb6e6e467a086c9a1f1deb8"
+        },
+        {
+          "sha": "84ee50673804b95c287d1e4eb4f1c1dad7c5188a",
+          "date": "2026-09-05T03:24:36Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/84ee50673804b95c287d1e4eb4f1c1dad7c5188a"
+        },
+        {
+          "sha": "858c1aea8077a5694b3007b4ac3bfb0c7aa47ac6",
+          "date": "2026-09-05T03:21:31Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/858c1aea8077a5694b3007b4ac3bfb0c7aa47ac6"
+        },
+        {
+          "sha": "4d10bcb34319dbc4625546e05f2dfd8c31d04beb",
+          "date": "2026-09-05T03:21:26Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/4d10bcb34319dbc4625546e05f2dfd8c31d04beb"
+        },
+        {
+          "sha": "85ea8fbc3997eb066ded9fb852a360587159179e",
+          "date": "2026-09-05T03:21:20Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/85ea8fbc3997eb066ded9fb852a360587159179e"
+        },
+        {
+          "sha": "8c8cfd19208a1c1f4468fa41f3facbf08a213abe",
+          "date": "2026-09-05T03:21:15Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/8c8cfd19208a1c1f4468fa41f3facbf08a213abe"
+        },
+        {
+          "sha": "f7fe1a447d624d83b29c509769f367a9f68cd572",
+          "date": "2026-09-05T03:13:50Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/f7fe1a447d624d83b29c509769f367a9f68cd572"
+        },
+        {
+          "sha": "878d5d4789297df357addcbd452a8901523c8088",
+          "date": "2026-09-05T03:13:50Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/878d5d4789297df357addcbd452a8901523c8088"
+        },
+        {
+          "sha": "45fd4a043983fec456bf7eea6562147e8e9cd2b4",
+          "date": "2026-09-04T08:25:46Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/45fd4a043983fec456bf7eea6562147e8e9cd2b4"
+        },
+        {
+          "sha": "6a9f2eb2d6f318e89faaff03a23ed84d8862c8e0",
+          "date": "2026-09-04T08:22:37Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/6a9f2eb2d6f318e89faaff03a23ed84d8862c8e0"
+        },
+        {
+          "sha": "1c760d643497e9da289300e5eb2f5aca861503f7",
+          "date": "2026-09-04T06:45:55Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/1c760d643497e9da289300e5eb2f5aca861503f7"
+        },
+        {
+          "sha": "020ec10a788f5703108d093a4bd3d9a7c3847d36",
+          "date": "2026-09-03T06:36:51Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/020ec10a788f5703108d093a4bd3d9a7c3847d36"
+        },
+        {
+          "sha": "632aa0bcd48ffd37be313e3f3648fcba0053bd4c",
+          "date": "2026-09-03T06:36:47Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/632aa0bcd48ffd37be313e3f3648fcba0053bd4c"
+        },
+        {
+          "sha": "b2ad72ddf29d2d241eddd90390cbc76aa731cf31",
+          "date": "2026-09-03T06:36:42Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/b2ad72ddf29d2d241eddd90390cbc76aa731cf31"
+        },
+        {
+          "sha": "2f036a05ced4d2957a6bf9a8b5b19acd0bd842e3",
+          "date": "2026-09-03T06:36:38Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/2f036a05ced4d2957a6bf9a8b5b19acd0bd842e3"
+        },
+        {
+          "sha": "125b1f865e816201456a01f20385f3a9920b7309",
+          "date": "2026-09-02T08:41:25Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/125b1f865e816201456a01f20385f3a9920b7309"
+        },
+        {
+          "sha": "1483fc12473e5297408a069b661778aa76fbd1cf",
+          "date": "2026-08-31T15:32:14Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/1483fc12473e5297408a069b661778aa76fbd1cf"
+        },
+        {
+          "sha": "14583056040e3f9beb1f9a9367a51f1e1e3aa0f9",
+          "date": "2026-08-31T13:59:42Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/14583056040e3f9beb1f9a9367a51f1e1e3aa0f9"
+        },
+        {
+          "sha": "cd8922b617f0ec9b68ad4c1bc1d3bc112492ec28",
+          "date": "2026-08-29T23:17:37Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/cd8922b617f0ec9b68ad4c1bc1d3bc112492ec28"
+        },
+        {
+          "sha": "d2c37ef6225dd8726cdd369a8030307f48592d26",
+          "date": "2026-08-28T23:30:57Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/d2c37ef6225dd8726cdd369a8030307f48592d26"
+        },
+        {
+          "sha": "fac0b186bd3b5d772b41833841bad223a264984d",
+          "date": "2026-08-28T23:30:42Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/fac0b186bd3b5d772b41833841bad223a264984d"
+        },
+        {
+          "sha": "4db88350d1e6dcd925c5e17fa831e5d1ab17e82f",
+          "date": "2026-08-28T23:30:38Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/4db88350d1e6dcd925c5e17fa831e5d1ab17e82f"
+        },
+        {
+          "sha": "2ce8d47a16017beb969f84db14f09270c45ab4e9",
+          "date": "2026-08-28T23:23:03Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/2ce8d47a16017beb969f84db14f09270c45ab4e9"
+        },
+        {
+          "sha": "4be4bb7c03e168a17903639f54c40b64ddc02e78",
+          "date": "2026-08-28T23:08:11Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/4be4bb7c03e168a17903639f54c40b64ddc02e78"
+        },
+        {
+          "sha": "8300e1bbe77a9f1610a0e9da624593c3d5dea020",
+          "date": "2026-08-28T15:54:48Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/8300e1bbe77a9f1610a0e9da624593c3d5dea020"
+        },
+        {
+          "sha": "6a268d7710c15708598e4b0a6942275a359760ee",
+          "date": "2026-08-28T04:15:32Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/6a268d7710c15708598e4b0a6942275a359760ee"
+        },
+        {
+          "sha": "485cd8ee86572b7f6309b8677c1a7bbbe326d1c7",
+          "date": "2026-08-27T21:08:46Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/485cd8ee86572b7f6309b8677c1a7bbbe326d1c7"
+        },
+        {
+          "sha": "58a37a0a55223a76e516ed7587d164cb05a24426",
+          "date": "2026-08-27T21:08:46Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/58a37a0a55223a76e516ed7587d164cb05a24426"
+        },
+        {
+          "sha": "34da7eb97e4bef8c6596bf61c753b9ac9e3df8a9",
+          "date": "2026-08-27T21:08:46Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/34da7eb97e4bef8c6596bf61c753b9ac9e3df8a9"
+        },
+        {
+          "sha": "aca2f9e06ad121f032d7f2950e7155909451eeb7",
+          "date": "2026-08-27T21:08:46Z",
+          "url": "https://github.com/addyosmani/agent-skills/commit/aca2f9e06ad121f032d7f2950e7155909451eeb7"
+        }
+      ],
+      "issues": [
+        {
+          "number": 530,
+          "url": "https://github.com/addyosmani/agent-skills/issues/530",
+          "created_at": "2026-08-29T14:46:56Z",
+          "author": "gzliudan",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 529,
+          "url": "https://github.com/addyosmani/agent-skills/issues/529",
+          "created_at": "2026-08-29T00:24:56Z",
+          "author": "federicobartoli",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 528,
+          "url": "https://github.com/addyosmani/agent-skills/issues/528",
+          "created_at": "2026-08-28T23:51:44Z",
+          "author": "federicobartoli",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 22,
+      "errors": []
+    },
+    {
+      "repo": "mattpocock/skills",
+      "default_branch": "main",
+      "canonical_repo": "mattpocock/skills",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "Skills for Real Engineers. Straight from my .agents directory.",
+      "homepage": "https://aihero.dev/skills",
+      "commits": [
+        {
+          "sha": "3cca18b368ae95cdbdebbff572ccafa662551015",
+          "date": "2026-09-04T08:43:27Z",
+          "url": "https://github.com/mattpocock/skills/commit/3cca18b368ae95cdbdebbff572ccafa662551015"
+        },
+        {
+          "sha": "8666e05d641f6922993616e92c0cf54a85080bd7",
+          "date": "2026-09-03T15:03:24Z",
+          "url": "https://github.com/mattpocock/skills/commit/8666e05d641f6922993616e92c0cf54a85080bd7"
+        },
+        {
+          "sha": "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76",
+          "date": "2026-08-24T14:19:57Z",
+          "url": "https://github.com/mattpocock/skills/commit/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+        },
+        {
+          "sha": "3ec8e2399438cd5603324df8263acf3b64cf69b8",
+          "date": "2026-08-24T14:18:22Z",
+          "url": "https://github.com/mattpocock/skills/commit/3ec8e2399438cd5603324df8263acf3b64cf69b8"
+        },
+        {
+          "sha": "8fa188659c5f102894807854bed9d2eee4a711f4",
+          "date": "2026-08-24T14:16:59Z",
+          "url": "https://github.com/mattpocock/skills/commit/8fa188659c5f102894807854bed9d2eee4a711f4"
+        },
+        {
+          "sha": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+          "date": "2026-08-21T10:56:33Z",
+          "url": "https://github.com/mattpocock/skills/commit/5b15a47f2d7150f545fbcacbfe381787fc0230dc"
+        },
+        {
+          "sha": "163b780f98079010cfaff187cfcb9cb24f31998f",
+          "date": "2026-08-21T10:11:22Z",
+          "url": "https://github.com/mattpocock/skills/commit/163b780f98079010cfaff187cfcb9cb24f31998f"
+        },
+        {
+          "sha": "84b5ee5afd738b6a3484e62509b84b3b573c5be3",
+          "date": "2026-08-21T10:09:36Z",
+          "url": "https://github.com/mattpocock/skills/commit/84b5ee5afd738b6a3484e62509b84b3b573c5be3"
+        },
+        {
+          "sha": "0ab1b63a410a03d3627979a109c8695de27af954",
+          "date": "2026-08-20T10:35:14Z",
+          "url": "https://github.com/mattpocock/skills/commit/0ab1b63a410a03d3627979a109c8695de27af954"
+        },
+        {
+          "sha": "85f83d3fde1d3a90d5c9a657f6998c79a6c37308",
+          "date": "2026-08-20T10:34:29Z",
+          "url": "https://github.com/mattpocock/skills/commit/85f83d3fde1d3a90d5c9a657f6998c79a6c37308"
+        },
+        {
+          "sha": "885e2ca4d842d139e9aef4e48d366c63cb1b8013",
+          "date": "2026-08-19T13:09:18Z",
+          "url": "https://github.com/mattpocock/skills/commit/885e2ca4d842d139e9aef4e48d366c63cb1b8013"
+        },
+        {
+          "sha": "4f289474bad013fe2be8f8769d733f59d9103d6b",
+          "date": "2026-08-19T13:04:09Z",
+          "url": "https://github.com/mattpocock/skills/commit/4f289474bad013fe2be8f8769d733f59d9103d6b"
+        },
+        {
+          "sha": "5c89081d4bbeb3d039a42093653f90bb698d780e",
+          "date": "2026-08-19T13:01:26Z",
+          "url": "https://github.com/mattpocock/skills/commit/5c89081d4bbeb3d039a42093653f90bb698d780e"
+        },
+        {
+          "sha": "1bb95954ef0d06ba4d64a9c267fb75f57c614a1f",
+          "date": "2026-08-19T10:04:49Z",
+          "url": "https://github.com/mattpocock/skills/commit/1bb95954ef0d06ba4d64a9c267fb75f57c614a1f"
+        },
+        {
+          "sha": "c6dafdd9deec31fb4b38aa172058776e17372904",
+          "date": "2026-08-19T10:04:11Z",
+          "url": "https://github.com/mattpocock/skills/commit/c6dafdd9deec31fb4b38aa172058776e17372904"
+        },
+        {
+          "sha": "e6e957797d8cceb5b351c0dc840369523f9fb8fb",
+          "date": "2026-08-19T10:03:37Z",
+          "url": "https://github.com/mattpocock/skills/commit/e6e957797d8cceb5b351c0dc840369523f9fb8fb"
+        },
+        {
+          "sha": "321658273cb1d20b76026717d027d505790106d4",
+          "date": "2026-08-19T10:03:37Z",
+          "url": "https://github.com/mattpocock/skills/commit/321658273cb1d20b76026717d027d505790106d4"
+        },
+        {
+          "sha": "e38b908fb73e4982eee85b2c6f6928e3b46fa0a6",
+          "date": "2026-08-19T09:45:36Z",
+          "url": "https://github.com/mattpocock/skills/commit/e38b908fb73e4982eee85b2c6f6928e3b46fa0a6"
+        },
+        {
+          "sha": "594f0f83188921a60d45d63d6cdac509de20df2c",
+          "date": "2026-08-19T09:45:14Z",
+          "url": "https://github.com/mattpocock/skills/commit/594f0f83188921a60d45d63d6cdac509de20df2c"
+        },
+        {
+          "sha": "d6cd26f7f245e67ea7d0554a2fe468cd9def6e6f",
+          "date": "2026-08-19T09:43:41Z",
+          "url": "https://github.com/mattpocock/skills/commit/d6cd26f7f245e67ea7d0554a2fe468cd9def6e6f"
+        },
+        {
+          "sha": "9c9f36ccd3995266cd675468af71639c8dde1ec5",
+          "date": "2026-08-17T07:54:22Z",
+          "url": "https://github.com/mattpocock/skills/commit/9c9f36ccd3995266cd675468af71639c8dde1ec5"
+        },
+        {
+          "sha": "0505536390d6518e439c0ea90ba1dd3d5b254aba",
+          "date": "2026-08-17T07:23:08Z",
+          "url": "https://github.com/mattpocock/skills/commit/0505536390d6518e439c0ea90ba1dd3d5b254aba"
+        },
+        {
+          "sha": "068b6e0c62393147daf03530149cdce209c93da8",
+          "date": "2026-08-15T21:24:19Z",
+          "url": "https://github.com/mattpocock/skills/commit/068b6e0c62393147daf03530149cdce209c93da8"
+        },
+        {
+          "sha": "6a34259e99bc5fed4f8fe5da61c273dad14edf67",
+          "date": "2026-08-15T21:22:05Z",
+          "url": "https://github.com/mattpocock/skills/commit/6a34259e99bc5fed4f8fe5da61c273dad14edf67"
+        },
+        {
+          "sha": "1dab98299c3b81f560026c01b7ebf55ed5d91373",
+          "date": "2026-08-15T21:19:23Z",
+          "url": "https://github.com/mattpocock/skills/commit/1dab98299c3b81f560026c01b7ebf55ed5d91373"
+        },
+        {
+          "sha": "bb1c760d559872044e76d18216c87165fa69908a",
+          "date": "2026-08-15T21:01:36Z",
+          "url": "https://github.com/mattpocock/skills/commit/bb1c760d559872044e76d18216c87165fa69908a"
+        },
+        {
+          "sha": "da2cb7d411c02c035c88f0c18047cce0a1934ea3",
+          "date": "2026-08-15T20:59:36Z",
+          "url": "https://github.com/mattpocock/skills/commit/da2cb7d411c02c035c88f0c18047cce0a1934ea3"
+        },
+        {
+          "sha": "e3e547b57d549110a0aa6ff40fd7b871c01c76c9",
+          "date": "2026-08-15T20:55:23Z",
+          "url": "https://github.com/mattpocock/skills/commit/e3e547b57d549110a0aa6ff40fd7b871c01c76c9"
+        },
+        {
+          "sha": "755611effd107b63d9477e3aa6bf6fbb6ece3d87",
+          "date": "2026-08-15T20:50:36Z",
+          "url": "https://github.com/mattpocock/skills/commit/755611effd107b63d9477e3aa6bf6fbb6ece3d87"
+        },
+        {
+          "sha": "d419977fe07d9e1607d3523f3579310bbb076b93",
+          "date": "2026-08-15T20:50:05Z",
+          "url": "https://github.com/mattpocock/skills/commit/d419977fe07d9e1607d3523f3579310bbb076b93"
+        }
+      ],
+      "issues": [
+        {
+          "number": 1006,
+          "url": "https://github.com/mattpocock/skills/issues/1006",
+          "created_at": "2026-08-30T15:01:03Z",
+          "author": "haozhou-wong",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 1005,
+          "url": "https://github.com/mattpocock/skills/issues/1005",
+          "created_at": "2026-08-30T14:29:40Z",
+          "author": "evan188199-tech",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 1003,
+          "url": "https://github.com/mattpocock/skills/issues/1003",
+          "created_at": "2026-08-30T06:04:48Z",
+          "author": "spykr",
+          "author_type": "User",
+          "comments": 1
+        }
+      ],
+      "issue_window_total": 162,
+      "errors": []
+    },
+    {
+      "repo": "affaan-m/ECC",
+      "default_branch": "main",
+      "canonical_repo": "affaan-m/ECC",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "homepage": "https://ecc.tools",
+      "commits": [
+        {
+          "sha": "e04ea0b9cc8248686edf5ac751cadff550e162b8",
+          "date": "2026-09-03T20:51:15Z",
+          "url": "https://github.com/affaan-m/ECC/commit/e04ea0b9cc8248686edf5ac751cadff550e162b8"
+        },
+        {
+          "sha": "6a1e0c1bc5c7f932c74b1b16b82711fdbb93a245",
+          "date": "2026-09-03T20:05:14Z",
+          "url": "https://github.com/affaan-m/ECC/commit/6a1e0c1bc5c7f932c74b1b16b82711fdbb93a245"
+        },
+        {
+          "sha": "d1955a66f61d2be47cc1a0d66fec4314f59c07d2",
+          "date": "2026-09-03T20:03:10Z",
+          "url": "https://github.com/affaan-m/ECC/commit/d1955a66f61d2be47cc1a0d66fec4314f59c07d2"
+        },
+        {
+          "sha": "8059798888e6a664cbdc973bb1fbd19b019f96e4",
+          "date": "2026-09-03T19:08:04Z",
+          "url": "https://github.com/affaan-m/ECC/commit/8059798888e6a664cbdc973bb1fbd19b019f96e4"
+        },
+        {
+          "sha": "b74e0add1dd90a94392118bd5c455f9326e1774e",
+          "date": "2026-09-03T19:00:31Z",
+          "url": "https://github.com/affaan-m/ECC/commit/b74e0add1dd90a94392118bd5c455f9326e1774e"
+        },
+        {
+          "sha": "d330b57a50527a3f21aa604ec70266adcfe82505",
+          "date": "2026-09-03T18:59:21Z",
+          "url": "https://github.com/affaan-m/ECC/commit/d330b57a50527a3f21aa604ec70266adcfe82505"
+        },
+        {
+          "sha": "bd97cbe45130a8e36651dd5424f9bc82dddbd4cb",
+          "date": "2026-09-03T18:59:21Z",
+          "url": "https://github.com/affaan-m/ECC/commit/bd97cbe45130a8e36651dd5424f9bc82dddbd4cb"
+        },
+        {
+          "sha": "8dfa7cec0aded808f8cbb370c369189ca1dfcfdb",
+          "date": "2026-09-03T18:59:21Z",
+          "url": "https://github.com/affaan-m/ECC/commit/8dfa7cec0aded808f8cbb370c369189ca1dfcfdb"
+        },
+        {
+          "sha": "45a48d5e1bc25e179c9b4d4430d8d3bac30268e1",
+          "date": "2026-09-03T18:59:21Z",
+          "url": "https://github.com/affaan-m/ECC/commit/45a48d5e1bc25e179c9b4d4430d8d3bac30268e1"
+        },
+        {
+          "sha": "23fb7e0c7906ede8ab7739b20d9387df8124b09c",
+          "date": "2026-09-03T18:59:01Z",
+          "url": "https://github.com/affaan-m/ECC/commit/23fb7e0c7906ede8ab7739b20d9387df8124b09c"
+        },
+        {
+          "sha": "22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e",
+          "date": "2026-09-03T00:48:57Z",
+          "url": "https://github.com/affaan-m/ECC/commit/22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e"
+        },
+        {
+          "sha": "d3652039ac0b8dd9545ecc30ef4b95397f8e3cfd",
+          "date": "2026-09-02T23:55:26Z",
+          "url": "https://github.com/affaan-m/ECC/commit/d3652039ac0b8dd9545ecc30ef4b95397f8e3cfd"
+        },
+        {
+          "sha": "11813f968cc0087b2793470a4082b754688bf168",
+          "date": "2026-09-02T21:47:04Z",
+          "url": "https://github.com/affaan-m/ECC/commit/11813f968cc0087b2793470a4082b754688bf168"
+        },
+        {
+          "sha": "90430ab3a716e12a9c6770802efa352098735f24",
+          "date": "2026-09-02T20:37:08Z",
+          "url": "https://github.com/affaan-m/ECC/commit/90430ab3a716e12a9c6770802efa352098735f24"
+        },
+        {
+          "sha": "348f80a89b8c344253e0d948f8fcbdef0e8572d4",
+          "date": "2026-09-02T19:13:20Z",
+          "url": "https://github.com/affaan-m/ECC/commit/348f80a89b8c344253e0d948f8fcbdef0e8572d4"
+        },
+        {
+          "sha": "de899ac47293e3b75522bc8070ac65e97a6ac799",
+          "date": "2026-09-02T18:24:39Z",
+          "url": "https://github.com/affaan-m/ECC/commit/de899ac47293e3b75522bc8070ac65e97a6ac799"
+        },
+        {
+          "sha": "ca185ef5f7667078a1e70a763bd3a9c71c48acf0",
+          "date": "2026-08-31T22:14:22Z",
+          "url": "https://github.com/affaan-m/ECC/commit/ca185ef5f7667078a1e70a763bd3a9c71c48acf0"
+        },
+        {
+          "sha": "a104765bf20fd1480a3dd30f514f18f73ca80b8a",
+          "date": "2026-08-31T19:16:16Z",
+          "url": "https://github.com/affaan-m/ECC/commit/a104765bf20fd1480a3dd30f514f18f73ca80b8a"
+        },
+        {
+          "sha": "005eff40fd4a4ac005da7a70e713459175385516",
+          "date": "2026-08-30T22:54:00Z",
+          "url": "https://github.com/affaan-m/ECC/commit/005eff40fd4a4ac005da7a70e713459175385516"
+        },
+        {
+          "sha": "ce64e417fd420a0df98ed0aa00809eea5e74e127",
+          "date": "2026-08-30T19:52:28Z",
+          "url": "https://github.com/affaan-m/ECC/commit/ce64e417fd420a0df98ed0aa00809eea5e74e127"
+        },
+        {
+          "sha": "64d0d9436f802382f2fa668fa5f1c6b8e750a52b",
+          "date": "2026-08-30T19:35:47Z",
+          "url": "https://github.com/affaan-m/ECC/commit/64d0d9436f802382f2fa668fa5f1c6b8e750a52b"
+        },
+        {
+          "sha": "19e2f2b46d1f7a6c2422ee5e299adcfa052a99e5",
+          "date": "2026-08-30T19:20:35Z",
+          "url": "https://github.com/affaan-m/ECC/commit/19e2f2b46d1f7a6c2422ee5e299adcfa052a99e5"
+        },
+        {
+          "sha": "d26b9cccee7beb6339729d29497e6b4d5b68ff91",
+          "date": "2026-08-30T19:19:01Z",
+          "url": "https://github.com/affaan-m/ECC/commit/d26b9cccee7beb6339729d29497e6b4d5b68ff91"
+        },
+        {
+          "sha": "8211578ee7765c947f53e5b61fb5e0ee79ced929",
+          "date": "2026-08-30T19:13:28Z",
+          "url": "https://github.com/affaan-m/ECC/commit/8211578ee7765c947f53e5b61fb5e0ee79ced929"
+        },
+        {
+          "sha": "caee3ee455d770bda53cce41cd38ad4d35a8abbd",
+          "date": "2026-08-30T19:13:07Z",
+          "url": "https://github.com/affaan-m/ECC/commit/caee3ee455d770bda53cce41cd38ad4d35a8abbd"
+        },
+        {
+          "sha": "bdbd90a47fc9c642d7febad9588da3e0668a4ab7",
+          "date": "2026-08-30T19:09:34Z",
+          "url": "https://github.com/affaan-m/ECC/commit/bdbd90a47fc9c642d7febad9588da3e0668a4ab7"
+        },
+        {
+          "sha": "6aaa41e02847b153086fb72c68f0652b569280ec",
+          "date": "2026-08-30T19:09:34Z",
+          "url": "https://github.com/affaan-m/ECC/commit/6aaa41e02847b153086fb72c68f0652b569280ec"
+        },
+        {
+          "sha": "a89cec96581537f875cbec38a8e16eb22d11d829",
+          "date": "2026-08-30T18:50:53Z",
+          "url": "https://github.com/affaan-m/ECC/commit/a89cec96581537f875cbec38a8e16eb22d11d829"
+        },
+        {
+          "sha": "d8e6a51755c6971a65eef73419076d449df0f490",
+          "date": "2026-08-29T20:30:55Z",
+          "url": "https://github.com/affaan-m/ECC/commit/d8e6a51755c6971a65eef73419076d449df0f490"
+        },
+        {
+          "sha": "299544e6801e6938281985f74df9a25e12905c65",
+          "date": "2026-08-29T20:07:00Z",
+          "url": "https://github.com/affaan-m/ECC/commit/299544e6801e6938281985f74df9a25e12905c65"
+        }
+      ],
+      "issues": [
+        {
+          "number": 2910,
+          "url": "https://github.com/affaan-m/ECC/issues/2910",
+          "created_at": "2026-08-30T16:00:44Z",
+          "author": "Ameen-2011",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 2909,
+          "url": "https://github.com/affaan-m/ECC/issues/2909",
+          "created_at": "2026-08-30T15:51:11Z",
+          "author": "DavidHLP",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 2906,
+          "url": "https://github.com/affaan-m/ECC/issues/2906",
+          "created_at": "2026-08-29T20:10:02Z",
+          "author": "KyawZinLatt",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 39,
+      "errors": []
+    },
+    {
+      "repo": "mem0ai/mem0",
+      "default_branch": "main",
+      "canonical_repo": "mem0ai/mem0",
+      "archived": false,
+      "license_spdx": "Apache-2.0",
+      "description": "The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. Built for production.",
+      "homepage": "https://mem0.ai",
+      "commits": [
+        {
+          "sha": "dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3",
+          "date": "2026-09-04T15:02:23Z",
+          "url": "https://github.com/mem0ai/mem0/commit/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3"
+        },
+        {
+          "sha": "9a7924befd7026e41e445ba809370009e5e985a6",
+          "date": "2026-09-02T13:14:55Z",
+          "url": "https://github.com/mem0ai/mem0/commit/9a7924befd7026e41e445ba809370009e5e985a6"
+        },
+        {
+          "sha": "3cf41878ea74f92b0ca29a93e690d880cefd0589",
+          "date": "2026-09-02T12:30:01Z",
+          "url": "https://github.com/mem0ai/mem0/commit/3cf41878ea74f92b0ca29a93e690d880cefd0589"
+        },
+        {
+          "sha": "c33ca27f5e8f920b27a9414927f4c7e2c1887fa8",
+          "date": "2026-09-01T13:49:48Z",
+          "url": "https://github.com/mem0ai/mem0/commit/c33ca27f5e8f920b27a9414927f4c7e2c1887fa8"
+        },
+        {
+          "sha": "71fba8d46436f88569d600f81a55208c38ad30b5",
+          "date": "2026-08-31T21:04:45Z",
+          "url": "https://github.com/mem0ai/mem0/commit/71fba8d46436f88569d600f81a55208c38ad30b5"
+        },
+        {
+          "sha": "19cb89aff472325c707f64b2f34ae6afdbf7faf7",
+          "date": "2026-08-28T12:14:10Z",
+          "url": "https://github.com/mem0ai/mem0/commit/19cb89aff472325c707f64b2f34ae6afdbf7faf7"
+        },
+        {
+          "sha": "fdfb763d6e5e5509bdb35d4ddc9ca8003f6af009",
+          "date": "2026-08-27T16:42:04Z",
+          "url": "https://github.com/mem0ai/mem0/commit/fdfb763d6e5e5509bdb35d4ddc9ca8003f6af009"
+        },
+        {
+          "sha": "0070e08e01d70f5517bca303f4a91199cd18be46",
+          "date": "2026-08-27T08:18:30Z",
+          "url": "https://github.com/mem0ai/mem0/commit/0070e08e01d70f5517bca303f4a91199cd18be46"
+        },
+        {
+          "sha": "39bc02330563764e7d4465f1ecff5f002d94da1a",
+          "date": "2026-08-24T16:52:04Z",
+          "url": "https://github.com/mem0ai/mem0/commit/39bc02330563764e7d4465f1ecff5f002d94da1a"
+        },
+        {
+          "sha": "b1342a3408b88575d531c5abaed8477484df8318",
+          "date": "2026-08-24T15:47:57Z",
+          "url": "https://github.com/mem0ai/mem0/commit/b1342a3408b88575d531c5abaed8477484df8318"
+        },
+        {
+          "sha": "b717e38785dd8bcc6542ad88212ffca33f573f10",
+          "date": "2026-08-24T13:51:23Z",
+          "url": "https://github.com/mem0ai/mem0/commit/b717e38785dd8bcc6542ad88212ffca33f573f10"
+        },
+        {
+          "sha": "dc82354e143c2581d505d581a00286d6ef8c3605",
+          "date": "2026-08-24T12:55:33Z",
+          "url": "https://github.com/mem0ai/mem0/commit/dc82354e143c2581d505d581a00286d6ef8c3605"
+        },
+        {
+          "sha": "4ddee9c51d1b657b49d30a96ad820739c826a9d7",
+          "date": "2026-08-24T12:40:44Z",
+          "url": "https://github.com/mem0ai/mem0/commit/4ddee9c51d1b657b49d30a96ad820739c826a9d7"
+        },
+        {
+          "sha": "7e096155714cd67360f91cc8d82fbbb8bda3c903",
+          "date": "2026-08-24T08:33:50Z",
+          "url": "https://github.com/mem0ai/mem0/commit/7e096155714cd67360f91cc8d82fbbb8bda3c903"
+        },
+        {
+          "sha": "d18e751decd83a1f3340446bed974228cf79fd26",
+          "date": "2026-08-24T08:23:04Z",
+          "url": "https://github.com/mem0ai/mem0/commit/d18e751decd83a1f3340446bed974228cf79fd26"
+        },
+        {
+          "sha": "8d5b7865bd0521e75fe9ab1b260eeccc83f8a378",
+          "date": "2026-08-22T13:34:24Z",
+          "url": "https://github.com/mem0ai/mem0/commit/8d5b7865bd0521e75fe9ab1b260eeccc83f8a378"
+        },
+        {
+          "sha": "9b565da8e3f1b05fc3ed80ac338e6bbb9622d4d7",
+          "date": "2026-08-22T08:21:50Z",
+          "url": "https://github.com/mem0ai/mem0/commit/9b565da8e3f1b05fc3ed80ac338e6bbb9622d4d7"
+        },
+        {
+          "sha": "48d0d0cd9c1071d665d988067290529ecb25c923",
+          "date": "2026-08-22T08:20:49Z",
+          "url": "https://github.com/mem0ai/mem0/commit/48d0d0cd9c1071d665d988067290529ecb25c923"
+        },
+        {
+          "sha": "feb12852c0789a1f1182b05ee0dbc386037b012f",
+          "date": "2026-08-21T14:01:37Z",
+          "url": "https://github.com/mem0ai/mem0/commit/feb12852c0789a1f1182b05ee0dbc386037b012f"
+        },
+        {
+          "sha": "5af797834c5db53b8922a60767c2f9dd6cdb19cf",
+          "date": "2026-08-21T12:11:41Z",
+          "url": "https://github.com/mem0ai/mem0/commit/5af797834c5db53b8922a60767c2f9dd6cdb19cf"
+        },
+        {
+          "sha": "4fa483907704735ba0bec030e3c946ee1614b50e",
+          "date": "2026-08-20T17:43:42Z",
+          "url": "https://github.com/mem0ai/mem0/commit/4fa483907704735ba0bec030e3c946ee1614b50e"
+        },
+        {
+          "sha": "3599aa75ed64ee41c3b1d8133a8b39403fb8f703",
+          "date": "2026-08-20T16:03:21Z",
+          "url": "https://github.com/mem0ai/mem0/commit/3599aa75ed64ee41c3b1d8133a8b39403fb8f703"
+        },
+        {
+          "sha": "1de6499b8abf7cc560025e41098c2718b247f9dc",
+          "date": "2026-08-20T13:23:06Z",
+          "url": "https://github.com/mem0ai/mem0/commit/1de6499b8abf7cc560025e41098c2718b247f9dc"
+        },
+        {
+          "sha": "ed38ddf8731fb7fab7c41bb0f8ab3185df23e7c5",
+          "date": "2026-08-20T10:26:55Z",
+          "url": "https://github.com/mem0ai/mem0/commit/ed38ddf8731fb7fab7c41bb0f8ab3185df23e7c5"
+        },
+        {
+          "sha": "530d802b55a426cbb1fab963c01c2ba98535330f",
+          "date": "2026-08-20T10:26:17Z",
+          "url": "https://github.com/mem0ai/mem0/commit/530d802b55a426cbb1fab963c01c2ba98535330f"
+        },
+        {
+          "sha": "d3334fa5f1da662eff187edbfbed338c27d2ba27",
+          "date": "2026-08-20T09:56:22Z",
+          "url": "https://github.com/mem0ai/mem0/commit/d3334fa5f1da662eff187edbfbed338c27d2ba27"
+        },
+        {
+          "sha": "52b02c7cc14132f2255f9aae7001e56ee8c22872",
+          "date": "2026-08-20T09:54:05Z",
+          "url": "https://github.com/mem0ai/mem0/commit/52b02c7cc14132f2255f9aae7001e56ee8c22872"
+        },
+        {
+          "sha": "001c235229be8795e3834520467bd0d661ed8f34",
+          "date": "2026-08-14T12:47:17Z",
+          "url": "https://github.com/mem0ai/mem0/commit/001c235229be8795e3834520467bd0d661ed8f34"
+        },
+        {
+          "sha": "bf2d591b27b6c9e143587de53d707e7c20384eef",
+          "date": "2026-08-14T12:46:36Z",
+          "url": "https://github.com/mem0ai/mem0/commit/bf2d591b27b6c9e143587de53d707e7c20384eef"
+        },
+        {
+          "sha": "b4c50550bfbff5fee41a579f8734b2c57c83bb35",
+          "date": "2026-08-14T12:43:37Z",
+          "url": "https://github.com/mem0ai/mem0/commit/b4c50550bfbff5fee41a579f8734b2c57c83bb35"
+        }
+      ],
+      "issues": [
+        {
+          "number": 7173,
+          "url": "https://github.com/mem0ai/mem0/issues/7173",
+          "created_at": "2026-08-30T03:56:22Z",
+          "author": "Serena-Peng29",
+          "author_type": "User",
+          "comments": 4
+        },
+        {
+          "number": 7171,
+          "url": "https://github.com/mem0ai/mem0/issues/7171",
+          "created_at": "2026-08-29T18:58:34Z",
+          "author": "kunalchikte",
+          "author_type": "User",
+          "comments": 2
+        },
+        {
+          "number": 7165,
+          "url": "https://github.com/mem0ai/mem0/issues/7165",
+          "created_at": "2026-08-29T08:40:46Z",
+          "author": "FenjuFu",
+          "author_type": "User",
+          "comments": 2
+        }
+      ],
+      "issue_window_total": 79,
+      "errors": []
+    },
+    {
+      "repo": "volcengine/OpenViking",
+      "default_branch": "main",
+      "canonical_repo": "volcengine/OpenViking",
+      "archived": false,
+      "license_spdx": "AGPL-3.0",
+      "description": "Self-evolving Context Database for AI Agents. Unify Agent Memory, Knowledge RAG and Skills.",
+      "homepage": "https://openviking.ai/",
+      "commits": [
+        {
+          "sha": "0c5147cae26aec8d6d93445ec6ad86d5faff4035",
+          "date": "2026-09-05T02:29:48Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/0c5147cae26aec8d6d93445ec6ad86d5faff4035"
+        },
+        {
+          "sha": "e86642cac2c6652f541a4965639eff87c7e5bc04",
+          "date": "2026-09-05T02:28:52Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/e86642cac2c6652f541a4965639eff87c7e5bc04"
+        },
+        {
+          "sha": "2251aa136a0dcbdef7e79af2a61e9b3748a9eec6",
+          "date": "2026-09-04T12:12:52Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/2251aa136a0dcbdef7e79af2a61e9b3748a9eec6"
+        },
+        {
+          "sha": "854ff4ceb052d0b2586dd5ffdf9d6156f0e1c79d",
+          "date": "2026-09-04T11:18:11Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/854ff4ceb052d0b2586dd5ffdf9d6156f0e1c79d"
+        },
+        {
+          "sha": "37db9c834e9510380053db910113bed03b50c439",
+          "date": "2026-09-04T11:17:47Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/37db9c834e9510380053db910113bed03b50c439"
+        },
+        {
+          "sha": "94a10313bf13e226fde0dacda77483600b197833",
+          "date": "2026-09-04T11:04:23Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/94a10313bf13e226fde0dacda77483600b197833"
+        },
+        {
+          "sha": "30c50926728e71584d2251a1bee6e05e0e0d7c41",
+          "date": "2026-09-04T10:22:11Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/30c50926728e71584d2251a1bee6e05e0e0d7c41"
+        },
+        {
+          "sha": "a320726655f6e20f8090f359bc661e883670f4b8",
+          "date": "2026-09-04T09:53:55Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/a320726655f6e20f8090f359bc661e883670f4b8"
+        },
+        {
+          "sha": "1ee1219ab8aa32ff0d67b491843b2481fe1226bc",
+          "date": "2026-09-04T09:10:32Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/1ee1219ab8aa32ff0d67b491843b2481fe1226bc"
+        },
+        {
+          "sha": "92ccb0f57a37411ef035c37fd9bbc620ed319ef8",
+          "date": "2026-09-04T09:02:52Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/92ccb0f57a37411ef035c37fd9bbc620ed319ef8"
+        },
+        {
+          "sha": "db1fd7ccf64c3a72ab40668b463a7516af8ab398",
+          "date": "2026-09-04T08:25:11Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/db1fd7ccf64c3a72ab40668b463a7516af8ab398"
+        },
+        {
+          "sha": "02e31f2d661a388567168a7044a2b957a081bf21",
+          "date": "2026-09-04T08:24:34Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/02e31f2d661a388567168a7044a2b957a081bf21"
+        },
+        {
+          "sha": "75be3bd0f6c37083258c0d99932a9b87da8d8b39",
+          "date": "2026-09-04T08:02:50Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/75be3bd0f6c37083258c0d99932a9b87da8d8b39"
+        },
+        {
+          "sha": "6bbf84027f2c7620f546dd8d88f2c23d29d32b6a",
+          "date": "2026-09-04T07:43:50Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/6bbf84027f2c7620f546dd8d88f2c23d29d32b6a"
+        },
+        {
+          "sha": "c5755f5ae60e2767b332ebc4ac96d2f17e3c161f",
+          "date": "2026-09-04T07:26:53Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/c5755f5ae60e2767b332ebc4ac96d2f17e3c161f"
+        },
+        {
+          "sha": "58139b46ad8fbf553df4d6e311106b42069bcb7c",
+          "date": "2026-09-04T07:18:48Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/58139b46ad8fbf553df4d6e311106b42069bcb7c"
+        },
+        {
+          "sha": "6020c62ccc2c22e17ce16c51419d0467fc883f00",
+          "date": "2026-09-04T06:52:25Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/6020c62ccc2c22e17ce16c51419d0467fc883f00"
+        },
+        {
+          "sha": "a4aa04cfc66f535279c1ef452f8f4089adcca6cf",
+          "date": "2026-09-04T06:08:55Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/a4aa04cfc66f535279c1ef452f8f4089adcca6cf"
+        },
+        {
+          "sha": "37ef554bb2a1b1491d99c298b8b4a9aa2c49fa57",
+          "date": "2026-09-04T05:59:29Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/37ef554bb2a1b1491d99c298b8b4a9aa2c49fa57"
+        },
+        {
+          "sha": "1d89f8d465bf291005c8cde1367b87f476aa3851",
+          "date": "2026-09-04T04:50:43Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/1d89f8d465bf291005c8cde1367b87f476aa3851"
+        },
+        {
+          "sha": "ddcc0052fb82029a23189df10480baa3964686b9",
+          "date": "2026-09-04T04:11:34Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/ddcc0052fb82029a23189df10480baa3964686b9"
+        },
+        {
+          "sha": "da94ac1afd0f3e0d80c7e72b9170d4fcea7e6c04",
+          "date": "2026-09-04T04:05:24Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/da94ac1afd0f3e0d80c7e72b9170d4fcea7e6c04"
+        },
+        {
+          "sha": "dfb4e324d239b0f6ce7538f806e7d65d656cdce6",
+          "date": "2026-09-04T03:59:11Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/dfb4e324d239b0f6ce7538f806e7d65d656cdce6"
+        },
+        {
+          "sha": "cf18dfb479945f711c2f12891cfdd75d920bd2e1",
+          "date": "2026-09-04T03:57:48Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/cf18dfb479945f711c2f12891cfdd75d920bd2e1"
+        },
+        {
+          "sha": "e273459c6478a2728c96fc565550d65cbfecebab",
+          "date": "2026-09-04T03:56:49Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/e273459c6478a2728c96fc565550d65cbfecebab"
+        },
+        {
+          "sha": "094b76f24bbb000e8dba2ca88b66158ee098aabb",
+          "date": "2026-09-04T03:50:03Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/094b76f24bbb000e8dba2ca88b66158ee098aabb"
+        },
+        {
+          "sha": "0b583ab53f158eca8a4c7af6ed702c5a7bda791d",
+          "date": "2026-09-04T03:34:18Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/0b583ab53f158eca8a4c7af6ed702c5a7bda791d"
+        },
+        {
+          "sha": "a8380147a23d9fd97ee5457c109478d235eaded9",
+          "date": "2026-09-03T09:24:44Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/a8380147a23d9fd97ee5457c109478d235eaded9"
+        },
+        {
+          "sha": "0f58d62a571365213f74009336547c3501596fe4",
+          "date": "2026-09-03T08:16:26Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/0f58d62a571365213f74009336547c3501596fe4"
+        },
+        {
+          "sha": "07f0ecd442433b4e8d96f4d27a7737a106f96184",
+          "date": "2026-09-03T07:59:11Z",
+          "url": "https://github.com/volcengine/OpenViking/commit/07f0ecd442433b4e8d96f4d27a7737a106f96184"
+        }
+      ],
+      "issues": [
+        {
+          "number": 4504,
+          "url": "https://github.com/volcengine/OpenViking/issues/4504",
+          "created_at": "2026-08-30T17:46:05Z",
+          "author": "nimbus3223",
+          "author_type": "User",
+          "comments": 5
+        },
+        {
+          "number": 4503,
+          "url": "https://github.com/volcengine/OpenViking/issues/4503",
+          "created_at": "2026-08-30T17:45:59Z",
+          "author": "nimbus3223",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 4502,
+          "url": "https://github.com/volcengine/OpenViking/issues/4502",
+          "created_at": "2026-08-30T15:30:43Z",
+          "author": "haoyongchun1125-maker",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 196,
+      "errors": []
+    },
+    {
+      "repo": "TencentCloud/TencentDB-Agent-Memory",
+      "default_branch": "feat/server_team",
+      "canonical_repo": "TencentCloud/TencentDB-Agent-Memory",
+      "archived": false,
+      "license_spdx": "NOASSERTION",
+      "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
+      "homepage": "",
+      "commits": [
+        {
+          "sha": "2ee22397f6091b8cd3ea847bc1edb04d3bec0c94",
+          "date": "2026-09-03T02:31:45Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/2ee22397f6091b8cd3ea847bc1edb04d3bec0c94"
+        },
+        {
+          "sha": "7631dd5a5d1437f8b9af8a3375ad6e456c123edf",
+          "date": "2026-09-03T02:25:59Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/7631dd5a5d1437f8b9af8a3375ad6e456c123edf"
+        },
+        {
+          "sha": "3efcd317b84146d6a08518ac0f7ee7c8a8d200ec",
+          "date": "2026-08-31T07:35:17Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/3efcd317b84146d6a08518ac0f7ee7c8a8d200ec"
+        },
+        {
+          "sha": "5299c00aaf65481703c180fd69df066d11254eb7",
+          "date": "2026-08-27T06:49:32Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/5299c00aaf65481703c180fd69df066d11254eb7"
+        },
+        {
+          "sha": "0afa6261c5400067b0189afdd584a91bcdb84e3e",
+          "date": "2026-08-27T06:46:27Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/0afa6261c5400067b0189afdd584a91bcdb84e3e"
+        },
+        {
+          "sha": "9cdfcf0680968197c7b53ab3c3ba5ca5aae51fb3",
+          "date": "2026-08-27T06:45:30Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/9cdfcf0680968197c7b53ab3c3ba5ca5aae51fb3"
+        },
+        {
+          "sha": "c0cf94f7e0e27dbb916a35d4fafb66fe4b04ed67",
+          "date": "2026-08-26T08:20:19Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/c0cf94f7e0e27dbb916a35d4fafb66fe4b04ed67"
+        },
+        {
+          "sha": "147d52c5b6435290bfcbab58df8f36980d1b0553",
+          "date": "2026-08-26T06:33:21Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/147d52c5b6435290bfcbab58df8f36980d1b0553"
+        },
+        {
+          "sha": "06414ac10766b9bd61e4a69f3cf0ea414afb6d4f",
+          "date": "2026-08-25T12:08:51Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/06414ac10766b9bd61e4a69f3cf0ea414afb6d4f"
+        },
+        {
+          "sha": "90a3d37a1a14bc43a812bca40c952d91489951d3",
+          "date": "2026-08-25T09:29:42Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/90a3d37a1a14bc43a812bca40c952d91489951d3"
+        },
+        {
+          "sha": "a5dcbe6e9fee0d1d1e32d935326f1d3bcf927fdb",
+          "date": "2026-08-25T03:24:07Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/a5dcbe6e9fee0d1d1e32d935326f1d3bcf927fdb"
+        },
+        {
+          "sha": "97f94654280b2932c35ba4806a491999ed244cc9",
+          "date": "2026-08-15T10:06:53Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/97f94654280b2932c35ba4806a491999ed244cc9"
+        },
+        {
+          "sha": "29d609a729704ae31ff1848dc6f8acb7e712106d",
+          "date": "2026-08-15T08:29:28Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/29d609a729704ae31ff1848dc6f8acb7e712106d"
+        },
+        {
+          "sha": "9059e52d11b7e66c2a3b5eb6161e4b4b8603c8c2",
+          "date": "2026-08-14T12:12:30Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/9059e52d11b7e66c2a3b5eb6161e4b4b8603c8c2"
+        },
+        {
+          "sha": "6382e8a6e5c76c13d31d9ae9d21f5824de7d3036",
+          "date": "2026-08-14T09:23:37Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/6382e8a6e5c76c13d31d9ae9d21f5824de7d3036"
+        },
+        {
+          "sha": "d0588e2440b8cd98eb5587f8cf66190b64d26a0a",
+          "date": "2026-08-13T09:30:38Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/d0588e2440b8cd98eb5587f8cf66190b64d26a0a"
+        },
+        {
+          "sha": "4dca55c41bf11cb19b49728dbe495c8e05d25abb",
+          "date": "2026-08-11T12:11:59Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/4dca55c41bf11cb19b49728dbe495c8e05d25abb"
+        },
+        {
+          "sha": "0a568c328ea1aae3f22ed3656e7900da7ea565c1",
+          "date": "2026-08-10T09:22:13Z",
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/commit/0a568c328ea1aae3f22ed3656e7900da7ea565c1"
+        }
+      ],
+      "issues": [
+        {
+          "number": 1218,
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/issues/1218",
+          "created_at": "2026-08-30T17:40:44Z",
+          "author": "RainBoat",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 1217,
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/issues/1217",
+          "created_at": "2026-08-30T16:58:06Z",
+          "author": "guzhijun40134679",
+          "author_type": "User",
+          "comments": 3
+        },
+        {
+          "number": 1214,
+          "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory/issues/1214",
+          "created_at": "2026-08-30T08:04:51Z",
+          "author": "li6667",
+          "author_type": "User",
+          "comments": 0
+        }
+      ],
+      "issue_window_total": 118,
+      "errors": []
+    },
+    {
+      "repo": "langchain-ai/langchain",
+      "default_branch": "master",
+      "canonical_repo": "langchain-ai/langchain",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "The agent engineering platform.",
+      "homepage": "https://docs.langchain.com/langchain/",
+      "commits": [
+        {
+          "sha": "b34f5669de2a19fd260c1c0a78f80977289400f9",
+          "date": "2026-09-05T19:25:31Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/b34f5669de2a19fd260c1c0a78f80977289400f9"
+        },
+        {
+          "sha": "8215039dea978372bd3fd95b88663a11b0159043",
+          "date": "2026-09-04T19:54:48Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/8215039dea978372bd3fd95b88663a11b0159043"
+        },
+        {
+          "sha": "3f212e7a88d2acd0d26ac4b5755f5c76c6a88e37",
+          "date": "2026-09-04T19:49:14Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/3f212e7a88d2acd0d26ac4b5755f5c76c6a88e37"
+        },
+        {
+          "sha": "1a3d81756fa249e4054f036ca61e6fd56b3f78df",
+          "date": "2026-09-04T18:28:32Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/1a3d81756fa249e4054f036ca61e6fd56b3f78df"
+        },
+        {
+          "sha": "aac7904ff4baea90a24c6615842f0a6c48dd6c93",
+          "date": "2026-09-04T15:19:24Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/aac7904ff4baea90a24c6615842f0a6c48dd6c93"
+        },
+        {
+          "sha": "0d50cbddd9963ceb28fc48dcacd26f7258f2a05d",
+          "date": "2026-09-04T09:03:34Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/0d50cbddd9963ceb28fc48dcacd26f7258f2a05d"
+        },
+        {
+          "sha": "79cab2dc7f58be720cac43db3677b4c1fd971f91",
+          "date": "2026-09-03T15:37:30Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/79cab2dc7f58be720cac43db3677b4c1fd971f91"
+        },
+        {
+          "sha": "1e6a4f0b45b60475f566f3ad49fb32ea99d22233",
+          "date": "2026-09-03T14:03:15Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/1e6a4f0b45b60475f566f3ad49fb32ea99d22233"
+        },
+        {
+          "sha": "8330dfe987988c1bcbbc5e8d9af9a67e5a1c2744",
+          "date": "2026-09-03T04:31:29Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/8330dfe987988c1bcbbc5e8d9af9a67e5a1c2744"
+        },
+        {
+          "sha": "280442b54c80db2175ced4a20ab59eab86a32dc1",
+          "date": "2026-09-03T04:21:10Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/280442b54c80db2175ced4a20ab59eab86a32dc1"
+        },
+        {
+          "sha": "f5ee2b65f4cf2f1a9fe688bcae6ad2af966582bd",
+          "date": "2026-09-03T02:03:27Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/f5ee2b65f4cf2f1a9fe688bcae6ad2af966582bd"
+        },
+        {
+          "sha": "234255c1c7427b5ed6dc505abad41ddfa6c9ff8f",
+          "date": "2026-09-02T18:05:45Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/234255c1c7427b5ed6dc505abad41ddfa6c9ff8f"
+        },
+        {
+          "sha": "79e0e4adbafc1fda1ca9956e184be8b8819aa7ab",
+          "date": "2026-09-02T17:20:34Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/79e0e4adbafc1fda1ca9956e184be8b8819aa7ab"
+        },
+        {
+          "sha": "e90201b7af5cd32762744c974ca9ce3f27efc9d8",
+          "date": "2026-09-02T17:16:08Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/e90201b7af5cd32762744c974ca9ce3f27efc9d8"
+        },
+        {
+          "sha": "4240248e7b08ed72e85ce0744350c33beddb0ac8",
+          "date": "2026-09-02T17:16:05Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/4240248e7b08ed72e85ce0744350c33beddb0ac8"
+        },
+        {
+          "sha": "530290a9d445069d80a68cdcd4d0da768f2aa2b0",
+          "date": "2026-09-02T08:37:56Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/530290a9d445069d80a68cdcd4d0da768f2aa2b0"
+        },
+        {
+          "sha": "1eeca8c31848c2b005d435f4c6d35839b9b8c32e",
+          "date": "2026-09-02T08:30:54Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/1eeca8c31848c2b005d435f4c6d35839b9b8c32e"
+        },
+        {
+          "sha": "8e103b5ba70811ab3f978ce733919623d7f6cd88",
+          "date": "2026-09-02T08:24:16Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/8e103b5ba70811ab3f978ce733919623d7f6cd88"
+        },
+        {
+          "sha": "5b9d7e9dbf970cad3b0efb82cc932bb9d13852cf",
+          "date": "2026-09-02T08:09:07Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/5b9d7e9dbf970cad3b0efb82cc932bb9d13852cf"
+        },
+        {
+          "sha": "ef548a843545fa210446d493f3eb2b7db142f1a1",
+          "date": "2026-09-02T08:07:05Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/ef548a843545fa210446d493f3eb2b7db142f1a1"
+        },
+        {
+          "sha": "4662366268ae40a21bb080bc7e8c0f4892e3dde9",
+          "date": "2026-09-02T08:05:43Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/4662366268ae40a21bb080bc7e8c0f4892e3dde9"
+        },
+        {
+          "sha": "673b9c59818f87cfaae79db1fba3bc9b8da23d21",
+          "date": "2026-09-02T08:04:45Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/673b9c59818f87cfaae79db1fba3bc9b8da23d21"
+        },
+        {
+          "sha": "0cac488d0badd31c71bc9cb7531bf7a90cb193ce",
+          "date": "2026-09-02T08:04:36Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/0cac488d0badd31c71bc9cb7531bf7a90cb193ce"
+        },
+        {
+          "sha": "1490686e099682fc28be171119f685c4067687e6",
+          "date": "2026-09-02T08:04:33Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/1490686e099682fc28be171119f685c4067687e6"
+        },
+        {
+          "sha": "07b2085c8a188c3668804acb0baf9b20f3fbfb26",
+          "date": "2026-09-02T08:04:25Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/07b2085c8a188c3668804acb0baf9b20f3fbfb26"
+        },
+        {
+          "sha": "379bdc448cd26696b02b88d95e4e54f9cbca5f3e",
+          "date": "2026-09-02T08:04:22Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/379bdc448cd26696b02b88d95e4e54f9cbca5f3e"
+        },
+        {
+          "sha": "7c1e6ab62ac356800fc16c01de03d540d2fd4ff2",
+          "date": "2026-09-02T08:04:15Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/7c1e6ab62ac356800fc16c01de03d540d2fd4ff2"
+        },
+        {
+          "sha": "37b937e05d6d5660f08e1afabbc475822dca9f59",
+          "date": "2026-09-02T08:04:05Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/37b937e05d6d5660f08e1afabbc475822dca9f59"
+        },
+        {
+          "sha": "c50b3583088fd7606f9e690b020906915e260263",
+          "date": "2026-09-02T08:03:48Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/c50b3583088fd7606f9e690b020906915e260263"
+        },
+        {
+          "sha": "6440c8b6421525b872168ab3bf050e6b1e3e82b0",
+          "date": "2026-09-02T08:03:36Z",
+          "url": "https://github.com/langchain-ai/langchain/commit/6440c8b6421525b872168ab3bf050e6b1e3e82b0"
+        }
+      ],
+      "issues": [
+        {
+          "number": 40043,
+          "url": "https://github.com/langchain-ai/langchain/issues/40043",
+          "created_at": "2026-08-30T19:34:12Z",
+          "author": "aaditya8979",
+          "author_type": "User",
+          "comments": 1
+        },
+        {
+          "number": 40041,
+          "url": "https://github.com/langchain-ai/langchain/issues/40041",
+          "created_at": "2026-08-30T18:19:37Z",
+          "author": "adiarora06",
+          "author_type": "User",
+          "comments": 2
+        },
+        {
+          "number": 40037,
+          "url": "https://github.com/langchain-ai/langchain/issues/40037",
+          "created_at": "2026-08-30T11:55:49Z",
+          "author": "CHANGCHINFU",
+          "author_type": "User",
+          "comments": 2
+        }
+      ],
+      "issue_window_total": 172,
+      "errors": []
+    },
+    {
+      "repo": "langchain-ai/langgraph",
+      "default_branch": "main",
+      "canonical_repo": "langchain-ai/langgraph",
+      "archived": false,
+      "license_spdx": "MIT",
+      "description": "Build resilient agents.",
+      "homepage": "https://docs.langchain.com/oss/python/langgraph/",
+      "commits": [
+        {
+          "sha": "81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1",
+          "date": "2026-09-03T15:23:25Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1"
+        },
+        {
+          "sha": "11738d83db4320bb191804342b5c76ae7eca54a0",
+          "date": "2026-09-03T00:38:30Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/11738d83db4320bb191804342b5c76ae7eca54a0"
+        },
+        {
+          "sha": "1983e60971f2c609a6578c6731e323275ea7c2db",
+          "date": "2026-09-02T20:27:41Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/1983e60971f2c609a6578c6731e323275ea7c2db"
+        },
+        {
+          "sha": "d07198a53cc621e699541f9cf5251de0e50e8a0c",
+          "date": "2026-09-02T20:27:21Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/d07198a53cc621e699541f9cf5251de0e50e8a0c"
+        },
+        {
+          "sha": "c0a13bb22da80db8a4a90b5f0056facb4591d415",
+          "date": "2026-09-02T09:52:39Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/c0a13bb22da80db8a4a90b5f0056facb4591d415"
+        },
+        {
+          "sha": "7bfee11ad5c6007c6f0c3b97dc0d72a82effe617",
+          "date": "2026-09-02T09:46:26Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/7bfee11ad5c6007c6f0c3b97dc0d72a82effe617"
+        },
+        {
+          "sha": "eae02c622d2e346b88fe22ba466be838d7de34bb",
+          "date": "2026-09-02T09:45:10Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/eae02c622d2e346b88fe22ba466be838d7de34bb"
+        },
+        {
+          "sha": "bbd6e2da0b8660cc772dcd021aa9398be3ce81b1",
+          "date": "2026-09-02T09:40:09Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/bbd6e2da0b8660cc772dcd021aa9398be3ce81b1"
+        },
+        {
+          "sha": "b7bcf0083ceea166a3dd4e4ebb1ac21958b15125",
+          "date": "2026-09-02T08:13:17Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/b7bcf0083ceea166a3dd4e4ebb1ac21958b15125"
+        },
+        {
+          "sha": "7815573c7663404971dbb3e60c84d2fa4f5151ef",
+          "date": "2026-09-02T08:12:29Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/7815573c7663404971dbb3e60c84d2fa4f5151ef"
+        },
+        {
+          "sha": "0cf2f960f6f1fdb75c94626fefe34f5260bb7ace",
+          "date": "2026-09-02T08:12:26Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/0cf2f960f6f1fdb75c94626fefe34f5260bb7ace"
+        },
+        {
+          "sha": "bd1f031ac025ea3817a7851a3a18f363b64cc3e6",
+          "date": "2026-09-02T08:12:20Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/bd1f031ac025ea3817a7851a3a18f363b64cc3e6"
+        },
+        {
+          "sha": "d80317dd6cd57d9333cefd50b3c2b191d091394d",
+          "date": "2026-09-02T08:11:57Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/d80317dd6cd57d9333cefd50b3c2b191d091394d"
+        },
+        {
+          "sha": "394c1097378b794e9937981f3902f3f3b156066a",
+          "date": "2026-09-02T08:11:52Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/394c1097378b794e9937981f3902f3f3b156066a"
+        },
+        {
+          "sha": "0c1a062f88586f303f9bc33b9dc0ff95f5c05efe",
+          "date": "2026-09-02T08:11:18Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/0c1a062f88586f303f9bc33b9dc0ff95f5c05efe"
+        },
+        {
+          "sha": "4b29b60d13a2385317a75f0fcf350dc1a9ea323f",
+          "date": "2026-09-02T08:11:11Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/4b29b60d13a2385317a75f0fcf350dc1a9ea323f"
+        },
+        {
+          "sha": "59738d1550c09108778b57b501b60dedc8e63597",
+          "date": "2026-09-02T08:11:02Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/59738d1550c09108778b57b501b60dedc8e63597"
+        },
+        {
+          "sha": "2efb0073a52599ff9c82b7ff6e80c55273b9fbdf",
+          "date": "2026-09-02T08:10:58Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/2efb0073a52599ff9c82b7ff6e80c55273b9fbdf"
+        },
+        {
+          "sha": "408e964501ae1d85b5d07114216eccf16adfc7a6",
+          "date": "2026-09-02T08:10:35Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/408e964501ae1d85b5d07114216eccf16adfc7a6"
+        },
+        {
+          "sha": "11ee185999b86bfea2d8c0e69cef9a5e37acf686",
+          "date": "2026-08-28T13:05:04Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/11ee185999b86bfea2d8c0e69cef9a5e37acf686"
+        },
+        {
+          "sha": "d5f4b2aa960940effc8430165ab3604038e817af",
+          "date": "2026-08-27T21:14:54Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/d5f4b2aa960940effc8430165ab3604038e817af"
+        },
+        {
+          "sha": "5a77be5e8bec1600ad0a865638d88c1368497559",
+          "date": "2026-08-27T20:28:59Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/5a77be5e8bec1600ad0a865638d88c1368497559"
+        },
+        {
+          "sha": "bdb8a9c7a4aa1390af225f6a5d292e5088659bd5",
+          "date": "2026-08-26T20:57:39Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/bdb8a9c7a4aa1390af225f6a5d292e5088659bd5"
+        },
+        {
+          "sha": "38031739e551638e373fb553453256c23feeb41f",
+          "date": "2026-08-24T21:42:27Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/38031739e551638e373fb553453256c23feeb41f"
+        },
+        {
+          "sha": "f09cfe8ffc1eeffd68f4b628ed69c30f7cad229f",
+          "date": "2026-08-20T07:02:48Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/f09cfe8ffc1eeffd68f4b628ed69c30f7cad229f"
+        },
+        {
+          "sha": "837212b9699bc4c3400b97714988344d348598f8",
+          "date": "2026-08-19T17:59:36Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/837212b9699bc4c3400b97714988344d348598f8"
+        },
+        {
+          "sha": "70918557cadb78b72877efac0cf725b347aee675",
+          "date": "2026-08-19T17:45:55Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/70918557cadb78b72877efac0cf725b347aee675"
+        },
+        {
+          "sha": "1e44bda48ff4982b8ccfeec9c14156ea9e8ae5a2",
+          "date": "2026-08-18T19:04:28Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/1e44bda48ff4982b8ccfeec9c14156ea9e8ae5a2"
+        },
+        {
+          "sha": "644815f9e5bc52ad8f7a5227a456227e9c3e639b",
+          "date": "2026-08-11T13:55:59Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/644815f9e5bc52ad8f7a5227a456227e9c3e639b"
+        },
+        {
+          "sha": "7d6b5790ba84ce38c26f27a533d8419a31103c36",
+          "date": "2026-08-11T13:19:43Z",
+          "url": "https://github.com/langchain-ai/langgraph/commit/7d6b5790ba84ce38c26f27a533d8419a31103c36"
+        }
+      ],
+      "issues": [
+        {
+          "number": 8764,
+          "url": "https://github.com/langchain-ai/langgraph/issues/8764",
+          "created_at": "2026-08-30T19:19:35Z",
+          "author": "mstevens843",
+          "author_type": "User",
+          "comments": 15
+        },
+        {
+          "number": 8761,
+          "url": "https://github.com/langchain-ai/langgraph/issues/8761",
+          "created_at": "2026-08-30T16:42:08Z",
+          "author": "safal207",
+          "author_type": "User",
+          "comments": 0
+        },
+        {
+          "number": 8759,
+          "url": "https://github.com/langchain-ai/langgraph/issues/8759",
+          "created_at": "2026-08-30T16:15:26Z",
+          "author": "juanmicl",
+          "author_type": "User",
+          "comments": 3
+        }
+      ],
+      "issue_window_total": 67,
+      "errors": []
+    }
+  ]
+}

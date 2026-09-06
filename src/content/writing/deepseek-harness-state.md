@@ -10,17 +10,40 @@ topics:
   - Coding Agent
   - AI 架构
 featured: false
-readingTime: 6 min
+readingTime: 8 min
 updatedAt: 2026-09-06
 ---
 
-> 版本边界：本文采用官方源码快照 [`76fda72`](https://github.com/deepseek-ai/deepseek-harness/tree/76fda729799fe9b3848dbe2c211d4b231032b81e)。它是 developer preview；以下解读不是稳定接口或生产安全承诺。
+## 定位与价值
 
-工单插件已经装好，Agent 修改了文件，测试运行到一半进程退出。重启后，它该继续哪一步？如果只保留一句“正在修复”，就无法区分未执行、已执行但未确认，以及执行失败。
+本篇只追踪一次中断：文件已经修改，测试尚未完成。需要区分执行事实、恢复位置与模型当前看到的上下文。
 
-这一篇讨论事实如何进入日志，又怎样变成模型能读的有限上下文。
+完整定位与安装见[项目总览](/writing/deepseek-harness-composition/)。
 
-## Agent Loop：Turn 管输入工作段，Step 管一次模型调用
+研究基线：[deepseek-ai/deepseek-harness @ 76fda72](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：新输入或恢复会话] --> L[核心：Agent Loop / Turn / Step]
+ L -->|追加事实| S[Session 事件契约]
+ S --> P[适配：JSONL Persistence]
+ P --> D[基础设施：追加事件日志]
+ D -->|读取已存事件| P
+ P --> S
+ S -->|派生有限历史| C[上下文 Surface]
+ C -->|当前模型输入| L
+ L -->|结果或中断状态| U
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+### Turn 与事件日志
+
+#### Agent Loop：Turn 管输入工作段，Step 管一次模型调用
 
 很多 Agent 框架把循环写成一个看似简单的 `while (toolCalls.length)`。DeepSeek Harness 的循环更像一个事件溯源状态机。
 
@@ -60,7 +83,7 @@ A->>S: turn/start
   end
 ```
 
-*图 1｜一个 Turn 内的模型请求、工具结果与继续条件。*
+*图 2｜一个 Turn 内的模型请求、工具结果与继续条件。*
 
 这套定义解决了几个容易被忽略的边界问题：
 
@@ -72,7 +95,7 @@ A->>S: turn/start
 
 默认 `agent-loop` 只负责“调用模型、执行工具、继续循环”。重试、Compaction、目标推进和停止规则都通过事件或 Capability 插件挂上去。官方[`agent-loop` 文档](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/agent-loop/README.md)甚至把自己称为系统中唯一的具体 Loop 实现——“唯一”并不表示不可替换，而是其他包不应偷偷再实现第二套循环语义。
 
-## Session：不是聊天记录，而是运行时的事实账本
+#### Session：不是聊天记录，而是运行时的事实账本
 
 DeepSeek Harness 最值得借鉴的设计之一，是把 Session 定义为追加写入的 `SessionEvent` 日志。模型历史不是另一份可变数组，而是从日志投影得到：
 
@@ -102,7 +125,10 @@ Durable Session Events
 
 它也意味着存储不再只是 I/O 细节。事件顺序、身份、提交边界、Log-only 事件与 Model Surface 的区分，全部成为公共架构。详见官方 [Session 子系统说明](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/docs/subsystems/session.md)。
 
-## 上下文工程：日志保持完整，Surface 可以被替换
+
+### 有限上下文与恢复投影
+
+#### 上下文工程：日志保持完整，Surface 可以被替换
 
 事件溯源系统会遇到一个现实冲突：审计要求历史完整，模型上下文要求历史变短。DeepSeek Harness 用“完整 Log + 可变 Surface Projection”解决。
 
@@ -126,7 +152,7 @@ Prompt 装配也服务于缓存稳定性。固定 Identity、Persona、Prompt Se
 - 模型需要有限、高信号的当前视图；
 - Provider Cache 需要稳定前缀。
 
-## 实践：用中断点检验恢复语义
+#### 实践：用中断点检验恢复语义
 
 | 中断点 | 恢复时必须回答 |
 |---|---|
@@ -137,10 +163,38 @@ Prompt 装配也服务于缓存稳定性。固定 Identity、Persona、Prompt Se
 
 这些是设计验收项，不意味着日志本身提供 exactly-once 执行。对“请求已成功但回包丢失”的外部操作，恢复层仍需幂等键或独立状态查询；不能仅因为日志缺 result 就重新执行。
 
-## 从三份历史回到一个事实源
+#### 从三份历史回到一个事实源
 
 把这次修复的原始事件、模型上下文与 UI 展示放在一起，检查同一个工具调用的参数和结果是否一致。允许 UI 只显示摘要，但摘要必须能指回同一个事件。
 
 完整日志也不是无限保留的许可：生产系统应按数据类别配置访问、保留与删除策略，并处理备份和派生视图。这里的 append-only 是运行时记录语义，不是对所有业务数据永久不可删除的要求。
 
 压缩验收因此要同时检查两份产物：原始日志可追溯，当前投影保留未完成事项与不确定性。
+
+## 快速上手
+
+先按[项目总览](/writing/deepseek-harness-composition/#快速上手)准备运行环境；本篇的最小实验直接执行固定快照中的测试。另需按仓库贡献指南安装开发与测试依赖。
+
+```bash
+pnpm exec vitest run packages/core/session/tests/session.spec.ts
+```
+
+检查追加事件与恢复语义；测试通过不证明外部写入可安全重试。
+
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/deepseek-harness-composition/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+
+## 生态与社区
+
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/deepseek-harness-composition/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [package.json](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/package.json) | CLI 与构建脚本入口 |
+| 2 | [vendor/cordis/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/vendor/cordis/src/index.ts) | Cordis 公共导出 |
+| 3 | [packages/core/agent-loop/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/agent-loop/src/index.ts) | AgentLoop：默认循环服务 |
+| 4 | [packages/core/tools/src/index.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/tools/src/index.ts) | ToolDefinition 与工具运行时 |
+| 5 | [packages/core/session/tests/session.spec.ts](https://github.com/deepseek-ai/deepseek-harness/blob/76fda729799fe9b3848dbe2c211d4b231032b81e/packages/core/session/tests/session.spec.ts) | 检查追加事件与恢复语义；测试通过不证明外部写入可安全重试。 |

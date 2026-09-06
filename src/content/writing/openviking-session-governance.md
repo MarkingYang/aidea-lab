@@ -13,7 +13,30 @@ featured: false
 readingTime: 4 min
 ---
 
-`session.commit()` 是 OpenViking 的重要边界：此前是一次任务的消息、引用和工具记录，此后才可能成为摘要、长期 Memory 与未来检索对象。显式提交让“什么时候开始学习”可见，但不保证后台每一步天然原子。
+## 定位与价值
+
+本篇追踪 session.commit() 之后的归档、后台提炼和索引更新；接收成功与记忆可检索是两个时刻。
+
+完整定位与安装见[项目总览](/writing/openviking-series-overview/)。
+
+研究基线：[volcengine/OpenViking @ 0c5147c](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：Session commit] --> S[核心：Session 归档与后台任务]
+ S --> A[适配：Compressor / Memory Updater]
+ S -->|同步归档| D[基础设施：消息与内容存储]
+ A -->|记忆与摘要| D
+ A -->|派生索引| V[向量索引]
+ A -->|任务状态| S
+ S -->|task_id 与状态查询| U
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
 
 ```mermaid
 sequenceDiagram
@@ -33,15 +56,17 @@ sequenceDiagram
   S-->>A: pending / running / completed / failed
 ```
 
-*图 1｜提交 `0c5147c` 的 commit 先同步归档，再异步提炼；任务状态由任务 API 查询，索引不直接向 Agent 返回提交结果。*
+*图 2｜提交 `0c5147c` 的 commit 先同步归档，再异步提炼；任务状态由任务 API 查询，索引不直接向 Agent 返回提交结果。*
 
-## 记忆不是一条自由文本
+### 提交怎样形成长期记忆
+
+#### 记忆不是一条自由文本
 
 内置 Memory 类型覆盖 profile、preferences、entities、events、identity、soul、cases、trajectories 与 experiences。不同类型写入不同路径和 schema；候选记忆还会与相似内容比较，决定跳过、新建、合并或删除。
 
 这些类型分别保存身份、事件和经验，也扩大了错误影响：一条错误偏好影响回答，一条错误 experience 可能影响未来行动。因此，原始 Session 归档、变更差异和来源关系必须保留，便于回看“这条认识从哪里来”。
 
-## 双层存储需要明确失败状态
+#### 双层存储需要明确失败状态
 
 内容本体与 Vector Index 分离后，失败至少有三种：内容已写、索引未完成；索引仍指向旧 URI；摘要已更新、父级仍陈旧。事务模型、后台任务状态、快照和重建能力共同决定系统能否从这些中间态恢复。
 
@@ -49,7 +74,10 @@ sequenceDiagram
 
 应用不应把 `commit()` 返回当作所有记忆已经可搜索。更稳妥的契约是拿到 task ID，等待明确终态，并在超时后区分“仍处理中”“已失败”和“结果未知”。
 
-## 权限必须与检索使用同一边界
+
+### 索引与权限怎样保持一致
+
+#### 权限必须与检索使用同一边界
 
 多租户模式把 account 和 user 身份注入存储路径与检索过滤；`viking://~` 只能由已认证请求展开。共享 `resources` 还可以启用目录继承 ACL，read、write、manage 权限同时约束文件操作和搜索结果。
 
@@ -57,7 +85,7 @@ sequenceDiagram
 
 这与 [Agent 记忆设计：治理与验证](/writing/agent-memory-governance/)形成呼应：长期记忆需要撤权、来源与删除；OpenViking 进一步把这些约束落到 URI、任务状态和共享目录上。
 
-## 真正的代价是持续维护结构
+#### 真正的代价是持续维护结构
 
 分层目录并不会凭空出现。Parser 要正确保留材料结构，SemanticProcessor 要刷新摘要，索引要跟随文件变化，检索要处理陈旧父级，权限要同时作用于浏览与召回。任何一环失配，都可能让 Agent 看见一张漂亮但过期的地图。
 
@@ -72,3 +100,31 @@ sequenceDiagram
 - [Resource ACL](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/15-acl.md)
 
 </details>
+
+## 快速上手
+
+先按[项目总览](/writing/openviking-series-overview/#快速上手)准备运行环境；本篇的最小实验直接执行固定快照中的测试。另需按仓库贡献指南安装开发与测试依赖。
+
+```bash
+python -m pytest tests/session/test_session_lifecycle.py -q
+```
+
+检查会话生命周期；依赖 fixture 的测试不等同真实后台任务压测。
+
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/openviking-series-overview/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+
+## 生态与社区
+
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/openviking-series-overview/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [pyproject.toml](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/pyproject.toml) | ov 与 server 命令声明 |
+| 2 | [crates/ov_cli/src/main.rs](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/crates/ov_cli/src/main.rs) | Rust CLI main |
+| 3 | [openviking/retrieve/hierarchical_retriever.py](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/retrieve/hierarchical_retriever.py) | HierarchicalRetriever.retrieve：层级检索 |
+| 4 | [openviking/session/session.py](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/session/session.py) | Session.commit：会话提交 |
+| 5 | [tests/session/test_session_lifecycle.py](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/tests/session/test_session_lifecycle.py) | 检查会话生命周期；依赖 fixture 的测试不等同真实后台任务压测。 |

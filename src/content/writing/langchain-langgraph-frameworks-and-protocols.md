@@ -1,6 +1,6 @@
 ---
 title: LangChain 与 LangGraph：从模型调用到可恢复的 Agent，协议处在哪一层？
-description: 用知识库助手处理工单的例子，讲清 LangChain、LangGraph 与 MCP 的分工，拆解工具循环、状态、条件分支和暂停恢复，并给出可运行的小实验与选型方法。
+description: 从知识库助手处理工单出发，对比 LangChain 与 LangGraph 的抽象层级、状态能力和选型边界，讲清 MCP 的协议角色，并用实验解释暂停恢复与检查点。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-06
 type: essay
@@ -12,16 +12,16 @@ topics:
   - LangGraph
   - MCP
 featured: false
-readingTime: 14 min
+readingTime: 17 min
 ---
 
 一个知识库助手，最初只需要回答“这个接口为什么报错”。接入搜索工具以后，它可以先查文档再解释。再往前走一步，用户希望它核对故障证据、整理工单、等待确认，最后提交并返回编号。
 
 模型还是那个模型，工程问题却变了：怎样把工具交给模型？哪些步骤必须按顺序执行？等待确认期间把任务放在哪里？服务重启以后，从哪里继续？
 
-LangChain 和 LangGraph 经常在这个时候一起出现，也容易被统称为“Agent 协议”。先把定位说清楚：**LangChain 是构建模型应用与 Agent 的框架；LangGraph 是组织有状态工作流的编排框架与运行时；MCP 才是应用连接工具与上下文的通信协议。** LangChain 的 Agent 构建在 LangGraph 之上，而使用 LangGraph 并不要求采用 LangChain 的高层 Agent API。[LangChain 概览](https://docs.langchain.com/oss/python/langchain/overview)、[LangGraph 概览](https://docs.langchain.com/oss/python/langgraph/overview)
+LangChain 和 LangGraph 经常在这个时候一起出现，也容易被统称为“Agent 协议”。先把定位说清楚：**LangChain 提供现成、可定制的 Agent 抽象；LangGraph 提供有状态工作流的编排框架与运行时；MCP 约定应用怎样连接工具与上下文。** LangChain 的 Agent 构建在 LangGraph 之上，而使用 LangGraph 并不要求采用 LangChain 的高层 Agent API。选型时真正要判断的是：现成的 Agent 循环是否足够，还是需要直接控制业务流程的每一步。[LangChain 概览](https://docs.langchain.com/oss/python/langchain/overview)、[LangGraph 概览](https://docs.langchain.com/oss/python/langgraph/overview)
 
-本文依据 2026-09-05 核对的官方 Python 文档，围绕这一条任务展开。代码以明确列出的 API 为学习基线，不把在线文档的所有新增接口混进同一个示例。
+本文依据 2026-09-06 核对的官方 Python 文档，围绕这一条任务展开。代码以明确列出的 API 为学习基线，不把在线文档的所有新增接口混进同一个示例。
 
 ## 一、先分清协议、框架和运行时
 
@@ -53,6 +53,20 @@ flowchart TB
 ```
 
 *图 1｜一种组合方式。外层图负责业务步骤，内层 Agent 负责局部查询；这里的外层图由应用显式定义，不是在展开 LangChain Agent 自身的内部图。*
+
+### LangChain 与 LangGraph 的直接对比
+
+把两者放到同一张表里，最容易看清的是开发者需要掌握多少执行细节：
+
+| 维度 | LangChain | LangGraph |
+| --- | --- | --- |
+| 抽象层级 | 组合模型、工具、提示词与 middleware，定制现成 Agent 循环 | 直接组织有状态工作流，控制步骤与状态迁移 |
+| 常用入口 | `create_agent` | `StateGraph`；也提供 Functional API |
+| 循环与分支 | Agent 可反复调用工具，并通过 middleware 调整行为 | 显式定义循环、条件分支、并行与汇合 |
+| 持久化与人工介入 | 利用底层 LangGraph 的能力，按需配置 | 直接控制检查点、中断与恢复流程 |
+| 合理起点 | 常见工具调用 Agent，希望快速落地并逐步定制 | 多阶段业务流程，需要明确规定步骤如何衔接 |
+
+这张表比较的是使用方式。LangChain Agent 同样可以用于生产系统，也能使用持久化与人工介入；只因需求里出现“记忆”或“审批”，还不足以判断必须手写图。LangGraph 也可以直接接入已有模型 SDK 和工具函数，无须先采用 LangChain 的 Agent 抽象。[LangChain 概览](https://docs.langchain.com/oss/python/langchain/overview)、[LangGraph 概览](https://docs.langchain.com/oss/python/langgraph/overview)
 
 ## 二、LangChain：把模型和工具组织成可用的 Agent
 
@@ -101,7 +115,7 @@ print(result["messages"][-1].content)
 
 LangChain 的名称容易让人联想到线性的“提示词 → 模型 → 解析器”。这样的组合仍然有用途，但不能据此推断它只能执行直线流程，也不能把旧示例里的 Agent 入口直接当成当前推荐写法。
 
-官方 v1 迁移指南把 `create_agent` 作为新的 Agent 入口，并说明了旧功能向 `langchain-classic` 的迁移。阅读教程时，先核对包版本、导入路径和对应文档，再判断示例是否适用于项目。[LangChain v1 迁移指南](https://docs.langchain.com/oss/python/migrate/langchain-v1)
+官方 v1 迁移指南把 `create_agent` 作为新的 Agent 入口。当前 `langchain` 主库聚焦 Agent、消息、工具和标准模型接口；`LLMChain`、`ConversationChain` 等旧版 Chains，以及原 `langchain.retrievers` 下的功能，已迁移到 `langchain-classic`。因此，“主库包含 Chains、Agents、Memory”不再适合作为当前包结构的概括，也不能把 LangChain 的定位缩成只提供零件的组件库。阅读教程时，先核对包版本、导入路径和对应文档，再判断示例是否适用于项目。[LangChain v1 迁移指南](https://docs.langchain.com/oss/python/migrate/langchain-v1)
 
 ## 三、LangGraph：让运行过程成为显式的数据与结构
 
@@ -138,6 +152,18 @@ flowchart LR
 *图 2｜知识库助手的业务流程示意。等待补充与等待审核是两个不同出口；实际应用需要分别定义后续输入怎样重新进入流程。*
 
 选择图编排的价值，在于这些分支与交接能被独立观察、检查和恢复。它不要求一个节点对应一个 Agent，也不要求所有节点都调用模型。关于反馈循环与执行图的进一步关系，可以接续[Loop Engineering 与 Graph Engineering](/writing/loop-graph-engineering/)。
+
+### 图在运行时怎样前进？
+
+`StateGraph` 编译后交给 Pregel 运行时执行。它采用受 Google Pregel 启发的批量同步并行模型，每个 super-step 分为三个阶段：
+
+1. **Plan**：根据输入或上一轮更新的通道，选择本轮需要执行的节点。
+2. **Execution**：并行执行选中的节点；本轮写入的通道更新在执行阶段对其他节点不可见。
+3. **Update**：汇总写入并更新通道，供下一轮读取。
+
+在知识库助手中，如果两个检索节点被安排在同一轮执行，其中一个不会因为先完成，就让另一个在该轮读到它的新结果。需要依赖这些结果的汇总步骤应安排在后续轮次，并明确字段的合并规则。官方的阶段名称是 **Plan → Execution → Update**。[LangGraph 运行时文档](https://docs.langchain.com/oss/python/langgraph/pregel)
+
+这一机制可以表达循环图，但选择 LangGraph 的理由还包括对状态、暂停和恢复的统一管理。LangChain 的 Agent 循环已经使用这套运行时，不能用“链只能向前、图才能循环”概括今天的两者关系。
 
 ## 四、可运行实验：暂停后，究竟从哪里继续？
 
@@ -229,6 +255,8 @@ for thread_id, decision in [("approved-demo", True), ("rejected-demo", False)]:
 
 在 LangGraph 中，checkpointer 保存线程范围的图状态，store 保存图状态之外、可以跨线程使用的数据。前者适合当前任务的进度与恢复，后者适合用户偏好等跨任务信息。实验里的 `InMemorySaver` 只保存在内存中，进程退出后数据就会丢失。[Persistence 官方文档](https://docs.langchain.com/oss/python/langgraph/persistence)
 
+检查点还支持从已保存的历史位置重新执行，或修改状态后分叉到另一条执行路径。例如，可以保留已检索的证据，修改工单提案后再走一次审核。可选择的位置取决于实际保存的检查点及子图配置；重新执行时，检查点之后的模型调用、API 请求和中断会再次发生，结果也可能变化。调试时要把“查看历史状态”和“从历史状态重新运行”区分开。[Time travel 官方文档](https://docs.langchain.com/oss/python/langgraph/use-time-travel)
+
 把示例接到真实工单系统时，还有一个单靠 checkpoint 解决不了的窗口：
 
 1. 提交接口成功创建了工单。
@@ -264,24 +292,38 @@ for thread_id, decision in [("approved-demo", True), ("rejected-demo", False)]:
 | --- | --- | --- |
 | 一次提取、分类或总结 | 模型 SDK 加输入输出校验 | 开始出现多步依赖和恢复要求 |
 | 模型需要自行选择少量工具 | LangChain `create_agent` | 通用工具循环难以清楚表达业务阶段 |
-| 有明确分支、人工等待和长任务 | 显式 LangGraph 工作流 | 按真实故障细化节点与存储设计 |
+| 常见 Agent 需要记忆或工具审批 | 先配置 LangChain Agent 的检查点与相应 middleware | 需要独立控制多个业务阶段时再显式编排 |
+| 多阶段流程包含固定顺序、分支与恢复位置 | 显式 LangGraph 工作流 | 按真实故障细化节点与存储设计 |
+| 已有模型 SDK、检索和工具层，只缺状态编排 | 直接使用 LangGraph | 按需复用 LangChain 组件，无须改用其 Agent API |
 | 已有成熟业务工作流 | 保留现有编排，在局部接入模型 | 现有系统难以表达所需 Agent 行为时再评估 |
 | 工具要被多个应用复用 | 评估 MCP 接口 | 与上述各项组合，不替代业务编排 |
 
-LangChain Agent 本身已经构建在 LangGraph 上，因此不是遇到“需要状态”就必须重写成手工图。是否进一步显式定义外层流程，取决于哪些步骤需要由业务代码掌握，以及这些步骤是否需要独立检查和恢复。
+LangChain Agent 本身已经构建在 LangGraph 上，因此不是遇到“需要状态”就必须重写成手工图。例如，`HumanInTheLoopMiddleware` 可以按工具调用策略暂停执行，再结合 checkpointer 与线程 ID 接收审核结果、恢复运行；需要跨进程恢复时，应使用持久化存储。是否进一步显式定义外层流程，取决于哪些步骤需要由业务代码掌握，以及这些步骤是否需要独立检查和恢复。[LangChain 人工介入文档](https://docs.langchain.com/oss/python/langchain/human-in-the-loop)
 
-对知识库助手，我会先做能验证价值的查询版本：它能否找到正确资料，能否承认证据不足？然后加入结构化提案；真正出现审核等待与跨步骤恢复需求时，再明确组织外层图。这样的演进有一个可以持续检查的标准：每增加一层结构，都应该让某个具体故障更容易定位、让某项业务责任更清楚。
+对知识库助手，我会先做能验证价值的查询版本：它能否找到正确资料，能否承认证据不足？然后加入结构化提案，并在现有 Agent 上配置所需记忆与工具审批；当“核验证据、起草、审核、提交”需要各自有明确的进入条件与恢复位置时，再组织外层图。这样的演进有一个可以持续检查的标准：每增加一层结构，都应该让某个具体故障更容易定位、让某项业务责任更清楚。
 
 需要进一步比较图式编排与其他运行方式时，使用[三种架构的同题实验](/writing/harness-architecture-selection/)。本篇的内存检查点示例只解释暂停位置，该实验才包含持久检查点与真实业务资源。
+
+### 部署与生态需要单独评估
+
+框架选型之外，还要决定谁来运行和维护应用。当前官方文档将部署产品称为 **LangSmith Deployment**；旧资料中的 LangGraph Cloud 名称应与当前产品文档对照。LangSmith 同时提供追踪、评估等能力，部署服务与框架本身应分别评估。[LangGraph 生态说明](https://docs.langchain.com/oss/python/langgraph/overview)、[LangSmith Deployment](https://docs.langchain.com/langsmith/deployment)
+
+对这个工单助手，实际问题是检查点存在哪里、工作进程由谁管理、任务怎样排队，以及故障后如何恢复。可以在自己的服务中运行 LangGraph，也可以评估部署产品。选择商业部署服务时，应核对对应方案的费用、部署条件与条款；采用框架本身不会自动完成这些运维工作。
+
+社区热度可以作为辅助信息，但下载量、生产应用数或增长排名只有附带统计时间、范围与来源才有比较价值。本文以官方接口、运行机制与可验证的任务需求作为选型依据。
 
 ## 参考资料
 
 - [LangChain Overview](https://docs.langchain.com/oss/python/langchain/overview)：框架定位。
 - [LangChain Agents](https://docs.langchain.com/oss/python/langchain/agents)：Agent 创建与配置。
+- [LangChain Human-in-the-loop](https://docs.langchain.com/oss/python/langchain/human-in-the-loop)：工具审批 middleware 与持久化要求。
 - [LangChain v1 迁移指南](https://docs.langchain.com/oss/python/migrate/langchain-v1)：新旧入口与包结构。
 - [LangGraph Overview](https://docs.langchain.com/oss/python/langgraph/overview)：运行时定位与两者关系。
 - [LangGraph Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)：状态、节点、边与合并。
+- [LangGraph Runtime](https://docs.langchain.com/oss/python/langgraph/pregel)：Pregel 与 super-step 三阶段。
 - [LangGraph Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts)：暂停与恢复行为。
 - [LangGraph Persistence](https://docs.langchain.com/oss/python/langgraph/persistence)：checkpointer 与 store。
+- [LangGraph Time Travel](https://docs.langchain.com/oss/python/langgraph/use-time-travel)：历史检查点的重放与分叉。
+- [LangSmith Deployment](https://docs.langchain.com/langsmith/deployment)：当前部署产品与运行方式。
 - [LangChain MCP](https://docs.langchain.com/oss/python/langchain/mcp)：协议适配与工具接入。
 - [MCP 2025-11-25 架构规范](https://modelcontextprotocol.io/specification/2025-11-25/architecture)：协议角色与边界。

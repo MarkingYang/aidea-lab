@@ -1,0 +1,141 @@
+[
+  {
+    "repo": "anthropics/claude-code",
+    "articles": [
+      "claude-code-internals-overview"
+    ],
+    "ref": "d7dbd9a09f59775726ed14bbea8fc9dfdff62f7b",
+    "local_path": "/tmp/aidea-project-sources/anthropics__claude-code"
+  },
+  {
+    "repo": "openai/codex",
+    "articles": [
+      "codex-system-overview"
+    ],
+    "ref": "008bbd5884122dc95aaece19ecfe0fc6a59dcf36",
+    "local_path": "/tmp/aidea-project-sources/openai__codex"
+  },
+  {
+    "repo": "MoonshotAI/kimi-code",
+    "articles": [
+      "kimi-code-system-overview"
+    ],
+    "ref": "f9ca33376604ae91ea35a4ac1d6f1d4425a5aead",
+    "local_path": "/tmp/aidea-project-sources/MoonshotAI__kimi-code"
+  },
+  {
+    "repo": "anomalyco/opencode",
+    "articles": [
+      "opencode-system-overview"
+    ],
+    "ref": "7c2199d84a5830f70a8250731a42ff958145b4d6",
+    "local_path": "/tmp/aidea-project-sources/anomalyco__opencode"
+  },
+  {
+    "repo": "deepseek-ai/deepseek-harness",
+    "articles": [
+      "deepseek-harness-composition",
+      "deepseek-harness-state",
+      "deepseek-harness-execution"
+    ],
+    "ref": "76fda729799fe9b3848dbe2c211d4b231032b81e",
+    "local_path": "/tmp/aidea-project-sources/deepseek-ai__deepseek-harness"
+  },
+  {
+    "repo": "NousResearch/hermes-agent",
+    "articles": [
+      "hermes-agent-architecture-deep-dive",
+      "hermes-agent-runtime-services",
+      "hermes-agent-memory-governance"
+    ],
+    "ref": "63279301bcbdc185c1b07b98a9312eb0c862f26d",
+    "local_path": "/tmp/aidea-project-sources/NousResearch__hermes-agent"
+  },
+  {
+    "repo": "earendil-works/pi",
+    "articles": [
+      "pi-architecture-deep-dive",
+      "pi-session-extension-architecture",
+      "pi-durable-harness-governance"
+    ],
+    "ref": "e44d75c20a51142abc056c243b13c1d7bb4be687",
+    "local_path": "/tmp/aidea-project-sources/earendil-works__pi"
+  },
+  {
+    "repo": "anthropics/skills",
+    "articles": [
+      "anthropic-skills-overview"
+    ],
+    "ref": "41bbe19d1a1a7eaab5e7bb9050a417e5c6cffc8f",
+    "local_path": "/tmp/aidea-project-sources/anthropics__skills"
+  },
+  {
+    "repo": "addyosmani/agent-skills",
+    "articles": [
+      "addy-agent-skills-overview"
+    ],
+    "ref": "469d00f4e67ff4a21eb6e6e467a086c9a1f1deb8",
+    "local_path": "/tmp/aidea-project-sources/addyosmani__agent-skills"
+  },
+  {
+    "repo": "mattpocock/skills",
+    "articles": [
+      "mattpocock-skills-overview"
+    ],
+    "ref": "3cca18b368ae95cdbdebbff572ccafa662551015",
+    "local_path": "/tmp/aidea-project-sources/mattpocock__skills"
+  },
+  {
+    "repo": "affaan-m/ECC",
+    "articles": [
+      "ecc-architecture-deep-dive",
+      "ecc-hook-runtime-memory",
+      "ecc-memory-supply-chain"
+    ],
+    "ref": "22e8cf01d0b54719b3a49002fab2ccbda4ff5b9e",
+    "local_path": "/tmp/aidea-project-sources/affaan-m__ECC"
+  },
+  {
+    "repo": "mem0ai/mem0",
+    "articles": [
+      "mem0-series-overview",
+      "mem0-production-boundaries"
+    ],
+    "ref": "dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3",
+    "local_path": "/tmp/aidea-project-sources/mem0ai__mem0"
+  },
+  {
+    "repo": "volcengine/OpenViking",
+    "articles": [
+      "openviking-series-overview",
+      "openviking-session-governance"
+    ],
+    "ref": "0c5147cae26aec8d6d93445ec6ad86d5faff4035",
+    "local_path": "/tmp/aidea-project-sources/volcengine__OpenViking"
+  },
+  {
+    "repo": "TencentCloud/TencentDB-Agent-Memory",
+    "articles": [
+      "tencentdb-agent-memory-overview",
+      "tencentdb-agent-memory-governance"
+    ],
+    "ref": "2ee22397f6091b8cd3ea847bc1edb04d3bec0c94",
+    "local_path": "/tmp/aidea-project-sources/TencentCloud__TencentDB-Agent-Memory"
+  },
+  {
+    "repo": "langchain-ai/langchain",
+    "articles": [
+      "langchain-langgraph-frameworks-and-protocols"
+    ],
+    "ref": "b34f5669de2a19fd260c1c0a78f80977289400f9",
+    "local_path": "/tmp/aidea-project-sources/langchain-ai__langchain"
+  },
+  {
+    "repo": "langchain-ai/langgraph",
+    "articles": [
+      "langchain-langgraph-frameworks-and-protocols"
+    ],
+    "ref": "81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1",
+    "local_path": "/tmp/aidea-project-sources/langchain-ai__langgraph"
+  }
+]

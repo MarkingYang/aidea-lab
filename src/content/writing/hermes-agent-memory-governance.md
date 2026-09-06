@@ -11,12 +11,35 @@ topics:
   - Agent Skills
   - Agent Harness
 featured: false
-readingTime: 7 min
+readingTime: 9 min
 ---
 
-Hermes 真正不同于一次性工具的地方，是它试图让任务之间发生连接。但长期积累会把一次错误放大到未来，因此“记住什么”必须与“凭什么相信”一起设计。
+## 定位与价值
 
-## 四类记忆按生命周期分工
+本篇讨论临时故障如何留成记录，以及哪些经验可以影响下一次任务；重点是纠错和晋升，而非保存越多越好。
+
+完整定位与安装见[项目总览](/writing/hermes-agent-architecture-deep-dive/)。
+
+研究基线：[NousResearch/hermes-agent @ 6327930](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/README.md)；源码与社区核对日期为 2026-09-06。
+
+## 技术架构
+
+```mermaid
+flowchart TB
+ U[入口：当前任务与历史查询] --> A[核心：Agent 上下文组织]
+ A --> M[适配：Memory / Skill / Session 工具]
+ M --> D[基础设施：SQLite / MEMORY.md / Skill 目录]
+ D -->|原始证据或候选方法| A
+ A -->|任务结果| U
+ A -->|经验候选| R[检查适用范围与来源]
+ R -->|通过采用规则后更新| D
+```
+
+*图 1｜按职责归纳的调用地图；箭头表示请求与结果，不表示四个独立部署服务。*
+
+## 核心机制
+
+### 四种记忆的更新路径
 
 “拥有长期记忆”常被产品描述成一个开关，但 Hermes 实际上把记忆拆成四种载体：
 
@@ -29,19 +52,19 @@ Hermes 真正不同于一次性工具的地方，是它试图让任务之间发�
 
 这些载体分别承担当前输入、原始记录、短事实和方法复用，检索和更新策略也应分开。
 
-### 1. Session 是事实日志，不是摘要替身
+#### 1. Session 是事实日志，不是摘要替身
 
 Hermes 把会话、消息、工具调用、Reasoning、用量、模型配置和路由信息写进 SQLite，并用 FTS5、Trigram 与 CJK 索引支持全文检索。Agent 可以通过 `session_search` 找回原始消息，而不是先把所有历史压成一份不可逆的用户画像。官方的 [Session Storage](https://hermes-agent.nousresearch.com/docs/developer-guide/session-storage)展示了 Session、Message、FTS 与写入竞争处理的结构。
 
 这个选择很重要：**Memory 保存结论，Session 保存证据。** 当结论可疑时，系统仍有机会回到原始上下文重新判断。
 
-### 2. 常驻 Memory 被故意做小
+#### 2. 常驻 Memory 被故意做小
 
 内置 `MEMORY.md` 和 `USER.md` 都有严格字符上限，前者保存环境、项目和经验，后者保存用户身份、偏好与协作方式。写满后系统不会静默淘汰，而是要求 Agent 合并或删除旧条目后重试。
 
 小容量迫使 Agent 做策展，而不是做日志复制。常驻 Prompt 中最昂贵的不是存储空间，而是每一次推理都要重新支付的注意力。
 
-### 3. Skills 是程序性记忆，不是长 Prompt 附件
+#### 3. Skills 是程序性记忆，不是长 Prompt 附件
 
 Skills 只在 System Prompt 中暴露精简索引，匹配任务后再读取完整 `SKILL.md`，更深的参考资料继续按需加载。官方[Skills 文档](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/)将它称为 Progressive Disclosure。
 
@@ -55,7 +78,10 @@ Session Search：当需要核对过去究竟发生过什么时再查证
 
 固定快照 `6327930` 采用这套分层；接入时仍需检查来源、保留期与当前任务适用性。
 
-## “自我进化”到底是什么：受约束的 Artifact Learning
+
+### 经验晋升与治理
+
+#### “自我进化”到底是什么：受约束的 Artifact Learning
 
 Hermes 把自己描述为 self-improving agent。这个说法很容易被误解成模型会在线微调。源码展示的真实机制更具体，也更可控：**它不会在用户机器上持续更新模型权重，而是持续更新模型下一次会读取的外部制品。**
 
@@ -79,7 +105,7 @@ flowchart LR
   F --> A
 ```
 
-*图 1｜Hermes 的 Artifact Learning：开启写入审批时先暂存、获批后生效；未开启时可以自动写入。审批不是所有配置的必经步骤。*
+*图 2｜Hermes 的 Artifact Learning：开启写入审批时先暂存、获批后生效；未开启时可以自动写入。审批不是所有配置的必经步骤。*
 
 我把这种模式称为 **Artifact Learning**：模型参数不变，外部认知制品变了，因此系统行为随经验改变。它有四个优点：
 
@@ -92,7 +118,7 @@ flowchart LR
 
 所以，自我进化的关键并不是“允许 Agent 写 Skill”，而是形成一条带来源、所有权、审批和回滚的知识变更链。没有这四项，学习闭环很容易变成错误放大器。
 
-## 安全模型：Guardrail 与 Security Boundary 必须分清
+#### 安全模型：Guardrail 与 Security Boundary 必须分清
 
 Hermes 的[安全文档](https://hermes-agent.nousresearch.com/docs/user-guide/security/)列出了用户授权、危险命令审批、文件写入保护、容器隔离、MCP 凭证过滤、上下文扫描、跨 Session 隔离和输入清洗等多层防线。真正重要的不是层数，而是它们解决的威胁不同。
 
@@ -112,7 +138,7 @@ Checkpoint 同样不是沙箱。它会在文件变更前把工作目录快照到
 
 对于能改写自身 Memory 与 Skills 的系统，还必须增加一条“认知供应链”安全线：来源是否可信、内容是否被扫描、后台 Agent 是否有写权限、变更是否需要审批、旧版本能否恢复。Hermes 已经提供了这些机制的雏形，但默认允许自动写入；用于工作机器或多人环境时，开启 Memory 与 Skill 写入审批会更稳妥。
 
-## 用临时故障检查经验是否被误用
+#### 用临时故障检查经验是否被误用
 
 在隔离项目中模拟一次“工具未安装”，随后安装工具并启动新 Session。检查后台是否把瞬态失败写成永久禁用方法，能否追到来源、修订制品，以及新会话是否读取正确版本。这是建议验收场景，本文没有实际执行。
 
@@ -121,3 +147,31 @@ Checkpoint 同样不是沙箱。它会在文件变更前把工作目录快照到
 ---
 
 资料截至 2026-09-04。优先引用 Nous Research 官方仓库与官方文档；关于架构优缺点、模块化单体和 Artifact Learning 的表述属于基于源码的分析判断，不是官方自我定义。
+
+## 快速上手
+
+先按[项目总览](/writing/hermes-agent-architecture-deep-dive/#快速上手)准备运行环境；本篇的最小实验直接执行固定快照中的测试。另需按仓库贡献指南安装开发与测试依赖。
+
+```bash
+python -m pytest tests/test_session_skill_previews.py -q
+```
+
+观察 Session 中技能预览的边界；不把预览成功当作技能质量通过。
+
+模型、执行环境与存储等共用配置，以及安装常见问题，见[总览的三个配置项](/writing/hermes-agent-architecture-deep-dive/#快速上手)。本篇命令仅在明确记录实跑结果时才作为通过证据。
+
+## 生态与社区
+
+许可证、官方集成、提交与 Issue 样本统一见[项目总览的生态与社区](/writing/hermes-agent-architecture-deep-dive/#生态与社区)。本篇的治理建议不表示上游已提供对应 SLA 或托管能力。
+
+## 源码阅读路径
+
+按下面顺序阅读固定提交：先找包或命令入口，再进入核心抽象、具体实现和测试。
+
+| 顺序 | 目录 → 文件 | 函数、对象或检查重点 |
+| --- | --- | --- |
+| 1 | [pyproject.toml](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/pyproject.toml) | project.scripts 的 hermes 入口 |
+| 2 | [hermes_cli/main.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/hermes_cli/main.py) | main：CLI 分派 |
+| 3 | [run_agent.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/run_agent.py) | AIAgent：模型与工具循环 |
+| 4 | [agent/memory_manager.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/agent/memory_manager.py) | 记忆管理实现 |
+| 5 | [tests/test_session_skill_previews.py](https://github.com/NousResearch/hermes-agent/blob/63279301bcbdc185c1b07b98a9312eb0c862f26d/tests/test_session_skill_previews.py) | 观察 Session 中技能预览的边界；不把预览成功当作技能质量通过。 |
