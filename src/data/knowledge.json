@@ -157,6 +157,22 @@
       ]
     },
     {
+      "id": "harness-protocols",
+      "topic": "harness",
+      "title": "Harness 协议",
+      "description": "MCP、A2A、AG-UI、A2UI、ACP 与 Agent Skills：能力、协作、界面和方法资产的互通边界。",
+      "outcome": "理解每种协议的核心对象、主流程、状态、异常与适用条件。",
+      "question": "Harness 怎样接入工具、其他 Agent、用户界面与技能资产？",
+      "articles": [
+        "harness-foundations-mcp-lifecycle",
+        "a2a-protocol",
+        "ag-ui-protocol",
+        "a2ui-protocol",
+        "acp-protocol",
+        "agent-skills-specification"
+      ]
+    },
+    {
       "id": "harness-integration",
       "topic": "harness",
       "title": "Harness 实战",
@@ -177,7 +193,9 @@
       "articles": [
         "llm-agent-capability-landscape-2026",
         "harness-operations-model-gateway",
-        "litellm-gateway-architecture"
+        "litellm-gateway-architecture",
+        "openai-api-protocol",
+        "anthropic-api-protocol"
       ]
     },
     {
@@ -189,7 +207,6 @@
       "question": "分别研究工具契约、协议生命周期、执行安全和能力路由，定位各自负责的失败。",
       "articles": [
         "harness-engineering-tools",
-        "harness-foundations-mcp-lifecycle",
         "harness-engineering-security",
         "opa-policy-architecture",
         "capability-routing-at-scale"
@@ -219,6 +236,18 @@
         "agent-memory-writing",
         "agent-memory-retrieval",
         "agent-memory-governance"
+      ]
+    },
+    {
+      "id": "identity-authorization",
+      "topic": "architecture",
+      "title": "身份与授权",
+      "description": "OAuth 与 OpenID Connect：区分资源访问授权、用户身份认证与业务执行权限。",
+      "outcome": "建立正确的令牌、用户身份与跨服务委派边界。",
+      "question": "谁发起任务，凭什么访问资源，谁做最终权限判断？",
+      "articles": [
+        "oauth",
+        "openid-connect"
       ]
     },
     {

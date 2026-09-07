@@ -1,0 +1,92 @@
+[
+  {
+    "repository": "a2aproject/A2A",
+    "commit": "98853be376c88df25e1704771cd3ea9ef8823a96",
+    "path": "specification/a2a.proto",
+    "url": "https://raw.githubusercontent.com/a2aproject/A2A/98853be376c88df25e1704771cd3ea9ef8823a96/specification/a2a.proto",
+    "sha256": "945df6e34001b2bfd0fd62d9484b63094dfad9d78705e41e2873441c419ae2d1",
+    "bytes": 35942,
+    "local_review_cache": "/tmp/aidea-protocol-sources/A2A-a2a.proto"
+  },
+  {
+    "repository": "ag-ui-protocol/ag-ui",
+    "commit": "ce1bdef573dbab4ad15be62a788e6c8891aa9d48",
+    "path": "sdks/typescript/packages/core/src/events.ts",
+    "url": "https://raw.githubusercontent.com/ag-ui-protocol/ag-ui/ce1bdef573dbab4ad15be62a788e6c8891aa9d48/sdks/typescript/packages/core/src/events.ts",
+    "sha256": "667c9577913e6c51737fef6463f088e6e39f4d7f6d1046727f7f76ec90a9e362",
+    "bytes": 26886,
+    "local_review_cache": "/tmp/aidea-protocol-sources/ag-ui-events.ts"
+  },
+  {
+    "repository": "ag-ui-protocol/ag-ui",
+    "commit": "ce1bdef573dbab4ad15be62a788e6c8891aa9d48",
+    "path": "sdks/typescript/packages/core/src/types.ts",
+    "url": "https://raw.githubusercontent.com/ag-ui-protocol/ag-ui/ce1bdef573dbab4ad15be62a788e6c8891aa9d48/sdks/typescript/packages/core/src/types.ts",
+    "sha256": "454d1638a94cf35d17b2322f29b7211641dd0df38f986069858956a27da159ef",
+    "bytes": 10015,
+    "local_review_cache": "/tmp/aidea-protocol-sources/ag-ui-types.ts"
+  },
+  {
+    "repository": "a2ui-project/a2ui",
+    "commit": "8ff4651232ab0e02b0123730b502711170637a3a",
+    "path": "specification/v0_9/docs/a2ui_protocol.md",
+    "url": "https://raw.githubusercontent.com/a2ui-project/a2ui/8ff4651232ab0e02b0123730b502711170637a3a/specification/v0_9/docs/a2ui_protocol.md",
+    "sha256": "f658ad7ab12612be8dcdd8a53af5e7a4fb69696577b58ecf017ae976c7188f54",
+    "bytes": 48979,
+    "local_review_cache": "/tmp/aidea-protocol-sources/a2ui-a2ui_protocol.md"
+  },
+  {
+    "repository": "agentclientprotocol/agent-client-protocol",
+    "commit": "96099538155403c090c2df3524a4aa2abd725982",
+    "path": "schema/v1/schema.json",
+    "url": "https://raw.githubusercontent.com/agentclientprotocol/agent-client-protocol/96099538155403c090c2df3524a4aa2abd725982/schema/v1/schema.json",
+    "sha256": "caf62ff962ada396878372ced11efb2c6764e59d90919a38583c319948931a42",
+    "bytes": 246569,
+    "local_review_cache": "/tmp/aidea-protocol-sources/agent-client-protocol-schema.json"
+  },
+  {
+    "repository": "agentclientprotocol/agent-client-protocol",
+    "commit": "96099538155403c090c2df3524a4aa2abd725982",
+    "path": "schema/v1/meta.json",
+    "url": "https://raw.githubusercontent.com/agentclientprotocol/agent-client-protocol/96099538155403c090c2df3524a4aa2abd725982/schema/v1/meta.json",
+    "sha256": "061edb6efa8fb2aa2792459a86ec7268de5fe665bba48b2ffe7939df01481f88",
+    "bytes": 1159,
+    "local_review_cache": "/tmp/aidea-protocol-sources/agent-client-protocol-meta.json"
+  },
+  {
+    "repository": "agentskills/agentskills",
+    "commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+    "path": "docs/specification.mdx",
+    "url": "https://raw.githubusercontent.com/agentskills/agentskills/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/specification.mdx",
+    "sha256": "b9079c0c10b7930e8c6a20ff2bc10cda2a3343c55185120e3f1116a1a529b220",
+    "bytes": 7166,
+    "local_review_cache": "/tmp/aidea-protocol-sources/agentskills-specification.mdx"
+  },
+  {
+    "repository": "a2ui-project/a2ui",
+    "commit": "8ff4651232ab0e02b0123730b502711170637a3a",
+    "path": "specification/v0_9/json/server_to_client.json",
+    "url": "https://raw.githubusercontent.com/a2ui-project/a2ui/8ff4651232ab0e02b0123730b502711170637a3a/specification/v0_9/json/server_to_client.json",
+    "sha256": "77080edd7d15077e5d345682c7bedec27b59c6df13ed3a72fd3de66318acb2d6",
+    "bytes": 5875,
+    "local_review_cache": "/tmp/aidea-protocol-sources/a2ui-server_to_client.json"
+  },
+  {
+    "repository": "a2ui-project/a2ui",
+    "commit": "8ff4651232ab0e02b0123730b502711170637a3a",
+    "path": "specification/v0_9/json/common_types.json",
+    "url": "https://raw.githubusercontent.com/a2ui-project/a2ui/8ff4651232ab0e02b0123730b502711170637a3a/specification/v0_9/json/common_types.json",
+    "sha256": "ac79788e95e5bdf0a39808953593a53c1bc9fcdcdb55480f4610613c6591e94c",
+    "bytes": 9086,
+    "local_review_cache": "/tmp/aidea-protocol-sources/a2ui-common_types.json"
+  },
+  {
+    "repository": "a2ui-project/a2ui",
+    "commit": "8ff4651232ab0e02b0123730b502711170637a3a",
+    "path": "specification/v0_9/catalogs/basic/catalog.json",
+    "url": "https://raw.githubusercontent.com/a2ui-project/a2ui/8ff4651232ab0e02b0123730b502711170637a3a/specification/v0_9/catalogs/basic/catalog.json",
+    "sha256": "8cc94d0a482e67048f9fc989964ca5da56fe42f531d919315a508989fb22e13e",
+    "bytes": 46328,
+    "local_review_cache": "/tmp/aidea-protocol-sources/a2ui-catalog.json"
+  }
+]

@@ -1,3 +1,7 @@
+## Protocol articles and publication authorization — 2026-09-07
+
+The user explicitly requested one deep article each for MCP, A2A, AG-UI, A2UI, ACP, Agent Skills, OpenAI API, Anthropic API, OAuth and OpenID Connect, then push. Extend the existing MCP article at its original URL; add nine articles. Current total is 72 articles, 24 groups and 8 domains. This batch is authorized for origin/main. Keep the fixed protocol versions, source hashes, schema-only example checks and unrun provider/model/interoperability boundaries in docs/protocol-study/. Skills is a packaging specification; model APIs are vendor interface contracts. Do not imply generic runtime states are protocol enums. Subsequent work requires a new publication request.
+
 ## Publication authorization — article diagrams, 2026-09-07
 
 The user explicitly requested “发布” after the diagram additions and Multi-Agent coverage question. Publish the current 19-article, 50-diagram batch and Mermaid display fixes through origin/main. The existing Multi-Agent selection article is unchanged; its proposed additional diagrams have not been implemented. Article count remains 63. Subsequent additions require a new publication request.

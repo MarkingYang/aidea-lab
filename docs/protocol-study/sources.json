@@ -1,0 +1,628 @@
+{
+  "checked_at": "2026-09-07T09:15:58.444445+00:00",
+  "sources": [
+    {
+      "url": "https://a2a-protocol.org/latest/topics/life-of-a-task/",
+      "fetched_url": "https://a2a-protocol.org/latest/topics/life-of-a-task/",
+      "status": 200,
+      "bytes": 97560,
+      "sha256": "268b4e3ee59f18b0806c330408cf33cd12a22365b511b20ba808769c7d54f257",
+      "articles": [
+        "a2a-protocol"
+      ]
+    },
+    {
+      "url": "https://a2a-protocol.org/v1.0.0/specification/",
+      "fetched_url": "https://a2a-protocol.org/v1.0.0/specification/",
+      "status": 200,
+      "bytes": 599272,
+      "sha256": "f5d15f00006b7e25b8a3a2766b309b661fff36dbd4330933ed61bfc8d435f05b",
+      "articles": [
+        "a2a-protocol"
+      ]
+    },
+    {
+      "url": "https://a2ui.org/introduction/what-is-a2ui/",
+      "fetched_url": "https://a2ui.org/introduction/what-is-a2ui/",
+      "status": 200,
+      "bytes": 84548,
+      "sha256": "7ec59be705a5d411eb37e31f3d017e9d037a7d299b951179692297203b449495",
+      "articles": [
+        "a2ui-protocol"
+      ]
+    },
+    {
+      "url": "https://a2ui.org/specification/v0.9-a2ui/",
+      "fetched_url": "https://a2ui.org/specification/v0.9-a2ui/",
+      "status": 200,
+      "bytes": 183148,
+      "sha256": "1b45cbd2e5be41cde79ef8243e84d8ba12734045659f5114e25530ff18a8898e",
+      "articles": [
+        "a2ui-protocol"
+      ]
+    },
+    {
+      "url": "https://agentclientprotocol.com/get-started/introduction",
+      "fetched_url": "https://agentclientprotocol.com/get-started/introduction",
+      "status": 200,
+      "bytes": 237000,
+      "sha256": "e305c999dc1f5f1b8065a5ba73e3875cc530142bf881600be35e818e9515e5f6",
+      "articles": [
+        "acp-protocol"
+      ]
+    },
+    {
+      "url": "https://agentclientprotocol.com/protocol/v1/initialization",
+      "fetched_url": "https://agentclientprotocol.com/protocol/v1/initialization",
+      "status": 200,
+      "bytes": 434326,
+      "sha256": "d96bf33d81b3eb5821c2443b7b026fcfbbb72ebef715c291cb30516cf8d3d728",
+      "articles": [
+        "acp-protocol"
+      ]
+    },
+    {
+      "url": "https://agentclientprotocol.com/protocol/v1/prompt-turn",
+      "fetched_url": "https://agentclientprotocol.com/protocol/v1/prompt-turn",
+      "status": 200,
+      "bytes": 482503,
+      "sha256": "1ee9903c7f760dc40b42dd52d8137370f2e4d135cff324514a399ef15e68a8ea",
+      "articles": [
+        "acp-protocol"
+      ]
+    },
+    {
+      "url": "https://agentclientprotocol.com/protocol/v1/session-setup",
+      "fetched_url": "https://agentclientprotocol.com/protocol/v1/session-setup",
+      "status": 200,
+      "bytes": 633566,
+      "sha256": "9be9499a0a122e1a9a9190bfd94b0857941fae5853e79634f87e18b2435e09e5",
+      "articles": [
+        "acp-protocol"
+      ]
+    },
+    {
+      "url": "https://agentclientprotocol.com/protocol/v1/tool-calls",
+      "fetched_url": "https://agentclientprotocol.com/protocol/v1/tool-calls",
+      "status": 200,
+      "bytes": 436729,
+      "sha256": "3800278bf88308c1d13565a2a8c30b6a1563ad85502a591a4929e8dfe2fd9b62",
+      "articles": [
+        "acp-protocol"
+      ]
+    },
+    {
+      "url": "https://agentskills.io/specification",
+      "fetched_url": "https://agentskills.io/specification",
+      "status": 200,
+      "bytes": 414720,
+      "sha256": "95ce081e96d0881677e40e1a0e8e1b73882311939011689840271d1fafffc881",
+      "articles": [
+        "agent-skills-specification"
+      ]
+    },
+    {
+      "url": "https://agentskills.io/what-are-skills",
+      "fetched_url": "https://agentskills.io/home",
+      "status": 200,
+      "bytes": 265733,
+      "sha256": "372ef5e0c6fa931c42242898a8bd248545f741efb17690dbab737dc993bc5fc8",
+      "articles": [
+        "agent-skills-specification"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/background",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/background",
+      "status": 200,
+      "bytes": 495329,
+      "sha256": "2a033bb958beff5bc30470b30b6929cb5ce051ebe572efc2d6c5d9c0dfac528c",
+      "articles": [
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/conversation-state",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/conversation-state",
+      "status": 200,
+      "bytes": 712445,
+      "sha256": "4187a7d85f5a9b83b6bd6b7fd2e3caf0eab2d5a2639c22ade0278448eed3d7b9",
+      "articles": [
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/function-calling",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/function-calling",
+      "status": 200,
+      "bytes": 1394567,
+      "sha256": "5545b4a0dccc3a1e3bb5f284ce89fa37ca303a298697cd39d990a4a245139f07",
+      "articles": [
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/migrate-to-responses",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/migrate-to-responses",
+      "status": 200,
+      "bytes": 930379,
+      "sha256": "a18f3f69bed79fb99548703a7e5adb5a54faed5da2417fafab349596ddb470a2",
+      "articles": [
+        "anthropic-api-protocol",
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/realtime",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/realtime",
+      "status": 200,
+      "bytes": 345633,
+      "sha256": "6abe66fca27420fae58be8bdcc7a16e403105d167a436bea4a74db5e9ac187b1",
+      "articles": [
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/streaming-responses",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/streaming-responses",
+      "status": 200,
+      "bytes": 490905,
+      "sha256": "289df0596e44b5383df2ba5b6b10cebb455cc4174320823f2ea67518588a6778",
+      "articles": [
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "fetched_url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "status": 200,
+      "bytes": 3201510,
+      "sha256": "17848f7252f0d70f7c6e97f80ba9941b56e479af11b8ed05279c67a465d8c182",
+      "articles": [
+        "openai-api-protocol"
+      ]
+    },
+    {
+      "url": "https://docs.ag-ui.com/concepts/events",
+      "fetched_url": "https://docs.ag-ui.com/concepts/events",
+      "status": 200,
+      "bytes": 575679,
+      "sha256": "da676e44ce8835fbb545ba67f641c6c537a254d38f99146b6e122dfd76690261",
+      "articles": [
+        "ag-ui-protocol"
+      ]
+    },
+    {
+      "url": "https://docs.ag-ui.com/concepts/messages",
+      "fetched_url": "https://docs.ag-ui.com/concepts/messages",
+      "status": 200,
+      "bytes": 494812,
+      "sha256": "75155594b819445bd9e455fa4e5017c604c62a98e0533651d8c0a9ef9f424e2f",
+      "articles": [
+        "ag-ui-protocol"
+      ]
+    },
+    {
+      "url": "https://docs.ag-ui.com/concepts/state",
+      "fetched_url": "https://docs.ag-ui.com/concepts/state",
+      "status": 200,
+      "bytes": 354788,
+      "sha256": "2777d0b8f898515f318925cb68e12955d82fce5aa9d11f291fabcbeba2a1cc6a",
+      "articles": [
+        "ag-ui-protocol"
+      ]
+    },
+    {
+      "url": "https://docs.ag-ui.com/introduction",
+      "fetched_url": "https://docs.ag-ui.com/introduction",
+      "status": 200,
+      "bytes": 445168,
+      "sha256": "3aacc2cdd9cecb5cb41e333d99886258eb32f5c1f1838040ebe7ebc77444a7a2",
+      "articles": [
+        "ag-ui-protocol"
+      ]
+    },
+    {
+      "url": "https://github.com/ag-ui-protocol/ag-ui/blob/ce1bdef573dbab4ad15be62a788e6c8891aa9d48/sdks/typescript/packages/core/src/events.ts",
+      "fetched_url": "https://raw.githubusercontent.com/ag-ui-protocol/ag-ui/ce1bdef573dbab4ad15be62a788e6c8891aa9d48/sdks/typescript/packages/core/src/events.ts",
+      "status": 200,
+      "bytes": 26886,
+      "sha256": "667c9577913e6c51737fef6463f088e6e39f4d7f6d1046727f7f76ec90a9e362",
+      "articles": [
+        "ag-ui-protocol"
+      ]
+    },
+    {
+      "url": "https://github.com/ag-ui-protocol/ag-ui/blob/ce1bdef573dbab4ad15be62a788e6c8891aa9d48/sdks/typescript/packages/core/src/types.ts",
+      "fetched_url": "https://raw.githubusercontent.com/ag-ui-protocol/ag-ui/ce1bdef573dbab4ad15be62a788e6c8891aa9d48/sdks/typescript/packages/core/src/types.ts",
+      "status": 200,
+      "bytes": 10015,
+      "sha256": "454d1638a94cf35d17b2322f29b7211641dd0df38f986069858956a27da159ef",
+      "articles": [
+        "ag-ui-protocol"
+      ]
+    },
+    {
+      "url": "https://github.com/agentclientprotocol/agent-client-protocol/blob/96099538155403c090c2df3524a4aa2abd725982/schema/v1/schema.json",
+      "fetched_url": "https://raw.githubusercontent.com/agentclientprotocol/agent-client-protocol/96099538155403c090c2df3524a4aa2abd725982/schema/v1/schema.json",
+      "status": 200,
+      "bytes": 246569,
+      "sha256": "caf62ff962ada396878372ced11efb2c6764e59d90919a38583c319948931a42",
+      "articles": [
+        "acp-protocol"
+      ]
+    },
+    {
+      "url": "https://github.com/agentskills/agentskills/blob/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/specification.mdx",
+      "fetched_url": "https://raw.githubusercontent.com/agentskills/agentskills/69ef37e9424c0a7ea9dd2293b559e43ec8176379/docs/specification.mdx",
+      "status": 200,
+      "bytes": 7166,
+      "sha256": "b9079c0c10b7930e8c6a20ff2bc10cda2a3343c55185120e3f1116a1a529b220",
+      "articles": [
+        "agent-skills-specification"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/extensions/apps/overview",
+      "fetched_url": "https://modelcontextprotocol.io/extensions/apps/overview",
+      "status": 200,
+      "bytes": 314662,
+      "sha256": "6e3ded228bc6b17bde59529f8e7d43393394a39f3cf8c3ed9a23e40e14dd522b",
+      "articles": [
+        "a2ui-protocol"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+      "status": 200,
+      "bytes": 588028,
+      "sha256": "2664429839e42260632aa855059219a6e2c60fe972d50cfba2bd98d96c3e6e30",
+      "articles": [
+        "harness-foundations-mcp-lifecycle",
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle",
+      "status": 200,
+      "bytes": 407377,
+      "sha256": "014305a8693b07063a04e0bae8ac046a5681436398d22b13418fbd939833a60b",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+      "status": 200,
+      "bytes": 343343,
+      "sha256": "0e66b613eff8aa3f521eacf277c69cc5ed4fb1db6ef1fadef65f63c4d9b96409",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/cancellation",
+      "status": 200,
+      "bytes": 282001,
+      "sha256": "0cf5c6184eb9a4e0164ade1f75d56c65c9feb6fd53433eae29eeb0dd3f9fed2d",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks",
+      "status": 200,
+      "bytes": 812892,
+      "sha256": "7ede3807ef4baecbe6238894d6b5e8b594f46ff05173bf7aaa1a82b0cb567d35",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/client/elicitation",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/client/elicitation",
+      "status": 200,
+      "bytes": 742443,
+      "sha256": "3cd687107465caf287d1774513a55e9950e722dcf2fd3474444016c3b4bfa211",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/client/roots",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/client/roots",
+      "status": 200,
+      "bytes": 374907,
+      "sha256": "838d3ccc9a2676736c2cf7f963910bd01ec5659b9ceeebf549c368f64f7373ef",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/client/sampling",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/client/sampling",
+      "status": 200,
+      "bytes": 706632,
+      "sha256": "ee7ef2cc42f822bbf2710e72a0a20062a3a9b407cc3a5f395109e68babe49d33",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/index",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/server/index",
+      "status": 200,
+      "bytes": 249223,
+      "sha256": "0000297b412d4733f0a83bb9bc3782412c8d8dcc7a456d9bba0838240f4647e7",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "fetched_url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+      "status": 200,
+      "bytes": 659784,
+      "sha256": "7d7891cfa3aa444e27a892595a50e0b568b70d3706c1bf8eb998a8ad4b9ba7c4",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://openid.net/specs/openid-connect-backchannel-1_0.html",
+      "fetched_url": "https://openid.net/specs/openid-connect-backchannel-1_0.html",
+      "status": 200,
+      "bytes": 65408,
+      "sha256": "3b5c933d5269047b39a65166d5c4d8ff6852b06451f54ed2531b8f97299fdc50",
+      "articles": [
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "fetched_url": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "status": 200,
+      "bytes": 437508,
+      "sha256": "4d016752a645e8a3c259baa4173b5a90cb6c82898ce868fc8444adde262a5aed",
+      "articles": [
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://openid.net/specs/openid-connect-discovery-1_0.html",
+      "fetched_url": "https://openid.net/specs/openid-connect-discovery-1_0.html",
+      "status": 200,
+      "bytes": 109112,
+      "sha256": "0401a07b35de50e914e195aa2c3c64cc4f6542464381c885d24a2623fbf75ec2",
+      "articles": [
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://openid.net/specs/openid-connect-rpinitiated-1_0.html",
+      "fetched_url": "https://openid.net/specs/openid-connect-rpinitiated-1_0.html",
+      "status": 200,
+      "bytes": 47231,
+      "sha256": "246432dafaa5556d896fa9b9ae4284b213ff6921b33478ed3b46bd6bd4aab804",
+      "articles": [
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "fetched_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools",
+      "status": 200,
+      "bytes": 829766,
+      "sha256": "23d68030f87087cb2764d77dbff3fbf20c1bce8d3489fdf7be706fdc9e3945d8",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+      "fetched_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+      "status": 200,
+      "bytes": 592402,
+      "sha256": "b54482ae013137785e3bbfcf8b2aa54748d7d824245b88ee1366b53b997749d4",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/api/errors",
+      "fetched_url": "https://platform.claude.com/docs/en/api/errors",
+      "status": 200,
+      "bytes": 777136,
+      "sha256": "c00c1a7bdf3b5f746a023d93004292cc6d599ca048198e651b65cf7ef4243d1c",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/api/overview",
+      "fetched_url": "https://platform.claude.com/docs/en/api/overview",
+      "status": 200,
+      "bytes": 580877,
+      "sha256": "4be64bbf64a46485985a359cf1ea1f25e85206eb59135bd7e06f9abb59f5120b",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "fetched_url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "status": 200,
+      "bytes": 627402,
+      "sha256": "119bef4180ec9db366dd56d73ad19a3f9022c6d4659aa054c13358f3e0bcc50e",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "fetched_url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+      "status": 200,
+      "bytes": 2277390,
+      "sha256": "b7e897b0aa6022d9021c418c9acb3d7312dbf5ad969ef874ec35b20bee790345",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "fetched_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "status": 200,
+      "bytes": 1817635,
+      "sha256": "cd11f4bbba70689ab164757cc4796b0d787aecf071a8575332b7a60d1083acff",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "fetched_url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "status": 200,
+      "bytes": 1350813,
+      "sha256": "9945d6ec4272e3277e188eab32ba799100ba91bc20229f8a03e1a7242f666afa",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+      "fetched_url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+      "status": 200,
+      "bytes": 909084,
+      "sha256": "be737af1436c1619c0db53f91e1aeef27f3e45001b36cc6c254490ecd08cddff",
+      "articles": [
+        "anthropic-api-protocol"
+      ]
+    },
+    {
+      "url": "https://www.jsonrpc.org/specification",
+      "fetched_url": "https://www.jsonrpc.org/specification",
+      "status": 200,
+      "bytes": 24512,
+      "sha256": "8fe1edfdca511d309e712e47447457ea5159b728ec02071a84593aed692aefeb",
+      "articles": [
+        "harness-foundations-mcp-lifecycle"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/info/rfc8725/",
+      "fetched_url": "https://www.rfc-editor.org/info/rfc8725/",
+      "status": 200,
+      "bytes": 345895,
+      "sha256": "f05535fa314115848daa97425d73b722e561d4801440157042aeff137782347f",
+      "articles": [
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/info/rfc9700/",
+      "fetched_url": "https://www.rfc-editor.org/info/rfc9700/",
+      "status": 200,
+      "bytes": 1043395,
+      "sha256": "bedaa2a7250d370d52a2e1193022ef3bf58a229c0c50c2239c322f3e40c60b12",
+      "articles": [
+        "oauth",
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc6749.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc6749.html",
+      "status": 200,
+      "bytes": 201745,
+      "sha256": "535362fa3b4ca668d4734c244c6ed8c811f2ccd7ea1612a4201e5d8922a74b4e",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc6750.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc6750.html",
+      "status": 200,
+      "bytes": 50278,
+      "sha256": "c458bb43ff32efb811466120efdec411010cdde537e59948342240a32dcd5a1c",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc7009.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc7009.html",
+      "status": 200,
+      "bytes": 29785,
+      "sha256": "af01723527d58beb02d56c236d4cec1e9b702da239e9a91920e9ecc839c01d8f",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc7519.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc7519.html",
+      "status": 200,
+      "bytes": 83832,
+      "sha256": "d0ca0d6c6f8b7dfcad6e13c55086694d7ee69665bb828dcac6362d1587b4b53b",
+      "articles": [
+        "openid-connect"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc7636.html",
+      "status": 200,
+      "bytes": 50290,
+      "sha256": "1dd39bd17081e0ed18c2cf304b87c79061c51e505d2ff5e12ffbd0d182fe5b20",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc7662.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc7662.html",
+      "status": 200,
+      "bytes": 46520,
+      "sha256": "8c36ce5246215c16fac436fafda277ee0638566b7610aa5cc6673388009445d7",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc8252.html",
+      "status": 200,
+      "bytes": 62914,
+      "sha256": "fdda8f9e27f3bb4bb119742f4752df5bdfa9f8d9d3a6595ea0c3f581e13bfc79",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc8693.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc8693.html",
+      "status": 200,
+      "bytes": 145221,
+      "sha256": "cad0eccfa08d8c57eb096c2750e6cc783f8697b8771558943971fa58caff0fca",
+      "articles": [
+        "oauth"
+      ]
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc8707.html",
+      "fetched_url": "https://www.rfc-editor.org/rfc/rfc8707.html",
+      "status": 200,
+      "bytes": 71302,
+      "sha256": "d085d9b8e5665995a3c9702ffb1458ac93c51855624f1109e2c81e467f3e82dd",
+      "articles": [
+        "oauth"
+      ]
+    }
+  ]
+}

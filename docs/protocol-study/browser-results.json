@@ -1,0 +1,327 @@
+{
+  "results": [
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2a-protocol",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2a-protocol",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "ag-ui-protocol",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "ag-ui-protocol",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2ui-protocol",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2ui-protocol",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "acp-protocol",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "acp-protocol",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-skills-specification",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-skills-specification",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openai-api-protocol",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openai-api-protocol",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "anthropic-api-protocol",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "anthropic-api-protocol",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "oauth",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "oauth",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openid-connect",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openid-connect",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2a-protocol",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2a-protocol",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "ag-ui-protocol",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "ag-ui-protocol",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2ui-protocol",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "a2ui-protocol",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "acp-protocol",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "acp-protocol",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-skills-specification",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-skills-specification",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openai-api-protocol",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openai-api-protocol",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "anthropic-api-protocol",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "anthropic-api-protocol",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "oauth",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "oauth",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openid-connect",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openid-connect",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    }
+  ],
+  "screenshotDirectory": "/tmp/aidea-protocol-screenshots",
+  "visualReview": "Reviewed desktop architecture, model stream data flow, task and authorization state diagrams, and mobile MCP/OIDC sequences. Wide diagrams scroll within their frame.",
+  "publication": "authorized"
+}

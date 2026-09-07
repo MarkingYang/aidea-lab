@@ -1,0 +1,27 @@
+[
+  {
+    "repo": "a2aproject/A2A",
+    "commit": "98853be376c88df25e1704771cd3ea9ef8823a96",
+    "url": "https://github.com/a2aproject/A2A/commit/98853be376c88df25e1704771cd3ea9ef8823a96"
+  },
+  {
+    "repo": "ag-ui-protocol/ag-ui",
+    "commit": "ce1bdef573dbab4ad15be62a788e6c8891aa9d48",
+    "url": "https://github.com/ag-ui-protocol/ag-ui/commit/ce1bdef573dbab4ad15be62a788e6c8891aa9d48"
+  },
+  {
+    "repo": "a2ui-project/a2ui",
+    "commit": "8ff4651232ab0e02b0123730b502711170637a3a",
+    "url": "https://github.com/a2ui-project/a2ui/commit/8ff4651232ab0e02b0123730b502711170637a3a"
+  },
+  {
+    "repo": "agentclientprotocol/agent-client-protocol",
+    "commit": "96099538155403c090c2df3524a4aa2abd725982",
+    "url": "https://github.com/agentclientprotocol/agent-client-protocol/commit/96099538155403c090c2df3524a4aa2abd725982"
+  },
+  {
+    "repo": "agentskills/agentskills",
+    "commit": "69ef37e9424c0a7ea9dd2293b559e43ec8176379",
+    "url": "https://github.com/agentskills/agentskills/commit/69ef37e9424c0a7ea9dd2293b559e43ec8176379"
+  }
+]

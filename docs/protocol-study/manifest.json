@@ -1,0 +1,70 @@
+{
+  "status": "publication_authorized",
+  "basis_commit": "783945c",
+  "articles": [
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "diagrams": 4,
+      "source_sha256": "0d9142847aeccb97cbee850b370d1cecb7d26bdb5351c6b2c0c3672c386db76b",
+      "published_at": "2026-09-05"
+    },
+    {
+      "slug": "a2a-protocol",
+      "diagrams": 4,
+      "source_sha256": "ffbd12b4da7681aa731daa009b06fcee2d421c8dd6fc22314f5e69b892dad3e7",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "ag-ui-protocol",
+      "diagrams": 4,
+      "source_sha256": "7b1767114167f3f9f968974b3f205052cd73ff3759bbb709b0b331f790e78faa",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "a2ui-protocol",
+      "diagrams": 4,
+      "source_sha256": "f1f87eaa454a583ccf78272c5661af714b9d96f1fbc37cf6c40c948590b99198",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "acp-protocol",
+      "diagrams": 4,
+      "source_sha256": "c9d646595a80bd8da073643cc394468e1997b6c57250da09250e9b7a45632c22",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "agent-skills-specification",
+      "diagrams": 4,
+      "source_sha256": "dcb2c32abf54d735a6050273706e78dbe2f6e8612badb74fae7ccf3721bf4b74",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "openai-api-protocol",
+      "diagrams": 4,
+      "source_sha256": "29d5e703f272a80b3b6372829eabaf2d2b70cd585f06dd166f77914a6dac59c6",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "anthropic-api-protocol",
+      "diagrams": 4,
+      "source_sha256": "c35380e5b7a0181f6b91b5817dfa76b797a79a919f52cf6681513de766f263de",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "oauth",
+      "diagrams": 4,
+      "source_sha256": "ee15df2c1f99aa70d703ee694f193a31e4226332d130df09d9de943bafb5f08e",
+      "published_at": "2026-09-07"
+    },
+    {
+      "slug": "openid-connect",
+      "diagrams": 4,
+      "source_sha256": "3730b24cccafc8eb0ec196a748b040ce38bb91f5383787dd362a75ade4d7ac17",
+      "published_at": "2026-09-07"
+    }
+  ],
+  "article_count": 72,
+  "groups": 24,
+  "domains": 8,
+  "total_diagrams": 40
+}

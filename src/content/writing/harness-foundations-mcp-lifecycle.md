@@ -1,6 +1,6 @@
 ---
-title: MCP 生命周期：握手、目录、断线与取消
-description: 固定 MCP 2025-11-25 版本，梳理初始化、能力协商、请求关联与工具目录失效，并区分协议错误和工具执行错误。
+title: MCP：模型上下文协议
+description: 从工具、资源与提示模板到握手、传输、任务与授权，解析 MCP 的消息结构、恢复边界和 Harness 接入设计。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-07
 type: essay
@@ -10,21 +10,94 @@ topics:
   - AI 工程
   - MCP
 featured: false
-readingTime: 7 min
+readingTime: 13 min
 ---
 
 <a id="harness-foundations-mcp-lifecycle"></a>
 
-服务端口可访问，只能说明某种连接条件成立。Harness 还需要确认双方使用什么协议、提供哪些能力，以及工具定义是否仍然适用。
+MCP（Model Context Protocol）统一 Agent 应用与外部能力服务之间的消息契约。它让同一个工具服务可以被不同宿主发现和调用，也让宿主以相近的方式接入不同服务。它不负责替模型规划任务，也不替业务系统保证写入只发生一次。
 
-本文固定采用 MCP **2025-11-25** 规范，核对日期为 2026-09-05。版本是本文的学习基线，不声称覆盖所有后续修订。配套代码是状态模型，不是可连接 MCP 服务的客户端。
+本文以 **2025-11-25** 规范为固定学习基线，2026-09-07 复核；不是所有后续版本的功能总表。原有配套代码仍是本地状态模型，没有启动真实 MCP 服务。新增报文与图用于解释规范和设计，不扩大实验结论。
+
+## 架构：Host 管理信任，Client 管理连接，Server 提供能力
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+    U[用户任务] --> H[Host：上下文与权限策略]
+    H --> M[模型适配器]
+    H --> C1[MCP Client A]
+    H --> C2[MCP Client B]
+    C1 <-->|JSON-RPC| S1[本地 Server]
+    C2 <-->|JSON-RPC| S2[远程 Server]
+    S1 --> F[文件或 CLI]
+    S2 --> API[业务 API 或数据库]
+```
+
+Host 是拥有用户会话的应用；Client 是宿主内负责某条服务连接的协议角色；Server 暴露能力。图中的两个 Client 表达连接隔离，不要求两个独立进程。模型厂商 API 属于另一条调用链，不因使用 MCP 而消失。
+
+一个合理的 Host 要维护“服务身份＋工具名”的命名空间。例如两个服务都提供 `search`，模型可见名称需要无歧义，调用后仍要映射回原服务。工具描述、资源内容和服务端 instructions 都是外来输入，不能覆盖宿主自身的授权规则。
+
+## 三种服务端原语解决不同问题
+
+| 原语 | 典型交互 | 交给宿主什么 | 不应误解为 |
+| --- | --- | --- | --- |
+| Tools | `tools/list`、`tools/call` | 可执行操作及输入输出契约 | 已授予执行权限 |
+| Resources | `resources/list`、`resources/read` | URI 标识的上下文数据 | 自动进入模型全部上下文 |
+| Prompts | `prompts/list`、`prompts/get` | 可参数化的消息模板 | 高于宿主规则的系统指令 |
+
+三者的区别在控制意图：工具支持模型选择操作，资源供应用组织上下文，提示模板供用户或应用显式选用。实际界面如何呈现由 Host 决定。[服务端原语](https://modelcontextprotocol.io/specification/2025-11-25/server/index)
+
+反向能力也值得关注：Server 可在客户端支持时请求 sampling 或 elicitation，分别请求模型采样或向用户收集信息；roots 提供宿主愿意暴露的根目录信息。它们均受能力协商约束。**roots 是边界描述，不能代替操作系统文件权限或沙箱。** 一个服务器请求模型采样，也不意味着获得了无限 Token 预算。[Sampling](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling)、[Roots](https://modelcontextprotocol.io/specification/2025-11-25/client/roots)、[Elicitation](https://modelcontextprotocol.io/specification/2025-11-25/client/elicitation)
+
+## 报文分为信封、工具契约和业务语义
+
+以下是作者构造的合法形状示例，假定 `search_docs` 已被发现并获准使用：
+
+```json
+{"jsonrpc":"2.0","id":"req-7","method":"tools/call","params":{"name":"search_docs","arguments":{"query":"恢复策略"}}}
+```
+
+工具定义中的 `inputSchema` 描述参数形状；结果可以包含文本、资源链接或结构化内容。声明 `outputSchema` 时，结构化结果还需满足输出契约。工具 annotations 中的只读、破坏性等提示不能取代服务端权限判断。[工具定义与结果](https://modelcontextprotocol.io/specification/2025-11-25/server/tools)
+
+```mermaid
+flowchart TB
+%% title: 数据流图
+    D[目录与输入 Schema] --> P[模型提出名称与参数]
+    P --> V[Host 校验参数和授权]
+    V --> Q[Client 封装 tools/call]
+    Q --> X[Server 执行业务逻辑]
+    X --> O[结果或错误]
+    O --> N[归一化并保留来源]
+    N --> C[装配下一轮上下文]
+    N --> E[独立业务验收]
+```
+
+参数校验、授权、结果归一化是本文建议的 Host 接入流程。Schema 只能检查形状；`query` 合法不代表有权查询任意租户。结果进入上下文与任务验收是两个不同出口。
 
 ## 初始化建立共同的运行前提
 
 握手完成后再进入工具发现；传输、身份验证和错误处理还需要各自的生命周期管理。
-客户端提出版本，服务端返回所采用的版本与能力；客户端若不支持返回版本，应断开连接。收到初始化结果后，客户端必须发送 `notifications/initialized`。后续行为要遵守已协商的能力。[MCP 生命周期规范](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)
+客户端提出版本，服务端返回所采用的版本与能力；客户端若不支持返回版本，规范建议断开连接。收到初始化结果后，客户端必须发送 `notifications/initialized`。后续行为要遵守已协商的能力。[MCP 生命周期规范](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)
 
 实验采用更容易验证的工具闸门：完成上述步骤且服务端声明 `tools` 后才允许工具请求。它只实现工具子集，不能用来验证规范中 ping、日志等初始化阶段例外。
+
+```mermaid
+sequenceDiagram
+%% title: 初始化与调用时序图
+    participant H as Host / Client
+    participant S as Server
+    H->>S: initialize（版本与能力）
+    S-->>H: 协商版本与服务能力
+    H->>S: notifications/initialized
+    H->>S: tools/list
+    S-->>H: 工具目录与 Schema
+    H->>H: 选择工具并检查权限
+    H->>S: tools/call（请求 ID）
+    S-->>H: 相同 ID 的结果或错误
+```
+
+时序表达工具子集的正常路径；Server 只声明 resources 时，Host 不能假定 tools 也可用。分页目录需取全或建立明确的增量发现策略。
 
 ## 请求 ID 只负责关联这一次往返
 
@@ -115,3 +188,36 @@ HTTP 服务端可以选择分配会话 ID；携带已失效会话 ID 收到 404 
 同时保留[观测篇](/writing/harness-operations-observability/)中的任务关联：任务 ID、业务操作键、请求 ID 和连接代次分别记录。否则新连接里的成功日志会掩盖上一条连接留下的未知写入。
 
 练习时，选择一个真实写工具，在“提交前断开”和“提交后响应丢失”两处分别注入故障。两种场景的界面可能一样，恢复决策应由实际证据区分。
+
+## 长任务与授权需要单独协商
+
+2025-11-25 引入的 Tasks 在该版本中标记为实验性。它给可增强的请求增加任务句柄和生命周期，可以查询状态、取得结果或取消。它不是 A2A Task 的同义词：MCP Task 服务于一次能力请求的延迟完成；A2A 还描述独立 Agent 的能力与交互。[Tasks 规范](https://modelcontextprotocol.io/specification/2025-11-25/basic/utilities/tasks)
+
+```mermaid
+stateDiagram-v2
+%% title: Host 调用状态机
+    [*] --> 未就绪
+    未就绪 --> 可调用: 握手与目录完成
+    可调用 --> 等待结果: 发送调用
+    等待结果 --> 收到结果: 正常响应
+    等待结果 --> 结果未知: 超时或断线
+    结果未知 --> 对账中: 恢复连接后查询业务
+    对账中 --> 收到结果: 确认已经执行
+    对账中 --> 人工处理: 证据不足
+    收到结果 --> [*]
+    人工处理 --> [*]
+```
+
+这是 Host 的设计状态机，图中的“结果未知／对账中”不是 MCP 标准枚举。它专门保留网络协议无法解释的业务副作用。
+
+HTTP 授权规范将 MCP Server 放在资源服务器的位置：客户端发现受保护资源及授权服务器信息，取得适用于目标资源的访问令牌。请求的资源边界、实际受众、有效期和权限范围都需核验；会话 ID 不是访问令牌。stdio 则通常从受控运行环境获得凭据，不能照搬 HTTP OAuth 流程。[MCP 授权](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
+
+Host 不应把发给自己的 Token 原样交给另一个服务。需要访问下游系统时，使用明确的下游凭据或受支持的委派机制。用户批准了“读取文档”，也不意味着批准“把原文发送给外部模型”。授权的对象应包括动作、数据和目标。
+
+## 接入取舍与验证范围
+
+MCP 适合多个 Host 复用同一能力服务，尤其在工具目录、资源和客户端反向能力都需要标准化时。仅在单进程调用两个自有函数，直接函数接口通常更容易调试。已经有 HTTP API 时，可在 API 外加适配层，而不是把业务逻辑搬进协议处理器。
+
+接入验证至少覆盖：不支持的版本被拒绝、分页目录没有遗漏、同名工具不会串服务、无权参数被服务端拒绝、执行错误不会记作成功、重连后的旧响应不会污染新调用，以及写入后响应丢失时不盲目重试。这里给出验证设计，真实跨 Host 互通和生产授权链尚未实测。
+
+工具执行语义见[Tool Calling](/writing/harness-engineering-tools/)，跨 Agent 委派见[A2A](/writing/a2a-protocol/)，授权流程见[OAuth](/writing/oauth/)。MCP 的价值是统一接口边界；可靠运行仍取决于 Host 和业务服务对这些边界的落实。

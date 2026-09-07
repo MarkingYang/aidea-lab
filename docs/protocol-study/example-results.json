@@ -1,0 +1,100 @@
+{
+  "checks": [
+    {
+      "case": "harness-foundations-mcp-lifecycle: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "a2a-protocol: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "ag-ui-protocol: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "a2ui-protocol: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "acp-protocol: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "openai-api-protocol: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "openai-api-protocol: JSON 2",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "openai-api-protocol: JSON 3",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "anthropic-api-protocol: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "anthropic-api-protocol: JSON 2",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "openid-connect: JSON 1",
+      "result": "pass",
+      "scope": "JSON syntax only"
+    },
+    {
+      "case": "ACP initialize params",
+      "result": "pass",
+      "scope": "upstream v1 JSON Schema"
+    },
+    {
+      "case": "ACP rejects string protocolVersion",
+      "result": "pass",
+      "scope": "negative schema control"
+    },
+    {
+      "case": "A2UI envelope 1",
+      "result": "pass",
+      "scope": "upstream v0.9 envelope and basic catalog"
+    },
+    {
+      "case": "A2UI envelope 2",
+      "result": "pass",
+      "scope": "upstream v0.9 envelope and basic catalog"
+    },
+    {
+      "case": "A2UI rejects unknown component",
+      "result": "pass",
+      "scope": "negative schema control"
+    },
+    {
+      "case": "A2UI rejects old version",
+      "result": "pass",
+      "scope": "negative schema control"
+    },
+    {
+      "case": "openai-api-protocol tool argument type",
+      "result": "pass",
+      "scope": "article tool schema only; no model request"
+    },
+    {
+      "case": "anthropic-api-protocol tool argument type",
+      "result": "pass",
+      "scope": "article tool schema only; no model request"
+    }
+  ],
+  "limits": "No real MCP/A2A/ACP session, UI renderer, OAuth provider, JWT signature verification or model call is exercised."
+}
