@@ -1,0 +1,375 @@
+{
+  "date": "2026-09-07",
+  "source_commit": "2b43aedb93fd9475611beab3455379fd709c6e01",
+  "selection": "Latest commit before user-quoted September 6 09:23 review; matches 88 articles / 17 series / 4 domains",
+  "scope": "Restore historical articles verbatim, registry, redirects and supporting images/labs. Preserve current Reading homepage and site implementation.",
+  "publication": "User authorized pushing the restored site on 2026-09-07; publish through origin/main.",
+  "backup": "docs/content-archive/before-88-article-restoration-2026-09-07",
+  "articles": [
+    {
+      "path": "src/content/writing/addy-agent-skills-overview.md",
+      "sha256": "3b697721869c7b7b3a881bb0c60b7a47935b2cab6bf9a2d4d618929a148775b5"
+    },
+    {
+      "path": "src/content/writing/agent-evaluation-datasets.md",
+      "sha256": "84d136e8bb43e5b66838869cc574a3fd64bc03740fefee8fbe2b96af9293430c"
+    },
+    {
+      "path": "src/content/writing/agent-evaluation-engineering.md",
+      "sha256": "2b4d1db83251d141a8310bf78d7d4cee57a81111a2e6e6bb12fc1d1a50ee6dbb"
+    },
+    {
+      "path": "src/content/writing/agent-evaluation-metrics.md",
+      "sha256": "520087780a20935c973dc978f8cb0c0c031ecf7d81a14e1830b2375d7404a0b7"
+    },
+    {
+      "path": "src/content/writing/agent-landscape-comparison-methods.md",
+      "sha256": "874ff965f42e855c13fc51146e1d80999f6c98b0bd38628054aeded4e0ccce3c"
+    },
+    {
+      "path": "src/content/writing/agent-memory-design-competitive-analysis.md",
+      "sha256": "83f1289da9f57821c7bf65907ee9399a2734fc153f4c2477e2c77896b0b57d8a"
+    },
+    {
+      "path": "src/content/writing/agent-memory-governance.md",
+      "sha256": "8719ae9c1e4a5ac3f446161ad2b78c9473697e86a9949da790e69187327f86a3"
+    },
+    {
+      "path": "src/content/writing/agent-memory-retrieval.md",
+      "sha256": "da2cc6680c351bf65f1f79ad358f4042e744be00f06e748a7a68757552580778"
+    },
+    {
+      "path": "src/content/writing/agent-memory-writing.md",
+      "sha256": "e487c2a0afc83741efb587c38698a1ba0f142ce1e785d06a1f6b85b974d734bf"
+    },
+    {
+      "path": "src/content/writing/agent-product-evaluation-rhythm.md",
+      "sha256": "1ba924552bc0b2e5f6fbf6149baaff438b934590f4654ce657d1ea3188b942af"
+    },
+    {
+      "path": "src/content/writing/agent-system-evaluation-research.md",
+      "sha256": "94799744ddddeaf16ff68c9c75102a224e1c983e471b2f323bfc51925047ca70"
+    },
+    {
+      "path": "src/content/writing/ai-agent-reliability-boundaries.md",
+      "sha256": "43c1a4cbd44ef1f1d5634c944e21a6e1bdac9c9ab43b2f4bb9aa55d52b79aaee"
+    },
+    {
+      "path": "src/content/writing/ai-capability-evidence-action.md",
+      "sha256": "f7a99cfe61d41ca9e5c9534009011a9456ce301a6b35e0390d4b53a8b6d6692b"
+    },
+    {
+      "path": "src/content/writing/ai-capability-product-metrics.md",
+      "sha256": "6f34a7a5d7ea8ba386112d942f7a6878f554b4eb154372af0b4227013041397b"
+    },
+    {
+      "path": "src/content/writing/ai-value-coding.md",
+      "sha256": "e05354f41e8561a7973b84913152dd6c812d44fda00cc37a0e2a140d2ca0e1c0"
+    },
+    {
+      "path": "src/content/writing/ai-value-office.md",
+      "sha256": "effcbe0bf3c481b581a01740bfd8e50220f4e58ed4de484e271a7e7f6f0aa7f2"
+    },
+    {
+      "path": "src/content/writing/ai-value-voice.md",
+      "sha256": "4b9e93fc3fbb6ee616e1901b4fecc6a0aaabaf5fa8248008b392a79832a3e6a1"
+    },
+    {
+      "path": "src/content/writing/anthropic-skills-overview.md",
+      "sha256": "840235e45b4d3abaf65791048addfabdf185f37e769bfd508778a30d4c01c98a"
+    },
+    {
+      "path": "src/content/writing/capability-routing-at-scale.md",
+      "sha256": "53b392b853df6bcc69565db8d1ef1e4005aa64d66f12619dea6021691eb47b27"
+    },
+    {
+      "path": "src/content/writing/capability-routing-discovery.md",
+      "sha256": "ba0638eafca0bc05eed62e739a400f28cce5531ee3828d8213f164fe33dfda03"
+    },
+    {
+      "path": "src/content/writing/capability-routing-evaluation.md",
+      "sha256": "ecea083064383341b8067c3e1d2087a32036d907fc3b511eece8bed1549974b2"
+    },
+    {
+      "path": "src/content/writing/capability-routing-execution.md",
+      "sha256": "11ea41c3811c1a6ff45513efc3f6c39e292e0d9b017cb87717f5929f7e80289e"
+    },
+    {
+      "path": "src/content/writing/china-work-agent-adoption.md",
+      "sha256": "2c7e7cfeac815f4c8ebe4f02d9ba467d1415c81752283c91a0b523f5f04fc66d"
+    },
+    {
+      "path": "src/content/writing/china-work-agent-showdown.md",
+      "sha256": "9348cdf4195b32fea5c7ac73002cea181e07508b442259d554f8e52ff5add540"
+    },
+    {
+      "path": "src/content/writing/claude-code-internals-overview.md",
+      "sha256": "4d5642e549c844ff33140eea68a7ac740619de0b6432758d26e6083ebc85b671"
+    },
+    {
+      "path": "src/content/writing/claude-code-product-design.md",
+      "sha256": "177889066e5608f5969c4f1b001768731241a5e3996489caeb3cdb9e006c608a"
+    },
+    {
+      "path": "src/content/writing/claude-code-session-collaboration.md",
+      "sha256": "b50bc3f2dbc0051095b004c316a2976b546f573782b37420363ca5334ef7cfa2"
+    },
+    {
+      "path": "src/content/writing/claude-code-trust.md",
+      "sha256": "f96342da1b0e69d61e1c8369d6ed24dd38fffd52253e610fe89fab772026e059"
+    },
+    {
+      "path": "src/content/writing/codex-system-overview.md",
+      "sha256": "1620d64580eec585673fbc3ee6d01315c0c1e1835ecf886c0dc1aeb12261680a"
+    },
+    {
+      "path": "src/content/writing/coding-agent-harness-showdown.md",
+      "sha256": "c6a807e5ec90a0ec7393320538260a9f69746c2df2992710e60d75452b02ebda"
+    },
+    {
+      "path": "src/content/writing/composable-agent-harness-research-method.md",
+      "sha256": "5a8242f88b50d4f06768bb47abc0871d87034180e08e253c9f5fde8fbfa4efad"
+    },
+    {
+      "path": "src/content/writing/deepseek-harness-composition.md",
+      "sha256": "098c60c6000fb0641d8bfcff83daf76de32b60e601951b1a8c4cd179f0016fed"
+    },
+    {
+      "path": "src/content/writing/deepseek-harness-execution.md",
+      "sha256": "2796eaec9746da7a4914a468b733db801a2ca14757fa19381c7fe8facb0e2531"
+    },
+    {
+      "path": "src/content/writing/deepseek-harness-state.md",
+      "sha256": "dbfdd0d762d36b0d48ef3b8513f68b3545fba401e2402fb6e3c8c09216c0a3ce"
+    },
+    {
+      "path": "src/content/writing/ecc-architecture-deep-dive.md",
+      "sha256": "7b029e5aee9c3076ce9067f6c87fa4e0d92e0264ca1b69505a01a643a00da74f"
+    },
+    {
+      "path": "src/content/writing/ecc-hook-runtime-memory.md",
+      "sha256": "56962b39a059bc58f761e631b95c6fcec7482e2dd75be6628f3d15cb56e3dca8"
+    },
+    {
+      "path": "src/content/writing/ecc-memory-supply-chain.md",
+      "sha256": "c7d6178abe715328550e795ac57342b06d5352262bb3f2d43183440f50bbca84"
+    },
+    {
+      "path": "src/content/writing/harness-architecture-selection.md",
+      "sha256": "c34e13c4f540b2d6fcc88b13515f05c3756860fd34147393ecbf9c3b38f32f20"
+    },
+    {
+      "path": "src/content/writing/harness-engineering-loop.md",
+      "sha256": "69973affc2306daa5f19ed8baf83d4d0f79c4a38a4ed59506ee591304ab1bfe9"
+    },
+    {
+      "path": "src/content/writing/harness-engineering-map.md",
+      "sha256": "ec6a3c40de117aa4c5a31696e712a94fe7b29e81cf6f86dc3a8a1f15db443211"
+    },
+    {
+      "path": "src/content/writing/harness-engineering-recovery.md",
+      "sha256": "97bf09c31468b97e038c471cf2b2367dda86ff49aeee232a55b636f084a4c2e9"
+    },
+    {
+      "path": "src/content/writing/harness-engineering-security.md",
+      "sha256": "0f047978a17aa8131f962f87cbb4c44cfe71f58e7d77cccaa732664232d81394"
+    },
+    {
+      "path": "src/content/writing/harness-engineering-tools.md",
+      "sha256": "758ad065b4e6a1946d6647a2f9c6647c711adde3a1b0eb6731ca3ed9b41f93fb"
+    },
+    {
+      "path": "src/content/writing/harness-foundations-concurrency.md",
+      "sha256": "596391c6239404e2e050764b3583cbf5d46d81234a921c5e64ec5528b9f1c47b"
+    },
+    {
+      "path": "src/content/writing/harness-foundations-lab.md",
+      "sha256": "d272da2206c1b330d9af379a7003062c86307de1cac073744f5fd22a94eddb43"
+    },
+    {
+      "path": "src/content/writing/harness-foundations-mcp-lifecycle.md",
+      "sha256": "4a4d98333633ef3f17672f64d9aa900841a8870669bee3943808129c141d7f6c"
+    },
+    {
+      "path": "src/content/writing/harness-integration-lab.md",
+      "sha256": "25ac87cdcd988eb1341273a317e90762ab00274e2b5f8dbe89c4bb6adf64395f"
+    },
+    {
+      "path": "src/content/writing/harness-integration-map.md",
+      "sha256": "a35d054b727cc618ae837b140972972f0611cc243ab7f5a1ff53407d221840b9"
+    },
+    {
+      "path": "src/content/writing/harness-integration-mcp.md",
+      "sha256": "17f636ca999136c1aefaf6d2db114652aeca14dc463941000d5f625416d8669f"
+    },
+    {
+      "path": "src/content/writing/harness-integration-model.md",
+      "sha256": "5d5f42fda6e5d0421a7f4341bd808e647a0b9de402d1100ae800be96564849ab"
+    },
+    {
+      "path": "src/content/writing/harness-integration-recovery.md",
+      "sha256": "420bc6c06af105ae411819ac386c253447246f9e250845cd72f8d6cc28ee0d1b"
+    },
+    {
+      "path": "src/content/writing/harness-operations-context.md",
+      "sha256": "3155828808065ab4cc6aae07c0f4933ed1124e5d10a854fe026985b126d8e8bd"
+    },
+    {
+      "path": "src/content/writing/harness-operations-model-gateway.md",
+      "sha256": "4131d1838aa5769cadbe0d0401e9831bd144b9950526017df45daeb4bb9fb7a2"
+    },
+    {
+      "path": "src/content/writing/harness-operations-multi-agent.md",
+      "sha256": "bfa6b912bf2928f701e9b56c2cfa00189f6907cbc4d9cf911ca9f9efd0c729ef"
+    },
+    {
+      "path": "src/content/writing/harness-operations-observability.md",
+      "sha256": "f49e1224e6516a2c73abc9ebb17c1450fbdde994ee17f086a7f6e9c641b1d82a"
+    },
+    {
+      "path": "src/content/writing/harness-operations-production.md",
+      "sha256": "c3c33aef3255cdf430cc45136c782292ed75d53eb987498e9d1db1c61e2a8248"
+    },
+    {
+      "path": "src/content/writing/harness-operations-release.md",
+      "sha256": "ca887df0f752e1498ca08d349d32eb95a725ccbe6de61d7547dc4fd55bbee3ce"
+    },
+    {
+      "path": "src/content/writing/hermes-agent-architecture-deep-dive.md",
+      "sha256": "24a42d9e78c7192de9a8524946c8e692f353fccb8af4049c0f203e94cca21235"
+    },
+    {
+      "path": "src/content/writing/hermes-agent-memory-governance.md",
+      "sha256": "34473ae7d23ea97279ac0e3dab9709abe262fa691c9e72873fbc75c01dcb0066"
+    },
+    {
+      "path": "src/content/writing/hermes-agent-runtime-services.md",
+      "sha256": "e024e81eca847c23a1f9ab4896ebfd5abda7e5da6d00c32702736a226fb3aa78"
+    },
+    {
+      "path": "src/content/writing/kimi-code-system-overview.md",
+      "sha256": "930bd842f180f7f2df1a50a9beef8fd8ddb5692b89f569eb125facee2ff3077d"
+    },
+    {
+      "path": "src/content/writing/langchain-langgraph-frameworks-and-protocols.md",
+      "sha256": "4af71fb4b9d586ac18be28dc8984f12b2c38b37a2b86eabdc0d823bf332f8037"
+    },
+    {
+      "path": "src/content/writing/learning-organization-boundaries.md",
+      "sha256": "8b9dd609aa6effbe0b62026b3a7ba663648799be78d1fc9d949d8d257580b580"
+    },
+    {
+      "path": "src/content/writing/llm-agent-capability-landscape-2026.md",
+      "sha256": "f54afd70ad3542c85ddf5ed21064bd281366f033cf4a56f52d3add38bb1442f1"
+    },
+    {
+      "path": "src/content/writing/loop-graph-engineering.md",
+      "sha256": "0c0aa6328abd72050e099e82e85f21ae452b7ed4de2f067f39d0149b1df08c1a"
+    },
+    {
+      "path": "src/content/writing/lu-qi-researcher-founder.md",
+      "sha256": "cd498f845c661a854f2b31100257d73b6d2df155064696f520aa822f7f7c9dcf"
+    },
+    {
+      "path": "src/content/writing/mattpocock-skills-overview.md",
+      "sha256": "a5ae6b5511d9b3551de004d52f21c2a1e04d848b30bf5286e24bde1f97ff4b87"
+    },
+    {
+      "path": "src/content/writing/mem0-production-boundaries.md",
+      "sha256": "bd88fb098bd460def9909d043efc2d6af5bbb3bb4f777d87c698e132b45b850b"
+    },
+    {
+      "path": "src/content/writing/mem0-series-overview.md",
+      "sha256": "24479fb2fcad8dc867801815fb08e41c9cd5697ca0a1c3ff17f6103a40d38eed"
+    },
+    {
+      "path": "src/content/writing/multi-agent-architecture-selection.md",
+      "sha256": "ae04422251d3ae5015487c7223fccdd6398fcb3899b06462e58d48a772071903"
+    },
+    {
+      "path": "src/content/writing/opencode-system-overview.md",
+      "sha256": "052a37839f5e87e09dc60fe2f7c014c9cdcaee2d66351995343c8900b56170cc"
+    },
+    {
+      "path": "src/content/writing/openviking-series-overview.md",
+      "sha256": "80a825ea910663daeca3a70dd9f7b9588fe041a8e09f264461cdf6a45fbf4eb6"
+    },
+    {
+      "path": "src/content/writing/openviking-session-governance.md",
+      "sha256": "65cd79ccdaa452a4f6bb4b9377daaebbaac45b0c4a25a48617978b6667e8d109"
+    },
+    {
+      "path": "src/content/writing/pi-architecture-deep-dive.md",
+      "sha256": "3961faa1cbbb3ff719a4741b5f44b9bdf20c19ff9db557a7e2a3fe6b6a3b1c47"
+    },
+    {
+      "path": "src/content/writing/pi-durable-harness-governance.md",
+      "sha256": "3aef5df28b9f59093faaec0aee5bec95ce5713d28569ff4c6fc868fd3bc37067"
+    },
+    {
+      "path": "src/content/writing/pi-session-extension-architecture.md",
+      "sha256": "bca9719892264816e9fc71a2d269f828e7e61e67e589d4f14b7f4268a39008a3"
+    },
+    {
+      "path": "src/content/writing/product-analysis-frameworks.md",
+      "sha256": "e15976747cb56d43bef8baf0dd48f47ff5338cccf16f2588980a0f63c20bf183"
+    },
+    {
+      "path": "src/content/writing/product-frameworks-delivery.md",
+      "sha256": "4329900c62ad1f6967b59aedd7fc0a754a49de008b8fab917021f3a76ac697aa"
+    },
+    {
+      "path": "src/content/writing/product-frameworks-growth.md",
+      "sha256": "9daeb27bc4d086f8f482762e0f803f69fbe0f778c39c93f3a7cea55a8f2d7f61"
+    },
+    {
+      "path": "src/content/writing/product-frameworks-market.md",
+      "sha256": "cae3cff390286defb24583d393f607e627dd967741590820c51e72019b95003f"
+    },
+    {
+      "path": "src/content/writing/product-frameworks-prioritization.md",
+      "sha256": "2d2d7430bd98dbe9f3b0384883671c96fd03b7e04db2b948848319a2c4ce7049"
+    },
+    {
+      "path": "src/content/writing/product-work-methodology.md",
+      "sha256": "a6c9edbe987aa8790e23bddc6cd9c1b493656d89bfde8d52c44916c998a34e34"
+    },
+    {
+      "path": "src/content/writing/prompt-context-harness-engineering.md",
+      "sha256": "bf624b1673539d9c7dad0bb2c13b55f73071ce3faf44f67e6e12a8115fbe1acb"
+    },
+    {
+      "path": "src/content/writing/researcher-founder-thinking.md",
+      "sha256": "8f1806cddda8010ce8fb95de5658be8c8a27e22afd32fc8d1a1f360f9803c491"
+    },
+    {
+      "path": "src/content/writing/tencentdb-agent-memory-governance.md",
+      "sha256": "6836280fd3d7cf3ba2c320a340c95c72af329ca68797962607c5622c9c765074"
+    },
+    {
+      "path": "src/content/writing/tencentdb-agent-memory-overview.md",
+      "sha256": "f0459f1a2cd7a6bff52684c14544e860abcb2f1f70273393f8fa4d47336e8b38"
+    },
+    {
+      "path": "src/content/writing/trace-framework-deep-dive.md",
+      "sha256": "71cd48a7409a8a19e8cd4cda8fe00a7555caaf3679bb127b3dfb05a9535074bc"
+    },
+    {
+      "path": "src/content/writing/trace-lite-production.md",
+      "sha256": "e0c017fda91059c78f582f133e98abd0821372db6d8d415514a4a4dfbd552ae5"
+    }
+  ],
+  "validation": {
+    "article_hashes": "88 match selected Git snapshot",
+    "linked_images": "match selected Git snapshot",
+    "build_content_graph": "passed",
+    "live_article_routes": "88 HTTP 200 with headings",
+    "homepage": "all 88 article links present",
+    "domain_counts": {
+      "Agent Harness": 58,
+      "评测与能力边界": 9,
+      "产品与交付": 18,
+      "研究与认知": 3
+    }
+  }
+}

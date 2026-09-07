@@ -1,270 +1,327 @@
 {
   "topics": [
     {
-      "id": "perspectives",
-      "title": "研究与认知",
-      "english": "Research & learning",
-      "question": "如何连接研究、创新与组织成长？",
-      "description": "如何连接研究、创新与组织成长？",
+      "id": "harness",
+      "title": "Agent Harness",
+      "english": "Architecture & implementation",
+      "question": "Agent 系统怎样构成、执行与持续运行？",
+      "description": "从运行循环、工具、状态和记忆进入模块，再看实战装配与项目实现。",
       "tags": [
-        "陆奇",
-        "Researcher Founder"
-      ]
-    },
-    {
-      "id": "product",
-      "title": "产品方法与设计",
-      "english": "Product methods & design",
-      "question": "如何把需求与技术能力转化为产品价值？",
-      "description": "如何把需求与技术能力转化为产品价值？",
-      "tags": [
-        "产品设计",
-        "产品方法论"
-      ]
-    },
-    {
-      "id": "harness-agent",
-      "title": "Harness 与 Agent 架构",
-      "english": "Harness & agent architecture",
-      "question": "Agent 系统如何组织执行、上下文与扩展？",
-      "description": "Agent 系统如何组织执行、上下文与扩展？",
-      "tags": [
+        "AI 架构",
+        "AI 工程",
+        "开源架构",
+        "架构设计",
         "Agent Harness",
-        "架构设计"
-      ]
-    },
-    {
-      "id": "agent-products",
-      "title": "Agent 产品与竞品",
-      "english": "Agent products & comparisons",
-      "question": "不同 Agent 产品在解决什么问题？",
-      "description": "不同 Agent 产品在解决什么问题？",
-      "tags": [
-        "竞品分析",
-        "AI Agent"
+        "Agent Memory",
+        "MCP",
+        "Agent Skills"
       ]
     },
     {
       "id": "evaluation",
-      "title": "能力评测与可靠性",
-      "english": "Evaluation & reliability",
-      "question": "如何判断 Agent 的能力、效果与可靠性边界？",
-      "description": "如何判断 Agent 的能力、效果与可靠性边界？",
+      "title": "评测与能力边界",
+      "english": "Evaluation & evidence",
+      "question": "什么证据足以支持一次任务委托？",
+      "description": "区分模型基准、任务验收、过程诊断和回归，解释能力与可靠性的适用范围。",
       "tags": [
         "Agent 评测",
-        "LLMOps"
+        "TRACE",
+        "基准测试",
+        "LLMOps",
+        "模型观察"
+      ]
+    },
+    {
+      "id": "practice",
+      "title": "产品与交付",
+      "english": "Products & delivery",
+      "question": "系统能力如何变成用户可验收的价值？",
+      "description": "按产品方法、交互协作、场景成本和产品采用组织实践。",
+      "tags": [
+        "产品方法论",
+        "产品设计",
+        "产品思考",
+        "AI 产品",
+        "竞品分析",
+        "办公 Agent",
+        "产品战略"
+      ]
+    },
+    {
+      "id": "perspectives",
+      "title": "研究与认知",
+      "english": "Research & learning",
+      "question": "怎样把研究、判断与组织学习连起来？",
+      "description": "围绕研究型创业、问题探索和组织学习，区分原始观点与实践推演。",
+      "tags": [
+        "AI 趋势",
+        "AI 创业",
+        "科技创新",
+        "人机协同",
+        "行业观察",
+        "学习",
+        "认知"
       ]
     }
   ],
   "series": [
     {
+      "id": "harness-engineering",
+      "topic": "harness",
+      "title": "架构与运行循环",
+      "description": "从工程分工、模块接口和运行循环，进入架构组合与选型验证。",
+      "articles": [
+        "prompt-context-harness-engineering",
+        "harness-engineering-map",
+        "harness-engineering-loop",
+        "loop-graph-engineering",
+        "langchain-langgraph-frameworks-and-protocols",
+        "multi-agent-architecture-selection",
+        "harness-architecture-selection"
+      ],
+      "outcome": "能按任务约束选择 A/B/C 组合，说明模块接口、状态归属、代价和迁移条件。",
+      "question": "Agent 怎样根据反馈持续推进，并组织有分支和依赖的复杂任务？"
+    },
+    {
+      "id": "harness-tools",
+      "topic": "harness",
+      "title": "工具、协议与执行边界",
+      "description": "工具契约、MCP 生命周期、执行安全与能力路由。",
+      "articles": [
+        "harness-engineering-tools",
+        "harness-foundations-mcp-lifecycle",
+        "harness-engineering-security",
+        "capability-routing-at-scale",
+        "capability-routing-discovery",
+        "capability-routing-execution",
+        "capability-routing-evaluation"
+      ],
+      "outcome": "明确工具输入、执行许可、结果与恢复边界。",
+      "question": "候选动作怎样成为受控且可验收的业务操作？"
+    },
+    {
+      "id": "harness-recovery",
+      "topic": "harness",
+      "title": "状态、并发与恢复",
+      "description": "区分运行状态和业务事实，处理竞争、重复与结果未知。",
+      "articles": [
+        "harness-foundations-concurrency",
+        "harness-engineering-recovery",
+        "harness-foundations-lab"
+      ],
+      "outcome": "能区分重试、对账和补偿，为竞争写入定义可验证的恢复规则。",
+      "question": "区分运行状态和业务事实，处理竞争、重复与结果未知。"
+    },
+    {
+      "id": "agent-memory",
+      "topic": "harness",
+      "title": "上下文与记忆机制",
+      "description": "按装配、写入、检索和治理组织记忆生命周期。",
+      "articles": [
+        "harness-operations-context",
+        "agent-memory-design-competitive-analysis",
+        "agent-memory-writing",
+        "agent-memory-retrieval",
+        "agent-memory-governance"
+      ],
+      "outcome": "能为每条信息定义来源、有效时间、读取范围与纠错方式。",
+      "question": "按装配、写入、检索和治理组织记忆生命周期。"
+    },
+    {
+      "id": "harness-operations",
+      "topic": "harness",
+      "title": "运行治理与发布",
+      "description": "模型网关、协作、观测、调度和版本发布。",
+      "articles": [
+        "harness-operations-model-gateway",
+        "harness-operations-multi-agent",
+        "harness-operations-observability",
+        "harness-operations-production",
+        "harness-operations-release"
+      ],
+      "outcome": "能为协作、调度和版本变更设置预算、观测与回退条件。",
+      "question": "模型网关、协作、观测、调度和版本发布。"
+    },
+    {
+      "id": "harness-integration",
+      "topic": "harness",
+      "title": "Mini Harness 实战",
+      "description": "按模块选型、模型循环、工具策略、状态验收与运行步骤组装。",
+      "articles": [
+        "harness-integration-map",
+        "harness-integration-model",
+        "harness-integration-mcp",
+        "harness-integration-recovery",
+        "harness-integration-lab"
+      ],
+      "outcome": "能运行并替换 Mini Harness 模块，用真实资源检查正常与退出恢复路径。",
+      "question": "按模块选型、模型循环、工具策略、状态验收与运行步骤组装。"
+    },
+    {
+      "id": "harness-projects",
+      "topic": "harness",
+      "title": "项目实现研究",
+      "description": "沿实际项目研究循环、状态、扩展和执行边界。",
+      "articles": [
+        "composable-agent-harness-research-method",
+        "claude-code-internals-overview",
+        "codex-system-overview",
+        "kimi-code-system-overview",
+        "opencode-system-overview",
+        "deepseek-harness-composition",
+        "deepseek-harness-state",
+        "deepseek-harness-execution",
+        "hermes-agent-architecture-deep-dive",
+        "hermes-agent-runtime-services",
+        "hermes-agent-memory-governance",
+        "pi-architecture-deep-dive",
+        "pi-session-extension-architecture",
+        "pi-durable-harness-governance"
+      ],
+      "outcome": "能从源码证据辨别项目的状态、扩展和执行边界，区分成熟实现与实验路线。",
+      "question": "沿实际项目研究循环、状态、扩展和执行边界。"
+    },
+    {
+      "id": "harness-skills",
+      "topic": "harness",
+      "title": "Skills 与工程资产",
+      "description": "标准、工程方法、Hook 运行时与跨平台资产治理。",
+      "articles": [
+        "anthropic-skills-overview",
+        "addy-agent-skills-overview",
+        "mattpocock-skills-overview",
+        "ecc-architecture-deep-dive",
+        "ecc-hook-runtime-memory",
+        "ecc-memory-supply-chain"
+      ],
+      "outcome": "能区分流程说明与执行门禁，设计资产加载、分发、更新和退出规则。",
+      "question": "标准、工程方法、Hook 运行时与跨平台资产治理。"
+    },
+    {
+      "id": "memory-systems",
+      "topic": "harness",
+      "title": "记忆系统实现",
+      "description": "对照 Mem0、OpenViking、TencentDB 的数据流与治理边界。",
+      "articles": [
+        "mem0-series-overview",
+        "mem0-production-boundaries",
+        "openviking-series-overview",
+        "openviking-session-governance",
+        "tencentdb-agent-memory-overview",
+        "tencentdb-agent-memory-governance"
+      ],
+      "outcome": "能按核心对象选择记忆方案，说明各自的数据流、失败模式与部署责任。",
+      "question": "对照 Mem0、OpenViking、TencentDB 的数据流与治理边界。"
+    },
+    {
+      "id": "agent-evaluation",
+      "topic": "evaluation",
+      "title": "评测体系与可靠性",
+      "description": "任务边界、指标、样本、回归与 TRACE 过程评测。",
+      "articles": [
+        "ai-agent-reliability-boundaries",
+        "agent-system-evaluation-research",
+        "agent-evaluation-metrics",
+        "agent-evaluation-datasets",
+        "agent-evaluation-engineering",
+        "trace-framework-deep-dive",
+        "trace-lite-production"
+      ],
+      "outcome": "能固定任务、样本和指标，将失败转成可复现的回归证据。",
+      "question": "任务边界、指标、样本、回归与 TRACE 过程评测。"
+    },
+    {
+      "id": "ai-capability-boundaries",
+      "topic": "evaluation",
+      "title": "模型能力与任务边界",
+      "description": "将公开评测转成带场景、证据与责任条件的使用判断。",
+      "articles": [
+        "llm-agent-capability-landscape-2026",
+        "ai-capability-evidence-action"
+      ],
+      "outcome": "能判断公开分数支持什么结论，以及哪些委托仍需任务验证。",
+      "question": "将公开评测转成带场景、证据与责任条件的使用判断。"
+    },
+    {
+      "id": "product-frameworks",
+      "topic": "practice",
+      "title": "产品分析方法",
+      "description": "市场、优先级、增长和复盘，按实际决策组织框架。",
+      "articles": [
+        "product-analysis-frameworks",
+        "product-frameworks-market",
+        "product-frameworks-prioritization",
+        "product-frameworks-growth",
+        "product-frameworks-delivery"
+      ],
+      "outcome": "能按决策问题选择方法，为优先级、增长和复盘保留验证依据。",
+      "question": "市场、优先级、增长和复盘，按实际决策组织框架。"
+    },
+    {
+      "id": "ai-product-work",
+      "topic": "practice",
+      "title": "任务契约与产品节奏",
+      "description": "把目标、上下文与评测接进产品团队工作。",
+      "articles": [
+        "product-work-methodology",
+        "agent-product-evaluation-rhythm"
+      ],
+      "outcome": "能将业务需求写成任务契约，按评测证据决定交付与迭代。",
+      "question": "把目标、上下文与评测接进产品团队工作。"
+    },
+    {
+      "id": "claude-code-design",
+      "topic": "practice",
+      "title": "Agent 交互与协作",
+      "description": "以 Claude Code 为案例分析任务旅程、信任与并行协作。",
+      "articles": [
+        "claude-code-product-design",
+        "claude-code-trust",
+        "claude-code-session-collaboration"
+      ],
+      "outcome": "能设计可观察、可接管、可验收的任务界面与协作路径。",
+      "question": "以 Claude Code 为案例分析任务旅程、信任与并行协作。"
+    },
+    {
+      "id": "ai-product-value",
+      "topic": "practice",
+      "title": "场景价值与交付成本",
+      "description": "用编程、语音和办公案例计算真实交付价值。",
+      "articles": [
+        "ai-capability-product-metrics",
+        "ai-value-coding",
+        "ai-value-voice",
+        "ai-value-office"
+      ],
+      "outcome": "能计入失败、返工和人工时间，计算真实交付成本。",
+      "question": "用编程、语音和办公案例计算真实交付价值。"
+    },
+    {
+      "id": "agent-work-systems",
+      "topic": "practice",
+      "title": "Agent 竞品分析与选型",
+      "description": "比较编程与办公 Agent，用任务契约、PoC 和采用条件支持选型。",
+      "articles": [
+        "agent-landscape-comparison-methods",
+        "coding-agent-harness-showdown",
+        "china-work-agent-showdown",
+        "china-work-agent-adoption"
+      ],
+      "outcome": "形成有证据的产品选型与采用决定。",
+      "question": "哪款 Agent 适合当前任务，依据是什么？"
+    },
+    {
       "id": "researcher-founder",
       "topic": "perspectives",
-      "title": "从“做产品”到“组织未知”：陆奇谈研究型创业者",
-      "description": "从生产力重组、NeoLab 组织范式到研究、创新与斜率三种思维，重新理解 AI 时代如何完成从 -1 到 1。",
+      "title": "研究、创业与组织学习",
+      "description": "研究型创业的原始观点、推演方法和组织边界。",
       "articles": [
-        "lu-qi-researcher-founder"
+        "lu-qi-researcher-founder",
+        "researcher-founder-thinking",
+        "learning-organization-boundaries"
       ],
-      "outcome": "从生产力重组、NeoLab 组织范式到研究、创新与斜率三种思维，重新理解 AI 时代如何完成从 -1 到 1。",
-      "question": "如何连接研究、创新与组织成长？"
-    },
-    {
-      "id": "product-work-methodology",
-      "topic": "product",
-      "title": "产品工作的方法论",
-      "description": "在 Agent Harness 时代，产品经理如何把不确定的模型能力，转化为可验证、可控制、可持续演进的工作系统。",
-      "articles": [
-        "product-work-methodology"
-      ],
-      "outcome": "在 Agent Harness 时代，产品经理如何把不确定的模型能力，转化为可验证、可控制、可持续演进的工作系统。",
-      "question": "如何把需求与技术能力转化为产品价值？"
-    },
-    {
-      "id": "product-analysis-frameworks",
-      "topic": "product",
-      "title": "产品经理的分析框架：从市场判断到项目复盘",
-      "description": "用一个 AI 会议助手案例，串联 PEST、五力、TAM/SAM/SOM、SWOT、KANO、RICE、AARRR、ROI、OKR 等常用产品分析工具。",
-      "articles": [
-        "product-analysis-frameworks"
-      ],
-      "outcome": "用一个 AI 会议助手案例，串联 PEST、五力、TAM/SAM/SOM、SWOT、KANO、RICE、AARRR、ROI、OKR 等常用产品分析工具。",
-      "question": "如何把需求与技术能力转化为产品价值？"
-    },
-    {
-      "id": "claude-code-product-design",
-      "topic": "product",
-      "title": "Claude Code 不只是写代码：一套软件工程 Agent 的产品设计拆解",
-      "description": "从业务全景、调用链、用户旅程和 KANO 模型出发，分析 Claude Code 为什么以 Session、渐进权限、验证闭环和可组合扩展为核心。",
-      "articles": [
-        "claude-code-product-design"
-      ],
-      "outcome": "从业务全景、调用链、用户旅程和 KANO 模型出发，分析 Claude Code 为什么以 Session、渐进权限、验证闭环和可组合扩展为核心。",
-      "question": "如何把需求与技术能力转化为产品价值？"
-    },
-    {
-      "id": "ai-capability-product-metrics",
-      "topic": "product",
-      "title": "AI 能力如何变成产品价值：从算法分类到三个场景的验收指标",
-      "description": "用金字塔结构建立从算法能力到产品结果的评测体系：以 Claude Code、Codex、终端语音助手，以及 WorkBuddy、豆包、千问办公为例，说明该衡量什么、如何验收，以及怎样找到真正的性能瓶颈。",
-      "articles": [
-        "ai-capability-product-metrics"
-      ],
-      "outcome": "用金字塔结构建立从算法能力到产品结果的评测体系：以 Claude Code、Codex、终端语音助手，以及 WorkBuddy、豆包、千问办公为例，说明该衡量什么、如何验收，以及怎样找到真正的性能瓶颈。",
-      "question": "如何把需求与技术能力转化为产品价值？"
-    },
-    {
-      "id": "anthropic-harness",
-      "topic": "harness-agent",
-      "title": "Anthropic Harness 建设",
-      "description": "从 Claude Code、Claude Agent SDK 与 Anthropic 官方工程实践出发，拆解 Agent Harness 的核心原理、产品架构、安全边界与建设路径。",
-      "articles": [
-        "anthropic-harness"
-      ],
-      "outcome": "从 Claude Code、Claude Agent SDK 与 Anthropic 官方工程实践出发，拆解 Agent Harness 的核心原理、产品架构、安全边界与建设路径。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "hermes-agent-architecture-deep-dive",
-      "topic": "harness-agent",
-      "title": "Hermes Agent 架构深度解读：一个会积累经验的个人 Agent OS",
-      "description": "从 Agent Loop、Prompt 分层、四类记忆、工具运行时、子 Agent、Gateway 与安全边界出发，拆解 Hermes Agent 的真实架构，并解释“自我进化”究竟发生在哪里。",
-      "articles": [
-        "hermes-agent-architecture-deep-dive"
-      ],
-      "outcome": "从 Agent Loop、Prompt 分层、四类记忆、工具运行时、子 Agent、Gateway 与安全边界出发，拆解 Hermes Agent 的真实架构，并解释“自我进化”究竟发生在哪里。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "deepseek-harness-architecture",
-      "topic": "harness-agent",
-      "title": "DeepSeek Harness 架构深度解读：当 Agent 运行时变成一棵可重组的插件树",
-      "description": "从 Cordis 时空可组合性、Profile 与 Preset、事件溯源 Session、Agent Loop、工具策略、PTC、多 Agent 和安全边界，拆解 DeepSeek Harness 为什么不只是另一个 Coding Agent。",
-      "articles": [
-        "deepseek-harness-architecture"
-      ],
-      "outcome": "从 Cordis 时空可组合性、Profile 与 Preset、事件溯源 Session、Agent Loop、工具策略、PTC、多 Agent 和安全边界，拆解 DeepSeek Harness 为什么不只是另一个 Coding Agent。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "pi-architecture-deep-dive",
-      "topic": "harness-agent",
-      "title": "Pi 架构深度解读：把 Coding Agent 做成可改造的最小内核",
-      "description": "从模型适配、Agent Loop、Session 事件树、上下文压缩与扩展系统出发，拆解 Pi 如何用机制与策略分离构建极简 Harness，并分析其正在演进的分布式架构。",
-      "articles": [
-        "pi-architecture-deep-dive"
-      ],
-      "outcome": "从模型适配、Agent Loop、Session 事件树、上下文压缩与扩展系统出发，拆解 Pi 如何用机制与策略分离构建极简 Harness，并分析其正在演进的分布式架构。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "ecc-architecture-deep-dive",
-      "topic": "harness-agent",
-      "title": "ECC 架构深度解读：把 AI 编程经验编译成可移植的工程系统",
-      "description": "从源码出发拆解 Everything Claude Code 的资产层、安装编译器、Hook 运行时、记忆与学习系统、安全边界及 ECC 2.0 控制平面，并分析它真正解决的问题与架构代价。",
-      "articles": [
-        "ecc-architecture-deep-dive"
-      ],
-      "outcome": "从源码出发拆解 Everything Claude Code 的资产层、安装编译器、Hook 运行时、记忆与学习系统、安全边界及 ECC 2.0 控制平面，并分析它真正解决的问题与架构代价。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "agent-memory-design-competitive-analysis",
-      "topic": "harness-agent",
-      "title": "Agent 记忆设计竞品分析：Mem0、OpenViking 与 TencentDB Agent Memory",
-      "description": "不按功能清单，而按写入、组织、演化、召回、注入、治理与评测七个环节，拆解三套主流 Agent 记忆体系的架构选择与适用边界。",
-      "articles": [
-        "agent-memory-design-competitive-analysis"
-      ],
-      "outcome": "不按功能清单，而按写入、组织、演化、召回、注入、治理与评测七个环节，拆解三套主流 Agent 记忆体系的架构选择与适用边界。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "capability-routing-at-scale",
-      "topic": "harness-agent",
-      "title": "如何从一万个能力中选对那一个：MCP、Skill 与 Agent 的生产级路由设计",
-      "description": "从先检索、后加载出发，结合 Deep Agents、MCP Registry、ARD、Agent Finder、ToolHive 等开源实现，拆解统一发现、异构执行、权限边界和路由评测。",
-      "articles": [
-        "capability-routing-at-scale"
-      ],
-      "outcome": "从先检索、后加载出发，结合 Deep Agents、MCP Registry、ARD、Agent Finder、ToolHive 等开源实现，拆解统一发现、异构执行、权限边界和路由评测。",
-      "question": "Agent 系统如何组织执行、上下文与扩展？"
-    },
-    {
-      "id": "ai-agent-landscape-2026",
-      "topic": "agent-products",
-      "title": "AI Agent 八强竞品全景：谁在卖模型，谁在造 Harness，谁在争夺工作入口",
-      "description": "Claude Code、Codex、Kimi、WorkBuddy、豆包工作与 Hermes、Pi、DeepSeek Harness 并不处在同一条赛道。本文用三层市场、九个维度和一套选型方法重新理解 2026 年 Agent 竞争。",
-      "articles": [
-        "ai-agent-landscape-2026"
-      ],
-      "outcome": "Claude Code、Codex、Kimi、WorkBuddy、豆包工作与 Hermes、Pi、DeepSeek Harness 并不处在同一条赛道。本文用三层市场、九个维度和一套选型方法重新理解 2026 年 Agent 竞争。",
-      "question": "不同 Agent 产品在解决什么问题？"
-    },
-    {
-      "id": "coding-agent-harness-showdown",
-      "topic": "agent-products",
-      "title": "Coding Agent Harness 对决：Claude Code、Codex 与三种开源答案",
-      "description": "为什么相同模型装进不同 Harness 会像不同产品？从 Agent Loop、上下文、工具、验证、安全、并行和扩展七层，对比 Claude Code、Codex、Kimi Code、Hermes、Pi 与 DeepSeek Harness。",
-      "articles": [
-        "coding-agent-harness-showdown"
-      ],
-      "outcome": "为什么相同模型装进不同 Harness 会像不同产品？从 Agent Loop、上下文、工具、验证、安全、并行和扩展七层，对比 Claude Code、Codex、Kimi Code、Hermes、Pi 与 DeepSeek Harness。",
-      "question": "不同 Agent 产品在解决什么问题？"
-    },
-    {
-      "id": "china-work-agent-showdown",
-      "topic": "agent-products",
-      "title": "国内办公 Agent 三强：Kimi Work、WorkBuddy、豆包工作，谁更接近“交付工作”",
-      "description": "从知识研究、办公制品、本地电脑、企业连接、多模态、长期任务与安全治理出发，对比 Kimi Work、腾讯 WorkBuddy 与豆包工作，并解释它们为何不该简单复制 Claude Code 和 Codex。",
-      "articles": [
-        "china-work-agent-showdown"
-      ],
-      "outcome": "从知识研究、办公制品、本地电脑、企业连接、多模态、长期任务与安全治理出发，对比 Kimi Work、腾讯 WorkBuddy 与豆包工作，并解释它们为何不该简单复制 Claude Code 和 Codex。",
-      "question": "不同 Agent 产品在解决什么问题？"
-    },
-    {
-      "id": "agent-system-evaluation-research",
-      "topic": "evaluation",
-      "title": "Agent 体系评测深度研究报告",
-      "description": "从基准设计、方法论到工程落地——全面解析 AI Agent 评测的现状、方法与未来。",
-      "articles": [
-        "agent-system-evaluation-research"
-      ],
-      "outcome": "从基准设计、方法论到工程落地——全面解析 AI Agent 评测的现状、方法与未来。",
-      "question": "如何判断 Agent 的能力、效果与可靠性边界？"
-    },
-    {
-      "id": "trace-framework-deep-dive",
-      "topic": "evaluation",
-      "title": "TRACE 深度精读：从“答对”走向“可信地答对”",
-      "description": "拆解 TRACE 的轨迹效用、证据扎根、陷阱恢复与脚手架评测，并审视它从论文指标走向生产评测时必须补上的边界。",
-      "articles": [
-        "trace-framework-deep-dive"
-      ],
-      "outcome": "拆解 TRACE 的轨迹效用、证据扎根、陷阱恢复与脚手架评测，并审视它从论文指标走向生产评测时必须补上的边界。",
-      "question": "如何判断 Agent 的能力、效果与可靠性边界？"
-    },
-    {
-      "id": "llm-agent-capability-landscape-2026",
-      "topic": "evaluation",
-      "title": "从「会答题」到「能交付」：2026 年 LLM 与 Agent 能力水位全景",
-      "description": "基于 Terminal-Bench、SWE-bench、SWE-EVO、Senior SWE-Bench、LiveCodeBench、τ-bench 与 GAIA，判断前沿模型、Agent 系统和市场预期的真实水位。",
-      "articles": [
-        "llm-agent-capability-landscape-2026"
-      ],
-      "outcome": "基于 Terminal-Bench、SWE-bench、SWE-EVO、Senior SWE-Bench、LiveCodeBench、τ-bench 与 GAIA，判断前沿模型、Agent 系统和市场预期的真实水位。",
-      "question": "如何判断 Agent 的能力、效果与可靠性边界？"
-    },
-    {
-      "id": "ai-agent-reliability-boundaries",
-      "topic": "evaluation",
-      "title": "AI Agent 的可靠性边界：Skills、RAG 与权限能解决什么",
-      "description": "从上下文、证据、执行和治理四个层面拆解 Agent 的可靠性瓶颈，对比 Claude Code、Codex、Kimi 与 WorkBuddy 的实际作用，并给出可验收的落地路径。",
-      "articles": [
-        "ai-agent-reliability-boundaries"
-      ],
-      "outcome": "从上下文、证据、执行和治理四个层面拆解 Agent 的可靠性瓶颈，对比 Claude Code、Codex、Kimi 与 WorkBuddy 的实际作用，并给出可验收的落地路径。",
-      "question": "如何判断 Agent 的能力、效果与可靠性边界？"
+      "outcome": "能把原始观点转成可推翻的假设，区分组织经验与因果证据。",
+      "question": "研究型创业的原始观点、推演方法和组织边界。"
     }
   ]
 }
