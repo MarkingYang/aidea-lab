@@ -121,19 +121,22 @@
         "opencode-system-overview",
         "deepseek-harness-composition",
         "hermes-agent-architecture-deep-dive",
-        "pi-architecture-deep-dive"
+        "pi-architecture-deep-dive",
+        "openhands-sdk-architecture"
       ]
     },
     {
       "id": "agent-frameworks",
       "topic": "harness",
-      "title": "Agent 框架",
-      "description": "分别研究高层 Agent 装配与显式有状态编排；框架之间的组合关系通过链接说明。",
-      "outcome": "分别研究高层 Agent 装配与显式有状态编排；框架之间的组合关系通过链接说明。",
-      "question": "分别研究高层 Agent 装配与显式有状态编排；框架之间的组合关系通过链接说明。",
+      "title": "运行与编排框架",
+      "description": "分别研究 Agent 装配、图执行、RAG 流水线与持久工作流，比较状态、调度和恢复的不同边界。",
+      "outcome": "分别研究 Agent 装配、图执行、RAG 流水线与持久工作流，比较状态、调度和恢复的不同边界。",
+      "question": "分别研究 Agent 装配、图执行、RAG 流水线与持久工作流，比较状态、调度和恢复的不同边界。",
       "articles": [
         "langchain-agent-architecture",
-        "langgraph-runtime-architecture"
+        "langgraph-runtime-architecture",
+        "temporal-durable-execution",
+        "haystack-pipeline-architecture"
       ]
     },
     {

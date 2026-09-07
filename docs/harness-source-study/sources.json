@@ -1,0 +1,159 @@
+{
+  "date": "2026-09-07",
+  "status": "local draft; not published",
+  "published_baseline": "0dce1ccf4adc1de9ce9aa79d6bae970773ad07b0",
+  "article_count": 57,
+  "projects": [
+    {
+      "repository": "langchain-ai/langgraph",
+      "commit": "81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1",
+      "article": "langgraph-runtime-architecture",
+      "sources": [
+        {
+          "path": "libs/langgraph/langgraph/graph/state.py",
+          "url": "https://github.com/langchain-ai/langgraph/blob/81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1/libs/langgraph/langgraph/graph/state.py",
+          "sha256": "d8c8021a93a8fc895d62335a9482e50d51353343bf885901e6487611dcd0d212"
+        },
+        {
+          "path": "libs/langgraph/langgraph/pregel/_loop.py",
+          "url": "https://github.com/langchain-ai/langgraph/blob/81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1/libs/langgraph/langgraph/pregel/_loop.py",
+          "sha256": "33150cf70fc08fd01affeae0345aa20569d2705704e3d209733d9c7b43dd5c0a"
+        },
+        {
+          "path": "libs/langgraph/langgraph/pregel/_runner.py",
+          "url": "https://github.com/langchain-ai/langgraph/blob/81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1/libs/langgraph/langgraph/pregel/_runner.py",
+          "sha256": "316cf133c724163a18ef279322615588b3fa8b96e359289a7cadea90f0df7622"
+        },
+        {
+          "path": "libs/langgraph/langgraph/pregel/_algo.py",
+          "url": "https://github.com/langchain-ai/langgraph/blob/81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1/libs/langgraph/langgraph/pregel/_algo.py",
+          "sha256": "29d54dc6704e4e4a0385d36317faa74f4fa2ceefd6836aca03f1938b9fa51fa5"
+        },
+        {
+          "path": "libs/langgraph/langgraph/channels/named_barrier_value.py",
+          "url": "https://github.com/langchain-ai/langgraph/blob/81bf17b23123e4ef8b9d5f49fa09a0122fc2edd1/libs/langgraph/langgraph/channels/named_barrier_value.py",
+          "sha256": "18498401cfec1bc6c735d81f2d113945effd5520dac6cbae17c58ca791b6434c"
+        }
+      ]
+    },
+    {
+      "repository": "temporalio/sdk-python",
+      "commit": "22a9e41fd857261ee0a9bb5ce57f439d93e7f88d",
+      "article": "temporal-durable-execution",
+      "sources": [
+        {
+          "path": "temporalio/worker/_workflow_instance.py",
+          "url": "https://github.com/temporalio/sdk-python/blob/22a9e41fd857261ee0a9bb5ce57f439d93e7f88d/temporalio/worker/_workflow_instance.py",
+          "sha256": "fb7e019949ad88c01b9140c759c51474ad0ce7877d1928a3d41abaadedf40d75"
+        },
+        {
+          "path": "README.md",
+          "url": "https://github.com/temporalio/sdk-python/blob/22a9e41fd857261ee0a9bb5ce57f439d93e7f88d/README.md",
+          "sha256": "8ec11868a76adce81b39a59c215defe1a70c7da65f170e8a41add57ca1091e10"
+        },
+        {
+          "path": "temporalio/worker/_replayer.py",
+          "url": "https://github.com/temporalio/sdk-python/blob/22a9e41fd857261ee0a9bb5ce57f439d93e7f88d/temporalio/worker/_replayer.py",
+          "sha256": "abc6ceac05a402d7e3f650fbcc49ba17be632dd656caa5de1857a5a08cf9f074"
+        },
+        {
+          "path": "temporalio/worker/_tuning.py",
+          "url": "https://github.com/temporalio/sdk-python/blob/22a9e41fd857261ee0a9bb5ce57f439d93e7f88d/temporalio/worker/_tuning.py",
+          "sha256": "34556f0110f3901c3ffe3a09caebda48480cefa713f365e06e9000724082a6b0"
+        },
+        {
+          "path": "temporalio/workflow/_workflow_ops.py",
+          "url": "https://github.com/temporalio/sdk-python/blob/22a9e41fd857261ee0a9bb5ce57f439d93e7f88d/temporalio/workflow/_workflow_ops.py",
+          "sha256": "5cc14768abc7b48c325805aa2a6b4e30b9e4c0c3411853dfffe8b32f3037af2c"
+        },
+        {
+          "path": "temporalio/workflow/_context.py",
+          "url": "https://github.com/temporalio/sdk-python/blob/22a9e41fd857261ee0a9bb5ce57f439d93e7f88d/temporalio/workflow/_context.py",
+          "sha256": "9c0f33b9d547792a2b076d697fb691d046922978fec2bd3e78a627945600fd2a"
+        }
+      ]
+    },
+    {
+      "repository": "OpenHands/software-agent-sdk",
+      "commit": "aa84db8216192568c4436d0dcc36f4caf8516c5b",
+      "article": "openhands-sdk-architecture",
+      "sources": [
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/conversation.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/conversation.py",
+          "sha256": "7fb48719db9006bb8ac4144fafdf6f036085d2eeaa7a09b70ce2c859dd4b8122"
+        },
+        {
+          "path": "README.md",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/README.md",
+          "sha256": "95094c9745c7cc58136d4eaa1688fb6038aafefec2be05344293f6df7e55dbf8"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/agent/agent.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/agent/agent.py",
+          "sha256": "dc65fb1eabd6a3ed0ab2843bf3ef8f08b988fb7bd906588e55ab020d049fffdc"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/event_store.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/event_store.py",
+          "sha256": "af721391c46a1979c45e0e414c45a82dfc42d8a92d62ac2ccea0242f725450b0"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/state.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/state.py",
+          "sha256": "441b4c5d5b5e6e7dfcab8a4b32039039fcff49088781e4eae98ed7397ca3cf74"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/context/view/view.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/context/view/view.py",
+          "sha256": "3d31709f284b40e41bf1d12ef53d34662339757902ce06df3765be272531b45f"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/agent/parallel_executor.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/agent/parallel_executor.py",
+          "sha256": "a2ce8ebc42009a660c0eda2330958d0df1eb452b7b9f24da02f7c23f5f3038bb"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/resource_lock_manager.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/resource_lock_manager.py",
+          "sha256": "cfbe93b802b3aabe816d5d9ffe574ee33f0220a95cfe36f2d42a43ca732f2dfa"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/workspace/local.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/workspace/local.py",
+          "sha256": "c6c63ee9b2c6b3d59db6877b3202afc84742b19563b16d8d25b4405b92a58cb2"
+        },
+        {
+          "path": "openhands-workspace/openhands/workspace/docker/workspace.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-workspace/openhands/workspace/docker/workspace.py",
+          "sha256": "828a0e24087c04c5e365833a5a4140aa7881a60d5c6969db408aa71235d5d576"
+        },
+        {
+          "path": "openhands-tools/openhands/tools/terminal/definition.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-tools/openhands/tools/terminal/definition.py",
+          "sha256": "69ae7b5a82a8f2510ca7fa4c39a8d75aa63a6f3ccc48dc8ed3025ee546733cae"
+        },
+        {
+          "path": "openhands-tools/openhands/tools/terminal/terminal/factory.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-tools/openhands/tools/terminal/terminal/factory.py",
+          "sha256": "01cb2eae1ae0fc92b3650a1c8efc6f0360d15e66adc44447d25df04bd5aa3155"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py",
+          "sha256": "054069be66a155440df91bd72e97bac50a8a03df2bac3848ff956814db195758"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/tool/tool.py",
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/tool/tool.py",
+          "sha256": "c60d5c5b7598071c2a9f17eb223132b8eafa6aad3a139ec2840b9856bc7d6ccf"
+        }
+      ]
+    }
+  ],
+  "experiments": {
+    "langgraph": "langgraph-results.json",
+    "temporal": "temporal-results.json",
+    "openhands": "Source inspection only; no SDK/model/container runtime test"
+  }
+}

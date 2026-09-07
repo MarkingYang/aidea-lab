@@ -1,6 +1,6 @@
 # 文章边界与目录
 
-每行是一篇文章。目录分组只提供浏览入口，不是合并单位。55 篇来自现有材料的重新划分，不是最终篇数配额。
+每行是一篇文章。目录分组只提供浏览入口，不是合并单位。此前 55 篇来自现有材料的重新划分；本轮深化 LangGraph，并新增 Temporal、OpenHands SDK，随后补充 Haystack，本地共 58 篇，不是最终篇数配额。
 
 ## Harness
 
@@ -10,13 +10,16 @@
 | [Agent 控制流：循环、规划、分支与汇合](../../src/content/writing/harness-engineering-loop.md) | 知识问题 | 循环管理下一次行动，执行图管理任务之间的依赖。用状态、进展、停止条件和汇合规则判断何时需要增加编排，避免把模型的计划文本直接当作执行状态。 |
 | [Claude Code：执行循环、记忆与扩展机制](../../src/content/writing/claude-code-internals-overview.md) | 项目研究 | 沿执行循环、工具证据、项目规则、自动记忆和扩展机制，理解 Claude Code 的职责与公开可验证边界。 |
 | [Codex：运行时、沙箱与持续任务](../../src/content/writing/codex-system-overview.md) | 项目研究 | 连接 Codex 本地运行时、执行沙箱、任务证据、Skills 和自动化，区分开源内核与应用协作层。 |
-| [Kimi Code：Session、Skills 与任务委派](../../src/content/writing/kimi-code-system-overview.md) | 项目研究 | 从持久 Session 和工具循环进入 Skills 与任务委派，解释 Kimi Code 的运行、扩展和恢复边界。 |
-| [OpenCode：客户端、服务端与扩展系统](../../src/content/writing/opencode-system-overview.md) | 项目研究 | 连接 OpenCode 的客户端、服务端、Session、模型适配与扩展资产，理解开放系统的稳定契约。 |
+| [Kimi Code：上下文投影、压缩边界与工具执行](../../src/content/writing/kimi-code-system-overview.md) | 项目研究 | 固定 TypeScript 内核提交，分析消息配对、压缩切点、批次执行与委派；六组模块实验验证关键边界。 |
+| [OpenCode：会话运行、上下文压缩与工具状态](../../src/content/writing/opencode-system-overview.md) | 项目研究 | 沿会话路径分析两级压缩、工具终态与扩展；单独验证 core 协调器的合流、唤醒与中断。 |
 | [DeepSeek Harness：插件生命周期、事件日志与执行契约](../../src/content/writing/deepseek-harness-composition.md) | 项目研究 | DeepSeek Harness 把运行能力拆成可组合插件，把模型输入与执行事实记录为事件。沿一次“修复登录超时、不部署”的任务，依次分析组件如何出现和退出、状态怎样恢复、动作如何受约束，以及这些设计把复杂度放到了哪里。 |
 | [Hermes：运行内核、常驻服务与跨会话学习](../../src/content/writing/hermes-agent-architecture-deep-dive.md) | 项目研究 | Hermes 的设计中心是持续工作：任务从不同入口进入，执行结果需要交付，经验又会影响未来任务。本文把 Loop、Gateway、Session、Memory 与 Skills 放在同一条运行链上，分析各自的状态所有权和失败边界。 |
 | [Pi：最小内核、Session 事件树与扩展边界](../../src/content/writing/pi-architecture-deep-dive.md) | 项目研究 | Pi 以模型协议、通用循环、AgentSession 和展示入口分离职责。本文从一次输入走到工具执行和历史恢复，解释最小内核为何仍需要严格事件语义，并单独检查实验性 durable 路径。 |
 | [LangChain：模型、工具、中间件与 Agent 装配](../../src/content/writing/langchain-agent-architecture.md) | 项目研究 | LangChain 的分析对象是高层 Agent 构建接口：模型、工具、消息和行为扩展如何接成一条循环。以下沿用 2026-09-05 核对的官方 Python 文档，以查错码的知识库助手说明装配方式和应用仍需承担的责任。 |
-| [LangGraph：状态、节点、检查点与中断恢复](../../src/content/writing/langgraph-runtime-architecture.md) | 项目研究 | LangGraph 将运行过程表达为状态、节点和转移。以下沿用 2026-09-05 核对的官方 Python 文档，用“起草工单—等待审核—提交”追踪合并规则和恢复位置，区分图状态恢复与外部业务事实。 |
+| [LangGraph：DAG、超级步、状态合并与持久恢复](../../src/content/writing/langgraph-runtime-architecture.md) | 项目研究 | 固定源码提交，追踪编译、通道、超级步和检查点；用不等长分支、Send 与新进程恢复实验验证语义。 |
+| [Temporal：事件历史、持久执行、任务调度与取消](../../src/content/writing/temporal-durable-execution.md) | 项目研究 | 以 Python SDK 为入口，分析 Workflow、Activity、Worker、调度与取消；验证更换 Worker、写入重试与历史重放。 |
+| [Haystack：RAG 流水线、分支汇合与异步执行](../../src/content/writing/haystack-pipeline-architecture.md) | 项目研究 | 固定 3.2.0rc0 提交，以十一组真实 Pipeline 实验分析连接、调度、检索融合、过滤与取消。 |
+| [OpenHands SDK：执行循环、事件状态、并行工具与工作空间](../../src/content/writing/openhands-sdk-architecture.md) | 项目研究 | 固定 Software Agent SDK 源码，研究运行、事件与视图、资源锁、终端和环境生命周期；未运行完整 SDK 或容器实验。 |
 | [Anthropic Skills：规范、渐进加载与文档管线](../../src/content/writing/anthropic-skills-overview.md) | 项目研究 | 从 Skill 规范和资源组织进入渐进加载与文档管线，说明触发、执行和资产分发各自的约束。 |
 | [Addy Skills：工程生命周期与验证门槛](../../src/content/writing/addy-agent-skills-overview.md) | 项目研究 | 沿研发生命周期组织可触发的 Skills，把需求、实现、验证与反馈接成具有证据门槛的工程流程。 |
 | [Matt Pocock Skills：需求对齐与反馈循环](../../src/content/writing/mattpocock-skills-overview.md) | 项目研究 | 从需求和共享语言的对齐进入测试与反馈循环，理解小型 Skills 怎样减少误解和修改风险。 |

@@ -1,0 +1,53 @@
+{
+  "node": "v26.0.0",
+  "effect": "4.0.0-beta.83",
+  "case_count": 9,
+  "cases": {
+    "kimi_inherited_open_call": {
+      "known": "a",
+      "unknown": "b",
+      "input_unmodified": true
+    },
+    "kimi_compaction_boundary": {
+      "threshold": 50000,
+      "compacted_prefix_messages": 6,
+      "wider_window_prefix_messages": 2,
+      "tool_exchange_not_split": true,
+      "estimator": "fixed 10 tokens per message for boundary case"
+    },
+    "kimi_argument_parsing": {
+      "malformed_rejected_by_parse_flag": true,
+      "empty_becomes_object": true
+    },
+    "kimi_batch_missing_result": {
+      "batches": 1,
+      "a": "known result",
+      "b": "explicit error"
+    },
+    "kimi_cancel_before_batch_ready": {
+      "dispatched": 0,
+      "error_returned": true
+    },
+    "kimi_output_retention": {
+      "total_chars": 10000005,
+      "retained_chars": 10000000,
+      "omitted": 5
+    },
+    "opencode_same_key_join": {
+      "drain_calls": 1
+    },
+    "opencode_wake_coalescing": {
+      "wake_calls": 2,
+      "drain_calls": 2
+    },
+    "opencode_interrupt_cleanup": {
+      "cleanup_finished": true
+    }
+  },
+  "limitations": [
+    "Original source modules bundled, not full application startup",
+    "Tool executor is a deterministic test double",
+    "No model requests, server restart, or external side effects",
+    "OpenCode coordinator is a core module; not proof all client routes use it"
+  ]
+}

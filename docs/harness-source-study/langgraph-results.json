@@ -1,0 +1,33 @@
+{
+  "explicit_barrier": [
+    [
+      "A",
+      "B"
+    ]
+  ],
+  "separate_edges": [
+    [
+      "A"
+    ],
+    [
+      "A",
+      "B"
+    ]
+  ],
+  "dynamic_send": [
+    [
+      "A",
+      "B",
+      "C"
+    ]
+  ],
+  "cross_process_calls": {
+    "a": 1,
+    "b": 2
+  },
+  "limitations": [
+    "No LLM or external API",
+    "Order is asserted only for this graph",
+    "No multi-host or database-crash test"
+  ]
+}

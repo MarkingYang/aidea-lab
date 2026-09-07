@@ -11,7 +11,7 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 5 min
+readingTime: 6 min
 updatedAt: 2026-09-07
 ---
 
@@ -82,6 +82,12 @@ TopK(vector_similarity)
 身份权限不是相关性特征，不能通过更高相似度抵消。检索可见性过滤应发生在候选内容暴露给模型之前；注入和执行时还需检查权限是否已经变化。
 
 查询当前附近的办公地点时，上海旧住址仅作历史，其他用户的无权记录被过滤；杭州当前住址经检索、去重和预算检查后，连同来源与时间进入上下文。
+
+## Haystack：把融合与过滤的实际语义拆开验证
+
+[Haystack 的完整项目研究](/writing/haystack-pipeline-architecture/)用两路固定排名比较 DocumentJoiner：直接按原分数处理时，100 分来源压过 0.9 分来源；RRF 则让两路共同靠前的文档排到首位。这支持用排名融合处理量纲差异，但不证明共同靠前的内容一定正确。是否提高任务质量仍需另测。
+
+同一研究还实际验证了过滤配置：初始化 `tenant=A`、运行时传入同字段的 `tenant=B`，REPLACE 和 MERGE 均返回 B 的文档；显式构造 A 与 B 的逻辑 AND 才返回空集。该提交的 MERGE 存在同字段覆盖规则，不能当成通用权限交集。可信范围应由服务端构建并限制覆盖，再把候选交给软排序；项目文章保留了提交、代码位置和实验边界。
 
 ## 预算不是简单截断字符串
 

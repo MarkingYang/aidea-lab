@@ -1,0 +1,288 @@
+{
+  "checked_at": "2026-09-07",
+  "files": [
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/src/session/prompt.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/prompt.ts",
+      "sha256": "f0c5bc64c0f0e966693d4a57f7ede1e9d6e188b396152f04b55303dc75b9b768"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/src/session/message-v2.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/message-v2.ts",
+      "sha256": "828789508afda97a1570b96413dd40ee9d9119dd25d057b5f0a985154378e619"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/src/session/compaction.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/compaction.ts",
+      "sha256": "8d478570a7e4ad32b746030d4f86a1c673949b1e2259bd716b3885d99283289a"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/src/session/overflow.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/overflow.ts",
+      "sha256": "fa0d52e8a59b737e8129d6473f9f6416567cd765c6068f854e4ea0dd3d351d10"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/src/session/tools.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/tools.ts",
+      "sha256": "5ad3f44682fc8e2bacb2222157943de8ab7dd663a1e0ddf5e4a213539b1f67d7"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/src/session/processor.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/processor.ts",
+      "sha256": "0b31e207beda56bd9a4b9b88c9e42d89a0651dd011773748c8e2938dfc3dcb74"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/core/src/session/run-coordinator.ts",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/core/src/session/run-coordinator.ts",
+      "sha256": "ed7c5f121e37298dcab5a1dfc9f8e4855faeabb1fe66c2df3cbc691a8e323f6e"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/web/src/content/docs/agents.mdx",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/web/src/content/docs/agents.mdx",
+      "sha256": "0941601a02a57c97aa2072bd8accb15900dc6c78e78d99de44435c17e62e6b32"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/web/src/content/docs/skills.mdx",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/web/src/content/docs/skills.mdx",
+      "sha256": "7ff4df3a1a4909fa0e0025a6f086c3dbc63d09fdd578bc13f3f4ae30fcfe4627"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/web/src/content/docs/plugins.mdx",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/web/src/content/docs/plugins.mdx",
+      "sha256": "4cc0d8db8645a036d1398a9e3be65c386ab75d003a2699c14bc06c267ea1354f"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "docs/en/guides/sessions.md",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/docs/en/guides/sessions.md",
+      "sha256": "194b398e64776704d28f96eabad1bd8ca7951c8897da0e81e54dd7d9f5202f3b"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/loop/machine/engine.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/loop/machine/engine.ts",
+      "sha256": "210a442f0ee4a6500a107b03d1c022714e06c79265f90917e8e3e6cc509126fb"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/fullCompaction/fullCompactionService.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/fullCompaction/fullCompactionService.ts",
+      "sha256": "8558d77d962c5f368d54783822673b40e463b00e71e2f79f6a21425e77adf10c"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/contextProjector/projection.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/contextProjector/projection.ts",
+      "sha256": "936e655b42a0c402633dd269e369c72ef548218e82d705f510d9cf8b96064e71"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/contextMemory/openToolExchange.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/contextMemory/openToolExchange.ts",
+      "sha256": "f4d21452e86d2278fbad8ab102c096ff9237d025380f8cb5742877070f207711"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/fullCompaction/strategy.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/fullCompaction/strategy.ts",
+      "sha256": "6c3351606df8eacf4be6ea5a082696ff90157a88f65cb953d6b906b09ce0fd80"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/llm-adapter/contract/tokens.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/llm-adapter/contract/tokens.ts",
+      "sha256": "1d4521df8359362d63eef8fa423ce21ff75474fb31e7b0d454a21152958f1b45"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/tool/tool-args-parse.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/tool/tool-args-parse.ts",
+      "sha256": "680a5ed06dc61b5d10de69cf54601d794dadfe4d6daffbf976fad4eb28422bee"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/toolExecutor/toolExecutorService.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/toolExecutor/toolExecutorService.ts",
+      "sha256": "72011a2e39c1b07aa522faca86c727b6afbeff2d7c635ca977c4df2e41428ae0"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/loop/machine/tools.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/loop/machine/tools.ts",
+      "sha256": "0c9db4e337cab6b05b889b0b39d66ae97a3a7707ffc43bdb9c4111131facadb2"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/agent/toolExecutor/toolScheduler.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/toolExecutor/toolScheduler.ts",
+      "sha256": "26d26e6676ef820ac94b70942b0dd9175eb277fbe3e774c6b01f8706a8c46b96"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/tool/output-accumulator.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/tool/output-accumulator.ts",
+      "sha256": "5f0fb3a5131f99ff5f00cef6a4ceaf1276cead9e5404e7afc285a5714c2bfc86"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/tool/toolContract.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/tool/toolContract.ts",
+      "sha256": "378be01506a815fa12ed6d999642eb69e604178932f8c0b257871a7d7a9494fb"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "docs/en/customization/skills.md",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/docs/en/customization/skills.md",
+      "sha256": "dfe1b086ea42a2de9997d4ad0e983047a7321edbd5cf9d2f0785b575693cf719"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "docs/en/reference/tools.md",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/docs/en/reference/tools.md",
+      "sha256": "81a170078db21be830b6dcb5e92a1390a01e645bd3bad3e43d9edd07700ac8ce"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "packages/agent-core-v2/src/session/subagent/spawn.ts",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/session/subagent/spawn.ts",
+      "sha256": "1f27a2b746e7810c30a54016f6f0d4ea3ae8378076660f1082750eb64105cd1b"
+    },
+    {
+      "project": "opencode",
+      "commit": "e207624c48159b03dbe17dbc8e51bbcf23e72df5",
+      "path": "packages/opencode/package.json",
+      "url": "https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/package.json",
+      "sha256": "da5e31c4a0328b24e4ef4758b751e8aa461e378bec48e067ddaf8d99c55d3d70"
+    },
+    {
+      "project": "kimi-code",
+      "commit": "bb16383aa15f72954224d37ee0b9babb807e03b3",
+      "path": "apps/kimi-code/package.json",
+      "url": "https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/apps/kimi-code/package.json",
+      "sha256": "dcae08c027ae478ba6189851e9c4a568909e8bf131923c3c2794c0a1c263aefe"
+    }
+  ],
+  "claims": [
+    {
+      "project": "opencode",
+      "claim": "Session 循环检查实际工具调用，不能只根据 stop 退出",
+      "files": [
+        "packages/opencode/src/session/prompt.ts"
+      ],
+      "evidence": "source inspection"
+    },
+    {
+      "project": "opencode",
+      "claim": "清理给旧工具结果加 compacted 标记，模型投影替换内容；完整摘要是另一路径",
+      "files": [
+        "packages/opencode/src/session/compaction.ts",
+        "packages/opencode/src/session/message-v2.ts"
+      ],
+      "evidence": "source inspection"
+    },
+    {
+      "project": "opencode",
+      "claim": "取消后返回的工具结果有主动记录路径，清理等待 250ms 后标记残余中断",
+      "files": [
+        "packages/opencode/src/session/tools.ts",
+        "packages/opencode/src/session/processor.ts"
+      ],
+      "evidence": "source inspection; not race-tested"
+    },
+    {
+      "project": "opencode",
+      "claim": "core 协调器同 key 合流、wake 合并、interrupt 等待清理",
+      "files": [
+        "packages/core/src/session/run-coordinator.ts"
+      ],
+      "evidence": "source module experiments; not full routing validation"
+    },
+    {
+      "project": "kimi-code",
+      "claim": "投影修复配对并保留结果未知",
+      "files": [
+        "packages/agent-core-v2/src/agent/contextProjector/projection.ts",
+        "packages/agent-core-v2/src/agent/contextMemory/openToolExchange.ts"
+      ],
+      "evidence": "projection source inspection; inherited snapshot helper experiment"
+    },
+    {
+      "project": "kimi-code",
+      "claim": "100000 默认窗口阈值 50000；近期参数 4/5 在给定七条消息上切点 6/2",
+      "files": [
+        "packages/agent-core-v2/src/agent/fullCompaction/strategy.ts"
+      ],
+      "evidence": "source module experiment; fixed estimator for boundary case"
+    },
+    {
+      "project": "kimi-code",
+      "claim": "压缩应用前检查前缀身份与新增用户输入",
+      "files": [
+        "packages/agent-core-v2/src/agent/fullCompaction/fullCompactionService.ts"
+      ],
+      "evidence": "source inspection; not concurrency-tested"
+    },
+    {
+      "project": "kimi-code",
+      "claim": "批次缺失结果返回错误，未收齐时取消不派发",
+      "files": [
+        "packages/agent-core-v2/src/agent/loop/machine/tools.ts"
+      ],
+      "evidence": "source module experiments with deterministic executor double"
+    },
+    {
+      "project": "kimi-code",
+      "claim": "访问声明冲突限制调度",
+      "files": [
+        "packages/agent-core-v2/src/agent/toolExecutor/toolScheduler.ts"
+      ],
+      "evidence": "source inspection; scheduler not executed"
+    },
+    {
+      "project": "kimi-code",
+      "claim": "非法 JSON 有失败标记；累积器保留上限并记录省略",
+      "files": [
+        "packages/agent-core-v2/src/tool/tool-args-parse.ts",
+        "packages/agent-core-v2/src/tool/output-accumulator.ts",
+        "packages/agent-core-v2/src/tool/toolContract.ts"
+      ],
+      "evidence": "source module experiments"
+    }
+  ]
+}

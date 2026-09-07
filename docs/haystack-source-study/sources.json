@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-09-07",
+  "repository": "deepset-ai/haystack",
+  "commit": "82da3adc2fac4675b80ff5573b790ec07113697b",
+  "package_version": "3.2.0rc0",
+  "source_archive": "https://codeload.github.com/deepset-ai/haystack/zip/82da3adc2fac4675b80ff5573b790ec07113697b#sha256=d9d3465f417e0282fd6639574fea065978463e2b5192eefe9c6dc739b0c7c753",
+  "files": [
+    {
+      "path": "haystack/components/agents/agent.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/components/agents/agent.py",
+      "sha256": "81d9a15173203b3627ef0c01f7eabc58f1b638e3273249230eeff4d261138463"
+    },
+    {
+      "path": "haystack/components/joiners/branch.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/components/joiners/branch.py",
+      "sha256": "682b8847c5269e6c450e5dfa812f366491ebce2039400a744694e7e8d8a87cf0"
+    },
+    {
+      "path": "haystack/components/joiners/document_joiner.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/components/joiners/document_joiner.py",
+      "sha256": "153a7fc645e64a4e428676eb2509718bc2c14ec8f020d8f93301c184db06168f"
+    },
+    {
+      "path": "haystack/components/retrievers/in_memory/bm25_retriever.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/components/retrievers/in_memory/bm25_retriever.py",
+      "sha256": "d333603e0e2e842eb2b6bb1342f092bae86ab9bff521f5fdd70ef37f1ab6233a"
+    },
+    {
+      "path": "haystack/components/routers/conditional_router.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/components/routers/conditional_router.py",
+      "sha256": "da171d1b2f3b00e9a16515965d5a78d95404a15f830c988749b09de354589000"
+    },
+    {
+      "path": "haystack/core/pipeline/base.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/pipeline/base.py",
+      "sha256": "f14585b462e7c1c722e6765e89a48ef0539816ef7bd3ea8e587c44728737b009"
+    },
+    {
+      "path": "haystack/core/pipeline/breakpoint.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/pipeline/breakpoint.py",
+      "sha256": "2ace775bc22d2e9abfda6d11253714666eefbb9f007635646e09a8ad94695b08"
+    },
+    {
+      "path": "haystack/core/pipeline/component_checks.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/pipeline/component_checks.py",
+      "sha256": "e3c1081c60b21924f4d2611fe50f05bab34d2fb96e9e25a8895b1cefc1686150"
+    },
+    {
+      "path": "haystack/core/pipeline/pipeline.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/pipeline/pipeline.py",
+      "sha256": "cb26fd33ceb8e129ac1da355bceaf0456dd7c1f207add6733fdf4d3905fd3e17"
+    },
+    {
+      "path": "haystack/document_stores/types/filter_policy.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/document_stores/types/filter_policy.py",
+      "sha256": "fc3b532caf03a7a9cb6f48658b1e69122b6a2303b9975c68f5e1f9c489d54402"
+    },
+    {
+      "path": "haystack/tools/pipeline_tool.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/tools/pipeline_tool.py",
+      "sha256": "7eb0491d20eb07ef633fcccfce708bec7179437eefa24fe55bdcc1a96a6a7777"
+    },
+    {
+      "path": "haystack/utils/misc.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/utils/misc.py",
+      "sha256": "db0450962dbb52d5c9e1280984fd7b03a92b119bb7cc0c34abeb46dfa987f388"
+    },
+    {
+      "path": "pyproject.toml",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/pyproject.toml",
+      "sha256": "319d86ffab0463f00915f3b6ad76bb40ed617608234dc96f74199c0e861c073e"
+    },
+    {
+      "path": "VERSION.txt",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/VERSION.txt",
+      "sha256": "3bf66facdcf803afe189dec64a696bba6694e8181a2c3e58af350f08d84a0ed5"
+    },
+    {
+      "path": "haystack/core/component/component.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/component/component.py",
+      "sha256": "96c7973fa602ad599f7824766c32d0bd628bad82b51122a323fa97e1d71b8141"
+    },
+    {
+      "path": "haystack/core/component/types.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/component/types.py",
+      "sha256": "63105949127cbcc6c828d8915cafe4d9ac4bfeda8910100ae925bbc629454a6b"
+    },
+    {
+      "path": "haystack/components/builders/prompt_builder.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/components/builders/prompt_builder.py",
+      "sha256": "a3aef50d2f327beb8a808d7a7c88eb8d389ab3b992fa303e76899fc1c161b071"
+    },
+    {
+      "path": "haystack/document_stores/in_memory/document_store.py",
+      "url": "https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/document_stores/in_memory/document_store.py",
+      "sha256": "c20e098e30867f1c9356dd1dc4c6539e89799f1edb973ad348bf9c55607366aa"
+    }
+  ],
+  "limitations": [
+    "Release candidate commit; do not generalize to 2.x",
+    "Claimed runtime behaviors are covered by results.json; Agent and snapshots are source inspection only"
+  ]
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/agent/contextMemory/openToolExchange.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/contextMemory/openToolExchange.ts",
+    "sha256": "f4d21452e86d2278fbad8ab102c096ff9237d025380f8cb5742877070f207711"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/agent/fullCompaction/strategy.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/fullCompaction/strategy.ts",
+    "sha256": "6c3351606df8eacf4be6ea5a082696ff90157a88f65cb953d6b906b09ce0fd80"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/agent/loop/machine/tools.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/loop/machine/tools.ts",
+    "sha256": "0c9db4e337cab6b05b889b0b39d66ae97a3a7707ffc43bdb9c4111131facadb2"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/tool/tool-args-parse.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/tool/tool-args-parse.ts",
+    "sha256": "680a5ed06dc61b5d10de69cf54601d794dadfe4d6daffbf976fad4eb28422bee"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/tool/output-accumulator.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/tool/output-accumulator.ts",
+    "sha256": "5f0fb3a5131f99ff5f00cef6a4ceaf1276cead9e5404e7afc285a5714c2bfc86"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/tool/toolContract.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/tool/toolContract.ts",
+    "sha256": "378be01506a815fa12ed6d999642eb69e604178932f8c0b257871a7d7a9494fb"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/llm-adapter/contract/message.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/llm-adapter/contract/message.ts",
+    "sha256": "c1477307fa98b41d9634d9e2639f131f186eba23123600757de39dc7b06cf5e8"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/llm-adapter/contract/tokens.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/llm-adapter/contract/tokens.ts",
+    "sha256": "1d4521df8359362d63eef8fa423ce21ff75474fb31e7b0d454a21152958f1b45"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/human/llm/message.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/human/llm/message.ts",
+    "sha256": "83d23b06a2e33092036076de83160d4c61e5eb2da914446e81606dcfd53ab288"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/_base/errors/errorMessage.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/_base/errors/errorMessage.ts",
+    "sha256": "91f3c6802a4d19a4f9ebaea683612ac5552a1a2f9db2b8f320809ffac8287eda"
+  },
+  {
+    "project": "opencode",
+    "path": "packages/core/src/session/run-coordinator.ts",
+    "url": "https://raw.githubusercontent.com/anomalyco/opencode/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/core/src/session/run-coordinator.ts",
+    "sha256": "ed7c5f121e37298dcab5a1dfc9f8e4855faeabb1fe66c2df3cbc691a8e323f6e"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/_base/errors/serialize.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/_base/errors/serialize.ts",
+    "sha256": "7470078f201922d1e7d8e0575d4c112917a62609a8345ed7e6f8b3732ca7c721"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/_base/errors/codes.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/_base/errors/codes.ts",
+    "sha256": "d0ff97273718bec7ff3ba6d2442847bb35603b424421e89397e0f62506ec0c90"
+  },
+  {
+    "project": "kimi-code",
+    "path": "packages/agent-core-v2/src/_base/errors/errors.ts",
+    "url": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/_base/errors/errors.ts",
+    "sha256": "fd0e0d4efab7de6931b5785a16af7c4b6652f82e81766b7671ab52a4523bf0ca"
+  }
+]

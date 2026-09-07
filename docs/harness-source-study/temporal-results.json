@@ -1,0 +1,16 @@
+{
+  "calls": {
+    "read": 1,
+    "write": 2
+  },
+  "business_rows": 1,
+  "worker_replaced": true,
+  "replay_without_activity_execution": true,
+  "history_events": 21,
+  "limitations": [
+    "Local in-memory Temporal service stayed alive",
+    "Worker object replacement, not cross-host failover",
+    "UnsandboxedWorkflowRunner for this teaching module",
+    "SQLite response-loss simulation, no real network fault"
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "events": [
+    {
+      "eventId": "1",
+      "eventTime": "2026-09-07T03:06:23.582532Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_STARTED",
+      "taskId": "1048587",
+      "workflowExecutionStartedEventAttributes": {
+        "workflowType": {
+          "name": "Review"
+        },
+        "taskQueue": {
+          "name": "harness-source-study",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "input": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "InRhc2stMTpwdWJsaXNoIg=="
+            }
+          ]
+        },
+        "workflowTaskTimeout": "10s",
+        "originalExecutionRunId": "01a079d4-c9de-781e-8ba6-1709ce8c07f0",
+        "identity": "99554@localhost",
+        "firstExecutionRunId": "01a079d4-c9de-781e-8ba6-1709ce8c07f0",
+        "attempt": 1,
+        "firstWorkflowTaskBackoff": "0s",
+        "workflowId": "source-study-review",
+        "priority": {}
+      }
+    },
+    {
+      "eventId": "2",
+      "eventTime": "2026-09-07T03:06:23.582606Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "1048588",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "harness-source-study",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "3",
+      "eventTime": "2026-09-07T03:06:23.590994Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "1048593",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "2",
+        "identity": "99554@localhost",
+        "requestId": "9b787c80-b140-4389-a0be-272488758645",
+        "historySizeBytes": "297",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        }
+      }
+    },
+    {
+      "eventId": "4",
+      "eventTime": "2026-09-07T03:06:23.595404Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "1048597",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "2",
+        "startedEventId": "3",
+        "identity": "99554@localhost",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        },
+        "sdkMetadata": {
+          "coreUsedFlags": [
+            1,
+            2,
+            3
+          ],
+          "sdkName": "temporal-python",
+          "sdkVersion": "1.32.0"
+        },
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "5",
+      "eventTime": "2026-09-07T03:06:23.595494Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+      "taskId": "1048598",
+      "activityTaskScheduledEventAttributes": {
+        "activityId": "1",
+        "activityType": {
+          "name": "read_evidence"
+        },
+        "taskQueue": {
+          "name": "harness-source-study",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "header": {},
+        "scheduleToCloseTimeout": "0s",
+        "scheduleToStartTimeout": "0s",
+        "startToCloseTimeout": "10s",
+        "heartbeatTimeout": "0s",
+        "workflowTaskCompletedEventId": "4",
+        "retryPolicy": {
+          "initialInterval": "1s",
+          "backoffCoefficient": 2.0,
+          "maximumInterval": "100s"
+        },
+        "useWorkflowBuildId": true,
+        "priority": {}
+      }
+    },
+    {
+      "eventId": "6",
+      "eventTime": "2026-09-07T03:06:23.597921Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+      "taskId": "1048604",
+      "activityTaskStartedEventAttributes": {
+        "scheduledEventId": "5",
+        "identity": "99554@localhost",
+        "requestId": "a0e69113-0793-4357-82fb-6ee685c94fce",
+        "attempt": 1,
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        }
+      }
+    },
+    {
+      "eventId": "7",
+      "eventTime": "2026-09-07T03:06:23.599874Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+      "taskId": "1048605",
+      "activityTaskCompletedEventAttributes": {
+        "result": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "InZlcmlmaWVkLUEi"
+            }
+          ]
+        },
+        "scheduledEventId": "5",
+        "startedEventId": "6",
+        "identity": "99554@localhost"
+      }
+    },
+    {
+      "eventId": "8",
+      "eventTime": "2026-09-07T03:06:23.599885Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "1048606",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "99554@localhost-febb31553b5740038f625c7cd71c2305",
+          "kind": "TASK_QUEUE_KIND_STICKY",
+          "normalName": "harness-source-study"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "9",
+      "eventTime": "2026-09-07T03:06:23.600657Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "1048610",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "8",
+        "identity": "99554@localhost",
+        "requestId": "22209d05-ed30-40f2-865d-00d8ef18e568",
+        "historySizeBytes": "965",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        }
+      }
+    },
+    {
+      "eventId": "10",
+      "eventTime": "2026-09-07T03:06:23.602464Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "1048614",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "8",
+        "startedEventId": "9",
+        "identity": "99554@localhost",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        },
+        "sdkMetadata": {},
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "11",
+      "eventTime": "2026-09-07T03:06:23.652678Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_SIGNALED",
+      "taskId": "1048616",
+      "workflowExecutionSignaledEventAttributes": {
+        "signalName": "approve",
+        "identity": "99554@localhost"
+      }
+    },
+    {
+      "eventId": "12",
+      "eventTime": "2026-09-07T03:06:23.652680Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "1048617",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "99554@localhost-febb31553b5740038f625c7cd71c2305",
+          "kind": "TASK_QUEUE_KIND_STICKY",
+          "normalName": "harness-source-study"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "13",
+      "eventTime": "2026-09-07T03:06:23.653663Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "1048621",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "12",
+        "identity": "99554@localhost",
+        "requestId": "09a2286d-7369-4063-9dbe-6280c322b2ac",
+        "historySizeBytes": "1335",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        }
+      }
+    },
+    {
+      "eventId": "14",
+      "eventTime": "2026-09-07T03:06:23.657323Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "1048625",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "12",
+        "startedEventId": "13",
+        "identity": "99554@localhost",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        },
+        "sdkMetadata": {},
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "15",
+      "eventTime": "2026-09-07T03:06:23.657350Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_SCHEDULED",
+      "taskId": "1048626",
+      "activityTaskScheduledEventAttributes": {
+        "activityId": "2",
+        "activityType": {
+          "name": "write_result"
+        },
+        "taskQueue": {
+          "name": "harness-source-study",
+          "kind": "TASK_QUEUE_KIND_NORMAL"
+        },
+        "header": {},
+        "input": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "InRhc2stMTpwdWJsaXNoIg=="
+            }
+          ]
+        },
+        "scheduleToCloseTimeout": "0s",
+        "scheduleToStartTimeout": "0s",
+        "startToCloseTimeout": "10s",
+        "heartbeatTimeout": "0s",
+        "workflowTaskCompletedEventId": "14",
+        "retryPolicy": {
+          "initialInterval": "0.020s",
+          "backoffCoefficient": 2.0,
+          "maximumInterval": "2s",
+          "maximumAttempts": 2
+        },
+        "useWorkflowBuildId": true,
+        "priority": {}
+      }
+    },
+    {
+      "eventId": "16",
+      "eventTime": "2026-09-07T03:06:24.659987Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_STARTED",
+      "taskId": "1048634",
+      "activityTaskStartedEventAttributes": {
+        "scheduledEventId": "15",
+        "identity": "99554@localhost",
+        "requestId": "884e5cfc-d680-4aec-8d0a-556f4b6b7836",
+        "attempt": 2,
+        "lastFailure": {
+          "message": "injected response loss after commit",
+          "stackTrace": "  File \"/tmp/harness-source-study-20260907/venv/lib/python3.12/site-packages/temporalio/worker/_activity.py\", line 351, in _handle_start_activity_task\n    result = await self._execute_activity(\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/tmp/harness-source-study-20260907/venv/lib/python3.12/site-packages/temporalio/worker/_activity.py\", line 681, in _execute_activity\n    return await impl.execute_activity(input)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/tmp/harness-source-study-20260907/venv/lib/python3.12/site-packages/temporalio/worker/_activity.py\", line 889, in execute_activity\n    return await input.fn(*input.args)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n  File \"/Users/fei/Documents/ChatGPT/aidea-lab/docs/harness-source-study/temporal_lab.py\", line 32, in write_result\n    raise RuntimeError(\"injected response loss after commit\")\n",
+          "applicationFailureInfo": {
+            "type": "RuntimeError"
+          }
+        },
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        }
+      }
+    },
+    {
+      "eventId": "17",
+      "eventTime": "2026-09-07T03:06:24.662006Z",
+      "eventType": "EVENT_TYPE_ACTIVITY_TASK_COMPLETED",
+      "taskId": "1048635",
+      "activityTaskCompletedEventAttributes": {
+        "result": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "InRhc2stMTpwdWJsaXNoIg=="
+            }
+          ]
+        },
+        "scheduledEventId": "15",
+        "startedEventId": "16",
+        "identity": "99554@localhost"
+      }
+    },
+    {
+      "eventId": "18",
+      "eventTime": "2026-09-07T03:06:24.662013Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_SCHEDULED",
+      "taskId": "1048636",
+      "workflowTaskScheduledEventAttributes": {
+        "taskQueue": {
+          "name": "99554@localhost-705c7fc9a8a74ad6a2270e4ac5c26dfc",
+          "kind": "TASK_QUEUE_KIND_STICKY",
+          "normalName": "harness-source-study"
+        },
+        "startToCloseTimeout": "10s",
+        "attempt": 1
+      }
+    },
+    {
+      "eventId": "19",
+      "eventTime": "2026-09-07T03:06:24.662841Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_STARTED",
+      "taskId": "1048640",
+      "workflowTaskStartedEventAttributes": {
+        "scheduledEventId": "18",
+        "identity": "99554@localhost",
+        "requestId": "c5afd669-a2e9-466a-b107-0f3a3328367b",
+        "historySizeBytes": "2959",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        }
+      }
+    },
+    {
+      "eventId": "20",
+      "eventTime": "2026-09-07T03:06:24.665038Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_TASK_COMPLETED",
+      "taskId": "1048644",
+      "workflowTaskCompletedEventAttributes": {
+        "scheduledEventId": "18",
+        "startedEventId": "19",
+        "identity": "99554@localhost",
+        "workerVersion": {
+          "buildId": "22e973cc0bffa23ece13677ea22851b5"
+        },
+        "sdkMetadata": {},
+        "meteringMetadata": {}
+      }
+    },
+    {
+      "eventId": "21",
+      "eventTime": "2026-09-07T03:06:24.665084Z",
+      "eventType": "EVENT_TYPE_WORKFLOW_EXECUTION_COMPLETED",
+      "taskId": "1048645",
+      "workflowExecutionCompletedEventAttributes": {
+        "result": {
+          "payloads": [
+            {
+              "metadata": {
+                "encoding": "anNvbi9wbGFpbg=="
+              },
+              "data": "InRhc2stMTpwdWJsaXNoIg=="
+            }
+          ]
+        },
+        "workflowTaskCompletedEventId": "20"
+      }
+    }
+  ]
+}

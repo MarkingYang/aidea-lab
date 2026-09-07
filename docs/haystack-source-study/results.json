@@ -1,0 +1,92 @@
+{
+  "commit": "82da3adc2fac4675b80ff5573b790ec07113697b",
+  "package_version": "3.2.0rc0",
+  "python": "3.12.13",
+  "case_count": 11,
+  "cases": {
+    "connection_type_check": {
+      "rejected_before_run": true
+    },
+    "sync_branches": {
+      "peak_active": 1,
+      "join_calls": [
+        [
+          "a",
+          "b"
+        ]
+      ]
+    },
+    "async_limit_2": {
+      "peak_active": 2,
+      "join_calls": [
+        [
+          "a",
+          "b"
+        ]
+      ]
+    },
+    "async_limit_1": {
+      "peak_active": 1,
+      "join_calls": [
+        [
+          "a",
+          "b"
+        ]
+      ]
+    },
+    "exclusive_route": {
+      "output": {
+        "join": {
+          "value": "positive"
+        }
+      },
+      "unselected_branch_not_required": true
+    },
+    "bounded_cycle": {
+      "terminating_value": 3,
+      "unbounded_goal_stopped_by_limit": true
+    },
+    "rank_fusion": {
+      "concatenate": [
+        "a",
+        "b",
+        "c"
+      ],
+      "rrf": [
+        "b",
+        "a",
+        "c"
+      ]
+    },
+    "filtered_retrieval_as_tool": {
+      "document_ids": [
+        "allowed"
+      ],
+      "tool_context": "Question: refund\n[allowed] refund policy is seven days\n",
+      "no_llm": true
+    },
+    "filter_policy_boundary": {
+      "replace_runtime_B": [
+        "other"
+      ],
+      "merge_same_field_runtime_B": [
+        "other"
+      ],
+      "explicit_A_AND_B": [],
+      "tool_public_inputs": [
+        "query"
+      ]
+    },
+    "native_async_cleanup": {
+      "sibling_finalizer_completed_before_error_return": true
+    },
+    "sync_thread_after_cancel": {
+      "local_effect_completed_after_pipeline_error": true
+    }
+  },
+  "limits": [
+    "Real Pipeline and components; deterministic custom branches and failures",
+    "No LLM, learned embeddings, external vector database, performance benchmark or cross-process recovery",
+    "Tenant filter is fixed by the test harness, not an authentication test"
+  ]
+}
