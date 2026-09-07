@@ -10,7 +10,7 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 12 min
+readingTime: 13 min
 ---
 
 <a id="kimi-code-system-overview"></a>
@@ -22,6 +22,25 @@ Kimi Code 把这个问题分散到几个明确边界：Session 保存运行记�
 本文研究 [`MoonshotAI/kimi-code@bb16383`](https://github.com/MoonshotAI/kimi-code/tree/bb16383aa15f72954224d37ee0b9babb807e03b3)，应用包版本 0.41.0，源码范围为 TypeScript 的 `packages/agent-core-v2`。旧 `kimi-cli` 的 Python 实现不用于解释本文调用链。下文区分源码分析和六组实际运行的模块实验；没有启动完整 CLI，也没有调用真实模型。
 
 ## 会话、循环、上下文与工具怎样连接
+
+<!-- diagram:kimi-code-system-overview-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ S["Session / Wire"] --> L["Loop / Machine Engine"]
+ L <--> C["Context Memory"]
+ C --> P["Context Projector"]
+ P --> M["模型步骤"]
+ M --> T["Machine Tools / Tool Executor"]
+ T -->|调用结果| L
+ F["Full Compaction"] <--> C
+ L -->|运行事件| S
+```
+
+架构图限于本文固定的 agent-core-v2。Session / Wire、上下文历史、输入投影与工具执行分开；不混入旧 Python CLI，也不把模块实验等同完整产品运行。
+
+<!-- /diagram -->
 
 | 对象／模块 | 主要职责 | 不能由它单独保证的事情 |
 | --- | --- | --- |
@@ -37,6 +56,24 @@ Kimi Code 把这个问题分散到几个明确边界：Session 保存运行记�
 循环引擎暴露提交、转向、通知、取消和重设历史等操作。一次工具步骤经过 Machine Tools 适配到执行器，再把按调用编号配对的结果交回模型过程。压缩服务通过步骤前后等钩子参与上下文管理。这种拆分让“用户又说了一句话”“工具还在运行”“历史需要变短”分别有归属，而不是都由一个追加字符串的函数处理。[引擎](https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/loop/machine/engine.ts)、[压缩服务](https://github.com/MoonshotAI/kimi-code/blob/bb16383aa15f72954224d37ee0b9babb807e03b3/packages/agent-core-v2/src/agent/fullCompaction/fullCompactionService.ts)
 
 ## Projector：把历史变成合法输入，保留未知
+
+<!-- diagram:kimi-code-system-overview-2 -->
+
+```mermaid
+flowchart TB
+%% title: 数据流图
+ H["Context Memory 历史"] --> E["按 toolCallId 组织交换"]
+ E --> R["重排已知结果；过滤 partial 与孤立项"]
+ R --> U["缺失结果补未知占位"]
+ U --> S["严格模式去重与消息整理"]
+ S --> M["模型请求"]
+ E -.-> A["anomaly 修复记录"]
+ U -.-> A
+```
+
+输入投影图对应正文的配对规则。缺失工具结果被明确表示为未知，占位不修改外部执行事实，也不能作为自动重试依据。
+
+<!-- /diagram -->
 
 `project` 将工具调用与结果组织为交换单元，按 `toolCallId` 寻找对应关系。它跳过 `partial` 消息，将被其他消息隔开的工具结果重新放到对应调用附近，丢弃无法配对的孤立结果，并为缺失结果生成明确的占位信息：当前上下文没有这个工具结果，不能假定工具已成功完成。
 
@@ -58,6 +95,31 @@ Kimi Code 把这个问题分散到几个明确边界：Session 保存运行记�
 这项设计保护的是**协议完整性和认识上的诚实**：模型接口得到成对消息，任务仍知道有结果不可确认。若工具是创建工单，下一步应查询工单系统或操作键；只靠补位文本不能消除重复写入风险。
 
 ## 压缩：触发阈值、合法切点和应用检查
+
+<!-- diagram:kimi-code-system-overview-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "监测窗口" as Monitor
+ state "选择合法压缩前缀" as Select
+ state "生成摘要" as Generate
+ state "核对当前历史" as Check
+ state "应用摘要" as Apply
+ state "放弃本次应用" as Abort
+ [*] --> Monitor
+ Monitor --> Select: 达到触发条件
+ Select --> Generate
+ Generate --> Check: 摘要返回
+ Check --> Apply: 历史满足安全条件
+ Check --> Abort: 原前缀或新增尾部不满足
+ Apply --> Monitor
+ Abort --> Monitor
+```
+
+压缩状态是正文源码行为的归纳。摘要生成成功还要验证原前缀及新增尾部是否允许应用；图省略超窗时的限次缩减重试，不能据此判断摘要质量。
+
+<!-- /diagram -->
 
 ### 触发阈值不是固定窗口百分比
 
@@ -91,6 +153,28 @@ Kimi Code 把这个问题分散到几个明确边界：Session 保存运行记�
 [OpenCode](/writing/opencode-system-overview/)更能帮助理解旧工具输出清理与完整摘要的分工；Kimi Code 这里揭示的是输入配对、合法切点与摘要应用条件。两者可以共同支持[上下文组装](/writing/harness-operations-context/)，但不能据这些局部机制直接判定哪一个压缩效果更好。
 
 ## 从模型调用到工具结果，中间还有三道边界
+
+<!-- diagram:kimi-code-system-overview-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant A as 调用 a 等待者
+ participant B as 调用 b 等待者
+ participant M as Machine Tools
+ participant E as 替身执行器
+ A->>M: 到达调用 a
+ Note over M: 尚未收齐，不派发
+ B->>M: 到达调用 b
+ M->>E: 一次派发 a 与 b
+ E-->>M: 仅返回 a 的结果
+ M-->>A: 按 toolCallId 回传
+ M-->>B: 明确错误：未产生结果
+```
+
+时序对应批次模块实验：收齐 a、b 后才调用替身执行器，执行器只返回 a 时，适配器为 b 产生明确错误。它不证明真实工具调度与权限路径已验证。
+
+<!-- /diagram -->
 
 ### 参数解析与执行校验
 

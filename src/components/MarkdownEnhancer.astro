@@ -105,8 +105,8 @@
     const sizeDiagram = (svg: SVGElement, scale: number) => {
       const width = (svg as SVGSVGElement).viewBox.baseVal.width;
       svg.style.maxWidth = 'none';
-      // Preserve readable labels on narrow screens; the viewport scrolls horizontally.
-      svg.style.width = `max(${scale * 100}%, ${width * .8 * scale}px)`;
+      // Keep small diagrams at their natural size; wide diagrams retain readable labels.
+      svg.style.width = `clamp(${width * .8 * scale}px, ${scale * 100}%, ${width * scale}px)`;
       svg.style.height = 'auto';
     };
     const diagrams: DiagramRecord[] = mermaidBlocks.map((code, index) => {
@@ -117,7 +117,8 @@
       toolbar.className = 'reader-toolbar';
       const label = document.createElement('span');
       label.className = 'reader-label';
-      label.textContent = `MERMAID · ${String(index + 1).padStart(2, '0')}`;
+      const diagramTitle = source.match(/^%%\s*title:\s*(.+)$/m)?.[1]?.trim() || '图解';
+      label.textContent = `${diagramTitle} · ${String(index + 1).padStart(2, '0')}`;
       const actions = document.createElement('div');
       actions.className = 'reader-actions';
       const zoomOut = makeButton('−', '缩小图表');

@@ -1,0 +1,211 @@
+{
+  "date": "2026-09-07",
+  "status": "publication_authorized",
+  "basis_commit": "b33cd5a",
+  "articles": [
+    {
+      "slug": "product-work-methodology",
+      "source_sha256_before": "513f1e974badc40b9f3c143879b0cd8eb247d80cee47d160eb0da7acf9aa6472",
+      "source_sha256_after": "89462d9c005661ff11c1377ffadd4f207d49a4576255416bb4151baf0ce23546",
+      "diagrams": 1,
+      "kinds": {
+        "产品路线图": 1
+      }
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "source_sha256_before": "32cfb6e5ca0a4e59ded76b401c4cd7eab111a106206754338c0024dd68edeb5a",
+      "source_sha256_after": "fcb231cf9c5878dd21965df773cc211ffacd104d54102f29ed775ad2ed7e75d7",
+      "diagrams": 1,
+      "kinds": {
+        "产品路线图": 1
+      }
+    },
+    {
+      "slug": "claude-code-product-design",
+      "source_sha256_before": "69cf857d9625f2f0e3ed5add3ef07f32e9d31dde5a1420be9e1de84e089a0226",
+      "source_sha256_after": "1e09f8dc21a2b3723cc0509af8f4168b9157139f8a66d81efc42ceafce79dd7e",
+      "diagrams": 1,
+      "kinds": {
+        "产品路线图": 1
+      }
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "source_sha256_before": "a82d1f221207907d9f224b886a3759daa6daa8cf29d3e6a29fe543131cfb72aa",
+      "source_sha256_after": "b2e39d5b9a99cfc8b18ffafa8e256239d9e9f42b7738ab09ad71f6f8a473395e",
+      "diagrams": 1,
+      "kinds": {
+        "竞品分析矩阵图": 1
+      }
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "source_sha256_before": "00143bfafbeecdc4e1025b183a76acabd887f575e552bf155bd2e1d9345fb459",
+      "source_sha256_after": "938873053e952ba0a2d1b1b92d87cb76a449e14b62b86e4b19d4ec83bdfeccca",
+      "diagrams": 2,
+      "kinds": {
+        "竞品分析矩阵图": 1,
+        "产品采用路线图": 1
+      }
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "source_sha256_before": "22c9d170cc752c4614110a4dcbc53d72eaa9320bd0d7cef79007fd355a9c6d49",
+      "source_sha256_after": "dc4d6dc7c8cb0f89786d024e3582779e2e1afb756f0e44349409e9515937bee2",
+      "diagrams": 2,
+      "kinds": {
+        "产品选型路线图": 1,
+        "竞品分析矩阵图": 1
+      }
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "source_sha256_before": "092aa89a6cab1b7ca9639d4f26d4ad626fe18c437ed0e906016c3ed6b7012885",
+      "source_sha256_after": "309cabf510b973408f904b0680a0f8ca6d5ace2ac5f2fe2e82ee7e2ffaac46f8",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "litellm-gateway-architecture",
+      "source_sha256_before": "6e56e90f7dc60856e8a327b7e202007f8c19693f670a1c089edee5a69d926bd7",
+      "source_sha256_after": "5c4742c899b8006dd185e7eb9db84539b4bc0e8d5bc7d0781b791f86aefb520d",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "opa-policy-architecture",
+      "source_sha256_before": "15986acbb3f1f3141939e5456a02a8bb33238ad48886f57e6ed3ddc271a1235a",
+      "source_sha256_after": "56570cf6c3c3f1fdc4c403d189bdd8b6d83ef4e72ed89de65fb96a2e3356bb65",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "openhands-sdk-architecture",
+      "source_sha256_before": "f9ef46a5b80ea6bb7b7eef34399602ebdbc5a9faed5c771a36f80774bd4e4fb1",
+      "source_sha256_after": "4c90099de6e355df1e9bcb0d1ecba99bb3d28f48e8c8947ee871747cbb4ad90f",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "haystack-pipeline-architecture",
+      "source_sha256_before": "b2ce4a712640b52529289d529232f562f5224443346e6a041fc6d94d0e80d9af",
+      "source_sha256_after": "2e593cd12469749b1bf196db76b0f937fe386dadb9fc15f51084a00645664589",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "temporal-durable-execution",
+      "source_sha256_before": "4a783c0ea1725d0fea5e2cbd667ae4caf5e9da2cb8913e76f4e0da3f519d65ba",
+      "source_sha256_after": "be9d64c9013ab6404e9441518d81d8bc88c21081be0fae0eb7d2f702399121f9",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "source_sha256_before": "0cd7af867e988751e9e243239b1909a49ea9c626ac54cabb94ecc4560d9499d1",
+      "source_sha256_after": "de91ce0fc058c707ad66547c93e96c7d062fc50bd9529af4e78eb8daf7e267f0",
+      "diagrams": 2,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1
+      }
+    },
+    {
+      "slug": "agent-runtime",
+      "source_sha256_before": "a8086bd6baf5c51f217ce40b32e8331f6522c2cad214ce35d853628bf3fd474c",
+      "source_sha256_after": "aa528f2f45ca78f3756dab9d884edb35ed99fbb219733cd11458dbe5092b2e2d",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "状态机图": 1,
+        "时序图": 1,
+        "数据流图": 1
+      }
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "source_sha256_before": "fd5db0000671727c23175aa2a250fff11a60c025128561406faede3e150a23d5",
+      "source_sha256_after": "b0f166f93af5ddea761f1a5cb3a739d55b2125e06fb9ce1a7e7b541fb18b0306",
+      "diagrams": 2,
+      "kinds": {
+        "状态机图": 1,
+        "数据流图": 1
+      }
+    },
+    {
+      "slug": "harness-operations-context",
+      "source_sha256_before": "aaebd757740b0938cdde9e4fc4910449d375a29fcb00a9c837ae2412616498bd",
+      "source_sha256_after": "2f48c03f12825a5f6d361ac3034efd3b2fea8fcf7b90118a3442f6bed216c436",
+      "diagrams": 1,
+      "kinds": {
+        "数据流图": 1
+      }
+    },
+    {
+      "slug": "rag",
+      "source_sha256_before": "ebf3c5cc59cbe7749a21ed540eed5038ea4da33a4e215013834a38ada55ff830",
+      "source_sha256_after": "130f38ab9329ce460283528305f03a97882613e3fe3e6085691535fc64e2114c",
+      "diagrams": 1,
+      "kinds": {
+        "数据流图": 1
+      }
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "source_sha256_before": "2299e7f2e85431514c151dd3f279b4bdc005a3c34042fccb4f5fefaa11336ccf",
+      "source_sha256_after": "abbbb2cc064615c9597cc20e4cd9dca2622c236f313268a1b3aa5791623fe186",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    },
+    {
+      "slug": "opencode-system-overview",
+      "source_sha256_before": "10a8cc05dafb2adb1385cb3623b91754f03f91c8f3f45be43d3d2c435ac85e22",
+      "source_sha256_after": "a59f4f0770db368d9c2977245180e1268e530486ea8bbf31b708d1ef063c16b8",
+      "diagrams": 4,
+      "kinds": {
+        "系统架构图": 1,
+        "数据流图": 1,
+        "状态机图": 1,
+        "时序图": 1
+      }
+    }
+  ],
+  "diagram_count": 50,
+  "publication_target": "origin/main"
+}

@@ -137,6 +137,7 @@ const related=getRelatedArticles(await getKnowledgeGraph(),entry.id,4);
   .prose :global(blockquote) { margin: 34px 0; padding: 21px 24px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; background: var(--surface-soft); color: var(--text-body); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 3%, transparent); }
   .prose :global(blockquote p:last-child) { margin-bottom: 0; }
   .prose :global(code) { padding: 3px 6px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); color: var(--text); font: .82em var(--mono); }
+  .prose :global(:not(pre) > code) { overflow-wrap: anywhere; }
   .prose :global(pre) { margin: 32px 0; padding: 21px 22px; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; font: 13px/1.75 var(--mono); tab-size: 2; }
   .prose :global(pre code) { padding: 0; border: 0; background: transparent; font: inherit; }
   .prose :global(.astro-code) { background-color: var(--surface) !important; }

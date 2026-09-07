@@ -1,3 +1,11 @@
+## Publication authorization — article diagrams, 2026-09-07
+
+The user explicitly requested “发布” after the diagram additions and Multi-Agent coverage question. Publish the current 19-article, 50-diagram batch and Mermaid display fixes through origin/main. The existing Multi-Agent selection article is unchanged; its proposed additional diagrams have not been implemented. Article count remains 63. Subsequent additions require a new publication request.
+
+## Latest visual explanation request — 2026-09-07
+
+The user explicitly requested product roadmaps and competitive matrices in product articles, and architecture, data-flow, state-machine and sequence diagrams in technical/GitHub articles. This authorizes editable in-article diagrams and supersedes the no-images default for these explanatory diagrams. Use the existing Mermaid renderer, preserve accompanying text, existing evidence dates and explicit source/design/experiment boundaries. Do not invent vendor roadmap dates, numeric competitive scores or private internals. Keep Lu Qi unchanged. These additions remain local until another publication request.
+
 ## Publication authorization — 63 articles, 2026-09-07
 
 The user explicitly requested “发布” after the knowledge naming and additions. Publish the current 63-article version through origin/main: LiteLLM, OPA, Prompt Engineering, RAG, Agent Runtime, seven knowledge-title changes, supporting mechanism updates and research records. The current navigation remains 22 groups and 8 domains; the three-category review is a proposal, not an applied migration. Prior local/unpublished notes below describe earlier stages. Subsequent new work requires another publication request.

@@ -10,7 +10,7 @@ topics:
   - Agent Runtime
   - AI 架构
 featured: true
-readingTime: 8 min
+readingTime: 11 min
 ---
 
 Agent Runtime 是让 Agent 实际运行的软件层：接收任务，维护运行状态，组织模型与工具调用，处理等待、中断和恢复，并交付有依据的结果。
@@ -34,6 +34,25 @@ Session 可以组织对话和多次任务，但不必与 Run 一一对应。把�
 
 ## 模块如何接成主流程
 
+<!-- diagram:agent-runtime-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ R["运行协调器"] --> C["上下文构建器"]
+ C --> M["模型适配器"]
+ M -->|完整候选动作| D["动作派发器"]
+ D --> W["工作空间与工具"]
+ W -->|结果事件| S["状态存储"]
+ S --> R
+ R --> V["验收器"]
+ V -->|继续或完成| R
+```
+
+Runtime 参考架构是本文的职责划分。工作空间承载真实文件与进程；状态存储记录运行事实，二者不能互相替代。
+
+<!-- /diagram -->
+
 下面按职责描述一套运行时设计。模块可以位于同一进程，边界清楚比服务数量更重要。
 
 | 模块 | 接收 | 产出与责任 |
@@ -52,6 +71,35 @@ Session 可以组织对话和多次任务，但不必与 Run 一一对应。把�
 
 ## 状态机要表达“未知”
 
+<!-- diagram:agent-runtime-2 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "待执行" as Ready
+ state "等待输入或批准" as Wait
+ state "执行中" as Running
+ state "结果未知" as Unknown
+ state "待验收" as Verify
+ state "已完成" as Done
+ state "停止并交接" as Stop
+ [*] --> Ready
+ Ready --> Wait: 条件不足
+ Wait --> Ready: 有效输入到达
+ Ready --> Running: 许可与容量满足
+ Running --> Unknown: 响应丢失
+ Running --> Verify: 有结果
+ Unknown --> Verify: 查询确认已发生
+ Unknown --> Ready: 已确认未发生且允许重试
+ Unknown --> Stop: 无法确认
+ Verify --> Done: 目标满足
+ Verify --> Ready: 允许修正且有预算
+```
+
+状态机来自本文教学设计。超时并不证明未执行；未知结果先查询实际资源。取消、审批与预算可以打断推进，图只聚焦一次动作及其核验。
+
+<!-- /diagram -->
+
 正常、失败之外，还有暂停、等待和无法确认结果。以文件写入为例：
 
 | 当前情况 | 应记录的状态 | 下一步 |
@@ -69,6 +117,24 @@ Session 可以组织对话和多次任务，但不必与 Run 一一对应。把�
 
 ## 日志、当前视图与检查点
 
+<!-- diagram:agent-runtime-4 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ E["原始事件与结果"] --> L["持久事件日志"]
+ L --> V["当前分支视图"]
+ V --> C["模型上下文"]
+ L --> K["检查点与运行位置"]
+ K --> R["恢复核对"]
+ W["实际文件、进程、当前权限"] --> R
+ R --> V
+```
+
+状态数据流是本文建议的分工：历史可投影为当前视图，也可形成检查点；恢复还要核对工作空间与当前权限，不能仅加载摘要。
+
+<!-- /diagram -->
+
 事件日志记录发生过什么；当前视图组织本次需要使用的事实；检查点保存某个位置的恢复信息。摘要属于信息投影，不能代替工具执行证据或工作目录。
 
 OpenHands SDK 的固定源码中，事件通过 EventLog 保存，ConversationState 维护当前分支的视图。分支变化时，视图可以重新构建。这种分离使历史保留与输入压缩各自有明确对象。[事件存储](https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/event_store.py)、[会话状态](https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/conversation/state.py)
@@ -78,6 +144,33 @@ OpenHands SDK 的固定源码中，事件通过 EventLog 保存，ConversationSt
 单进程可以用串行协调器维护状态。多个 Worker 参与时，需要进一步明确谁拥有推进权，如何拒绝陈旧执行者，以及状态与动作派发之间的提交边界。数据库表里有一列 status 并不足以解决这些问题。
 
 ## 持久执行不自动保证外部动作只发生一次
+
+<!-- diagram:agent-runtime-3 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant R as 运行协调器
+ participant S as 状态存储
+ participant T as 外部工具
+ R->>S: 保存操作键与派发意图
+ R->>T: 按操作键执行
+ Note over T: 外部已提交
+ T--xR: 成功响应丢失
+ R->>S: 保存结果未知
+ R->>T: 按原操作键查询
+ alt 确认已完成
+ T-->>R: 原资源与结果
+ R->>S: 补记结果并进入验收
+ else 无法确认
+ T-->>R: 查询失败或证据不足
+ R->>S: 保留未知并交接
+ end
+```
+
+这是设计反例时序：外部已提交、本地未记录形成不确定窗口。查询与幂等能力需资源系统配合，不是日志保存即可提供的保证。
+
+<!-- /diagram -->
 
 一种常见设计是先保存动作意图，再执行外部调用，最后记录结果。它能保留恢复线索，却仍存在“外部已提交，本地未记下”的窗口。无法跨两个系统建立同一事务时，需要业务幂等键、结果查询和必要的补偿。
 

@@ -10,7 +10,7 @@ topics:
   - 用户研究
   - 增长
 featured: false
-readingTime: 5 min
+readingTime: 6 min
 updatedAt: 2026-09-07
 ---
 
@@ -94,6 +94,22 @@ MoSCoW 把范围分为 Must have、Should have、Could have、Won't have this ti
 
 用户证据如何进入一次发布的承诺与取舍。
 ## 实践：给高分需求做一次压力测试
+
+<!-- diagram:product-frameworks-prioritization-1 -->
+
+```mermaid
+flowchart TB
+%% title: 产品路线图
+ A["先做：稳定录音与可确认待办"] --> B["补齐：身份、字段映射、失败对账"]
+ B --> C["首发：用户确认后同步指定 CRM"]
+ C -->|验收通过且有容量| D["随后：销售术语与邮件草稿"]
+ D -->|用户证据支持| E["再评估：团队模板与更多连接器"]
+ X["本期排除：自动发信、全部 CRM"] -.->|限制发布范围| C
+```
+
+MeetFlow 产品路线图是虚构场景的版本建议。CRM 同步先依赖身份、字段映射、确认与对账；自动发送邮件和覆盖全部 CRM 不属于本次承诺。
+
+<!-- /diagram -->
 
 把 CRM 同步的 Reach 从 800 下调到 400，Effort 从 4 上调到 8，其他假设不变，得分从 320 变成 80。这个变化不自动推翻它，但会暴露团队对触达和成本的依赖。
 

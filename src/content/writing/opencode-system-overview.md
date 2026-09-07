@@ -23,6 +23,26 @@ OpenCode 把一次代码任务组织成持续更新的 Session：用户输入成
 
 ## 模块怎样分工
 
+<!-- diagram:opencode-system-overview-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ C["客户端与服务接口"] --> P["SessionPrompt"]
+ P --> M["MessageV2：模型输入转换"]
+ M --> R["SessionProcessor"]
+ R --> T["SessionTools"]
+ T -->|结果与附件| R
+ R -->|消息片段与状态| S["Session 历史"]
+ S --> P
+ P --> K["SessionCompaction"]
+ K --> S
+```
+
+系统架构只画 packages/opencode 的会话路径。后文单独实验的 packages/core 协调器不接在此图上，避免把两套模块拼成已验证的调用链。
+
+<!-- /diagram -->
+
 | 模块 | 持有或处理的对象 | 对下一环节交付什么 |
 | --- | --- | --- |
 | 客户端与服务接口 | 用户输入、展示与事件订阅 | Session 操作请求 |
@@ -50,6 +70,24 @@ OpenCode 把一次代码任务组织成持续更新的 Session：用户输入成
 
 ## 上下文压缩有两种不同动作
 
+<!-- diagram:opencode-system-overview-2 -->
+
+```mermaid
+flowchart TB
+%% title: 数据流图
+ H["持久 Session 历史"] --> P["prune：标记可清理的旧结果"]
+ P --> V["toModelMessages：使用占位输出"]
+ H --> C["选定摘要前缀与近期尾部"]
+ C --> S["生成并确认有效摘要"]
+ S --> N["摘要与保留尾部"]
+ N --> V
+ V --> M["下一轮模型输入"]
+```
+
+两条压缩数据路径分别减少旧工具输出和概括历史。prune 写入标记，由投影器替换模型可见内容；它本身没有物理删除原 output 字段。
+
+<!-- /diagram -->
+
 ### 旧工具输出清理：保留调用，降低旧结果的输入成本
 
 `prune` 从最近消息向前扫描，保护最近两轮用户交互，跳过未完成工具和 `skill` 工具输出，并在已有摘要或已清理边界停止。对可清理工具结果，源码设置了两道规模门槛：先保护约 40,000 个估计 Token，能够回收的部分超过 20,000 才执行清理。
@@ -74,6 +112,28 @@ OpenCode 把一次代码任务组织成持续更新的 Session：用户输入成
 
 ## 工具运行是一段有状态的过程
 
+<!-- diagram:opencode-system-overview-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "pending" as Pending
+ state "running" as Running
+ state "completed" as Completed
+ state "error" as Error
+ [*] --> Pending
+ Pending --> Running: 工具开始
+ Running --> Completed: 匹配调用返回且仍在运行
+ Running --> Error: 工具失败
+ Running --> Error: 清理等待后仍未结束
+ Completed --> [*]
+ Error --> [*]
+```
+
+工具状态对应 SessionProcessor。取消与真实返回可能竞争；清理后记录的 error 不能证明外部副作用未发生，completed 也不等于任务整体通过验收。
+
+<!-- /diagram -->
+
 `SessionTools` 为工具提供 `sessionID`、`messageID`、`callID`、Agent、消息及取消信号。模型给出的参数与宿主注入的执行上下文由不同入口传递。工具通过 `ask` 发起权限询问时，使用合并后的 Agent 与 Session 权限规则；这不是让模型自己填写授权结论。[工具装配](https://github.com/anomalyco/opencode/blob/e207624c48159b03dbe17dbc8e51bbcf23e72df5/packages/opencode/src/session/tools.ts)
 
 本地工具执行顺序包括执行前插件、工具本体、结果与附件整理、执行后插件。因而插件可能改变参数或结果，它属于运行代码的信任边界。MCP 工具另有适配路径；统一入口减少上层差异，不会替外部服务提供业务事务。
@@ -85,6 +145,33 @@ OpenCode 把一次代码任务组织成持续更新的 Session：用户输入成
 处理器还会记录文件快照与差异，用于保留本地工作变化。这不等于外部系统事务：如果创建工单成功、响应丢失，消息中的中断错误仍不能证明工单不存在。此时应沿操作编号查询，相关契约见[工具输入、结果与错误语义](/writing/harness-engineering-tools/)。
 
 ## 新内核的运行协调器提供了什么保证
+
+<!-- diagram:opencode-system-overview-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant A as 调用者 A
+ participant C as RunCoordinator
+ participant D as drain
+ participant B as 调用者 B
+ A->>C: run 同一 key
+ C->>D: 启动第一次 drain
+ B->>C: run 同一 key
+ Note over B,C: 等待已有运行
+ A->>C: wake
+ A->>C: 再次 wake
+ Note over C: 合并为一个待续跑标志
+ D-->>C: 第一轮完成
+ C->>D: 一次后续 drain
+ D-->>C: 完成
+ C-->>A: 运行结束
+ C-->>B: 同一运行结束
+```
+
+时序属于 packages/core 的局部协调器实验：同 key 的 run 合流，多次 wake 合并成一次续跑。图中的内存归属不提供跨进程锁或持久队列。
+
+<!-- /diagram -->
 
 同一提交的 `packages/core/src/session/run-coordinator.ts` 用内存 Map 为每个 key 保存正在运行的 Fiber、完成信号、待唤醒标志和停止状态。它解决的是同一进程作用域内的运行归属：
 

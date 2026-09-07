@@ -11,7 +11,7 @@ topics:
   - Haystack
   - 工作流
 featured: true
-readingTime: 14 min
+readingTime: 15 min
 ---
 
 <a id="haystack-pipeline-architecture"></a>
@@ -23,6 +23,26 @@ Haystack 用组件和连接表达一项任务：输入从哪个入口进入，�
 本文固定到 [`deepset-ai/haystack@82da3ad`](https://github.com/deepset-ai/haystack/tree/82da3adc2fac4675b80ff5573b790ec07113697b)。该提交的包版本为 **3.2.0rc0**，属于发布候选版本，不代表 2.x 的接口与行为。下文实际运行这一提交安装的 Python 包，共十一组实验；没有调用 LLM、学习型 Embedding 或外部向量数据库。
 
 ## 从一条 RAG 主流程看模块分工
+
+<!-- diagram:haystack-pipeline-architecture-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ S["Document Store"] --> R["Retriever"]
+ R --> J["Joiner / Ranker"]
+ J --> P["PromptBuilder"]
+ P --> G["Generator"]
+ G --> V["应用验收"]
+ C["Pipeline：连接与调度"] -.-> R
+ C -.-> J
+ C -.-> P
+ C -.-> G
+```
+
+Pipeline 架构按本文组件契约组织。Generator 与业务验收属于完整 RAG 的后半程；本地检索实验止于 PromptBuilder，未调用生成模型。
+
+<!-- /diagram -->
 
 设用户询问公司的退款规定。一个可检查的处理过程是：读取允许访问的资料范围，检索候选片段，合并重复候选，重排与裁减，把来源和正文装入提示，最后生成并检查回答。
 
@@ -78,6 +98,31 @@ Haystack 使用有向多重图表达组件连接，允许循环，所以不能�
 在本提交中，多路输出连接到列表型输入还可能触发隐式收集适配。便利的代价是必须检查最终输入语义：同步路径对相关输入有按发送组件名排序的规则，异步路径不保证同样顺序。若融合权重靠列表位置对应某个检索器，就应显式保留来源映射，不能把完成先后当成来源身份。[连接的顺序约定](https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/pipeline/base.py#L587)
 
 ## 同步与异步执行：调度器真正控制什么
+
+<!-- diagram:haystack-pipeline-architecture-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "BLOCKED" as B
+ state "READY" as R
+ state "DEFER" as D
+ state "HIGHEST" as H
+ state "执行组件" as Run
+ [*] --> B
+ B --> R: 必要输入与触发满足
+ B --> D: 可运行但仍可能收集输入
+ B --> H: 满足特殊贪婪输入条件
+ D --> Run: 优先工作处理后获调度
+ R --> Run: 有执行容量
+ H --> Run: 在途任务已结束
+ Run --> B: 等待新触发或输入
+ Run --> [*]: 本路径结束
+```
+
+调度状态图是本文四种优先级的条件归纳，不是固定单向流水线。输入、触发和前驱变化会重新计算优先级；HIGHEST 在异步路径需等待在途任务。
+
+<!-- /diagram -->
 
 此版本统一使用 `Pipeline`，提供 `run`、`run_async`、`run_async_generator` 等入口。同步 `run` 逐个执行组件；异步入口才会在依赖允许时并发，`concurrency_limit` 限制同时执行的组件数量。[执行入口](https://github.com/deepset-ai/haystack/blob/82da3adc2fac4675b80ff5573b790ec07113697b/haystack/core/pipeline/pipeline.py)
 
@@ -135,6 +180,23 @@ RRF 的核心是给较靠前名次更高贡献，再把同 ID 文档的贡献累
 
 ## Pipeline 如何成为 Agent 的一项能力
 
+<!-- diagram:haystack-pipeline-architecture-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ Q["query"] --> T["PipelineTool 输入映射"]
+ T --> R["InMemoryBM25Retriever"]
+ F["固定允许范围"] --> R
+ R -->|Document ID 与正文| P["PromptBuilder"]
+ T -->|原问题| P
+ P --> C["context 工具结果"]
+```
+
+数据流对应已运行的 PipelineTool 检索实验：工具只暴露 query，内部限定检索范围，输出带 Document ID 的 context。没有模型答案或真实认证实验。
+
+<!-- /diagram -->
+
 本地 RAG 实验实际连接了 `InMemoryBM25Retriever → PromptBuilder`，模板保留 Document ID 和正文。查询退款规定时只送入固定允许范围中的文档。然后用 `PipelineTool` 将一个 `query` 映射到检索器与模板的查询输入，把模板输出映射为 `context`。
 
 ```text
@@ -150,6 +212,28 @@ Haystack 的 Agent 另有消息、State、工具与循环步数。源码区分�
 这里形成两种控制权：**Pipeline 明确内部的数据路径，Agent 决定何时调用这项能力。** 适合固定的检索、解析、验证步骤可以留在流水线里，不必把每个微小步骤都交给模型重新选择。本篇未运行 Agent 的真实模型循环。
 
 ## 失败、取消与恢复要分别看
+
+<!-- diagram:haystack-pipeline-architecture-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant P as Pipeline
+ participant T as 同步组件线程
+ participant E as 报错组件
+ participant D as 实验驱动
+ P->>T: 派发同步组件
+ Note over T: 等待实验门闩
+ P->>E: 执行另一组件
+ E-->>P: 抛出异常
+ P-->>D: 取消等待后返回错误
+ D->>T: 放开门闩
+ Note over T: 仍完成本地写入
+```
+
+时序对应同步组件在线程执行的受控取消实验。流水线返回错误后，线程仍可完成写入；图中的门闩是实验设施，不是框架生产机制。
+
+<!-- /diagram -->
 
 异步路径有错误收尾：组件抛错时，取消并等待其他在途 asyncio 任务，避免把仍活跃的任务留在当前运行中。但原生异步组件与在线程中执行的同步组件，停止能力不同。
 

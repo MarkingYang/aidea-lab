@@ -12,7 +12,7 @@ topics:
   - LangGraph
   - DAG
 featured: false
-readingTime: 13 min
+readingTime: 17 min
 ---
 
 从 StateGraph 的编译与 Pregel 执行器进入 DAG、并行汇合、动态派发、状态合并和检查点，用分支实验解释恢复边界，再接上人工审核与外部写入。
@@ -42,6 +42,25 @@ Reducer 是字段更新的合并规则。例如多个检索分支都写入证据
 选择图编排的价值，在于这些分支与交接能被独立观察、检查和恢复。它不要求一个节点对应一个 Agent，也不要求所有节点都调用模型。关于反馈循环与执行图的进一步关系，可以接续[Loop Engineering 与 Graph Engineering](/writing/harness-engineering-loop/#loop-graph-engineering)。
 
 ## 从图定义到运行：编译器、通道、循环与执行器
+
+<!-- diagram:langgraph-runtime-architecture-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ A["StateGraph：图定义"] -->|compile| B["CompiledStateGraph / Pregel"]
+ B --> C["PregelLoop：准备任务"]
+ C --> D["PregelRunner：执行节点"]
+ D -->|状态更新| E["Channel / Reducer"]
+ E -->|版本与触发| C
+ C -->|保存进度| F["Checkpointer"]
+ F -->|恢复| C
+ D -->|业务调用| G["模型与外部工具"]
+```
+
+系统架构：按本文固定 Python 提交归纳。StateGraph 编译出运行对象，Loop 准备工作、Runner 执行，通道与检查点保存图进度；外部资源事务仍在图之外。
+
+<!-- /diagram -->
 
 `StateGraph` 是构建器，`compile()` 才得到可执行的 `CompiledStateGraph`。编译不会把图变成一段从头跑到尾的线性代码；它把节点、边和状态字段接成底层运行器能够消费的对象。
 
@@ -103,6 +122,23 @@ graph.add_edge(["a", "b2"], "merge")
 
 ## Reducer 合并的是更新，不是自动合并真相
 
+<!-- diagram:langgraph-runtime-architecture-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ A["本轮 State"] --> B["节点 A"]
+ A --> C["节点 B"]
+ B -->|更新 A| D["apply_writes"]
+ C -->|更新 B| D
+ D --> E["通道按字段应用 Reducer"]
+ E --> F["下一轮 State 与版本"]
+```
+
+数据流：普通超级步中，节点读取本轮状态，更新在步末经通道合并后供下一步使用。Reducer 决定字段合并规则，不负责认定证据真假。
+
+<!-- /diagram -->
+
 `Annotated[list[str], operator.add]` 很适合演示分支结果追加，但列表追加不去重。一次真实的新调用与一次重复提交是否应计为两条记录，取决于字段含义。
 
 | 状态字段 | 可采用的规则 | 反例 |
@@ -115,6 +151,33 @@ graph.add_edge(["a", "b2"], "merge")
 该版本 `apply_writes()` 会按任务路径排序以稳定更新应用顺序，但稳定顺序不等于业务冲突已经解决。需要依赖到达顺序的 Reducer、会丢失来源的覆盖规则，都应该明确写出适用条件。并发控制的进一步问题见[版本冲突、锁与背压](/writing/harness-foundations-concurrency/)。
 
 ## 检查点实验：一个分支失败，不代表全部重做
+
+<!-- diagram:langgraph-runtime-architecture-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant P as 进程一
+ participant A as 节点 A
+ participant B as 节点 B
+ participant S as SQLite 检查点
+ participant N as 进程二
+ P->>A: 读取
+ A-->>P: 成功更新
+ P->>S: 保存 A 的 pending writes
+ P->>B: 读取
+ B-->>P: 人为失败
+ Note over P: 进程退出
+ N->>S: 同 thread_id 恢复
+ S-->>N: 状态与 A 的成功写入
+ N->>B: 再次执行
+ B-->>N: 成功更新
+ Note over N: 汇合结果，A 不重跑
+```
+
+恢复时序对应 SQLite、同步持久化和 B 延迟失败的受控实验。成功的 A 写入得以保存；不代表外部调用完成但尚未保存时也不会重复。
+
+<!-- /diagram -->
 
 本轮让 A、B 并行读取，A 成功，B 人为抛出异常，然后结束 Python 子进程。另一个子进程用同一个 SQLite 文件和 `thread_id`，调用 `graph.invoke(None, config)` 继续。实验显式使用同步持久化模式，B 延迟失败以让 A 的写入先保存。
 
@@ -130,6 +193,31 @@ graph.add_edge(["a", "b2"], "merge")
 [实验包](/labs/harness-source-study.zip)包含脚本、依赖版本和原始结果。四个场景没有调用模型，没有测试数据库损坏、多机并发或真实外部 API，不能作为质量或吞吐排名。
 
 ## 可运行实验：暂停后，究竟从哪里继续？
+
+<!-- diagram:langgraph-runtime-architecture-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "起草" as Draft
+ state "审核节点" as Review
+ state "等待审核值" as Wait
+ state "重入审核节点" as Resume
+ state "模拟提交" as Submit
+ state "拒绝且未提交" as Reject
+ [*] --> Draft
+ Draft --> Review
+ Review --> Wait: interrupt
+ Wait --> Resume: 同线程 resume
+ Resume --> Submit: true
+ Resume --> Reject: false
+ Submit --> [*]
+ Reject --> [*]
+```
+
+状态机对应下文已运行的起草—审核示例。恢复重入审核节点；提交只生成演示文本。真实认证、审批绑定和外部写入不在该实验内。
+
+<!-- /diagram -->
 
 下面把复杂业务缩小为“起草 → 审核 → 模拟提交”。实验不调用模型、不连接外部系统，方便直接观察 LangGraph 的控制流。本文已在 Python 3.12.13、LangGraph 1.2.11 下实际运行，验证了通过与拒绝两条路径，以及暂停时尚未提交的状态。
 

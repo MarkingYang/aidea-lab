@@ -11,7 +11,7 @@ topics:
   - OpenHands
   - 执行环境
 featured: false
-readingTime: 12 min
+readingTime: 14 min
 ---
 
 让 Agent 修改一个项目，至少有三种状态需要保持一致：它认为自己已经完成了什么，下一次模型调用能看到什么，以及工作目录和进程实际上变成了什么。
@@ -21,6 +21,24 @@ OpenHands Software Agent SDK 将它们放在不同对象中：Conversation 管�
 本文分析 `OpenHands/software-agent-sdk@aa84db8216192568c4436d0dcc36f4caf8516c5b`，核对日期为 2026-09-07，该提交 SDK 包版本为 1.44.1。研究对象是这个仓库中的 Python SDK、工具和工作空间实现，不是 OpenHands 产品界面，也不将早期主仓库的运行时结构混入当前设计。以下属于锁定源码分析；本轮没有安装运行完整 OpenHands、调用模型或启动 Docker，因此不报告任务成功率、隔离强度或性能结果。
 
 ## 四个包如何构成一条执行链
+
+<!-- diagram:openhands-sdk-architecture-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ C["Conversation 工厂"] -->|本地 Workspace| L["LocalConversation"]
+ C -->|远程 Workspace| R["RemoteConversation"]
+ R --> S["Agent Server"]
+ L --> A["Agent 与事件状态"]
+ S --> A
+ A --> T["工具执行器"]
+ T --> W["对应工作环境"]
+```
+
+源码架构：Conversation 根据 Workspace 选择本地或远程会话。远程 Agent Server 承接执行与事件访问；图不把独立调度平台归入 SDK。
+
+<!-- /diagram -->
 
 | 包 | 核心责任 | 主要对象 |
 | --- | --- | --- |
@@ -51,6 +69,24 @@ OpenHands Software Agent SDK 将它们放在不同对象中：Conversation 管�
 
 ## 事件、视图与工作目录分别保存什么
 
+<!-- diagram:openhands-sdk-architecture-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ E["EventLog"] -->|活动分支投影| V["View"]
+ V --> M["模型输入"]
+ M --> A["Action 事件"]
+ A --> T["工具执行"]
+ T --> W["文件与进程变化"]
+ T --> O["Observation 事件"]
+ O --> E
+```
+
+事件与环境两条数据链：事件投影成模型输入，工具改变工作环境并返回观察。View 回退不会沿箭头自动撤销文件；该图基于源码，未运行完整 SDK。
+
+<!-- /diagram -->
+
 | 状态 | 代表什么 | 能否替代其他状态 |
 | --- | --- | --- |
 | EventLog | 会话事件及其身份、父子关系 | 不能代替目录内文件和后台进程 |
@@ -68,6 +104,32 @@ OpenHands Software Agent SDK 将它们放在不同对象中：Conversation 管�
 持久化也有具体限制：没有配置持久存储时可以回退到内存；状态保存中的秘密在没有 cipher 时会被脱敏，不能假定恢复后凭证仍可用。EventLog 的本地文件锁说明还特别指出 NFS 等网络文件系统的限制，不能从本机锁推导出可靠的分布式多写者协议。
 
 ## 并行工具：限制线程数之外，还要声明资源
+
+<!-- diagram:openhands-sdk-architecture-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant A as 动作 A
+ participant L as ResourceLockManager
+ participant B as 动作 B
+ participant T as 文件工具
+ A->>L: 请求资源 file-x
+ L-->>A: 获得锁
+ B->>L: 请求同一资源
+ Note over B,L: 等待 A 释放
+ A->>T: 修改 file-x
+ T-->>A: 观察结果
+ A->>L: 释放锁
+ L-->>B: 获得锁
+ B->>T: 修改 file-x
+ T-->>B: 观察结果
+ B->>L: 释放锁
+```
+
+锁时序示意两个动作声明同一资源的情况。锁只在共享该管理器的执行范围内协调；结果列表顺序不等于副作用发生顺序。
+
+<!-- /diagram -->
 
 两个检索请求通常可以并行，但同一终端中的 `cd` 与运行测试有共享状态，两个文件编辑操作也可能覆盖同一文件。OpenHands 将“允许多少并行”与“哪些调用冲突”分开处理。
 
@@ -87,6 +149,30 @@ OpenHands Software Agent SDK 将它们放在不同对象中：Conversation 管�
 这些是同一运行范围内的并行机制。多租户公平性、全局 API 配额与父子 Agent 共享预算仍是额外设计，不能由线程池参数推导出来。
 
 ## 工作空间决定代码在哪里运行
+
+<!-- diagram:openhands-sdk-architecture-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "未启动" as New
+ state "容器与服务启动中" as Starting
+ state "健康就绪" as Ready
+ state "容器暂停" as Paused
+ state "清理后" as Closed
+ [*] --> New
+ New --> Starting: 创建并启动
+ Starting --> Ready: 健康检查通过
+ Ready --> Paused: pause
+ Paused --> Ready: unpause
+ Ready --> Closed: cleanup
+ Paused --> Closed: cleanup
+ Closed --> [*]
+```
+
+状态机聚焦源码中的 DockerWorkspace 生命周期，是行为归纳而非内部枚举。pause 保持同一容器，cleanup 停止 --rm 容器；文件是否保留取决于挂载与导出。未运行容器实验。
+
+<!-- /diagram -->
 
 `LocalWorkspace` 直接访问宿主文件系统，`execute_command()` 使用本地命令工具并指定工作目录。`working_dir` 是运行位置，不是阻止进程访问其他路径的安全边界。Git worktree 可以隔离代码修改，也不会自动限制网络、凭证或操作系统权限。[本地 Workspace](https://github.com/OpenHands/software-agent-sdk/blob/aa84db8216192568c4436d0dcc36f4caf8516c5b/openhands-sdk/openhands/sdk/workspace/local.py)
 

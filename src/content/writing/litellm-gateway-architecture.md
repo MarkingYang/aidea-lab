@@ -11,7 +11,7 @@ topics:
   - LiteLLM
   - LLMOps
 featured: true
-readingTime: 13 min
+readingTime: 15 min
 ---
 
 <a id="litellm-gateway-architecture"></a>
@@ -23,6 +23,24 @@ LiteLLM 把这部分能力集中起来。理解它需要回答三个问题：**�
 本文固定分析 [BerriAI/litellm v1.100.0，提交 e4f2526](https://github.com/BerriAI/litellm/tree/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4)。重点是 Python SDK 的异步 Router 路径、缓存与 Proxy 预算检查；不代表仓库全部服务或其他版本。八组实验使用 `litellm==1.100.0` 的真实 Router／缓存类，模型调用函数返回受控结果。所分析的 Python 文件均与安装包核对哈希；没有调用真实模型或启动 Proxy。
 
 ## 模块分工：协议、选路与治理
+
+<!-- diagram:litellm-gateway-architecture-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ A["应用 / Harness"] -->|进程内调用| R["Router"]
+ A -->|服务请求| P["Proxy：身份与预算检查"]
+ P --> R
+ R --> M["模型适配与调用"]
+ M --> V["提供方部署"]
+ R <--> C["路由状态与计数"]
+ P <--> B["预算数据与计数"]
+```
+
+两种接入架构：进程内 Router 与 Proxy 服务是可选入口。Proxy 的身份预算检查不能从 Router 配置推导；图中治理能力来自源码，本文没有启动 Proxy。
+
+<!-- /diagram -->
 
 以一个需要查资料并生成工具调用的 Agent 为例，职责可以这样划分：
 
@@ -40,6 +58,22 @@ LiteLLM 把这部分能力集中起来。理解它需要回答三个问题：**�
 
 ## 模型名称有三层，不能混为一个字段
 
+<!-- diagram:litellm-gateway-architecture-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ A["assistant 别名"] --> B["primary 模型组"]
+ B --> C["候选过滤与选择"]
+ C --> D["primary-a 或 primary-b"]
+ D --> E["提供方模型与协议参数"]
+ E --> F["实际尝试与用量记录"]
+```
+
+数据流使用本文别名示例：应用名、模型组和实际部署是三个身份。观测记录需要同时保留它们；组内配置相同不等于模型能力相同。
+
+<!-- /diagram -->
+
 假设应用请求 `assistant`，它是模型组 `primary` 的别名；`primary` 下有两个部署。一次请求涉及三种身份：
 
 | 身份 | 示例 | 用途 |
@@ -55,6 +89,31 @@ LiteLLM 把这部分能力集中起来。理解它需要回答三个问题：**�
 模型组是配置关系，不是能力证明。把两个模型放在一个组里，不会自动使它们拥有相同的图片输入、工具协议或上下文容量。组的采用条件还需要[模型能力与协议约束](/writing/harness-operations-model-gateway/)。
 
 ## 一次请求怎样走完
+
+<!-- diagram:litellm-gateway-architecture-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant A as 应用
+ participant R as Router
+ participant F as 回退与重试包装
+ participant D as 部署选择
+ participant M as 模型调用函数
+ A->>R: acompletion 组名与消息
+ R->>F: async_function_with_fallbacks
+ F->>R: 经 retries 调用 _acompletion
+ R->>D: async_get_available_deployment
+ D-->>R: 实际部署
+ R->>M: 部署参数与消息
+ M-->>R: 响应
+ R-->>F: 结果
+ F-->>A: 完成本次调用
+```
+
+时序聚焦一次成功的普通异步请求。实验在提供方函数边界返回受控响应，未验证真实 HTTP、协议适配或模型质量。
+
+<!-- /diagram -->
 
 普通异步对话请求的主路径可以按以下顺序阅读；带优先级调度、提示管理等分支另有处理。
 
@@ -79,6 +138,33 @@ LiteLLM 把这部分能力集中起来。理解它需要回答三个问题：**�
 策略的选择应围绕要控制的量。`least-busy` 用回调增加、减少在途请求计数，适合研究并发负载；它并不直接评价答案。请求数相同的两个部署，也可能因请求长度或模型速度而负载不同。[在途计数实现](https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router_strategy/least_busy.py)
 
 ## 重试与回退：改变的是次数、部署还是模型组
+
+<!-- diagram:litellm-gateway-architecture-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "当前组选择部署" as Select
+ state "调用部署" as Call
+ state "重试判定" as Retry
+ state "备用组判定" as Fallback
+ state "返回结果" as Done
+ state "返回异常" as Error
+ [*] --> Select
+ Select --> Call
+ Call --> Done: 成功
+ Call --> Retry: 异常
+ Retry --> Select: 可重试且有次数
+ Retry --> Fallback: 不再同组重试
+ Fallback --> Select: 允许且找到备用组
+ Fallback --> Error: 禁止或无可用路径
+ Done --> [*]
+ Error --> [*]
+```
+
+重试状态图归纳普通非流式路径，省略可选 order 与同组加权分支。次数、错误分类与配置共同决定转移；超窗专用回退和流式切换另见正文。
+
+<!-- /diagram -->
 
 失败之后，需要区分三件事：
 

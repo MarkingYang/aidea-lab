@@ -1,0 +1,629 @@
+{
+  "results": [
+    {
+      "slug": "product-work-methodology",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-work-methodology",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "claude-code-product-design",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "claude-code-product-design",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "litellm-gateway-architecture",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "litellm-gateway-architecture",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opa-policy-architecture",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opa-policy-architecture",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openhands-sdk-architecture",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openhands-sdk-architecture",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "haystack-pipeline-architecture",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "haystack-pipeline-architecture",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "temporal-durable-execution",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "temporal-durable-execution",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-operations-context",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-operations-context",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "rag",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "rag",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opencode-system-overview",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opencode-system-overview",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-work-methodology",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-work-methodology",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "claude-code-product-design",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "claude-code-product-design",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "litellm-gateway-architecture",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "litellm-gateway-architecture",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opa-policy-architecture",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opa-policy-architecture",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openhands-sdk-architecture",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "openhands-sdk-architecture",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "haystack-pipeline-architecture",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "haystack-pipeline-architecture",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "temporal-durable-execution",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "temporal-durable-execution",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 2,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-operations-context",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "harness-operations-context",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "rag",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "rag",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opencode-system-overview",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    },
+    {
+      "slug": "opencode-system-overview",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 4,
+      "render": "passed",
+      "pageContainment": "passed"
+    }
+  ],
+  "screenshotDirectory": "/tmp/aidea-diagram-screenshots",
+  "visualReview": "Representative roadmap, matrix, architecture, sequence and state screenshots reviewed; all 50 diagrams checked for rendering in light/dark at 1440 and 390 pixels. Wide diagrams intentionally scroll horizontally.",
+  "publication": "local_unpublished",
+  "finalRoadmapCheck": {
+    "widths": [
+      1440,
+      390
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "svgExport": "passed",
+    "fullscreen": "passed",
+    "containment": "passed"
+  },
+  "build": "passed: 63 articles, 22 groups, 8 domains, 118 redirects"
+}

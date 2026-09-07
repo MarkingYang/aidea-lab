@@ -29,6 +29,23 @@ Coding Agent Harness 的最小工作闭环。
 
 ## 系统职责对比：内置能力与自建范围
 
+<!-- diagram:coding-agent-harness-showdown-1 -->
+
+```mermaid
+block-beta
+%% title: 竞品分析矩阵图
+ columns 4
+ h["比较维度"] c["Claude Code"] o["Codex"] k["Kimi Code"]
+ r1["主要组织方式"] c1["项目规则与扩展"] o1["任务、环境与审查"] k1["终端与 IDE 接入"]
+ r2["扩展入口"] c2["Skills / Hooks / MCP"] o2["Skills / MCP / SDK"] k2["Skills / MCP / ACP"]
+ r3["优先核验"] c3["配置复杂度"] o3["并行审查负担"] k3["迁移与治理边界"]
+ r4["同题交付质量"] c4["未实测"] o4["未实测"] k4["未实测"]
+```
+
+竞品矩阵压缩展示本文 2026-09-05 的公开资料基线。每列是产品关注点及待验证项，不是能力分数；完整来源、入口差异与限制见后文。
+
+<!-- /diagram -->
+
 | 层 | Claude Code | Codex | Kimi Code |
 | --- | --- | --- | --- |
 | 入口 | CLI / IDE / Desktop / Web / GitHub / Slack | CLI / IDE / App / Cloud / GitHub / Slack | CLI / IDE / ACP |

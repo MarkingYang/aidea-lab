@@ -11,7 +11,7 @@ topics:
   - Temporal
   - 持久执行
 featured: false
-readingTime: 11 min
+readingTime: 13 min
 ---
 
 一个 Agent 已经完成资料核验，正在等用户批准。此时关闭 Worker，明天换一个 Worker，任务应继续等待或处理批准，不能重新解释资料、重新生成一份不同的提案。
@@ -21,6 +21,25 @@ Temporal 把这类任务表达为持久 Workflow：Worker 可以更换，运行�
 本文以开源仓库 `temporalio/sdk-python` 的提交 `22a9e41fd857261ee0a9bb5ce57f439d93e7f88d` 为入口，核对日期为 2026-09-07。源码与实验包版本均为 1.32.0；实验使用发布包，不是从该提交自行编译。服务端职责参照官方文档，未审计 Temporal Server 的存储与分片实现。[Workflow 官方说明](https://docs.temporal.io/workflows)
 
 ## 架构：把业务执行与运行历史分开
+
+<!-- diagram:temporal-durable-execution-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ C["Client"] --> S["Temporal Service：历史与调度"]
+ S <--> Q["Task Queue"]
+ Q --> W["Worker"]
+ W --> F["Workflow：控制逻辑"]
+ W --> A["Activity：外部操作"]
+ F -->|命令与结果| S
+ A --> R["业务资源"]
+ A -->|完成或失败| S
+```
+
+Temporal 架构按本文 Python SDK 范围归纳。服务端保存历史并派发任务，Worker 执行 Workflow 与 Activity；外部业务写入的幂等由业务侧提供。
+
+<!-- /diagram -->
 
 | 对象 | 保存或处理什么 | 在 Agent 任务中的例子 |
 | --- | --- | --- |
@@ -52,6 +71,24 @@ Worker 可以缓存 Workflow 实例以减少重放；因此等待不等于所有
 
 ## 历史重放为何不等于重做所有操作
 
+<!-- diagram:temporal-durable-execution-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ H["事件历史"] --> R["Workflow 重放"]
+ R --> C["匹配控制命令"]
+ C -->|已有完成记录| V["历史中的 Activity 结果"]
+ V --> R
+ C -->|需要新操作| A["调度 Activity"]
+ A --> E["外部调用与返回"]
+ E --> H
+```
+
+重放数据流：已记录 Activity 结果从历史提供给控制流程；需要执行的新 Activity 才进入实际函数。Activity 失败重试可能再次触发外部调用。
+
+<!-- /diagram -->
+
 恢复 Workflow 时，工作流逻辑可能从头重新执行。已经记录在历史中的 Activity 结果会用于重建后续控制状态；正常匹配的重放不会再次执行这些已完成 Activity 的外部函数。
 
 这要求 Workflow **确定性地重建与历史兼容的命令序列**。如果恢复时重新调用模型，模型可能给出另一条路径；读取当前时间、随机数或网络数据也可能改变分支。因此这类外部工作应放进 Activity，时间与等待使用 Workflow 提供的机制。
@@ -69,6 +106,33 @@ Python SDK 使用自定义 asyncio 事件循环，并限制 Workflow 内部的�
 稳定的 Workflow ID 不会自动让业务 API 具备幂等语义。Activity 的技术身份也不一定就是业务去重键：同一业务动作可能跨运行重试，而同一个工作流里也可能合法创建多个资源。键应来自业务意图与动作版本，保持“同一动作使用同一键，不同动作不误合并”。
 
 ## 实验：更换 Worker、重复写入与离线重放
+
+<!-- diagram:temporal-durable-execution-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant A as Worker A
+ participant S as Temporal Service
+ participant B as Worker B
+ participant D as SQLite
+ A->>S: 读取完成，等待批准
+ Note over A: Worker A 退出
+ B->>S: 新 Worker 接入并接收批准
+ S-->>B: 推进写入 Activity
+ B->>D: 按操作键写入
+ D-->>B: 已提交
+ Note over B: 人为抛出响应丢失异常
+ B->>S: Activity 失败
+ S->>B: 重试 Activity
+ B->>D: 使用同一操作键
+ D-->>B: 保留已有一行
+ B->>S: 完成
+```
+
+时序对应本文已运行实验，服务端始终存活。写入调用两次但 SQLite 一行，来自业务唯一键；这不证明服务端宕机恢复或任意外部接口恰好一次。
+
+<!-- /diagram -->
 
 本轮使用 Python 3.12.13、Temporal SDK 1.32.0、本地 CLI 1.8.3 / Server 1.31.2，运行了下列流程。所有输入都是固定教学数据，没有调用模型和真实业务 API。
 
@@ -110,6 +174,31 @@ SDK 的 `FixedSizeSlotSupplier` 提供固定数量的槽位；`ResourceBasedSlot
 这是配置语义分析，未进行多租户调度或压力测试。站点已有[队列、租约与背压](/writing/harness-operations-production/)讨论应用层的资源归属；不能仅凭 SDK 参数齐全就认定系统已经实现全局公平调度。
 
 ## 取消与子任务：发出请求不等于外部世界已经停止
+
+<!-- diagram:temporal-durable-execution-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "执行中" as Run
+ state "已请求取消" as Requested
+ state "已感知取消并收尾" as Cleanup
+ state "已取消" as Cancelled
+ state "已完成" as Done
+ state "失败或超时" as Failed
+ [*] --> Run
+ Run --> Requested: 请求取消
+ Requested --> Cleanup: 按配置通过心跳收到取消
+ Cleanup --> Cancelled: 协作式结束
+ Run --> Done: 正常完成
+ Requested --> Done: 取消生效前已完成
+ Run --> Failed: 异常或超时
+ Requested --> Failed: 未及时停止而失败
+```
+
+这是协作式 Activity 取消的行为示意。长时间非 Local Activity 通过心跳接收取消需相应配置；完成、失败与取消可以竞争，任何终态都不自动补偿外部写入。
+
+<!-- /diagram -->
 
 取消 Workflow 会向主工作流任务提出取消请求。取消 Activity、子 Workflow 或定时器有各自的策略；Python 代码也可能捕获取消异常进行清理。
 

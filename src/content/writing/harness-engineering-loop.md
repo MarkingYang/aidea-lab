@@ -10,7 +10,7 @@ topics:
   - AI 工程
   - 架构设计
 featured: false
-readingTime: 22 min
+readingTime: 23 min
 ---
 
 循环管理下一次行动，执行图管理任务之间的依赖。用状态、进展、停止条件和汇合规则判断何时需要增加编排，避免把模型的计划文本直接当作执行状态。
@@ -144,6 +144,31 @@ Anthropic 将预定义代码路径的工作流与由模型动态决定过程的 
 
 ## Loop Engineering：让每次继续都有理由
 
+<!-- diagram:harness-engineering-loop-1 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "观察当前事实" as Observe
+ state "选择下一动作" as Decide
+ state "执行动作" as Act
+ state "核验结果与进展" as Check
+ state "完成" as Done
+ state "停止或交接" as Stop
+ [*] --> Observe
+ Observe --> Decide
+ Decide --> Act: 条件满足且有预算
+ Decide --> Stop: 缺条件或预算耗尽
+ Act --> Check
+ Check --> Done: 任务验收通过
+ Check --> Observe: 有进展或有效新信息
+ Check --> Stop: 无进展或无法恢复
+```
+
+Loop 状态图是本文工程设计：每次继续必须有进展或有效新信息，并受共享预算约束。工具执行成功仍需验收，反复重试本身不算进展。
+
+<!-- /diagram -->
+
 ### Loop 解决的是反馈利用，而不仅是重复调用
 
 设定一个教学任务：核验公告 A 的生效日，与知识库记录比较；发现冲突时形成提案，得到允许后创建一张待核验工单。知识库记录为 9 月 1 日，公告修订版写明 9 月 15 日，但 Agent 最先读到的摘要没有修订信息。
@@ -170,6 +195,24 @@ Anthropic 将预定义代码路径的工作流与由模型动态决定过程的 
 如果采用“生成 → 评估 → 修订”的优化循环，还要防止模型迎合自己的评分。每轮都写得更长、更自信，并不代表证据更完整。验收标准应固定在可信任务契约里，必要时通过受保护的程序检查或人工复核。取消、任务版本与预算仍遵循前面的同一组生命周期规则。
 
 ## Graph Engineering：把交接条件变成执行结构
+
+<!-- diagram:harness-engineering-loop-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ S["固定任务版本与分支集合"] --> A["来源 A 读取"]
+ S --> B1["来源 B 定位"]
+ B1 --> B2["来源 B 读取"]
+ A -->|A 的结果与身份| J["按分支身份汇合"]
+ B2 -->|B 的结果与身份| J
+ J --> V["核验证据完整性与冲突"]
+ V --> D["生成可审查提案"]
+```
+
+依赖图示意不等长分支。汇合等待当前任务版本下的指定分支终态，再检查结果能否用于交付；两条入边本身不自动表达这种业务条件。
+
+<!-- /diagram -->
 
 ### 从单份核验扩展到三份资料
 

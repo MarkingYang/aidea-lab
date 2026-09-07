@@ -11,7 +11,7 @@ topics:
   - 授权
   - AI 工程
 featured: true
-readingTime: 12 min
+readingTime: 15 min
 ---
 
 <a id="opa-policy-architecture"></a>
@@ -23,6 +23,23 @@ Open Policy Agent（OPA）把规则独立出来，用结构化事实计算策略
 本文固定分析 [open-policy-agent/opa v1.20.2，提交 b2c2670](https://github.com/open-policy-agent/opa/tree/b2c26708e9d55645d7f837db495031f7e4152594)。使用核验 SHA-256 的官方 macOS arm64 程序，完成十二组本地实验，覆盖 CLI、Bundle 构建与加载、回环地址上的 REST 服务。策略是本文编写的教学案例，身份和审批由测试驱动提供；未验证真实认证、签名、工具写入或沙箱隔离。
 
 ## 在 Harness 中，OPA 位于哪里
+
+<!-- diagram:opa-policy-architecture-1 -->
+
+```mermaid
+flowchart TB
+%% title: 系统架构图
+ A["模型候选动作"] --> P["PEP：工具执行入口"]
+ I["可信身份、资源与审批事实"] --> P
+ P -->|查询 input| O["OPA：策略决策点"]
+ B["策略与参考数据"] -.-> O
+ O -->|决策结果| P
+ P -->|仅在许可有效时派发| R["资源服务：提交检查"]
+```
+
+系统架构中的实线是一次授权执行路径，虚线表示策略与参考数据装载。PEP 必须严格解释结果；资源服务仍在提交边界检查权限和版本。实验没有执行真实业务写入。
+
+<!-- /diagram -->
 
 先把一次文档修改拆成明确的职责：
 
@@ -41,6 +58,23 @@ Open Policy Agent（OPA）把规则独立出来，用结构化事实计算策略
 OPA 在这里处理的是结构化授权条件。资料中的提示注入是否被模型采纳、操作系统是否限制进程访问文件，是另外两类问题，仍需[执行安全中的其他边界](/writing/harness-engineering-security/)。
 
 ## 核心模块如何接成一次求值
+
+<!-- diagram:opa-policy-architecture-2 -->
+
+```mermaid
+flowchart LR
+%% title: 数据流图
+ Q["Rego 模块与查询路径"] --> C["编译与 Prepared Query"]
+ I["本次 input"] --> E["Eval / topdown"]
+ C --> E
+ D["Store 基础数据与事务"] --> E
+ E --> R["结果、未定义或错误"]
+ R --> S["API 序列化与日志路径"]
+```
+
+求值数据流区分本次 input、已加载基础数据和规则。Prepared Query 可复用查询准备工作，但当前输入仍参与求值，不是复用上次 allow。
+
+<!-- /diagram -->
 
 OPA 的数据模型有两个需要区分的入口：`input` 表示本次查询事实；`data` 可访问已加载的基础数据，以及策略计算出的虚拟文档。比如 `input.resource.tenant` 来自请求，`data.policy.read_enabled` 来自参考数据，`data.harness.authz.allow` 是规则求出的结果。
 
@@ -85,6 +119,25 @@ allow if {
 
 ## HTTP 200 为什么不能表示允许
 
+<!-- diagram:opa-policy-architecture-3 -->
+
+```mermaid
+stateDiagram-v2
+%% title: 状态机图
+ state "等待策略响应" as Wait
+ state "可派发" as Permit
+ state "不执行" as Block
+ [*] --> Wait
+ Wait --> Permit: result 严格等于 true
+ Wait --> Block: 非布尔 true 或查询失败
+ Permit --> [*]: 继续资源侧检查
+ Block --> [*]
+```
+
+这是本文布尔授权接口的 PEP 参考状态机，不是 OPA 内部状态枚举。只有严格的布尔 true 才进入可派发状态；HTTP 200 本身不触发放行。
+
+<!-- /diagram -->
+
 本文启动真实 OPA REST 服务，分别查询一个允许结果、一个拒绝结果和一个未定义结果：
 
 | 求值状态 | HTTP 状态 | 本次实验响应 |
@@ -116,6 +169,31 @@ OPA 根据收到的事实求值。它不会因为字段叫 `authenticated`，就
 参考数据也存在更新问题：随请求传入、复制到 OPA、由策略查询外部来源，会产生不同的依赖与新鲜度要求。应按事实变化速度选择路径，避免把经常撤销的权限当作永不变化的常量。[官方外部数据说明](https://www.openpolicyagent.org/docs/external-data)
 
 ## 审批要绑定动作，不能变成第二份宽泛权限
+
+<!-- diagram:opa-policy-architecture-4 -->
+
+```mermaid
+sequenceDiagram
+%% title: 时序图
+ participant H as 宿主 PEP
+ participant O as OPA
+ participant R as 资源服务
+ H->>R: 查询当前资源归属与版本
+ R-->>H: 版本 3
+ H->>O: 动作、可信身份、审批与版本 3
+ O-->>H: true
+ Note over R: 资源可能变为版本 4
+ H->>R: 按预期版本 3 写入
+ alt 版本与权限仍有效
+ R-->>H: 提交结果
+ else 版本或权限已变
+ R-->>H: 拒绝写入，重新判断
+ end
+```
+
+建议集成时序：策略判断与资源提交不是同一事务。资源版本在两者之间变化时，资源服务应拒绝陈旧写入；本文仅实测策略求值，未实测此完整集成。
+
+<!-- /diagram -->
 
 实验的写入策略要求额外审批，并将审批记录与以下完整对象比较：
 

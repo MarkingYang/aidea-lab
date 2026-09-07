@@ -1,0 +1,352 @@
+[
+  {
+    "slug": "product-work-methodology",
+    "heading": "一套可执行的产品工作节奏",
+    "kind": "产品路线图",
+    "caption": "产品路线图：按列从左向右推进，沿用本文 0—90 天教学计划。每列同时列出目标、产物和验收门槛；未通过就留在当前阶段修复，已开放范围发生关键退化时收缩权限。日期不构成自动升级条件。",
+    "code": "block-beta\n columns 3\n a[\"0—30 天：明确任务\"] b[\"31—60 天：建立边界\"] c[\"61—90 天：有界委托\"]\n a1[\"窄任务与人工基线\"] b1[\"草稿、权限与评测\"] c1[\"恢复、接管与复用\"]\n a2[\"产物：结果契约\"] b2[\"产物：失败集与记录\"] c2[\"产物：有限自治范围\"]\n a3[\"门槛：成果可验收\"] b3[\"门槛：权限恢复合格\"] c3[\"门槛：质量成本可接受\"]"
+  },
+  {
+    "slug": "product-frameworks-prioritization",
+    "heading": "实践：给高分需求做一次压力测试",
+    "kind": "产品路线图",
+    "caption": "MeetFlow 产品路线图是虚构场景的版本建议。CRM 同步先依赖身份、字段映射、确认与对账；自动发送邮件和覆盖全部 CRM 不属于本次承诺。",
+    "code": "flowchart TB\n A[\"先做：稳定录音与可确认待办\"] --> B[\"补齐：身份、字段映射、失败对账\"]\n B --> C[\"首发：用户确认后同步指定 CRM\"]\n C -->|验收通过且有容量| D[\"随后：销售术语与邮件草稿\"]\n D -->|用户证据支持| E[\"再评估：团队模板与更多连接器\"]\n X[\"本期排除：自动发信、全部 CRM\"] -.->|限制发布范围| C"
+  },
+  {
+    "slug": "claude-code-product-design",
+    "heading": "反例：什么时候应该少一点 Agent",
+    "kind": "产品路线图",
+    "caption": "这是一条从本文问题推导的产品改进路线，不是 Anthropic 的官方计划。先减少目标与证据误解，再验证并行接管；分享脱敏需要单独研究和验收。",
+    "code": "flowchart TB\n A[\"先验证：用户看懂目录、权限与停止原因\"] --> B[\"优先完善：Diff、测试与证据缺口\"]\n B -->|单任务交付可验收| C[\"再验证：并行任务隔离与接管\"]\n C -->|审查成本可控| D[\"扩展：跨端状态与持续任务\"]\n B --> E[\"独立探索：分享视图与隐私模式\"]\n E -->|访谈和脱敏测试| F[\"决定是否纳入版本\"]"
+  },
+  {
+    "slug": "coding-agent-harness-showdown",
+    "heading": "系统职责对比：内置能力与自建范围",
+    "kind": "竞品分析矩阵图",
+    "caption": "竞品矩阵压缩展示本文 2026-09-05 的公开资料基线。每列是产品关注点及待验证项，不是能力分数；完整来源、入口差异与限制见后文。",
+    "code": "block-beta\n columns 4\n h[\"比较维度\"] c[\"Claude Code\"] o[\"Codex\"] k[\"Kimi Code\"]\n r1[\"主要组织方式\"] c1[\"项目规则与扩展\"] o1[\"任务、环境与审查\"] k1[\"终端与 IDE 接入\"]\n r2[\"扩展入口\"] c2[\"Skills / Hooks / MCP\"] o2[\"Skills / MCP / SDK\"] k2[\"Skills / MCP / ACP\"]\n r3[\"优先核验\"] c3[\"配置复杂度\"] o3[\"并行审查负担\"] k3[\"迁移与治理边界\"]\n r4[\"同题交付质量\"] c4[\"未实测\"] o4[\"未实测\"] k4[\"未实测\"]"
+  },
+  {
+    "slug": "china-work-agent-showdown",
+    "heading": "六个维度，比“谁能生成 PPT”更有意义",
+    "kind": "竞品分析矩阵图",
+    "caption": "竞品矩阵按本文 2026-09-05 的资料与分析假设整理。企业写回、跨端接管和最终交付质量仍需在指定版本与租户验证，矩阵不提供强弱排名。",
+    "code": "block-beta\n columns 4\n h[\"比较维度\"] k[\"Kimi Work\"] w[\"WorkBuddy\"] d[\"豆包工作\"]\n r1[\"工作对象\"] k1[\"资料与研究问题\"] w1[\"组织文件与系统\"] d1[\"个人文档与多模态\"]\n r2[\"采用假设\"] k2[\"资料密集型研究\"] w2[\"企业连接与写回\"] d2[\"内容与视觉交付\"]\n r3[\"优先核验\"] k3[\"来源合并与去重\"] w3[\"租户身份与权限\"] d3[\"可编辑性与返工\"]\n r4[\"同题交付质量\"] k4[\"未实测\"] w4[\"未实测\"] d4[\"未实测\"]"
+  },
+  {
+    "slug": "china-work-agent-showdown",
+    "heading": "采用决定应包含维护与退出成本",
+    "kind": "产品采用路线图",
+    "caption": "办公 Agent 的采用路线：先确认文件交付价值，再开放经批准的写回。此图是团队采用建议，阶段由验收证据推进，没有厂商发布时间承诺。",
+    "code": "flowchart TB\n A[\"固定资料、任务和人工基线\"] --> B[\"只读试点：核验来源与口径\"]\n B -->|证据合格| C[\"制品试点：检查编辑性与复算\"]\n C -->|文件可用| D[\"受控写回：批准、权限、结果查询\"]\n D -->|撤权与故障测试通过| E[\"有限推广：成本、维护与退出\"]\n D -->|失败或未知| F[\"暂停写回并对账\"]"
+  },
+  {
+    "slug": "agent-landscape-comparison-methods",
+    "heading": "两周 PoC 的示例安排",
+    "kind": "产品选型路线图",
+    "caption": "PoC 路线沿用本文两周教学安排。第 9—10 天是复评窗口，不保证届时必然采用；硬约束不通过就保留不采用或缩小范围的结论。",
+    "code": "flowchart TB\n A[\"第 1—2 天：冻结任务与人工基线\"] --> B[\"第 3—6 天：各候选同题重复运行\"]\n B --> C[\"第 7—8 天：失败复现与恢复测试\"]\n C --> D[\"第 9—10 天：复测与决策记录\"]\n D --> E{\"硬约束与业务门槛通过？\"}\n E -->|是| F[\"限定任务采用；记录退出条件\"]\n E -->|否| G[\"不采用或缩小范围\"]"
+  },
+  {
+    "slug": "agent-landscape-comparison-methods",
+    "heading": "把候选假设变成可执行比较",
+    "kind": "竞品分析矩阵图",
+    "caption": "这是一张待填的同题实测矩阵，A／B 代表实际入选候选。未知项不能当作零分，权限与恢复硬条件也不能被低成本抵消。",
+    "code": "block-beta\n columns 3\n h[\"实测维度\"] a[\"候选 A\"] b[\"候选 B\"]\n r1[\"版本、环境、权限\"] a1[\"先记录配置\"] b1[\"先记录配置\"]\n r2[\"合格交付与证据\"] a2[\"待同题验证\"] b2[\"待同题验证\"]\n r3[\"人工时间与总成本\"] a3[\"待完整计量\"] b3[\"待完整计量\"]\n r4[\"撤权与恢复\"] a4[\"待故障验证\"] b4[\"待故障验证\"]"
+  },
+  {
+    "slug": "langgraph-runtime-architecture",
+    "heading": "从图定义到运行：编译器、通道、循环与执行器",
+    "kind": "系统架构图",
+    "caption": "系统架构：按本文固定 Python 提交归纳。StateGraph 编译出运行对象，Loop 准备工作、Runner 执行，通道与检查点保存图进度；外部资源事务仍在图之外。",
+    "code": "flowchart TB\n A[\"StateGraph：图定义\"] -->|compile| B[\"CompiledStateGraph / Pregel\"]\n B --> C[\"PregelLoop：准备任务\"]\n C --> D[\"PregelRunner：执行节点\"]\n D -->|状态更新| E[\"Channel / Reducer\"]\n E -->|版本与触发| C\n C -->|保存进度| F[\"Checkpointer\"]\n F -->|恢复| C\n D -->|业务调用| G[\"模型与外部工具\"]"
+  },
+  {
+    "slug": "langgraph-runtime-architecture",
+    "heading": "Reducer 合并的是更新，不是自动合并真相",
+    "kind": "数据流图",
+    "caption": "数据流：普通超级步中，节点读取本轮状态，更新在步末经通道合并后供下一步使用。Reducer 决定字段合并规则，不负责认定证据真假。",
+    "code": "flowchart LR\n A[\"本轮 State\"] --> B[\"节点 A\"]\n A --> C[\"节点 B\"]\n B -->|更新 A| D[\"apply_writes\"]\n C -->|更新 B| D\n D --> E[\"通道按字段应用 Reducer\"]\n E --> F[\"下一轮 State 与版本\"]"
+  },
+  {
+    "slug": "langgraph-runtime-architecture",
+    "heading": "可运行实验：暂停后，究竟从哪里继续？",
+    "kind": "状态机图",
+    "caption": "状态机对应下文已运行的起草—审核示例。恢复重入审核节点；提交只生成演示文本。真实认证、审批绑定和外部写入不在该实验内。",
+    "code": "stateDiagram-v2\n state \"起草\" as Draft\n state \"审核节点\" as Review\n state \"等待审核值\" as Wait\n state \"重入审核节点\" as Resume\n state \"模拟提交\" as Submit\n state \"拒绝且未提交\" as Reject\n [*] --> Draft\n Draft --> Review\n Review --> Wait: interrupt\n Wait --> Resume: 同线程 resume\n Resume --> Submit: true\n Resume --> Reject: false\n Submit --> [*]\n Reject --> [*]"
+  },
+  {
+    "slug": "langgraph-runtime-architecture",
+    "heading": "检查点实验：一个分支失败，不代表全部重做",
+    "kind": "时序图",
+    "caption": "恢复时序对应 SQLite、同步持久化和 B 延迟失败的受控实验。成功的 A 写入得以保存；不代表外部调用完成但尚未保存时也不会重复。",
+    "code": "sequenceDiagram\n participant P as 进程一\n participant A as 节点 A\n participant B as 节点 B\n participant S as SQLite 检查点\n participant N as 进程二\n P->>A: 读取\n A-->>P: 成功更新\n P->>S: 保存 A 的 pending writes\n P->>B: 读取\n B-->>P: 人为失败\n Note over P: 进程退出\n N->>S: 同 thread_id 恢复\n S-->>N: 状态与 A 的成功写入\n N->>B: 再次执行\n B-->>N: 成功更新\n Note over N: 汇合结果，A 不重跑"
+  },
+  {
+    "slug": "litellm-gateway-architecture",
+    "heading": "模块分工：协议、选路与治理",
+    "kind": "系统架构图",
+    "caption": "两种接入架构：进程内 Router 与 Proxy 服务是可选入口。Proxy 的身份预算检查不能从 Router 配置推导；图中治理能力来自源码，本文没有启动 Proxy。",
+    "code": "flowchart TB\n A[\"应用 / Harness\"] -->|进程内调用| R[\"Router\"]\n A -->|服务请求| P[\"Proxy：身份与预算检查\"]\n P --> R\n R --> M[\"模型适配与调用\"]\n M --> V[\"提供方部署\"]\n R <--> C[\"路由状态与计数\"]\n P <--> B[\"预算数据与计数\"]"
+  },
+  {
+    "slug": "litellm-gateway-architecture",
+    "heading": "模型名称有三层，不能混为一个字段",
+    "kind": "数据流图",
+    "caption": "数据流使用本文别名示例：应用名、模型组和实际部署是三个身份。观测记录需要同时保留它们；组内配置相同不等于模型能力相同。",
+    "code": "flowchart LR\n A[\"assistant 别名\"] --> B[\"primary 模型组\"]\n B --> C[\"候选过滤与选择\"]\n C --> D[\"primary-a 或 primary-b\"]\n D --> E[\"提供方模型与协议参数\"]\n E --> F[\"实际尝试与用量记录\"]"
+  },
+  {
+    "slug": "litellm-gateway-architecture",
+    "heading": "重试与回退：改变的是次数、部署还是模型组",
+    "kind": "状态机图",
+    "caption": "重试状态图归纳普通非流式路径，省略可选 order 与同组加权分支。次数、错误分类与配置共同决定转移；超窗专用回退和流式切换另见正文。",
+    "code": "stateDiagram-v2\n state \"当前组选择部署\" as Select\n state \"调用部署\" as Call\n state \"重试判定\" as Retry\n state \"备用组判定\" as Fallback\n state \"返回结果\" as Done\n state \"返回异常\" as Error\n [*] --> Select\n Select --> Call\n Call --> Done: 成功\n Call --> Retry: 异常\n Retry --> Select: 可重试且有次数\n Retry --> Fallback: 不再同组重试\n Fallback --> Select: 允许且找到备用组\n Fallback --> Error: 禁止或无可用路径\n Done --> [*]\n Error --> [*]"
+  },
+  {
+    "slug": "litellm-gateway-architecture",
+    "heading": "一次请求怎样走完",
+    "kind": "时序图",
+    "caption": "时序聚焦一次成功的普通异步请求。实验在提供方函数边界返回受控响应，未验证真实 HTTP、协议适配或模型质量。",
+    "code": "sequenceDiagram\n participant A as 应用\n participant R as Router\n participant F as 回退与重试包装\n participant D as 部署选择\n participant M as 模型调用函数\n A->>R: acompletion 组名与消息\n R->>F: async_function_with_fallbacks\n F->>R: 经 retries 调用 _acompletion\n R->>D: async_get_available_deployment\n D-->>R: 实际部署\n R->>M: 部署参数与消息\n M-->>R: 响应\n R-->>F: 结果\n F-->>A: 完成本次调用"
+  },
+  {
+    "slug": "opa-policy-architecture",
+    "heading": "在 Harness 中，OPA 位于哪里",
+    "kind": "系统架构图",
+    "caption": "系统架构中的实线是一次授权执行路径，虚线表示策略与参考数据装载。PEP 必须严格解释结果；资源服务仍在提交边界检查权限和版本。实验没有执行真实业务写入。",
+    "code": "flowchart TB\n A[\"模型候选动作\"] --> P[\"PEP：工具执行入口\"]\n I[\"可信身份、资源与审批事实\"] --> P\n P -->|查询 input| O[\"OPA：策略决策点\"]\n B[\"策略与参考数据\"] -.-> O\n O -->|决策结果| P\n P -->|仅在许可有效时派发| R[\"资源服务：提交检查\"]"
+  },
+  {
+    "slug": "opa-policy-architecture",
+    "heading": "核心模块如何接成一次求值",
+    "kind": "数据流图",
+    "caption": "求值数据流区分本次 input、已加载基础数据和规则。Prepared Query 可复用查询准备工作，但当前输入仍参与求值，不是复用上次 allow。",
+    "code": "flowchart LR\n Q[\"Rego 模块与查询路径\"] --> C[\"编译与 Prepared Query\"]\n I[\"本次 input\"] --> E[\"Eval / topdown\"]\n C --> E\n D[\"Store 基础数据与事务\"] --> E\n E --> R[\"结果、未定义或错误\"]\n R --> S[\"API 序列化与日志路径\"]"
+  },
+  {
+    "slug": "opa-policy-architecture",
+    "heading": "HTTP 200 为什么不能表示允许",
+    "kind": "状态机图",
+    "caption": "这是本文布尔授权接口的 PEP 参考状态机，不是 OPA 内部状态枚举。只有严格的布尔 true 才进入可派发状态；HTTP 200 本身不触发放行。",
+    "code": "stateDiagram-v2\n state \"等待策略响应\" as Wait\n state \"可派发\" as Permit\n state \"不执行\" as Block\n [*] --> Wait\n Wait --> Permit: result 严格等于 true\n Wait --> Block: 非布尔 true 或查询失败\n Permit --> [*]: 继续资源侧检查\n Block --> [*]"
+  },
+  {
+    "slug": "opa-policy-architecture",
+    "heading": "审批要绑定动作，不能变成第二份宽泛权限",
+    "kind": "时序图",
+    "caption": "建议集成时序：策略判断与资源提交不是同一事务。资源版本在两者之间变化时，资源服务应拒绝陈旧写入；本文仅实测策略求值，未实测此完整集成。",
+    "code": "sequenceDiagram\n participant H as 宿主 PEP\n participant O as OPA\n participant R as 资源服务\n H->>R: 查询当前资源归属与版本\n R-->>H: 版本 3\n H->>O: 动作、可信身份、审批与版本 3\n O-->>H: true\n Note over R: 资源可能变为版本 4\n H->>R: 按预期版本 3 写入\n alt 版本与权限仍有效\n R-->>H: 提交结果\n else 版本或权限已变\n R-->>H: 拒绝写入，重新判断\n end"
+  },
+  {
+    "slug": "openhands-sdk-architecture",
+    "heading": "四个包如何构成一条执行链",
+    "kind": "系统架构图",
+    "caption": "源码架构：Conversation 根据 Workspace 选择本地或远程会话。远程 Agent Server 承接执行与事件访问；图不把独立调度平台归入 SDK。",
+    "code": "flowchart TB\n C[\"Conversation 工厂\"] -->|本地 Workspace| L[\"LocalConversation\"]\n C -->|远程 Workspace| R[\"RemoteConversation\"]\n R --> S[\"Agent Server\"]\n L --> A[\"Agent 与事件状态\"]\n S --> A\n A --> T[\"工具执行器\"]\n T --> W[\"对应工作环境\"]"
+  },
+  {
+    "slug": "openhands-sdk-architecture",
+    "heading": "事件、视图与工作目录分别保存什么",
+    "kind": "数据流图",
+    "caption": "事件与环境两条数据链：事件投影成模型输入，工具改变工作环境并返回观察。View 回退不会沿箭头自动撤销文件；该图基于源码，未运行完整 SDK。",
+    "code": "flowchart LR\n E[\"EventLog\"] -->|活动分支投影| V[\"View\"]\n V --> M[\"模型输入\"]\n M --> A[\"Action 事件\"]\n A --> T[\"工具执行\"]\n T --> W[\"文件与进程变化\"]\n T --> O[\"Observation 事件\"]\n O --> E"
+  },
+  {
+    "slug": "openhands-sdk-architecture",
+    "heading": "工作空间决定代码在哪里运行",
+    "kind": "状态机图",
+    "caption": "状态机聚焦源码中的 DockerWorkspace 生命周期，是行为归纳而非内部枚举。pause 保持同一容器，cleanup 停止 --rm 容器；文件是否保留取决于挂载与导出。未运行容器实验。",
+    "code": "stateDiagram-v2\n state \"未启动\" as New\n state \"容器与服务启动中\" as Starting\n state \"健康就绪\" as Ready\n state \"容器暂停\" as Paused\n state \"清理后\" as Closed\n [*] --> New\n New --> Starting: 创建并启动\n Starting --> Ready: 健康检查通过\n Ready --> Paused: pause\n Paused --> Ready: unpause\n Ready --> Closed: cleanup\n Paused --> Closed: cleanup\n Closed --> [*]"
+  },
+  {
+    "slug": "openhands-sdk-architecture",
+    "heading": "并行工具：限制线程数之外，还要声明资源",
+    "kind": "时序图",
+    "caption": "锁时序示意两个动作声明同一资源的情况。锁只在共享该管理器的执行范围内协调；结果列表顺序不等于副作用发生顺序。",
+    "code": "sequenceDiagram\n participant A as 动作 A\n participant L as ResourceLockManager\n participant B as 动作 B\n participant T as 文件工具\n A->>L: 请求资源 file-x\n L-->>A: 获得锁\n B->>L: 请求同一资源\n Note over B,L: 等待 A 释放\n A->>T: 修改 file-x\n T-->>A: 观察结果\n A->>L: 释放锁\n L-->>B: 获得锁\n B->>T: 修改 file-x\n T-->>B: 观察结果\n B->>L: 释放锁"
+  },
+  {
+    "slug": "haystack-pipeline-architecture",
+    "heading": "从一条 RAG 主流程看模块分工",
+    "kind": "系统架构图",
+    "caption": "Pipeline 架构按本文组件契约组织。Generator 与业务验收属于完整 RAG 的后半程；本地检索实验止于 PromptBuilder，未调用生成模型。",
+    "code": "flowchart TB\n S[\"Document Store\"] --> R[\"Retriever\"]\n R --> J[\"Joiner / Ranker\"]\n J --> P[\"PromptBuilder\"]\n P --> G[\"Generator\"]\n G --> V[\"应用验收\"]\n C[\"Pipeline：连接与调度\"] -.-> R\n C -.-> J\n C -.-> P\n C -.-> G"
+  },
+  {
+    "slug": "haystack-pipeline-architecture",
+    "heading": "Pipeline 如何成为 Agent 的一项能力",
+    "kind": "数据流图",
+    "caption": "数据流对应已运行的 PipelineTool 检索实验：工具只暴露 query，内部限定检索范围，输出带 Document ID 的 context。没有模型答案或真实认证实验。",
+    "code": "flowchart LR\n Q[\"query\"] --> T[\"PipelineTool 输入映射\"]\n T --> R[\"InMemoryBM25Retriever\"]\n F[\"固定允许范围\"] --> R\n R -->|Document ID 与正文| P[\"PromptBuilder\"]\n T -->|原问题| P\n P --> C[\"context 工具结果\"]"
+  },
+  {
+    "slug": "haystack-pipeline-architecture",
+    "heading": "同步与异步执行：调度器真正控制什么",
+    "kind": "状态机图",
+    "caption": "调度状态图是本文四种优先级的条件归纳，不是固定单向流水线。输入、触发和前驱变化会重新计算优先级；HIGHEST 在异步路径需等待在途任务。",
+    "code": "stateDiagram-v2\n state \"BLOCKED\" as B\n state \"READY\" as R\n state \"DEFER\" as D\n state \"HIGHEST\" as H\n state \"执行组件\" as Run\n [*] --> B\n B --> R: 必要输入与触发满足\n B --> D: 可运行但仍可能收集输入\n B --> H: 满足特殊贪婪输入条件\n D --> Run: 优先工作处理后获调度\n R --> Run: 有执行容量\n H --> Run: 在途任务已结束\n Run --> B: 等待新触发或输入\n Run --> [*]: 本路径结束"
+  },
+  {
+    "slug": "haystack-pipeline-architecture",
+    "heading": "失败、取消与恢复要分别看",
+    "kind": "时序图",
+    "caption": "时序对应同步组件在线程执行的受控取消实验。流水线返回错误后，线程仍可完成写入；图中的门闩是实验设施，不是框架生产机制。",
+    "code": "sequenceDiagram\n participant P as Pipeline\n participant T as 同步组件线程\n participant E as 报错组件\n participant D as 实验驱动\n P->>T: 派发同步组件\n Note over T: 等待实验门闩\n P->>E: 执行另一组件\n E-->>P: 抛出异常\n P-->>D: 取消等待后返回错误\n D->>T: 放开门闩\n Note over T: 仍完成本地写入"
+  },
+  {
+    "slug": "temporal-durable-execution",
+    "heading": "架构：把业务执行与运行历史分开",
+    "kind": "系统架构图",
+    "caption": "Temporal 架构按本文 Python SDK 范围归纳。服务端保存历史并派发任务，Worker 执行 Workflow 与 Activity；外部业务写入的幂等由业务侧提供。",
+    "code": "flowchart TB\n C[\"Client\"] --> S[\"Temporal Service：历史与调度\"]\n S <--> Q[\"Task Queue\"]\n Q --> W[\"Worker\"]\n W --> F[\"Workflow：控制逻辑\"]\n W --> A[\"Activity：外部操作\"]\n F -->|命令与结果| S\n A --> R[\"业务资源\"]\n A -->|完成或失败| S"
+  },
+  {
+    "slug": "temporal-durable-execution",
+    "heading": "历史重放为何不等于重做所有操作",
+    "kind": "数据流图",
+    "caption": "重放数据流：已记录 Activity 结果从历史提供给控制流程；需要执行的新 Activity 才进入实际函数。Activity 失败重试可能再次触发外部调用。",
+    "code": "flowchart LR\n H[\"事件历史\"] --> R[\"Workflow 重放\"]\n R --> C[\"匹配控制命令\"]\n C -->|已有完成记录| V[\"历史中的 Activity 结果\"]\n V --> R\n C -->|需要新操作| A[\"调度 Activity\"]\n A --> E[\"外部调用与返回\"]\n E --> H"
+  },
+  {
+    "slug": "temporal-durable-execution",
+    "heading": "取消与子任务：发出请求不等于外部世界已经停止",
+    "kind": "状态机图",
+    "caption": "这是协作式 Activity 取消的行为示意。长时间非 Local Activity 通过心跳接收取消需相应配置；完成、失败与取消可以竞争，任何终态都不自动补偿外部写入。",
+    "code": "stateDiagram-v2\n state \"执行中\" as Run\n state \"已请求取消\" as Requested\n state \"已感知取消并收尾\" as Cleanup\n state \"已取消\" as Cancelled\n state \"已完成\" as Done\n state \"失败或超时\" as Failed\n [*] --> Run\n Run --> Requested: 请求取消\n Requested --> Cleanup: 按配置通过心跳收到取消\n Cleanup --> Cancelled: 协作式结束\n Run --> Done: 正常完成\n Requested --> Done: 取消生效前已完成\n Run --> Failed: 异常或超时\n Requested --> Failed: 未及时停止而失败"
+  },
+  {
+    "slug": "temporal-durable-execution",
+    "heading": "实验：更换 Worker、重复写入与离线重放",
+    "kind": "时序图",
+    "caption": "时序对应本文已运行实验，服务端始终存活。写入调用两次但 SQLite 一行，来自业务唯一键；这不证明服务端宕机恢复或任意外部接口恰好一次。",
+    "code": "sequenceDiagram\n participant A as Worker A\n participant S as Temporal Service\n participant B as Worker B\n participant D as SQLite\n A->>S: 读取完成，等待批准\n Note over A: Worker A 退出\n B->>S: 新 Worker 接入并接收批准\n S-->>B: 推进写入 Activity\n B->>D: 按操作键写入\n D-->>B: 已提交\n Note over B: 人为抛出响应丢失异常\n B->>S: Activity 失败\n S->>B: 重试 Activity\n B->>D: 使用同一操作键\n D-->>B: 保留已有一行\n B->>S: 完成"
+  },
+  {
+    "slug": "prompt-context-harness-engineering",
+    "heading": "八项职责各自控制什么",
+    "kind": "系统架构图",
+    "caption": "Harness 参考架构按本文八项职责归纳，不对应某厂商的固定服务划分。模型提出动作，控制层检查边界，执行结果经独立验收后才能成为交付证据。",
+    "code": "flowchart TB\n T[\"任务与验收契约\"] --> R[\"运行控制\"]\n C[\"上下文构建\"] --> M[\"模型适配\"]\n R --> C\n M -->|候选动作| R\n R --> P[\"策略与权限\"]\n P -->|允许的动作| E[\"工具与执行环境\"]\n E --> S[\"状态与恢复\"]\n S -->|已观察事实| R\n E --> V[\"验证与交付\"]\n V -->|缺口反馈| R\n O[\"观测与运行治理\"] -.-> R"
+  },
+  {
+    "slug": "prompt-context-harness-engineering",
+    "heading": "模块之间交换什么",
+    "kind": "数据流图",
+    "caption": "数据流图展示本文的任务、动作、结果与证据契约。工具结果可以推动下一轮判断；只有对照任务目标核验后才成为完成依据。",
+    "code": "flowchart LR\n T[\"任务目标与允许范围\"] --> P[\"候选动作与输入\"]\n P --> A[\"许可与执行条件检查\"]\n A --> X[\"工具调用与操作身份\"]\n X --> R[\"结果、错误或未知\"]\n R --> V[\"独立核验\"]\n V --> E[\"可交付证据\"]\n R -->|继续所需事实| P"
+  },
+  {
+    "slug": "agent-runtime",
+    "heading": "模块如何接成主流程",
+    "kind": "系统架构图",
+    "caption": "Runtime 参考架构是本文的职责划分。工作空间承载真实文件与进程；状态存储记录运行事实，二者不能互相替代。",
+    "code": "flowchart TB\n R[\"运行协调器\"] --> C[\"上下文构建器\"]\n C --> M[\"模型适配器\"]\n M -->|完整候选动作| D[\"动作派发器\"]\n D --> W[\"工作空间与工具\"]\n W -->|结果事件| S[\"状态存储\"]\n S --> R\n R --> V[\"验收器\"]\n V -->|继续或完成| R"
+  },
+  {
+    "slug": "agent-runtime",
+    "heading": "状态机要表达“未知”",
+    "kind": "状态机图",
+    "caption": "状态机来自本文教学设计。超时并不证明未执行；未知结果先查询实际资源。取消、审批与预算可以打断推进，图只聚焦一次动作及其核验。",
+    "code": "stateDiagram-v2\n state \"待执行\" as Ready\n state \"等待输入或批准\" as Wait\n state \"执行中\" as Running\n state \"结果未知\" as Unknown\n state \"待验收\" as Verify\n state \"已完成\" as Done\n state \"停止并交接\" as Stop\n [*] --> Ready\n Ready --> Wait: 条件不足\n Wait --> Ready: 有效输入到达\n Ready --> Running: 许可与容量满足\n Running --> Unknown: 响应丢失\n Running --> Verify: 有结果\n Unknown --> Verify: 查询确认已发生\n Unknown --> Ready: 已确认未发生且允许重试\n Unknown --> Stop: 无法确认\n Verify --> Done: 目标满足\n Verify --> Ready: 允许修正且有预算"
+  },
+  {
+    "slug": "agent-runtime",
+    "heading": "持久执行不自动保证外部动作只发生一次",
+    "kind": "时序图",
+    "caption": "这是设计反例时序：外部已提交、本地未记录形成不确定窗口。查询与幂等能力需资源系统配合，不是日志保存即可提供的保证。",
+    "code": "sequenceDiagram\n participant R as 运行协调器\n participant S as 状态存储\n participant T as 外部工具\n R->>S: 保存操作键与派发意图\n R->>T: 按操作键执行\n Note over T: 外部已提交\n T--xR: 成功响应丢失\n R->>S: 保存结果未知\n R->>T: 按原操作键查询\n alt 确认已完成\n T-->>R: 原资源与结果\n R->>S: 补记结果并进入验收\n else 无法确认\n T-->>R: 查询失败或证据不足\n R->>S: 保留未知并交接\n end"
+  },
+  {
+    "slug": "agent-runtime",
+    "heading": "日志、当前视图与检查点",
+    "kind": "数据流图",
+    "caption": "状态数据流是本文建议的分工：历史可投影为当前视图，也可形成检查点；恢复还要核对工作空间与当前权限，不能仅加载摘要。",
+    "code": "flowchart LR\n E[\"原始事件与结果\"] --> L[\"持久事件日志\"]\n L --> V[\"当前分支视图\"]\n V --> C[\"模型上下文\"]\n L --> K[\"检查点与运行位置\"]\n K --> R[\"恢复核对\"]\n W[\"实际文件、进程、当前权限\"] --> R\n R --> V"
+  },
+  {
+    "slug": "harness-engineering-loop",
+    "heading": "Loop Engineering：让每次继续都有理由",
+    "kind": "状态机图",
+    "caption": "Loop 状态图是本文工程设计：每次继续必须有进展或有效新信息，并受共享预算约束。工具执行成功仍需验收，反复重试本身不算进展。",
+    "code": "stateDiagram-v2\n state \"观察当前事实\" as Observe\n state \"选择下一动作\" as Decide\n state \"执行动作\" as Act\n state \"核验结果与进展\" as Check\n state \"完成\" as Done\n state \"停止或交接\" as Stop\n [*] --> Observe\n Observe --> Decide\n Decide --> Act: 条件满足且有预算\n Decide --> Stop: 缺条件或预算耗尽\n Act --> Check\n Check --> Done: 任务验收通过\n Check --> Observe: 有进展或有效新信息\n Check --> Stop: 无进展或无法恢复"
+  },
+  {
+    "slug": "harness-engineering-loop",
+    "heading": "Graph Engineering：把交接条件变成执行结构",
+    "kind": "数据流图",
+    "caption": "依赖图示意不等长分支。汇合等待当前任务版本下的指定分支终态，再检查结果能否用于交付；两条入边本身不自动表达这种业务条件。",
+    "code": "flowchart LR\n S[\"固定任务版本与分支集合\"] --> A[\"来源 A 读取\"]\n S --> B1[\"来源 B 定位\"]\n B1 --> B2[\"来源 B 读取\"]\n A -->|A 的结果与身份| J[\"按分支身份汇合\"]\n B2 -->|B 的结果与身份| J\n J --> V[\"核验证据完整性与冲突\"]\n V --> D[\"生成可审查提案\"]"
+  },
+  {
+    "slug": "harness-operations-context",
+    "heading": "先保住必要信息，再优化 Token",
+    "kind": "数据流图",
+    "caption": "上下文数据流是本文装配建议。权限、来源与必要条件先于排序；预算不足时改变读取或分步方案，不能静默删除关键约束。",
+    "code": "flowchart TB\n A[\"任务与当前运行状态\"] --> F[\"范围、来源与时效检查\"]\n B[\"检索证据与历史记忆\"] --> F\n C[\"指令与工具说明\"] --> F\n F --> S[\"按相关性与必要性选择\"]\n S --> N[\"整理消息配对与压缩\"]\n N --> T[\"序列化后计量 Token\"]\n T -->|预算可容纳| M[\"实际模型请求\"]\n T -->|不能容纳| R[\"精读、分步或调整方案\"]\n R --> S\n M --> L[\"装配清单：版本与删选记录\"]"
+  },
+  {
+    "slug": "rag",
+    "heading": "两条流程：准备知识，回答问题",
+    "kind": "数据流图",
+    "caption": "RAG 数据流区分离线准备与在线回答。图是本文参考设计：来源、版本和权限跨越两条链路；引用存在和结论受支持需要分别验收。",
+    "code": "flowchart TB\n subgraph Index[\"知识准备\"]\n D[\"原始资料\"] --> P[\"解析与语义切分\"]\n P --> I[\"文档、元数据与索引\"]\n end\n subgraph Query[\"在线回答\"]\n Q[\"问题、身份、适用时间\"] --> R[\"限定范围召回\"]\n R --> J[\"融合、重排与去重\"]\n J --> C[\"带来源装配上下文\"]\n C --> G[\"生成回答\"]\n G --> V[\"核验引用、事实与缺口\"]\n end\n I -->|授权且适用的候选| R"
+  },
+  {
+    "slug": "kimi-code-system-overview",
+    "heading": "会话、循环、上下文与工具怎样连接",
+    "kind": "系统架构图",
+    "caption": "架构图限于本文固定的 agent-core-v2。Session / Wire、上下文历史、输入投影与工具执行分开；不混入旧 Python CLI，也不把模块实验等同完整产品运行。",
+    "code": "flowchart TB\n S[\"Session / Wire\"] --> L[\"Loop / Machine Engine\"]\n L <--> C[\"Context Memory\"]\n C --> P[\"Context Projector\"]\n P --> M[\"模型步骤\"]\n M --> T[\"Machine Tools / Tool Executor\"]\n T -->|调用结果| L\n F[\"Full Compaction\"] <--> C\n L -->|运行事件| S"
+  },
+  {
+    "slug": "kimi-code-system-overview",
+    "heading": "Projector：把历史变成合法输入，保留未知",
+    "kind": "数据流图",
+    "caption": "输入投影图对应正文的配对规则。缺失工具结果被明确表示为未知，占位不修改外部执行事实，也不能作为自动重试依据。",
+    "code": "flowchart TB\n H[\"Context Memory 历史\"] --> E[\"按 toolCallId 组织交换\"]\n E --> R[\"重排已知结果；过滤 partial 与孤立项\"]\n R --> U[\"缺失结果补未知占位\"]\n U --> S[\"严格模式去重与消息整理\"]\n S --> M[\"模型请求\"]\n E -.-> A[\"anomaly 修复记录\"]\n U -.-> A"
+  },
+  {
+    "slug": "kimi-code-system-overview",
+    "heading": "压缩：触发阈值、合法切点和应用检查",
+    "kind": "状态机图",
+    "caption": "压缩状态是正文源码行为的归纳。摘要生成成功还要验证原前缀及新增尾部是否允许应用；图省略超窗时的限次缩减重试，不能据此判断摘要质量。",
+    "code": "stateDiagram-v2\n state \"监测窗口\" as Monitor\n state \"选择合法压缩前缀\" as Select\n state \"生成摘要\" as Generate\n state \"核对当前历史\" as Check\n state \"应用摘要\" as Apply\n state \"放弃本次应用\" as Abort\n [*] --> Monitor\n Monitor --> Select: 达到触发条件\n Select --> Generate\n Generate --> Check: 摘要返回\n Check --> Apply: 历史满足安全条件\n Check --> Abort: 原前缀或新增尾部不满足\n Apply --> Monitor\n Abort --> Monitor"
+  },
+  {
+    "slug": "kimi-code-system-overview",
+    "heading": "从模型调用到工具结果，中间还有三道边界",
+    "kind": "时序图",
+    "caption": "时序对应批次模块实验：收齐 a、b 后才调用替身执行器，执行器只返回 a 时，适配器为 b 产生明确错误。它不证明真实工具调度与权限路径已验证。",
+    "code": "sequenceDiagram\n participant A as 调用 a 等待者\n participant B as 调用 b 等待者\n participant M as Machine Tools\n participant E as 替身执行器\n A->>M: 到达调用 a\n Note over M: 尚未收齐，不派发\n B->>M: 到达调用 b\n M->>E: 一次派发 a 与 b\n E-->>M: 仅返回 a 的结果\n M-->>A: 按 toolCallId 回传\n M-->>B: 明确错误：未产生结果"
+  },
+  {
+    "slug": "opencode-system-overview",
+    "heading": "模块怎样分工",
+    "kind": "系统架构图",
+    "caption": "系统架构只画 packages/opencode 的会话路径。后文单独实验的 packages/core 协调器不接在此图上，避免把两套模块拼成已验证的调用链。",
+    "code": "flowchart TB\n C[\"客户端与服务接口\"] --> P[\"SessionPrompt\"]\n P --> M[\"MessageV2：模型输入转换\"]\n M --> R[\"SessionProcessor\"]\n R --> T[\"SessionTools\"]\n T -->|结果与附件| R\n R -->|消息片段与状态| S[\"Session 历史\"]\n S --> P\n P --> K[\"SessionCompaction\"]\n K --> S"
+  },
+  {
+    "slug": "opencode-system-overview",
+    "heading": "上下文压缩有两种不同动作",
+    "kind": "数据流图",
+    "caption": "两条压缩数据路径分别减少旧工具输出和概括历史。prune 写入标记，由投影器替换模型可见内容；它本身没有物理删除原 output 字段。",
+    "code": "flowchart TB\n H[\"持久 Session 历史\"] --> P[\"prune：标记可清理的旧结果\"]\n P --> V[\"toModelMessages：使用占位输出\"]\n H --> C[\"选定摘要前缀与近期尾部\"]\n C --> S[\"生成并确认有效摘要\"]\n S --> N[\"摘要与保留尾部\"]\n N --> V\n V --> M[\"下一轮模型输入\"]"
+  },
+  {
+    "slug": "opencode-system-overview",
+    "heading": "工具运行是一段有状态的过程",
+    "kind": "状态机图",
+    "caption": "工具状态对应 SessionProcessor。取消与真实返回可能竞争；清理后记录的 error 不能证明外部副作用未发生，completed 也不等于任务整体通过验收。",
+    "code": "stateDiagram-v2\n state \"pending\" as Pending\n state \"running\" as Running\n state \"completed\" as Completed\n state \"error\" as Error\n [*] --> Pending\n Pending --> Running: 工具开始\n Running --> Completed: 匹配调用返回且仍在运行\n Running --> Error: 工具失败\n Running --> Error: 清理等待后仍未结束\n Completed --> [*]\n Error --> [*]"
+  },
+  {
+    "slug": "opencode-system-overview",
+    "heading": "新内核的运行协调器提供了什么保证",
+    "kind": "时序图",
+    "caption": "时序属于 packages/core 的局部协调器实验：同 key 的 run 合流，多次 wake 合并成一次续跑。图中的内存归属不提供跨进程锁或持久队列。",
+    "code": "sequenceDiagram\n participant A as 调用者 A\n participant C as RunCoordinator\n participant D as drain\n participant B as 调用者 B\n A->>C: run 同一 key\n C->>D: 启动第一次 drain\n B->>C: run 同一 key\n Note over B,C: 等待已有运行\n A->>C: wake\n A->>C: 再次 wake\n Note over C: 合并为一个待续跑标志\n D-->>C: 第一轮完成\n C->>D: 一次后续 drain\n D-->>C: 完成\n C-->>A: 运行结束\n C-->>B: 同一运行结束"
+  }
+]
