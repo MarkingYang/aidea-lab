@@ -98,13 +98,16 @@
     {
       "id": "harness-engineering",
       "topic": "harness",
-      "title": "Harness 设计",
-      "description": "从模型、上下文与运行时的分工，进入执行循环、任务依赖和停止条件。",
-      "outcome": "从模型、上下文与运行时的分工，进入执行循环、任务依赖和停止条件。",
-      "question": "从模型、上下文与运行时的分工，进入执行循环、任务依赖和停止条件。",
+      "title": "Harness 核心知识",
+      "description": "Harness、Prompt Engineering、Loop 与 Graph、Agent Runtime 和 RAG：从指令、证据到任务执行。",
+      "outcome": "理解各项机制的职责、主流程与设计取舍。",
+      "question": "指令、证据、控制流与运行时怎样组成 Agent？",
       "articles": [
         "prompt-context-harness-engineering",
-        "harness-engineering-loop"
+        "prompt-engineering",
+        "harness-engineering-loop",
+        "agent-runtime",
+        "rag"
       ]
     },
     {
@@ -173,7 +176,8 @@
       "question": "区分公开能力证据、模型协议与适配行为；不把框架能力计作模型能力。",
       "articles": [
         "llm-agent-capability-landscape-2026",
-        "harness-operations-model-gateway"
+        "harness-operations-model-gateway",
+        "litellm-gateway-architecture"
       ]
     },
     {
@@ -187,6 +191,7 @@
         "harness-engineering-tools",
         "harness-foundations-mcp-lifecycle",
         "harness-engineering-security",
+        "opa-policy-architecture",
         "capability-routing-at-scale"
       ]
     },

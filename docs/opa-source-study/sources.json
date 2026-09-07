@@ -1,0 +1,58 @@
+{
+  "repository": "open-policy-agent/opa",
+  "tag": "v1.20.2",
+  "commit": "b2c26708e9d55645d7f837db495031f7e4152594",
+  "date": "2026-09-07",
+  "binary": {
+    "url": "https://github.com/open-policy-agent/opa/releases/download/v1.20.2/opa_darwin_arm64",
+    "sha256": "54e7008e696d39e8e4f96594e2b71bcbe45fd9a4f838102bcf1240638bf3fbe1",
+    "release_digest": "sha256:54e7008e696d39e8e4f96594e2b71bcbe45fd9a4f838102bcf1240638bf3fbe1"
+  },
+  "files": [
+    {
+      "path": "cmd/eval.go",
+      "sha256": "3b734396de3239a344c732f9ed677b5b277d970a4d64bad649e4de8b539bfdd5",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/cmd/eval.go"
+    },
+    {
+      "path": "v1/bundle/store.go",
+      "sha256": "e52778111e8e36d4989f3a11c23e361c704e12f0afb2bb85642f4c4226282609",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/bundle/store.go"
+    },
+    {
+      "path": "v1/plugins/bundle/plugin.go",
+      "sha256": "a5468eb0c325e6edb2c84115255f1626fb89d243c2f12de885da23591e752f4f",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/plugins/bundle/plugin.go"
+    },
+    {
+      "path": "v1/plugins/logs/plugin.go",
+      "sha256": "2d3d976e1706e51b21672012c61a7f74ea878ad1ae40df904cae58f5e8f35d5a",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/plugins/logs/plugin.go"
+    },
+    {
+      "path": "v1/rego/rego.go",
+      "sha256": "95db9274e00e294b06b2c98899f0310b8a70320af46635049ad8654ff5e0c10a",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/rego/rego.go"
+    },
+    {
+      "path": "v1/server/server.go",
+      "sha256": "c5b9d700a4c645b1d8528312432c08306d85ebf4f8675a84111fbd31eb91927c",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/server/server.go"
+    },
+    {
+      "path": "v1/storage/inmem/inmem.go",
+      "sha256": "5d76cbbcca887ae9771b7da22914dc7292766569116b6dc7513e3c05a8eca7be",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/storage/inmem/inmem.go"
+    },
+    {
+      "path": "v1/topdown/eval.go",
+      "sha256": "3b2bd236fa7e299d94e499c9af824d467e9a988f74d186e2b864d46b93f6e3fb",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/topdown/eval.go"
+    },
+    {
+      "path": "v1/storage/storage.go",
+      "sha256": "48484b09edfa1c48da44145ea2128c4def808439495e2be2269646f59f34ff8d",
+      "url": "https://github.com/open-policy-agent/opa/blob/b2c26708e9d55645d7f837db495031f7e4152594/v1/storage/storage.go"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "repository": "BerriAI/litellm",
+  "tag": "v1.100.0",
+  "commit": "e4f25265704e2b2c6cf6e81be2e4c5cffff896f4",
+  "date": "2026-09-07",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "b170d6bf8e8835dd357e011681db028f4d51e2fb0ea892058f56e01fb39b8273",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/LICENSE"
+    },
+    {
+      "path": "litellm/__init__.py",
+      "sha256": "5c71a49e87ab96a5967ea4c718765c1064ff3a0cb2dc2853920a2868bd4b8466",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/__init__.py"
+    },
+    {
+      "path": "litellm/caching/dual_cache.py",
+      "sha256": "da806858d06fe782544ae90dd0e703a3ec6af5b83f9ce2b737e7101351eba6fd",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/caching/dual_cache.py"
+    },
+    {
+      "path": "litellm/proxy/auth/auth_checks.py",
+      "sha256": "a274e894661b279ab9df6d0c069816d7a089eca78f7b341da36793e737fefa50",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/proxy/auth/auth_checks.py"
+    },
+    {
+      "path": "litellm/proxy/auth/user_api_key_auth.py",
+      "sha256": "b0deb92b32c487886dd23fdaacf0a6910c192c1dea916dffd47d7b550c2bb43a",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/proxy/auth/user_api_key_auth.py"
+    },
+    {
+      "path": "litellm/proxy/proxy_server.py",
+      "sha256": "bbf5cc6e23778e5f3e1d6684d4e1e655ca5a77021cac7fc8c55ff4f1e716986a",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/proxy/proxy_server.py"
+    },
+    {
+      "path": "litellm/router.py",
+      "sha256": "d482da1c6bb46d3191b947bc30aa749a501bf5518bf81fa800e8b25f7566d721",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router.py"
+    },
+    {
+      "path": "litellm/router_strategy/simple_shuffle.py",
+      "sha256": "bf90ac50e28ea4cbcf1fdef0ab000316af8d886c910dc9aeb99113954d5a9e39",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router_strategy/simple_shuffle.py"
+    },
+    {
+      "path": "litellm/router_utils/cooldown_handlers.py",
+      "sha256": "3ebbd1e206aba8278ee45069e0ee2bd016f955f914014ef16d534fca2af9e713",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router_utils/cooldown_handlers.py"
+    },
+    {
+      "path": "litellm/router_utils/fallback_event_handlers.py",
+      "sha256": "afade52725e6a60ff06d69927133b279bab0bcb909b94c18ad12882869d9b753",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router_utils/fallback_event_handlers.py"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "a65b83b54f2ae160ac7ffa06119588ac79ff5b08f7eda89e901f60063ff63bbb",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/pyproject.toml"
+    },
+    {
+      "path": "litellm/router_strategy/least_busy.py",
+      "sha256": "36995e665844aa2d021b45a8a851a33b21e8c71ff3179ee135c57f3d8a54567d",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router_strategy/least_busy.py"
+    },
+    {
+      "path": "litellm/router_strategy/lowest_tpm_rpm_v2.py",
+      "sha256": "04a9112ba4bd83f35b47bee25ca3d8ba52b71d3e5752fd428bb404661e23257d",
+      "url": "https://github.com/BerriAI/litellm/blob/e4f25265704e2b2c6cf6e81be2e4c5cffff896f4/litellm/router_strategy/lowest_tpm_rpm_v2.py"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 ---
-title: Agent 控制流：循环、规划、分支与汇合
+title: Loop Engineering 与 Graph Engineering：循环与图编排
 description: 循环管理下一次行动，执行图管理任务之间的依赖。用状态、进展、停止条件和汇合规则判断何时需要增加编排，避免把模型的计划文本直接当作执行状态。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-07

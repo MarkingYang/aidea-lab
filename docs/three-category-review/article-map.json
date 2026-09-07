@@ -1,0 +1,1576 @@
+{
+  "status": "proposal_not_applied",
+  "date": "2026-09-07",
+  "local_articles": 60,
+  "current_domains": 8,
+  "proposed_categories": {
+    "frameworks": "GitHub（技术框架）",
+    "models": "模型",
+    "products": "产品"
+  },
+  "proposed_counts": {
+    "frameworks": 43,
+    "products": 15,
+    "models": 2
+  },
+  "counts_by_kind": {
+    "frameworks": {
+      "知识点深度剖析": 18,
+      "项目研究": 20,
+      "设计与实现": 1,
+      "技术架构比对": 3,
+      "论文研究": 1
+    },
+    "models": {
+      "模型能力综述": 1,
+      "模型比较与选型": 1
+    },
+    "products": {
+      "单产品分析": 2,
+      "产品方法与采用": 10,
+      "产品竞品分析": 2,
+      "阅读补充": 1
+    }
+  },
+  "articles": [
+    {
+      "slug": "prompt-context-harness-engineering",
+      "title": "Harness 架构：职责分层、模块接口与任务闭环",
+      "source_path": "src/content/writing/prompt-context-harness-engineering.md",
+      "current_topic": "harness",
+      "current_group": "harness-engineering",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Harness",
+        "Prompt Engineering",
+        "Context Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "保留为 Harness 主问题；Prompt／Context 定义用作边界，不把它们视为各自已有完整深析。",
+      "headings": [
+        "总览：三种工程职责分别解决什么",
+        "分层拆解：同一个 Bug，怎样逐层处理",
+        "三种职责怎样形成反馈环",
+        "怎样分别验证三层改进",
+        "八项职责各自控制什么",
+        "模块之间交换什么",
+        "三个平面帮助定位失败",
+        "四份记录不要混用",
+        "从小循环开始，再根据失败增加机制",
+        "第一份设计产物：任务责任卡",
+        "参考资料"
+      ],
+      "source_sha256": "23fc4566f48c937625aa0a8696f5e15b33b002f28d1d4d7832bf423ad8f30af0"
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "title": "Agent 控制流：循环、规划、分支与汇合",
+      "source_path": "src/content/writing/harness-engineering-loop.md",
+      "current_topic": "harness",
+      "current_group": "harness-engineering",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Loop Engineering",
+        "Graph Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "Loop 与 Graph 已有独立章节、状态与汇合反例；保留完整文章，通过知识入口直达章节，优先去重和同步版本。",
+      "headings": [
+        "先统一四个时间尺度",
+        "状态应该描述事实，而不是情绪",
+        "继续条件应包含可检查的进展",
+        "等待、预算与取消需要各自的语义",
+        "任务变更不能悄悄复用旧动作",
+        "用五个事件验证循环",
+        "先选择最小可用的控制方式",
+        "把计划节点写成执行契约",
+        "重规划应由事实触发",
+        "用同一组任务比较三种策略",
+        "总览：反馈的时间顺序与任务的依赖结构",
+        "Loop Engineering：让每次继续都有理由",
+        "Graph Engineering：把交接条件变成执行结构",
+        "组合与演变：固定主干，保留有边界的探索",
+        "实践：先验证循环与汇合的两个不变量",
+        "回到设计：让不确定性在有边界的位置发生",
+        "参考资料"
+      ],
+      "source_sha256": "dc6a690c64ac1b70d090fce06c6b54fee75ddbb082a2aadada43136aee5fcf55"
+    },
+    {
+      "slug": "claude-code-internals-overview",
+      "title": "Claude Code：执行循环、记忆与扩展机制",
+      "source_path": "src/content/writing/claude-code-internals-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "products",
+      "proposed_kind": "单产品分析",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "重点审阅",
+      "action": "按现有正文的公开产品机制归产品；与 Claude Code 产品主文协调边界，不能标为开源内核审计。",
+      "headings": [
+        "执行循环：工具证据与停止条件",
+        "记忆与扩展：信息加载和执行边界"
+      ],
+      "source_sha256": "5d2981a72d57af0a031f8edde9264b15697639bf9cbfe369ef9fbe65aad4a451"
+    },
+    {
+      "slug": "codex-system-overview",
+      "title": "Codex：运行时、沙箱与持续任务",
+      "source_path": "src/content/writing/codex-system-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "重点审阅",
+      "action": "现有正文主动声明公开机制概述；补固定源码、入口到工具调用链、状态和失败路径，App 产品行为单独限定证据。",
+      "headings": [
+        "运行时、沙箱与任务证据",
+        "Skills、记忆与自动任务"
+      ],
+      "source_sha256": "45604db85e7a07b1cfaf7d0d8b8192fbe525eb1bc36e81dd6a8550c32cc37f14"
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "title": "Kimi Code：上下文投影、压缩边界与工具执行",
+      "source_path": "src/content/writing/kimi-code-system-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "会话、循环、上下文与工具怎样连接",
+        "Projector：把历史变成合法输入，保留未知",
+        "压缩：触发阈值、合法切点和应用检查",
+        "从模型调用到工具结果，中间还有三道边界",
+        "Skills 与任务委派增加什么能力",
+        "对 Harness 设计的启示与证据边界"
+      ],
+      "source_sha256": "2299e7f2e85431514c151dd3f279b4bdc005a3c34042fccb4f5fefaa11336ccf"
+    },
+    {
+      "slug": "opencode-system-overview",
+      "title": "OpenCode：会话运行、上下文压缩与工具状态",
+      "source_path": "src/content/writing/opencode-system-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "模块怎样分工",
+        "一次任务如何运行",
+        "上下文压缩有两种不同动作",
+        "工具运行是一段有状态的过程",
+        "新内核的运行协调器提供了什么保证",
+        "扩展体系的取舍"
+      ],
+      "source_sha256": "10a8cc05dafb2adb1385cb3623b91754f03f91c8f3f45be43d3d2c435ac85e22"
+    },
+    {
+      "slug": "deepseek-harness-composition",
+      "title": "DeepSeek Harness：插件生命周期、事件日志与执行契约",
+      "source_path": "src/content/writing/deepseek-harness-composition.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "每个模块负责什么",
+        "用一次修复任务串起来",
+        "Cordis：把依赖注入升级成“时空可组合性”",
+        "Profile、Bundle 与 Preset：应用配置和 Agent 配方是两回事",
+        "Capability Seam：为什么更换 Sandbox 不该修改 Bash",
+        "实践：先写卸载与替换的验收表",
+        "Agent Loop：Turn 管输入工作段，Step 管一次模型调用",
+        "Session：不是聊天记录，而是运行时的事实账本",
+        "上下文工程：日志保持完整，Surface 可以被替换",
+        "实践：用中断点检验恢复语义",
+        "从三份历史回到一个事实源",
+        "工具系统：先冻结事实，再允许策略介入",
+        "PTC：把确定性工具编排移入程序",
+        "多 Agent：先统一委派语义，再叠加团队协作",
+        "安全架构：插件策略与外层隔离分别验证",
+        "一组必须分别验证的反例",
+        "如果要用它建设自己的 Agent，应该怎样分阶段",
+        "真正的复杂度预算，是允许多少种组合进入生产"
+      ],
+      "source_sha256": "71589a657448cf49f8b10e1f45bed282017c6a17c41886afca66f6f8c75078e3"
+    },
+    {
+      "slug": "hermes-agent-architecture-deep-dive",
+      "title": "Hermes：运行内核、常驻服务与跨会话学习",
+      "source_path": "src/content/writing/hermes-agent-architecture-deep-dive.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "先看全局：Hermes 不是一个 Loop，而是七个平面",
+        "Agent Loop：把不同模型收敛成同一种行动协议",
+        "Prompt 架构：按更新频率组织前缀",
+        "工具运行时：Schema 才是 Agent 的 ABI",
+        "Gateway：让 Agent 从工具变成常驻服务",
+        "四类记忆按生命周期分工",
+        "“自我进化”到底是什么：受约束的 Artifact Learning",
+        "安全模型：Guardrail 与 Security Boundary 必须分清",
+        "用临时故障检查经验是否被误用"
+      ],
+      "source_sha256": "fe71e8d3e446bd8c6edd1600c69a355d5b64a86c7fab5360d75f819e5790fe4b"
+    },
+    {
+      "slug": "pi-architecture-deep-dive",
+      "title": "Pi：最小内核、Session 事件树与扩展边界",
+      "source_path": "src/content/writing/pi-architecture-deep-dive.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "先看全景：Pi 不是一个 CLI，而是一组逐层收窄的抽象",
+        "第一处关键解耦：Provider 不等于 API",
+        "Agent Loop：小循环里藏着最多的正确性约束",
+        "AgentSession：真正的产品语义集中层",
+        "Session 不是聊天记录，而是一棵追加写入的事件树",
+        "Compaction：不是把旧消息删掉，而是增加一个新的语义检查点",
+        "扩展系统：用事件拦截和依赖注入承载“产品意见”",
+        "安全模型：Pi 选择诚实地外置边界",
+        "不能忽略的第二条线：Durable AgentHarness 正在把 Pi 拆成多进程系统",
+        "架构代价与风险",
+        "多端恢复应验证什么"
+      ],
+      "source_sha256": "6085ba984c7d69563df1c0d6ad3375124891ecba3302a4d3bba227bca3023cee"
+    },
+    {
+      "slug": "openhands-sdk-architecture",
+      "title": "OpenHands SDK：执行循环、事件状态、并行工具与工作空间",
+      "source_path": "src/content/writing/openhands-sdk-architecture.md",
+      "current_topic": "harness",
+      "current_group": "harness-projects",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留真实 SDK 对象与源码范围；未运行完整 SDK／容器的边界不能降格成脚注。",
+      "headings": [
+        "四个包如何构成一条执行链",
+        "主流程：模型生成动作，运行系统处理动作的后果",
+        "事件、视图与工作目录分别保存什么",
+        "并行工具：限制线程数之外，还要声明资源",
+        "工作空间决定代码在哪里运行",
+        "终端是有生命周期的工具",
+        "暂停、打断与审批控制不同边界",
+        "扩展与取舍：增加工具，也增加状态责任"
+      ],
+      "source_sha256": "f9ef46a5b80ea6bb7b7eef34399602ebdbc5a9faed5c771a36f80774bd4e4fb1"
+    },
+    {
+      "slug": "langchain-agent-architecture",
+      "title": "LangChain：模型、工具、中间件与 Agent 装配",
+      "source_path": "src/content/writing/langchain-agent-architecture.md",
+      "current_topic": "harness",
+      "current_group": "agent-frameworks",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Graph Engineering"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "明确目前主要是官方文档分析；补固定版本源码与一次完整 Agent 装配路径。",
+      "headings": [
+        "先分清协议、框架和运行时",
+        "LangChain：把模型和工具组织成可用的 Agent",
+        "MCP 如何接进来？",
+        "怎样选：让任务复杂度决定抽象层级"
+      ],
+      "source_sha256": "651e4bb776b38826bb0bb119b05d92e24fdc142fc76a02f649d9e335b6a9398e"
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "title": "LangGraph：DAG、超级步、状态合并与持久恢复",
+      "source_path": "src/content/writing/langgraph-runtime-architecture.md",
+      "current_topic": "harness",
+      "current_group": "agent-frameworks",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Graph Engineering",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留单项目整篇；Graph 入口引用超级步、Reducer、检查点等章节，不重复抄出项目正文。",
+      "headings": [
+        "LangGraph：让运行过程成为显式的数据与结构",
+        "从图定义到运行：编译器、通道、循环与执行器",
+        "DAG 是一种依赖约束，LangGraph 的执行图可以有环",
+        "Reducer 合并的是更新，不是自动合并真相",
+        "检查点实验：一个分支失败，不代表全部重做",
+        "可运行实验：暂停后，究竟从哪里继续？",
+        "持久化保存运行进度，业务系统保存最终事实",
+        "选择 LangGraph，要接受哪些工程成本"
+      ],
+      "source_sha256": "092aa89a6cab1b7ca9639d4f26d4ad626fe18c437ed0e906016c3ed6b7012885"
+    },
+    {
+      "slug": "temporal-durable-execution",
+      "title": "Temporal：事件历史、持久执行、任务调度与取消",
+      "source_path": "src/content/writing/temporal-durable-execution.md",
+      "current_topic": "harness",
+      "current_group": "agent-frameworks",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Graph Engineering"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留 SDK／服务边界；持久工作流补充 Runtime 恢复机制，不直接等同完整 Agent Runtime。",
+      "headings": [
+        "架构：把业务执行与运行历史分开",
+        "沿 Python SDK 看一次执行如何推进",
+        "历史重放为何不等于重做所有操作",
+        "实验：更换 Worker、重复写入与离线重放",
+        "调度：依赖满足、存在容量、允许执行是三件事",
+        "取消与子任务：发出请求不等于外部世界已经停止",
+        "版本、扩展与采用成本"
+      ],
+      "source_sha256": "4a783c0ea1725d0fea5e2cbd667ae4caf5e9da2cb8913e76f4e0da3f519d65ba"
+    },
+    {
+      "slug": "haystack-pipeline-architecture",
+      "title": "Haystack：RAG 流水线、分支汇合与异步执行",
+      "source_path": "src/content/writing/haystack-pipeline-architecture.md",
+      "current_topic": "harness",
+      "current_group": "agent-frameworks",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "RAG",
+        "Graph Engineering"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留单项目整篇；Pipeline 与检索局部实验支持 RAG 机制，不能当作生成答案质量实验。",
+      "headings": [
+        "从一条 RAG 主流程看模块分工",
+        "组件接口：连接时检查什么，运行时等待什么",
+        "DAG、条件分支与循环不是同一个概念",
+        "汇合有不同语义，不能都叫 Join",
+        "同步与异步执行：调度器真正控制什么",
+        "检索融合：为何不能直接比较不同来源的分数",
+        "过滤条件的合并，不等于权限交集",
+        "Pipeline 如何成为 Agent 的一项能力",
+        "失败、取消与恢复要分别看",
+        "适用条件与需要补建的部分"
+      ],
+      "source_sha256": "b2ce4a712640b52529289d529232f562f5224443346e6a041fc6d94d0e80d9af"
+    },
+    {
+      "slug": "anthropic-skills-overview",
+      "title": "Anthropic Skills：规范、渐进加载与文档管线",
+      "source_path": "src/content/writing/anthropic-skills-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-skills",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Prompt Engineering",
+        "Context Engineering",
+        "Skills"
+      ],
+      "review_scope": "重点审阅",
+      "action": "仓库资产与宿主执行分开；当前未固定提交，需补代表 Skill 的资源加载／脚本运行证据与许可边界。",
+      "headings": [
+        "从文档资源到执行管线",
+        "渐进加载与上下文预算"
+      ],
+      "source_sha256": "d7cf5e578fcf0efdc6c1f6922ccebbf4c7cf0bbfe681778d7ae1a236dc0fdd59"
+    },
+    {
+      "slug": "addy-agent-skills-overview",
+      "title": "Addy Skills：工程生命周期与验证门槛",
+      "source_path": "src/content/writing/addy-agent-skills-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-skills",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Prompt Engineering",
+        "Context Engineering",
+        "Skills"
+      ],
+      "review_scope": "重点审阅",
+      "action": "已有工程阶段思想；补固定提交及一条实际触发—加载—验证链，不以流程表替代源码证据。",
+      "headings": [
+        "围绕工程生命周期组织 Skill",
+        "验证门槛与可执行证据"
+      ],
+      "source_sha256": "b45bc430a166b14b499a0cbd51aed0eb91c981be39c1d27b601a62c1ee61c68c"
+    },
+    {
+      "slug": "mattpocock-skills-overview",
+      "title": "Matt Pocock Skills：需求对齐与反馈循环",
+      "source_path": "src/content/writing/mattpocock-skills-overview.md",
+      "current_topic": "harness",
+      "current_group": "harness-skills",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Prompt Engineering",
+        "Context Engineering",
+        "Skills"
+      ],
+      "review_scope": "重点审阅",
+      "action": "已有局部反馈思想；补固定提交与一项完整 Skill 的输入、输出和宿主依赖。",
+      "headings": [
+        "需求与共享语言的对齐",
+        "反馈循环与局部修正"
+      ],
+      "source_sha256": "e2c4e51ba66b9cd3654358e7b75527e8a1948ce24e055ff955f7f43beb9fac35"
+    },
+    {
+      "slug": "ecc-architecture-deep-dive",
+      "title": "ECC：跨 Harness 资产、安装器、Hooks 与经验治理",
+      "source_path": "src/content/writing/ecc-architecture-deep-dive.md",
+      "current_topic": "harness",
+      "current_group": "harness-skills",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Prompt Engineering",
+        "Context Engineering",
+        "Skills"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "先把 ECC 放对位置：它是 Meta-Harness，不是模型代理层",
+        "资产层：用渐进式披露对抗“上下文越多越聪明”的错觉",
+        "安装层才是隐藏的核心：ECC 实际上实现了一个小型编译器",
+        "运行时层：在配置匹配的事件边界执行检查",
+        "记忆与持续学习：保存记录与批准规则分开",
+        "安全模型：把 Agent 自己的配置也当作供应链",
+        "ECC 2.0：Rust 控制平面是真实 Alpha，不是现有系统的同义词",
+        "采用时验证五个故障场景",
+        "参考资料"
+      ],
+      "source_sha256": "a4b6562d6e174c1d96c4f2c734a1900be5fcb2b27dc1421a4a00a4ca61b0878d"
+    },
+    {
+      "slug": "harness-integration-map",
+      "title": "Mini Harness：模块装配与可恢复执行",
+      "source_path": "src/content/writing/harness-integration-map.md",
+      "current_topic": "harness",
+      "current_group": "harness-integration",
+      "proposed_category": "frameworks",
+      "proposed_kind": "设计与实现",
+      "knowledge_tags": [
+        "Harness",
+        "Agent Runtime"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "八个模块怎样拆",
+        "当前适合这个起点的默认组合",
+        "用什么任务把它们组装起来",
+        "从模型到验收的装配顺序",
+        "从任务契约构造上下文",
+        "模型适配器输出什么",
+        "多轮 Agent Loop 应怎样接",
+        "预算怎样放进组合",
+        "先换模型，保持其他模块不变",
+        "先定义两个业务工具",
+        "把本地函数包成 MCP 服务",
+        "stdio 与 HTTP 如何选择",
+        "执行策略应插在哪里",
+        "怎样替换为真实业务系统",
+        "两份存储各管什么",
+        "状态机只保留有行动意义的状态",
+        "一次写入怎样组装",
+        "验收器为什么必须独立",
+        "用三个退出点检查恢复",
+        "什么时候要换持久化方案",
+        "先对照装配清单",
+        "安装并验证各模块契约",
+        "按两步完成一次任务",
+        "从代码调用组装入口",
+        "让模块在退出后重新接上",
+        "第一次替换：接在线模型",
+        "下一步按需求扩展哪一块"
+      ],
+      "source_sha256": "d8d6d4e1174336e416a0c3a58dfb1e3732be55363124cd83e4cb08e5691dfcf1"
+    },
+    {
+      "slug": "llm-agent-capability-landscape-2026",
+      "title": "模型能力边界：从公开评测到任务责任",
+      "source_path": "src/content/writing/llm-agent-capability-landscape-2026.md",
+      "current_topic": "models",
+      "current_group": "ai-capability-boundaries",
+      "proposed_category": "models",
+      "proposed_kind": "模型能力综述",
+      "knowledge_tags": [
+        "Model capabilities",
+        "Evaluation"
+      ],
+      "review_scope": "重点审阅",
+      "action": "归模型能力综述；有多模型画像，不是单模型深析；与选型篇消除重复并逐项更新时效证据。",
+      "headings": [
+        "能力边界：能完成任务，不等于能承担整项责任",
+        "为什么还要验收：功能、流程与运行条件都影响结果",
+        "模型怎么选：先看优势与代价，再看名字"
+      ],
+      "source_sha256": "c18c828b3f9c1efe11c7891346abe6a743f9e72ccb830c4704e202549bebd262"
+    },
+    {
+      "slug": "harness-operations-model-gateway",
+      "title": "模型网关：能力约束、协议适配与降级语义",
+      "source_path": "src/content/writing/harness-operations-model-gateway.md",
+      "current_topic": "models",
+      "current_group": "ai-capability-boundaries",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "LLM Gateway"
+      ],
+      "review_scope": "重点审阅",
+      "action": "从模型栏目迁入技术框架的知识剖析；模型接入基础设施不等于模型本身。",
+      "headings": [
+        "建立任务需要的能力矩阵",
+        "适配器需要保留必要差异",
+        "重试、降级、熔断解决不同问题",
+        "模型请求成功，不代表后续动作可以重做",
+        "成本按任务结果结算",
+        "带硬条件的降级表"
+      ],
+      "source_sha256": "b8ef882f54514c7ca7b5340dccdc63a9306a6e8a9aa4b3e1f43e1ad3a279050b"
+    },
+    {
+      "slug": "litellm-gateway-architecture",
+      "title": "LiteLLM：模型路由、故障转移与预算边界",
+      "source_path": "src/content/writing/litellm-gateway-architecture.md",
+      "current_topic": "models",
+      "current_group": "ai-capability-boundaries",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "LLM Gateway"
+      ],
+      "review_scope": "重点审阅",
+      "action": "从模型栏目迁入技术框架项目；保留八组局部实验与未测流式／Proxy 边界。",
+      "headings": [
+        "模块分工：协议、选路与治理",
+        "模型名称有三层，不能混为一个字段",
+        "一次请求怎样走完",
+        "先筛候选，再选择；权重不是限流",
+        "重试与回退：改变的是次数、部署还是模型组",
+        "流式输出：已经交给用户的内容形成切换边界",
+        "冷却、缓存与预算：状态需要怎样共享",
+        "八组实验支持哪些结论",
+        "什么情况下值得采用"
+      ],
+      "source_sha256": "6e56e90f7dc60856e8a327b7e202007f8c19693f670a1c089edee5a69d926bd7"
+    },
+    {
+      "slug": "harness-engineering-tools",
+      "title": "工具契约：输入、结果与错误语义",
+      "source_path": "src/content/writing/harness-engineering-tools.md",
+      "current_topic": "architecture",
+      "current_group": "harness-tools",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Tools",
+        "Security"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "一个工具应围绕明确的业务动作",
+        "输入分成候选参数与可信执行上下文",
+        "结果必须让下一步可判断",
+        "错误类型决定恢复策略",
+        "开源实现怎样保留执行事实",
+        "MCP、CLI 与代码执行保留各自边界",
+        "一张工具契约卡"
+      ],
+      "source_sha256": "9f8f229ca46db015dcc59811882a391fe4dc1fe54373ae53236a5cb608b9bdfe"
+    },
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "title": "MCP 生命周期：握手、目录、断线与取消",
+      "source_path": "src/content/writing/harness-foundations-mcp-lifecycle.md",
+      "current_topic": "architecture",
+      "current_group": "harness-tools",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Tools",
+        "Security"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "初始化建立共同的运行前提",
+        "请求 ID 只负责关联这一次往返",
+        "工具目录也有有效期",
+        "三层成功必须分别判断",
+        "两种传输需要不同的运行管理",
+        "三种 ID 对应三种范围",
+        "取消是一场可能发生竞态的协作",
+        "重连后恢复的是观察能力",
+        "给连接恢复设置终点"
+      ],
+      "source_sha256": "290eeb0ec5083173a5aee6fed7c7972c7eefef548791337f89ead6f287e16793"
+    },
+    {
+      "slug": "harness-engineering-security",
+      "title": "执行安全：身份、授权、审批与沙箱",
+      "source_path": "src/content/writing/harness-engineering-security.md",
+      "current_topic": "architecture",
+      "current_group": "harness-tools",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Tools",
+        "Security"
+      ],
+      "review_scope": "重点审阅",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "先列资产和入口，再选择控制措施",
+        "身份、授权、审批是三件事",
+        "审批应绑定一个可复查的动作",
+        "策略求值与工具执行要有明确契约",
+        "凭证应留在真正的信任边界内",
+        "沙箱和插件分别增加什么责任",
+        "控制与证据对应表"
+      ],
+      "source_sha256": "183f109f6eaf5da1bd09aadcbdb5715581b1b9e8ba972cfb123d8062c85eb7cd"
+    },
+    {
+      "slug": "opa-policy-architecture",
+      "title": "OPA：策略求值、执行边界与授权更新",
+      "source_path": "src/content/writing/opa-policy-architecture.md",
+      "current_topic": "architecture",
+      "current_group": "harness-tools",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Authorization",
+        "Security"
+      ],
+      "review_scope": "重点审阅",
+      "action": "纳入技术框架项目；十二组本地实验不能替代真实认证、工具执行或分布式更新验证。",
+      "headings": [
+        "在 Harness 中，OPA 位于哪里",
+        "核心模块如何接成一次求值",
+        "Rego 表达条件，不是按行执行的审批流程",
+        "HTTP 200 为什么不能表示允许",
+        "输入事实从哪里来，比规则写在哪里更重要",
+        "审批要绑定动作，不能变成第二份宽泛权限",
+        "Bundle：一次本地激活，不等于所有实例同时更新",
+        "决策日志记录理由链，工具日志记录发生了什么",
+        "十二组实验与采用条件"
+      ],
+      "source_sha256": "15986acbb3f1f3141939e5456a02a8bb33238ad48886f57e6ed3ddc271a1235a"
+    },
+    {
+      "slug": "capability-routing-at-scale",
+      "title": "能力路由：从目录检索到可执行方案",
+      "source_path": "src/content/writing/capability-routing-at-scale.md",
+      "current_topic": "architecture",
+      "current_group": "harness-tools",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Tools",
+        "Security"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "先辨认能力，再讨论路由",
+        "为什么需要一层能力路由？",
+        "目录、路由、执行与验收怎样连接",
+        "系统有两个不同的工作时机",
+        "把开源项目放回架构里",
+        "同一个任务，可能有两条合理路径",
+        "发现质量，先取决于能力怎样被表达",
+        "索引在离线准备，候选在线产生",
+        "检索方法各自解决一类问题",
+        "正文参与路由，不等于全文进入 Agent",
+        "动手验证：先看清基线会怎样失败",
+        "发现层的输出，还不是执行命令",
+        "相关的工具，不一定能完成任务",
+        "三种执行语义，不能被一个函数名抹平",
+        "动态加载的，到底是哪一层？",
+        "失败恢复，也属于方案设计",
+        "动手验证：把不同执行路径显式暴露出来",
+        "执行过程会反过来改变路由",
+        "先按失败阶段定位问题",
+        "测试集需要表示多解、无解和限制",
+        "对照实验应该回答“多一层值不值”",
+        "弃选不是异常，而是一个合法结果",
+        "治理必须进入任务链路",
+        "动手验证与上线边界",
+        "成熟架构也需要知道何时简化"
+      ],
+      "source_sha256": "3bff415e48680e77b1cf2ab82f38d45b3e605d2287484eeacaa9702a8bc770c5"
+    },
+    {
+      "slug": "harness-foundations-concurrency",
+      "title": "并发控制：版本冲突、锁与背压",
+      "source_path": "src/content/writing/harness-foundations-concurrency.md",
+      "current_topic": "architecture",
+      "current_group": "harness-recovery",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Recovery"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "异步、并发和并行分别解决什么",
+        "把依据放进提交条件",
+        "冲突之后重新判断，而不是只换版本号",
+        "事务并不等于整段业务天然隔离",
+        "锁的保护范围必须说清",
+        "限制活跃数量还不够",
+        "先写一个会发生冲突的实验"
+      ],
+      "source_sha256": "6ed169a51d4a55e66099aabf0ba4f3611f484feead1e3372053074dde480d17b"
+    },
+    {
+      "slug": "harness-engineering-recovery",
+      "title": "故障恢复：事务边界、幂等、对账与补偿",
+      "source_path": "src/content/writing/harness-engineering-recovery.md",
+      "current_topic": "architecture",
+      "current_group": "harness-recovery",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Recovery"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "恢复位置，不等于恢复外部世界",
+        "把一次写入拆成四个提交边界",
+        "幂等键必须表达同一次业务意图",
+        "去重记录和副作用必须一起提交",
+        "对账、重试与补偿分别解决什么",
+        "故障矩阵",
+        "先运行，再对照证据",
+        "哪些部分真正执行，哪些部分受控模拟",
+        "16 项测试按失败责任划分",
+        "用小改动理解测试为何存在",
+        "下一步接入真实服务时保留什么",
+        "业务写入恢复实验"
+      ],
+      "source_sha256": "c82e2bc9a746c44d22af4192e00ebe38a91db2bb63d922d3867e00c92496159b"
+    },
+    {
+      "slug": "harness-operations-context",
+      "title": "上下文组装：证据、状态与输入预算",
+      "source_path": "src/content/writing/harness-operations-context.md",
+      "current_topic": "architecture",
+      "current_group": "agent-memory",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Context Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "已有输入装配与源码反例；补请求级 tokenizer、实际序列化清单、压缩前后信息保留的同题实验。",
+      "headings": [
+        "上下文是装配结果，不是资料仓库",
+        "先保住必要信息，再优化 Token",
+        "压缩与缓存不能改变证据责任",
+        "两个开源实现揭示的边界",
+        "装配清单让失败可重现"
+      ],
+      "source_sha256": "5b96603de85223143792f083c93088f8f180b288603ea974b2e64d20a838c5cd"
+    },
+    {
+      "slug": "agent-memory-writing",
+      "title": "记忆写入：历史、当前事实与纠错",
+      "source_path": "src/content/writing/agent-memory-writing.md",
+      "current_topic": "architecture",
+      "current_group": "agent-memory",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Memory",
+        "Context Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "保留有效时间与纠错分析；与读取、治理共同评估整合为一个 Memory 主问题，项目细节用引用。",
+      "headings": [
+        "Mem0：自动追加，把当前性判断留给读取",
+        "OpenViking：在提交边界形成可审计的记忆变更",
+        "TencentDB：保留原始层，再逐级形成认识",
+        "写入触发，是延迟与可靠性的取舍",
+        "三种策略的共同难题：错误如何被纠正",
+        "来源时间、有效时间与记录时间必须分开",
+        "实践：用四个查询检查同一组记忆"
+      ],
+      "source_sha256": "31c65d39eec823e9e8b70d0c88c47d64e741c58bc4dfbb5c5931f13bf2df5944"
+    },
+    {
+      "slug": "agent-memory-retrieval",
+      "title": "记忆检索：候选证据、时效与上下文装配",
+      "source_path": "src/content/writing/agent-memory-retrieval.md",
+      "current_topic": "architecture",
+      "current_group": "agent-memory",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Memory",
+        "Context Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "已有时间／权限／融合反例；Memory 与 RAG 不互相替代，避免同时承担全部上下文装配问题。",
+      "headings": [
+        "Mem0：语义、关键词与实体信号互补",
+        "OpenViking：分层读取，不把整座资料库搬进上下文",
+        "OpenViking：从目录导航到具体证据",
+        "从 Top-K 到上下文装配",
+        "把硬条件和软排序分开",
+        "Haystack：把融合与过滤的实际语义拆开验证",
+        "预算不是简单截断字符串",
+        "实践：一组不用模型的契约测试"
+      ],
+      "source_sha256": "bdbc0e9de78d7862969148b8652412888d8e59f4ae2306858d3969d8617c4677"
+    },
+    {
+      "slug": "agent-memory-governance",
+      "title": "记忆治理：共享、撤权、删除与验证",
+      "source_path": "src/content/writing/agent-memory-governance.md",
+      "current_topic": "architecture",
+      "current_group": "agent-memory",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Memory",
+        "Context Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "保留撤权与派生物删除链；与写入／读取统一对象和案例，避免反复介绍相同三个项目。",
+      "headings": [
+        "共享资产要绑定用途与读取主体",
+        "Benchmark 为什么不能直接排冠军",
+        "删除不是只删一行",
+        "实践：两团队、两用户、一次撤权",
+        "怎样决定是否值得引入记忆",
+        "遗忘不是失败，而是一种控制能力"
+      ],
+      "source_sha256": "639b4f93a463cf5cc7590d74d362ad92e7c199f43eb299891aaf697f67412784"
+    },
+    {
+      "slug": "mem0-series-overview",
+      "title": "Mem0：事实写入、混合检索与部署边界",
+      "source_path": "src/content/writing/mem0-series-overview.md",
+      "current_topic": "architecture",
+      "current_group": "memory-systems",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Memory"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "先看五层责任",
+        "写入：身份、抽取与索引",
+        "第一道边界是身份，不是 Embedding",
+        "ADD-only 保留历史，也转移冲突",
+        "两种旁路承担不同责任",
+        "检索：语义、关键词与实体信号",
+        "三类信号修正不同盲区",
+        "先过滤身份，再讨论相关性",
+        "相关不等于当前",
+        "Library 和 Server 保护的边界不同",
+        "Provider 兼容不等于行为等价",
+        "OSS 与 Platform 必须分开描述",
+        "适合与不适合"
+      ],
+      "source_sha256": "7e045d9551b3050ca93474f58927b1d8d9be09846a8839a88f123628888835a3"
+    },
+    {
+      "slug": "openviking-series-overview",
+      "title": "OpenViking：上下文文件系统、层级检索与一致性",
+      "source_path": "src/content/writing/openviking-series-overview.md",
+      "current_topic": "architecture",
+      "current_group": "memory-systems",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Memory"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "先把三个对象分开",
+        "系统有四条主线",
+        "三层分别回答三个问题",
+        "URI 是定位契约",
+        "摘要是一份需要维护的数据",
+        "Typed Query 先拆搜索意图",
+        "层级检索用目录控制搜索空间",
+        "目录也可能制造召回盲区",
+        "记忆不是一条自由文本",
+        "双层存储需要明确失败状态",
+        "权限必须与检索使用同一边界",
+        "真正的代价是持续维护结构"
+      ],
+      "source_sha256": "ad4e342a5d640113cc675c7c57f464bd6702e0661b656bfa30887458c1fe8334"
+    },
+    {
+      "slug": "tencentdb-agent-memory-overview",
+      "title": "TencentDB Agent Memory：协议代理、分层记忆与团队资产",
+      "source_path": "src/content/writing/tencentdb-agent-memory-overview.md",
+      "current_topic": "architecture",
+      "current_group": "memory-systems",
+      "proposed_category": "frameworks",
+      "proposed_kind": "项目研究",
+      "knowledge_tags": [
+        "Memory"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留独立研究对象；核对关键结论是否有固定版本、代码位置和反例支持，不以链接数量判断完成。",
+      "headings": [
+        "先看四个平面",
+        "为什么选择协议代理",
+        "注入不是简单拼接",
+        "回写必须脱离主响应的成败",
+        "四层不是越高越真实",
+        "写入是一条异步认识管线",
+        "读取要高层恢复、低层核验",
+        "四类资产承担不同用途",
+        "可见性回答谁能看，Loadout 回答谁应该拿",
+        "发布 Skill 应像发布代码",
+        "Beta 阶段最重要的是保持可逆"
+      ],
+      "source_sha256": "2e8b0bb79b18172306b23d5095163e087af2c48f851becc47eb903957fe3e731"
+    },
+    {
+      "slug": "harness-operations-observability",
+      "title": "可观测性：任务关联、时间线与故障定位",
+      "source_path": "src/content/writing/harness-operations-observability.md",
+      "current_topic": "architecture",
+      "current_group": "harness-operations",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Operations"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "三类标识承担不同职责",
+        "从用户等待时间拆出真实时间线",
+        "异步任务需要显式关联",
+        "用分层问题定位失败",
+        "采样决定了你能看到什么",
+        "十分钟诊断路径"
+      ],
+      "source_sha256": "377a5e45949cf00be9a03fd55c11c011fa4267ad38e6043c33967eabd8c3a8e2"
+    },
+    {
+      "slug": "harness-operations-production",
+      "title": "任务服务：队列、租约、隔离令牌与背压",
+      "source_path": "src/content/writing/harness-operations-production.md",
+      "current_topic": "architecture",
+      "current_group": "harness-operations",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Operations"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "队列负责交付工作，不保存全部业务真相",
+        "消息不可见，不等于不会重复",
+        "租约处理活性，隔离令牌约束旧执行者",
+        "等待不必一直占用昂贵执行资源",
+        "背压与多租户配额保护可交付性",
+        "四个生命周期反例"
+      ],
+      "source_sha256": "91a1bf694422839dc8794486dd1eb7285200133e9dcb3da18ddea511e2ebdc0f"
+    },
+    {
+      "slug": "harness-operations-release",
+      "title": "版本发布：评测门槛、灰度与在途任务回退",
+      "source_path": "src/content/writing/harness-operations-release.md",
+      "current_topic": "architecture",
+      "current_group": "harness-operations",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Agent Runtime",
+        "Operations"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "发布单元是一个可还原的组合",
+        "从契约测试走到真实流量",
+        "影子任务也可能造成真实副作用",
+        "灰度需要按任务保持版本一致",
+        "回滚先处理在途任务与状态兼容",
+        "用消融实验决定何时简化",
+        "用变更记录约束扩量"
+      ],
+      "source_sha256": "e2c247eca94d8f6d075b0ea0684dadb9355a13119b3a22a64e4f96fdc04c252b"
+    },
+    {
+      "slug": "product-frameworks-market",
+      "title": "市场判断：环境、竞争、规模与定位",
+      "source_path": "src/content/writing/product-frameworks-market.md",
+      "current_topic": "products",
+      "current_group": "product-frameworks",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "看外部环境：PEST",
+        "看行业竞争：波特五力",
+        "看市场规模：TAM / SAM / SOM",
+        "看竞争与自身定位：SWOT ＋价值曲线",
+        "把分析收束为三个待验证假设"
+      ],
+      "source_sha256": "c608d26bbdb386143818a229e34b7466cb429c39f7ce49d7c7285aca110d83ba"
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "title": "需求取舍：用户旅程、优先级与发布范围",
+      "source_path": "src/content/writing/product-frameworks-prioritization.md",
+      "current_topic": "products",
+      "current_group": "product-frameworks",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "看用户需求：KANO ＋用户旅程地图",
+        "做需求取舍：RICE、MoSCoW 与价值四象限",
+        "两张表之间，不能缺少证据",
+        "实践：给高分需求做一次压力测试"
+      ],
+      "source_sha256": "32cfb6e5ca0a4e59ded76b401c4cd7eab111a106206754338c0024dd68edeb5a"
+    },
+    {
+      "slug": "product-frameworks-growth",
+      "title": "增长分析：漏斗诊断与单位经济性",
+      "source_path": "src/content/writing/product-frameworks-growth.md",
+      "current_topic": "products",
+      "current_group": "product-frameworks",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "做增长与问题诊断：AARRR、漏斗、5 Why 与 MECE",
+        "看商业化与资源配置：商业模式画布、ROI 与波士顿矩阵",
+        "区分症状、原因与经济结果",
+        "实践：让 ROI 能被推翻"
+      ],
+      "source_sha256": "f3639b5c3ad2cea42362044c9d7ae40deb3bf2460d8a95b8c85199869326160d"
+    },
+    {
+      "slug": "product-frameworks-delivery",
+      "title": "产品复盘：目标、证据与经验复用",
+      "source_path": "src/content/writing/product-frameworks-delivery.md",
+      "current_topic": "products",
+      "current_group": "product-frameworks",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "管理目标与复盘：OKR、4R 与 STAR",
+        "目标、验收与诊断，不要相互替代",
+        "实践：一张真正能接着工作的复盘卡",
+        "让经验有适用边界",
+        "三种看起来专业的误用",
+        "不是所有未知都值得先研究透"
+      ],
+      "source_sha256": "55890be4020c142639354d398c21282ba068e61006a4e60fc2355268a1c33341"
+    },
+    {
+      "slug": "product-work-methodology",
+      "title": "Agent 产品设计：结果契约、自治范围与反馈迭代",
+      "source_path": "src/content/writing/product-work-methodology.md",
+      "current_topic": "products",
+      "current_group": "ai-product-work",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "先画一张产品工作的对象地图",
+        "委托范围决定产品承诺",
+        "从“需求文档”转向“结果契约”",
+        "用“自治阶梯”决定人机边界",
+        "定义上下文的来源与时效",
+        "产品经理开始设计反馈质量",
+        "评估的单位必须是任务，而不是回答",
+        "过程可见，才可能建立信任",
+        "一套可执行的产品工作节奏",
+        "将评测结果落实到授权范围",
+        "参考资料"
+      ],
+      "source_sha256": "513f1e974badc40b9f3c143879b0cd8eb247d80cee47d160eb0da7acf9aa6472"
+    },
+    {
+      "slug": "claude-code-product-design",
+      "title": "Claude Code 产品设计：委托、信任与协作",
+      "source_path": "src/content/writing/claude-code-product-design.md",
+      "current_topic": "products",
+      "current_group": "claude-code-design",
+      "proposed_category": "products",
+      "proposed_kind": "单产品分析",
+      "knowledge_tags": [],
+      "review_scope": "重点审阅",
+      "action": "已有单产品完整论述；保留分析原型与官方能力的区分，补版本化用户任务记录。",
+      "headings": [
+        "用三个闭环分析任务体验",
+        "用户不是一种人：四类核心用户画像",
+        "业务功能全景：九个能力域如何协同",
+        "任务体验中的四种对象",
+        "核心调用链：一次任务如何从输入走到交付",
+        "实践：把输入框里的愿望改成契约",
+        "用一次可用性测试检查渐进披露",
+        "从五个问题开始自己的产品分析",
+        "一个容易被忽略的变量：证据债务",
+        "反例：什么时候应该少一点 Agent",
+        "不要把权限模式画成进步阶梯",
+        "为什么少弹窗可能更好，也可能更坏",
+        "用验证界面支持用户验收",
+        "一个被忽略的产品问题：截图隐私与演示模式",
+        "实践：给信任机制一组反例",
+        "Worktree 的隔离范围",
+        "按寿命管理上下文",
+        "用扩展接入现有流程",
+        "跨端接管需要保留哪些状态",
+        "工作目录隔离，还没有覆盖全部共享状态",
+        "实践：为三个任务写一张协作契约"
+      ],
+      "source_sha256": "69cf857d9625f2f0e3ed5add3ef07f32e9d31dde5a1420be9e1de84e089a0226"
+    },
+    {
+      "slug": "ai-capability-product-metrics",
+      "title": "AI 交付价值：指标口径、失败成本与人工基线",
+      "source_path": "src/content/writing/ai-capability-product-metrics.md",
+      "current_topic": "products",
+      "current_group": "ai-product-value",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "作为产品交付方法；清理“一张图先看清”等图片移除后遗留措辞，保留指标口径。",
+      "headings": [
+        "一张图先看清指标之间的关系",
+        "分类要分层，指标才有明确的归属",
+        "三层指标如何共同支持决策",
+        "指标应该落成什么产物",
+        "四个口径，把失败留在账上",
+        "假设案例：便宜的请求，不一定带来便宜的交付"
+      ],
+      "source_sha256": "9daa1f704f9dcf0727b574dd37cc9107fc78c153972d57196a71e83d0decb735"
+    },
+    {
+      "slug": "ai-value-coding",
+      "title": "编程交付：测试、变更范围与可复验证据",
+      "source_path": "src/content/writing/ai-value-coding.md",
+      "current_topic": "products",
+      "current_group": "ai-product-value",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "编程助手：先证明修改有效，再衡量生成效率",
+        "实践：准备三个版本，而不只是一份正确答案",
+        "用失败证据选择下一次改动",
+        "每次试验保留同一张记录卡"
+      ],
+      "source_sha256": "950777bd457c723399978cb7803bfaa634a97a39f57943c96ba241235ceb551d"
+    },
+    {
+      "slug": "ai-value-voice",
+      "title": "语音交付：意图消歧、执行状态与结果验收",
+      "source_path": "src/content/writing/ai-value-voice.md",
+      "current_topic": "products",
+      "current_group": "ai-product-value",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "终端语音助手：先证明执行正确，再看听得多准、说得多快",
+        "实践：把前后状态写进验收",
+        "异常样本比平均识别率更能揭示工作流问题"
+      ],
+      "source_sha256": "4bff319b6ab5b3e60981db81d4fdc1a479fa65d53f7613b0fc0fb3cd4ec78653"
+    },
+    {
+      "slug": "ai-value-office",
+      "title": "办公交付：数据口径、可编辑文件与来源核验",
+      "source_path": "src/content/writing/ai-value-office.md",
+      "current_topic": "products",
+      "current_group": "ai-product-value",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留为产品方法支持；后续以真实产品任务与交付记录验证，避免方法框架替代具体产品研究。",
+      "headings": [
+        "办公助手：先证明成果可用，再看生成是否丰富",
+        "实践：给月报建立五条独立证据链",
+        "别让精美图表覆盖关键错误"
+      ],
+      "source_sha256": "c844709bec7c11326f0143c4158740bcbcedbac306710070b4f655cdd8107ef6"
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "title": "Claude Code、Codex 与 Kimi Code 的 Harness 分歧",
+      "source_path": "src/content/writing/coding-agent-harness-showdown.md",
+      "current_topic": "comparisons",
+      "current_group": "agent-work-systems",
+      "proposed_category": "products",
+      "proposed_kind": "产品竞品分析",
+      "knowledge_tags": [],
+      "review_scope": "重点审阅",
+      "action": "当前实质为公开产品结构比较；归产品竞品，先对齐标题和对象，再决定是否有证据另做源码架构比较。",
+      "headings": [
+        "Harness 到底在解决什么",
+        "系统职责对比：内置能力与自建范围",
+        "用户体验五要素：同一套功能为何成为不同产品",
+        "Claude Code：项目约束与工作流扩展",
+        "Codex：任务监督、环境与变更审查",
+        "Kimi Code：模型—Harness 垂直整合的国产路线"
+      ],
+      "source_sha256": "a82d1f221207907d9f224b886a3759daa6daa8cf29d3e6a29fe543131cfb72aa"
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "title": "办公 Agent 比较：Kimi Work、WorkBuddy 与豆包工作",
+      "source_path": "src/content/writing/china-work-agent-showdown.md",
+      "current_topic": "comparisons",
+      "current_group": "agent-work-systems",
+      "proposed_category": "products",
+      "proposed_kind": "产品竞品分析",
+      "knowledge_tags": [],
+      "review_scope": "重点审阅",
+      "action": "归产品竞品；已有任务契约与核验方案，尚无同题租户实测；清理月报流程附近的重复说明。",
+      "headings": [
+        "三款产品争夺的不是同一个“办公”",
+        "六个维度，比“谁能生成 PPT”更有意义",
+        "把产品定位改写成待验证假设",
+        "先定义一项完整工作",
+        "文件可用与系统写回分别验收",
+        "企业连接先确认身份和产品版本",
+        "用三个反例测试接管",
+        "采用决定应包含维护与退出成本"
+      ],
+      "source_sha256": "00143bfafbeecdc4e1025b183a76acabd887f575e552bf155bd2e1d9345fb459"
+    },
+    {
+      "slug": "agent-memory-design-competitive-analysis",
+      "title": "记忆系统比较：核心对象与生命周期取舍",
+      "source_path": "src/content/writing/agent-memory-design-competitive-analysis.md",
+      "current_topic": "comparisons",
+      "current_group": "memory-comparisons",
+      "proposed_category": "frameworks",
+      "proposed_kind": "技术架构比对",
+      "knowledge_tags": [
+        "Memory"
+      ],
+      "review_scope": "重点审阅",
+      "action": "归技术架构比对；补同任务、写入／读取／纠错路径与条件性决策，不能仅重复单项目摘要。",
+      "headings": [
+        "先定义竞品框架：记忆系统要完成七件事",
+        "三类产品，先看对象，不急着看算法",
+        "先区分历史、记忆与能力",
+        "实践前先画边界"
+      ],
+      "source_sha256": "95d27c2f84a11512fd17ea96e29880c836b9bf7f99bfba7b3c89cdfc5698c5a9"
+    },
+    {
+      "slug": "harness-architecture-selection",
+      "title": "Agent Harness 架构选型：轻量循环、图式编排与持久工作流",
+      "source_path": "src/content/writing/harness-architecture-selection.md",
+      "current_topic": "selection",
+      "current_group": "architecture-selection",
+      "proposed_category": "frameworks",
+      "proposed_kind": "技术架构比对",
+      "knowledge_tags": [
+        "Harness",
+        "Graph Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "作为技术架构比对的较好样本；保留固定任务与真实控制引擎实验，不能外推生产性能。",
+      "headings": [
+        "用一个任务固定比较条件",
+        "先确定约束，再选择控制引擎",
+        "A：显式循环与本地事务存储",
+        "B：图式编排与持久检查点",
+        "C：持久工作流与 Agent Worker",
+        "正常路径：三套组合共享同一业务契约",
+        "同一故障，三套架构都要回答",
+        "逐模块选择：默认组合与替换条件",
+        "已验证什么，尚不能据此判断什么",
+        "最终选择与迁移步骤"
+      ],
+      "source_sha256": "a90ad4bc7fd5afb5a8ed041fffc8c9f2a6aeac1ce0891a41eb84e21958ea7599"
+    },
+    {
+      "slug": "multi-agent-architecture-selection",
+      "title": "Multi-Agent 选型：任务拆分、协作拓扑与部署成本",
+      "source_path": "src/content/writing/multi-agent-architecture-selection.md",
+      "current_topic": "selection",
+      "current_group": "architecture-selection",
+      "proposed_category": "frameworks",
+      "proposed_kind": "技术架构比对",
+      "knowledge_tags": [
+        "Harness",
+        "Graph Engineering"
+      ],
+      "review_scope": "重点审阅",
+      "action": "归技术比对与选型；协作拓扑、框架、部署已经分开，补已固定版本的实际候选结果。",
+      "headings": [
+        "先把三个选型层次分开",
+        "判断是否需要多个 Agent",
+        "协作拓扑怎样选择",
+        "将拓扑落到框架",
+        "部署边界跟随故障与权限边界",
+        "一个可落地的参考架构",
+        "用成本与关键路径判断并行收益",
+        "用同一组任务完成 PoC",
+        "将选择写成一份架构决策记录",
+        "先判断任务能不能独立完成",
+        "委派的是一个有边界的任务",
+        "汇总器不能把冲突变成多数票",
+        "并行写入需要显式合并规则",
+        "预算与取消需要向下传播",
+        "一次并行收益评审"
+      ],
+      "source_sha256": "54d8fe7086cdde069ae9f3e579018f99fa6428c7b9c4c0d4c18154bf98c9153e"
+    },
+    {
+      "slug": "ai-capability-evidence-action",
+      "title": "模型选型：任务样本、重复运行与完整成本",
+      "source_path": "src/content/writing/ai-capability-evidence-action.md",
+      "current_topic": "selection",
+      "current_group": "model-selection",
+      "proposed_category": "models",
+      "proposed_kind": "模型比较与选型",
+      "knowledge_tags": [
+        "Model selection",
+        "Evaluation"
+      ],
+      "review_scope": "重点审阅",
+      "action": "归模型比较与选型方法；评测说明被插入章节打断，“三条边界”列了四种对象，需重排与校正。",
+      "headings": [
+        "下一阶段看什么：少看“能做”，多看“交付是否划算”",
+        "现在怎样行动：用一小组真实任务代替一次演示",
+        "证据与评测：需要时再展开",
+        "三条边界共同决定可委托范围",
+        "先固定候选，再按任务决定是否路由",
+        "重复运行与成本的统一口径"
+      ],
+      "source_sha256": "e4630f9f7533005389187e9fbc08d57b87a8455be1faec8d4aef2239aa791c35"
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "title": "Agent 选型：比较维度、任务契约与 PoC",
+      "source_path": "src/content/writing/agent-landscape-comparison-methods.md",
+      "current_topic": "selection",
+      "current_group": "agent-selection",
+      "proposed_category": "products",
+      "proposed_kind": "产品方法与采用",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "归产品采用与竞品方法；其框架选型部分通过链接回到技术架构比对。",
+      "headings": [
+        "三个分析工具各自回答什么",
+        "把候选假设变成可执行比较",
+        "Agent 选型其实是责任分配",
+        "先定义 PoC 要决定什么",
+        "两周 PoC 的示例安排",
+        "任务契约必须先于评分表",
+        "任务样本按真实用途分层"
+      ],
+      "source_sha256": "22c9d170cc752c4614110a4dcbc53d72eaa9320bd0d7cef79007fd355a9c6d49"
+    },
+    {
+      "slug": "ai-agent-reliability-boundaries",
+      "title": "可靠性边界：验收、风险与自治范围",
+      "source_path": "src/content/writing/ai-agent-reliability-boundaries.md",
+      "current_topic": "evaluation",
+      "current_group": "agent-evaluation",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Evaluation"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留本问题的论述；按定义、机制、取舍、反例、验证检查深度，减少跨文章重复。",
+      "headings": [
+        "先把可靠性拆成四个问题",
+        "Skills 管方法，不替任务背书",
+        "RAG 管证据，不替代完整数据与推理",
+        "长任务管反馈，不靠一次性计划",
+        "权限管影响范围，不证明业务正确",
+        "用同一个问题检查所有机制",
+        "可靠落地应从验收出发，再逐步扩大自治范围"
+      ],
+      "source_sha256": "6e1abf077faecf1edfff069fc0abf82a96733a33c3f96560dddfd16a21f7ab1f"
+    },
+    {
+      "slug": "agent-system-evaluation-research",
+      "title": "Agent 评测系统：任务、指标、裁判与持续回归",
+      "source_path": "src/content/writing/agent-system-evaluation-research.md",
+      "current_topic": "evaluation",
+      "current_group": "agent-evaluation",
+      "proposed_category": "frameworks",
+      "proposed_kind": "知识点深度剖析",
+      "knowledge_tags": [
+        "Evaluation"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "归技术框架的评测机制；模型、产品按对象引用对应方法，不再作为第四个顶层。",
+      "headings": [
+        "先分清三个对象",
+        "全景：五个模块，一条反馈链",
+        "三个观察面，不是三个真相层级",
+        "第一个实践产物：任务契约",
+        "成功率先守住分母",
+        "pass@k 与 pass^k",
+        "轨迹指标用于解释，不负责代替结果",
+        "成本要包含失败",
+        "交付一张指标卡",
+        "零次事故不等于风险为零",
+        "从真实任务抽样，不从漂亮 Demo 抽样",
+        "公开基准是参照，不是业务验收的替身",
+        "三类评委各自负责什么",
+        "校准评委，也要测试评委",
+        "任务样本与评委校准清单",
+        "运行器与 Agent 不应共享全部权力",
+        "先跑一个不需要模型的实验",
+        "平台负责工程能力，不负责替你定义正确",
+        "从回归到发布，而不是从分数到庆功",
+        "把失败变成下一次可检查的事实",
+        "过程证据帮助定位，却不自动证明因果"
+      ],
+      "source_sha256": "a3224ae35ad19fa0a5f317ecf5179a768434d3ed12557265e25fe47cb4706bb2"
+    },
+    {
+      "slug": "trace-framework-deep-dive",
+      "title": "TRACE：轨迹评测、代理指标与复现边界",
+      "source_path": "src/content/writing/trace-framework-deep-dive.md",
+      "current_topic": "evaluation",
+      "current_group": "agent-evaluation",
+      "proposed_category": "frameworks",
+      "proposed_kind": "论文研究",
+      "knowledge_tags": [
+        "Evaluation"
+      ],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "归技术框架的评测论文研究；保留论文结果与 TRACE-Lite 自拟实现的区分。",
+      "headings": [
+        "TRACE 想拆穿的两种幻觉",
+        "顶层效用：正确性是门槛，不是全部",
+        "过程效率：它测的是“搜索是否持续推进”",
+        "认知质量：证据扎根与错误恢复",
+        "脚手架评测：在 0 分区间里继续区分能力",
+        "策略指纹：有启发，但可观测性不足",
+        "实验结果：排名反转成立，但因果解释要克制",
+        "从论文到生产：一套 TRACE-Lite 落地方案",
+        "如何正确阅读 TRACE 的分数",
+        "何时不应照搬 TRACE",
+        "参考资料"
+      ],
+      "source_sha256": "ea01fb9dce5d3c1116f805603833f1ab83cb4a3192da45792c9bfad9ed1b7fdc"
+    },
+    {
+      "slug": "lu-qi-researcher-founder",
+      "title": "陆奇谈研究型创业者：研究、创新与组织学习",
+      "source_path": "src/content/writing/lu-qi-researcher-founder.md",
+      "current_topic": "perspectives",
+      "current_group": "researcher-founder",
+      "proposed_category": "products",
+      "proposed_kind": "阅读补充",
+      "knowledge_tags": [],
+      "review_scope": "目录、章节与证据标记扫描",
+      "action": "保留原文、日期与历史图片例外；建议放产品方法的阅读补充，不冒充具体产品分析。",
+      "headings": [
+        "演讲如何解释研究与生产的关系",
+        "NeoLab 同时承担哪些风险",
+        "研究型创业者不是一种身份，而是一种能力结构",
+        "三种思维：研究、创新与斜率",
+        "方法论最终落到三个动作",
+        "从演讲中提炼的三个组织假设",
+        "还需要保留的三条边界",
+        "用一个实验检查“学得更快”"
+      ],
+      "source_sha256": "e6fdd339f8b159190eb1ac3e5723efc891dd47870a964b17824b3c01f4fe0846"
+    }
+  ]
+}

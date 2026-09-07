@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-07",
+  "status": "local_unpublished",
+  "renamed": [
+    {
+      "slug": "prompt-context-harness-engineering",
+      "before": "Harness 架构：职责分层、模块接口与任务闭环",
+      "after": "Harness：Agent 架构"
+    },
+    {
+      "slug": "harness-operations-context",
+      "before": "上下文组装：证据、状态与输入预算",
+      "after": "Context Engineering：上下文工程"
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "before": "Agent 控制流：循环、规划、分支与汇合",
+      "after": "Loop Engineering 与 Graph Engineering：循环与图编排"
+    },
+    {
+      "slug": "harness-operations-model-gateway",
+      "before": "模型网关：能力约束、协议适配与降级语义",
+      "after": "LLM Gateway：模型网关"
+    },
+    {
+      "slug": "agent-memory-writing",
+      "before": "记忆写入：历史、当前事实与纠错",
+      "after": "Memory：记忆写入"
+    },
+    {
+      "slug": "agent-memory-retrieval",
+      "before": "记忆检索：候选证据、时效与上下文装配",
+      "after": "Memory：记忆检索"
+    },
+    {
+      "slug": "agent-memory-governance",
+      "before": "记忆治理：共享、撤权、删除与验证",
+      "after": "Memory：记忆治理"
+    }
+  ],
+  "added": [
+    "prompt-engineering",
+    "rag",
+    "agent-runtime"
+  ],
+  "article_count": 63,
+  "directory_groups": 22,
+  "domains": 8,
+  "review_snapshot": "../three-category-review/article-map.json"
+}

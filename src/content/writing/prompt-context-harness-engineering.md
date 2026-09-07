@@ -1,5 +1,5 @@
 ---
-title: Harness 架构：职责分层、模块接口与任务闭环
+title: Harness：Agent 架构
 description: Harness 把模型提案接到真实执行与验收上。用一次购物车修复区分 Prompt、Context 与运行时，再确定模块交换的任务、动作、结果与证据。
 publishedAt: 2026-09-05
 updatedAt: 2026-09-07
@@ -267,3 +267,5 @@ Anthropic 的 [Building effective agents](https://www.anthropic.com/engineering/
 - [Anthropic：Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)，跨会话进度与实际功能检查。
 - [OpenAI：Harness engineering](https://openai.com/index/harness-engineering/)，项目知识、工作环境与程序化反馈。
 - [MCP：Architecture，2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/architecture)，Host、Client、Server 的职责及协议接口。
+
+具体机制可继续阅读 [Prompt Engineering：提示词工程](/writing/prompt-engineering/)、[Context Engineering：上下文工程](/writing/harness-operations-context/)、[Agent Runtime：Agent 运行时](/writing/agent-runtime/)和 [RAG：检索增强生成](/writing/rag/)，分别解释指令、输入、执行与取证。

@@ -1,5 +1,5 @@
 ---
-title: 记忆检索：候选证据、时效与上下文装配
+title: Memory：记忆检索
 description: 比较混合检索、目录导航与上下文装配，说明授权过滤、时间有效性和预算的不同责任。
 publishedAt: 2026-09-05
 type: essay

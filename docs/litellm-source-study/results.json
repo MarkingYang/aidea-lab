@@ -1,0 +1,69 @@
+{
+  "package": "litellm==1.100.0",
+  "python": "3.12.13",
+  "platform": "Darwin arm64",
+  "source_commit": "e4f25265704e2b2c6cf6e81be2e4c5cffff896f4",
+  "network_attempts": [],
+  "cases": [
+    {
+      "name": "alias_and_weight",
+      "selected_id": "positive",
+      "passed": true
+    },
+    {
+      "name": "all_zero_weights",
+      "selected_from": [
+        "a",
+        "b"
+      ],
+      "passed": true
+    },
+    {
+      "name": "same_group_retry",
+      "calls": [
+        "openai/gpt-4o-mini",
+        "openai/gpt-4o-mini"
+      ],
+      "error": null,
+      "passed": true
+    },
+    {
+      "name": "cross_group_fallback",
+      "calls": [
+        "openai/gpt-4o-mini",
+        "openai/gpt-4.1-mini"
+      ],
+      "error": null,
+      "passed": true
+    },
+    {
+      "name": "context_specific_fallback",
+      "calls": [
+        "openai/gpt-4o-mini",
+        "openai/gpt-4o"
+      ],
+      "error": null,
+      "passed": true
+    },
+    {
+      "name": "disable_fallbacks",
+      "calls": [
+        "openai/gpt-4o-mini"
+      ],
+      "error": "InternalServerError",
+      "passed": true
+    },
+    {
+      "name": "blocked_deployment",
+      "selected_id": "active",
+      "passed": true
+    },
+    {
+      "name": "isolated_memory_caches",
+      "first": 7,
+      "second": null,
+      "passed": true
+    }
+  ],
+  "limits": "Provider function is stubbed. No real LLM, HTTP transport, streaming, Redis, Proxy or billing integration tested."
+}

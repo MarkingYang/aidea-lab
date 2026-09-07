@@ -1,13 +1,16 @@
 # 文章边界与目录
 
-每行是一篇文章。目录分组只提供浏览入口，不是合并单位。此前 55 篇来自现有材料的重新划分；本轮深化 LangGraph，并新增 Temporal、OpenHands SDK，随后补充 Haystack，本地共 58 篇，不是最终篇数配额。
+每行是一篇文章。目录分组只提供浏览入口，不是合并单位。截至 2026-09-07，本地共 63 篇，含 LiteLLM、OPA 及本轮新增的 Prompt Engineering、RAG、Agent Runtime。篇数记录当前内容，不是最终配额；当前仍按 8 个目录方向展示，三类归属评审待迁移。
 
 ## Harness
 
 | 文章 | 类型 | 主要论述边界 |
 | --- | --- | --- |
-| [Harness 架构：职责分层、模块接口与任务闭环](../../src/content/writing/prompt-context-harness-engineering.md) | 知识问题 | Harness 把模型提案接到真实执行与验收上。用一次购物车修复区分 Prompt、Context 与运行时，再确定模块交换的任务、动作、结果与证据。 |
-| [Agent 控制流：循环、规划、分支与汇合](../../src/content/writing/harness-engineering-loop.md) | 知识问题 | 循环管理下一次行动，执行图管理任务之间的依赖。用状态、进展、停止条件和汇合规则判断何时需要增加编排，避免把模型的计划文本直接当作执行状态。 |
+| [Harness：Agent 架构](../../src/content/writing/prompt-context-harness-engineering.md) | 知识问题 | Harness 把模型提案接到真实执行与验收上。用一次购物车修复区分 Prompt、Context 与运行时，再确定模块交换的任务、动作、结果与证据。 |
+| [Loop Engineering 与 Graph Engineering：循环与图编排](../../src/content/writing/harness-engineering-loop.md) | 知识问题 | 循环管理下一次行动，执行图管理任务之间的依赖。用状态、进展、停止条件和汇合规则判断何时需要增加编排，避免把模型的计划文本直接当作执行状态。 |
+| [Prompt Engineering：提示词工程](../../src/content/writing/prompt-engineering.md) | 知识问题 | 任务契约、示例、输出校验、提示链与版本评测；设计案例未运行真实模型对照。 |
+| [RAG：检索增强生成](../../src/content/writing/rag.md) | 知识问题 | 入库、切分、召回、融合、重排、装配与答案核验；区分权限、时效与相关性。 |
+| [Agent Runtime：Agent 运行时](../../src/content/writing/agent-runtime.md) | 知识问题 | 任务与动作身份、模块协作、状态迁移、事件视图、执行恢复与取消收尾。 |
 | [Claude Code：执行循环、记忆与扩展机制](../../src/content/writing/claude-code-internals-overview.md) | 项目研究 | 沿执行循环、工具证据、项目规则、自动记忆和扩展机制，理解 Claude Code 的职责与公开可验证边界。 |
 | [Codex：运行时、沙箱与持续任务](../../src/content/writing/codex-system-overview.md) | 项目研究 | 连接 Codex 本地运行时、执行沙箱、任务证据、Skills 和自动化，区分开源内核与应用协作层。 |
 | [Kimi Code：上下文投影、压缩边界与工具执行](../../src/content/writing/kimi-code-system-overview.md) | 项目研究 | 固定 TypeScript 内核提交，分析消息配对、压缩切点、批次执行与委派；六组模块实验验证关键边界。 |
@@ -31,7 +34,8 @@
 | 文章 | 类型 | 主要论述边界 |
 | --- | --- | --- |
 | [模型能力边界：从公开评测到任务责任](../../src/content/writing/llm-agent-capability-landscape-2026.md) | 知识问题 | 从任务责任、交付验收与模型差异出发，建立一张不依赖总榜单的 AI 能力地图。 |
-| [模型网关：能力约束、协议适配与降级语义](../../src/content/writing/harness-operations-model-gateway.md) | 知识问题 | 用能力、协议、数据范围和预算约束模型路由，区分重试、降级与业务恢复，并按成功任务核算真实成本。 |
+| [LLM Gateway：模型网关](../../src/content/writing/harness-operations-model-gateway.md) | 知识问题 | 用能力、协议、数据范围和预算约束模型路由，区分重试、降级与业务恢复，并按成功任务核算真实成本。 |
+| [LiteLLM：模型路由、故障转移与预算边界](../../src/content/writing/litellm-gateway-architecture.md) | 项目研究 | 固定 v1.100.0，沿别名与部署、选择与权重、重试与备用组、流式输出、冷却及跨实例预算，解释网关边界；八组受控 Router／缓存实验与源码分析分别标明。 |
 
 ## 技术架构
 
@@ -40,13 +44,14 @@
 | [工具契约：输入、结果与错误语义](../../src/content/writing/harness-engineering-tools.md) | 知识问题 | 在能力路由之后补齐工具接口工程，用输入、结果、错误、权限和幂等契约，让执行层保留真实业务语义。 |
 | [MCP 生命周期：握手、目录、断线与取消](../../src/content/writing/harness-foundations-mcp-lifecycle.md) | 知识问题 | 固定 MCP 2025-11-25 版本，梳理初始化、能力协商、请求关联与工具目录失效，并区分协议错误和工具执行错误。 |
 | [执行安全：身份、授权、审批与沙箱](../../src/content/writing/harness-engineering-security.md) | 知识问题 | 沿资料、候选动作、审批、凭证和沙箱划分信任边界，说明身份与权限如何贯穿工具执行，以及本地策略实验的验证限制。 |
+| [OPA：策略求值、执行边界与授权更新](../../src/content/writing/opa-policy-architecture.md) | 项目研究 | 固定 v1.20.2，研究 Rego、输入事实、决策结果、审批绑定、Bundle 与日志；十二组真实 CLI／REST 实验区分策略决定、执行责任和更新边界。 |
 | [能力路由：从目录检索到可执行方案](../../src/content/writing/capability-routing-at-scale.md) | 知识问题 | 能力路由要把用户意图变成满足输入、身份和执行条件的方案。沿“能力描述—召回—正文精排—执行规划—结果反馈”分析整条链路，分别处理误召回、不可执行和执行失败。 |
 | [并发控制：版本冲突、锁与背压](../../src/content/writing/harness-foundations-concurrency.md) | 知识问题 | 从异步、并行、共享状态和背压出发，为 Harness 建立工程基础地图，区分调度效率与数据正确性。 |
 | [故障恢复：事务边界、幂等、对账与补偿](../../src/content/writing/harness-engineering-recovery.md) | 知识问题 | 恢复要同时回答“运行到了哪里”和“外部动作是否已发生”。从一次写入的提交边界进入幂等、对账与补偿，再用受控故障实验检查重复、结果未知和恢复证据。 |
-| [上下文组装：证据、状态与输入预算](../../src/content/writing/harness-operations-context.md) | 知识问题 | 按任务、状态、来源、权限与预算组装单次模型请求，说明压缩、缓存和装配清单怎样影响判断。 |
-| [记忆写入：历史、当前事实与纠错](../../src/content/writing/agent-memory-writing.md) | 知识问题 | 比较追加、合并和分层提炼的写入策略，建立有效时间、来源和纠错契约。 |
-| [记忆检索：候选证据、时效与上下文装配](../../src/content/writing/agent-memory-retrieval.md) | 知识问题 | 比较混合检索、目录导航与上下文装配，说明授权过滤、时间有效性和预算的不同责任。 |
-| [记忆治理：共享、撤权、删除与验证](../../src/content/writing/agent-memory-governance.md) | 知识问题 | 从团队资产、Loadout 与 ACL 到删除传播和评测，检验长期记忆的治理边界。 |
+| [Context Engineering：上下文工程](../../src/content/writing/harness-operations-context.md) | 知识问题 | 按任务、状态、来源、权限与预算组装单次模型请求，说明压缩、缓存和装配清单怎样影响判断。 |
+| [Memory：记忆写入](../../src/content/writing/agent-memory-writing.md) | 知识问题 | 比较追加、合并和分层提炼的写入策略，建立有效时间、来源和纠错契约。 |
+| [Memory：记忆检索](../../src/content/writing/agent-memory-retrieval.md) | 知识问题 | 比较混合检索、目录导航与上下文装配，说明授权过滤、时间有效性和预算的不同责任。 |
+| [Memory：记忆治理](../../src/content/writing/agent-memory-governance.md) | 知识问题 | 从团队资产、Loadout 与 ACL 到删除传播和评测，检验长期记忆的治理边界。 |
 | [Mem0：事实写入、混合检索与部署边界](../../src/content/writing/mem0-series-overview.md) | 项目研究 | Mem0 封装从对话抽取事实、按身份存储并检索的路径。沿 add/search 分析 ADD-only、实体信号、当前性与删除，再检查库和自托管服务分别把什么责任留给应用。 |
 | [OpenViking：上下文文件系统、层级检索与一致性](../../src/content/writing/openviking-series-overview.md) | 项目研究 | OpenViking 用 URI 和目录结构组织 Resource、Memory 与 Skill。沿摄取、摘要、检索和 Session 提交分析内容与索引如何协作，以及分层读取增加的刷新、权限和一致性成本。 |
 | [TencentDB Agent Memory：协议代理、分层记忆与团队资产](../../src/content/writing/tencentdb-agent-memory-overview.md) | 项目研究 | TencentDB Agent Memory 把记忆接入放在模型协议代理处，再通过分层认识和团队资产进行共享。本文从一次请求的注入与回写走到权限和 Loadout，区分已有 Beta 实现与采用时需要补齐的治理。 |

@@ -1,5 +1,5 @@
 ---
-title: 记忆写入：历史、当前事实与纠错
+title: Memory：记忆写入
 description: 比较追加、合并和分层提炼的写入策略，建立有效时间、来源和纠错契约。
 publishedAt: 2026-09-05
 type: essay

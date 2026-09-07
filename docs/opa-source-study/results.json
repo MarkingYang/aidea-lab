@@ -1,0 +1,97 @@
+{
+  "opa_version": "Version: 1.20.2\nBuild Commit: b2c26708e9d55645d7f837db495031f7e4152594\nBuild Timestamp: 2026-09-03T20:35:14Z\nBuild Hostname: \nGo Version: go1.27.1\nPlatform: darwin/arm64\nRego Version: v1\nWebAssembly: available",
+  "platform": "Darwin arm64",
+  "binary_sha256": "54e7008e696d39e8e4f96594e2b71bcbe45fd9a4f838102bcf1240638bf3fbe1",
+  "cases": [
+    {
+      "name": "read_in_scope",
+      "passed": true,
+      "allow": true
+    },
+    {
+      "name": "foreign_resource_despite_claim",
+      "passed": true,
+      "allow": false
+    },
+    {
+      "name": "missing_authentication_fact",
+      "passed": true,
+      "allow": false
+    },
+    {
+      "name": "write_without_approval",
+      "passed": true,
+      "allow": false
+    },
+    {
+      "name": "matching_host_supplied_approval",
+      "passed": true,
+      "allow": true
+    },
+    {
+      "name": "changed_arguments",
+      "passed": true,
+      "allow": false
+    },
+    {
+      "name": "expired_approval",
+      "passed": true,
+      "allow": false
+    },
+    {
+      "name": "old_approval_revision",
+      "passed": true,
+      "allow": false
+    },
+    {
+      "name": "deny_name_has_no_precedence",
+      "passed": true,
+      "allow": true,
+      "deny": [
+        "subject_blocked"
+      ]
+    },
+    {
+      "name": "complete_rule_conflict",
+      "passed": true,
+      "code": "eval_conflict_error"
+    },
+    {
+      "name": "two_bundle_snapshots",
+      "passed": true,
+      "decisions": [
+        {
+          "revision": "r1",
+          "allow": true
+        },
+        {
+          "revision": "r2",
+          "allow": false
+        }
+      ]
+    },
+    {
+      "name": "rest_allow_deny_undefined",
+      "passed": true,
+      "responses": [
+        {
+          "http": 200,
+          "body": {
+            "result": true
+          }
+        },
+        {
+          "http": 200,
+          "body": {
+            "result": false
+          }
+        },
+        {
+          "http": 200,
+          "body": {}
+        }
+      ]
+    }
+  ],
+  "limits": "Local CLI and loopback REST only. Host facts/approval are fixtures. No actual authentication, signatures, tool writes, sandbox, remote bundle update or distributed revocation tested."
+}

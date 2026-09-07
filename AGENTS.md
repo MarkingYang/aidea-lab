@@ -1,3 +1,23 @@
+## Publication authorization — 63 articles, 2026-09-07
+
+The user explicitly requested “发布” after the knowledge naming and additions. Publish the current 63-article version through origin/main: LiteLLM, OPA, Prompt Engineering, RAG, Agent Runtime, seven knowledge-title changes, supporting mechanism updates and research records. The current navigation remains 22 groups and 8 domains; the three-category review is a proposal, not an applied migration. Prior local/unpublished notes below describe earlier stages. Subsequent new work requires another publication request.
+
+## Latest knowledge naming and additions — 2026-09-07
+
+The user requested direct article titles aligned with knowledge terms. Seven existing articles are renamed with standard terminology; their URLs and publication dates are preserved. Prompt Engineering, RAG and Agent Runtime now each have one new coherent knowledge article. Loop/Graph remain combined; Memory retains write/retrieve/governance scopes. Current local content has 63 articles, 22 groups and 8 domains. The three-category review remains a historical proposal, not an applied navigation migration. New examples and evaluation plans are explicitly unrun; cited project experiments retain their original limitations. See `docs/knowledge-naming/`. All changes remain local; no new publication authorization.
+
+## Latest review direction — three categories, 2026-09-07
+
+The user requested an overall review with exactly three primary categories: GitHub (technical frameworks), models, and products. Architecture comparison, product competitive analysis, selection and deep mechanism analysis are article types or supporting dimensions, not extra primary categories. The review in `docs/three-category-review/` maps all 60 existing articles once: 43 framework-related, 2 model-related, 15 product-related (including methods and the Lu Qi reading). This is a reviewed proposal; site navigation and article bodies have not been migrated in this review turn. Preserve project-level independence, source/experiment limitations and existing URLs. Prioritize gaps in Prompt Engineering, end-to-end RAG and Agent Runtime, plus concrete model/product studies; Loop/Graph already have substantial combined coverage and must not be split just to fill categories. New additions and any navigation migration remain unpublished until an explicit publish request.
+
+## Latest local continuation — OPA, 2026-09-07
+
+The user requested continued open-source Harness research. Add one complete Open Policy Agent v1.20.2 article, connect it to execution security, and preserve twelve real CLI/bundle/loopback REST experiment cases in `docs/opa-source-study/`. Local content now has 60 articles, 22 groups and 8 domains. OPA and the preceding LiteLLM additions remain unpublished; origin/main is still the 58-article `d4acb13` baseline. Distinguish fixture identity/approval checks from authentication, and local bundle snapshots from distributed updates. Keep source and binary hashes and these limitations explicit.
+
+## Continuation after publication — 2026-09-07
+
+The 58-article batch was pushed to origin/main at `d4acb13` and verified online. Continue locally with one complete LiteLLM v1.100.0 article, supporting model-gateway mechanism updates, and eight bounded offline Router/cache experiments in `docs/litellm-source-study/`. Local content now has 59 articles, 22 groups, 8 domains. The LiteLLM continuation is not published and requires a new publication request. Source commits, package hashes and untested Proxy/Redis/streaming boundaries must remain explicit.
+
 ## Publication authorization — 2026-09-07
 
 The user explicitly requested “推送，然后继续”. Publish the current 58-article batch through `origin/main`, then continue research locally. This authorizes the existing LangGraph, Temporal, OpenHands, OpenCode, Kimi Code and Haystack changes and their supporting mechanism articles and experiments. Historical “not published” notes below describe earlier stages. Further research after this push stays local until another publication request.

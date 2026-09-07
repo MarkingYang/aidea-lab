@@ -1,5 +1,5 @@
 ---
-title: 记忆治理：共享、撤权、删除与验证
+title: Memory：记忆治理
 description: 从团队资产、Loadout 与 ACL 到删除传播和评测，检验长期记忆的治理边界。
 publishedAt: 2026-09-05
 type: essay
