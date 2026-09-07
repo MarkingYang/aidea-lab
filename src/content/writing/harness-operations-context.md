@@ -1,8 +1,8 @@
 ---
-title: 上下文组装：材料、状态与输入预算
+title: 上下文组装：证据、状态与输入预算
 description: 按任务、状态、来源、权限与预算组装单次模型请求，说明压缩、缓存和装配清单怎样影响判断。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,8 +10,10 @@ topics:
   - Context Engineering
   - AI 工程
 featured: true
-readingTime: 5 min
+readingTime: 4 min
 ---
+
+<a id="harness-operations-context"></a>
 
 核验多份资料时，模型每一步需要看到的内容都在变化：先确认版本与范围，再保留冲突证据，最后带着当前处理状态形成更新建议。上下文组装负责把这些信息放进一次请求，并说明哪些材料被选入、排除或压缩。
 
@@ -37,23 +39,7 @@ readingTime: 5 min
 
 本文建议按下面的顺序装配。它是一种工程方案，不是所有框架共同实现的算法。
 
-```mermaid
-flowchart LR
-  subgraph MATERIAL[确定材料]
-    direction TB
-    A[锁定任务与当前状态] --> B[授权和版本过滤]
-    B --> C[收集必要证据与冲突]
-  end
-  subgraph REQUEST[构建请求]
-    direction TB
-    D[选择摘要或原文片段] --> E[计量完整请求预算]
-    E --> F[记录清单并调用模型]
-  end
-  MATERIAL --> REQUEST
-```
-
-*图 1｜上下文装配先满足硬条件，再处理排序与预算。必要信息无法容纳时应改变方案，而非静默遗漏。*
-
+上下文装配先满足硬条件，再处理排序与预算。必要信息无法容纳时应改变方案，而非静默遗漏。
 计量对象是实际序列化后的请求，包含消息包装、工具 Schema 与模型特定的输入。还要为输出预留空间；部分模型的推理预算有额外规则，应按 Provider 文档处理。字符数可以做教学估计，不能替代真实 Token 计量。
 
 遇到预算不足，可以减少候选数量、读取更精确的片段、分步核验，或选择经过评测的更大窗口模型。不要优先删除来源和否定条件，因为“旧版不适用”往往比一段背景说明更重要。
@@ -62,7 +48,7 @@ flowchart LR
 
 Anthropic 将压缩、结构化笔记等作为长任务上下文管理方法，同时指出过度压缩可能丢失后续才显得重要的细节。因此，压缩策略需要在复杂轨迹上检验，而不是只比较摘要长度。[上下文工程原文](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
 
-在资料核验案例里，摘要可以写“两个来源对发布日期存在冲突”，但应保留各自的来源编号和版本，允许回查。它不应未经验证就把冲突融合成一个确定日期。会话事实与当前视图的分离，可继续参考 [DeepSeek 上下文投影](/writing/deepseek-harness-state/)。
+在资料核验案例里，摘要可以写“两个来源对发布日期存在冲突”，但应保留各自的来源编号和版本，允许回查。它不应未经验证就把冲突融合成一个确定日期。会话事实与当前视图的分离，可继续参考 [DeepSeek 上下文投影](/writing/deepseek-harness-composition/#deepseek-harness-state)。
 
 缓存则是性能机制。稳定指令与工具描述可能帮助前缀复用，但资料更新、身份变化和授权撤销不能为了命中率被延后处理。检索缓存、结果缓存和 Provider 前缀缓存是不同对象；每一种都需要单独定义键、可见范围和失效条件。
 

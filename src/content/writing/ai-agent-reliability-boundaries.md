@@ -2,7 +2,7 @@
 title: 可靠性边界：验收、风险与自治范围
 description: 先搭可靠性地图，分清 Skills、RAG、长任务反馈与权限控制能够解决的问题，以及它们共同留下的验收缺口。
 publishedAt: 2026-09-03
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -13,6 +13,8 @@ topics:
 featured: true
 readingTime: 9 min
 ---
+
+<a id="ai-agent-reliability-boundaries"></a>
 
 **AI Agent 已经能承担大量实际工作，但能否放心交付，取决于它能否在明确边界内持续做对，并在做错时被发现、被恢复。**
 
@@ -26,24 +28,9 @@ readingTime: 9 min
 
 本文先区分能力瓶颈，再把可靠性要求落实到任务、权限和验收，最后讨论扩大自动化范围的条件。
 
-> [!NOTE]
 > 产品能力依据 2026 年 9 月 4 日查阅的官方文档整理。文中的产品定位和落地建议属于分析判断，不是四款产品的横向实测排名；历史研究和厂商评测也不能直接换算成当前产品的任务成功率。
 
-```mermaid
-flowchart LR
-  T[真实任务] --> C[验收契约]
-  S[Skills<br/>提供方法] --> A[Agent 执行]
-  R[RAG<br/>补充证据] --> A
-  P[权限与沙箱<br/>限制行动范围] --> A
-  C --> A
-  A --> O[结果与轨迹]
-  O --> V{证据是否满足契约}
-  V -- 否 --> F[定位失败并缩小自治]
-  V -- 是 --> G[进入回归并逐步授权]
-```
-
-*图 1｜Skills、RAG 与权限分别作用于方法、证据和行动边界，可靠性仍由验收闭环完成。*
-
+Skills、RAG 与权限分别作用于方法、证据和行动边界，可靠性仍由验收闭环完成。
 如果已经明确任务与指标，可以直接进入 [评测体系设计](/writing/agent-system-evaluation-research/)设计样本和回归；本文关注的是这些评测要求如何继续约束 Harness、权限与组织授权。
 
 ## 先把可靠性拆成四个问题
@@ -136,7 +123,7 @@ Codex 将沙箱与审批分开，Claude Code 也分别提供权限与安全机�
 
 ### 3. 将失败映射到负责的机制
 
-选错能力，检查[能力路由](/writing/capability-routing-evaluation/)；遗漏必要资料，检查[上下文装配](/writing/harness-operations-context/)；重复写入，检查[稳定操作与恢复](/writing/harness-engineering-recovery/)；结果无法判定，补充[独立评委](/writing/agent-evaluation-datasets/)。
+选错能力，检查[能力路由](/writing/capability-routing-at-scale/#capability-routing-evaluation)；遗漏必要资料，检查[上下文装配](/writing/harness-operations-context/)；重复写入，检查[稳定操作与恢复](/writing/harness-engineering-recovery/)；结果无法判定，补充[独立评委](/writing/agent-system-evaluation-research/#agent-evaluation-datasets)。
 
 只有确认哪类失败需要解决，才决定增加 Skill、记忆或多个 Agent。它们各自需要任务对照与成本记录。
 

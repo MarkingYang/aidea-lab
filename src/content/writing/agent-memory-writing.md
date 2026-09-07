@@ -1,5 +1,5 @@
 ---
-title: 保留历史，还是维护当前事实
+title: 记忆写入：历史、当前事实与纠错
 description: 比较追加、合并和分层提炼的写入策略，建立有效时间、来源和纠错契约。
 publishedAt: 2026-09-05
 type: essay
@@ -12,12 +12,14 @@ topics:
   - TencentDB Agent Memory
 featured: false
 readingTime: 7 min
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 ---
+
+<a id="agent-memory-writing"></a>
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
-> 单项目纵向阅读：[Mem0 写入管线](/writing/mem0-series-overview/) · [OpenViking Session 提交](/writing/openviking-session-governance/) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-overview/)
+> 单项目纵向阅读：[Mem0 写入管线](/writing/mem0-series-overview/) · [OpenViking Session 提交](/writing/openviking-series-overview/#openviking-session-governance) · [TencentDB 分层记忆](/writing/tencentdb-agent-memory-overview/)
 
 一月在上海、六月搬到杭州，这两条信息不一定互相矛盾。问题是查询要知道“现在”，还是要还原“一月”。如果写入时直接覆盖，历史丢了；如果只追加，读取时就需要更多判断。
 
@@ -55,19 +57,7 @@ Mem0 的旧算法会在写入时判断 `ADD / UPDATE / DELETE`，新算法改成
 
 分层的风险是摘要漂移：L3 如果基于错误 L2 继续归纳，错误会被放大成“稳定人格”；反过来，如果高层画像更新太保守，又会长期保留过期认识。因此，分层体系需要 L0 来源、生成日志和可纠错入口。TencentDB 项目的 L1–L3 编辑仍在路线图中，不能把所需校正能力视为已全部提供；版本边界见[项目实现](/writing/tencentdb-agent-memory-overview/)。
 
-```mermaid
-flowchart TD
-  A[一月来源：住在上海] --> H[保留原始消息与时间]
-  B[六月来源：搬到杭州] --> H
-  H --> C[抽取事实与生效时间]
-  C --> V[按身份 来源与纠错规则验证]
-  V --> R[九月查询：当前住所]
-  R --> S[选择当前有效事实，并保留来源]
-  S --> X[发现错误：撤回事实并更新派生结果]
-```
-
-*图 1｜教学流程：保留历史与回答当前事实是两项职责。写入时间较新并不能单独证明事实当前有效。*
-
+教学流程：保留历史与回答当前事实是两项职责。写入时间较新并不能单独证明事实当前有效。
 ## 写入触发，是延迟与可靠性的取舍
 
 Mem0 的显式 API 让应用选择触发时机，也要求应用处理调用失败与重试。OpenViking 用显式 `commit()` 形成清楚的会话边界。腾讯方案通过 Proxy / Adapter 捕获，让未原生支持记忆的 Agent 也能接入，并在后台层层归纳。

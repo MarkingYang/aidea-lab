@@ -1,5 +1,5 @@
 ---
-title: 一条记忆开始跨团队流动之后
+title: 记忆治理：共享、撤权、删除与验证
 description: 从团队资产、Loadout 与 ACL 到删除传播和评测，检验长期记忆的治理边界。
 publishedAt: 2026-09-05
 type: essay
@@ -11,13 +11,15 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 6 min
-updatedAt: 2026-09-06
+readingTime: 5 min
+updatedAt: 2026-09-07
 ---
+
+<a id="agent-memory-governance"></a>
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
-> 单项目纵向阅读：[Mem0 生产边界](/writing/mem0-production-boundaries/) · [OpenViking Session 与权限](/writing/openviking-session-governance/) · [TencentDB 团队治理](/writing/tencentdb-agent-memory-governance/)
+> 单项目纵向阅读：[Mem0 生产边界](/writing/mem0-series-overview/#mem0-production-boundaries) · [OpenViking Session 与权限](/writing/openviking-series-overview/#openviking-session-governance) · [TencentDB 团队治理](/writing/tencentdb-agent-memory-overview/#tencentdb-agent-memory-governance)
 
 一位 Agent 把解决登录故障的方法写成 Skill，另一位 Agent 下次自动使用。这看起来像组织学习，也可能把一次错误推广成默认行为。
 
@@ -36,7 +38,7 @@ updatedAt: 2026-09-06
 
 归属与授权必须分别表达。`user_id` 或 URI 可以标识记录属于谁，不能单独证明当前调用方有权读取。服务端先绑定可信身份，再判断资源、动作与当前 ACL；注入前还要处理权限撤回。
 
-腾讯开发分支的 Loadout、Owner 和定向 ACL 是一种团队资产装配方案，具体组件与 Beta 边界见[TencentDB 团队治理](/writing/tencentdb-agent-memory-governance/)。Mem0 scope 与 OpenViking namespace 的实现分别见对应项目文章；这里不将三者名称当成同等级的安全保证。
+腾讯开发分支的 Loadout、Owner 和定向 ACL 是一种团队资产装配方案，具体组件与 Beta 边界见[TencentDB 团队治理](/writing/tencentdb-agent-memory-overview/#tencentdb-agent-memory-governance)。Mem0 scope 与 OpenViking namespace 的实现分别见对应项目文章；这里不将三者名称当成同等级的安全保证。
 
 为每条可共享经验记录来源、责任人、有效期、版本、可见范围和使用记录。这样撤回某条经验时，才能定位需要重建的摘要、Skill 和缓存。
 
@@ -59,20 +61,7 @@ updatedAt: 2026-09-06
 
 ## 删除不是只删一行
 
-```mermaid
-flowchart TB
-  R[纠错或删除请求] --> S[定位来源与影响范围]
-  S --> M[原始记录按策略处理]
-  S --> D[派生摘要、画像与 Skill]
-  S --> I[搜索索引与缓存]
-  M --> V[验证不再召回或使用]
-  D --> V
-  I --> V
-  V --> A[(完成证据与必要审计)]
-```
-
-*图 1｜纠错与删除需要覆盖来源、派生物、索引和缓存。*
-
+纠错与删除需要覆盖来源、派生物、索引和缓存。
 若原始消息删除了，画像仍保留结论，下一次摘要又可能把它写回来。需要追踪来源依赖、使派生物失效，并处理索引、缓存、备份恢复与保留策略。
 
 “原始证据可追溯”不等于“原始数据永不删除”。实现应按业务和适用要求定义保留周期；对敏感原文，必要的审计可以记录处理动作与标识，而不是继续保留全部内容。
@@ -93,17 +82,5 @@ flowchart TB
 
 ## 遗忘不是失败，而是一种控制能力
 
-```mermaid
-flowchart LR
-  E[(原始证据)] --> H[暂时认识]
-  H --> A[在适用范围内使用]
-  A --> V{新证据是否支持？}
-  V -->|支持| K[保留并明确范围]
-  V -->|冲突或过期| R[纠正、失效或遗忘]
-  K -. 持续核对 .-> H
-  R -. 重建派生状态 .-> H
-```
-
-*图 2｜新证据如何触发保留、纠正与遗忘。*
-
+新证据如何触发保留、纠正与遗忘。
 一个能删除、回溯、失效和重建的记忆系统，比一个只会不断追加的系统更接近长期协作者。保留足够证据与减少不必要持有之间也存在张力，应按数据类别管理，而不是用“长期记忆”统一解释。

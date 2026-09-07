@@ -2,7 +2,7 @@
 title: Agent Harness 架构选型：轻量循环、图式编排与持久工作流
 description: 用同一资料核验任务比较三种可运行架构，明确模块组合、状态归属、恢复语义、优缺点及迁移条件。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -11,12 +11,16 @@ topics:
   - AI 工程
   - Agent 评测
 featured: true
-readingTime: 16 min
+readingTime: 14 min
 ---
+
+<a id="composable-agent-harness-research-method"></a>
+
+<a id="harness-architecture-selection"></a>
 
 **单 Worker、流程短且容易验收，先用显式循环；分支与人工暂停成为主要复杂度时，用图式编排；任务需要跨服务等待、调度和恢复时，再评估持久工作流。** 这三个选择改变的是控制与状态管理方式，工具授权、业务幂等和结果验收都不能省略。
 
-本文给出三套参考组合、逐模块选型与迁移条件，并附上真实运行器的[对照实验包](/labs/harness-architectures.zip)。共同逻辑架构见[模块职责与接口](/writing/harness-engineering-map/)；本文重点回答如何组装以及为什么选它。
+本文给出三套参考组合、逐模块选型与迁移条件，并附上真实运行器的[对照实验包](/labs/harness-architectures.zip)。共同逻辑架构见[模块职责与接口](/writing/prompt-context-harness-engineering/#harness-engineering-map)；本文重点回答如何组装以及为什么选它。
 
 ## 用一个任务固定比较条件
 
@@ -45,26 +49,11 @@ readingTime: 16 min
 
 三个参考组合不是性能等级。图可以包含循环，持久工作流也可以调用运行图的 Worker；控制流与部署方式是独立维度。组合时应明确谁拥有重试、取消与恢复，防止两层各自重新发起同一个业务动作。
 
-![显式循环自行维护运行状态，图式编排维护检查点与暂停，持久工作流由服务保存历史并向 Worker 派发任务；三者都保留授权、业务幂等和结果验收。](../../assets/illustrations/harness-architecture-options.png "架构图解｜比较控制与状态归属。优缺点对应下文 A、B、C，业务资源未在这张概览图中展开。")
+显式循环自行维护运行状态，图式编排维护检查点与暂停，持久工作流由服务保存历史并向 Worker 派发任务；三者都保留授权、业务幂等和结果验收。
 
 ## A：显式循环与本地事务存储
 
-```mermaid
-flowchart TD
-  U[本地调用方：任务与批准] --> R[Python 运行器：显式循环]
-  subgraph P[一个应用进程]
-    R --> M[模型适配器]
-    M -->|候选动作| R
-    R --> G[策略检查与业务工具]
-    R --> V[结果验收]
-  end
-  R <--> S[(运行状态 SQLite)]
-  G <--> B[(业务资源 SQLite)]
-  V -->|查询工单| B
-```
-
-*图 1｜A 的对照实现使用同进程工具与两份数据库。运行状态与业务资源分开提交，保留需要对账的故障窗口。*
-
+A 的对照实现使用同进程工具与两份数据库。运行状态与业务资源分开提交，保留需要对账的故障窗口。
 **具体组合：** Python 函数、严格字段校验、显式状态循环、运行 SQLite、业务 SQLite、确定性验收。线上模型可通过一个小适配器接入；不必为了复用同进程函数先增加 MCP 服务。
 
 `run_explicit()` 每步保存运行状态；等待时返回，由调用方再次启动。`Business.create()` 将操作键与工单放在同一事务中。恢复先查询业务库，再决定是否执行写入。
@@ -79,22 +68,7 @@ flowchart TD
 
 ## B：图式编排与持久检查点
 
-```mermaid
-flowchart TD
-  U[应用：任务与批准] --> G[LangGraph]
-  subgraph P[应用进程内的图]
-    G --> S[step：决策与受控执行]
-    S -->|需要批准| A[approve：interrupt]
-    A -->|Command resume| S
-    S -->|需要更多材料| S
-    S -->|已验收或终止| E[返回终态]
-  end
-  G <--> C[(SqliteSaver 检查点)]
-  S <--> B[(业务资源与策略)]
-```
-
-*图 2｜B 将继续、暂停和恢复交给图运行器。检查点保存图状态，业务工单仍由工具服务的事务契约保护。*
-
+B 将继续、暂停和恢复交给图运行器。检查点保存图状态，业务工单仍由工具服务的事务契约保护。
 **具体组合：** LangGraph `StateGraph`、`SqliteSaver`、`interrupt()` / `Command(resume=...)`，复用 A 的工具与验收。实验把步骤压缩为 `step` 和 `approve` 两个节点，以隔离控制引擎差异；实际分支增多后可拆成检索、核验与提交节点。
 
 LangGraph 的 checkpointer 保存 thread 范围内的状态，store 用于跨 thread 数据。二者均不能替代业务工单库。[持久化文档](https://docs.langchain.com/oss/python/langgraph/persistence)
@@ -105,27 +79,11 @@ LangGraph 的 checkpointer 保存 thread 范围内的状态，store 用于跨 th
 
 **适用范围：** 多个业务阶段、人工接管、分支汇合成为主要复杂度的应用。引入图并不会自动得到分布式任务服务；并发 Worker、任务分配和数据库连接管理仍要明确。
 
-对比自写循环时，重点看新增业务分支是否更容易维护、故障是否更容易定位，不用“节点更多”证明架构更完整。图与循环的关系见[Loop 与 Graph](/writing/loop-graph-engineering/)。
+对比自写循环时，重点看新增业务分支是否更容易维护、故障是否更容易定位，不用“节点更多”证明架构更完整。图与循环的关系见[Loop 与 Graph](/writing/harness-engineering-loop/#loop-graph-engineering)。
 
 ## C：持久工作流与 Agent Worker
 
-```mermaid
-flowchart TD
-  U[调用方：提交任务与批准 Signal] --> T[Temporal Service]
-  T <--> H[(事件历史)]
-  T <-->|任务队列与结果| W[Python Worker]
-  subgraph P[Worker 进程]
-    W --> F[Workflow：生命周期与等待]
-    F --> A[Activity：一个受控 Agent 步骤]
-    A --> M[模型适配与工具]
-    A --> V[验收]
-  end
-  M <--> B[(业务资源)]
-  V --> B
-```
-
-*图 3｜C 把任务历史与执行者分开。验证使用本地 Temporal 服务；生产部署还需持久后端、访问控制及按执行内容选择的 Worker 隔离。*
-
+C 把任务历史与执行者分开。验证使用本地 Temporal 服务；生产部署还需持久后端、访问控制及按执行内容选择的 Worker 隔离。
 **具体组合：** Temporal Service、Python Worker、Workflow、Activity、业务存储和验收器。Workflow 等待批准 Signal；Activity 处理模型或工具 I/O；事件历史保存已完成步骤的结果。对照实现使用本地服务的内存后端，因此验证了 Worker 更换后的恢复，没有验证服务端宕机后恢复。
 
 Workflow 通过历史重放恢复执行，需要遵守确定性约束；模型调用、数据库与外部服务 I/O 放进 Activity。已记录结果的重放与失败 Activity 的重试是不同过程。[Workflow 文档](https://docs.temporal.io/workflows)
@@ -138,35 +96,7 @@ Workflow 通过历史重放恢复执行，需要遵守确定性约束；模型�
 
 ## 正常路径：三套组合共享同一业务契约
 
-```mermaid
-sequenceDiagram
-  participant U as 调用方
-  participant R as 控制引擎
-  participant B as 业务端
-  participant V as 验收器
-  U->>R: 目标、身份、预算
-  loop 有界取证
-    R->>R: 模型适配器产生候选动作
-    alt 需要读取
-      R->>B: 校验后读取材料
-      B-->>R: 原文与来源
-    else 已形成提案
-      R->>R: 退出取证，保存待批准状态
-    end
-  end
-  R-->>U: 待批准提案
-  U->>R: 批准该版本
-  R->>B: 复查许可，按操作键创建
-  B-->>R: 写入确认
-  R->>V: 目标与操作键
-  V->>B: 按原键回读
-  B-->>V: 工单字段
-  V-->>R: 验收结果
-  R-->>U: 已验证结果或未完成原因
-```
-
-*图 4｜共同正常时序，省略故障出口。循环内只有候选为读取时才调用读取工具；形成提案后退出取证并等待批准。A 由应用持久化并再次调用，B 用检查点与 resume，C 用历史与 Signal 承接等待。*
-
+共同正常时序，省略故障出口。循环内只有候选为读取时才调用读取工具；形成提案后退出取证并等待批准。A 由应用持久化并再次调用，B 用检查点与 resume，C 用历史与 Signal 承接等待。
 ### 从本地验证到服务部署，要补哪些配置
 
 | 组合 | 本地已运行组合 | 服务化时的明确设计选择 | 新增责任 |
@@ -179,24 +109,7 @@ sequenceDiagram
 
 ## 同一故障，三套架构都要回答
 
-```mermaid
-sequenceDiagram
-  participant R as 运行器或 Activity
-  participant S as 运行状态或编排历史
-  participant B as 业务资源端
-  R->>B: 用 review:ticket 创建
-  B->>B: 提交工单与操作键
-  Note over R,B: 业务已提交，响应丢失
-  Note over R,S: 本步结果尚未保存
-  S-->>R: 恢复或重试本步
-  R->>B: 按 review:ticket 查询
-  B-->>R: 返回原工单
-  R->>R: 对照可信字段验收
-  R->>S: 记录已完成
-```
-
-*图 5｜换控制引擎不消除提交窗口。实验通过资源查询恢复，三套实现都只创建一条工单。*
-
+换控制引擎不消除提交窗口。实验通过资源查询恢复，三套实现都只创建一条工单。
 这里的操作键由运行器生成，模型不能修改。生产中还需加入租户与逻辑动作范围，并定义去重记录留存期。若远端查询最终一致，“没有查到”不能立即证明没有写入，应等待、对账或交由人工处理。完整边界见[事务、幂等与恢复](/writing/harness-engineering-recovery/)。
 
 取消也不能撤销已提交资源。批准前取消可以阻止写入；提交后取消必须报告已有影响，删除或补偿应作为单独动作处理。
@@ -218,7 +131,7 @@ sequenceDiagram
 | Skills 与长期记忆 | 当前任务无需接入 | 重复方法沉淀为 Skill；跨任务有效事实进入记忆 | 增加版本、权限、纠错和删除责任；不要默认全量保存 |
 | 多 Agent | 单 Agent／确定步骤 | 独立资料可委派，集中汇总和最终提交 | 只有并行收益超过协调与审查成本才采用 |
 
-MCP、记忆系统和框架不是同一层的替代选项。MCP 的 host/client/server 架构解决工具等能力的连接边界，应用仍负责运行控制。[MCP 架构](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture) 记忆实现的详细比较见[记忆生命周期](/writing/agent-memory-design-competitive-analysis/)，协作边界见[多 Agent 责任](/writing/harness-operations-multi-agent/)。
+MCP、记忆系统和框架不是同一层的替代选项。MCP 的 host/client/server 架构解决工具等能力的连接边界，应用仍负责运行控制。[MCP 架构](https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture) 记忆实现的详细比较见[记忆生命周期](/writing/agent-memory-design-competitive-analysis/)，协作边界见[多 Agent 责任](/writing/multi-agent-architecture-selection/#harness-operations-multi-agent)。
 
 ## 已验证什么，尚不能据此判断什么
 

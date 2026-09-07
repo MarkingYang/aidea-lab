@@ -1,8 +1,8 @@
 ---
-title: 沿着一条失败任务，把故障定位到边界
+title: 可观测性：任务关联、时间线与故障定位
 description: 用任务、操作与 Trace 的关联关系诊断模型、工具、队列和验收故障，明确异步链路、采样偏差与敏感内容的记录边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,8 +10,10 @@ topics:
   - AI 工程
   - LLMOps
 featured: false
-readingTime: 6 min
+readingTime: 5 min
 ---
+
+<a id="harness-operations-observability"></a>
 
 用户说“资料核验卡住了”，运维看见模型接口正常，开发看见工具没有报错。这两项信息都可能真实：任务也许还在队列里，也许等待审批，也许已经完成写入却迟迟没进入验收。
 
@@ -53,16 +55,7 @@ readingTime: 6 min
 
 OpenTelemetry 的 Span Links 可以关联不同调用链中的相关工作，适合表达某些异步关系。需要同时保留业务 Run ID，才能从用户任务找到不同执行片段。[OTel Traces 文档](https://opentelemetry.io/docs/concepts/signals/traces/)
 
-```mermaid
-flowchart LR
-  A[提交任务 Trace] --> B[队列与持久任务编号]
-  B --> C[Worker 执行 Trace]
-  C --> D[外部操作编号]
-  D --> E[恢复与验收 Trace]
-```
-
-*图 1｜业务标识连接跨时间的运行片段。箭头表示关联关系，不代表所有节点必须共享同一个 Trace。*
-
+业务标识连接跨时间的运行片段。箭头表示关联关系，不代表所有节点必须共享同一个 Trace。
 埋点 SDK 和 GenAI 语义字段也需要版本管理。不要假设某个示例里的字段会永久稳定；升级时核对所用约定的版本、稳定性和后端映射。[OTel GenAI 字段注册表](https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/)
 
 ## 用分层问题定位失败
@@ -87,8 +80,8 @@ flowchart LR
 
 记录模型输入也要控制范围。可默认保留来源引用、摘要和配置标识，将必要原文放在受控存储；是否保存敏感正文应由具体业务与授权要求决定。日志、制品和缓存都需要自己的访问与留存规则。
 
-## 本篇交付物：十分钟诊断路径
+## 十分钟诊断路径
 
-选择[故障实验](/writing/harness-foundations-lab/)的“写入后中断”场景，画出从 Run 到 Operation，再到实际工单的查询路径。接入真实观测平台时，补上 Trace 和故障分类，但保留独立账本。
+选择[故障实验](/writing/harness-engineering-recovery/#harness-foundations-lab)的“写入后中断”场景，画出从 Run 到 Operation，再到实际工单的查询路径。接入真实观测平台时，补上 Trace 和故障分类，但保留独立账本。
 
-在[工作簿](/labs/harness-operations-workbook.md)中写清三件事：一线人员先看哪里，什么证据允许安全重试，什么情况下应交给对账负责人。诊断完成后，把最小失败条件加入[回归系统](/writing/agent-evaluation-engineering/)。
+在[工作簿](/labs/harness-operations-workbook.md)中写清三件事：一线人员先看哪里，什么证据允许安全重试，什么情况下应交给对账负责人。诊断完成后，把最小失败条件加入[回归系统](/writing/agent-system-evaluation-research/#agent-evaluation-engineering)。

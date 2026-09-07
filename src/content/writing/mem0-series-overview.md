@@ -1,8 +1,8 @@
 ---
-title: Mem0：身份过滤、ADD-only 写入与混合检索
-description: 从接口、抽取、存储、检索与部署五层理解 Mem0，先明确它解决什么，再进入算法细节。
+title: Mem0：事实写入、混合检索与部署边界
+description: Mem0 封装从对话抽取事实、按身份存储并检索的路径。沿 add/search 分析 ADD-only、实体信号、当前性与删除，再检查库和自托管服务分别把什么责任留给应用。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,24 +10,14 @@ topics:
   - Agent Memory
   - 开源架构
 featured: true
-readingTime: 7 min
+readingTime: 8 min
 ---
 
+Mem0 封装从对话抽取事实、按身份存储并检索的路径。沿 add/search 分析 ADD-only、实体信号、当前性与删除，再检查库和自托管服务分别把什么责任留给应用。
+
+<a id="mem0-series-overview"></a>
+
 > 版本范围：2026-09-05 核查的 `mem0ai/mem0` 提交 [`dae67f7`](https://github.com/mem0ai/mem0/tree/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3)。本文聚焦开源 Python/TypeScript SDK 与自托管服务；Mem0 Platform 的原生 Graph Memory 不等同于 OSS 能力。
-
-Mem0 最容易被理解成“给 Agent 加一个向量库”，但它真正封装的是一条从对话到可复用事实的短路径：应用只面对 `add`、`search`、显式更新和删除，内部负责事实抽取、作用域、索引与排序。
-
-```mermaid
-flowchart LR
-  A[应用 / Agent] --> B[add / search API]
-  B --> C[事实抽取与实体识别]
-  C --> D[向量与关键词索引]
-  C --> E[变更历史]
-  D --> F[多信号检索]
-  F --> A
-```
-
-*图 1｜Mem0 把记忆压缩成一条可嵌入应用的数据通路。*
 
 ## 先看五层责任
 
@@ -45,19 +35,7 @@ flowchart LR
 
 Mem0 的 `add()` 不是把整段对话原样塞进向量库。启用 `infer` 时，它先建立身份范围，再召回相关旧记忆作为抽取上下文，让模型只输出值得新增的独立事实。
 
-```mermaid
-flowchart LR
-  A[消息] --> B[校验作用域字段与 metadata]
-  B --> C[召回相关旧记忆]
-  C --> D[单次 ADD-only 抽取]
-  D --> E[精确去重]
-  E --> F[批量 Embedding 与写入]
-  F --> G[实体索引]
-  F --> H[History 记录]
-```
-
-*图 2｜v3 写入链路把理解、去重和索引放在一次有边界的追加操作中。*
-
+v3 写入链路把理解、去重和索引放在一次有边界的追加操作中。
 ## 第一道边界是身份，不是 Embedding
 
 `add()` 要求 `user_id`、`agent_id` 或 `run_id` 至少形成一个作用域。普通用户事实与带 assistant 消息的 Agent 经验会选择不同抽取路径；程序性记忆还要求显式的 `procedural_memory` 类型。
@@ -84,21 +62,7 @@ v3 先取相关旧记忆，再用一个 Prompt 抽取“新的、可独立使用
 
 语义相似度擅长找到意思相近的记忆，却不擅长同时识别精确术语、同一实体和事实是否仍然有效。Mem0 v3 因此把查询拆成三类信号，再融合为一个结果分数。
 
-```mermaid
-flowchart LR
-  Q[查询 + 可信 filters] --> S[语义向量]
-  Q --> K[BM25 关键词]
-  Q --> E[实体匹配]
-  S --> F[分数归一与融合]
-  K --> F
-  E --> F
-  F --> R[阈值 / Top-K]
-  R --> X[可选 Reranker]
-  X --> B[上下文预算与当前性判断]
-```
-
-*图 3｜召回负责形成候选集，最终能否使用仍取决于过滤、预算与业务语义。*
-
+召回负责形成候选集，最终能否使用仍取决于过滤、预算与业务语义。
 ## 三类信号修正不同盲区
 
 语义向量覆盖改写和近义表达；BM25 提高错误码、产品名和专有词等精确匹配的可见性；实体集合则让查询与记忆共享人、项目或地点时获得额外信号。系统会根据运行时实际可用的信号调整融合，而不是假设所有后端都具备同样能力。
@@ -117,19 +81,45 @@ v3 的 `search()` 把 `user_id`、`agent_id`、`run_id` 放进 `filters`。过�
 
 因此，Mem0 的检索结果最好被视为“候选证据”，再经过四道门：可信身份范围、有效时间、冲突处理、上下文预算。与 [Agent 记忆设计：检索与装配](/writing/agent-memory-retrieval/)相比，Mem0 提供了多信号平面召回，却没有替应用建立目录导航或团队角色装配模型。
 
-<details>
-<summary>源码入口与官方说明</summary>
+**源码入口与官方说明**
 
 - [`Memory.add()` 与写入实现](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/mem0/memory/main.py)
 - [OSS v2 → v3 迁移说明](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/migration/oss-v2-to-v3.mdx)
 
-</details>
-
-<details>
-<summary>实现与配置入口</summary>
+**实现与配置入口**
 
 - [`Memory.search()` 实现](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/mem0/memory/main.py)
 - [Reranker Search](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/open-source/features/reranker-search.mdx)
 - [Metadata Filtering](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/open-source/features/metadata-filtering.mdx)
 
-</details>
+<a id="mem0-production-boundaries"></a>
+
+## Library 和 Server 保护的边界不同
+
+Library 模式接入最短，适合在单个应用内验证 add/search 闭环，但进程生命周期、并发、重试与凭证都由宿主负责。自托管 Server 增加 API、Dashboard、用户密钥和请求审计等运行面，同时引入数据库迁移、容量、备份与服务升级责任。
+
+两者都不自动完成“把记忆安全注入 Agent”的最后一公里。应用仍需决定检索发生在模型调用前还是工具执行后、召回失败是否降级、多少字符进入 Prompt，以及删除请求如何传播到缓存和派生数据。
+
+## Provider 兼容不等于行为等价
+
+不同 Vector Store 对关键词检索、过滤、批量操作和本地锁的支持并不相同；替换 LLM 会改变抽取粒度，替换 Embedding 会改变历史向量空间，打开 reranker 又会改变延迟和排序。配置层可以统一接口，却无法让这些实现具备同一质量分布。
+
+上线前至少保留一组固定契约样本：跨用户不能串记；新旧事实能正确判定；过期记录不可见；删除后搜索、history、实体集合和应用缓存符合约定；组件故障时主任务能按设计降级。参考 [Agent 记忆设计：治理与验证](/writing/agent-memory-governance/)中的反例，不要只跑一条“我喜欢披萨”的 Happy Path。
+
+## OSS 与 Platform 必须分开描述
+
+当前 v3 的 OSS 不再包含旧版外部 Graph Store 路径；原生、自动的 Graph Memory 属于 Mem0 Platform。OSS 的实体集合服务于检索加权，不返回可遍历的关系图。文章、架构图和采购判断若把两者合并，就会高估自托管能力，也会漏掉平台锁定与数据边界问题。
+
+最可靠的生产清单不是“支持多少 Provider”，而是每次版本和配置变化之后，身份、当前性、召回、延迟、成本、删除与审计是否仍通过同一套回归。
+
+## 适合与不适合
+
+当核心对象是用户事实、偏好和 Agent 经验，数据主要按身份隔离，应用愿意自己维护时间与上下文预算时，Mem0 是清晰的起点。如果问题主要是大规模文档的层级导航、文件关系和逐层读取，应该先研究 [OpenViking 全景](/writing/openviking-series-overview/)；如果重点是团队资产、审核、角色装配与跨 Agent 共享，则应看 [TencentDB Agent Memory 全景](/writing/tencentdb-agent-memory-overview/)。
+
+这不是功能多少的排序，而是核心对象不同。Mem0 的主语是“某个身份拥有的记忆”，不是完整知识文件系统，也不是团队经验控制面。
+
+**官方部署与版本边界**
+
+- [Open Source Overview](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/open-source/overview.mdx)
+- [Open Source Configuration](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/open-source/configuration.mdx)
+- [Self-hosted REST API](https://github.com/mem0ai/mem0/blob/dae67f74f5cc7bf138c7d7d6f9cec5ce4b4373b3/docs/open-source/features/rest-api.mdx)

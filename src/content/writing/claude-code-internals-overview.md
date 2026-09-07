@@ -2,7 +2,7 @@
 title: Claude Code：执行循环、记忆与扩展机制
 description: 沿执行循环、工具证据、项目规则、自动记忆和扩展机制，理解 Claude Code 的职责与公开可验证边界。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,48 +10,23 @@ topics:
   - Coding Agent
   - Agent Harness
 featured: true
-readingTime: 4 min
+readingTime: 3 min
 ---
+
+<a id="claude-code-internals-overview"></a>
 
 Claude Code 的核心实现并未完整开源，公开仓库主要承担分发、Issue、插件和部分工具，因此本文不声称完成逐行源码分析。可验证材料来自[官方仓库](https://github.com/anthropics/claude-code)与[官方架构文档](https://code.claude.com/docs/en/how-claude-code-works)。
 
-研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下图是职责归纳，不是完整部署图，也不作为未运行路径的实测证明。
+研究口径：依据文中链接的公开文档，核对日期为 2026-09-06；下文是公开机制的职责归纳，不作为未运行路径的实测证明。
 
 设用户要求修复登录请求超时并运行回归，不推送代码。Claude Code 可以读取实现、提出修改并调用测试；模型提出 Git 推送时，应由当前权限与任务约束阻止。下文以这条任务说明上下文、工具和扩展的分工。
 
-```mermaid
-flowchart TB
-    U[用户任务] --> L[Agent Loop]
-    L --> T[文件 / Shell / Web / MCP]
-    P[Permission Rules] --> T
-    C[CLAUDE.md / Rules] --> L
-    M[Auto Memory] --> L
-    S[Skills / Subagents] --> L
-    H[Hooks] --> T
-```
-
-*图 1｜Claude Code 把提示上下文、按需能力与确定性自动化放在不同扩展层。*
-
+Claude Code 把提示上下文、按需能力与确定性自动化放在不同扩展层。
 ## 执行循环：工具证据与停止条件
 
 Claude Code 每轮都在重复一个短循环：收集当前上下文，选择工具，获得真实结果，再决定继续、修正或结束。模型负责开放式判断，工具负责让判断接触文件、Git 和运行环境；权限规则则在副作用发生前限制行动范围。
 
-```mermaid
-sequenceDiagram
-    participant U as 用户
-    participant A as Claude
-    participant P as 权限层
-    participant T as 工具与环境
-    U->>A: 任务与约束
-    A->>P: 请求工具调用
-    P-->>A: 允许 / 询问 / 拒绝
-    P->>T: 已允许的动作
-    T-->>A: 输出、错误与状态
-    A->>A: 根据证据继续或停止
-```
-
-*图 2｜权限不替模型思考，但决定哪些推理可以转化为真实副作用。*
-
+权限不替模型思考，但决定哪些推理可以转化为真实副作用。
 这里必须区分“完成动作”和“完成任务”。写入文件只证明工具成功，测试、构建、运行结果和 Diff Review 才构成交付证据。Hook 可以在工具前后追加检查，Subagent 可以隔离大范围探索，但最终仍需主循环把结果纳入任务判断。
 
 官方文档也提醒，项目规则进入上下文后属于模型要遵循的指令，并非强制配置。安全要求应落实到权限规则、工具后端和操作系统隔离；能够阻断动作的同步 Hook 可补充路径内检查，但需验证事件覆盖、禁用和失败处理，不能把它视为不可绕过的总边界。

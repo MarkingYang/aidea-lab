@@ -1,8 +1,8 @@
 ---
-title: 用真实任务选择模型，而不是看一次演示
+title: 模型选型：任务样本、重复运行与完整成本
 description: 沿能力趋势、真实任务与评测证据，判断模型升级是否真正降低交付成本，并形成可重复的选择方法。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -11,8 +11,10 @@ topics:
   - AI 产品
   - 产品方法论
 featured: false
-readingTime: 5 min
+readingTime: 6 min
 ---
+
+<a id="ai-capability-evidence-action"></a>
 
 知道模型擅长什么，只完成了静态判断。真正的产品和采购决策，还要把任务成功率、人工审查、速度与价格放回同一个交付过程。
 
@@ -46,21 +48,7 @@ readingTime: 5 min
 
 ## 三条边界共同决定可委托范围
 
-```mermaid
-flowchart TB
-  M[模型能力<br/>理解、推理与生成] --> D[可委托范围]
-  T[任务边界<br/>目标与完成条件] --> D
-  E[环境边界<br/>工具、反馈与恢复] --> D
-  R[责任边界<br/>权限、审查与接管] --> D
-  D --> P[真实任务 PoC]
-  P --> V{交付证据是否稳定}
-  V -- 是 --> X[扩大任务或权限]
-  V -- 否 --> N[缩小范围并定位失败]
-  N --> P
-```
-
-*图 1｜模型能力只是可委托范围的一部分，任务、环境和责任边界共同决定它能否进入生产。*
-
+模型能力只是可委托范围的一部分，任务、环境和责任边界共同决定它能否进入生产。
 模型能力回答“理论上可能做到什么”；任务边界回答“什么算完成”；环境边界回答“系统如何获得事实并发现错误”；责任边界回答“谁允许行动、谁验收、谁在失败时接管”。缺少其中任何一条，委托都会退化成一次没有明确责任的尝试。
 
 ## 先固定候选，再按任务决定是否路由
@@ -71,8 +59,7 @@ flowchart TB
 
 模型选择因此从一次采购变成持续校准。更完整的路由、执行和评测方法，可继续阅读 [万级能力路由](/writing/capability-routing-at-scale/)与 [评测体系设计](/writing/agent-system-evaluation-research/)。
 
-<details>
-<summary>八类评测分别测什么？有哪些关键限制？</summary>
+**八类评测分别测什么？有哪些关键限制？**
 
 | 评测 | 用普通话解释 | 读分数时要注意 |
 |---|---|---|
@@ -89,10 +76,8 @@ flowchart TB
 
 GAIA 测试榜的领先分数达到 93.36%，对应具体的工具与模型组合，而且榜单采用最佳一次运行。这说明在那套任务上的高水平系统表现已经出现；没有单模型与多模型的受控实验，不能把高分全部归因于多模型协作，也不能外推成通用办公成功率。[官方榜说明](https://gaia-benchmark-leaderboard.hf.space/)
 
-</details>
-
 ## 重复运行与成本的统一口径
 
-至少一次成功与每次都成功分别用 pass@k 与 pass^k 表达；计算和反例统一见[评测指标](/writing/agent-evaluation-metrics/)。机构的平均每题成本与企业的每个合格交付成本也不同，后者需计入失败、人工复核和返工。
+至少一次成功与每次都成功分别用 pass@k 与 pass^k 表达；计算和反例统一见[评测指标](/writing/agent-system-evaluation-research/#agent-evaluation-metrics)。机构的平均每题成本与企业的每个合格交付成本也不同，后者需计入失败、人工复核和返工。
 
 模型适配与故障转移见[模型网关](/writing/harness-operations-model-gateway/)，不要将能力目录的检索路由直接当成 Provider 路由实现。

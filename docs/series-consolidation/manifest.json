@@ -1,0 +1,241 @@
+{
+  "baseline": "d5e12d0",
+  "date": "2026-09-07",
+  "publication": "local preview; not pushed",
+  "articles": [
+    {
+      "series": "harness-engineering",
+      "slug": "prompt-context-harness-engineering",
+      "title": "Harness 架构：从执行循环到图编排与多 Agent",
+      "minutes": 29,
+      "source_articles": [
+        "prompt-context-harness-engineering",
+        "harness-engineering-map",
+        "harness-engineering-loop",
+        "loop-graph-engineering",
+        "langchain-langgraph-frameworks-and-protocols",
+        "multi-agent-architecture-selection",
+        "harness-architecture-selection"
+      ]
+    },
+    {
+      "series": "harness-tools",
+      "slug": "harness-engineering-tools",
+      "title": "工具系统：能力发现、MCP 协议与安全执行",
+      "minutes": 26,
+      "source_articles": [
+        "harness-engineering-tools",
+        "harness-foundations-mcp-lifecycle",
+        "harness-engineering-security",
+        "capability-routing-at-scale",
+        "capability-routing-discovery",
+        "capability-routing-execution",
+        "capability-routing-evaluation"
+      ]
+    },
+    {
+      "series": "harness-recovery",
+      "slug": "harness-foundations-concurrency",
+      "title": "状态与恢复：并发冲突、幂等写入和故障验证",
+      "minutes": 21,
+      "source_articles": [
+        "harness-foundations-concurrency",
+        "harness-engineering-recovery",
+        "harness-foundations-lab"
+      ]
+    },
+    {
+      "series": "agent-memory",
+      "slug": "harness-operations-context",
+      "title": "上下文与记忆：从写入、检索到纠错和删除",
+      "minutes": 23,
+      "source_articles": [
+        "harness-operations-context",
+        "agent-memory-design-competitive-analysis",
+        "agent-memory-writing",
+        "agent-memory-retrieval",
+        "agent-memory-governance"
+      ]
+    },
+    {
+      "series": "harness-operations",
+      "slug": "harness-operations-model-gateway",
+      "title": "Agent 运行治理：模型路由、任务调度与发布回退",
+      "minutes": 24,
+      "source_articles": [
+        "harness-operations-model-gateway",
+        "harness-operations-multi-agent",
+        "harness-operations-observability",
+        "harness-operations-production",
+        "harness-operations-release"
+      ]
+    },
+    {
+      "series": "harness-integration",
+      "slug": "harness-integration-map",
+      "title": "Mini Harness 实战：接入模型、工具、状态与验收",
+      "minutes": 24,
+      "source_articles": [
+        "harness-integration-map",
+        "harness-integration-model",
+        "harness-integration-mcp",
+        "harness-integration-recovery",
+        "harness-integration-lab"
+      ]
+    },
+    {
+      "series": "harness-projects",
+      "slug": "composable-agent-harness-research-method",
+      "title": "Agent 项目架构比较：控制、状态、扩展与部署取舍",
+      "minutes": 22,
+      "source_articles": [
+        "composable-agent-harness-research-method",
+        "claude-code-internals-overview",
+        "codex-system-overview",
+        "kimi-code-system-overview",
+        "opencode-system-overview",
+        "deepseek-harness-composition",
+        "deepseek-harness-state",
+        "deepseek-harness-execution",
+        "hermes-agent-architecture-deep-dive",
+        "hermes-agent-runtime-services",
+        "hermes-agent-memory-governance",
+        "pi-architecture-deep-dive",
+        "pi-session-extension-architecture",
+        "pi-durable-harness-governance"
+      ]
+    },
+    {
+      "series": "harness-skills",
+      "slug": "anthropic-skills-overview",
+      "title": "Skills 工程：把方法、检查与经验变成可维护资产",
+      "minutes": 24,
+      "source_articles": [
+        "anthropic-skills-overview",
+        "addy-agent-skills-overview",
+        "mattpocock-skills-overview",
+        "ecc-architecture-deep-dive",
+        "ecc-hook-runtime-memory",
+        "ecc-memory-supply-chain"
+      ]
+    },
+    {
+      "series": "memory-systems",
+      "slug": "mem0-series-overview",
+      "title": "记忆系统比较：Mem0、OpenViking 与 TencentDB",
+      "minutes": 24,
+      "source_articles": [
+        "mem0-series-overview",
+        "mem0-production-boundaries",
+        "openviking-series-overview",
+        "openviking-session-governance",
+        "tencentdb-agent-memory-overview",
+        "tencentdb-agent-memory-governance"
+      ]
+    },
+    {
+      "series": "agent-evaluation",
+      "slug": "ai-agent-reliability-boundaries",
+      "title": "Agent 评测：任务验收、可靠性、过程证据与发布决策",
+      "minutes": 28,
+      "source_articles": [
+        "ai-agent-reliability-boundaries",
+        "agent-system-evaluation-research",
+        "agent-evaluation-metrics",
+        "agent-evaluation-datasets",
+        "agent-evaluation-engineering",
+        "trace-framework-deep-dive",
+        "trace-lite-production"
+      ]
+    },
+    {
+      "series": "ai-capability-boundaries",
+      "slug": "llm-agent-capability-landscape-2026",
+      "title": "模型能力边界：从公开评测到真实任务选型",
+      "minutes": 20,
+      "source_articles": [
+        "llm-agent-capability-landscape-2026",
+        "ai-capability-evidence-action"
+      ]
+    },
+    {
+      "series": "product-frameworks",
+      "slug": "product-analysis-frameworks",
+      "title": "产品分析：从市场判断到需求取舍、增长与交付",
+      "minutes": 26,
+      "source_articles": [
+        "product-analysis-frameworks",
+        "product-frameworks-market",
+        "product-frameworks-prioritization",
+        "product-frameworks-growth",
+        "product-frameworks-delivery"
+      ]
+    },
+    {
+      "series": "ai-product-work",
+      "slug": "product-work-methodology",
+      "title": "Agent 产品工作：结果契约、自治范围与迭代节奏",
+      "minutes": 20,
+      "source_articles": [
+        "product-work-methodology",
+        "agent-product-evaluation-rhythm"
+      ]
+    },
+    {
+      "series": "claude-code-design",
+      "slug": "claude-code-product-design",
+      "title": "Agent 交互设计：以 Claude Code 看委托、信任与协作",
+      "minutes": 21,
+      "source_articles": [
+        "claude-code-product-design",
+        "claude-code-trust",
+        "claude-code-session-collaboration"
+      ]
+    },
+    {
+      "series": "ai-product-value",
+      "slug": "ai-capability-product-metrics",
+      "title": "AI 产品价值：编程、语音与办公的交付成本",
+      "minutes": 25,
+      "source_articles": [
+        "ai-capability-product-metrics",
+        "ai-value-coding",
+        "ai-value-voice",
+        "ai-value-office"
+      ]
+    },
+    {
+      "series": "agent-work-systems",
+      "slug": "agent-landscape-comparison-methods",
+      "title": "Agent 选型：从竞品定位到任务对照与采用决策",
+      "minutes": 27,
+      "source_articles": [
+        "agent-landscape-comparison-methods",
+        "coding-agent-harness-showdown",
+        "china-work-agent-showdown",
+        "china-work-agent-adoption"
+      ]
+    },
+    {
+      "series": "researcher-founder",
+      "slug": "lu-qi-researcher-founder",
+      "title": "陆奇谈研究型创业者：从处理未知到组织学习",
+      "minutes": 20,
+      "source_articles": [
+        "lu-qi-researcher-founder",
+        "researcher-founder-thinking",
+        "learning-organization-boundaries"
+      ]
+    }
+  ],
+  "validation": {
+    "build_content_graph": "passed: 17 articles / 17 series / 4 domains",
+    "reading_time": "20–29 minutes, estimated by existing checker",
+    "original_article_anchors": "all 88 present in built HTML",
+    "internal_article_fragments": "all resolve",
+    "images_in_articles": 0,
+    "live_article_routes": "17 HTTP 200 with headings",
+    "live_retired_article_routes": "71 redirect to correct article chapter",
+    "diff_check": "passed"
+  }
+}

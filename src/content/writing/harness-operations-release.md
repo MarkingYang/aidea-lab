@@ -1,8 +1,8 @@
 ---
-title: 让每一次变化都有进入生产和退出生产的证据
+title: 版本发布：评测门槛、灰度与在途任务回退
 description: 将模型、上下文、工具、策略与状态版本纳入同一发布单元，通过离线回归、隔离回放、灰度和消融决定扩量、回滚或简化。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -12,6 +12,8 @@ topics:
 featured: false
 readingTime: 6 min
 ---
+
+<a id="harness-operations-release"></a>
 
 更换模型后，平均完成率提升了；同时更新的上下文压缩器却让长资料任务漏掉关键限定条件。如果只记录模型名称，这次发布很难定位，也难以准确回退。
 
@@ -34,7 +36,7 @@ readingTime: 6 min
 
 ## 从契约测试走到真实流量
 
-已有[评测工程篇](/writing/agent-evaluation-engineering/)提供了任务、试次、证据和回归的骨架。这里讨论运行机制变化后的发布路径。
+已有[评测工程篇](/writing/agent-system-evaluation-research/#agent-evaluation-engineering)提供了任务、试次、证据和回归的骨架。这里讨论运行机制变化后的发布路径。
 
 | 阶段 | 回答的问题 | 必须保留的证据 |
 | --- | --- | --- |
@@ -81,7 +83,7 @@ readingTime: 6 min
 
 一次只改一个可解释因素有助于定位，但也要关注机制之间的相互作用。单独关闭两个模块都不退化，不代表同时关闭也安全。硬权限和副作用保护不应因为模型在小样本中表现良好就被删除。
 
-消融实验的输出不是“更少总是更好”，而是某个机制在什么任务条件下有证据值得保留。它可以接续已有的[Harness 减负原则](/writing/harness-engineering-map/)与[评测系统观](/writing/agent-evaluation-engineering/)。
+消融实验的输出不是“更少总是更好”，而是某个机制在什么任务条件下有证据值得保留。它可以接续已有的[Harness 减负原则](/writing/prompt-context-harness-engineering/#harness-engineering-map)与[评测系统观](/writing/agent-system-evaluation-research/#agent-evaluation-engineering)。
 
 ## 用变更记录约束扩量
 

@@ -2,7 +2,7 @@
 title: MCP 生命周期：握手、目录、断线与取消
 description: 固定 MCP 2025-11-25 版本，梳理初始化、能力协商、请求关联与工具目录失效，并区分协议错误和工具执行错误。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-05
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,8 +10,10 @@ topics:
   - AI 工程
   - MCP
 featured: false
-readingTime: 8 min
+readingTime: 7 min
 ---
+
+<a id="harness-foundations-mcp-lifecycle"></a>
 
 服务端口可访问，只能说明某种连接条件成立。Harness 还需要确认双方使用什么协议、提供哪些能力，以及工具定义是否仍然适用。
 
@@ -19,19 +21,7 @@ readingTime: 8 min
 
 ## 初始化建立共同的运行前提
 
-```mermaid
-sequenceDiagram
-    participant H as Harness 客户端
-    participant S as MCP 服务端
-    H->>S: initialize（版本与客户端能力）
-    S-->>H: 初始化结果（版本与服务端能力）
-    H->>S: notifications/initialized
-    H->>S: tools/list（已协商 tools 能力）
-    S-->>H: 工具目录
-```
-
-*图 1｜握手完成后再进入工具发现；图中省略传输、身份验证和错误分支。*
-
+握手完成后再进入工具发现；传输、身份验证和错误处理还需要各自的生命周期管理。
 客户端提出版本，服务端返回所采用的版本与能力；客户端若不支持返回版本，应断开连接。收到初始化结果后，客户端必须发送 `notifications/initialized`。后续行为要遵守已协商的能力。[MCP 生命周期规范](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle)
 
 实验采用更容易验证的工具闸门：完成上述步骤且服务端声明 `tools` 后才允许工具请求。它只实现工具子集，不能用来验证规范中 ping、日志等初始化阶段例外。

@@ -2,7 +2,7 @@
 title: Addy Skills：工程生命周期与验证门槛
 description: 沿研发生命周期组织可触发的 Skills，把需求、实现、验证与反馈接成具有证据门槛的工程流程。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,24 +10,16 @@ topics:
   - AI 工程
   - 开发者工具
 featured: true
-readingTime: 4 min
+readingTime: 3 min
 ---
+
+<a id="addy-agent-skills-overview"></a>
+
+分析范围为 2026-09-05 的公开资料。文中链接未固定到提交，以下作为工作流与资产组织分析，不作为版本级源码审计或实测结果。
 
 [`addyosmani/agent-skills`](https://github.com/addyosmani/agent-skills)不是 Agent Runtime，而是一套面向生产工程的流程资产。它把工作从定义、计划、构建、验证、审查一路组织到发布，并用命令、Skills、专业 Agent、Hook 和参考清单连接各阶段。
 
-```mermaid
-flowchart LR
-    D[Define] --> P[Plan]
-    P --> B[Build]
-    B --> V[Verify]
-    V --> R[Review]
-    R --> S[Ship]
-    V -.失败.-> B
-    R -.修改.-> B
-```
-
-*图 1｜仓库的核心不是技能数量，而是让验证反馈持续回到实现。*
-
+仓库的核心不是技能数量，而是让验证反馈持续回到实现。
 ## 围绕工程生命周期组织 Skill
 
 仓库使用少量命令作为用户入口，再由元 Skill 判断当前阶段需要哪些能力。`/spec`负责把模糊需求变成边界，`/plan`拆成可验收任务，`/build`按切片实现，`/test`与`/review`提供反馈，`/ship`处理发布证据。入口稳定，内部 Skill 可以独立演进。

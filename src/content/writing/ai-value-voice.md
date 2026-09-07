@@ -1,5 +1,5 @@
 ---
-title: 听懂一句话，不等于改对一个闹钟
+title: 语音交付：意图消歧、执行状态与结果验收
 description: 从语音链路到设备终态，定义关键实体、时延、打断与重复执行的验收。
 publishedAt: 2026-09-05
 type: essay
@@ -11,8 +11,10 @@ topics:
   - 产品方法论
 featured: false
 readingTime: 6 min
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 ---
+
+<a id="ai-value-voice"></a>
 
 > 本文是作者提出的产品验收方法，不是厂商内部 KPI 或统一实测排名。案例数据均为假设；已有产品能力以链接的官方文档及具体版本为准。
 
@@ -78,25 +80,5 @@ ASR 的 CER／WER 仍有诊断价值。WER 统计替换、删除和插入等转�
 | 用户追加“取消刚才修改” | 明确撤销对象与是否可恢复 |
 | 网络不可用 | 准确说明失败，不口头宣称完成 |
 
-```mermaid
-stateDiagram-v2
-  state "理解请求" as Understand
-  state "等待澄清" as Clarify
-  state "执行" as Execute
-  state "核对终态" as Verify
-  state "完成" as Done
-  state "待处理" as Pending
-  [*] --> Understand
-  Understand --> Clarify: 目标不唯一
-  Clarify --> Understand: 补充信息
-  Understand --> Execute: 目标与权限明确
-  Execute --> Verify: 收到结果或超时
-  Verify --> Done: 状态正确
-  Verify --> Pending: 失败或未知
-  Done --> [*]
-  Pending --> [*]
-```
-
-*图 1｜超时进入终态核对，而非默认重做。终态不代表外部副作用已撤销。*
-
+超时进入终态核对，而非默认重做。终态不代表外部副作用已撤销。
 这个状态图是验收参考，不对应某个设备 SDK。重点是超时先进入状态核对，而不是直接把请求当作未执行。

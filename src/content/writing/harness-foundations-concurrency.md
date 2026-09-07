@@ -2,7 +2,7 @@
 title: 并发控制：版本冲突、锁与背压
 description: 从异步、并行、共享状态和背压出发，为 Harness 建立工程基础地图，区分调度效率与数据正确性。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -12,6 +12,8 @@ topics:
 featured: true
 readingTime: 6 min
 ---
+
+<a id="harness-foundations-concurrency"></a>
 
 两个核验任务同时读取资料 `source-001`，分别生成摘要，再把结果写回同一条记录。每个任务单独执行都正确，放在一起却可能让其中一次修改消失。问题发生在动作之间，单看模型答案发现不了。
 
@@ -32,23 +34,7 @@ readingTime: 6 min
 
 先画依赖，再挑并发机制。把所有步骤交给 `gather` 或线程池，无法代替依赖分析。
 
-```mermaid
-sequenceDiagram
-  participant A as Worker A
-  participant D as 共享文档
-  participant B as Worker B
-  A->>D: 读取正文与 version=1
-  B->>D: 读取正文与 version=1
-  A->>D: 仅在 version=1 时提交摘要 A
-  D-->>A: 更新 1 行，version=2
-  B->>D: 仅在 version=1 时提交摘要 B
-  D-->>B: 更新 0 行，旧依据已失效
-  B->>D: 读取 version=2 的正文
-  Note over B,D: 重新判断或合并，不能只替换版本号再覆盖
-```
-
-*图 1｜两个 Worker 的计算依据相同，提交时只能有一个匹配旧版本。冲突后要处理新内容，而非机械重试。*
-
+两个 Worker 的计算依据相同，提交时只能有一个匹配旧版本。冲突后要处理新内容，而非机械重试。
 ## 把依据放进提交条件
 
 配套实验采用一条原子条件更新，下面与实验采用相同的判断方式：

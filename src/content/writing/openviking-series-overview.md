@@ -1,8 +1,8 @@
 ---
-title: OpenViking：上下文分层、URI 与层级检索
-description: 从 Context 类型、目录层级、解析、检索、Session 与存储理解 OpenViking 的系统主线。
+title: OpenViking：上下文文件系统、层级检索与一致性
+description: OpenViking 用 URI 和目录结构组织 Resource、Memory 与 Skill。沿摄取、摘要、检索和 Session 提交分析内容与索引如何协作，以及分层读取增加的刷新、权限和一致性成本。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -10,26 +10,14 @@ topics:
   - Agent Memory
   - Context Engineering
 featured: true
-readingTime: 7 min
+readingTime: 9 min
 ---
 
+OpenViking 用 URI 和目录结构组织 Resource、Memory 与 Skill。沿摄取、摘要、检索和 Session 提交分析内容与索引如何协作，以及分层读取增加的刷新、权限和一致性成本。
+
+<a id="openviking-series-overview"></a>
+
 > 版本范围：2026-09-05 核查的 `volcengine/OpenViking` 提交 [`0c5147c`](https://github.com/volcengine/OpenViking/tree/0c5147cae26aec8d6d93445ec6ad86d5faff4035)。本文只描述该快照已经公开的实现；文档中标注为规划或后续优化的能力不当作已完成特性。
-
-OpenViking 不把自己限制为“记忆 SDK”。它把 Resource、Memory 与 Skill 统一成 Agent 可浏览的上下文文件系统：内容有 URI、目录、摘要层和原文层，既能语义检索，也能像文件一样确定性地读取。
-
-```mermaid
-flowchart TB
-  A[Resource / Memory / Skill] --> B[Parse 与 TreeBuilder]
-  B --> C[AGFS 内容层]
-  B --> D[Vector Index 索引层]
-  E[Query] --> F[Intent + Hierarchical Retrieval]
-  F --> D
-  F --> C
-  G[Session] --> H[Compress / Memory Extraction]
-  H --> C
-```
-
-*图 1｜逻辑结构示意；三类对象的具体摄取路径不同，并非全部经过同一个 Parser。*
 
 ## 先把三个对象分开
 
@@ -52,18 +40,7 @@ OpenViking 在 [记忆机制专题](/writing/agent-memory-design-competitive-ana
 
 OpenViking 的 L0、L1、L2 不是三份平铺副本，而是三种读取精度。L0 和 L1 是**目录级语义侧写**，L2 才是原始文件与子目录。普通文件并不会各自得到一套同名的 L0/L1 文件。
 
-```mermaid
-flowchart BT
-  A1[oauth.md · L2] --> B[auth 目录 L1 Overview]
-  A2[jwt.md · L2] --> B
-  A3[api-key.md · L2] --> B
-  B --> C[auth 目录 L0 Abstract]
-  C --> D[上级目录 L1]
-  D --> E[上级目录 L0]
-```
-
-*图 2｜子内容先形成目录 Overview，再以 Abstract 参与上层目录聚合。*
-
+子内容先形成目录 Overview，再以 Abstract 参与上层目录聚合。
 ## 三层分别回答三个问题
 
 | 层 | 默认形态 | 回答的问题 |
@@ -90,19 +67,7 @@ SemanticProcessor 自底向上生成目录语义。内容变化后，父目录�
 
 平面向量检索把所有切片放进同一个候选池。OpenViking 则先判断要找哪类上下文、哪些目录值得进入，再读取少量具体内容。复杂查询因此更像一次有预算的文件系统导航。
 
-```mermaid
-flowchart LR
-  Q[问题 + Session 语境] --> I[Intent Analyzer]
-  I --> T[0-5 个 Typed Queries]
-  T --> R[目标类型与根目录召回]
-  R --> P[优先队列递归下钻]
-  P --> K[Rerank]
-  K --> C[候选 Context]
-  C --> L[按需读取 L2]
-```
-
-*图 3｜先路由类型和目录，再进入细节，避免把整个资料库直接压入候选集。*
-
+先路由类型和目录，再进入细节，避免把整个资料库直接压入候选集。
 ## Typed Query 先拆搜索意图
 
 系统可以结合 Session 摘要、最近消息与当前问题，生成少量带目标类型和优先级的查询。某个问题可能同时需要用户 Memory、项目 Resource 和操作 Skill；拆分让它们分别在合适的命名空间搜索，再汇合为上下文。
@@ -119,22 +84,55 @@ HierarchicalRetriever 从高分目录起步，把候选放进优先队列，读�
 
 如果父目录摘要漏掉一个重要子项，层级检索可能根本不会走到正确文件；目录太深会增加决策次数，太扁又退化为平面候选池。因此需要监控三类失败：目标 L2 存在但祖先未召回；L1 召回但没有继续下钻；候选正确却被 reranker 降权。
 
-评测不能只看最终答案，还应记录 Typed Query、访问过的目录、停止原因和最终加载的 L2。这样才能区分是摄取、导航还是排序出了问题。相关的通用诊断框架可参考 [Agent 评测：把一次打分变成回归系统](/writing/agent-evaluation-engineering/)。
+评测不能只看最终答案，还应记录 Typed Query、访问过的目录、停止原因和最终加载的 L2。这样才能区分是摄取、导航还是排序出了问题。相关的通用诊断框架可参考 [Agent 评测：把一次打分变成回归系统](/writing/agent-system-evaluation-research/#agent-evaluation-engineering)。
 
-<details>
-<summary>官方概念文档</summary>
+**官方概念文档**
 
 - [Context Layers](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/03-context-layers.md)
 - [Viking URI](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/04-viking-uri.md)
 - [Storage Architecture](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/05-storage.md)
 
-</details>
-
-<details>
-<summary>实现入口</summary>
+**实现入口**
 
 - [Retrieval Mechanism](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/07-retrieval.md)
 - [`HierarchicalRetriever`](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/retrieve/hierarchical_retriever.py)
 - [`IntentAnalyzer`](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/openviking/retrieve/intent_analyzer.py)
 
-</details>
+<a id="openviking-session-governance"></a>
+
+`session.commit()` 先把原始消息同步归档，返回 `task_id` 与 `archive_uri`，再由后台完成摘要、记忆提取和索引更新。调用方查询任务终态；收到 accepted 不代表新记忆已经可搜索。
+
+## 记忆不是一条自由文本
+
+内置 Memory 类型覆盖 profile、preferences、entities、events、identity、soul、cases、trajectories 与 experiences。不同类型写入不同路径和 schema；候选记忆还会与相似内容比较，决定跳过、新建、合并或删除。
+
+这些类型分别保存身份、事件和经验，也扩大了错误影响：一条错误偏好影响回答，一条错误 experience 可能影响未来行动。因此，原始 Session 归档、变更差异和来源关系必须保留，便于回看“这条认识从哪里来”。
+
+## 双层存储需要明确失败状态
+
+内容本体与 Vector Index 分离后，失败至少有三种：内容已写、索引未完成；索引仍指向旧 URI；摘要已更新、父级仍陈旧。事务模型、后台任务状态、快照和重建能力共同决定系统能否从这些中间态恢复。
+
+例如会议记录已归档，但向量服务暂时不可用：原始记录仍在，搜索可能看不到新记忆。排障应检查该次 task 与索引写入，不能因搜索为空就再次把整场会议当成新输入。
+
+应用不应把 `commit()` 返回当作所有记忆已经可搜索。更稳妥的契约是拿到 task ID，等待明确终态，并在超时后区分“仍处理中”“已失败”和“结果未知”。
+
+## 权限必须与检索使用同一边界
+
+多租户模式把 account 和 user 身份注入存储路径与检索过滤；`viking://~` 只能由已认证请求展开。共享 `resources` 还可以启用目录继承 ACL，read、write、manage 权限同时约束文件操作和搜索结果。
+
+这是关键原则：不能先全库向量召回，再在展示层隐藏无权结果。过滤必须进入候选集合，否则日志、reranker 或中间上下文仍可能接触越权数据。Skill 中的敏感配置又通过占位符与独立版本存储处理，说明“能检索内容”和“能恢复秘密”也应分开。
+
+这与 [Agent 记忆设计：治理与验证](/writing/agent-memory-governance/)形成呼应：长期记忆需要撤权、来源与删除；OpenViking 进一步把这些约束落到 URI、任务状态和共享目录上。
+
+## 真正的代价是持续维护结构
+
+分层目录并不会凭空出现。Parser 要正确保留材料结构，SemanticProcessor 要刷新摘要，索引要跟随文件变化，检索要处理陈旧父级，权限要同时作用于浏览与召回。任何一环失配，都可能让 Agent 看见一张漂亮但过期的地图。
+
+因此生产关注点应从“有没有 L0/L1/L2”转向四个可验证问题：摘要覆盖了多少子项；内容变化多久能进入父级语义；索引与 AGFS 是否一致；一次结果为何进入或离开候选集。只有这些证据存在，目录才是认知导航，而不是另一层不可见缓存。
+
+**官方机制说明**
+
+- [Session Management](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/08-session.md)
+- [Transaction Model](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/09-transaction.md)
+- [Multi-Tenant](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/11-multi-tenant.md)
+- [Resource ACL](https://github.com/volcengine/OpenViking/blob/0c5147cae26aec8d6d93445ec6ad86d5faff4035/docs/en/concepts/15-acl.md)

@@ -2,7 +2,7 @@
 title: Matt Pocock Skills：需求对齐与反馈循环
 description: 从需求和共享语言的对齐进入测试与反馈循环，理解小型 Skills 怎样减少误解和修改风险。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -13,22 +13,13 @@ featured: true
 readingTime: 3 min
 ---
 
+<a id="mattpocock-skills-overview"></a>
+
+分析范围为 2026-09-05 的公开资料。文中链接未固定到提交，以下作为工作流与资产组织分析，不作为版本级源码审计或实测结果。
+
 [`mattpocock/skills`](https://github.com/mattpocock/skills)明确反对由庞大方法论接管完整开发过程，转而提供小型、可修改、可组合的个人工程 Skills。仓库从真实失败出发：Agent 没理解需求、不了解项目语言、缺少运行反馈，以及在高速度下制造结构熵。
 
-```mermaid
-flowchart TB
-    M[需求误解] --> G[Grill / 澄清]
-    V[术语冗余] --> C[CONTEXT.md / 共享语言]
-    F[反馈不足] --> T[TDD / Diagnosing]
-    E[代码熵] --> A[Architecture Survey]
-    G --> W[可验证工作]
-    C --> W
-    T --> W
-    A --> W
-```
-
-*图 1｜Skills 不是完整流程引擎，而是对常见失效点的局部干预。*
-
+Skills 不是完整流程引擎，而是对常见失效点的局部干预。
 ## 需求与共享语言的对齐
 
 `grill-me`与`grill-with-docs`不急于给方案，而是通过连续问题暴露目标、边界和未知。它们把“需求不清”当作需要处理的工作状态，而不是让模型用默认假设填满空白。
@@ -45,15 +36,5 @@ flowchart TB
 
 架构 Skill 则不承诺自动重构整个旧系统，而是调查深模块机会，把候选和理由交给人选择。这种克制很重要：Agent 能快速制造大范围变化，但结构判断需要业务语言、历史约束和迁移成本。
 
-```mermaid
-flowchart LR
-    H[假设] --> X[最小变化]
-    X --> E[测试 / 类型 / 运行证据]
-    E --> D{是否支持假设}
-    D -->|否| H
-    D -->|是| N[保留并进入下一步]
-```
-
-*图 2｜小步循环让错误尽早暴露，速度来自反馈频率而非单次变更规模。*
-
+小步循环让错误尽早暴露，速度来自反馈频率而非单次变更规模。
 Skill 可以规定循环，但证据仍必须来自真实工具。没有测试环境、浏览器或可观察系统，流程写得再好也只能得到语言上的“验证”。

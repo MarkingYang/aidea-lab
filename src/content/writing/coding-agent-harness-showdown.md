@@ -2,7 +2,7 @@
 title: Claude Code、Codex 与 Kimi Code 的 Harness 分歧
 description: 从循环、上下文、工具、验证、安全与协作出发，比较三种产品化 Coding Agent 的系统分歧。
 publishedAt: 2026-09-04
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -14,6 +14,8 @@ featured: true
 readingTime: 8 min
 ---
 
+<a id="coding-agent-harness-showdown"></a>
+
 本文比较 Claude Code、Codex 与 Kimi Code 的公开产品结构，资料基线为 2026-09-05。比较同样的六项职责：上下文、执行、验证、协作、扩展和治理。尚无同任务实测，下面的产品取向是采用假设，不能用于总体完成率排名。
 
 ## Harness 到底在解决什么
@@ -22,20 +24,7 @@ OpenAI 在[拆解 Codex Agent Loop](https://openai.com/index/unrolling-the-codex
 
 Coding Agent 可以按下列职责拆解：
 
-```mermaid
-flowchart LR
-  I[交互与任务入口] --> C[上下文装配]
-  C --> L[Agent Loop / 计划与纠偏]
-  L --> T[文件、Shell、Web、MCP 工具]
-  T --> E[本地 / 云端执行环境]
-  E --> V[测试、Diff、预览、审查]
-  V --> L
-  G[权限、沙箱、凭证、审计] -.约束.-> T
-  O[并行、Session、Worktree、恢复] -.扩展.-> L
-```
-
-*图 1｜Coding Agent Harness 的最小工作闭环。*
-
+Coding Agent Harness 的最小工作闭环。
 模型决定“下一步想做什么”；Harness 决定模型看见什么、能做什么、做完如何验证、失败能否恢复。只看模型榜单，就像只看发动机马力来比较整辆车。
 
 ## 系统职责对比：内置能力与自建范围

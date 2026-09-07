@@ -1,5 +1,5 @@
 ---
-title: 先把记忆放回完整生命周期
+title: 记忆系统比较：核心对象与生命周期取舍
 description: 从证据、提炼、演化、检索和治理理解三类开源记忆方案，建立系统骨架。
 publishedAt: 2026-09-04
 type: essay
@@ -11,9 +11,11 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 5 min
-updatedAt: 2026-09-06
+readingTime: 4 min
+updatedAt: 2026-09-07
 ---
+
+<a id="agent-memory-design-competitive-analysis"></a>
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
@@ -23,29 +25,13 @@ updatedAt: 2026-09-06
 
 向量相似度只能解释其中一小段。真正的记忆系统还要决定什么值得记、何时生效、怎样纠错、谁能读取以及多少内容值得进入上下文。
 
-本文用七个维度比较记忆方案；写入、检索与治理各有主文，项目内部调用链集中在上方链接的实现研究中。
+比较先明确核心对象与接入位置，再检查写入、读取和治理责任。具体数据流见三个项目的独立研究。
 
 ## 先定义竞品框架：记忆系统要完成七件事
 
 一套 Agent 记忆系统可以被画成一个闭环：
 
-```mermaid
-flowchart LR
-  A[对话、事件、工具轨迹] --> B[1. 写入触发]
-  B --> C[2. 选择与提炼]
-  C --> D[3. 表示与组织]
-  D --> E[4. 合并、更新、遗忘]
-  E --> F[5. 检索与排序]
-  F --> G[6. 预算化注入]
-  G --> H[Agent 决策与行动]
-  H --> A
-  I[7. 权限、溯源、评测] -.约束整个闭环.-> C
-  I -.-> E
-  I -.-> G
-```
-
-*图 1｜从写入触发到使用反馈的记忆生命周期。*
-
+从写入触发到使用反馈的记忆生命周期。
 由此得到本文的七维竞品框架。
 
 | 维度 | 核心问题 | 常见失败 |
@@ -76,7 +62,7 @@ flowchart LR
 
 从历史抽取出一句事实，不等于它永远正确；从成功轨迹生成 Skill，也不等于以后所有相似任务都可以照做。跨越这几层时，需要来源、时间、适用条件与验证。
 
-OpenViking 的 L0/L1/L2 是读取精度；腾讯分支的 L0–L3 是从原始对话到高层画像的提炼层级。数字相同不能直接对齐，后文会分别展开。
+OpenViking 的 L0/L1/L2 是读取精度；腾讯分支的 L0–L3 是从原始对话到高层画像的提炼层级。数字相同不能直接对齐，具体实现分别见 [OpenViking](/writing/openviking-series-overview/)和 [TencentDB Agent Memory](/writing/tencentdb-agent-memory-overview/)。
 
 ## 实践前先画边界
 

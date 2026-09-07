@@ -1,5 +1,5 @@
 ---
-title: 从用户旅程到一次有边界的发布
+title: 需求取舍：用户旅程、优先级与发布范围
 description: 用 KANO、用户旅程、RICE 和 MoSCoW，把用户证据变成可解释的版本选择。
 publishedAt: 2026-09-05
 type: essay
@@ -10,9 +10,11 @@ topics:
   - 用户研究
   - 增长
 featured: false
-readingTime: 6 min
-updatedAt: 2026-09-06
+readingTime: 5 min
+updatedAt: 2026-09-07
 ---
+
+<a id="product-frameworks-prioritization"></a>
 
 > 案例说明：MeetFlow 是虚构的 AI 会议助手，服务中小销售团队。以下市场变化、用户数据、财务数字与目标均为教学假设，不是市场调查、法律判断或收益承诺。
 
@@ -90,19 +92,7 @@ MoSCoW 把范围分为 Must have、Should have、Could have、Won't have this ti
 
 同样，RICE 的 Confidence 不是团队支持人数。采访五位热情用户，不能证明八百位客户都有相同需求。[Intercom 的 RICE 原文](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/)也明确提醒，依赖和必要基础能力可能让执行顺序不同于分数顺序。
 
-```mermaid
-flowchart LR
-  E[观察到的任务阻碍] --> H[需求假设]
-  H --> V[小范围验证]
-  V --> R[候选优先级]
-  R --> B{发布边界}
-  B --> M[本次承诺]
-  B --> N[本次不做]
-  V -. 反证 .-> H
-```
-
-*图 1｜用户证据如何进入一次发布的承诺与取舍。*
-
+用户证据如何进入一次发布的承诺与取舍。
 ## 实践：给高分需求做一次压力测试
 
 把 CRM 同步的 Reach 从 800 下调到 400，Effort 从 4 上调到 8，其他假设不变，得分从 320 变成 80。这个变化不自动推翻它，但会暴露团队对触达和成本的依赖。

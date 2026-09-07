@@ -1,5 +1,5 @@
 ---
-title: 找到相关记忆，只完成了一半
+title: 记忆检索：候选证据、时效与上下文装配
 description: 比较混合检索、目录导航与上下文装配，说明授权过滤、时间有效性和预算的不同责任。
 publishedAt: 2026-09-05
 type: essay
@@ -11,9 +11,11 @@ topics:
   - OpenViking
   - TencentDB Agent Memory
 featured: false
-readingTime: 6 min
-updatedAt: 2026-09-06
+readingTime: 5 min
+updatedAt: 2026-09-07
 ---
+
+<a id="agent-memory-retrieval"></a>
 
 > 版本范围：2026-09-05 核查的 Mem0 v3 迁移文档、OpenViking main 文档和 TencentDB Agent Memory 的 feat/server_team 分支。云服务、开源库与开发分支分别看待；Team Memory 仍是 Beta，本文不作统一性能排名。
 
@@ -79,7 +81,7 @@ TopK(vector_similarity)
 
 身份权限不是相关性特征，不能通过更高相似度抵消。检索可见性过滤应发生在候选内容暴露给模型之前；注入和执行时还需检查权限是否已经变化。
 
-![查询当前附近的办公地点时，上海旧住址仅作历史，其他用户的无权记录被过滤；杭州当前住址经检索、去重和预算检查后，连同来源与时间进入上下文。](../../assets/illustrations/memory-context-filter.png "记忆图解｜沿用开篇的搬家例子。先按当前身份与查询时间过滤，再比较相关性；历史事实仍可保留。")
+查询当前附近的办公地点时，上海旧住址仅作历史，其他用户的无权记录被过滤；杭州当前住址经检索、去重和预算检查后，连同来源与时间进入上下文。
 
 ## 预算不是简单截断字符串
 

@@ -1,5 +1,5 @@
 ---
-title: 用户真的得到价值，生意才有机会成立
+title: 增长分析：漏斗诊断与单位经济性
 description: 用漏斗与根因假设定位价值断点，再用商业模式与成本口径检验持续性。
 publishedAt: 2026-09-05
 type: essay
@@ -11,8 +11,10 @@ topics:
   - 增长
 featured: false
 readingTime: 7 min
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 ---
+
+<a id="product-frameworks-growth"></a>
 
 > 案例说明：MeetFlow 是虚构的 AI 会议助手，服务中小销售团队。以下市场变化、用户数据、财务数字与目标均为教学假设，不是市场调查、法律判断或收益承诺。
 

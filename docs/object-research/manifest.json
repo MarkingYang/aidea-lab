@@ -1,0 +1,717 @@
+{
+  "date": "2026-09-07",
+  "status": "release authorized by user on 2026-09-07",
+  "baseline": "d5e12d0",
+  "supersedes": "docs/series-consolidation/manifest.json",
+  "article_count": 55,
+  "group_count": 22,
+  "domain_count": 8,
+  "articles": [
+    {
+      "slug": "prompt-context-harness-engineering",
+      "sources": [
+        "prompt-context-harness-engineering",
+        "harness-engineering-map"
+      ],
+      "title": "Harness 架构：职责分层、模块接口与任务闭环",
+      "intro": "Harness 把模型提案接到真实执行与验收上。用一次购物车修复区分 Prompt、Context 与运行时，再确定模块交换的任务、动作、结果与证据。",
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-engineering-loop",
+      "sources": [
+        "harness-engineering-loop",
+        "loop-graph-engineering"
+      ],
+      "title": "Agent 控制流：循环、规划、分支与汇合",
+      "intro": "循环管理下一次行动，执行图管理任务之间的依赖。用状态、进展、停止条件和汇合规则判断何时需要增加编排，避免把模型的计划文本直接当作执行状态。",
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "claude-code-internals-overview",
+      "sources": [
+        "claude-code-internals-overview"
+      ],
+      "title": "Claude Code：执行循环、记忆与扩展机制",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "codex-system-overview",
+      "sources": [
+        "codex-system-overview"
+      ],
+      "title": "Codex：运行时、沙箱与持续任务",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "kimi-code-system-overview",
+      "sources": [
+        "kimi-code-system-overview"
+      ],
+      "title": "Kimi Code：Session、Skills 与任务委派",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "opencode-system-overview",
+      "sources": [
+        "opencode-system-overview"
+      ],
+      "title": "OpenCode：客户端、服务端与扩展系统",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "deepseek-harness-composition",
+      "sources": [
+        "deepseek-harness-composition",
+        "deepseek-harness-state",
+        "deepseek-harness-execution"
+      ],
+      "title": "DeepSeek Harness：插件生命周期、事件日志与执行契约",
+      "intro": "DeepSeek Harness 把运行能力拆成可组合插件，把模型输入与执行事实记录为事件。沿一次“修复登录超时、不部署”的任务，依次分析组件如何出现和退出、状态怎样恢复、动作如何受约束，以及这些设计把复杂度放到了哪里。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "hermes-agent-architecture-deep-dive",
+      "sources": [
+        "hermes-agent-architecture-deep-dive",
+        "hermes-agent-runtime-services",
+        "hermes-agent-memory-governance"
+      ],
+      "title": "Hermes：运行内核、常驻服务与跨会话学习",
+      "intro": "Hermes 的设计中心是持续工作：任务从不同入口进入，执行结果需要交付，经验又会影响未来任务。本文把 Loop、Gateway、Session、Memory 与 Skills 放在同一条运行链上，分析各自的状态所有权和失败边界。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "pi-architecture-deep-dive",
+      "sources": [
+        "pi-architecture-deep-dive",
+        "pi-session-extension-architecture",
+        "pi-durable-harness-governance"
+      ],
+      "title": "Pi：最小内核、Session 事件树与扩展边界",
+      "intro": "Pi 以模型协议、通用循环、AgentSession 和展示入口分离职责。本文从一次输入走到工具执行和历史恢复，解释最小内核为何仍需要严格事件语义，并单独检查实验性 durable 路径。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "langchain-agent-architecture",
+      "sources": [
+        "langchain-langgraph-frameworks-and-protocols"
+      ],
+      "title": "LangChain：模型、工具、中间件与 Agent 装配",
+      "intro": "LangChain 的分析对象是高层 Agent 构建接口：模型、工具、消息和行为扩展如何接成一条循环。以下沿用 2026-09-05 核对的官方 Python 文档，以查错码的知识库助手说明装配方式和应用仍需承担的责任。",
+      "kind": "project",
+      "sections": [
+        1,
+        2,
+        6,
+        7
+      ]
+    },
+    {
+      "slug": "langgraph-runtime-architecture",
+      "sources": [
+        "langchain-langgraph-frameworks-and-protocols"
+      ],
+      "title": "LangGraph：状态、节点、检查点与中断恢复",
+      "intro": "LangGraph 将运行过程表达为状态、节点和转移。以下沿用 2026-09-05 核对的官方 Python 文档，用“起草工单—等待审核—提交”追踪合并规则和恢复位置，区分图状态恢复与外部业务事实。",
+      "kind": "project",
+      "sections": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "anthropic-skills-overview",
+      "sources": [
+        "anthropic-skills-overview"
+      ],
+      "title": "Anthropic Skills：规范、渐进加载与文档管线",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "addy-agent-skills-overview",
+      "sources": [
+        "addy-agent-skills-overview"
+      ],
+      "title": "Addy Skills：工程生命周期与验证门槛",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "mattpocock-skills-overview",
+      "sources": [
+        "mattpocock-skills-overview"
+      ],
+      "title": "Matt Pocock Skills：需求对齐与反馈循环",
+      "intro": null,
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "ecc-architecture-deep-dive",
+      "sources": [
+        "ecc-architecture-deep-dive",
+        "ecc-hook-runtime-memory",
+        "ecc-memory-supply-chain"
+      ],
+      "title": "ECC：跨 Harness 资产、安装器、Hooks 与经验治理",
+      "intro": "ECC 管理 Skills、Rules、Hooks 与安装策略，模型和工具主循环由宿主执行。顺着“共享资产—安装计划—平台适配—事件检查—经验更新”分析它的工程内核，最后区分已实现能力与 ECC 2.0 Alpha。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "harness-integration-map",
+      "sources": [
+        "harness-integration-map",
+        "harness-integration-model",
+        "harness-integration-mcp",
+        "harness-integration-recovery",
+        "harness-integration-lab"
+      ],
+      "title": "Mini Harness：模块装配与可恢复执行",
+      "intro": "用本地工单任务装配模型适配器、MCP 工具、SQLite 状态和独立验收器。各模块按同一个任务契约接线；固定响应实验验证控制与恢复，不代表已经验证真实模型的任务能力。",
+      "kind": "implementation",
+      "sections": null
+    },
+    {
+      "slug": "llm-agent-capability-landscape-2026",
+      "sources": [
+        "llm-agent-capability-landscape-2026"
+      ],
+      "title": "模型能力边界：从公开评测到任务责任",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-operations-model-gateway",
+      "sources": [
+        "harness-operations-model-gateway"
+      ],
+      "title": "模型网关：能力约束、协议适配与降级语义",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-engineering-tools",
+      "sources": [
+        "harness-engineering-tools"
+      ],
+      "title": "工具契约：输入、结果与错误语义",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-foundations-mcp-lifecycle",
+      "sources": [
+        "harness-foundations-mcp-lifecycle"
+      ],
+      "title": "MCP 生命周期：握手、目录、断线与取消",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-engineering-security",
+      "sources": [
+        "harness-engineering-security"
+      ],
+      "title": "执行安全：身份、授权、审批与沙箱",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "capability-routing-at-scale",
+      "sources": [
+        "capability-routing-at-scale",
+        "capability-routing-discovery",
+        "capability-routing-execution",
+        "capability-routing-evaluation"
+      ],
+      "title": "能力路由：从目录检索到可执行方案",
+      "intro": "能力路由要把用户意图变成满足输入、身份和执行条件的方案。沿“能力描述—召回—正文精排—执行规划—结果反馈”分析整条链路，分别处理误召回、不可执行和执行失败。",
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-foundations-concurrency",
+      "sources": [
+        "harness-foundations-concurrency"
+      ],
+      "title": "并发控制：版本冲突、锁与背压",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-engineering-recovery",
+      "sources": [
+        "harness-engineering-recovery",
+        "harness-foundations-lab"
+      ],
+      "title": "故障恢复：事务边界、幂等、对账与补偿",
+      "intro": "恢复要同时回答“运行到了哪里”和“外部动作是否已发生”。从一次写入的提交边界进入幂等、对账与补偿，再用受控故障实验检查重复、结果未知和恢复证据。",
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-operations-context",
+      "sources": [
+        "harness-operations-context"
+      ],
+      "title": "上下文组装：证据、状态与输入预算",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "agent-memory-writing",
+      "sources": [
+        "agent-memory-writing"
+      ],
+      "title": "记忆写入：历史、当前事实与纠错",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "agent-memory-retrieval",
+      "sources": [
+        "agent-memory-retrieval"
+      ],
+      "title": "记忆检索：候选证据、时效与上下文装配",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "agent-memory-governance",
+      "sources": [
+        "agent-memory-governance"
+      ],
+      "title": "记忆治理：共享、撤权、删除与验证",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "mem0-series-overview",
+      "sources": [
+        "mem0-series-overview",
+        "mem0-production-boundaries"
+      ],
+      "title": "Mem0：事实写入、混合检索与部署边界",
+      "intro": "Mem0 封装从对话抽取事实、按身份存储并检索的路径。沿 add/search 分析 ADD-only、实体信号、当前性与删除，再检查库和自托管服务分别把什么责任留给应用。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "openviking-series-overview",
+      "sources": [
+        "openviking-series-overview",
+        "openviking-session-governance"
+      ],
+      "title": "OpenViking：上下文文件系统、层级检索与一致性",
+      "intro": "OpenViking 用 URI 和目录结构组织 Resource、Memory 与 Skill。沿摄取、摘要、检索和 Session 提交分析内容与索引如何协作，以及分层读取增加的刷新、权限和一致性成本。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "tencentdb-agent-memory-overview",
+      "sources": [
+        "tencentdb-agent-memory-overview",
+        "tencentdb-agent-memory-governance"
+      ],
+      "title": "TencentDB Agent Memory：协议代理、分层记忆与团队资产",
+      "intro": "TencentDB Agent Memory 把记忆接入放在模型协议代理处，再通过分层认识和团队资产进行共享。本文从一次请求的注入与回写走到权限和 Loadout，区分已有 Beta 实现与采用时需要补齐的治理。",
+      "kind": "project",
+      "sections": null
+    },
+    {
+      "slug": "harness-operations-observability",
+      "sources": [
+        "harness-operations-observability"
+      ],
+      "title": "可观测性：任务关联、时间线与故障定位",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-operations-production",
+      "sources": [
+        "harness-operations-production"
+      ],
+      "title": "任务服务：队列、租约、隔离令牌与背压",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "harness-operations-release",
+      "sources": [
+        "harness-operations-release"
+      ],
+      "title": "版本发布：评测门槛、灰度与在途任务回退",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "product-frameworks-market",
+      "sources": [
+        "product-frameworks-market"
+      ],
+      "title": "市场判断：环境、竞争、规模与定位",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "product-frameworks-prioritization",
+      "sources": [
+        "product-frameworks-prioritization"
+      ],
+      "title": "需求取舍：用户旅程、优先级与发布范围",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "product-frameworks-growth",
+      "sources": [
+        "product-frameworks-growth"
+      ],
+      "title": "增长分析：漏斗诊断与单位经济性",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "product-frameworks-delivery",
+      "sources": [
+        "product-frameworks-delivery"
+      ],
+      "title": "产品复盘：目标、证据与经验复用",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "product-work-methodology",
+      "sources": [
+        "product-work-methodology",
+        "agent-product-evaluation-rhythm"
+      ],
+      "title": "Agent 产品设计：结果契约、自治范围与反馈迭代",
+      "intro": "Agent 产品需要说明用户委托了什么、系统可以影响什么，以及交付依据是什么。把结果契约、上下文和自治边界接到同一套任务评测中，运行结果才能改变下一轮产品决定。",
+      "kind": "product",
+      "sections": null
+    },
+    {
+      "slug": "claude-code-product-design",
+      "sources": [
+        "claude-code-product-design",
+        "claude-code-trust",
+        "claude-code-session-collaboration"
+      ],
+      "title": "Claude Code 产品设计：委托、信任与协作",
+      "intro": "以 Claude Code 为例，沿目标输入、执行反馈、变更验收到并行接管研究完整任务体验。权限、验证界面与 Session/Worktree 各自支持不同决定，产品可用性需要连同状态语义检查。",
+      "kind": "product",
+      "sections": null
+    },
+    {
+      "slug": "ai-capability-product-metrics",
+      "sources": [
+        "ai-capability-product-metrics"
+      ],
+      "title": "AI 交付价值：指标口径、失败成本与人工基线",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "ai-value-coding",
+      "sources": [
+        "ai-value-coding"
+      ],
+      "title": "编程交付：测试、变更范围与可复验证据",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "ai-value-voice",
+      "sources": [
+        "ai-value-voice"
+      ],
+      "title": "语音交付：意图消歧、执行状态与结果验收",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "ai-value-office",
+      "sources": [
+        "ai-value-office"
+      ],
+      "title": "办公交付：数据口径、可编辑文件与来源核验",
+      "intro": null,
+      "kind": "product-method",
+      "sections": null
+    },
+    {
+      "slug": "coding-agent-harness-showdown",
+      "sources": [
+        "coding-agent-harness-showdown"
+      ],
+      "title": "Claude Code、Codex 与 Kimi Code 的 Harness 分歧",
+      "intro": null,
+      "kind": "comparison",
+      "sections": null
+    },
+    {
+      "slug": "china-work-agent-showdown",
+      "sources": [
+        "china-work-agent-showdown",
+        "china-work-agent-adoption"
+      ],
+      "title": "办公 Agent 比较：Kimi Work、WorkBuddy 与豆包工作",
+      "intro": "三款产品的办公入口、工作对象和交付边界不同。先比较公开定位，再用同一份资料与同一个交付契约设计核验，检查文件成果、系统写回和人工接管，避免把演示能力直接写成采用结论。",
+      "kind": "comparison",
+      "sections": null
+    },
+    {
+      "slug": "agent-memory-design-competitive-analysis",
+      "sources": [
+        "agent-memory-design-competitive-analysis"
+      ],
+      "title": "记忆系统比较：核心对象与生命周期取舍",
+      "intro": null,
+      "kind": "comparison",
+      "sections": null
+    },
+    {
+      "slug": "harness-architecture-selection",
+      "sources": [
+        "harness-architecture-selection"
+      ],
+      "title": "Agent Harness 架构选型：轻量循环、图式编排与持久工作流",
+      "intro": null,
+      "kind": "selection",
+      "sections": null
+    },
+    {
+      "slug": "multi-agent-architecture-selection",
+      "sources": [
+        "multi-agent-architecture-selection",
+        "harness-operations-multi-agent"
+      ],
+      "title": "Multi-Agent 选型：任务拆分、协作拓扑与部署成本",
+      "intro": "先证明任务需要独立上下文或并行判断，再选择协作拓扑、框架和部署方式。把委派契约、汇合、共享写入、取消与成本放进同一次 PoC，避免把多个 Agent 当成默认升级。",
+      "kind": "selection",
+      "sections": null
+    },
+    {
+      "slug": "ai-capability-evidence-action",
+      "sources": [
+        "ai-capability-evidence-action"
+      ],
+      "title": "模型选型：任务样本、重复运行与完整成本",
+      "intro": null,
+      "kind": "selection",
+      "sections": null
+    },
+    {
+      "slug": "agent-landscape-comparison-methods",
+      "sources": [
+        "agent-landscape-comparison-methods"
+      ],
+      "title": "Agent 选型：比较维度、任务契约与 PoC",
+      "intro": null,
+      "kind": "selection",
+      "sections": null
+    },
+    {
+      "slug": "ai-agent-reliability-boundaries",
+      "sources": [
+        "ai-agent-reliability-boundaries"
+      ],
+      "title": "可靠性边界：验收、风险与自治范围",
+      "intro": null,
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "agent-system-evaluation-research",
+      "sources": [
+        "agent-system-evaluation-research",
+        "agent-evaluation-metrics",
+        "agent-evaluation-datasets",
+        "agent-evaluation-engineering"
+      ],
+      "title": "Agent 评测系统：任务、指标、裁判与持续回归",
+      "intro": "一套评测系统需要稳定的任务契约、样本、裁判和运行记录。沿一次任务从验收到发布的路径，明确成功率、成本和过程诊断各自能支持什么决定，并把失败变成下一次可执行检查。",
+      "kind": "mechanism",
+      "sections": null
+    },
+    {
+      "slug": "trace-framework-deep-dive",
+      "sources": [
+        "trace-framework-deep-dive",
+        "trace-lite-production"
+      ],
+      "title": "TRACE：轨迹评测、代理指标与复现边界",
+      "intro": "TRACE 在结果门槛之外研究过程效率、证据支持与恢复。以下保留公式、实验口径及其限制，再讨论哪些思想能转成业务可观测量；TRACE-Lite 是文中提出的改造方案，不是官方生产实现。",
+      "kind": "paper",
+      "sections": null
+    },
+    {
+      "slug": "lu-qi-researcher-founder",
+      "sources": [
+        "lu-qi-researcher-founder",
+        "researcher-founder-thinking",
+        "learning-organization-boundaries"
+      ],
+      "title": "陆奇谈研究型创业者：研究、创新与组织学习",
+      "intro": "陆奇的 Researcher Founder 公开课讨论研究、工程和市场怎样形成反馈。本文先还原演讲观点，再分析研究、创新与斜率如何变成行动，以及组织学习主张的适用边界。",
+      "kind": "reading",
+      "sections": null
+    }
+  ],
+  "source_to_article": {
+    "prompt-context-harness-engineering": "prompt-context-harness-engineering",
+    "harness-engineering-map": "prompt-context-harness-engineering",
+    "harness-engineering-loop": "harness-engineering-loop",
+    "loop-graph-engineering": "harness-engineering-loop",
+    "claude-code-internals-overview": "claude-code-internals-overview",
+    "codex-system-overview": "codex-system-overview",
+    "kimi-code-system-overview": "kimi-code-system-overview",
+    "opencode-system-overview": "opencode-system-overview",
+    "deepseek-harness-composition": "deepseek-harness-composition",
+    "deepseek-harness-state": "deepseek-harness-composition",
+    "deepseek-harness-execution": "deepseek-harness-composition",
+    "hermes-agent-architecture-deep-dive": "hermes-agent-architecture-deep-dive",
+    "hermes-agent-runtime-services": "hermes-agent-architecture-deep-dive",
+    "hermes-agent-memory-governance": "hermes-agent-architecture-deep-dive",
+    "pi-architecture-deep-dive": "pi-architecture-deep-dive",
+    "pi-session-extension-architecture": "pi-architecture-deep-dive",
+    "pi-durable-harness-governance": "pi-architecture-deep-dive",
+    "langchain-langgraph-frameworks-and-protocols": "langchain-agent-architecture",
+    "anthropic-skills-overview": "anthropic-skills-overview",
+    "addy-agent-skills-overview": "addy-agent-skills-overview",
+    "mattpocock-skills-overview": "mattpocock-skills-overview",
+    "ecc-architecture-deep-dive": "ecc-architecture-deep-dive",
+    "ecc-hook-runtime-memory": "ecc-architecture-deep-dive",
+    "ecc-memory-supply-chain": "ecc-architecture-deep-dive",
+    "harness-integration-map": "harness-integration-map",
+    "harness-integration-model": "harness-integration-map",
+    "harness-integration-mcp": "harness-integration-map",
+    "harness-integration-recovery": "harness-integration-map",
+    "harness-integration-lab": "harness-integration-map",
+    "llm-agent-capability-landscape-2026": "llm-agent-capability-landscape-2026",
+    "harness-operations-model-gateway": "harness-operations-model-gateway",
+    "harness-engineering-tools": "harness-engineering-tools",
+    "harness-foundations-mcp-lifecycle": "harness-foundations-mcp-lifecycle",
+    "harness-engineering-security": "harness-engineering-security",
+    "capability-routing-at-scale": "capability-routing-at-scale",
+    "capability-routing-discovery": "capability-routing-at-scale",
+    "capability-routing-execution": "capability-routing-at-scale",
+    "capability-routing-evaluation": "capability-routing-at-scale",
+    "harness-foundations-concurrency": "harness-foundations-concurrency",
+    "harness-engineering-recovery": "harness-engineering-recovery",
+    "harness-foundations-lab": "harness-engineering-recovery",
+    "harness-operations-context": "harness-operations-context",
+    "agent-memory-writing": "agent-memory-writing",
+    "agent-memory-retrieval": "agent-memory-retrieval",
+    "agent-memory-governance": "agent-memory-governance",
+    "mem0-series-overview": "mem0-series-overview",
+    "mem0-production-boundaries": "mem0-series-overview",
+    "openviking-series-overview": "openviking-series-overview",
+    "openviking-session-governance": "openviking-series-overview",
+    "tencentdb-agent-memory-overview": "tencentdb-agent-memory-overview",
+    "tencentdb-agent-memory-governance": "tencentdb-agent-memory-overview",
+    "harness-operations-observability": "harness-operations-observability",
+    "harness-operations-production": "harness-operations-production",
+    "harness-operations-release": "harness-operations-release",
+    "product-frameworks-market": "product-frameworks-market",
+    "product-frameworks-prioritization": "product-frameworks-prioritization",
+    "product-frameworks-growth": "product-frameworks-growth",
+    "product-frameworks-delivery": "product-frameworks-delivery",
+    "product-work-methodology": "product-work-methodology",
+    "agent-product-evaluation-rhythm": "product-work-methodology",
+    "claude-code-product-design": "claude-code-product-design",
+    "claude-code-trust": "claude-code-product-design",
+    "claude-code-session-collaboration": "claude-code-product-design",
+    "ai-capability-product-metrics": "ai-capability-product-metrics",
+    "ai-value-coding": "ai-value-coding",
+    "ai-value-voice": "ai-value-voice",
+    "ai-value-office": "ai-value-office",
+    "coding-agent-harness-showdown": "coding-agent-harness-showdown",
+    "china-work-agent-showdown": "china-work-agent-showdown",
+    "china-work-agent-adoption": "china-work-agent-showdown",
+    "agent-memory-design-competitive-analysis": "agent-memory-design-competitive-analysis",
+    "harness-architecture-selection": "harness-architecture-selection",
+    "multi-agent-architecture-selection": "multi-agent-architecture-selection",
+    "harness-operations-multi-agent": "multi-agent-architecture-selection",
+    "ai-capability-evidence-action": "ai-capability-evidence-action",
+    "agent-landscape-comparison-methods": "agent-landscape-comparison-methods",
+    "ai-agent-reliability-boundaries": "ai-agent-reliability-boundaries",
+    "agent-system-evaluation-research": "agent-system-evaluation-research",
+    "agent-evaluation-metrics": "agent-system-evaluation-research",
+    "agent-evaluation-datasets": "agent-system-evaluation-research",
+    "agent-evaluation-engineering": "agent-system-evaluation-research",
+    "trace-framework-deep-dive": "trace-framework-deep-dive",
+    "trace-lite-production": "trace-framework-deep-dive",
+    "lu-qi-researcher-founder": "lu-qi-researcher-founder",
+    "researcher-founder-thinking": "lu-qi-researcher-founder",
+    "learning-organization-boundaries": "lu-qi-researcher-founder",
+    "composable-agent-harness-research-method": "harness-architecture-selection",
+    "product-analysis-frameworks": "product-frameworks-market"
+  },
+  "validation": {
+    "status": "passed",
+    "build": "npm run build",
+    "articles": 55,
+    "domains": 8,
+    "directory_groups": 22,
+    "reading_minutes": [
+      3,
+      24
+    ],
+    "redirects": 118,
+    "original_article_anchors": 88,
+    "missing_or_duplicate_anchors": 0,
+    "invalid_article_fragments": 0,
+    "homepage_article_links": 55,
+    "graph_nodes": 113,
+    "graph_links": 413,
+    "scope": "Content structure, routes and rendering; does not certify source depth or vendor performance."
+  },
+  "publication": {
+    "target": "origin/main",
+    "site": "https://ainoteatlas.com",
+    "method": "existing server polls main, builds, and deploys",
+    "authorization": "explicit publish request on 2026-09-07"
+  }
+}

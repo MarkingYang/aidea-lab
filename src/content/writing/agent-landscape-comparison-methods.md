@@ -2,7 +2,7 @@
 title: Agent 选型：比较维度、任务契约与 PoC
 description: 按研究对象和任务证据比较 Agent，用明确契约、分项指标和分轮 PoC 形成可复核的采用决定。
 publishedAt: 2026-09-05
-updatedAt: 2026-09-06
+updatedAt: 2026-09-07
 type: essay
 status: growing
 topics:
@@ -11,24 +11,14 @@ topics:
   - 产品战略
   - 产品方法论
 featured: false
-readingTime: 10 min
+readingTime: 9 min
 ---
+
+<a id="agent-landscape-comparison-methods"></a>
 
 同一张功能清单无法公平比较 Coding Agent、办公 Agent 与开源 Harness。真正有用的比较，必须先声明决策对象，再让不同框架各自回答一个问题。
 
-```mermaid
-flowchart TD
-  Q[明确任务与采购范围] --> C[按同类产品筛选候选]
-  C --> H[权限 数据与环境硬条件]
-  H --> P[固定任务 输入与验收，运行 PoC]
-  P --> F{通过业务门槛？}
-  F -->|否| R[排除或缩小采用范围]
-  F -->|是| V[比较完成质量 成本与人工时间]
-  V --> D[记录选择理由 适用范围与复评条件]
-```
-
-*图 1｜竞品分析先建立可比范围，再用业务任务验证。未通过硬条件的产品，不用其他高分抵消。*
-
+竞品分析先建立可比范围，再用业务任务验证。未通过硬条件的产品，不用其他高分抵消。
 ## 三个分析工具各自回答什么
 
 体验分层、证据记录和策略分析承担不同职责：
