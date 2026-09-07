@@ -103,10 +103,19 @@
 
   if (mermaidBlocks.length > 0) {
     const sizeDiagram = (svg: SVGElement, scale: number) => {
-      const width = (svg as SVGSVGElement).viewBox.baseVal.width;
+      const { width, height } = (svg as SVGSVGElement).viewBox.baseVal;
+      const viewport = svg.closest<HTMLElement>('.diagram-viewport');
+      if (!viewport || !width || !height) return;
+      const style = getComputedStyle(viewport);
+      const availableWidth = viewport.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      const fullscreen = document.fullscreenElement === viewport.parentElement;
+      const availableHeight = fullscreen
+        ? viewport.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom)
+        : Math.min(420, Math.max(280, innerHeight * .5));
+      // Fit both axes; zoom operates on the fitted size and scrolls inside the frame.
+      const fit = Math.min(fullscreen ? 1 : .85, availableWidth / width, availableHeight / height);
       svg.style.maxWidth = 'none';
-      // Keep small diagrams at their natural size; wide diagrams retain readable labels.
-      svg.style.width = `clamp(${width * .8 * scale}px, ${scale * 100}%, ${width * scale}px)`;
+      svg.style.width = `${width * fit * scale}px`;
       svg.style.height = 'auto';
     };
     const diagrams: DiagramRecord[] = mermaidBlocks.map((code, index) => {
@@ -152,6 +161,11 @@
         const svg = diagram.querySelector('svg');
         if (!svg) return;
         const clone = svg.cloneNode(true) as SVGElement;
+        clone.style.removeProperty('width');
+        clone.style.removeProperty('height');
+        const { width, height } = (svg as SVGSVGElement).viewBox.baseVal;
+        clone.setAttribute('width', String(width));
+        clone.setAttribute('height', String(height));
         clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         downloadBlob(new Blob([new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' }), `${pageSlug}-diagram-${index + 1}.svg`);
       });
@@ -217,6 +231,19 @@
 
     await renderMermaid();
     window.addEventListener('site-theme-change', renderMermaid);
+    const resizeDiagrams = () => diagrams.forEach(({ element, scale }) => {
+      const svg = element.querySelector<SVGElement>('svg');
+      if (svg) sizeDiagram(svg, scale);
+    });
+    let previousWidth = 0;
+    const diagramResize = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width === previousWidth) return;
+      previousWidth = entry.contentRect.width;
+      resizeDiagrams();
+    });
+    diagramResize.observe(diagrams[0].figure);
+    window.addEventListener('resize', resizeDiagrams);
+    document.addEventListener('fullscreenchange', resizeDiagrams);
   }
 
   // ECharts: JSON-only options keep Markdown portable and prevent executable chart config.
@@ -476,13 +503,14 @@
   .code-frame pre { margin: 0 !important; border: 0 !important; border-radius: 0 !important; }
   .code-frame.is-wrapped pre, .code-frame.is-wrapped code { white-space: pre-wrap !important; overflow-wrap: anywhere; }
 
-  .diagram-viewport { min-height: 190px; padding: clamp(30px, 4vw, 46px); display: grid; place-items: center; overflow: auto; text-align: center; overscroll-behavior: contain; }
+  .diagram-viewport { min-height: 140px; max-height: 468px; padding: 20px 24px; overflow: auto; text-align: center; overscroll-behavior: contain; }
   .mermaid { width: 100%; min-width: 0; }
   .mermaid svg { display: block; height: auto; margin: 0 auto; transition: width .22s ease; }
-  .echarts-canvas { width: 100%; height: clamp(340px, 46vw, 480px); padding: 12px; }
+  .echarts-canvas { width: 100%; height: clamp(300px, 36vw, 380px); padding: 10px; }
   .visual-error { min-height: 180px; padding: 28px; overflow: auto; color: var(--accent); font: 12px/1.7 var(--mono); text-align: left; white-space: pre-wrap; }
-  .visual-frame:fullscreen { width: 100vw; height: 100vh; margin: 0; border: 0; border-radius: 0; background: var(--bg); }
-  .visual-frame:fullscreen .diagram-viewport { height: calc(100vh - 44px); display: grid; align-items: center; }
+  .visual-frame:fullscreen { display: flex; flex-direction: column; width: 100vw; height: 100vh; margin: 0; border: 0; border-radius: 0; background: var(--bg); }
+  .visual-frame:fullscreen .reader-toolbar { flex-shrink: 0; }
+  .visual-frame:fullscreen .diagram-viewport { flex: 1; min-height: 0; max-height: none; display: grid; align-items: safe center; }
   .visual-frame:fullscreen .echarts-canvas { height: calc(100vh - 44px); }
 
   .callout { position: relative; border-left-width: 3px !important; }
@@ -517,15 +545,15 @@
   .image-lightbox-viewport.is-zoomed img { width: max(100%, var(--image-width)); max-width: none; height: auto; cursor: zoom-out; }
 
   @media (min-width: 1080px) {
-    .prose .visual-frame { width: min(820px, calc(100vw - 360px)); }
+    .prose .visual-frame { width: min(740px, calc(100vw - 360px)); }
   }
 
   @media (max-width: 640px) {
     .reader-toolbar { align-items: flex-start; flex-direction: column; padding: 11px 12px; }
     .reader-actions { width: 100%; }
     .visual-frame { margin-inline: -6px; }
-    .diagram-viewport { padding: 22px 12px; }
-    .echarts-canvas { height: 360px; padding: 5px; }
+    .diagram-viewport { padding: 16px 12px; }
+    .echarts-canvas { height: 320px; padding: 5px; }
     .prose p:has(> img + img), .prose p:has(> a > img):has(> a + a) { grid-template-columns: 1fr; }
     .lightbox-toolbar span { display: none; }
   }

@@ -1,0 +1,207 @@
+[
+  {
+    "ready": 2673.899999976158,
+    "paint": [
+      {
+        "name": "first-paint",
+        "time": 724
+      },
+      {
+        "name": "first-contentful-paint",
+        "time": 724
+      }
+    ],
+    "longTasks": [
+      93
+    ],
+    "resources": [
+      {
+        "name": "BaseLayout.DTFxNIi3.css",
+        "size": 7845,
+        "duration": 259.3000000715256
+      },
+      {
+        "name": "index.uXTumdxr.css",
+        "size": 20428,
+        "duration": 446.3000000715256
+      },
+      {
+        "name": "aidea-mark.png",
+        "size": 67712,
+        "duration": 933.0999999046326
+      },
+      {
+        "name": "ArtalkStats.astro_astro_type_script_index_0_lang.uduhBx4z.js",
+        "size": 528,
+        "duration": 118.20000004768372
+      },
+      {
+        "name": "index.astro_astro_type_script_index_0_lang.BiHeeED0.js",
+        "size": 183617,
+        "duration": 1054
+      },
+      {
+        "name": "preload-helper.CxFQXtKk.js",
+        "size": 1342,
+        "duration": 125.60000002384186
+      },
+      {
+        "name": "rolldown-runtime.hePW80VL.js",
+        "size": 716,
+        "duration": 116.30000007152557
+      },
+      {
+        "name": "timer.iYmmyxKa.js",
+        "size": 2744,
+        "duration": 132
+      }
+    ],
+    "loadingVisible": false,
+    "labels": 14,
+    "errors": []
+  },
+  {
+    "ready": 2666.5,
+    "paint": [
+      {
+        "name": "first-paint",
+        "time": 700
+      },
+      {
+        "name": "first-contentful-paint",
+        "time": 700
+      }
+    ],
+    "longTasks": [
+      88
+    ],
+    "resources": [
+      {
+        "name": "BaseLayout.DTFxNIi3.css",
+        "size": 7845,
+        "duration": 267.2999999523163
+      },
+      {
+        "name": "index.uXTumdxr.css",
+        "size": 20428,
+        "duration": 454.1999999284744
+      },
+      {
+        "name": "aidea-mark.png",
+        "size": 67712,
+        "duration": 938.6999999284744
+      },
+      {
+        "name": "ArtalkStats.astro_astro_type_script_index_0_lang.uduhBx4z.js",
+        "size": 528,
+        "duration": 119.19999992847443
+      },
+      {
+        "name": "index.astro_astro_type_script_index_0_lang.BiHeeED0.js",
+        "size": 183617,
+        "duration": 1056.0999999046326
+      },
+      {
+        "name": "preload-helper.CxFQXtKk.js",
+        "size": 1342,
+        "duration": 126
+      },
+      {
+        "name": "rolldown-runtime.hePW80VL.js",
+        "size": 716,
+        "duration": 114.20000004768372
+      },
+      {
+        "name": "timer.iYmmyxKa.js",
+        "size": 2744,
+        "duration": 128.89999997615814
+      }
+    ],
+    "loadingVisible": false,
+    "labels": 14,
+    "errors": []
+  },
+  {
+    "ready": 2661.100000023842,
+    "paint": [
+      {
+        "name": "first-paint",
+        "time": 696
+      },
+      {
+        "name": "first-contentful-paint",
+        "time": 696
+      }
+    ],
+    "longTasks": [
+      88
+    ],
+    "resources": [
+      {
+        "name": "BaseLayout.DTFxNIi3.css",
+        "size": 7845,
+        "duration": 260.5
+      },
+      {
+        "name": "index.uXTumdxr.css",
+        "size": 20428,
+        "duration": 447.89999997615814
+      },
+      {
+        "name": "aidea-mark.png",
+        "size": 67712,
+        "duration": 934.3999999761581
+      },
+      {
+        "name": "ArtalkStats.astro_astro_type_script_index_0_lang.uduhBx4z.js",
+        "size": 528,
+        "duration": 109.30000007152557
+      },
+      {
+        "name": "index.astro_astro_type_script_index_0_lang.BiHeeED0.js",
+        "size": 183617,
+        "duration": 1046.5
+      },
+      {
+        "name": "preload-helper.CxFQXtKk.js",
+        "size": 1342,
+        "duration": 126.30000007152557
+      },
+      {
+        "name": "rolldown-runtime.hePW80VL.js",
+        "size": 716,
+        "duration": 115.39999997615814
+      },
+      {
+        "name": "timer.iYmmyxKa.js",
+        "size": 2744,
+        "duration": 131.29999995231628
+      }
+    ],
+    "loadingVisible": false,
+    "labels": 14,
+    "errors": []
+  },
+  [
+    {
+      "height": 503.984375,
+      "width": 740,
+      "svg": 419.984375
+    },
+    {
+      "height": 503.984375,
+      "width": 740,
+      "svg": 419.984375
+    },
+    {
+      "height": 413.78125,
+      "width": 740,
+      "svg": 329.78125
+    },
+    {
+      "height": 503.96875,
+      "width": 740,
+      "svg": 419.96875
+    }
+  ]
+]

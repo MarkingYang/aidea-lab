@@ -1,3 +1,7 @@
+## Publication authorization — reading performance, 2026-09-07
+
+The user explicitly requested “推送” after the diagram sizing and knowledge graph performance changes. Publish this batch through origin/main: compact responsive diagrams with zoom/fullscreen/export, conditional comment-stat imports, smaller graph payload and reduced label layout work. Preserve 72 articles, 138 graph nodes and 554 links. Build, 90-diagram desktop/mobile/theme checks and graph interactions passed; performance evidence and its local throttling limitations are in `docs/reading-performance/`. Subsequent new work requires a new publication request.
+
 ## Protocol articles and publication authorization — 2026-09-07
 
 The user explicitly requested one deep article each for MCP, A2A, AG-UI, A2UI, ACP, Agent Skills, OpenAI API, Anthropic API, OAuth and OpenID Connect, then push. Extend the existing MCP article at its original URL; add nine articles. Current total is 72 articles, 24 groups and 8 domains. This batch is authorized for origin/main. Keep the fixed protocol versions, source hashes, schema-only example checks and unrun provider/model/interoperability boundaries in docs/protocol-study/. Skills is a packaging specification; model APIs are vendor interface contracts. Do not imply generic runtime states are protocol enums. Subsequent work requires a new publication request.

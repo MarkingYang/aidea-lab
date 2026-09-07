@@ -66,17 +66,17 @@ try {
   await page.locator('[data-clear-focus]').click();
   assert.equal(await page.locator('[data-graph-root]').getAttribute('data-edge-mode'), 'overview');
 
-  await page.locator('#graph-query').fill('工具、协议与执行边界');
+  await page.locator('#graph-query').fill('工具与能力路由');
   await page.locator('.search-results [data-node-id="series:harness-tools"]').click();
-  assert.equal(await page.locator('[data-panel-title]').textContent(), '工具、协议与执行边界');
+  assert.equal(await page.locator('[data-panel-title]').textContent(), '工具与能力路由');
   assert.match(page.url(), /node=series%3Aharness-tools/);
   assert.match(page.url(), /view=local/);
   assert.ok(await page.locator('[data-panel-relations] li').count() > 0);
 
   await page.locator('[data-clear-focus]').click();
-  await page.locator('#graph-query').fill('项目实现研究');
+  await page.locator('#graph-query').fill('Harness 项目');
   await page.locator('.search-results [data-node-id="series:harness-projects"]').click();
-  assert.equal(await page.locator('[data-panel-title]').textContent(), '项目实现研究');
+  assert.equal(await page.locator('[data-panel-title]').textContent(), 'Harness 项目');
   assert.match(page.url(), /node=series%3Aharness-projects/);
   assert.ok(await page.locator('[data-panel-relations] li').count() >= 4);
   assert.match(await page.locator('[data-panel-link]').getAttribute('href'), /\/series\/harness-projects\//);
@@ -96,16 +96,16 @@ try {
   await page.locator('[data-graph-canvas] canvas').first().waitFor();
   assert.equal(await page.locator('[data-node-panel]').getAttribute('data-open'), 'false');
 
-  await page.locator('#graph-query').fill('成功率、稳定性');
-  await page.locator('.search-results [data-node-id="agent-evaluation-metrics"]').click();
-  assert.match(await page.locator('[data-panel-title]').textContent(), /成功率、稳定性/);
+  await page.locator('#graph-query').fill('A2A');
+  await page.locator('.search-results [data-node-id="a2a-protocol"]').click();
+  assert.match(await page.locator('[data-panel-title]').textContent(), /A2A/);
   await page.locator('[data-panel-link]').click();
-  await page.waitForURL('**/writing/agent-evaluation-metrics/');
-  assert.equal(await page.locator('h1').textContent(), '成功率、稳定性与成本，不能揉成一个分数');
+  await page.waitForURL('**/writing/a2a-protocol/');
+  assert.equal(await page.locator('h1').textContent(), 'A2A：Agent 协作协议');
 
-  await page.goto(`${base}/graph/?node=agent-evaluation-metrics&view=local`);
+  await page.goto(`${base}/graph/?node=a2a-protocol&view=local`);
   await page.locator('[data-graph-canvas] canvas').first().waitFor();
-  assert.equal(await page.locator('[data-panel-title]').textContent(), '成功率、稳定性与成本，不能揉成一个分数');
+  assert.equal(await page.locator('[data-panel-title]').textContent(), 'A2A：Agent 协作协议');
 
   const originalTheme = await page.locator('html').getAttribute('data-theme');
   await page.locator('.theme-toggle').click();
@@ -113,14 +113,14 @@ try {
   assert.equal(await page.locator('[data-graph-error]').isHidden(), true);
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(`${base}/graph/?node=agent-evaluation-metrics&view=local`);
+  await page.goto(`${base}/graph/?node=a2a-protocol&view=local`);
   await page.locator('[data-graph-canvas] canvas').first().waitFor();
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   assert.equal(await page.locator('[data-node-panel]').evaluate(node => Math.round(node.getBoundingClientRect().width)), 370);
 
-  await page.goto(`${base}/writing/agent-evaluation-metrics/`);
+  await page.goto(`${base}/writing/a2a-protocol/`);
   assert.ok(await page.locator('.related-knowledge li').count() >= 2);
-  assert.match(await page.locator('.related-knowledge header > a').getAttribute('href'), /\/graph\/\?node=agent-evaluation-metrics&view=local/);
+  assert.match(await page.locator('.related-knowledge header > a').getAttribute('href'), /\/graph\/\?node=a2a-protocol&view=local/);
   for (const [legacy, destination] of [
     ['claude-code-agent-loop', '/writing/claude-code-internals-overview/'],
     ['series:harness-foundations', '/series/harness-recovery/'],

@@ -13,12 +13,11 @@ const enabled = import.meta.env.PROD || Boolean(import.meta.env.PUBLIC_ARTALK_SE
 ></span>
 
 <script>
-  import Artalk from 'artalk/ArtalkLite';
-
   const config = document.querySelector<HTMLElement>('[data-artalk-stats]');
   const hasCounters = document.querySelector('.artalk-pv-count, .artalk-comment-count');
 
   if (config?.dataset.enabled === 'true' && hasCounters && !document.querySelector('[data-artalk-comments]')) {
+    const { default: Artalk } = await import('artalk/ArtalkLite');
     Artalk.loadCountWidget({
       server: config.dataset.server || '',
       site: config.dataset.site || '',

@@ -3,7 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getKnowledgeGraph } from '../../lib/knowledgeGraph';
 
 const graph = await getKnowledgeGraph();
-const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
+// Ship only the fields used by this view. Source evidence and build-time physics
+// remain in the full graph used by article recommendations.
+const serializedGraph = JSON.stringify({
+  ...graph,
+  nodes: graph.nodes.map(({ id, kind, title, description, href, tags, degree, clusterId, seriesId, x, y }) =>
+    ({ id, kind, title, description, href, tags, degree, clusterId, seriesId, x, y })),
+  links: graph.links.map(({ source, target, relation, weight }, index) =>
+    ({ id: `e${index}`, source, target, relation, weight })),
+}).replaceAll('<', '\\u003c');
 ---
 
 <BaseLayout title="知识星图｜大飞随笔" description="从知识域、专题、文章、关键词与正文引用出发，在一张可缩放的知识地图中探索文章。">
@@ -38,7 +46,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       </details>
       <div class="graph-canvas" data-graph-canvas tabindex="0" role="application" aria-describedby="graph-instructions" aria-label={`由 ${graph.nodes.length} 个可见节点、${graph.links.length} 条关系组成的可交互知识图谱`}></div>
       <div class="graph-loading" data-graph-loading><span></span><p>正在组织知识星群…</p></div>
-      <p class="graph-error" data-graph-error hidden>图谱暂时没有完成渲染。你仍可以通过知识目录继续阅读。</p>
+      <p class="graph-error" data-graph-error hidden>图谱暂时无法显示。<a href="/topics/">打开知识目录</a>继续阅读。</p>
 
       <div class="graph-status" aria-live="polite">
         <span class="status-pulse" aria-hidden="true"></span><span data-graph-status>全局视野</span>
@@ -221,7 +229,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       });
       renderer.setCustomBBox(renderer.getBBox());
       const camera = renderer.getCamera();
-      const exposeCameraRatio = ({ ratio }) => { root.dataset.cameraRatio = ratio.toFixed(4); renderer.scheduleRefresh(); };
+      const exposeCameraRatio = ({ ratio }) => { root.dataset.cameraRatio = ratio.toFixed(4); };
       camera.on('updated', exposeCameraRatio);
       exposeCameraRatio(camera.getState());
 
@@ -323,6 +331,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       const measure = document.createElement('canvas').getContext('2d');
       let labelBoxes = [];
       const intersects = (a, b) => a.x < b.x + b.width + 5 && a.x + a.width + 5 > b.x && a.y < b.y + b.height + 4 && a.y + a.height + 4 > b.y;
+      const titleWidths = new Map();
       const renderTitles = () => {
         labelBoxes = [];
         const ratio = camera.getState().ratio;
@@ -335,6 +344,9 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
         const priority = id => id === activeId() ? 100000 : id === selectedId ? 90000 : neighborIds.has(id) ? 10000 : 0;
         points.sort((a, b) => priority(b.node.id) - priority(a.node.id) || b.node.degree - a.node.degree);
         const visible = new Set();
+        // Read geometry once before updating label buttons to avoid layout thrashing.
+        const canvasWidth = canvas.clientWidth;
+        const canvasHeight = canvas.clientHeight;
         const canvasRect = canvas.getBoundingClientRect();
         const panelRect = panel.getBoundingClientRect();
         const panelBox = { x: panelRect.x - canvasRect.x, y: panelRect.y - canvasRect.y, width: panelRect.width, height: panelRect.height };
@@ -344,7 +356,9 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
           if (!important && !selectedId && ratio > .75 && node.kind !== 'series' && node.degree < 18) continue;
           if (!important && labelBoxes.length >= (innerWidth < 760 ? 10 : ratio > .75 ? 22 : 65)) continue;
           const text = node.title.length > (important ? 30 : 19) ? node.title.slice(0, important ? 29 : 18) + '…' : node.title;
-          const width = Math.min(canvas.clientWidth - 24, measure.measureText(text).width + 8);
+          const measureKey = `${fontSize}:${text}`;
+          if (!titleWidths.has(measureKey)) titleWidths.set(measureKey, measure.measureText(text).width + 8);
+          const width = Math.min(canvasWidth - 24, titleWidths.get(measureKey));
           const height = fontSize + 10;
           const radius = renderer.scaleSize(display.size) + 5;
           const candidates = [
@@ -353,7 +367,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
             { x: point.x - width / 2, y: point.y - radius - height, width, height },
             { x: point.x - width / 2, y: point.y + radius, width, height },
           ];
-          const box = candidates.find(box => box.x >= 6 && box.y >= 6 && box.x + width < canvas.clientWidth - 6 && box.y + height < canvas.clientHeight - 6
+          const box = candidates.find(box => box.x >= 6 && box.y >= 6 && box.x + width < canvasWidth - 6 && box.y + height < canvasHeight - 6
             && (!selectedId || !intersects(box, panelBox))
             && !labelBoxes.some(other => intersects(box, other))
             && (important || !points.some(other => other.node.id !== node.id && intersects(box, { x: other.point.x - 3, y: other.point.y - 3, width: 6, height: 6 }))));
@@ -369,7 +383,7 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
             labelLayer.append(button); labelButtons.set(node.id, button);
           }
           button.hidden = false;
-          button.textContent = text;
+          if (button.textContent !== text) button.textContent = text;
           button.dataset.active = String(important);
           button.style.cssText = `left:${box.x}px;top:${box.y}px;width:${width}px;height:${height}px;font-size:${fontSize}px`;
         }
@@ -531,6 +545,8 @@ const serializedGraph = JSON.stringify(graph).replaceAll('<', '\\u003c');
       const requestedNode = graphData.aliases?.[legacyNode] ?? legacyNode;
       if (requestedNode && nodeById.has(requestedNode)) setSelection(requestedNode, { move: true, sync: false });
       root.querySelector('[data-graph-loading]')?.setAttribute('hidden', '');
+      root.dataset.ready = 'true';
+      performance.mark('knowledge-graph-ready');
       window.addEventListener('site-theme-change', () => {
         const next = palette();
         network.forEachNode((id) => network.mergeNodeAttributes(id, { color: nodeColor(nodeById.get(id), next), labelColor: next.label }));
