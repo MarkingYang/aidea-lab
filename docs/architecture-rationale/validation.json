@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-08",
+  "published": false,
+  "articles": 72,
+  "groups": 24,
+  "domains": 8,
+  "graph_nodes": 138,
+  "graph_links": 565,
+  "changed_articles": [
+    {
+      "path": "src/content/writing/agent-runtime.md",
+      "sha256": "4fc2bd61d81bfb1c8461d8c8d14a1c9b1acc4da3cc6d2dfa9ebb40d2c670afa9",
+      "mermaid_diagrams": 4
+    },
+    {
+      "path": "src/content/writing/codex-system-overview.md",
+      "sha256": "dbe337a5f7f84615e5ae56fc6a17c44abb2f73df38538654e50104a030420d9a",
+      "mermaid_diagrams": 4
+    },
+    {
+      "path": "src/content/writing/harness-architecture-selection.md",
+      "sha256": "728d9e891fbf8d004920fc73d60bd80f1d274d4c2a448b0084d1af472546a8bd",
+      "mermaid_diagrams": 0
+    },
+    {
+      "path": "src/content/writing/prompt-context-harness-engineering.md",
+      "sha256": "a3aff1a582bdacd3ad2286d4da84a48086d7c4ac147799bc804affc820096a62",
+      "mermaid_diagrams": 2
+    }
+  ],
+  "original_titles_and_publication_dates_preserved": true,
+  "lu_qi_unchanged": true,
+  "checks": {
+    "build": "passed; existing chunk-size warning",
+    "content_and_graph": "passed",
+    "paired_counterexamples": "8 pairs / 16 executions passed",
+    "standalone_package": "extracted to a separate temporary directory and executed successfully",
+    "codex_source_identity": "17 files and cited line anchors matched; no upstream tests",
+    "browser": "16 combinations passed, internal links and anchors, zoom/reset/fullscreen/SVG export",
+    "visual_inspection": "Codex suspension diagram, 1440 light and 390 dark reviewed"
+  },
+  "limitations": [
+    "Codex static source study only",
+    "Synthetic fixed-response core + SQLite counterexamples, not actual model quality",
+    "No provider calls, authenticated multi-tenant service or cross-host recovery tested"
+  ]
+}

@@ -267,10 +267,11 @@
       "id": "harness-operations",
       "topic": "architecture",
       "title": "运行服务与发布",
-      "description": "分别研究故障可观测性、任务执行权与版本演进，避免用一个运行状态解释所有事实。",
-      "outcome": "分别研究故障可观测性、任务执行权与版本演进，避免用一个运行状态解释所有事实。",
-      "question": "分别研究故障可观测性、任务执行权与版本演进，避免用一个运行状态解释所有事实。",
+      "description": "研究数据血缘、故障可观测性、任务执行权与版本演进，把运行证据接入评测和发布。",
+      "outcome": "研究数据血缘、故障可观测性、任务执行权与版本演进，把运行证据接入评测和发布。",
+      "question": "研究数据血缘、故障可观测性、任务执行权与版本演进，把运行证据接入评测和发布。",
       "articles": [
+        "agent-data-architecture",
         "harness-operations-observability",
         "harness-operations-production",
         "harness-operations-release"

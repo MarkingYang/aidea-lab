@@ -1,0 +1,219 @@
+{
+  "repository": "https://github.com/openai/codex",
+  "commit": "4b0d9669cc46ba97bf85fa6312431b630d80498d",
+  "commit_date": "2026-09-08T02:29:17Z",
+  "research_date": "2026-09-08",
+  "scope": "Selected Rust Core and App Server source paths; not a full repository audit",
+  "upstream_tests_run": false,
+  "files": [
+    {
+      "path": "codex-rs/app-server/src/request_processors/turn_processor.rs",
+      "sha256": "a220c6f21bd72d7135d772536b414b1d7fbd7c1c332b2103f0029a3b22c5f7f1",
+      "bytes": 65870,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/app-server/src/request_processors/turn_processor.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/app-server/src/request_processors/turn_processor.rs",
+      "anchors": [
+        {
+          "line": 514,
+          "text": "async fn turn_start_inner("
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/codex_thread.rs",
+      "sha256": "9431fae40d866b456f55a2e817e3e4edc715705c340e8cf8b2bbdf25b2606038",
+      "bytes": 36629,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/codex_thread.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/codex_thread.rs",
+      "anchors": [
+        {
+          "line": 177,
+          "text": "pub struct CodexThread {"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/context_manager/history.rs",
+      "sha256": "25fe60c3dd785723c953ab134c3bbdeb529833a87dff2f2eed4f37a07a16645b",
+      "bytes": 46731,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/context_manager/history.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/context_manager/history.rs",
+      "anchors": [
+        {
+          "line": 392,
+          "text": "pub(crate) fn for_prompt(self, input_modalities: &[InputModality]) -> Vec<ResponseItem> {"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/context_manager/normalize.rs",
+      "sha256": "4340c30ef792ac40fe64aa1acebf076eafb44ed65cdcf1bab5a09239c5b73881",
+      "bytes": 16573,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/context_manager/normalize.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/context_manager/normalize.rs",
+      "anchors": [
+        {
+          "line": 21,
+          "text": "pub(crate) fn ensure_call_outputs_present(items: &mut Vec<ResponseItemEnvelope>) {"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/session/handlers.rs",
+      "sha256": "048d1b92373d42e6e0536eff56340259151617a27caaa2aa31438010b48c8248",
+      "bytes": 28470,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/handlers.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/handlers.rs",
+      "anchors": [
+        {
+          "line": 529,
+          "text": "pub(super) async fn submission_loop("
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/session/rollout_reconstruction.rs",
+      "sha256": "048377e181a9190503b2ee0c737cb926f772b0c42bb6a60e0ad485df11b53fb9",
+      "bytes": 23961,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/rollout_reconstruction.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/rollout_reconstruction.rs",
+      "anchors": [
+        {
+          "line": 134,
+          "text": "pub(super) async fn reconstruct_history_from_rollout("
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/session/session.rs",
+      "sha256": "a4080595ac5f7a3dec1be55b8d73556fad7082016a796d91c839c5f8420abae5",
+      "bytes": 79101,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/session.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/session.rs",
+      "anchors": []
+    },
+    {
+      "path": "codex-rs/core/src/session/turn.rs",
+      "sha256": "087cfbdc633cacb71541c6e8651dd1132c27416e16192c286e59ab27ee45598f",
+      "bytes": 113836,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn.rs",
+      "anchors": [
+        {
+          "line": 163,
+          "text": "pub(crate) async fn run_turn("
+        },
+        {
+          "line": 2280,
+          "text": "async fn try_run_sampling_request("
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/session/turn_context.rs",
+      "sha256": "c0e1408f8137b30673e24c9f2f0fee12681d3027869cb06b3588909f6870f0f7",
+      "bytes": 47852,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn_context.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn_context.rs",
+      "anchors": []
+    },
+    {
+      "path": "codex-rs/core/src/session/turn_input.rs",
+      "sha256": "44c3b354a763fa150aeb0dab6b5636fc7c3ffde5bc4df7910935c63167fe1dae",
+      "bytes": 23559,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn_input.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn_input.rs",
+      "anchors": [
+        {
+          "line": 237,
+          "text": "async fn start_or_steer("
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/session/turn_suspension.rs",
+      "sha256": "6b2b3be42758d1da86a6d56d823b1be886426892e54ae37a43caddb8b74f0a5d",
+      "bytes": 4732,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn_suspension.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/session/turn_suspension.rs",
+      "anchors": []
+    },
+    {
+      "path": "codex-rs/core/src/skills.rs",
+      "sha256": "1969b75051e085dcd93275028f47a92a384fe86f0b0cc2edafed8b0a147c0db5",
+      "bytes": 7794,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/skills.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/skills.rs",
+      "anchors": [
+        {
+          "line": 28,
+          "text": "config: &Config,"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/state/session.rs",
+      "sha256": "5eb7ab68ae26da1591b6d6870f8cdb8befde4381e3480c3c6c3dca4e5bad47e1",
+      "bytes": 14761,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/state/session.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/state/session.rs",
+      "anchors": []
+    },
+    {
+      "path": "codex-rs/core/src/tools/orchestrator.rs",
+      "sha256": "0926333b469d44f0367879410ab8b33fe88ed0f424c3f5a082ce8871b605bab0",
+      "bytes": 24065,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/tools/orchestrator.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/tools/orchestrator.rs",
+      "anchors": [
+        {
+          "line": 124,
+          "text": "req: &Rq,"
+        },
+        {
+          "line": 325,
+          "text": "}) = err.details()"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/tools/parallel.rs",
+      "sha256": "e01b784d80793d2af6d1e00a377ea618d5022b3f6d241ce3423778e866b784b3",
+      "bytes": 26617,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/tools/parallel.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/tools/parallel.rs",
+      "anchors": [
+        {
+          "line": 116,
+          "text": "let supports_parallel = router.tool_supports_parallel(&call);"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/tools/router.rs",
+      "sha256": "466ee7a51fd9e6b741653b50313a2567bb08ce55a32af815a619a07cc38bafef",
+      "bytes": 13188,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/tools/router.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/core/src/tools/router.rs",
+      "anchors": [
+        {
+          "line": 245,
+          "text": "#[instrument(level = \"trace\", skip_all, err)]"
+        }
+      ]
+    },
+    {
+      "path": "codex-rs/rollout/src/recorder.rs",
+      "sha256": "79e0e5d04fc13f3895c670ce0dbce0542ca1ac6538cdb8b50bb3d0b3c3d67e87",
+      "bytes": 72863,
+      "url": "https://github.com/openai/codex/blob/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/rollout/src/recorder.rs",
+      "raw_url": "https://raw.githubusercontent.com/openai/codex/4b0d9669cc46ba97bf85fa6312431b630d80498d/codex-rs/rollout/src/recorder.rs",
+      "anchors": [
+        {
+          "line": 1804,
+          "text": "async fn write_pending_once(&mut self) -> std::io::Result<()> {"
+        }
+      ]
+    }
+  ]
+}

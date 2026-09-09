@@ -1,5 +1,7 @@
 # 文章边界与目录
 
+2026-09-09：本地新增 Agent 数据架构，当前共 73 篇；原 Harness 与评测文章深化，不拆分新篇。保持 24 分组、8 知识域；本批未发布。下文原始篇数记录历史阶段，实验边界见 [本批记录](../agent-data-evaluation/README.md)。
+
 每行是一篇文章。目录分组只提供浏览入口，不是合并单位。截至 2026-09-07，本地共 63 篇，含 LiteLLM、OPA 及本轮新增的 Prompt Engineering、RAG、Agent Runtime。篇数记录当前内容，不是最终配额；当前仍按 8 个目录方向展示，三类归属评审待迁移。
 
 ## Harness
@@ -12,7 +14,7 @@
 | [RAG：检索增强生成](../../src/content/writing/rag.md) | 知识问题 | 入库、切分、召回、融合、重排、装配与答案核验；区分权限、时效与相关性。 |
 | [Agent Runtime：Agent 运行时](../../src/content/writing/agent-runtime.md) | 知识问题 | 任务与动作身份、模块协作、状态迁移、事件视图、执行恢复与取消收尾。 |
 | [Claude Code：执行循环、记忆与扩展机制](../../src/content/writing/claude-code-internals-overview.md) | 项目研究 | 沿执行循环、工具证据、项目规则、自动记忆和扩展机制，理解 Claude Code 的职责与公开可验证边界。 |
-| [Codex：运行时、沙箱与持续任务](../../src/content/writing/codex-system-overview.md) | 项目研究 | 连接 Codex 本地运行时、执行沙箱、任务证据、Skills 和自动化，区分开源内核与应用协作层。 |
+| [Codex：运行时、沙箱与持续任务](../../src/content/writing/codex-system-overview.md) | 项目研究 | 固定 Rust 源码追踪输入接纳、回合循环、工具派发、历史投影与挂起交接；解释权限和并发取舍，保留未运行上游、模型与沙箱的边界。 |
 | [Kimi Code：上下文投影、压缩边界与工具执行](../../src/content/writing/kimi-code-system-overview.md) | 项目研究 | 固定 TypeScript 内核提交，分析消息配对、压缩切点、批次执行与委派；六组模块实验验证关键边界。 |
 | [OpenCode：会话运行、上下文压缩与工具状态](../../src/content/writing/opencode-system-overview.md) | 项目研究 | 沿会话路径分析两级压缩、工具终态与扩展；单独验证 core 协调器的合流、唤醒与中断。 |
 | [DeepSeek Harness：插件生命周期、事件日志与执行契约](../../src/content/writing/deepseek-harness-composition.md) | 项目研究 | DeepSeek Harness 把运行能力拆成可组合插件，把模型输入与执行事实记录为事件。沿一次“修复登录超时、不部署”的任务，依次分析组件如何出现和退出、状态怎样恢复、动作如何受约束，以及这些设计把复杂度放到了哪里。 |
@@ -55,6 +57,7 @@
 | [Mem0：事实写入、混合检索与部署边界](../../src/content/writing/mem0-series-overview.md) | 项目研究 | Mem0 封装从对话抽取事实、按身份存储并检索的路径。沿 add/search 分析 ADD-only、实体信号、当前性与删除，再检查库和自托管服务分别把什么责任留给应用。 |
 | [OpenViking：上下文文件系统、层级检索与一致性](../../src/content/writing/openviking-series-overview.md) | 项目研究 | OpenViking 用 URI 和目录结构组织 Resource、Memory 与 Skill。沿摄取、摘要、检索和 Session 提交分析内容与索引如何协作，以及分层读取增加的刷新、权限和一致性成本。 |
 | [TencentDB Agent Memory：协议代理、分层记忆与团队资产](../../src/content/writing/tencentdb-agent-memory-overview.md) | 项目研究 | TencentDB Agent Memory 把记忆接入放在模型协议代理处，再通过分层认识和团队资产进行共享。本文从一次请求的注入与回写走到权限和 Loadout，区分已有 Beta 实现与采用时需要补齐的治理。 |
+| [Agent 数据架构：来源、运行记录、成果与评测集](../../src/content/writing/agent-data-architecture.md) | 知识问题 | 来源与运行身份、成果血缘、版本／权限／删除、评测集与训练候选流转；本地固定成品和 SQLite 检查不代表模型表现、真实隔离或训练效果。 |
 | [可观测性：任务关联、时间线与故障定位](../../src/content/writing/harness-operations-observability.md) | 知识问题 | 用任务、操作与 Trace 的关联关系诊断模型、工具、队列和验收故障，明确异步链路、采样偏差与敏感内容的记录边界。 |
 | [任务服务：队列、租约、隔离令牌与背压](../../src/content/writing/harness-operations-production.md) | 知识问题 | 将队列、租约、陈旧执行者、幂等、背压和多租户配额接到任务生命周期，说明扩容为何必须同时维护执行权与数据边界。 |
 | [版本发布：评测门槛、灰度与在途任务回退](../../src/content/writing/harness-operations-release.md) | 知识问题 | 将模型、上下文、工具、策略与状态版本纳入同一发布单元，通过离线回归、隔离回放、灰度和消融决定扩量、回滚或简化。 |

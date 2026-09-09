@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-09",
+  "kind": "official dynamic documentation, not immutable repository source",
+  "sources": [
+    {
+      "url": "https://docs.langchain.com/langsmith/evaluation-concepts",
+      "final_url": "https://docs.langchain.com/langsmith/evaluation-concepts",
+      "retrieved_at": "2026-09-09T01:29:31.181935+00:00",
+      "sha256": "ff3280f1dfa2d2f9da1fe774f49979303acf01ee77cf6e66b4e4bd793a2b7336",
+      "bytes": 967738,
+      "supports": "Examples separate inputs from reference outputs; experiments and dataset versions."
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+      "final_url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+      "retrieved_at": "2026-09-09T01:29:30.316341+00:00",
+      "sha256": "8ba09a42196b0d91247b875cede08167e3317e500589ed364fa0e7a93c71f8b7",
+      "bytes": 170352,
+      "supports": "GroupKFold keeps a group out of both training and test in one split; transferring this to Agent source families is our design."
+    },
+    {
+      "url": "https://opentelemetry.io/docs/concepts/signals/traces/",
+      "final_url": "https://opentelemetry.io/docs/concepts/signals/traces/",
+      "retrieved_at": "2026-09-09T01:29:30.998612+00:00",
+      "sha256": "c928a2fc62903ce06ece6d5f5b05211a9fe8bf2474383e7eadc393f4c8a7856d",
+      "bytes": 431272,
+      "supports": "Span Links can associate spans across traces; business identity remains application-specific."
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "final_url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "retrieved_at": "2026-09-09T01:29:30.379674+00:00",
+      "sha256": "0c094d67667e886c43a7d4816d3eebf2f033a904b74b336247bf3fcde89010d1",
+      "bytes": 304728,
+      "supports": "Task, trial, transcript and outcome distinctions supporting the existing evaluation article."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-09",
+  "published": false,
+  "articles": 73,
+  "groups": 24,
+  "domains": 8,
+  "graph_nodes": 139,
+  "graph_links": 580,
+  "changed_articles": [
+    {
+      "path": "src/content/writing/agent-data-architecture.md",
+      "sha256": "b14f30a1cb00de1fd96c67b335607f0bbb1f743ba7609d7dbad0574594ceebbf",
+      "mermaid_diagrams": 4
+    },
+    {
+      "path": "src/content/writing/prompt-context-harness-engineering.md",
+      "sha256": "44d49b9707056a2ccad234a88f5dc324031d3383cc4e7e53554f1924b709bd08",
+      "mermaid_diagrams": 3
+    },
+    {
+      "path": "src/content/writing/agent-system-evaluation-research.md",
+      "sha256": "79f1d2b1275b5d9e04a017ef19bcf18e5120ff2fcdc2818a9fd8519d54b713d5",
+      "mermaid_diagrams": 1
+    }
+  ],
+  "new_diagrams": 6,
+  "original_publication_dates_preserved": true,
+  "lu_qi_unchanged": true,
+  "checks": {
+    "build": "passed; content and graph checks passed",
+    "contract_tests": "16 passed",
+    "fixed_candidate_results": "2 pass, 1 fail, 1 unknown; 4 planned",
+    "standalone_package": "16 tests passed, lab output exactly matches recorded results",
+    "browser": "12 article/viewport/theme combinations, internal links and anchors, zoom/reset/fullscreen/SVG export",
+    "visual_inspection": "Data withdrawal diagram, desktop light and mobile dark reviewed",
+    "git_diff_check": "passed"
+  },
+  "evidence_files": {
+    "lab.py": "8a863b7bd528bd07b736619e47cb184a3d65ff73b6e27f95d575f2845a31e9df",
+    "test_lab.py": "7bf6d006713d99d8612683679b76ecb21fd41aad2330b2b6318b2ba02747933b",
+    "results.json": "daa5f3cb5759a8f96d60cf06a77f579e2c9c47e9faa4470455fb02bf951d1089",
+    "sources.json": "18c98b0687722b280d6f700a5a15945be71a976f65f86188b14f23b6a706c873",
+    "browser-results.json": "820191e1221f55f7d4bf3b95ca2db8e296668c932d2f905486d929356f091cb1"
+  },
+  "package_sha256": "6d6e1590a7b7b7d1f19ae9eafb32d00ba2590ad0515185919daf68fc58fdfe9b",
+  "limitations": [
+    "Fixed candidate files and synthetic cost; no model or actual Agent performance measurements",
+    "Reference/collector fixtures, not OS isolation, authentication or complete production audit",
+    "Single-connection sequential SQLite; no distributed delivery, concurrency, deletion propagation or training performed",
+    "Browser checks block third-party requests; no deployment validation"
+  ]
+}

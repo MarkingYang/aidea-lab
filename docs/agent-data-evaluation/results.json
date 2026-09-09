@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-09",
+  "boundary": "fixed candidate files and synthetic cost units; no models or Agent engines",
+  "rows": [
+    {
+      "trial_id": "trial-1",
+      "cost_units": 1,
+      "status": "pass",
+      "failures": [],
+      "unknowns": []
+    },
+    {
+      "trial_id": "trial-2",
+      "cost_units": 1,
+      "status": "pass",
+      "failures": [],
+      "unknowns": []
+    },
+    {
+      "trial_id": "trial-3",
+      "cost_units": 2,
+      "status": "fail",
+      "failures": [
+        "wrong_total_cents"
+      ],
+      "unknowns": []
+    },
+    {
+      "trial_id": "trial-4",
+      "cost_units": 1,
+      "status": "unknown",
+      "failures": [],
+      "unknowns": [
+        "audit_missing"
+      ]
+    }
+  ],
+  "summary": {
+    "planned": 4,
+    "pass": 2,
+    "fail": 1,
+    "unknown": 1,
+    "accepted_rate": 0.5,
+    "all_cost_units": 5,
+    "cost_units_per_accepted": 2.5,
+    "release": "blocked"
+  },
+  "event_count": 4,
+  "duplicate_inserted": false
+}

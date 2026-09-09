@@ -1,0 +1,338 @@
+{
+  "date": "2026-09-08",
+  "results": [
+    {
+      "slug": "codex-system-overview",
+      "width": 1440,
+      "theme": "light",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 503.96875,
+          "svg": 419.96875,
+          "error": false
+        },
+        {
+          "height": 337.28125,
+          "svg": 253.28125,
+          "error": false
+        },
+        {
+          "height": 184,
+          "svg": 80.71875,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "codex-system-overview",
+      "width": 1440,
+      "theme": "dark",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 503.96875,
+          "svg": 419.96875,
+          "error": false
+        },
+        {
+          "height": 337.28125,
+          "svg": 253.28125,
+          "error": false
+        },
+        {
+          "height": 184,
+          "svg": 80.71875,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 1440,
+      "theme": "light",
+      "count": 2,
+      "sizes": [
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        },
+        {
+          "height": 184,
+          "svg": 48.84375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 1440,
+      "theme": "dark",
+      "count": 2,
+      "sizes": [
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        },
+        {
+          "height": 184,
+          "svg": 48.84375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 1440,
+      "theme": "light",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 503.96875,
+          "svg": 419.96875,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        },
+        {
+          "height": 197.609375,
+          "svg": 113.609375,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 1440,
+      "theme": "dark",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 503.96875,
+          "svg": 419.96875,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        },
+        {
+          "height": 197.609375,
+          "svg": 113.609375,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svg": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "harness-architecture-selection",
+      "width": 1440,
+      "theme": "light",
+      "count": 0,
+      "sizes": []
+    },
+    {
+      "slug": "harness-architecture-selection",
+      "width": 1440,
+      "theme": "dark",
+      "count": 0,
+      "sizes": []
+    },
+    {
+      "slug": "codex-system-overview",
+      "width": 390,
+      "theme": "light",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 536.65625,
+          "svg": 419.984375,
+          "error": false
+        },
+        {
+          "height": 286.71875,
+          "svg": 170.046875,
+          "error": false
+        },
+        {
+          "height": 224.671875,
+          "svg": 40.703125,
+          "error": false
+        },
+        {
+          "height": 536.65625,
+          "svg": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "codex-system-overview",
+      "width": 390,
+      "theme": "dark",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 536.65625,
+          "svg": 419.984375,
+          "error": false
+        },
+        {
+          "height": 286.71875,
+          "svg": 170.046875,
+          "error": false
+        },
+        {
+          "height": 224.671875,
+          "svg": 40.703125,
+          "error": false
+        },
+        {
+          "height": 536.65625,
+          "svg": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 390,
+      "theme": "light",
+      "count": 2,
+      "sizes": [
+        {
+          "height": 365.109375,
+          "svg": 248.4375,
+          "error": false
+        },
+        {
+          "height": 224.671875,
+          "svg": 24.625,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "prompt-context-harness-engineering",
+      "width": 390,
+      "theme": "dark",
+      "count": 2,
+      "sizes": [
+        {
+          "height": 365.109375,
+          "svg": 248.4375,
+          "error": false
+        },
+        {
+          "height": 224.671875,
+          "svg": 24.625,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 390,
+      "theme": "light",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 536.640625,
+          "svg": 419.96875,
+          "error": false
+        },
+        {
+          "height": 416.109375,
+          "svg": 299.4375,
+          "error": false
+        },
+        {
+          "height": 224.671875,
+          "svg": 57.296875,
+          "error": false
+        },
+        {
+          "height": 536.4375,
+          "svg": 419.765625,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "agent-runtime",
+      "width": 390,
+      "theme": "dark",
+      "count": 4,
+      "sizes": [
+        {
+          "height": 536.640625,
+          "svg": 419.96875,
+          "error": false
+        },
+        {
+          "height": 416.109375,
+          "svg": 299.4375,
+          "error": false
+        },
+        {
+          "height": 224.671875,
+          "svg": 57.296875,
+          "error": false
+        },
+        {
+          "height": 536.4375,
+          "svg": 419.765625,
+          "error": false
+        }
+      ]
+    },
+    {
+      "slug": "harness-architecture-selection",
+      "width": 390,
+      "theme": "light",
+      "count": 0,
+      "sizes": []
+    },
+    {
+      "slug": "harness-architecture-selection",
+      "width": 390,
+      "theme": "dark",
+      "count": 0,
+      "sizes": []
+    }
+  ],
+  "new_diagrams": 4,
+  "interactions": [
+    "zoom",
+    "reset",
+    "fullscreen",
+    "export"
+  ],
+  "internal_links": "HTTP 200 and target anchors checked",
+  "page_errors": []
+}

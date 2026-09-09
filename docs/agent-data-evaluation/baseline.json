@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-09",
+  "head": "22620f99b5388de759a47ee31bfd48f25eabd55c",
+  "files": {
+    "src/content/writing/prompt-context-harness-engineering.md": "a3aff1a582bdacd3ad2286d4da84a48086d7c4ac147799bc804affc820096a62",
+    "src/content/writing/agent-system-evaluation-research.md": "a3224ae35ad19fa0a5f317ecf5179a768434d3ed12557265e25fe47cb4706bb2",
+    "src/content/writing/lu-qi-researcher-founder.md": "e6fdd339f8b159190eb1ac3e5723efc891dd47870a964b17824b3c01f4fe0846",
+    "src/data/knowledge.json": "6056536cee4b420102bf2120cacffd1371bc2cbfdf7e59cb9e998bcf1d4a69c5"
+  }
+}

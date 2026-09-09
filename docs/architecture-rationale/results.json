@@ -1,0 +1,163 @@
+{
+  "date": "2026-09-08",
+  "python": "3.11.9",
+  "source": "docs/harness-architectures/core.py",
+  "source_sha256": "9a4672e32c1f25e80724adcb752e4243565730998f5188b84891eb32c13b28af",
+  "scope": "Synthetic fixed-response review task; core + real temporary SQLite only",
+  "cases": [
+    {
+      "case": "budget",
+      "intervention": {
+        "from": "if s['calls'] >= s['budget']:",
+        "to": "if False:"
+      },
+      "control": {
+        "status": "exhausted",
+        "calls": 0,
+        "tickets": 0,
+        "create_calls": 0
+      },
+      "variant": {
+        "status": "ready",
+        "calls": 1,
+        "tickets": 0,
+        "create_calls": 0
+      },
+      "passed": true
+    },
+    {
+      "case": "state_version",
+      "intervention": {
+        "from": "if s['version'] != 1:",
+        "to": "if False:"
+      },
+      "control": {
+        "status": "migration_required",
+        "tickets": 0,
+        "create_calls": 0
+      },
+      "variant": {
+        "status": "succeeded",
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "passed": true
+    },
+    {
+      "case": "proposal_contract",
+      "intervention": {
+        "from": "if s['proposal'] != EXPECTED:",
+        "to": "if False:"
+      },
+      "control": {
+        "status": "failed",
+        "tickets": 0,
+        "create_calls": 0
+      },
+      "variant": {
+        "status": "waiting",
+        "tickets": 0,
+        "create_calls": 0
+      },
+      "passed": true
+    },
+    {
+      "case": "resource_verification",
+      "intervention": {
+        "from": "status = 'succeeded' if existing == EXPECTED else 'failed'",
+        "to": "status = 'succeeded'"
+      },
+      "control": {
+        "status": "failed",
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "variant": {
+        "status": "succeeded",
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "passed": true
+    },
+    {
+      "case": "resource_policy",
+      "intervention": {
+        "from": "if not allowed or cancelled:\n                return False",
+        "to": "if False:\n                return False"
+      },
+      "control": {
+        "accepted": false,
+        "tickets": 0,
+        "create_calls": 0
+      },
+      "variant": {
+        "accepted": true,
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "passed": true
+    },
+    {
+      "case": "same_key_payload_binding",
+      "intervention": {
+        "from": "if previous and previous[0] != text:",
+        "to": "if False:"
+      },
+      "control": {
+        "result": "conflict",
+        "stored_field": "effective",
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "variant": {
+        "result": "accepted",
+        "stored_field": "effective",
+        "tickets": 1,
+        "create_calls": 2
+      },
+      "passed": true
+    },
+    {
+      "case": "cancel_effect_accounting",
+      "intervention": {
+        "from": "if cancelled:\n            status = 'cancelled_with_effect'",
+        "to": "if cancelled:\n            status = 'cancelled'"
+      },
+      "control": {
+        "status": "cancelled_with_effect",
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "variant": {
+        "status": "cancelled",
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "passed": true
+    },
+    {
+      "case": "stable_operation_identity",
+      "intervention": "Retry uses a new operation key; no core source mutation",
+      "control": {
+        "recovered_existing": true,
+        "tickets": 1,
+        "create_calls": 1
+      },
+      "variant": {
+        "recovered_existing": false,
+        "tickets": 2,
+        "create_calls": 2
+      },
+      "passed": true
+    }
+  ],
+  "paired_cases": 8,
+  "executions": 16,
+  "limitations": [
+    "No live LLM or external business service",
+    "No Codex or other upstream runtime executed",
+    "No performance or success-rate estimate",
+    "Policy is a fixture row, not authenticated user identity",
+    "Variants deliberately violate one contract; not candidate architectures"
+  ]
+}
