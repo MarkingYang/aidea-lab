@@ -1,0 +1,14 @@
+{
+  "boundary": "Historical evidence cited, not rerun or modified in this continuation",
+  "files": {
+    "docs/harness-source-study/sources.json": "ad7a16cad01ccb48547c150fe1025b6fa32df4965925841101d86998a698df4c",
+    "docs/harness-source-study/langgraph-results.json": "fd59f7100628b7cfe628a8a4c4b41797a034789e86b7d381d0f5e220c6c8768f",
+    "docs/harness-source-study/temporal-results.json": "e21ec267490904cfb22122b21ed5e7cfac8f4be43cec95336079e66cacf0a25e",
+    "docs/architecture-rationale/results.json": "ccf0eebc336a3d0421e7845acf6e955e413acbe782fd50a0c2972fa9fa9c370d",
+    "docs/codex-source-study/sources.json": "02f4cc60f6af20ce01053fa7ce019f18be017a5997134b13d148271f9f58c894",
+    "docs/agent-data-evaluation/results.json": "daa5f3cb5759a8f96d60cf06a77f579e2c9c47e9faa4470455fb02bf951d1089",
+    "src/content/writing/openhands-sdk-architecture.md": "4c90099de6e355df1e9bcb0d1ecba99bb3d28f48e8c8947ee871747cbb4ad90f",
+    "src/content/writing/langgraph-runtime-architecture.md": "309cabf510b973408f904b0680a0f8ca6d5ace2ac5f2fe2e82ee7e2ffaac46f8",
+    "src/content/writing/temporal-durable-execution.md": "be9d64c9013ab6404e9441518d81d8bc88c21081be0fae0eb7d2f702399121f9"
+  }
+}

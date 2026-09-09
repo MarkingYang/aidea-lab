@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-09",
+  "published": false,
+  "previous_published_commit": "20c5f99f5a09ee1764fe2359fa1533703af5079c",
+  "articles": 74,
+  "groups": 24,
+  "domains": 8,
+  "graph_nodes": 141,
+  "graph_links": 595,
+  "article_files": [
+    {
+      "path": "src/content/writing/agent-runtime-selection.md",
+      "sha256": "014b3c9526dc348b2c732f3ecafe0b0ff5ed0af2047a1a1b8e5b976eb9130bc1",
+      "diagrams": 4
+    },
+    {
+      "path": "src/content/writing/agent-runtime.md",
+      "sha256": "c5e510c078f8658ac66d8cfa51a47a9a283311551016ad2a04cdd1133e511764",
+      "diagrams": 4
+    },
+    {
+      "path": "src/content/writing/harness-architecture-selection.md",
+      "sha256": "e4f28dc52e0a6fa3cf715c33b392cca9547ce03c55a2e5cdd63e81e474aa74ca",
+      "diagrams": 0
+    }
+  ],
+  "new_diagrams": 4,
+  "original_publication_dates_preserved": true,
+  "lu_qi_unchanged": true,
+  "historical_evidence_hashes_preserved": true,
+  "checks": {
+    "build": "passed with content and graph checks",
+    "browser": "12 article/viewport/theme combinations passed; internal links, anchors and zoom/reset/fullscreen/export",
+    "visual_inspection": "selection flow, desktop light and mobile dark reviewed",
+    "diff": "git diff --check passed",
+    "prior_publication": "remote main and five online content/download checks passed"
+  },
+  "sources_sha256": "93d933387f40d41ab6471094af6134073ea3b4885d2e16ba416de773a42f2816",
+  "new_runtime_experiments": "none; PoC matrix explicitly unrun; existing fixed-response experiments remain historical"
+}

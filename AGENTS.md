@@ -1,3 +1,11 @@
+## Publication authorization — Agent Runtime technology selection, 2026-09-09
+
+The user explicitly requested “推送” after reviewing the Runtime selection continuation. Publish this 74-article version through origin/main, including the new Runtime selection article, its four editable diagrams, links from Runtime and Harness selection, navigation and research evidence. Preserve 24 groups, 8 domains, 141 graph nodes and 595 links. The following local-only notes describe the pre-publication stage; future additions require another publication request. The candidate comparisons remain source/documentation analysis, with the new PoC scenarios explicitly unrun.
+
+## Latest local continuation — Agent Runtime technology selection, 2026-09-09
+
+The 73-article batch was pushed to origin/main at `20c5f99` and verified online. The user's follow-on request adds one coherent `agent-runtime-selection.md` article locally, comparing execution kernels, graph control, durable task services and execution environments. Candidates include explicit loops, OpenAI Agents SDK, LangGraph, Temporal, OpenHands SDK, Docker and E2B; four scenario combinations and eight fault checks are proposed, not newly executed benchmarks. Current local content is 74 articles, 24 groups, 8 domains, with 141 graph nodes and 595 links. Four new Mermaid diagrams and links from Runtime and Harness selection accompany the article. Preserve official documentation hashes and historical evidence boundaries in `docs/runtime-selection/`; no new model, SDK, container, provider or production tests were run. Lu Qi and historical experiment results are unchanged. This new continuation is unpublished and requires a new publication request.
+
 ## Publication authorization — architecture, data and evaluation, 2026-09-09
 
 The user explicitly requested “推送，然后补充” after asking about Agent Runtime technology selection. Publish the current 73-article batch through origin/main, including Codex/source rationale and Agent architecture/data/evaluation updates and their evidence packages. Preserve 24 groups, 8 domains, 139 graph nodes and 580 links. Previous local-only notes below describe the pre-publication stage. After this push, add a coherent Agent Runtime technology selection article locally; that new continuation requires a new publication request.

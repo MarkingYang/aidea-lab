@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-09",
+  "commit": "20c5f99f5a09ee1764fe2359fa1533703af5079c",
+  "remote_main_verified": true,
+  "online": [
+    {
+      "path": "/writing/agent-data-architecture/",
+      "status": 200
+    },
+    {
+      "path": "/writing/codex-system-overview/",
+      "status": 200
+    },
+    {
+      "path": "/writing/agent-system-evaluation-research/",
+      "status": 200
+    },
+    {
+      "path": "/graph/",
+      "status": 200,
+      "nodes": 139,
+      "links": 580
+    },
+    {
+      "path": "/labs/agent-data-evaluation.zip",
+      "status": 200,
+      "download_matches_local": true
+    }
+  ],
+  "new_runtime_selection_published": false
+}

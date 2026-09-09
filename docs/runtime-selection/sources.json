@@ -1,0 +1,104 @@
+{
+  "date": "2026-09-09",
+  "sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/guides/agents",
+      "final_url": "https://developers.openai.com/api/docs/guides/agents",
+      "retrieved_at": "2026-09-09T01:43:53.426798+00:00",
+      "sha256": "89907344bc6827c12bf189d6ca471c40a038e8579add36401f314fd7e3a99c06",
+      "bytes": 330219,
+      "supports": "SDK loop versus application-owned deployment/tools/storage/approval",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/agents/running-agents",
+      "final_url": "https://developers.openai.com/api/docs/guides/agents/running-agents",
+      "retrieved_at": "2026-09-09T01:43:52.985932+00:00",
+      "sha256": "10289417d2b018d36f04b7aded839ca3cd4b292889e64a7ad521f5363f130ccc",
+      "bytes": 395825,
+      "supports": "Sessions and continuation modes",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/agents/results",
+      "final_url": "https://developers.openai.com/api/docs/guides/agents/results",
+      "retrieved_at": "2026-09-09T01:43:53.200018+00:00",
+      "sha256": "762f557a017d72d3e9cc041e9731793c306cf48e075d4b3f6f656b54be02df18",
+      "bytes": 325945,
+      "supports": "Approval interruptions and resumable result state",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/agents/sandboxes",
+      "final_url": "https://developers.openai.com/api/docs/guides/agents/sandboxes",
+      "retrieved_at": "2026-09-09T01:43:54.051150+00:00",
+      "sha256": "14ccb18833f774749816ccc8ff8647fffb3b2ec39472c19b9bcf464b1475887d",
+      "bytes": 508598,
+      "supports": "Workspace, session, snapshot and mounted storage boundaries",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "final_url": "https://docs.langchain.com/oss/python/langgraph/persistence",
+      "retrieved_at": "2026-09-09T01:43:55.327966+00:00",
+      "sha256": "67bc2fea4a4685ea185cd1f937b06a1ed760d3750d55cec8d8dbd1d9e1f4ed6b",
+      "bytes": 825106,
+      "supports": "Checkpointer versus Store, library versus Agent Server",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+      "final_url": "https://docs.langchain.com/oss/python/langgraph/interrupts",
+      "retrieved_at": "2026-09-09T01:43:56.388478+00:00",
+      "sha256": "b305ba1ad3f89766dc919a93a6255b641cc1bb29b79b600b3b9857a59cb21f3d",
+      "bytes": 1571993,
+      "supports": "Resume re-executes node from beginning",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.temporal.io/workflow-execution",
+      "final_url": "https://docs.temporal.io/workflow-execution",
+      "retrieved_at": "2026-09-09T01:43:55.187581+00:00",
+      "sha256": "8b93d4c7235a297c1ac42fbbd85c6b5a91551101b118408963f231cc15072e7e",
+      "bytes": 64766,
+      "supports": "Workflow execution and durable history",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.temporal.io/activity-execution",
+      "final_url": "https://docs.temporal.io/activity-execution",
+      "retrieved_at": "2026-09-09T01:43:55.178647+00:00",
+      "sha256": "60047519436269f469c89b64e276aa7aa9401465ab153643943fd7d02933dedf",
+      "bytes": 58356,
+      "supports": "Activity execution and retries",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.docker.com/engine/security/rootless/",
+      "final_url": "https://docs.docker.com/engine/security/rootless/",
+      "retrieved_at": "2026-09-09T01:43:57.192502+00:00",
+      "sha256": "ba71ce79553733d20fd90ec0757dd5c3c1bff278c482c0c66384ad9e219500fc",
+      "bytes": 529715,
+      "supports": "Daemon and container rootless mode, not complete security guarantee",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.e2b.dev/sandbox",
+      "final_url": "https://docs.e2b.dev/sandbox",
+      "retrieved_at": "2026-09-09T01:43:58.480798+00:00",
+      "sha256": "6e3426a1e565b8659d8af76b0e6bb0569bafa1b7f57c7b99d78dc97e8ec1cbef",
+      "bytes": 997306,
+      "supports": "Sandbox lifecycle",
+      "evidence": "official documentation; not executed"
+    },
+    {
+      "url": "https://docs.e2b.dev/sandbox/persistence",
+      "final_url": "https://docs.e2b.dev/sandbox/persistence",
+      "retrieved_at": "2026-09-09T01:43:58.837787+00:00",
+      "sha256": "e5e08d9fcf92b90dfb6663bc75574de2196942c97d5a10a4aad224e10af73b9c",
+      "bytes": 1214910,
+      "supports": "Filesystem/memory and filesystem-only persistence modes",
+      "evidence": "official documentation; not executed"
+    }
+  ]
+}

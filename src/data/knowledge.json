@@ -359,6 +359,7 @@
       "question": "给出任务约束、候选架构、验证方法与迁移条件，让选择可以被后续证据推翻。",
       "articles": [
         "harness-architecture-selection",
+        "agent-runtime-selection",
         "multi-agent-architecture-selection"
       ]
     },

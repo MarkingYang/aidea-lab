@@ -1,5 +1,7 @@
 # 文章边界与目录
 
+2026-09-09 推送后继续：73 篇已发布于 `20c5f99`；新增 Runtime 技术选型后，本地共 74 篇、24 分组、8 知识域。新增篇未发布，未新增模型／SDK／沙箱执行实验。
+
 2026-09-09：本地新增 Agent 数据架构，当前共 73 篇；原 Harness 与评测文章深化，不拆分新篇。保持 24 分组、8 知识域；本批未发布。下文原始篇数记录历史阶段，实验边界见 [本批记录](../agent-data-evaluation/README.md)。
 
 每行是一篇文章。目录分组只提供浏览入口，不是合并单位。截至 2026-09-07，本地共 63 篇，含 LiteLLM、OPA 及本轮新增的 Prompt Engineering、RAG、Agent Runtime。篇数记录当前内容，不是最终配额；当前仍按 8 个目录方向展示，三类归属评审待迁移。
@@ -90,6 +92,7 @@
 | 文章 | 类型 | 主要论述边界 |
 | --- | --- | --- |
 | [Agent Harness 架构选型：轻量循环、图式编排与持久工作流](../../src/content/writing/harness-architecture-selection.md) | 选型分析 | 用同一资料核验任务比较三种可运行架构，明确模块组合、状态归属、恢复语义、优缺点及迁移条件。 |
+| [Agent Runtime 技术选型：SDK、编排、持久执行与沙箱](../../src/content/writing/agent-runtime-selection.md) | 选型分析 | 分层比较执行内核、图编排、任务服务和工作环境，以恢复对象、四类场景、故障验收及迁移条件形成可推翻的技术组合；新候选为文档研究，PoC 未运行。 |
 | [Multi-Agent 选型：任务拆分、协作拓扑与部署成本](../../src/content/writing/multi-agent-architecture-selection.md) | 选型分析 | 先证明任务需要独立上下文或并行判断，再选择协作拓扑、框架和部署方式。把委派契约、汇合、共享写入、取消与成本放进同一次 PoC，避免把多个 Agent 当成默认升级。 |
 | [模型选型：任务样本、重复运行与完整成本](../../src/content/writing/ai-capability-evidence-action.md) | 选型分析 | 沿能力趋势、真实任务与评测证据，判断模型升级是否真正降低交付成本，并形成可重复的选择方法。 |
 | [Agent 选型：比较维度、任务契约与 PoC](../../src/content/writing/agent-landscape-comparison-methods.md) | 选型分析 | 按研究对象和任务证据比较 Agent，用明确契约、分项指标和分轮 PoC 形成可复核的采用决定。 |

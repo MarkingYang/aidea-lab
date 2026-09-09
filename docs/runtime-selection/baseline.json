@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-09",
+  "published_commit": "20c5f99f5a09ee1764fe2359fa1533703af5079c",
+  "files": {
+    "src/content/writing/agent-runtime.md": "4fc2bd61d81bfb1c8461d8c8d14a1c9b1acc4da3cc6d2dfa9ebb40d2c670afa9",
+    "src/content/writing/harness-architecture-selection.md": "728d9e891fbf8d004920fc73d60bd80f1d274d4c2a448b0084d1af472546a8bd",
+    "src/content/writing/lu-qi-researcher-founder.md": "e6fdd339f8b159190eb1ac3e5723efc891dd47870a964b17824b3c01f4fe0846",
+    "src/data/knowledge.json": "b7228659bbe4b0593e53167b2f9198fe4fdaf4882e14c0ebb67c4adf0e608561"
+  }
+}
