@@ -1,0 +1,36 @@
+---
+import '../styles/timeline.css';
+---
+
+<script>
+  document.querySelectorAll<HTMLElement>('.content-timeline').forEach((timeline) => {
+    const viewport = timeline.querySelector<HTMLElement>('.timeline-viewport')!;
+    const controls = timeline.querySelector<HTMLElement>('.timeline-controls')!;
+    const hint = timeline.querySelector<HTMLElement>('.timeline-scroll-hint')!;
+    const previous = controls.querySelector<HTMLButtonElement>('[data-timeline-direction="-1"]')!;
+    const next = controls.querySelector<HTMLButtonElement>('[data-timeline-direction="1"]')!;
+    const update = () => {
+      const max = viewport.scrollWidth - viewport.clientWidth;
+      controls.hidden = hint.hidden = max <= 2;
+      previous.disabled = viewport.scrollLeft <= 2;
+      next.disabled = viewport.scrollLeft >= max - 2;
+    };
+    const move = (direction: number, edge = false) => {
+      const step = timeline.querySelector<HTMLElement>('.timeline-event')!.offsetWidth;
+      const left = edge ? (direction < 0 ? 0 : viewport.scrollWidth) : viewport.scrollLeft + direction * step;
+      viewport.scrollTo({ left, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    };
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    viewport.addEventListener('keydown', (event) => {
+      if (event.target !== viewport || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      move(['ArrowLeft', 'Home'].includes(event.key) ? -1 : 1, ['Home', 'End'].includes(event.key));
+    });
+    viewport.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(viewport);
+    document.fonts.ready.then(update);
+    update();
+  });
+</script>

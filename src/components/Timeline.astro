@@ -1,0 +1,13 @@
+---
+import { renderTimeline } from '../lib/timeline.mjs';
+import TimelineEnhancer from './TimelineEnhancer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  events: { date: string; title: string; description?: string; href?: string }[];
+}
+---
+
+<Fragment set:html={renderTimeline(Astro.props)} />
+<TimelineEnhancer />

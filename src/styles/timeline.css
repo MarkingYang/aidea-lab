@@ -1,0 +1,49 @@
+/* One horizontal rail. Native text stays readable instead of shrinking an SVG. */
+.content-timeline {
+  --timeline-width: 14rem;
+  margin: 2.5rem 0;
+  padding: 1.5rem 0 1rem;
+  border-block: 1px solid var(--line);
+  color: var(--text);
+  text-align: left;
+}
+.timeline-header { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; margin-bottom: 2rem; }
+.timeline-heading { display: grid; gap: .45rem; min-width: 0; }
+.timeline-eyebrow { color: var(--accent); font: 10px/1.5 var(--mono); letter-spacing: .08em; }
+figure.content-timeline strong.timeline-title { color: var(--text); font: 500 20px/1.5 var(--sans); letter-spacing: -.025em; }
+.timeline-controls { display: flex; gap: .5rem; flex-shrink: 0; }
+.timeline-controls button { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid var(--line-strong); border-radius: 50%; background: transparent; color: var(--text); font: 20px/1 var(--sans); cursor: pointer; transition: background .18s ease, border-color .18s ease; }
+.timeline-controls button:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.timeline-controls button:disabled { color: var(--text-muted); border-color: var(--line); opacity: .45; cursor: default; }
+.timeline-controls button:focus-visible, .timeline-viewport:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.timeline-viewport { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; scroll-snap-type: x proximity; scroll-padding-inline: 1px; padding-bottom: 1rem; }
+figure.content-timeline ol.timeline-track { display: flex; width: max-content; min-width: 100%; padding: 0; margin: 0; list-style: none; }
+figure.content-timeline li.timeline-event { position: relative; flex: 1 0 var(--timeline-width); width: var(--timeline-width); min-width: 0; margin: 0; padding: 0 1.5rem 0 1px; scroll-snap-align: start; }
+.timeline-date { display: block; color: var(--text); font: 400 28px/1.25 var(--display); font-variant-numeric: lining-nums tabular-nums; letter-spacing: -.04em; white-space: nowrap; }
+.timeline-marker { position: relative; display: block; height: 34px; margin: .8rem -1.5rem .9rem -1px; }
+.timeline-marker::before { content: ''; position: absolute; top: 16px; left: 0; right: 0; height: 1px; background: var(--line-strong); }
+.timeline-marker > span { position: absolute; top: 12px; left: 1px; width: 9px; height: 9px; border: 2px solid var(--accent); border-radius: 50%; background: var(--bg); }
+.timeline-event:first-child .timeline-marker > span { background: var(--accent); }
+.timeline-event:last-child .timeline-marker::before { background: linear-gradient(to right, var(--line-strong), transparent); }
+.timeline-index { display: block; margin-bottom: .65rem; color: var(--text-soft); font: 10px/1.4 var(--mono); letter-spacing: .08em; }
+figure.content-timeline .timeline-event-title { display: block; margin: 0; color: var(--text); font: 600 16px/1.65 var(--sans); text-decoration: none; text-wrap: pretty; }
+figure.content-timeline a.timeline-event-title:hover { color: var(--accent); }
+figure.content-timeline p.timeline-event-description { margin: .65rem 0 0; color: var(--text-soft); font: 13px/1.85 var(--sans); overflow-wrap: anywhere; text-wrap: pretty; }
+.timeline-footer { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-top: .8rem; }
+figure.content-timeline .timeline-footer p { margin: 0; color: var(--text-soft); font: 11px/1.7 var(--sans); }
+.timeline-scroll-hint { flex-shrink: 0; color: var(--text-soft); font: 11px/1.7 var(--sans); }
+.timeline-scroll-hint span { margin-left: .5rem; color: var(--accent); }
+@media (max-width: 640px) {
+  .content-timeline { --timeline-width: 13rem; padding-top: 1.25rem; }
+  .timeline-header { margin-bottom: 1.6rem; }
+  figure.content-timeline strong.timeline-title { font-size: 18px; }
+  .timeline-date { font-size: 27px; }
+  .timeline-footer { flex-direction: column; gap: .45rem; }
+}
+@media (prefers-reduced-motion: reduce) { .timeline-controls button { transition: none; } }
+@media print {
+  .timeline-controls, .timeline-scroll-hint { display: none !important; }
+  .timeline-viewport { overflow: visible; }
+  figure.content-timeline ol.timeline-track { width: 100%; flex-wrap: wrap; gap: 1.5rem 0; }
+  figure.content-timeline li.timeline-event { flex: 0 0 33.333%; break-inside: avoid; }
+}

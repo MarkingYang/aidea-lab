@@ -1,3 +1,11 @@
+## Publication authorization — LLM-to-Agent timeline, 2026-09-16
+
+The user explicitly requested “发布” after reviewing the chronological article and reusable horizontal timeline component. Publish this article and component through origin/main. Preserve the 38 dated nodes, five explanatory fields per node and 38 original sources; retain the ReAct diagram. Add the article to the existing Harness core knowledge group. The source is historical literature/documentation analysis, not new model or Agent experiments. This request does not include the unrelated local Zhang Xiaojun interview article or archived drafts. Subsequent additions require a new publication request.
+
+## Timeline component convention — 2026-09-16
+
+The user requests timelines as one horizontal line with a reusable visual form. Use the shared `timeline` JSON Markdown fence (or `src/components/Timeline.astro`) for future chronological overviews; keep the dated article nodes and their explanations intact. Use Mermaid for flow/feedback diagrams. The renderer preserves readable text with native horizontal scrolling, controls, keyboard support, themes and print layout. Authoring format is in `docs/markdown-guide.md`. The original Markdown source remains at `docs/llm-to-agent-evolution.md`; the publication copy is `src/content/writing/llm-to-agent-evolution.md`. `/preview/timeline/` exists only in development and is excluded from production output.
+
 ## Publication authorization — Agent Runtime technology selection, 2026-09-09
 
 The user explicitly requested “推送” after reviewing the Runtime selection continuation. Publish this 74-article version through origin/main, including the new Runtime selection article, its four editable diagrams, links from Runtime and Harness selection, navigation and research evidence. Preserve 24 groups, 8 domains, 141 graph nodes and 595 links. The following local-only notes describe the pre-publication stage; future additions require another publication request. The candidate comparisons remain source/documentation analysis, with the new PoC scenarios explicitly unrun.

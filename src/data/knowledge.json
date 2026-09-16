@@ -103,6 +103,7 @@
       "outcome": "理解各项机制的职责、主流程与设计取舍。",
       "question": "指令、证据、控制流与运行时怎样组成 Agent？",
       "articles": [
+        "llm-to-agent-evolution",
         "prompt-context-harness-engineering",
         "prompt-engineering",
         "harness-engineering-loop",

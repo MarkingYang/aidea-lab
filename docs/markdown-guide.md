@@ -14,7 +14,54 @@ Blog 文章不使用截图、课件图片、装饰插图或图片形式的图表
 
 以下 Mermaid 与 ECharts 章节记录现有技术能力。写作优先采用上述文本表达，核心信息必须能在不渲染图形的情况下完整理解，不将图形导出为图片插入文章。
 
-## 2. Mermaid 流程图
+## 2. 横向时间线
+
+文章中的历史节点、发展阶段和事件年表，统一优先使用 `timeline` 代码块。组件以一条横轴按输入顺序排列节点；保持正文可读字号，超出宽度时横向滚动，不把整张图缩小。普通流程与反馈循环继续使用 Mermaid。
+
+````md
+```timeline
+{
+  "title": "从模型能力到 Agent 系统",
+  "description": "按时间顺序等距排列，节点间距不代表时长。",
+  "events": [
+    {
+      "date": "2017—2021",
+      "title": "通用能力与外部信息",
+      "description": "Transformer、GPT、RAG 与指令训练。"
+    },
+    {
+      "date": "2022",
+      "title": "指令、推理与行动",
+      "description": "CoT、InstructGPT 与 ReAct。",
+      "href": "https://arxiv.org/abs/2210.03629"
+    }
+  ]
+}
+```
+````
+
+`events` 至少包含一个节点，节点的 `date` 和 `title` 必填；`description` 与 `href` 可选。顶层 `title` 默认为“时间线”，`description` 可补充时间口径。日期作为文本展示，支持年份、月份和范围；组件不自动排序，也不按时长计算距离。链接支持 http(s)、站内路径和章节锚点。所有内容按纯文本处理，不在字段中写 HTML 或 Markdown。
+
+每个节点宜使用短标题和一两句说明，细节继续写在原有正文中。组件支持触摸滚动、前后按钮；聚焦滚动区后可用左右键逐节点浏览，Home / End 到首尾。浅深色主题自动适配，减少动态效果的系统偏好会关闭平滑滚动。禁用 JavaScript 后，节点文字和原生滚动仍然可用；打印时展开全部节点。
+
+Astro 页面可直接复用同一组件：
+
+```astro
+---
+import Timeline from '../components/Timeline.astro';
+const events = [
+  { date: '2022', title: '行动反馈', description: '根据环境观察调整下一步。' },
+  { date: '2023', title: '工具与记忆', description: '让执行结果与历史信息参与任务。' },
+];
+---
+<Timeline title="Agent 技术节点" events={events} />
+```
+
+实现位于 `src/components/Timeline.astro`；Markdown 与 Astro 组件共用渲染逻辑和样式。完整文章预览在开发服务的 `/preview/timeline/`，该路由不会输出到生产构建。整理源稿保存在 `docs/llm-to-agent-evolution.md`；本次明确授权发布后，正式文章为 `src/content/writing/llm-to-agent-evolution.md`。单独创建组件预览不会自动发布文档。
+
+组件修改后运行 `node --test scripts/timeline.test.mjs` 与 `npm run build`。浏览器回归检查使用 `scripts/timeline-browser-check.mjs`，沿用项目其他浏览器检查的 `BLOG_PLAYWRIGHT_ROOT`（包含 `playwright` 的 node_modules 目录）与 `BLOG_BASE_URL` 配置，截图默认保存到 `/tmp/aidea-timeline/`。
+
+## 3. Mermaid 流程图
 
 ````md
 ```mermaid
@@ -28,7 +75,7 @@ flowchart LR
 ```
 ````
 
-## 3. Mermaid 架构图
+## 4. Mermaid 架构图
 
 ````md
 ```mermaid
@@ -49,7 +96,7 @@ architecture-beta
 
 同样支持 `sequenceDiagram`、`stateDiagram-v2`、`classDiagram`、`erDiagram`、`gantt`、`mindmap`、`C4Context` 等 Mermaid 图形。页面提供缩放、复位、全屏、复制源码和 SVG 导出。
 
-## 4. ECharts 数据图表
+## 5. ECharts 数据图表
 
 `echarts` 围栏内必须是合法 JSON，不能包含 JavaScript 函数：
 
@@ -83,7 +130,7 @@ architecture-beta
 
 支持折线、柱状、饼图、散点、雷达、仪表盘、漏斗、热力、关系图、树图、矩形树图、桑基图和旭日图。页面提供全屏查看、配置复制和 PNG 导出。
 
-## 5. 数学公式
+## 6. 数学公式
 
 行内公式：
 
@@ -101,7 +148,7 @@ $$
 
 公式由 KaTeX 在构建阶段生成，不需要浏览器端计算。
 
-## 6. Callout
+## 7. Callout
 
 ```md
 > [!NOTE]
@@ -120,7 +167,7 @@ $$
 > 用于提醒不可逆或高风险操作。
 ```
 
-## 7. 代码块
+## 8. 代码块
 
 ````md
 ```ts
@@ -130,7 +177,7 @@ const result = await harness.run({ goal, context, tools });
 
 代码块自动获得深浅主题语法高亮、自动换行开关和复制按钮。
 
-## 8. 视频、音频与网页嵌入
+## 9. 视频、音频与网页嵌入
 
 Markdown 允许直接写 HTML：
 
@@ -151,7 +198,7 @@ Markdown 允许直接写 HTML：
 
 本地视频和音频分别放在 `public/media/`。嵌入第三方网页前，应确认其允许 iframe 展示并填写准确的 `title`。
 
-## 9. 表格、任务列表与折叠内容
+## 10. 表格、任务列表与折叠内容
 
 ```md
 | 能力 | 当前状态 | 下一步 |
@@ -173,7 +220,7 @@ Markdown 允许直接写 HTML：
 </details>
 ```
 
-## 10. 写作与检查
+## 11. 写作与检查
 
 发布前运行：
 

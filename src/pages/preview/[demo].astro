@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MarkdownEnhancer from '../../components/MarkdownEnhancer.astro';
+import Timeline from '../../components/Timeline.astro';
+import { Content } from '../../../docs/llm-to-agent-evolution.md';
+
+// Review the docs draft locally; no preview route is emitted in production.
+export function getStaticPaths() {
+  return import.meta.env.DEV ? [{ params: { demo: 'timeline' } }] : [];
+}
+---
+
+<BaseLayout title="时间线预览｜大飞随笔">
+  <article class="timeline-preview">
+    <div class="preview-label">本地预览 · 文档草稿</div>
+    <div class="prose"><Content /></div>
+    <details class="component-example">
+      <summary>通用组件示例</summary>
+      <Timeline title="同一组件，也支持较短的时间线" events={[
+        { date: '阶段一', title: '明确问题', description: '记录输入与验收要求。' },
+        { date: '阶段二', title: '验证结果', description: '保留证据与待确认事项。' },
+      ]} />
+    </details>
+  </article>
+  <MarkdownEnhancer />
+</BaseLayout>
+
+<style>
+  .timeline-preview { max-width: 800px; width: calc(100% - 48px); margin: 56px auto 80px; }
+  .preview-label { margin-bottom: 24px; color: var(--accent); font: 11px var(--mono); letter-spacing: .08em; }
+  .prose { color: var(--text-body); font-size: 16px; line-height: 1.9; }
+  .prose :global(h1) { font: 400 clamp(30px, 4vw, 44px)/1.35 var(--display); letter-spacing: -.035em; color: var(--text); }
+  .prose :global(h2) { margin: 52px 0 20px; font: 400 27px/1.5 var(--display); color: var(--text); }
+  .prose :global(h3) { margin: 36px 0 16px; color: var(--text); font-size: 20px; }
+  .prose :global(p) { margin: 0 0 24px; }
+  .prose :global(a) { color: var(--accent); text-underline-offset: 4px; }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 28px; padding-left: 1.4em; }
+  .prose :global(li) { margin: 7px 0; padding-left: .4em; }
+  .prose :global(blockquote) { margin: 24px 0; padding-left: 18px; border-left: 2px solid var(--line-strong); color: var(--text-soft); }
+  .prose :global(table) { display: block; overflow-x: auto; border-collapse: collapse; margin: 28px 0; font-size: 13px; }
+  .prose :global(th), .prose :global(td) { min-width: 180px; border: 1px solid var(--line); padding: 12px; text-align: left; }
+  .prose :global(th) { background: var(--surface); }
+  .component-example { margin-top: 48px; color: var(--text-soft); }
+  .component-example summary { cursor: pointer; }
+  @media (max-width: 640px) { .timeline-preview { width: calc(100% - 36px); margin-top: 32px; } }
+</style>

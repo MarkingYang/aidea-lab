@@ -1,0 +1,45 @@
+{
+  "base": "http://127.0.0.1:4399",
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "articleNodes": 38,
+      "timelineNodes": 6,
+      "sources": 38,
+      "mermaid": "ready",
+      "navigation": "passed",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "articleNodes": 38,
+      "timelineNodes": 6,
+      "sources": 38,
+      "mermaid": "ready",
+      "navigation": "passed",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "articleNodes": 38,
+      "timelineNodes": 6,
+      "sources": 38,
+      "mermaid": "ready",
+      "navigation": "passed",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "articleNodes": 38,
+      "timelineNodes": 6,
+      "sources": 38,
+      "mermaid": "ready",
+      "navigation": "passed",
+      "overflow": false
+    }
+  ]
+}
