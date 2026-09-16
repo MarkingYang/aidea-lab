@@ -37,3 +37,6 @@ graphify-out/
 
 # Local private knowledge base (never publish or commit)
 /private/
+
+# Local WeChat publication drafts and assets
+/wechat/

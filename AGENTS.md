@@ -1,3 +1,7 @@
+## Timeline wording publication and WeChat handoff — 2026-09-16
+
+The user reviewed two small Blog wording edits and explicitly requested republishing: title “回望 LLM 诞生之后的九年”, and removal of “回头看，” from the third opening paragraph. Synchronize the title metadata and both article copies; preserve the URL, publication date, 46 historical nodes, timeline and images. The opening still anchors the nine years to the 2017 Transformer paper. The user now maintains the WeChat account manually: stop generating, synchronizing or publishing WeChat adaptations unless explicitly requested again. Retain local `wechat/` artifacts and `/wechat/` in `.gitignore`; do not commit that directory. Exclude the unrelated Yang Zhilin interview and archives from this publication.
+
 ## Publication authorization — timeline narrative, stage images and Obsidian compatibility, 2026-09-16
 
 The user explicitly requested “发布” after reviewing the documentary narrative, six sourced stage images and Obsidian image-path fix. Publish this article, its image assets, relative-path renderer and supporting records through origin/main. Preserve 46 dated nodes, twelve overview milestones, the ReAct diagram, attribution and source links. The current title is “回望 LLM 诞生的九年：从 LLM 到 Agent”; retain the original URL and publication date. Earlier local-only notes below describe pre-publication status. Exclude the unrelated Yang Zhilin interview and archived drafts. Subsequent additions require another publication request. See `docs/timeline-publication/narrative-images-revision.md`.
