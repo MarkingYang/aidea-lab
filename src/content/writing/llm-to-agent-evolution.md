@@ -1,5 +1,5 @@
 ---
-title: 回望 LLM 诞生之后的九年
+title: 从 Transformer 到 Managed Agents：九年，大模型走向自主执行的完整脉络
 description: 从 ChatGPT、AutoGPT、Devin 到 DeepSeek-R1、Manus 与 Codex，沿 46 个历史节点，将里程碑事件与 LLM 到 Agent 的技术变化连起来。
 publishedAt: 2026-09-16
 type: essay
@@ -12,7 +12,7 @@ featured: false
 readingTime: 50 min
 ---
 
-# 回望 LLM 诞生之后的九年
+# 从 Transformer 到 Managed Agents：九年，大模型走向自主执行的完整脉络
 
 回望过去，如果从 2017 年 Transformer 论文发表算起，LLM 到 Agent 的这段演进已经走过了九年。2017 年，谷歌研究团队发表《Attention Is All You Need》，提出 Transformer 架构，为后来大语言模型的发展奠定了关键基础。2022 年底，OpenAI 的 ChatGPT 横空出世，大语言模型由此破圈，走入公众视野。
 
