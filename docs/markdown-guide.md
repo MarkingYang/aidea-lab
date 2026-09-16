@@ -229,3 +229,9 @@ npm run build
 ```
 
 如果 Mermaid 或 ECharts 语法有误，页面会保留原始源码并显示错误信息。构建成功并不代表客户端图表语法一定正确，因此新图表建议同时在本地文章页面中检查一次。
+
+## 已获授权的图片：兼容 Obsidian 与 Blog
+
+用户明确要求配图的文章，图片存入 `public/images/<article>/`，在 Markdown 或 HTML `<img>` 中使用相对于文稿的路径。例如 `docs/` 中使用 `../public/images/<article>/figure.png`，`src/content/writing/` 中使用 `../../../public/images/<article>/figure.png`。不要在本地稿件中写网站根路径 `/images/...`，Obsidian 无法把它定位到附件。
+
+站点通过 `remark-public-images` 在构建时将这类路径转换为 `/images/...`。草稿与正式稿同步时，只调整图片路径的相对层级，正文、图注与来源保持一致。HTML 图片显式设置 `width: 100%; height: auto;`，避免本地阅读器按原始高度拉伸；透明背景的黑字图须设置白底。这个约定不改变默认不配图原则，当前时间线的六张图已获用户明确授权。

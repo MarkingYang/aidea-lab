@@ -4,6 +4,7 @@ import { unified } from '@astrojs/markdown-remark';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkTimeline from './src/plugins/remark-timeline.mjs';
+import remarkPublicImages from './src/plugins/remark-public-images.mjs';
 import contentRedirects from './src/data/content-redirects.json';
 
 // https://astro.build/config
@@ -12,7 +13,7 @@ export default defineConfig({
   redirects: contentRedirects,
   markdown: {
     processor: unified({
-      remarkPlugins: [remarkMath, remarkTimeline],
+      remarkPlugins: [remarkMath, remarkTimeline, remarkPublicImages],
       rehypePlugins: [rehypeKatex],
     }),
     syntaxHighlight: {

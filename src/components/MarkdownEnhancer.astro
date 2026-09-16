@@ -448,6 +448,7 @@ import TimelineEnhancer from './TimelineEnhancer.astro';
     const openImage = (image: HTMLImageElement) => {
       dialogImage.src = image.currentSrc || image.src;
       dialogImage.alt = image.alt;
+      dialogImage.style.backgroundColor = getComputedStyle(image).backgroundColor;
       viewport.style.setProperty('--image-width', `${image.naturalWidth || image.width}px`);
       setZoom(false);
       dialogCaption.textContent = image.title || image.alt || '文章图片';
