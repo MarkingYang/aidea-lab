@@ -300,7 +300,8 @@
       "outcome": "研究任务委托、结果契约、自治范围、反馈与产品迭代之间的关系。",
       "question": "研究任务委托、结果契约、自治范围、反馈与产品迭代之间的关系。",
       "articles": [
-        "product-work-methodology"
+        "product-work-methodology",
+        "dify-workflow-agents"
       ]
     },
     {

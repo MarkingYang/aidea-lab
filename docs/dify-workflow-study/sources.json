@@ -1,0 +1,101 @@
+{
+  "scope": "Official documentation research; no Dify, model, agent or business-system execution. Cloud documentation is not a self-hosted version guarantee. Response hashes identify retrievals, not pinned software versions.",
+  "sources": [
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/build/orchestrate-node",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/build/orchestrate-node.md",
+      "retrievedAt": "2026-09-16T14:14:19.589006+00:00",
+      "readThrough": "web.run",
+      "sha256": "ded58153eb53446d4521c7fef69d5823254cdbe799e39dbf76d53b60153289e9",
+      "bytes": 2026
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/build/version-control",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/build/version-control.md",
+      "retrievedAt": "2026-09-16T14:14:19.592921+00:00",
+      "readThrough": "web.run",
+      "sha256": "269d84d6f5467aae77dc92e0c636d38da3e626c1082b631eb38b51dd210c0ec8",
+      "bytes": 3997
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/build/workflow-chatflow",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/build/workflow-chatflow.md",
+      "retrievedAt": "2026-09-16T14:14:19.608688+00:00",
+      "readThrough": "web.run",
+      "sha256": "fab51783bb0f3f4ea0828fb41e6d6814d93c4abfe0d0e89fa34e2b186ef2e651",
+      "bytes": 3246
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/monitor/logs",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/monitor/logs.md",
+      "retrievedAt": "2026-09-16T14:14:19.585464+00:00",
+      "readThrough": "web.run",
+      "sha256": "969e8aba3a3862becfc9d337d1a287c12b3a20455f1bac83a0d254cddfcd0faf",
+      "bytes": 6361
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/agent",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/agent.md",
+      "retrievedAt": "2026-09-16T14:14:19.784667+00:00",
+      "readThrough": "web.run",
+      "sha256": "e6d063da08454e63d1eecdf0e83246944f8299ef6806fcf1272c7f56fd824ac9",
+      "bytes": 10240
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/http-request",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/http-request.md",
+      "retrievedAt": "2026-09-16T14:14:20.360296+00:00",
+      "readThrough": "web.run",
+      "sha256": "b2b58f49e0281e791885b6d8cca0e1450773e5682ebc23d847b26ce7126f5140",
+      "bytes": 6053
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/human-input",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/human-input.md",
+      "retrievedAt": "2026-09-16T14:14:20.330497+00:00",
+      "readThrough": "web.run",
+      "sha256": "3d14ce1a8821a4c41702971ade9f3de355f1283d0a6e0c4486e9d75d092bccc9",
+      "bytes": 9786
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/iteration",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/iteration.md",
+      "retrievedAt": "2026-09-16T14:14:20.415735+00:00",
+      "readThrough": "web.run",
+      "sha256": "3cfd834a1ec6c8460ec492e238eea5993b24b0815d26a370d2729c43e1769820",
+      "bytes": 5523
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/knowledge-retrieval",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/knowledge-retrieval.md",
+      "retrievedAt": "2026-09-16T14:14:20.380306+00:00",
+      "readThrough": "web.run",
+      "sha256": "f713f707f634e1e112b3bfe091a37b29afdbbff6a2fff3b6df3e5cc0b9b539fc",
+      "bytes": 6784
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/llm",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/llm.md",
+      "retrievedAt": "2026-09-16T14:14:20.521684+00:00",
+      "readThrough": "web.run",
+      "sha256": "e73879749c1952e2aba03b5ce7b4aff9c2602762c0b86f66ba90fa6cb719abd2",
+      "bytes": 7873
+    },
+    {
+      "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/loop",
+      "retrievalUrl": "https://docs.dify.ai/en/cloud/use-dify/nodes/loop.md",
+      "retrievedAt": "2026-09-16T14:14:21.113129+00:00",
+      "readThrough": "web.run",
+      "sha256": "84243b277190cf36755ca445f51aac5647c58a699a7baa8ccee5659711a89fcf",
+      "bytes": 3578
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "retrievalUrl": "https://www.anthropic.com/engineering/building-effective-agents",
+      "retrievedAt": "2026-09-16T14:14:22.085217+00:00",
+      "readThrough": "web.run",
+      "sha256": "d7c5571a578dc759be49accf0b6fbb69a4e402452905446a6e552d04216e3d47",
+      "bytes": 212431
+    }
+  ]
+}

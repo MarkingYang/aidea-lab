@@ -1,0 +1,78 @@
+{
+  "date": "2026-09-16",
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "diagramCount": 2,
+      "overflow": false,
+      "figures": [
+        {
+          "height": 503.96875,
+          "svgHeight": 419.96875,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svgHeight": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "diagramCount": 2,
+      "overflow": false,
+      "figures": [
+        {
+          "height": 503.96875,
+          "svgHeight": 419.96875,
+          "error": false
+        },
+        {
+          "height": 503.984375,
+          "svgHeight": 419.984375,
+          "error": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "diagramCount": 2,
+      "overflow": false,
+      "figures": [
+        {
+          "height": 536.640625,
+          "svgHeight": 419.96875,
+          "error": false
+        },
+        {
+          "height": 536.640625,
+          "svgHeight": 419.96875,
+          "error": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "diagramCount": 2,
+      "overflow": false,
+      "figures": [
+        {
+          "height": 536.640625,
+          "svgHeight": 419.96875,
+          "error": false
+        },
+        {
+          "height": 536.640625,
+          "svgHeight": 419.96875,
+          "error": false
+        }
+      ]
+    }
+  ],
+  "pageErrors": []
+}

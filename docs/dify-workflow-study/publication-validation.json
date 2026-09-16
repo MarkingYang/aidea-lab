@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-16",
+  "authorization": "User requested 发布 after reviewing the Dify / Workflow article.",
+  "baseline": "eb64a60a32dfb5d4820eedec21e266fbbd542c92",
+  "isolation": "git checkout-index exported only staged publication files into a temporary build directory",
+  "build": "npm run build passed, including content and graph checks",
+  "articles": 76,
+  "groups": 24,
+  "domains": 8,
+  "graphNodes": 143,
+  "graphLinks": 608,
+  "articleSha256": "ec7cf2e935c83a0ff2549d32af7161548400e1de40a41c47876669c50da7c2db",
+  "excluded": [
+    "yang-zhilin-agent-generalization.md",
+    "unrelated archives and drafts",
+    "wechat/"
+  ],
+  "difyOrModelExperimentsRun": false
+}
