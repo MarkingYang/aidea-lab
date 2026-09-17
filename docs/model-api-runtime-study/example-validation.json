@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-17",
+  "revision": "concise edition",
+  "article_sha256": "b0ead3dd419b68ecd3e87cdfd60eaadf81f026c136d733c1488b9d1f812822a8",
+  "json_blocks": 6,
+  "json_syntax": "passed",
+  "responses_call_id_and_result": "passed",
+  "messages_call_id_and_result": "passed",
+  "shared_order_and_result": "passed",
+  "boundary": "Offline syntax and example consistency only; no model, provider schema validator or business execution."
+}

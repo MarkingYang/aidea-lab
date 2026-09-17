@@ -1,0 +1,242 @@
+[
+  {
+    "id": "o-function",
+    "url": "https://developers.openai.com/api/docs/guides/function-calling",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/function-calling.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/function-calling.md",
+    "status": 200,
+    "bytes": 75013,
+    "sha256": "078619f5bb7196abc4b162e23be8427b1243a8431aa4d14d3d869a8cd93ccc0b",
+    "fetched_at": "2026-09-17T06:55:32.444322+00:00"
+  },
+  {
+    "id": "o-migration",
+    "url": "https://developers.openai.com/api/docs/guides/migrate-to-responses",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/migrate-to-responses.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/migrate-to-responses.md",
+    "status": 200,
+    "bytes": 62931,
+    "sha256": "9550a98f822a87262c563894f7d7627eab486d86643d0c21803ba34efe351d7a",
+    "fetched_at": "2026-09-17T06:55:32.350704+00:00"
+  },
+  {
+    "id": "o-state",
+    "url": "https://developers.openai.com/api/docs/guides/conversation-state",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/conversation-state.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/conversation-state.md",
+    "status": 200,
+    "bytes": 28787,
+    "sha256": "c38bcd32ee9ff9904746a5a092c020e30d647d1598418bea93e949cce5021e14",
+    "fetched_at": "2026-09-17T06:55:32.339941+00:00"
+  },
+  {
+    "id": "o-structured",
+    "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/structured-outputs.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/structured-outputs.md",
+    "status": 200,
+    "bytes": 136333,
+    "sha256": "09aa3814251cf168070294ace79d677091de04b330055048392548d604aa7104",
+    "fetched_at": "2026-09-17T06:55:32.974125+00:00"
+  },
+  {
+    "id": "o-stream",
+    "url": "https://developers.openai.com/api/docs/guides/streaming-responses",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/streaming-responses.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/streaming-responses.md",
+    "status": 200,
+    "bytes": 7108,
+    "sha256": "7e147ae8c9e2ef2a30ecd7f3502a4c350e929487c7e51643cef2e4fb66281f7f",
+    "fetched_at": "2026-09-17T06:55:31.934290+00:00"
+  },
+  {
+    "id": "o-reasoning",
+    "url": "https://developers.openai.com/api/docs/guides/reasoning",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/reasoning.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/reasoning.md",
+    "status": 200,
+    "bytes": 70253,
+    "sha256": "91604df954335250d16e33f3b07ebbfa3e6e2b7f821f0722ad7a69b9d586719a",
+    "fetched_at": "2026-09-17T06:55:32.304535+00:00"
+  },
+  {
+    "id": "o-tools",
+    "url": "https://developers.openai.com/api/docs/guides/tools",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/tools.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/tools.md",
+    "status": 200,
+    "bytes": 33282,
+    "sha256": "4722fa102070178c1a1d603e718c69575c7c1768fa901218eab359bafdcba341",
+    "fetched_at": "2026-09-17T06:55:32.136910+00:00"
+  },
+  {
+    "id": "o-background",
+    "url": "https://developers.openai.com/api/docs/guides/background",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/background.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/background.md",
+    "status": 200,
+    "bytes": 19966,
+    "sha256": "9aa2b715e56683ea0132db81e46cb8e9f654de2fb3d94635218762c10d68ba09",
+    "fetched_at": "2026-09-17T06:55:32.329735+00:00"
+  },
+  {
+    "id": "o-mcp",
+    "url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp",
+    "fetch_url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp.md",
+    "final_url": "https://developers.openai.com/api/docs/guides/tools-connectors-mcp.md",
+    "status": 200,
+    "bytes": 61232,
+    "sha256": "0a8296dcf7c63a39c43d6ac23d33e7fafcf852f4d21211fa2b84747ba33b735b",
+    "fetched_at": "2026-09-17T06:55:33.304733+00:00"
+  },
+  {
+    "id": "a-messages",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages.md",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/working-with-messages.md",
+    "status": 200,
+    "bytes": 32828,
+    "sha256": "55223e5c6dbb38940e1a51727797aacd220fc0a6fccb957f362da926fc40ebe2",
+    "fetched_at": "2026-09-17T06:55:33.596030+00:00"
+  },
+  {
+    "id": "a-tool",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls",
+    "fetch_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md",
+    "final_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md",
+    "status": 200,
+    "bytes": 13434,
+    "sha256": "28a334dc4e4fa27152df79d99353e7d8812a583a2d7664699054a97b1d73149f",
+    "fetched_at": "2026-09-17T06:55:33.621117+00:00"
+  },
+  {
+    "id": "a-server",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools",
+    "fetch_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools.md",
+    "final_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools.md",
+    "status": 200,
+    "bytes": 44401,
+    "sha256": "d84a8971b33100f6ea46ccf7db494179eba5f34a0c2fad7ab37fe1fd07f6542f",
+    "fetched_at": "2026-09-17T06:55:33.909498+00:00"
+  },
+  {
+    "id": "a-stream",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/streaming.md",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/streaming.md",
+    "status": 200,
+    "bytes": 50872,
+    "sha256": "b0fefc9a3d98b06f5f18736c833527ccbad28ab5c01cd0270a8b1dffe243787a",
+    "fetched_at": "2026-09-17T06:55:34.100734+00:00"
+  },
+  {
+    "id": "a-stop",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons.md",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons.md",
+    "status": 200,
+    "bytes": 121102,
+    "sha256": "efd90d3307adede99c65ae6faf26c590849b8ab2bf63e365825480e91855cdfd",
+    "fetched_at": "2026-09-17T06:55:34.215963+00:00"
+  },
+  {
+    "id": "a-thinking",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking.md",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking.md",
+    "status": 200,
+    "bytes": 22064,
+    "sha256": "f36ffca7bb81f3a718ac63d4feddc5d0579349aa60e328285bea1b996afc466b",
+    "fetched_at": "2026-09-17T06:55:33.834020+00:00"
+  },
+  {
+    "id": "a-structured",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs.md",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs.md",
+    "status": 200,
+    "bytes": 110492,
+    "sha256": "4e500fed30c759764ba06bcd96b9df7160ecb8e5e7611aae9bc229086e0b9204",
+    "fetched_at": "2026-09-17T06:55:34.974355+00:00"
+  },
+  {
+    "id": "a-cache",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md",
+    "status": 200,
+    "bytes": 157459,
+    "sha256": "0bde1d1be67c46c425f9aaa19c987c074da42e4fdd3b7ca1314f861d15f16300",
+    "fetched_at": "2026-09-17T06:55:35.793010+00:00"
+  },
+  {
+    "id": "a-strict",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use",
+    "fetch_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use.md",
+    "final_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use.md",
+    "status": 200,
+    "bytes": 40202,
+    "sha256": "96c6f3246a419d99bad3266755ca942160e56cbbc24fb4c84c0a6bc86eaaed9a",
+    "fetched_at": "2026-09-17T06:55:36.216338+00:00"
+  },
+  {
+    "id": "a-overview",
+    "url": "https://platform.claude.com/docs/en/api/overview",
+    "fetch_url": "https://platform.claude.com/docs/en/api/overview.md",
+    "final_url": "https://platform.claude.com/docs/en/api/overview.md",
+    "status": 200,
+    "bytes": 21353,
+    "sha256": "f1eda352040eb98610b11d23588bb8067d21c4890fc10da158baa36d89fa67e6",
+    "fetched_at": "2026-09-17T06:55:35.189726+00:00"
+  },
+  {
+    "id": "a-mcp",
+    "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+    "fetch_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector.md",
+    "final_url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector.md",
+    "status": 200,
+    "bytes": 49439,
+    "sha256": "eed74bbeb6a246b30e9a1ae2d00abf5599d291f16bda75f3c1cb045b7648a0a6",
+    "fetched_at": "2026-09-17T06:55:35.835258+00:00"
+  },
+  {
+    "id": "astro-content",
+    "url": "https://docs.astro.build/en/guides/content-collections/",
+    "fetch_url": "https://docs.astro.build/en/guides/content-collections/",
+    "final_url": "https://docs.astro.build/en/guides/content-collections/",
+    "status": 200,
+    "bytes": 437429,
+    "sha256": "bf1915b99f5428868143b0ec91a597575d7cb706bb4b4cf097bf40b04e160256",
+    "fetched_at": "2026-09-17T06:55:38.249181+00:00"
+  },
+  {
+    "id": "o-chat-reference",
+    "url": "https://developers.openai.com/api/reference/resources/chat",
+    "fetch_url": "https://developers.openai.com/api/reference/resources/chat",
+    "final_url": "https://developers.openai.com/api/reference/resources/chat",
+    "status": 200,
+    "bytes": 1690001,
+    "sha256": "34491c7f3ca0bc233075456d69c3d4cef98926bd1a9babdb661d96076cc28914",
+    "fetched_at": "2026-09-17T07:04:16.633383+00:00"
+  },
+  {
+    "id": "o-response-reference",
+    "url": "https://developers.openai.com/api/reference/cli/resources/responses/methods/create",
+    "fetch_url": "https://developers.openai.com/api/reference/cli/resources/responses/methods/create",
+    "final_url": "https://developers.openai.com/api/reference/cli/resources/responses/methods/create",
+    "status": 200,
+    "bytes": 602506,
+    "sha256": "66d1752c309d5e475ea1388831eb3c1673e87f038230303aa83046b6f461e128",
+    "fetched_at": "2026-09-17T07:04:21.698081+00:00"
+  },
+  {
+    "id": "a-thinking-current",
+    "url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+    "fetch_url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+    "final_url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+    "status": 200,
+    "bytes": 975196,
+    "sha256": "27cba135f92b07c2ff8c3c5a8a0bc21702de565c573043f6fed8e25f3c4cd4eb",
+    "fetched_at": "2026-09-17T07:05:27.229310+00:00"
+  }
+]

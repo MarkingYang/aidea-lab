@@ -1,3 +1,7 @@
+## Publication authorization — concise model API/Runtime boundaries, 2026-09-17
+
+The user explicitly requested “发布” after reviewing the concise `model-api-agent-runtime-boundary.md` article. Publish this 11-minute edition, its existing model-capability directory entry and `docs/model-api-runtime-study/` through origin/main. Preserve six JSON examples, the single editable tool-call sequence diagram, official sources and unrun-example boundaries. Exclude the unrelated API lifecycle article, Yang Zhilin interview, homepage changes, archives and WeChat artifacts. Earlier local-only notes describe pre-publication status; subsequent additions require a new publication request.
+
 ## Publication authorization — Dify and Workflow agents, 2026-09-16
 
 The user explicitly requested “发布” after reviewing the Dify / Workflow article. Publish `dify-workflow-agents.md`, its existing Agent product-design directory entry and `docs/dify-workflow-study/` through origin/main. Preserve the two Mermaid diagrams, official Cloud / Beta capability boundaries and hypothetical, unrun business examples. Exclude the unrelated Yang Zhilin interview, archived drafts and WeChat artifacts. The earlier local validation includes the unpublished interview; the isolated publication has 76 articles, 24 groups and 8 domains. Subsequent additions require a new publication request.

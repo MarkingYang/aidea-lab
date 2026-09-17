@@ -192,6 +192,7 @@
       "outcome": "区分公开能力证据、模型协议与适配行为；不把框架能力计作模型能力。",
       "question": "区分公开能力证据、模型协议与适配行为；不把框架能力计作模型能力。",
       "articles": [
+        "model-api-agent-runtime-boundary",
         "llm-agent-capability-landscape-2026",
         "harness-operations-model-gateway",
         "litellm-gateway-architecture",

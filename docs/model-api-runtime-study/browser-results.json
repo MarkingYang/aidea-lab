@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-17",
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "diagramCount": 1,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "diagramCount": 1,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "diagramCount": 1,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "diagramCount": 1,
+      "overflow": false
+    }
+  ],
+  "pageErrors": [],
+  "zoomAndReset": "passed"
+}

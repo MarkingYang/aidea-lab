@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-17",
+  "base_commit": "ffb75ca",
+  "scope": [
+    "src/content/writing/model-api-agent-runtime-boundary.md",
+    "src/data/knowledge.json (single article entry)",
+    "docs/model-api-runtime-study/",
+    "AGENTS.md (publication authorization only)"
+  ],
+  "article_sha256": "b0ead3dd419b68ecd3e87cdfd60eaadf81f026c136d733c1488b9d1f812822a8",
+  "build": "npm run build passed",
+  "articles": 77,
+  "groups": 24,
+  "domains": 8,
+  "graph_nodes": 146,
+  "graph_links": 620,
+  "excluded": [
+    "API lifecycle article and study",
+    "Yang Zhilin interview and study",
+    "homepage changes",
+    "archives",
+    "WeChat artifacts"
+  ],
+  "validation_boundary": "Build/content/graph validation of isolated publication, plus existing concise-edition syntax and four-view browser checks; no real model or business execution."
+}
