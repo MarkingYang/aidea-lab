@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-17",
+  "scope": "Official public documentation and original papers; no inference or vendor backend experiment. HTML response hashes, not immutable documentation versions.",
+  "sources": [
+    {
+      "id": "chat-template",
+      "url": "https://huggingface.co/docs/transformers/en/chat_templating",
+      "final_url": "https://huggingface.co/docs/transformers/en/chat_templating",
+      "retrieved_at": "2026-09-17T02:35:31.209034+00:00",
+      "status": 200,
+      "bytes": 269073,
+      "sha256": "5550a2fad4206fa2491f98d3318b4e7701ca65a19f5fd499509337af2fdb4749"
+    },
+    {
+      "id": "kv-cache",
+      "url": "https://huggingface.co/docs/transformers/en/cache_explanation",
+      "final_url": "https://huggingface.co/docs/transformers/en/cache_explanation",
+      "retrieved_at": "2026-09-17T02:35:31.348777+00:00",
+      "status": 200,
+      "bytes": 274737,
+      "sha256": "a06ade91323d5b6f865f6d5d910dde26c3d7bd38e2526f235994b40faa2a5fb2"
+    },
+    {
+      "id": "generation",
+      "url": "https://huggingface.co/docs/transformers/en/generation_strategies",
+      "final_url": "https://huggingface.co/docs/transformers/en/generation_strategies",
+      "retrieved_at": "2026-09-17T02:35:31.576328+00:00",
+      "status": 200,
+      "bytes": 291271,
+      "sha256": "628411858f6b34a16c30fbea49b5efe9811845d681ea7b1c14bc40923dfc3a69"
+    },
+    {
+      "id": "continuous-batching",
+      "url": "https://huggingface.co/docs/transformers/en/continuous_batching",
+      "final_url": "https://huggingface.co/docs/transformers/en/continuous_batching",
+      "retrieved_at": "2026-09-17T02:35:31.697596+00:00",
+      "status": 200,
+      "bytes": 340009,
+      "sha256": "84154e1c673a224813fb2dd0c93fbfc833acec6f9c1eb40953309edbe503a064"
+    },
+    {
+      "id": "assisted-decoding",
+      "url": "https://huggingface.co/docs/transformers/en/assisted_decoding",
+      "final_url": "https://huggingface.co/docs/transformers/en/assisted_decoding",
+      "retrieved_at": "2026-09-17T02:35:30.884588+00:00",
+      "status": 200,
+      "bytes": 262910,
+      "sha256": "b789981b11f283667be3532953c6cea25e0683ba0b95b203163762e1de6a5c99"
+    },
+    {
+      "id": "vllm-chunked-prefill",
+      "url": "https://docs.vllm.ai/en/latest/configuration/optimization/",
+      "final_url": "https://docs.vllm.ai/en/latest/configuration/optimization/",
+      "retrieved_at": "2026-09-17T02:35:31.658853+00:00",
+      "status": 200,
+      "bytes": 721850,
+      "sha256": "e4c449d6b89a148c13dc606188bb898309b8080086c51a39e435a997f67bde5a"
+    },
+    {
+      "id": "vllm-disaggregation",
+      "url": "https://docs.vllm.ai/en/latest/features/disagg_prefill/",
+      "final_url": "https://docs.vllm.ai/en/latest/features/disagg_prefill/",
+      "retrieved_at": "2026-09-17T02:35:31.574904+00:00",
+      "status": 200,
+      "bytes": 672685,
+      "sha256": "055155711afc0cb0b5dc02da7f6f9c25e0f4e15b6e145524ce71a0bf56aeaa28"
+    },
+    {
+      "id": "vllm-prefix-cache",
+      "url": "https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/",
+      "final_url": "https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/",
+      "retrieved_at": "2026-09-17T02:35:31.218640+00:00",
+      "status": 200,
+      "bytes": 658489,
+      "sha256": "a493b1367dd054b9f8b53a529ce284c3fea46f9f8a2fbb8779f7cfd5e85b531d"
+    },
+    {
+      "id": "attention",
+      "url": "https://arxiv.org/html/1706.03762v7",
+      "final_url": "https://arxiv.org/html/1706.03762v7",
+      "retrieved_at": "2026-09-17T02:35:32.240780+00:00",
+      "status": 200,
+      "bytes": 188707,
+      "sha256": "fe1288e9c6f8322156429ab44bf5ced203155f8ecc7ea9fe6cfd125872c72a3b"
+    },
+    {
+      "id": "flash-attention",
+      "url": "https://arxiv.org/abs/2205.14135",
+      "final_url": "https://arxiv.org/abs/2205.14135",
+      "retrieved_at": "2026-09-17T02:35:32.649816+00:00",
+      "status": 200,
+      "bytes": 43989,
+      "sha256": "070112e924e64cb514df26ecf174263f5d3343560438a88086d4a7c478547f64"
+    },
+    {
+      "id": "gqa",
+      "url": "https://arxiv.org/abs/2305.13245",
+      "final_url": "https://arxiv.org/abs/2305.13245",
+      "retrieved_at": "2026-09-17T02:35:32.528694+00:00",
+      "status": 200,
+      "bytes": 41223,
+      "sha256": "7860787eb1979ad6ec34c46d006ff334736cc6265af2b48669ccfd3111dbed92"
+    },
+    {
+      "id": "paged-attention",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "final_url": "https://arxiv.org/abs/2309.06180",
+      "retrieved_at": "2026-09-17T02:35:32.643755+00:00",
+      "status": 200,
+      "bytes": 43425,
+      "sha256": "de9353854db4e16af0c63f73502f7e463f03bdc4f3c98f3fcd377fe1c625ed08"
+    },
+    {
+      "id": "claude-tool-use",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+      "final_url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview",
+      "retrieved_at": "2026-09-17T02:35:33.790508+00:00",
+      "status": 200,
+      "bytes": 765340,
+      "sha256": "ab77abfaff36c79f4274a59104d046a369c2940f4aadbb19f0bfef43e89c6cf4"
+    },
+    {
+      "id": "claude-streaming",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "final_url": "https://platform.claude.com/docs/en/build-with-claude/streaming",
+      "retrieved_at": "2026-09-17T02:35:34.360760+00:00",
+      "status": 200,
+      "bytes": 1238121,
+      "sha256": "a6dd9e8f2b23e4064b135e793c904911b1fa43fe42c7ef334c0c1ac6c70138cd"
+    },
+    {
+      "id": "claude-thinking",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "final_url": "https://platform.claude.com/docs/en/build-with-claude/extended-thinking",
+      "retrieved_at": "2026-09-17T02:35:33.804535+00:00",
+      "status": 200,
+      "bytes": 520376,
+      "sha256": "4d3be79bb2be889349decad935e02e0ea8b343f06f8afb51ca31da86737354fa"
+    },
+    {
+      "id": "claude-context",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "final_url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "retrieved_at": "2026-09-17T02:35:33.689265+00:00",
+      "status": 200,
+      "bytes": 410880,
+      "sha256": "8f74b7828a5df6fec8584629b11919c4b49255410e8761b4d372c038171b372a"
+    },
+    {
+      "id": "claude-caching",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "final_url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "retrieved_at": "2026-09-17T02:35:34.522306+00:00",
+      "status": 200,
+      "bytes": 1698825,
+      "sha256": "2fbca04d1f15da998d38d4148497db8d46496b2456b32b88c1e905cb5aafb748"
+    },
+    {
+      "id": "claude-rate-limits",
+      "url": "https://platform.claude.com/docs/en/api/rate-limits",
+      "final_url": "https://platform.claude.com/docs/en/api/rate-limits",
+      "retrieved_at": "2026-09-17T02:35:35.002657+00:00",
+      "status": 200,
+      "bytes": 486176,
+      "sha256": "b444009794bd1466eea5a89492e2b758a2622517f83e539d669d0c82518fbced"
+    }
+  ]
+}

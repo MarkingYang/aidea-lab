@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-17",
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "diagramCount": 1,
+      "overflow": false,
+      "mathDisplays": 0
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "diagramCount": 1,
+      "overflow": false,
+      "mathDisplays": 0
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "diagramCount": 1,
+      "overflow": false,
+      "mathDisplays": 0
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "diagramCount": 1,
+      "overflow": false,
+      "mathDisplays": 0
+    }
+  ],
+  "pageErrors": [],
+  "zoomAndReset": "passed",
+  "scope": "isolated production build; normal external page resources enabled",
+  "article_sha256": "735563cc6d5738a7dc0eaf7f23d42acacbd8a8c288cf24af920a45b69ee7a2c1",
+  "semantic_review": [
+    "application and service input separated",
+    "streaming interleaved with generation",
+    "KV is state storage",
+    "client tool permission and result loop",
+    "completion, increment and failure separated",
+    "security and metering cross-cutting"
+  ]
+}
