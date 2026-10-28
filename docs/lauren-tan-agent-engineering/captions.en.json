@@ -1,0 +1,5898 @@
+[
+  {
+    "seconds": 0.08,
+    "text": "Everyone, I am Lauren Lauren Tan. I"
+  },
+  {
+    "seconds": 3.28,
+    "text": "guess not many people know my last name."
+  },
+  {
+    "seconds": 5.52,
+    "text": "Uh, I am Potato on Twitter. Uh, potato"
+  },
+  {
+    "seconds": 10.0,
+    "text": "with spelled with an E. Um, and I have"
+  },
+  {
+    "seconds": 13.599,
+    "text": "been at Cursor for about 5 months. Uh,"
+  },
+  {
+    "seconds": 18.24,
+    "text": "previously I was at Meta where I worked"
+  },
+  {
+    "seconds": 20.32,
+    "text": "on the React team. Uh, specifically"
+  },
+  {
+    "seconds": 22.88,
+    "text": "working on the React compiler, uh, which"
+  },
+  {
+    "seconds": 25.359,
+    "text": "was a whole lot of fun. Uh I'm still on"
+  },
+  {
+    "seconds": 27.519,
+    "text": "the on the core team and and uh"
+  },
+  {
+    "seconds": 29.279,
+    "text": "contributing to open source here and"
+  },
+  {
+    "seconds": 30.88,
+    "text": "there. Uh so that that's really nice"
+  },
+  {
+    "seconds": 33.84,
+    "text": "that they still let me do that. Uh and"
+  },
+  {
+    "seconds": 36.0,
+    "text": "before Meta, I was at Netflix uh where I"
+  },
+  {
+    "seconds": 38.96,
+    "text": "was uh both a tech lead and uh I"
+  },
+  {
+    "seconds": 43.28,
+    "text": "transitioned to be be an engineering"
+  },
+  {
+    "seconds": 45.04,
+    "text": "manager um for about two years. So I've"
+  },
+  {
+    "seconds": 50.0,
+    "text": "had a I've have had a lot of experience"
+  },
+  {
+    "seconds": 52.239,
+    "text": "going between engineering management and"
+  },
+  {
+    "seconds": 55.12,
+    "text": "being an individual contributor. Uh and"
+  },
+  {
+    "seconds": 58.0,
+    "text": "I think something I've noticed actually"
+  },
+  {
+    "seconds": 59.68,
+    "text": "which is quite interesting is that there"
+  },
+  {
+    "seconds": 62.079,
+    "text": "are so many parallels with you know"
+  },
+  {
+    "seconds": 64.32,
+    "text": "management skills and how to like manage"
+  },
+  {
+    "seconds": 66.64,
+    "text": "agents. Uh and that's actually a big"
+  },
+  {
+    "seconds": 69.04,
+    "text": "part about what I wanted to chat with"
+  },
+  {
+    "seconds": 70.64,
+    "text": "you and everybody else about today. Um"
+  },
+  {
+    "seconds": 74.479,
+    "text": "but yeah that's that's me. Uh I do have"
+  },
+  {
+    "seconds": 77.2,
+    "text": "some like very light slides but uh it's"
+  },
+  {
+    "seconds": 80.4,
+    "text": "not going to be uh just rambling. So let"
+  },
+  {
+    "seconds": 83.04,
+    "text": "me just share my screen"
+  },
+  {
+    "seconds": 85.52,
+    "text": "and hope that I don't leak anything. Uh"
+  },
+  {
+    "seconds": 93.6,
+    "text": "oh no I need to allow permissions."
+  },
+  {
+    "seconds": 96.479,
+    "text": ">> No worries. Take your time. There's"
+  },
+  {
+    "seconds": 98.64,
+    "text": "always tech tech trouble. Uh give me one"
+  },
+  {
+    "seconds": 101.52,
+    "text": "second to rejoin."
+  },
+  {
+    "seconds": 102.96,
+    "text": ">> Yeah, go for it."
+  },
+  {
+    "seconds": 106.399,
+    "text": "I see many of you already know Lauren"
+  },
+  {
+    "seconds": 108.399,
+    "text": "from from the looks of the chat here."
+  },
+  {
+    "seconds": 110.479,
+    "text": "Um, so yeah, it's exciting to to get a"
+  },
+  {
+    "seconds": 113.36,
+    "text": "chance to chat with her uh and and go"
+  },
+  {
+    "seconds": 115.36,
+    "text": "through some of her her recent work. As"
+  },
+  {
+    "seconds": 117.119,
+    "text": "you guys heard, you know, a lot of"
+  },
+  {
+    "seconds": 118.799,
+    "text": "recent experience from from Netflix to"
+  },
+  {
+    "seconds": 121.68,
+    "text": "to Meta and then now over at Cursor. Uh,"
+  },
+  {
+    "seconds": 124.56,
+    "text": "we're going to chat a little bit about"
+  },
+  {
+    "seconds": 125.759,
+    "text": "Grockbot as well. So, uh, that'll be"
+  },
+  {
+    "seconds": 128.56,
+    "text": "exciting. I don't know if you guys saw"
+  },
+  {
+    "seconds": 129.599,
+    "text": "that was a recent release. I think"
+  },
+  {
+    "seconds": 130.879,
+    "text": "literally maybe yesterday or the day"
+  },
+  {
+    "seconds": 132.56,
+    "text": "before uh from the cursor team which is"
+  },
+  {
+    "seconds": 134.879,
+    "text": "kind of like um let's call it like"
+  },
+  {
+    "seconds": 136.64,
+    "text": "agents for everyone. You can go check it"
+  },
+  {
+    "seconds": 138.48,
+    "text": "out if you want and learn a little bit"
+  },
+  {
+    "seconds": 139.92,
+    "text": "more about the product but um but yeah"
+  },
+  {
+    "seconds": 142.48,
+    "text": "we'll we'll explore that a little bit"
+  },
+  {
+    "seconds": 143.68,
+    "text": "today as well."
+  },
+  {
+    "seconds": 146.959,
+    "text": "All righty. Welcome back."
+  },
+  {
+    "seconds": 160.4,
+    "text": "And Lauren, you're just on mute there if"
+  },
+  {
+    "seconds": 162.319,
+    "text": "uh you want to hop off of mute if you're"
+  },
+  {
+    "seconds": 163.84,
+    "text": "chatting."
+  },
+  {
+    "seconds": 164.4,
+    "text": ">> Yeah, sorry."
+  },
+  {
+    "seconds": 165.44,
+    "text": ">> No worries."
+  },
+  {
+    "seconds": 167.12,
+    "text": ">> It's 2026 and I still don't know how to"
+  },
+  {
+    "seconds": 169.12,
+    "text": "use Zoom. [laughter]"
+  },
+  {
+    "seconds": 170.239,
+    "text": ">> That's all good."
+  },
+  {
+    "seconds": 171.599,
+    "text": ">> Uh okay, so I assume you can see my"
+  },
+  {
+    "seconds": 173.76,
+    "text": "screen."
+  },
+  {
+    "seconds": 174.48,
+    "text": ">> Yes. Yeah, we're good. Um, so yeah,"
+  },
+  {
+    "seconds": 176.56,
+    "text": "today, yeah, I think I think the big"
+  },
+  {
+    "seconds": 178.72,
+    "text": "theme for me as I've been using agents"
+  },
+  {
+    "seconds": 181.599,
+    "text": "to write code, and I'm sure a lot of you"
+  },
+  {
+    "seconds": 183.36,
+    "text": "have had the same experience as well, is"
+  },
+  {
+    "seconds": 186.159,
+    "text": "how do you trust it? You know,"
+  },
+  {
+    "seconds": 187.84,
+    "text": "especially if you are an engineer that's"
+  },
+  {
+    "seconds": 190.0,
+    "text": "been writing code for a very long time,"
+  },
+  {
+    "seconds": 192.8,
+    "text": "you have a lot of opinions and lessons"
+  },
+  {
+    "seconds": 195.92,
+    "text": "that you've learned about doing good"
+  },
+  {
+    "seconds": 197.92,
+    "text": "engineering. And when you see agents"
+  },
+  {
+    "seconds": 200.48,
+    "text": "just, you know, winging it and, you"
+  },
+  {
+    "seconds": 202.56,
+    "text": "know, guessing, hallucinating,"
+  },
+  {
+    "seconds": 204.959,
+    "text": "uh, you know, confidently stating that"
+  },
+  {
+    "seconds": 207.2,
+    "text": "they found the smoking gun, uh, for the"
+  },
+  {
+    "seconds": 209.92,
+    "text": "hundth time, uh, but it's actually not"
+  },
+  {
+    "seconds": 212.08,
+    "text": "the real problem. You lose a lot of"
+  },
+  {
+    "seconds": 214.239,
+    "text": "trust. And when you lose when you don't"
+  },
+  {
+    "seconds": 216.48,
+    "text": "have much trust in your agents,"
+  },
+  {
+    "seconds": 219.12,
+    "text": "I feel like you you really can't get the"
+  },
+  {
+    "seconds": 221.04,
+    "text": "most out of them. And for me, the"
+  },
+  {
+    "seconds": 223.84,
+    "text": "parallel is like with management. Uh so"
+  },
+  {
+    "seconds": 226.08,
+    "text": "if I'm an a manager an engineering"
+  },
+  {
+    "seconds": 228.239,
+    "text": "manager of a team and I have a bunch of"
+  },
+  {
+    "seconds": 231.519,
+    "text": "you know I have a team of engineers uh"
+  },
+  {
+    "seconds": 234.08,
+    "text": "on my team and I don't trust them then"
+  },
+  {
+    "seconds": 237.04,
+    "text": "the mode of operation I'm going to be in"
+  },
+  {
+    "seconds": 239.12,
+    "text": "is going to be like micromanagement"
+  },
+  {
+    "seconds": 240.879,
+    "text": "right I'll have to spend a lot of time"
+  },
+  {
+    "seconds": 243.36,
+    "text": "looking over my reports shoulders and"
+  },
+  {
+    "seconds": 246.48,
+    "text": "checking that they're doing their work"
+  },
+  {
+    "seconds": 248.159,
+    "text": "well you know that they're not shipping"
+  },
+  {
+    "seconds": 249.84,
+    "text": "bugs to production"
+  },
+  {
+    "seconds": 253.04,
+    "text": "and so I drew this chart cuz uh it's not"
+  },
+  {
+    "seconds": 256.479,
+    "text": "it's not a very scientific chart but"
+  },
+  {
+    "seconds": 258.56,
+    "text": "like this is how I imagine myself and my"
+  },
+  {
+    "seconds": 262.16,
+    "text": "journey through using agents. So you"
+  },
+  {
+    "seconds": 265.52,
+    "text": "know like fast forward or back forward"
+  },
+  {
+    "seconds": 269.04,
+    "text": "uh or fast back uh fast backwards like a"
+  },
+  {
+    "seconds": 273.04,
+    "text": "year or so when you know nobody was or"
+  },
+  {
+    "seconds": 275.759,
+    "text": "not many people were using agents to"
+  },
+  {
+    "seconds": 277.52,
+    "text": "code. Uh I think you"
+  },
+  {
+    "seconds": 281.04,
+    "text": "uh you know get into this mode where you"
+  },
+  {
+    "seconds": 283.199,
+    "text": "are"
+  },
+  {
+    "seconds": 285.199,
+    "text": "in very heavily in the loop with one or"
+  },
+  {
+    "seconds": 288.08,
+    "text": "several like a handful of agents and you"
+  },
+  {
+    "seconds": 291.6,
+    "text": "find yourself just constantly fig uh you"
+  },
+  {
+    "seconds": 293.919,
+    "text": "know trying to understand what your"
+  },
+  {
+    "seconds": 295.04,
+    "text": "agents are doing uh and you're very very"
+  },
+  {
+    "seconds": 297.44,
+    "text": "in the loop. You're watching every"
+  },
+  {
+    "seconds": 299.52,
+    "text": "single output. you are sitting there"
+  },
+  {
+    "seconds": 301.6,
+    "text": "prompting um and you really can't"
+  },
+  {
+    "seconds": 304.56,
+    "text": "parallelize beyond that because you"
+  },
+  {
+    "seconds": 307.36,
+    "text": "don't again you don't have that trust"
+  },
+  {
+    "seconds": 309.12,
+    "text": "right you can't go to a 100 agents uh"
+  },
+  {
+    "seconds": 311.84,
+    "text": "like spawn 100 agents when you don't"
+  },
+  {
+    "seconds": 313.759,
+    "text": "even trust the output of one agent"
+  },
+  {
+    "seconds": 317.36,
+    "text": "so over the past 5 months I feel like"
+  },
+  {
+    "seconds": 320.0,
+    "text": "I've really been able to uh like ascend"
+  },
+  {
+    "seconds": 323.36,
+    "text": "this trust curve and now I'm at the"
+  },
+  {
+    "seconds": 326.88,
+    "text": "point where uh I actually have this"
+  },
+  {
+    "seconds": 329.84,
+    "text": "Sounds kind of scary to say this and it"
+  },
+  {
+    "seconds": 331.68,
+    "text": "it makes me sound like a slop artist,"
+  },
+  {
+    "seconds": 333.199,
+    "text": "but I I promise I'm not, but I actually"
+  },
+  {
+    "seconds": 335.759,
+    "text": "have my agents now um automerging PRs"
+  },
+  {
+    "seconds": 338.96,
+    "text": "for me. Uh which is like a wild thing to"
+  },
+  {
+    "seconds": 341.52,
+    "text": "say, but um like I woke up today and"
+  },
+  {
+    "seconds": 344.72,
+    "text": "there were like 20 PRs landed and I just"
+  },
+  {
+    "seconds": 347.039,
+    "text": "reviewed them on Maine like they were"
+  },
+  {
+    "seconds": 349.36,
+    "text": "already landed and they were good. Uh so"
+  },
+  {
+    "seconds": 352.8,
+    "text": "how did I get to that point is basically"
+  },
+  {
+    "seconds": 355.6,
+    "text": "what I wanted to talk about today."
+  },
+  {
+    "seconds": 358.72,
+    "text": "Uh, and again like yeah, feel free to"
+  },
+  {
+    "seconds": 360.4,
+    "text": "jump in if you have questions, Colin."
+  },
+  {
+    "seconds": 362.639,
+    "text": "Um, but uh, oh yeah, of course I got to"
+  },
+  {
+    "seconds": 366.96,
+    "text": "show this this chart. Uh, where uh,"
+  },
+  {
+    "seconds": 372.8,
+    "text": "no do not trust to someone requested to"
+  },
+  {
+    "seconds": 376.319,
+    "text": "control my computer. Uh, probably won't"
+  },
+  {
+    "seconds": 378.72,
+    "text": "do that. Uh but yeah, so this chart I"
+  },
+  {
+    "seconds": 382.24,
+    "text": "think I I'm sharing this chart not to"
+  },
+  {
+    "seconds": 384.639,
+    "text": "kind of like flex but to kind of show"
+  },
+  {
+    "seconds": 387.44,
+    "text": "like the journey like so you can see"
+  },
+  {
+    "seconds": 389.36,
+    "text": "like the curve like it sort of like"
+  },
+  {
+    "seconds": 391.039,
+    "text": "inversely matches the contributions I've"
+  },
+  {
+    "seconds": 394.08,
+    "text": "been able to land at cursor. So I joined"
+  },
+  {
+    "seconds": 397.039,
+    "text": "five months ago and five months ago like"
+  },
+  {
+    "seconds": 399.28,
+    "text": "I you know my first month I was like not"
+  },
+  {
+    "seconds": 401.759,
+    "text": "very productive because I was ob you"
+  },
+  {
+    "seconds": 403.36,
+    "text": "know I was learning the codebase didn't"
+  },
+  {
+    "seconds": 405.28,
+    "text": "know what the heck was going on and as I"
+  },
+  {
+    "seconds": 408.319,
+    "text": "got more confident in in my agents uh"
+  },
+  {
+    "seconds": 411.44,
+    "text": "I've really been able to kind of ramp up"
+  },
+  {
+    "seconds": 413.759,
+    "text": "my productivity. Uh and again like yeah"
+  },
+  {
+    "seconds": 416.96,
+    "text": "like last month I shipped a thousand PRs"
+  },
+  {
+    "seconds": 420.24,
+    "text": "which is ridiculous. Uh, and then this"
+  },
+  {
+    "seconds": 422.88,
+    "text": "month we're only on the 12th. I'm"
+  },
+  {
+    "seconds": 424.96,
+    "text": "already at like almost 800 PRs landed."
+  },
+  {
+    "seconds": 429.12,
+    "text": "Uh, so the velocity is definitely high"
+  },
+  {
+    "seconds": 432.4,
+    "text": "and you you I'm sure a lot of you will"
+  },
+  {
+    "seconds": 434.88,
+    "text": "definitely be questioning like how how"
+  },
+  {
+    "seconds": 436.479,
+    "text": "much of this code is actually good. Um,"
+  },
+  {
+    "seconds": 438.96,
+    "text": "and I think yeah, like that's definitely"
+  },
+  {
+    "seconds": 441.039,
+    "text": "fair to question."
+  },
+  {
+    "seconds": 443.12,
+    "text": "Um, but uh, yeah, I think I think if you"
+  },
+  {
+    "seconds": 448.08,
+    "text": "set up your agents well, you can"
+  },
+  {
+    "seconds": 450.96,
+    "text": "definitely get to a very similar level."
+  },
+  {
+    "seconds": 454.479,
+    "text": "Um, and so I'm going to talk about how"
+  },
+  {
+    "seconds": 455.919,
+    "text": "we do that."
+  },
+  {
+    "seconds": 458.96,
+    "text": "Uh so for me I think I'm curious like I"
+  },
+  {
+    "seconds": 462.56,
+    "text": "guess call in your experience as well"
+  },
+  {
+    "seconds": 464.24,
+    "text": "but uh for me I think the most important"
+  },
+  {
+    "seconds": 468.56,
+    "text": "skill that you should have in your"
+  },
+  {
+    "seconds": 471.28,
+    "text": "toolbox when you work with agents is"
+  },
+  {
+    "seconds": 473.84,
+    "text": "verification."
+  },
+  {
+    "seconds": 475.36,
+    "text": "Uh and by verification I mean the"
+  },
+  {
+    "seconds": 477.36,
+    "text": "ability for an agent to actually run the"
+  },
+  {
+    "seconds": 480.8,
+    "text": "code uh or take CPU traces or heap"
+  },
+  {
+    "seconds": 485.52,
+    "text": "snapshots or uh you know open an iOS"
+  },
+  {
+    "seconds": 489.36,
+    "text": "simulator whatever you know however your"
+  },
+  {
+    "seconds": 492.0,
+    "text": "application is exposed to your users it"
+  },
+  {
+    "seconds": 495.44,
+    "text": "can do the same thing and uh run it for"
+  },
+  {
+    "seconds": 499.44,
+    "text": "real and actually test and verify it"
+  },
+  {
+    "seconds": 501.68,
+    "text": "don't work because that's the thing that"
+  },
+  {
+    "seconds": 503.919,
+    "text": "really closes the loop. Uh it doesn't"
+  },
+  {
+    "seconds": 506.72,
+    "text": "guarantee your agent writes good code uh"
+  },
+  {
+    "seconds": 509.52,
+    "text": "but it allows them to at least write"
+  },
+  {
+    "seconds": 511.759,
+    "text": "correct code uh which is a big a really"
+  },
+  {
+    "seconds": 514.88,
+    "text": "big step forward for being able to trust"
+  },
+  {
+    "seconds": 517.279,
+    "text": "your agents. Um"
+  },
+  {
+    "seconds": 520.56,
+    "text": "I will I can share one example that we"
+  },
+  {
+    "seconds": 523.36,
+    "text": "have uh within cursor. Uh"
+  },
+  {
+    "seconds": 528.959,
+    "text": "oops"
+  },
+  {
+    "seconds": 530.64,
+    "text": "where let me open this."
+  },
+  {
+    "seconds": 540.16,
+    "text": "Let's make this uh make me full screen."
+  },
+  {
+    "seconds": 543.279,
+    "text": "There you go."
+  },
+  {
+    "seconds": 545.04,
+    "text": "Uh so for the for cursor's agent window"
+  },
+  {
+    "seconds": 549.519,
+    "text": "uh so this is actually an interesting"
+  },
+  {
+    "seconds": 551.6,
+    "text": "story but uh when I joined cursor 5"
+  },
+  {
+    "seconds": 554.8,
+    "text": "months ago uh they're actually uh well I"
+  },
+  {
+    "seconds": 558.8,
+    "text": "was supposed to join a different team I"
+  },
+  {
+    "seconds": 560.24,
+    "text": "was supposed to join like the cloud"
+  },
+  {
+    "seconds": 561.519,
+    "text": "agents team uh but then since I have a"
+  },
+  {
+    "seconds": 564.24,
+    "text": "lot of experience working on react and"
+  },
+  {
+    "seconds": 566.88,
+    "text": "agents window is a react application uh"
+  },
+  {
+    "seconds": 569.76,
+    "text": "I was"
+  },
+  {
+    "seconds": 571.6,
+    "text": "uh I was asked to basically help out"
+  },
+  {
+    "seconds": 574.399,
+    "text": "with uh the agent window work. Uh but um"
+  },
+  {
+    "seconds": 580.959,
+    "text": "there wasn't really a lot of like skills"
+  },
+  {
+    "seconds": 583.2,
+    "text": "to help me. So I just found myself like"
+  },
+  {
+    "seconds": 585.519,
+    "text": "okay uh agent window is going to launch"
+  },
+  {
+    "seconds": 587.279,
+    "text": "in like a week, right? we have a really"
+  },
+  {
+    "seconds": 589.36,
+    "text": "tight deadline and um there was uh you"
+  },
+  {
+    "seconds": 593.839,
+    "text": "know I was just sitting there like okay"
+  },
+  {
+    "seconds": 595.36,
+    "text": "I'm going to open up the performant the"
+  },
+  {
+    "seconds": 597.04,
+    "text": "the Chrome dev tools and just like take"
+  },
+  {
+    "seconds": 599.04,
+    "text": "a trace look at it myself and try to"
+  },
+  {
+    "seconds": 601.36,
+    "text": "make sense of this flame graph and keep"
+  },
+  {
+    "seconds": 603.519,
+    "text": "in mind I was just like in my first week"
+  },
+  {
+    "seconds": 605.76,
+    "text": "so I had no idea what I was looking at"
+  },
+  {
+    "seconds": 607.68,
+    "text": "no idea what you know I mean I had some"
+  },
+  {
+    "seconds": 609.68,
+    "text": "idea but you know the codebase was"
+  },
+  {
+    "seconds": 611.92,
+    "text": "completely fresh to me uh and I realized"
+  },
+  {
+    "seconds": 614.88,
+    "text": "like my agent had no idea either you"
+  },
+  {
+    "seconds": 617.76,
+    "text": "know like I would take a screenshot of"
+  },
+  {
+    "seconds": 619.04,
+    "text": "the tree. I would download trades. I"
+  },
+  {
+    "seconds": 620.16,
+    "text": "would send it to it and it be like,"
+  },
+  {
+    "seconds": 621.519,
+    "text": "\"Yeah, it kind of looks like this, you"
+  },
+  {
+    "seconds": 623.44,
+    "text": "know, uh, and it would like confidently"
+  },
+  {
+    "seconds": 625.6,
+    "text": "state like it's this thing.\" And then"
+  },
+  {
+    "seconds": 627.44,
+    "text": "I'd try to fix that. And turns out"
+  },
+  {
+    "seconds": 629.279,
+    "text": "that's not the actual thing."
+  },
+  {
+    "seconds": 632.0,
+    "text": "So, this was very very slow process. And"
+  },
+  {
+    "seconds": 634.56,
+    "text": "if you've ever done any like performance"
+  },
+  {
+    "seconds": 636.16,
+    "text": "work yourself or, you know, just even"
+  },
+  {
+    "seconds": 638.56,
+    "text": "development with an agent where you"
+  },
+  {
+    "seconds": 640.16,
+    "text": "don't have a verification skill, you are"
+  },
+  {
+    "seconds": 643.12,
+    "text": "the verifier, right? You you're the"
+  },
+  {
+    "seconds": 645.12,
+    "text": "bottleneck. you you you tell your agent"
+  },
+  {
+    "seconds": 647.36,
+    "text": "to do something and then it goes off and"
+  },
+  {
+    "seconds": 649.2,
+    "text": "write some code. Then you open up your"
+  },
+  {
+    "seconds": 651.279,
+    "text": "you know local dev build and then you"
+  },
+  {
+    "seconds": 653.279,
+    "text": "start to say oh you know doesn't work."
+  },
+  {
+    "seconds": 654.64,
+    "text": "Then you got to copy paste screen uh you"
+  },
+  {
+    "seconds": 656.64,
+    "text": "know screenshots or console errors or"
+  },
+  {
+    "seconds": 659.36,
+    "text": "whatever. Uh and then your agent like"
+  },
+  {
+    "seconds": 661.519,
+    "text": "slowly kind of like uh you know works"
+  },
+  {
+    "seconds": 664.079,
+    "text": "with that and then tries to understand"
+  },
+  {
+    "seconds": 666.399,
+    "text": "it and um fix the thing but then you're"
+  },
+  {
+    "seconds": 670.56,
+    "text": "constantly just in the loop and and"
+  },
+  {
+    "seconds": 672.24,
+    "text": "being a bottleneck. So there's really no"
+  },
+  {
+    "seconds": 673.76,
+    "text": "way to parallelize. So the control glass"
+  },
+  {
+    "seconds": 676.56,
+    "text": "skills are like one of the first skills"
+  },
+  {
+    "seconds": 678.0,
+    "text": "I built uh for cursor. Uh and glass by"
+  },
+  {
+    "seconds": 681.839,
+    "text": "the way is the code name for agents"
+  },
+  {
+    "seconds": 683.76,
+    "text": "window that we use internally but it's"
+  },
+  {
+    "seconds": 686.079,
+    "text": "just cursor I guess. Um and so this"
+  },
+  {
+    "seconds": 690.399,
+    "text": "skill uh is I guess the the the code"
+  },
+  {
+    "seconds": 693.279,
+    "text": "itself is not super interesting. Your"
+  },
+  {
+    "seconds": 695.2,
+    "text": "agent can very easily make one for you."
+  },
+  {
+    "seconds": 697.839,
+    "text": "uh where if if you're building an"
+  },
+  {
+    "seconds": 699.839,
+    "text": "Electron app or a web app or even iOS uh"
+  },
+  {
+    "seconds": 703.839,
+    "text": "applications uh you can teach your agent"
+  },
+  {
+    "seconds": 706.72,
+    "text": "how to use like the ChromeDev tools"
+  },
+  {
+    "seconds": 708.56,
+    "text": "protocol or through uh Apple has some"
+  },
+  {
+    "seconds": 713.2,
+    "text": "utilities as well for running the"
+  },
+  {
+    "seconds": 714.72,
+    "text": "simulator and taking traces and"
+  },
+  {
+    "seconds": 716.48,
+    "text": "controlling programmatic control as"
+  },
+  {
+    "seconds": 719.2,
+    "text": "well. Uh so that's really useful. Uh but"
+  },
+  {
+    "seconds": 723.92,
+    "text": "one thing I want to talk about is uh the"
+  },
+  {
+    "seconds": 728.88,
+    "text": "this thing"
+  },
+  {
+    "seconds": 730.88,
+    "text": "uh where is the read me? Uh so this"
+  },
+  {
+    "seconds": 734.32,
+    "text": "skill comes with this very unique"
+  },
+  {
+    "seconds": 736.48,
+    "text": "feature called or not feature uh unique"
+  },
+  {
+    "seconds": 739.44,
+    "text": "file called a feature map. And so the"
+  },
+  {
+    "seconds": 743.12,
+    "text": "story then is like I built this skill"
+  },
+  {
+    "seconds": 745.04,
+    "text": "and so now the agent was able to uh"
+  },
+  {
+    "seconds": 748.079,
+    "text": "actually run the agent window and take"
+  },
+  {
+    "seconds": 750.56,
+    "text": "traces and whatnot. Uh but it had no"
+  },
+  {
+    "seconds": 753.92,
+    "text": "idea what what the agents window was. So"
+  },
+  {
+    "seconds": 758.399,
+    "text": "um you know like someone would say like"
+  },
+  {
+    "seconds": 760.32,
+    "text": "oh the the left sidebar is like laggy or"
+  },
+  {
+    "seconds": 764.079,
+    "text": "something like that or you know the"
+  },
+  {
+    "seconds": 766.0,
+    "text": "right side the the PR tab is not working"
+  },
+  {
+    "seconds": 768.8,
+    "text": "and the agent would just be like kind of"
+  },
+  {
+    "seconds": 770.399,
+    "text": "flailing around. It would spend a lot of"
+  },
+  {
+    "seconds": 771.839,
+    "text": "time trying to like look up the code and"
+  },
+  {
+    "seconds": 773.76,
+    "text": "you know where is this feature? How do I"
+  },
+  {
+    "seconds": 775.36,
+    "text": "actually get to it on the UI which made"
+  },
+  {
+    "seconds": 778.16,
+    "text": "it basically completely useless. uh you"
+  },
+  {
+    "seconds": 780.72,
+    "text": "know like we would I would run this"
+  },
+  {
+    "seconds": 783.519,
+    "text": "skill locally and you know it would"
+  },
+  {
+    "seconds": 785.76,
+    "text": "spawn a dev build uh but then it' just"
+  },
+  {
+    "seconds": 788.959,
+    "text": "be churning like I just try to click"
+  },
+  {
+    "seconds": 791.279,
+    "text": "here it wouldn't know how to get to"
+  },
+  {
+    "seconds": 793.12,
+    "text": "things um and it was just an awful"
+  },
+  {
+    "seconds": 795.839,
+    "text": "experience uh so is putting arrows on my"
+  },
+  {
+    "seconds": 800.0,
+    "text": "screen um so uh yeah this this feature"
+  },
+  {
+    "seconds": 804.639,
+    "text": "map has been really useful uh because it"
+  },
+  {
+    "seconds": 807.44,
+    "text": "teaches the agent how to get to all of"
+  },
+  {
+    "seconds": 809.36,
+    "text": "the features that you have. Um, and in"
+  },
+  {
+    "seconds": 812.72,
+    "text": "PAC, the plugin that I I've made, uh, if"
+  },
+  {
+    "seconds": 816.079,
+    "text": "you search for PAC cursor on Google, you"
+  },
+  {
+    "seconds": 819.68,
+    "text": "you'll find it. Uh, but there is a"
+  },
+  {
+    "seconds": 822.16,
+    "text": "create verification skill in that plugin"
+  },
+  {
+    "seconds": 824.8,
+    "text": "where it actually helps you set up"
+  },
+  {
+    "seconds": 826.56,
+    "text": "something like this for yourself. Um,"
+  },
+  {
+    "seconds": 829.04,
+    "text": "including the feature map. So, it will"
+  },
+  {
+    "seconds": 830.72,
+    "text": "actually explore the code and build up"
+  },
+  {
+    "seconds": 832.639,
+    "text": "this initial feature map that tells your"
+  },
+  {
+    "seconds": 834.959,
+    "text": "agent how to get to all of the different"
+  },
+  {
+    "seconds": 837.12,
+    "text": "features that you have. Uh and this is"
+  },
+  {
+    "seconds": 839.6,
+    "text": "extremely powerful because now like you"
+  },
+  {
+    "seconds": 842.16,
+    "text": "have these user reports that come in uh"
+  },
+  {
+    "seconds": 844.959,
+    "text": "you you can actually map even like a"
+  },
+  {
+    "seconds": 847.279,
+    "text": "vague report or even a screenshot. So we"
+  },
+  {
+    "seconds": 850.639,
+    "text": "have this uh internally at cursor where"
+  },
+  {
+    "seconds": 854.16,
+    "text": "uh we have a slack channel with you know"
+  },
+  {
+    "seconds": 856.16,
+    "text": "lots of people giving us feedback on the"
+  },
+  {
+    "seconds": 858.959,
+    "text": "agents window and rockbot and whatnot."
+  },
+  {
+    "seconds": 861.839,
+    "text": "Uh, and often times the report is very"
+  },
+  {
+    "seconds": 864.8,
+    "text": "bad like very low quality like someone"
+  },
+  {
+    "seconds": 867.12,
+    "text": "will just put very often we get like a"
+  },
+  {
+    "seconds": 869.44,
+    "text": "screenshot like and then someone just"
+  },
+  {
+    "seconds": 870.8,
+    "text": "says question mark question mark"
+  },
+  {
+    "seconds": 872.16,
+    "text": "question mark like what is this and you"
+  },
+  {
+    "seconds": 874.48,
+    "text": "know like without this your agent is"
+  },
+  {
+    "seconds": 876.56,
+    "text": "like I have no clue right but with a"
+  },
+  {
+    "seconds": 879.36,
+    "text": "feature map like this it has a lot more"
+  },
+  {
+    "seconds": 882.48,
+    "text": "context and understanding of how to"
+  },
+  {
+    "seconds": 885.279,
+    "text": "actually navigate how to get to all the"
+  },
+  {
+    "seconds": 887.6,
+    "text": "different features. Uh so like you know"
+  },
+  {
+    "seconds": 889.839,
+    "text": "example like I guess like the sidebar"
+  },
+  {
+    "seconds": 891.76,
+    "text": "like what is the sidebar uh you know"
+  },
+  {
+    "seconds": 894.24,
+    "text": "like all the different sub features that"
+  },
+  {
+    "seconds": 896.079,
+    "text": "are present in it um like from the user"
+  },
+  {
+    "seconds": 899.519,
+    "text": "point of view here's where how do I get"
+  },
+  {
+    "seconds": 901.519,
+    "text": "to it all the different keyboard"
+  },
+  {
+    "seconds": 903.199,
+    "text": "shortcuts"
+  },
+  {
+    "seconds": 905.199,
+    "text": "uh even like the the what do you call it"
+  },
+  {
+    "seconds": 907.92,
+    "text": "the DOM elements or yeah like the"
+  },
+  {
+    "seconds": 910.639,
+    "text": "attributes that you use for selecting"
+  },
+  {
+    "seconds": 912.639,
+    "text": "things through the CDP uh are all there."
+  },
+  {
+    "seconds": 916.959,
+    "text": "So uh again yeah this is like really"
+  },
+  {
+    "seconds": 919.44,
+    "text": "really powerful uh for for agents"
+  },
+  {
+    "seconds": 923.519,
+    "text": ">> uh and pstack ships uh that create"
+  },
+  {
+    "seconds": 926.0,
+    "text": "verification skill but also a maintain"
+  },
+  {
+    "seconds": 928.16,
+    "text": "verification skill uh so you can keep"
+  },
+  {
+    "seconds": 930.88,
+    "text": "this up to date."
+  },
+  {
+    "seconds": 932.88,
+    "text": ">> Cool. Yeah, I was just going to ask how"
+  },
+  {
+    "seconds": 934.079,
+    "text": "you created that. So do you mind sharing"
+  },
+  {
+    "seconds": 935.12,
+    "text": "a little bit more about um that that"
+  },
+  {
+    "seconds": 937.839,
+    "text": "process in the context of Pstack and"
+  },
+  {
+    "seconds": 939.36,
+    "text": "maybe just what Pstack is for the folks"
+  },
+  {
+    "seconds": 940.8,
+    "text": "who aren't familiar?"
+  },
+  {
+    "seconds": 942.88,
+    "text": "Yeah. So, P stack is pretty interesting"
+  },
+  {
+    "seconds": 944.959,
+    "text": "because uh well, first of all, the name"
+  },
+  {
+    "seconds": 947.44,
+    "text": "is kind of goofy. like the P the P and P"
+  },
+  {
+    "seconds": 950.72,
+    "text": "sack is like potato potato snack because"
+  },
+  {
+    "seconds": 954.48,
+    "text": "I um so uh uh there is a pretty uh"
+  },
+  {
+    "seconds": 960.0,
+    "text": "famous person Gary Tan who is the CEO of"
+  },
+  {
+    "seconds": 962.959,
+    "text": "Y Combinator and he's come up with this"
+  },
+  {
+    "seconds": 965.839,
+    "text": "plugin called Gstack uh Gary Stack and"
+  },
+  {
+    "seconds": 970.0,
+    "text": "uh funnily enough we share the last name"
+  },
+  {
+    "seconds": 972.32,
+    "text": "we have no relations uh but I thought it"
+  },
+  {
+    "seconds": 975.199,
+    "text": "would be funny to kind of you know poke"
+  },
+  {
+    "seconds": 976.8,
+    "text": "fun at Gary and make peace stack my"
+  },
+  {
+    "seconds": 979.519,
+    "text": "version of of of of [laughter] his"
+  },
+  {
+    "seconds": 981.839,
+    "text": "plugin. Uh but kind of tailor it to my"
+  },
+  {
+    "seconds": 985.12,
+    "text": "own set of p engineering practices."
+  },
+  {
+    "seconds": 989.12,
+    "text": "Uh but I honestly actually never set out"
+  },
+  {
+    "seconds": 991.12,
+    "text": "to build PAC. Uh it just started with a"
+  },
+  {
+    "seconds": 993.6,
+    "text": "bunch of skills, right? Like I started"
+  },
+  {
+    "seconds": 995.36,
+    "text": "with that control glass skill and then I"
+  },
+  {
+    "seconds": 997.759,
+    "text": "started with another skill like called"
+  },
+  {
+    "seconds": 999.519,
+    "text": "how which I also noticed through like"
+  },
+  {
+    "seconds": 1002.959,
+    "text": "observing agents. Um, so like you know"
+  },
+  {
+    "seconds": 1006.079,
+    "text": "in the early days of me, you know,"
+  },
+  {
+    "seconds": 1007.92,
+    "text": "trying to climb this ladder, I was like"
+  },
+  {
+    "seconds": 1009.199,
+    "text": "super in the loop and I was basically"
+  },
+  {
+    "seconds": 1011.92,
+    "text": "nitpicking my agents to an extreme"
+  },
+  {
+    "seconds": 1013.92,
+    "text": "degree. I was like I would tell it um,"
+  },
+  {
+    "seconds": 1017.839,
+    "text": "you know, this feature has stopped"
+  },
+  {
+    "seconds": 1019.199,
+    "text": "working. Here's a bug report. Like why"
+  },
+  {
+    "seconds": 1021.6,
+    "text": "isn't it working?"
+  },
+  {
+    "seconds": 1024.4,
+    "text": "And very often the agent would just like"
+  },
+  {
+    "seconds": 1026.88,
+    "text": "confidently state like, \"Oh, it has to"
+  },
+  {
+    "seconds": 1028.959,
+    "text": "be this, right? It has to be this"
+  },
+  {
+    "seconds": 1030.4,
+    "text": "thing.\" And I noticed like when I looked"
+  },
+  {
+    "seconds": 1032.799,
+    "text": "at the actual tool calls, I noticed it"
+  },
+  {
+    "seconds": 1035.36,
+    "text": "wasn't actually reading the code that I"
+  },
+  {
+    "seconds": 1038.4,
+    "text": "thought should be affected. And that"
+  },
+  {
+    "seconds": 1040.559,
+    "text": "made me just extremely suspicious. And"
+  },
+  {
+    "seconds": 1042.319,
+    "text": "at that point, I was like, I'm not going"
+  },
+  {
+    "seconds": 1043.679,
+    "text": "to I can't trust any this agent anymore"
+  },
+  {
+    "seconds": 1046.319,
+    "text": "cuz it's just it's just completely"
+  },
+  {
+    "seconds": 1047.839,
+    "text": "hallucinating. And I think"
+  },
+  {
+    "seconds": 1051.84,
+    "text": "I think it's very easy to just you know"
+  },
+  {
+    "seconds": 1053.76,
+    "text": "like build up that distrust and not and"
+  },
+  {
+    "seconds": 1056.24,
+    "text": "kind of feel helpless like you know you"
+  },
+  {
+    "seconds": 1058.96,
+    "text": "don't know how to help your agents"
+  },
+  {
+    "seconds": 1060.64,
+    "text": "succeed. But like again I think the the"
+  },
+  {
+    "seconds": 1063.44,
+    "text": "the management analogy is super helpful"
+  },
+  {
+    "seconds": 1065.6,
+    "text": "because like imagine if you were a"
+  },
+  {
+    "seconds": 1066.96,
+    "text": "manager of an engineering team and you"
+  },
+  {
+    "seconds": 1069.76,
+    "text": "had an engineer on your team who was a"
+  },
+  {
+    "seconds": 1072.08,
+    "text": "really good coder. No business context"
+  },
+  {
+    "seconds": 1074.24,
+    "text": "whatsoever. you know they they just you"
+  },
+  {
+    "seconds": 1076.24,
+    "text": "just hired them and they they onboarded"
+  },
+  {
+    "seconds": 1078.4,
+    "text": "you know like five seconds ago. Uh and"
+  },
+  {
+    "seconds": 1082.0,
+    "text": "so how do you actually teach that person"
+  },
+  {
+    "seconds": 1083.919,
+    "text": "to be effective? So how you do that is"
+  },
+  {
+    "seconds": 1086.88,
+    "text": "through a skill. uh a skill being just"
+  },
+  {
+    "seconds": 1089.039,
+    "text": "you know it's just markdown right but"
+  },
+  {
+    "seconds": 1091.2,
+    "text": "you know it encodes a lot of information"
+  },
+  {
+    "seconds": 1093.36,
+    "text": "instructions a lot of uh you can really"
+  },
+  {
+    "seconds": 1097.44,
+    "text": "draw out a lot of intelligence from an"
+  },
+  {
+    "seconds": 1100.72,
+    "text": "agent by well some people on Twitter"
+  },
+  {
+    "seconds": 1103.12,
+    "text": "call it like you know pull the agent to"
+  },
+  {
+    "seconds": 1105.12,
+    "text": "a different latent space which is kind"
+  },
+  {
+    "seconds": 1107.28,
+    "text": "of like a fancy way of just saying like"
+  },
+  {
+    "seconds": 1109.039,
+    "text": "since uh you LLMs are sort of like they"
+  },
+  {
+    "seconds": 1111.919,
+    "text": "predict the next token uh when you give"
+  },
+  {
+    "seconds": 1114.96,
+    "text": "it some high quality tokens uh to to"
+  },
+  {
+    "seconds": 1117.52,
+    "text": "begin with then you know it it can kind"
+  },
+  {
+    "seconds": 1119.28,
+    "text": "of pattern match on like a higher space"
+  },
+  {
+    "seconds": 1122.0,
+    "text": "that's you know smarter"
+  },
+  {
+    "seconds": 1125.2,
+    "text": "um so that's like a very interesting"
+  },
+  {
+    "seconds": 1128.16,
+    "text": "model there but yeah I built Pstack very"
+  },
+  {
+    "seconds": 1130.48,
+    "text": "very incrementally uh so uh started with"
+  },
+  {
+    "seconds": 1134.64,
+    "text": "just really observing how agents you"
+  },
+  {
+    "seconds": 1136.799,
+    "text": "know all the fail different failure"
+  },
+  {
+    "seconds": 1138.08,
+    "text": "modes of of that agents were having and"
+  },
+  {
+    "seconds": 1141.12,
+    "text": "every time I saw that I just okay I'm"
+  },
+  {
+    "seconds": 1142.64,
+    "text": "just going to make that a skill right"
+  },
+  {
+    "seconds": 1144.32,
+    "text": "like stop hallucinating actually go and"
+  },
+  {
+    "seconds": 1147.12,
+    "text": "search up, look up the code, use a lot"
+  },
+  {
+    "seconds": 1149.52,
+    "text": "of sub agents, uh, and yeah, stop"
+  },
+  {
+    "seconds": 1152.96,
+    "text": "guessing."
+  },
+  {
+    "seconds": 1156.559,
+    "text": ">> Yeah, that makes sense. One, one kind of"
+  },
+  {
+    "seconds": 1158.08,
+    "text": "followup question here, uh, both from"
+  },
+  {
+    "seconds": 1159.44,
+    "text": "myself and from a bunch of people in the"
+  },
+  {
+    "seconds": 1160.64,
+    "text": "chat. So,"
+  },
+  {
+    "seconds": 1162.32,
+    "text": ">> I guess it's two two parts. So, one is"
+  },
+  {
+    "seconds": 1163.84,
+    "text": "like how do you maintain these skills?"
+  },
+  {
+    "seconds": 1165.44,
+    "text": "So, like the product changes over time."
+  },
+  {
+    "seconds": 1167.12,
+    "text": "Obviously, there's a lot of people who"
+  },
+  {
+    "seconds": 1168.08,
+    "text": "are shipping against the codebase. So,"
+  },
+  {
+    "seconds": 1170.0,
+    "text": "how do these skills get maintained? Uh"
+  },
+  {
+    "seconds": 1172.16,
+    "text": "and then second to that is like how do"
+  },
+  {
+    "seconds": 1174.08,
+    "text": "you know when your verification is is"
+  },
+  {
+    "seconds": 1175.84,
+    "text": "good enough? Uh like and you know you"
+  },
+  {
+    "seconds": 1178.799,
+    "text": "can trust that the ver verification"
+  },
+  {
+    "seconds": 1180.24,
+    "text": "loops that you've built are going to I"
+  },
+  {
+    "seconds": 1182.16,
+    "text": "guess you trust that the outputs uh when"
+  },
+  {
+    "seconds": 1184.0,
+    "text": "they're done."
+  },
+  {
+    "seconds": 1187.12,
+    "text": ">> Uh yeah maybe I'll talk about um I think"
+  },
+  {
+    "seconds": 1190.64,
+    "text": "there are some related maybe I'll start"
+  },
+  {
+    "seconds": 1192.16,
+    "text": "with this one first. So like how do I"
+  },
+  {
+    "seconds": 1196.0,
+    "text": "maintain these skills?"
+  },
+  {
+    "seconds": 1199.039,
+    "text": "So, um, if you're not familiar with this"
+  },
+  {
+    "seconds": 1201.6,
+    "text": "concept, an eval [clears throat] is"
+  },
+  {
+    "seconds": 1203.2,
+    "text": "essentially like a way to, uh, well, I"
+  },
+  {
+    "seconds": 1206.48,
+    "text": "the mental model I have is like it's"
+  },
+  {
+    "seconds": 1207.919,
+    "text": "like a unit test for an agent. Um, and,"
+  },
+  {
+    "seconds": 1211.679,
+    "text": "uh, you can actually make your own"
+  },
+  {
+    "seconds": 1213.44,
+    "text": "evals. You don't need like a special"
+  },
+  {
+    "seconds": 1215.44,
+    "text": "framework for them. You can build you"
+  },
+  {
+    "seconds": 1217.6,
+    "text": "can you can build one depending on like,"
+  },
+  {
+    "seconds": 1220.0,
+    "text": "you know, how scientific and how"
+  },
+  {
+    "seconds": 1222.16,
+    "text": "rigorous you want to be. Uh, my screen"
+  },
+  {
+    "seconds": 1225.039,
+    "text": "is red."
+  },
+  {
+    "seconds": 1226.4,
+    "text": ">> Yeah, there's a little button. Um,"
+  },
+  {
+    "seconds": 1228.48,
+    "text": "sorry. Do"
+  },
+  {
+    "seconds": 1229.679,
+    "text": ">> you mind like disabling the drawing or"
+  },
+  {
+    "seconds": 1231.6,
+    "text": "something? I I can't see my screen."
+  },
+  {
+    "seconds": 1233.52,
+    "text": ">> Yeah, sorry. If you guys could not draw"
+  },
+  {
+    "seconds": 1235.2,
+    "text": "on the screen, that'd be great. But, um,"
+  },
+  {
+    "seconds": 1236.64,
+    "text": "there's a little button in the"
+  },
+  {
+    "seconds": 1238.48,
+    "text": ">> troll."
+  },
+  {
+    "seconds": 1239.52,
+    "text": ">> Yeah, the little drop down."
+  },
+  {
+    "seconds": 1242.559,
+    "text": ">> How do I clear?"
+  },
+  {
+    "seconds": 1244.72,
+    "text": ">> Yeah, you got it. Perfect."
+  },
+  {
+    "seconds": 1249.76,
+    "text": ">> Yeah. So, eval"
+  },
+  {
+    "seconds": 1252.64,
+    "text": "test your skills basically. And actually"
+  },
+  {
+    "seconds": 1255.919,
+    "text": "in Pstack we ship uh under potato mode"
+  },
+  {
+    "seconds": 1259.039,
+    "text": "there's a playbook if you search for it"
+  },
+  {
+    "seconds": 1260.64,
+    "text": "called eval playbook. Um and it's uh"
+  },
+  {
+    "seconds": 1265.36,
+    "text": "uh it's like not it's actually pretty"
+  },
+  {
+    "seconds": 1267.679,
+    "text": "pretty rigorous the way it's done. Uh"
+  },
+  {
+    "seconds": 1270.24,
+    "text": "but um essentially what I do is I spawn"
+  },
+  {
+    "seconds": 1273.2,
+    "text": "a lot of different sub agents. I have"
+  },
+  {
+    "seconds": 1275.6,
+    "text": "like my main coordinator agent uh come"
+  },
+  {
+    "seconds": 1278.559,
+    "text": "up with a rubric for uh what I want the"
+  },
+  {
+    "seconds": 1282.64,
+    "text": "skill to do. Um, and then it spawns all"
+  },
+  {
+    "seconds": 1285.919,
+    "text": "these sub aents and it's it creates"
+  },
+  {
+    "seconds": 1288.559,
+    "text": "individual directories for them, uh,"
+  },
+  {
+    "seconds": 1291.2,
+    "text": "which are cleverly named to not let the"
+  },
+  {
+    "seconds": 1294.799,
+    "text": "sub agent know that it's being evaluated"
+  },
+  {
+    "seconds": 1297.12,
+    "text": "because, uh, agents can actually tell"
+  },
+  {
+    "seconds": 1300.0,
+    "text": "and when they do, they change their"
+  },
+  {
+    "seconds": 1301.52,
+    "text": "behavior. Uh, but it does a bunch of"
+  },
+  {
+    "seconds": 1303.919,
+    "text": "stuff like that to um essentially yeah"
+  },
+  {
+    "seconds": 1308.48,
+    "text": "like test whether or not the skill I'm"
+  },
+  {
+    "seconds": 1310.799,
+    "text": "making or changing is actually doing"
+  },
+  {
+    "seconds": 1313.039,
+    "text": "what I think it does. Um, and one of the"
+  },
+  {
+    "seconds": 1315.76,
+    "text": "really nice things about cursor is that"
+  },
+  {
+    "seconds": 1317.84,
+    "text": "we are we we support so many different"
+  },
+  {
+    "seconds": 1319.84,
+    "text": "models. So you can actually eval your"
+  },
+  {
+    "seconds": 1322.48,
+    "text": "skill across all sorts of different"
+  },
+  {
+    "seconds": 1324.48,
+    "text": "models um and you know get a sense of"
+  },
+  {
+    "seconds": 1327.52,
+    "text": "how well it performs across that"
+  },
+  {
+    "seconds": 1330.32,
+    "text": "different matrix. um especially for the"
+  },
+  {
+    "seconds": 1332.96,
+    "text": "models that you use."
+  },
+  {
+    "seconds": 1335.44,
+    "text": "Uh so I do this a lot. Every time I I"
+  },
+  {
+    "seconds": 1337.679,
+    "text": "modify a skill, I will run one of these"
+  },
+  {
+    "seconds": 1340.24,
+    "text": "uh like the EBAL playbook uh and make"
+  },
+  {
+    "seconds": 1342.88,
+    "text": "sure that you know it's actually leading"
+  },
+  {
+    "seconds": 1345.44,
+    "text": "to a result I want. Uh but I will say"
+  },
+  {
+    "seconds": 1348.32,
+    "text": "like"
+  },
+  {
+    "seconds": 1349.919,
+    "text": "maintaining skills is actually pretty"
+  },
+  {
+    "seconds": 1352.08,
+    "text": "hard. Uh it requires I think a lot of"
+  },
+  {
+    "seconds": 1354.88,
+    "text": "taste and observation. So, you kind of"
+  },
+  {
+    "seconds": 1357.919,
+    "text": "need to be very good at being a backseat"
+  },
+  {
+    "seconds": 1360.88,
+    "text": "driver, you know what I mean? Like if"
+  },
+  {
+    "seconds": 1362.88,
+    "text": "you do pair, if you ever done pair"
+  },
+  {
+    "seconds": 1364.32,
+    "text": "programming, for example, uh, and you"
+  },
+  {
+    "seconds": 1366.4,
+    "text": "watch a co-orker code and you just like"
+  },
+  {
+    "seconds": 1368.96,
+    "text": "you, you could probably do this better,"
+  },
+  {
+    "seconds": 1370.4,
+    "text": "you know, you could do, you know, like"
+  },
+  {
+    "seconds": 1371.6,
+    "text": "why did you not do this, right? You you"
+  },
+  {
+    "seconds": 1373.6,
+    "text": "ask a lot of questions to your coworker."
+  },
+  {
+    "seconds": 1375.52,
+    "text": "And it's kind of a similar thing here."
+  },
+  {
+    "seconds": 1376.96,
+    "text": "You like you don't want to just be a"
+  },
+  {
+    "seconds": 1378.559,
+    "text": "passive observer of your agent. You want"
+  },
+  {
+    "seconds": 1380.48,
+    "text": "to be very in the driver seat in the"
+  },
+  {
+    "seconds": 1383.12,
+    "text": "initial stages when you're building up"
+  },
+  {
+    "seconds": 1384.559,
+    "text": "your own set of skills. uh you know"
+  },
+  {
+    "seconds": 1386.96,
+    "text": "obviously you can use something like PAC"
+  },
+  {
+    "seconds": 1388.72,
+    "text": "but if you're building your own set of"
+  },
+  {
+    "seconds": 1390.48,
+    "text": "skills it's very I think you know"
+  },
+  {
+    "seconds": 1393.12,
+    "text": "opening up the all the tool calls and"
+  },
+  {
+    "seconds": 1395.039,
+    "text": "like reading the code and reading all"
+  },
+  {
+    "seconds": 1397.919,
+    "text": "the uh the agent behavior and their"
+  },
+  {
+    "seconds": 1400.32,
+    "text": "thinking blocks is a really great way to"
+  },
+  {
+    "seconds": 1403.6,
+    "text": "see where they they fail right like what"
+  },
+  {
+    "seconds": 1406.48,
+    "text": "what you know where are they being done"
+  },
+  {
+    "seconds": 1409.039,
+    "text": "and then you can go and build a skill"
+  },
+  {
+    "seconds": 1410.559,
+    "text": "for that and then with verification how"
+  },
+  {
+    "seconds": 1413.52,
+    "text": "you trust it is it's I think it's also a"
+  },
+  {
+    "seconds": 1416.08,
+    "text": "very similar iteration loop uh where you"
+  },
+  {
+    "seconds": 1418.88,
+    "text": "know like I actually did the same"
+  },
+  {
+    "seconds": 1420.32,
+    "text": "process for verifying the verification"
+  },
+  {
+    "seconds": 1423.039,
+    "text": "skill where I actually get um so one"
+  },
+  {
+    "seconds": 1427.76,
+    "text": "thing that's interesting about eval is"
+  },
+  {
+    "seconds": 1429.28,
+    "text": "that you can sort of hill climb them"
+  },
+  {
+    "seconds": 1431.76,
+    "text": "meaning that uh your eval can produce a"
+  },
+  {
+    "seconds": 1434.64,
+    "text": "score right uh a score that you can get"
+  },
+  {
+    "seconds": 1437.52,
+    "text": "your coordinator to produce uh but also"
+  },
+  {
+    "seconds": 1440.32,
+    "text": "comp uh you can have a judge agent of a"
+  },
+  {
+    "seconds": 1442.799,
+    "text": "different model to uh kind cross"
+  },
+  {
+    "seconds": 1446.24,
+    "text": "reference and make sure that the first"
+  },
+  {
+    "seconds": 1448.559,
+    "text": "model is not being biased, right? The"
+  },
+  {
+    "seconds": 1450.72,
+    "text": "model that's judging all of the sub"
+  },
+  {
+    "seconds": 1452.4,
+    "text": "aents that are running the thing. Uh but"
+  },
+  {
+    "seconds": 1454.64,
+    "text": "you can also like hill climb. So meaning"
+  },
+  {
+    "seconds": 1456.799,
+    "text": "that you can you can use like /loop in"
+  },
+  {
+    "seconds": 1459.6,
+    "text": "cursor and you can say okay keep looping"
+  },
+  {
+    "seconds": 1462.4,
+    "text": "on this eval right until everything is"
+  },
+  {
+    "seconds": 1465.84,
+    "text": "10 out of 10 as an example. Uh and I did"
+  },
+  {
+    "seconds": 1468.48,
+    "text": "the same the basically the same approach"
+  },
+  {
+    "seconds": 1470.24,
+    "text": "with the control skill. And so I kind of"
+  },
+  {
+    "seconds": 1472.159,
+    "text": "it was very it was very hands-off"
+  },
+  {
+    "seconds": 1473.76,
+    "text": "actually. Uh so you know I uh I kind of"
+  },
+  {
+    "seconds": 1477.039,
+    "text": "built I built that skill that way like"
+  },
+  {
+    "seconds": 1479.36,
+    "text": "the CLI in that skill. Um and over time"
+  },
+  {
+    "seconds": 1483.84,
+    "text": "it's gotten really good. Uh but yeah it"
+  },
+  {
+    "seconds": 1486.08,
+    "text": "was definitely not super smooth at the"
+  },
+  {
+    "seconds": 1488.4,
+    "text": "beginning. It required a lot of"
+  },
+  {
+    "seconds": 1490.24,
+    "text": "iteration and I think there's an analogy"
+  },
+  {
+    "seconds": 1493.919,
+    "text": "here for me which is um well I make this"
+  },
+  {
+    "seconds": 1497.039,
+    "text": "analogy later in a different slide on my"
+  },
+  {
+    "seconds": 1499.84,
+    "text": "drawing here. Uh but I think of it like"
+  },
+  {
+    "seconds": 1503.679,
+    "text": "uh you know as a as a engineer now"
+  },
+  {
+    "seconds": 1506.559,
+    "text": "you're sort of more like you uh like"
+  },
+  {
+    "seconds": 1509.84,
+    "text": "maybe a manager or the analogy I like is"
+  },
+  {
+    "seconds": 1512.159,
+    "text": "like you're like a a chef in a"
+  },
+  {
+    "seconds": 1514.559,
+    "text": "restaurant. Uh you you're the head chef."
+  },
+  {
+    "seconds": 1517.2,
+    "text": "Uh you're not cooking all the food"
+  },
+  {
+    "seconds": 1518.799,
+    "text": "yourself anymore. You have a team of"
+  },
+  {
+    "seconds": 1520.72,
+    "text": "cooks, right? You have line cooks, you"
+  },
+  {
+    "seconds": 1522.559,
+    "text": "have a sue chef, you have, you know, all"
+  },
+  {
+    "seconds": 1524.24,
+    "text": "these different stations."
+  },
+  {
+    "seconds": 1526.4,
+    "text": "Um and it's your job to really design"
+  },
+  {
+    "seconds": 1528.88,
+    "text": "the environment. you know, you you're in"
+  },
+  {
+    "seconds": 1531.039,
+    "text": "charge of setting up the kitchen. You're"
+  },
+  {
+    "seconds": 1532.64,
+    "text": "in charge of, you know, like giving"
+  },
+  {
+    "seconds": 1535.039,
+    "text": "tasks to different people. So,"
+  },
+  {
+    "seconds": 1539.44,
+    "text": "um yeah, it's a very interesting way of"
+  },
+  {
+    "seconds": 1542.799,
+    "text": "working. Uh but yeah, that's that's how"
+  },
+  {
+    "seconds": 1545.279,
+    "text": "I've basically built uh these"
+  },
+  {
+    "seconds": 1547.36,
+    "text": "verification skills."
+  },
+  {
+    "seconds": 1548.88,
+    "text": ">> Yeah, just just one followup there on"
+  },
+  {
+    "seconds": 1550.64,
+    "text": "like to go try to go one layer deeper."
+  },
+  {
+    "seconds": 1552.88,
+    "text": "So, are you let's say we wanted to build"
+  },
+  {
+    "seconds": 1556.0,
+    "text": "um an eval or a skill for for something"
+  },
+  {
+    "seconds": 1559.84,
+    "text": "and we wanted to kind of get better on"
+  },
+  {
+    "seconds": 1561.679,
+    "text": "its own, which is is what I think you're"
+  },
+  {
+    "seconds": 1563.36,
+    "text": "suggesting. Uh are you doing that in"
+  },
+  {
+    "seconds": 1565.6,
+    "text": "like a work tree kind of isolated with"
+  },
+  {
+    "seconds": 1568.08,
+    "text": "like the sub agents and and then the"
+  },
+  {
+    "seconds": 1569.6,
+    "text": "reviewer agent and and all that? Is it"
+  },
+  {
+    "seconds": 1571.76,
+    "text": "happening like in some type of cloud"
+  },
+  {
+    "seconds": 1573.36,
+    "text": "hosted environment? Like what's the the"
+  },
+  {
+    "seconds": 1575.6,
+    "text": "more the practical steps? If I wanted to"
+  },
+  {
+    "seconds": 1577.2,
+    "text": "go do this uh and like set up a"
+  },
+  {
+    "seconds": 1579.2,
+    "text": "verification system for something, what"
+  },
+  {
+    "seconds": 1580.64,
+    "text": "would I what would I do or where would I"
+  },
+  {
+    "seconds": 1581.84,
+    "text": "start?"
+  },
+  {
+    "seconds": 1584.559,
+    "text": "Um I think that uh the best place to"
+  },
+  {
+    "seconds": 1587.679,
+    "text": "start is local because you can observe"
+  },
+  {
+    "seconds": 1591.12,
+    "text": "you can definitely observe what your"
+  },
+  {
+    "seconds": 1592.32,
+    "text": "agents are doing. So, uh, if you're"
+  },
+  {
+    "seconds": 1594.88,
+    "text": "building a verification skill for"
+  },
+  {
+    "seconds": 1596.24,
+    "text": "yourself, uh, I would definitely start"
+  },
+  {
+    "seconds": 1598.0,
+    "text": "local and just have your agent bring up"
+  },
+  {
+    "seconds": 1600.559,
+    "text": "the application, whether it's like a CLI"
+  },
+  {
+    "seconds": 1603.12,
+    "text": "or, uh, desktop app or whatever. And so,"
+  },
+  {
+    "seconds": 1606.4,
+    "text": "you can actually observe, right? You can"
+  },
+  {
+    "seconds": 1607.919,
+    "text": "see how the agent is interacting with"
+  },
+  {
+    "seconds": 1610.559,
+    "text": "the the application. You can see it, you"
+  },
+  {
+    "seconds": 1613.919,
+    "text": "know, how it calls like the different"
+  },
+  {
+    "seconds": 1616.24,
+    "text": "APIs that that allow it to interact with"
+  },
+  {
+    "seconds": 1618.88,
+    "text": "the uh the application."
+  },
+  {
+    "seconds": 1622.32,
+    "text": "Um but uh for me personally uh I have"
+  },
+  {
+    "seconds": 1626.32,
+    "text": "basically been kind of all in mostly all"
+  },
+  {
+    "seconds": 1628.88,
+    "text": "in on cloud agents because they're"
+  },
+  {
+    "seconds": 1630.4,
+    "text": "extremely powerful. Uh and the really"
+  },
+  {
+    "seconds": 1633.84,
+    "text": "powerful thing about cursor is the the"
+  },
+  {
+    "seconds": 1635.919,
+    "text": "cloud agents actually where if you spend"
+  },
+  {
+    "seconds": 1638.4,
+    "text": "a little bit of time setting up your"
+  },
+  {
+    "seconds": 1639.6,
+    "text": "environment"
+  },
+  {
+    "seconds": 1641.279,
+    "text": "these control skills these verification"
+  },
+  {
+    "seconds": 1643.44,
+    "text": "skills pay a huge amount of dividends"
+  },
+  {
+    "seconds": 1646.08,
+    "text": "because it's not just something that"
+  },
+  {
+    "seconds": 1648.159,
+    "text": "makes you as a single engineer better."
+  },
+  {
+    "seconds": 1651.52,
+    "text": "It actually levels up your whole team uh"
+  },
+  {
+    "seconds": 1653.919,
+    "text": "and even your whole company because uh"
+  },
+  {
+    "seconds": 1656.4,
+    "text": "you can actually start thinking about"
+  },
+  {
+    "seconds": 1658.159,
+    "text": "cloud agents. start thinking about"
+  },
+  {
+    "seconds": 1659.679,
+    "text": "automations that automatically do things"
+  },
+  {
+    "seconds": 1662.96,
+    "text": "like uh I I get I I kind of talk about"
+  },
+  {
+    "seconds": 1666.24,
+    "text": "this a bit later, but I'll just kind of"
+  },
+  {
+    "seconds": 1669.2,
+    "text": "get into it. Uh where where you know,"
+  },
+  {
+    "seconds": 1671.279,
+    "text": "for example, like I talk a lot about"
+  },
+  {
+    "seconds": 1673.2,
+    "text": "this agent we have called Benny, right?"
+  },
+  {
+    "seconds": 1675.679,
+    "text": "who who uh you know takes all of the bug"
+  },
+  {
+    "seconds": 1679.679,
+    "text": "reports that we get and it automatically"
+  },
+  {
+    "seconds": 1682.24,
+    "text": "goes off in the cloud, opens up a cloud"
+  },
+  {
+    "seconds": 1684.559,
+    "text": "uh it's you know its desktop. It runs"
+  },
+  {
+    "seconds": 1687.44,
+    "text": "cursor in its own computer and it uses"
+  },
+  {
+    "seconds": 1690.559,
+    "text": "the same control skills to interact with"
+  },
+  {
+    "seconds": 1693.12,
+    "text": "the application and try to reproduce the"
+  },
+  {
+    "seconds": 1695.039,
+    "text": "bug uh or the user report, right? And"
+  },
+  {
+    "seconds": 1697.919,
+    "text": "this is so so powerful because at once I"
+  },
+  {
+    "seconds": 1700.559,
+    "text": "can immediately I I get so much"
+  },
+  {
+    "seconds": 1702.64,
+    "text": "information from this automatically like"
+  },
+  {
+    "seconds": 1704.88,
+    "text": "here in this example you can see that uh"
+  },
+  {
+    "seconds": 1706.88,
+    "text": "the Benny actually reproduced the bug uh"
+  },
+  {
+    "seconds": 1710.159,
+    "text": "but it's already fixed on main. So it"
+  },
+  {
+    "seconds": 1713.679,
+    "text": "actually confirms that we fixed this"
+  },
+  {
+    "seconds": 1715.44,
+    "text": "problem already and all I need to do is"
+  },
+  {
+    "seconds": 1717.52,
+    "text": "just release another build of of cursor."
+  },
+  {
+    "seconds": 1720.559,
+    "text": "Uh, so that's like huge information"
+  },
+  {
+    "seconds": 1722.72,
+    "text": "there that I didn't have to go off and"
+  },
+  {
+    "seconds": 1724.559,
+    "text": "sit with an agent, you know, and spend"
+  },
+  {
+    "seconds": 1726.24,
+    "text": "an hour trying to figure like is this"
+  },
+  {
+    "seconds": 1727.6,
+    "text": "fixed, is this not fixed. So you you you"
+  },
+  {
+    "seconds": 1730.48,
+    "text": "gain back so much time. Uh, but you"
+  },
+  {
+    "seconds": 1732.88,
+    "text": "know, everybody on my team benefits from"
+  },
+  {
+    "seconds": 1734.88,
+    "text": "this. Everybody at the company benefits"
+  },
+  {
+    "seconds": 1736.64,
+    "text": "from this. Uh, so definitely think that"
+  },
+  {
+    "seconds": 1740.799,
+    "text": "uh, you know, keeping these uh, using"
+  },
+  {
+    "seconds": 1743.2,
+    "text": "cloud agents is super powerful. Uh, but"
+  },
+  {
+    "seconds": 1746.24,
+    "text": "yeah, it's like a journey. You have to"
+  },
+  {
+    "seconds": 1748.24,
+    "text": "trust it first, right? before you you"
+  },
+  {
+    "seconds": 1750.559,
+    "text": "get to this point. And that's it goes"
+  },
+  {
+    "seconds": 1752.48,
+    "text": "back to what I was saying here where,"
+  },
+  {
+    "seconds": 1754.0,
+    "text": "you know, it's very hard. It's almost"
+  },
+  {
+    "seconds": 1756.399,
+    "text": "impossible. And I would definitely"
+  },
+  {
+    "seconds": 1758.0,
+    "text": "encourage you not to try to jump from,"
+  },
+  {
+    "seconds": 1760.72,
+    "text": "you know, like if you're still in this"
+  },
+  {
+    "seconds": 1762.799,
+    "text": "zone, you don't want to jump to like I'm"
+  },
+  {
+    "seconds": 1765.52,
+    "text": "going to spawn a hundred of thousand or"
+  },
+  {
+    "seconds": 1767.44,
+    "text": "thousands of cloud agents right now"
+  },
+  {
+    "seconds": 1769.6,
+    "text": "because you're just going to waste a lot"
+  },
+  {
+    "seconds": 1771.36,
+    "text": "of tokens. Um, and it's going to be"
+  },
+  {
+    "seconds": 1773.679,
+    "text": "extremely expensive."
+  },
+  {
+    "seconds": 1775.279,
+    "text": ">> Yeah. So just to kind of recap so far,"
+  },
+  {
+    "seconds": 1777.44,
+    "text": "basically the if we wanted to go on the"
+  },
+  {
+    "seconds": 1779.36,
+    "text": "journey that you've kind of gone on, it"
+  },
+  {
+    "seconds": 1780.799,
+    "text": "would be to start with verification,"
+  },
+  {
+    "seconds": 1783.84,
+    "text": "building some some skills and some some"
+  },
+  {
+    "seconds": 1786.08,
+    "text": "ways of determining that the agents are"
+  },
+  {
+    "seconds": 1787.76,
+    "text": "producing at least like correct code."
+  },
+  {
+    "seconds": 1790.08,
+    "text": "Whether like you said whether it's good"
+  },
+  {
+    "seconds": 1791.2,
+    "text": "code or not is maybe a separate"
+  },
+  {
+    "seconds": 1792.32,
+    "text": "question, but like it's it's technically"
+  },
+  {
+    "seconds": 1793.76,
+    "text": "solving the problem by looking at you"
+  },
+  {
+    "seconds": 1796.0,
+    "text": "know stack traces, looking at you know"
+  },
+  {
+    "seconds": 1797.919,
+    "text": "the the actual behavior in the app and"
+  },
+  {
+    "seconds": 1799.6,
+    "text": "so on. Um, and then once we trust it"
+  },
+  {
+    "seconds": 1801.919,
+    "text": "locally, then we can start to think"
+  },
+  {
+    "seconds": 1803.36,
+    "text": "about scaling into the cloud and running"
+  },
+  {
+    "seconds": 1805.279,
+    "text": "more agents that are picking up signals,"
+  },
+  {
+    "seconds": 1807.84,
+    "text": "I guess, on their own, right? So whether"
+  },
+  {
+    "seconds": 1809.2,
+    "text": "that's like a bug report that comes in"
+  },
+  {
+    "seconds": 1810.64,
+    "text": "or something, they can go and pick it up"
+  },
+  {
+    "seconds": 1812.08,
+    "text": "and solve the problem and and give us"
+  },
+  {
+    "seconds": 1814.32,
+    "text": "back a PR. And then maybe the last step"
+  },
+  {
+    "seconds": 1816.48,
+    "text": "is like automerging the PRs, which uh is"
+  },
+  {
+    "seconds": 1819.039,
+    "text": "where you're at, maybe not where"
+  },
+  {
+    "seconds": 1820.559,
+    "text": "everyone is at."
+  },
+  {
+    "seconds": 1821.679,
+    "text": ">> Um, and then and reviewing them on main,"
+  },
+  {
+    "seconds": 1823.52,
+    "text": "but um, is that is that about right?"
+  },
+  {
+    "seconds": 1826.08,
+    "text": ">> Yeah, exactly. I think yeah, that's why"
+  },
+  {
+    "seconds": 1827.44,
+    "text": "I drew this this uh this this curve,"
+  },
+  {
+    "seconds": 1829.6,
+    "text": "right? because that this this basically"
+  },
+  {
+    "seconds": 1831.919,
+    "text": "describes my journey of you know when I"
+  },
+  {
+    "seconds": 1834.24,
+    "text": "started barely could use a couple agents"
+  },
+  {
+    "seconds": 1836.799,
+    "text": "and I was just observing every single"
+  },
+  {
+    "seconds": 1838.64,
+    "text": "thing. I think there's really no"
+  },
+  {
+    "seconds": 1840.399,
+    "text": "shortcut for going from here to there"
+  },
+  {
+    "seconds": 1842.96,
+    "text": "because this is really about your"
+  },
+  {
+    "seconds": 1844.64,
+    "text": "personal level of trust in agents,"
+  },
+  {
+    "seconds": 1846.96,
+    "text": "right? Um obviously, you know, as a as"
+  },
+  {
+    "seconds": 1849.36,
+    "text": "engineer, you don't want to just slop"
+  },
+  {
+    "seconds": 1850.64,
+    "text": "code into production. So, how do you"
+  },
+  {
+    "seconds": 1853.039,
+    "text": "actually build up that trust? Takes um a"
+  },
+  {
+    "seconds": 1856.159,
+    "text": "lot of uh I guess taste and judgment. Um"
+  },
+  {
+    "seconds": 1859.76,
+    "text": "but, uh you know, like I think plugins"
+  },
+  {
+    "seconds": 1862.72,
+    "text": "like Pstack definitely kind of help you"
+  },
+  {
+    "seconds": 1865.76,
+    "text": "uh get up to speed much quicker. Uh, and"
+  },
+  {
+    "seconds": 1868.799,
+    "text": "so I guess it's like if you trust me and"
+  },
+  {
+    "seconds": 1871.52,
+    "text": "you trust Pstack, then in by extension"
+  },
+  {
+    "seconds": 1874.399,
+    "text": "you can maybe trust your agents. But if"
+  },
+  {
+    "seconds": 1876.72,
+    "text": "you don't trust me and I I definitely"
+  },
+  {
+    "seconds": 1878.72,
+    "text": "would not encourage people to blindly"
+  },
+  {
+    "seconds": 1880.48,
+    "text": "trust me. Uh, uh, you know, if you build"
+  },
+  {
+    "seconds": 1884.559,
+    "text": "up your own set of skills that you can"
+  },
+  {
+    "seconds": 1886.399,
+    "text": "obviously, you know, take a look at PAC"
+  },
+  {
+    "seconds": 1888.559,
+    "text": "and kind of fork it, make it your own,"
+  },
+  {
+    "seconds": 1890.88,
+    "text": "improve the skills. Definitely encourage"
+  },
+  {
+    "seconds": 1892.64,
+    "text": "that. Uh but for me it's really all"
+  },
+  {
+    "seconds": 1895.279,
+    "text": "about it just keeps coming back to"
+  },
+  {
+    "seconds": 1897.279,
+    "text": "trust. You know every one of us here in"
+  },
+  {
+    "seconds": 1899.679,
+    "text": "this chat have a different standard for"
+  },
+  {
+    "seconds": 1901.6,
+    "text": "engineering. Uh and there are different"
+  },
+  {
+    "seconds": 1903.84,
+    "text": "things that are important for us in our"
+  },
+  {
+    "seconds": 1906.0,
+    "text": "codebase. And uh when you are able to"
+  },
+  {
+    "seconds": 1910.0,
+    "text": "encode all of that into skills and you"
+  },
+  {
+    "seconds": 1911.84,
+    "text": "can verify that your agent is actually"
+  },
+  {
+    "seconds": 1913.679,
+    "text": "doing them that allows you to really"
+  },
+  {
+    "seconds": 1915.679,
+    "text": "kind of ascend this curve and um uh you"
+  },
+  {
+    "seconds": 1920.159,
+    "text": "know start automating things. Uh there's"
+  },
+  {
+    "seconds": 1922.799,
+    "text": "another piece I wanted to talk about. Um"
+  },
+  {
+    "seconds": 1925.44,
+    "text": "if there's more"
+  },
+  {
+    "seconds": 1926.64,
+    "text": ">> Yeah, go for it. I'll I'll pick up more"
+  },
+  {
+    "seconds": 1928.08,
+    "text": "questions as I go. But"
+  },
+  {
+    "seconds": 1929.039,
+    "text": ">> yeah, I think there's a third part to"
+  },
+  {
+    "seconds": 1930.72,
+    "text": "this which I haven't talked about yet,"
+  },
+  {
+    "seconds": 1932.159,
+    "text": "which is kind of an interesting one"
+  },
+  {
+    "seconds": 1934.64,
+    "text": "which is like refactoring and rewriting"
+  },
+  {
+    "seconds": 1937.279,
+    "text": "like one of the uh I guess most"
+  },
+  {
+    "seconds": 1939.44,
+    "text": "controversial one of the most"
+  },
+  {
+    "seconds": 1941.279,
+    "text": "controversial topics in the industry I"
+  },
+  {
+    "seconds": 1943.76,
+    "text": "think is like should you rewrite your"
+  },
+  {
+    "seconds": 1945.919,
+    "text": "app or not? Um because I think engineers"
+  },
+  {
+    "seconds": 1950.159,
+    "text": "are very prone to this where especially"
+  },
+  {
+    "seconds": 1952.08,
+    "text": "when you join a company you come in and"
+  },
+  {
+    "seconds": 1954.159,
+    "text": "you see like the code base and you're"
+  },
+  {
+    "seconds": 1955.519,
+    "text": "like oh man this is like who wrote"
+  },
+  {
+    "seconds": 1958.0,
+    "text": "this code you know it's terrible I want"
+  },
+  {
+    "seconds": 1960.159,
+    "text": "to rewrite the whole thing there is a"
+  },
+  {
+    "seconds": 1962.159,
+    "text": "very common inclination and I think a"
+  },
+  {
+    "seconds": 1964.96,
+    "text": "lot of you know before agents um and I"
+  },
+  {
+    "seconds": 1968.0,
+    "text": "guess arguably even now people will"
+  },
+  {
+    "seconds": 1970.08,
+    "text": "definitely discourage you from re"
+  },
+  {
+    "seconds": 1971.84,
+    "text": "rewriting stuff but I'm actually here to"
+  },
+  {
+    "seconds": 1974.399,
+    "text": "make a case for why you might want to"
+  },
+  {
+    "seconds": 1976.08,
+    "text": "consider"
+  },
+  {
+    "seconds": 1978.0,
+    "text": "Um because"
+  },
+  {
+    "seconds": 1980.96,
+    "text": "I think it really depends. Uh you know"
+  },
+  {
+    "seconds": 1983.12,
+    "text": "uh brownfield applications I think are"
+  },
+  {
+    "seconds": 1985.76,
+    "text": "actually in a pretty good spot"
+  },
+  {
+    "seconds": 1987.519,
+    "text": "especially if they're set up well"
+  },
+  {
+    "seconds": 1989.44,
+    "text": "already. Uh and like recently I've been"
+  },
+  {
+    "seconds": 1992.08,
+    "text": "talking to some people but uh you know I"
+  },
+  {
+    "seconds": 1994.399,
+    "text": "I was just observing I I just noticed"
+  },
+  {
+    "seconds": 1997.2,
+    "text": "this parallel which is that a lot of big"
+  },
+  {
+    "seconds": 2001.44,
+    "text": "tech company problems are now"
+  },
+  {
+    "seconds": 2003.519,
+    "text": "everybody's problems. Um, and the big"
+  },
+  {
+    "seconds": 2006.0,
+    "text": "tech company problem, you know, like"
+  },
+  {
+    "seconds": 2007.519,
+    "text": "when I was working at Meta, like we had"
+  },
+  {
+    "seconds": 2009.12,
+    "text": "this giant monora repo, we had like, I"
+  },
+  {
+    "seconds": 2011.84,
+    "text": "don't know, tens of thousands of"
+  },
+  {
+    "seconds": 2013.2,
+    "text": "engineers just, you know, like banging"
+  },
+  {
+    "seconds": 2015.76,
+    "text": "on their keyboards and and shipping code"
+  },
+  {
+    "seconds": 2018.08,
+    "text": "and"
+  },
+  {
+    "seconds": 2020.0,
+    "text": "a lot of really great engineers at Meta."
+  },
+  {
+    "seconds": 2022.559,
+    "text": "Uh, but, uh, I'll say like, you know,"
+  },
+  {
+    "seconds": 2025.12,
+    "text": "you'll be surprised that the code"
+  },
+  {
+    "seconds": 2026.64,
+    "text": "quality is actually not that good."
+  },
+  {
+    "seconds": 2028.558,
+    "text": "[laughter] Um, and so I often joke that"
+  },
+  {
+    "seconds": 2031.279,
+    "text": "like, you know, before AI sloth, we had"
+  },
+  {
+    "seconds": 2033.2,
+    "text": "human sloth. Um and so uh you know I"
+  },
+  {
+    "seconds": 2036.32,
+    "text": "think a lot of big tech infra like uh"
+  },
+  {
+    "seconds": 2038.96,
+    "text": "like what Meta has or Google you know"
+  },
+  {
+    "seconds": 2041.679,
+    "text": "you know really big tech companies are"
+  },
+  {
+    "seconds": 2043.919,
+    "text": "actually designed for that where you"
+  },
+  {
+    "seconds": 2045.44,
+    "text": "you're sort of like you're catering to"
+  },
+  {
+    "seconds": 2047.36,
+    "text": "the the you know like uh this sounds so"
+  },
+  {
+    "seconds": 2050.399,
+    "text": "bad to say but like the the least"
+  },
+  {
+    "seconds": 2052.0,
+    "text": "capable engineer on your team right you"
+  },
+  {
+    "seconds": 2054.639,
+    "text": "build you build frameworks you build"
+  },
+  {
+    "seconds": 2056.879,
+    "text": "conventions you build guard rails you"
+  },
+  {
+    "seconds": 2059.28,
+    "text": "know you restrict credentials so that"
+  },
+  {
+    "seconds": 2061.359,
+    "text": "you know your intern doesn't wipe your"
+  },
+  {
+    "seconds": 2062.96,
+    "text": "production database"
+  },
+  {
+    "seconds": 2064.639,
+    "text": "Um"
+  },
+  {
+    "seconds": 2066.639,
+    "text": "there's uh you know if you have that"
+  },
+  {
+    "seconds": 2068.96,
+    "text": "level of infra already I think your"
+  },
+  {
+    "seconds": 2071.359,
+    "text": "agents can actually already do a very"
+  },
+  {
+    "seconds": 2073.04,
+    "text": "solid job right because they have the"
+  },
+  {
+    "seconds": 2075.839,
+    "text": "the guard rails are already in place for"
+  },
+  {
+    "seconds": 2078.96,
+    "text": "agents to not cause havoc or not cause"
+  },
+  {
+    "seconds": 2081.679,
+    "text": "too much havoc uh in your codebase um"
+  },
+  {
+    "seconds": 2084.8,
+    "text": "and you can always add more you know"
+  },
+  {
+    "seconds": 2086.879,
+    "text": "guard rails. Uh but I think like green"
+  },
+  {
+    "seconds": 2089.119,
+    "text": "field applications especially are you"
+  },
+  {
+    "seconds": 2090.8,
+    "text": "know like the brand new applications are"
+  },
+  {
+    "seconds": 2093.2,
+    "text": "like the biggest risk in my opinion. Uh"
+  },
+  {
+    "seconds": 2096.48,
+    "text": "and also the greatest opportunity"
+  },
+  {
+    "seconds": 2098.8,
+    "text": "because you know if you vibe code a"
+  },
+  {
+    "seconds": 2100.88,
+    "text": "project uh a prototype um like we did"
+  },
+  {
+    "seconds": 2104.0,
+    "text": "for Grockbot you know Grockbot was spun"
+  },
+  {
+    "seconds": 2105.92,
+    "text": "up very very very quickly. Um and if you"
+  },
+  {
+    "seconds": 2108.88,
+    "text": "if you haven't heard of of Grockbot it's"
+  },
+  {
+    "seconds": 2110.72,
+    "text": "like a a new application we just"
+  },
+  {
+    "seconds": 2112.4,
+    "text": "launched yesterday. Uh it's it's really"
+  },
+  {
+    "seconds": 2114.88,
+    "text": "cool. uh lets you orchestrate your"
+  },
+  {
+    "seconds": 2118.24,
+    "text": "create like individual agents that have"
+  },
+  {
+    "seconds": 2120.16,
+    "text": "their own identity and you can kind of"
+  },
+  {
+    "seconds": 2121.839,
+    "text": "orchestrate them. It's super cool."
+  },
+  {
+    "seconds": 2123.119,
+    "text": "Definitely check it out. Um but yeah,"
+  },
+  {
+    "seconds": 2125.68,
+    "text": "that was it's like a very it was a very"
+  },
+  {
+    "seconds": 2126.96,
+    "text": "green field application like most"
+  },
+  {
+    "seconds": 2129.28,
+    "text": "prototypes are so like vibe coded very"
+  },
+  {
+    "seconds": 2132.16,
+    "text": "quickly. Humans were not reading the"
+  },
+  {
+    "seconds": 2134.16,
+    "text": "code at all. And uh I had this tweet"
+  },
+  {
+    "seconds": 2138.16,
+    "text": "recently uh where I said something about"
+  },
+  {
+    "seconds": 2141.68,
+    "text": "organic architecture. Um"
+  },
+  {
+    "seconds": 2145.44,
+    "text": "maybe I'll find it. Uh but the idea is"
+  },
+  {
+    "seconds": 2149.04,
+    "text": "that"
+  },
+  {
+    "seconds": 2150.56,
+    "text": "uh when you have a completely vibe coded"
+  },
+  {
+    "seconds": 2152.72,
+    "text": "application, you essentially have no"
+  },
+  {
+    "seconds": 2154.48,
+    "text": "guard rails whatsoever. So uh your"
+  },
+  {
+    "seconds": 2157.359,
+    "text": "agents"
+  },
+  {
+    "seconds": 2159.599,
+    "text": "when you give them a task, they will"
+  },
+  {
+    "seconds": 2161.359,
+    "text": "just solve it in whatever method is the"
+  },
+  {
+    "seconds": 2163.839,
+    "text": "most convenient. And over time you get"
+  },
+  {
+    "seconds": 2166.24,
+    "text": "into this uh situation where you have a"
+  },
+  {
+    "seconds": 2169.76,
+    "text": "codebase that is spiraling out of"
+  },
+  {
+    "seconds": 2171.52,
+    "text": "control because you don't understand it."
+  },
+  {
+    "seconds": 2174.079,
+    "text": "Uh your agents understand it I guess in"
+  },
+  {
+    "seconds": 2176.88,
+    "text": "a way but like they've built something"
+  },
+  {
+    "seconds": 2178.8,
+    "text": "that is you know optimized for short for"
+  },
+  {
+    "seconds": 2181.44,
+    "text": "shortcuts. Uh and uh you know it will"
+  },
+  {
+    "seconds": 2184.8,
+    "text": "you will suffer you'll have a lot of of"
+  },
+  {
+    "seconds": 2187.04,
+    "text": "issues with that application."
+  },
+  {
+    "seconds": 2190.4,
+    "text": "Uh so I think starting your codebase"
+  },
+  {
+    "seconds": 2193.119,
+    "text": "with uh like very strong constraints is"
+  },
+  {
+    "seconds": 2197.839,
+    "text": "very much needed uh because like when"
+  },
+  {
+    "seconds": 2200.88,
+    "text": "you have a codebase that you can trust,"
+  },
+  {
+    "seconds": 2203.04,
+    "text": "right? when you have guardrails that"
+  },
+  {
+    "seconds": 2204.64,
+    "text": "actually help you uh uh help your agents"
+  },
+  {
+    "seconds": 2208.48,
+    "text": "write good code, you can get into the"
+  },
+  {
+    "seconds": 2210.88,
+    "text": "you know like into this part of the"
+  },
+  {
+    "seconds": 2212.56,
+    "text": "curve where I I where like I I said you"
+  },
+  {
+    "seconds": 2215.52,
+    "text": "know I woke up today and I had like 20"
+  },
+  {
+    "seconds": 2217.44,
+    "text": "PRs merged u by my agents and that's"
+  },
+  {
+    "seconds": 2220.8,
+    "text": "because I invested a lot a lot of time"
+  },
+  {
+    "seconds": 2224.079,
+    "text": "uh over 600 PRs I I I calculated"
+  },
+  {
+    "seconds": 2226.96,
+    "text": "yesterday uh when I refactored all of"
+  },
+  {
+    "seconds": 2230.4,
+    "text": "Grockbot to this new architecture that"
+  },
+  {
+    "seconds": 2232.56,
+    "text": "I've been"
+  },
+  {
+    "seconds": 2233.92,
+    "text": "Um,"
+  },
+  {
+    "seconds": 2235.839,
+    "text": "and yeah, I've gotten to a point where I"
+  },
+  {
+    "seconds": 2239.119,
+    "text": "I don't really look I really don't look"
+  },
+  {
+    "seconds": 2240.96,
+    "text": "at the code anymore. And um, I say that"
+  },
+  {
+    "seconds": 2244.0,
+    "text": "not just, you know, to sell you tokens,"
+  },
+  {
+    "seconds": 2245.839,
+    "text": "but because I, you know, it it it took a"
+  },
+  {
+    "seconds": 2249.2,
+    "text": "lot of work to get to that point. I"
+  },
+  {
+    "seconds": 2250.48,
+    "text": "spent a lot of tokens to get the"
+  },
+  {
+    "seconds": 2252.64,
+    "text": "codebase to this point where I no longer"
+  },
+  {
+    "seconds": 2254.72,
+    "text": "have to look at it. Uh but I'm very"
+  },
+  {
+    "seconds": 2257.28,
+    "text": "excited because you know of the"
+  },
+  {
+    "seconds": 2259.44,
+    "text": "potential where you know it's not just"
+  },
+  {
+    "seconds": 2261.68,
+    "text": "this doesn't just benefit me it benefits"
+  },
+  {
+    "seconds": 2263.76,
+    "text": "everyone contributing to Grockbot and it"
+  },
+  {
+    "seconds": 2266.88,
+    "text": "also empowers you know designers and"
+  },
+  {
+    "seconds": 2269.28,
+    "text": "product managers and you know pe uh even"
+  },
+  {
+    "seconds": 2272.16,
+    "text": "GTM people to add features to Grockbot"
+  },
+  {
+    "seconds": 2275.52,
+    "text": "and I don't have to worry you know I"
+  },
+  {
+    "seconds": 2276.88,
+    "text": "don't have to to wake up at night in in"
+  },
+  {
+    "seconds": 2279.04,
+    "text": "the middle of the night and worry like"
+  },
+  {
+    "seconds": 2280.32,
+    "text": "oh someone's just merged a perf"
+  },
+  {
+    "seconds": 2281.92,
+    "text": "regression right I have a ton of"
+  },
+  {
+    "seconds": 2285.04,
+    "text": "constraints and CI is like it's actually"
+  },
+  {
+    "seconds": 2287.359,
+    "text": "very annoying to write code in in graph"
+  },
+  {
+    "seconds": 2289.68,
+    "text": "web but like agents absorb all of that"
+  },
+  {
+    "seconds": 2291.839,
+    "text": "annoyance."
+  },
+  {
+    "seconds": 2293.52,
+    "text": "Um but yeah I'm happy to talk about what"
+  },
+  {
+    "seconds": 2296.079,
+    "text": "exactly that is. Um"
+  },
+  {
+    "seconds": 2298.4,
+    "text": ">> yeah I think one question um"
+  },
+  {
+    "seconds": 2301.52,
+    "text": ">> before we get into the this part here is"
+  },
+  {
+    "seconds": 2303.92,
+    "text": "just around that element of like what"
+  },
+  {
+    "seconds": 2306.0,
+    "text": "your your your CI looks like or maybe"
+  },
+  {
+    "seconds": 2308.0,
+    "text": "some of the constraints and then also"
+  },
+  {
+    "seconds": 2309.28,
+    "text": "like the average PR size. I saw a"
+  },
+  {
+    "seconds": 2310.96,
+    "text": "question about that earlier just to give"
+  },
+  {
+    "seconds": 2312.88,
+    "text": "people you know kind of a a glance. So"
+  },
+  {
+    "seconds": 2314.96,
+    "text": "it doesn't have to be like"
+  },
+  {
+    "seconds": 2315.68,
+    "text": "mathematically average, but just uh you"
+  },
+  {
+    "seconds": 2317.44,
+    "text": "know like what generally the size of the"
+  },
+  {
+    "seconds": 2319.68,
+    "text": "a PR is. Um if it's only a couple lines"
+  },
+  {
+    "seconds": 2322.64,
+    "text": "of code or you know um yeah"
+  },
+  {
+    "seconds": 2325.44,
+    "text": ">> um"
+  },
+  {
+    "seconds": 2327.2,
+    "text": "I think it depends uh"
+  },
+  {
+    "seconds": 2331.28,
+    "text": "I'm trying to do this in a way where I'm"
+  },
+  {
+    "seconds": 2333.2,
+    "text": "not going to like"
+  },
+  {
+    "seconds": 2334.16,
+    "text": ">> you. Yeah, you don't have to share the"
+  },
+  {
+    "seconds": 2335.44,
+    "text": "actual number like an actual average. I"
+  },
+  {
+    "seconds": 2337.599,
+    "text": "think this this is fine"
+  },
+  {
+    "seconds": 2338.72,
+    "text": ">> benchmark"
+  },
+  {
+    "seconds": 2339.28,
+    "text": ">> but like we have so okay this is not"
+  },
+  {
+    "seconds": 2342.88,
+    "text": "that interesting but uh well fun fact is"
+  },
+  {
+    "seconds": 2345.599,
+    "text": "that virtualization in grockbot and in"
+  },
+  {
+    "seconds": 2349.04,
+    "text": "uh cursor is actually powered by uh"
+  },
+  {
+    "seconds": 2352.48,
+    "text": "pretext uh which is a sort of new"
+  },
+  {
+    "seconds": 2355.599,
+    "text": "library that someone's built um that's"
+  },
+  {
+    "seconds": 2359.04,
+    "text": "really interesting you should you should"
+  },
+  {
+    "seconds": 2360.32,
+    "text": "check it out but that's not really that"
+  },
+  {
+    "seconds": 2362.4,
+    "text": "important uh I think the average PR size"
+  },
+  {
+    "seconds": 2365.44,
+    "text": "I actually don't know. I pro I don't"
+  },
+  {
+    "seconds": 2367.76,
+    "text": "know if I want to click on these. Uh I"
+  },
+  {
+    "seconds": 2369.92,
+    "text": "probably can, but I would say like they"
+  },
+  {
+    "seconds": 2372.88,
+    "text": "can range anywhere from a few hundred"
+  },
+  {
+    "seconds": 2374.64,
+    "text": "lines or 50 lines to like a thousand"
+  },
+  {
+    "seconds": 2377.52,
+    "text": "depending on what the thing is doing. Uh"
+  },
+  {
+    "seconds": 2380.56,
+    "text": "so like here I'm actually like deleting"
+  },
+  {
+    "seconds": 2382.32,
+    "text": "a bunch of files. So I expect that it's"
+  },
+  {
+    "seconds": 2384.24,
+    "text": "just like mostly deletion. Uh but yeah,"
+  },
+  {
+    "seconds": 2387.68,
+    "text": "it kind of varies."
+  },
+  {
+    "seconds": 2389.839,
+    "text": ">> There's no like Yeah,"
+  },
+  {
+    "seconds": 2391.119,
+    "text": ">> there's no like hard cap or hard limit."
+  },
+  {
+    "seconds": 2392.48,
+    "text": "Are there all like 50 line P?"
+  },
+  {
+    "seconds": 2393.839,
+    "text": ">> There's no hard cap. Yeah, there's"
+  },
+  {
+    "seconds": 2394.64,
+    "text": "definitely no hard cap, but I I do"
+  },
+  {
+    "seconds": 2395.92,
+    "text": "encourage my agents to split up their"
+  },
+  {
+    "seconds": 2397.68,
+    "text": "work into multiple PRs. Uh I do that"
+  },
+  {
+    "seconds": 2401.04,
+    "text": "mostly because uh I like I like the idea"
+  },
+  {
+    "seconds": 2405.76,
+    "text": "of the I guess maybe this is much harder"
+  },
+  {
+    "seconds": 2407.839,
+    "text": "to do now as in the world of agents and"
+  },
+  {
+    "seconds": 2410.079,
+    "text": "you have like so many commits, but I"
+  },
+  {
+    "seconds": 2412.24,
+    "text": "like the idea that you know the git"
+  },
+  {
+    "seconds": 2413.52,
+    "text": "history is a very rich source of"
+  },
+  {
+    "seconds": 2415.119,
+    "text": "context. Uh, and I like the I like each"
+  },
+  {
+    "seconds": 2419.28,
+    "text": "PR to sort of atomically describe what"
+  },
+  {
+    "seconds": 2422.16,
+    "text": "that small piece of thing is doing,"
+  },
+  {
+    "seconds": 2425.52,
+    "text": "which also makes it easier for me to"
+  },
+  {
+    "seconds": 2426.88,
+    "text": "revert changes and like figure out, you"
+  },
+  {
+    "seconds": 2428.96,
+    "text": "know, oh, I shipped a bug and it's just"
+  },
+  {
+    "seconds": 2430.88,
+    "text": "it's here, right? It's not in this"
+  },
+  {
+    "seconds": 2432.88,
+    "text": "40,000 line PR where who knows what"
+  },
+  {
+    "seconds": 2436.079,
+    "text": "landed in there."
+  },
+  {
+    "seconds": 2438.32,
+    "text": "Uh, but yeah, I don't have a hard cap on"
+  },
+  {
+    "seconds": 2441.28,
+    "text": "PR size."
+  },
+  {
+    "seconds": 2442.88,
+    "text": ">> Cool. And then um yeah, also quick"
+  },
+  {
+    "seconds": 2445.359,
+    "text": "question on like CI. So again, you don't"
+  },
+  {
+    "seconds": 2446.96,
+    "text": "have to go into like uh the screen share"
+  },
+  {
+    "seconds": 2448.4,
+    "text": "of like your CI does, but just generally"
+  },
+  {
+    "seconds": 2451.28,
+    "text": "would you describe what the CI kind of"
+  },
+  {
+    "seconds": 2453.04,
+    "text": "looks like uh or how strict it is?"
+  },
+  {
+    "seconds": 2456.56,
+    "text": ">> Uh yeah, so"
+  },
+  {
+    "seconds": 2458.88,
+    "text": "uh well specifically for Grockbot. So"
+  },
+  {
+    "seconds": 2461.359,
+    "text": "Dune is the is the sort of cheeky code"
+  },
+  {
+    "seconds": 2464.56,
+    "text": "code name for the architecture that"
+  },
+  {
+    "seconds": 2466.16,
+    "text": "we've built for Grockbot. Um the CI"
+  },
+  {
+    "seconds": 2470.88,
+    "text": "looks pretty annoying because there's"
+  },
+  {
+    "seconds": 2473.119,
+    "text": "checks for everything. So like literally"
+  },
+  {
+    "seconds": 2476.16,
+    "text": "I have um uh well if you've written any"
+  },
+  {
+    "seconds": 2479.119,
+    "text": "React for example you know you know that"
+  },
+  {
+    "seconds": 2480.96,
+    "text": "one of the biggest foot guns in React is"
+  },
+  {
+    "seconds": 2482.88,
+    "text": "use effect. Uh so in"
+  },
+  {
+    "seconds": 2486.72,
+    "text": "uh Dune and in graphbot we've banned use"
+  },
+  {
+    "seconds": 2489.52,
+    "text": "effect. So Dune is just you can the the"
+  },
+  {
+    "seconds": 2492.16,
+    "text": "mental model of what Dune is uh you can"
+  },
+  {
+    "seconds": 2494.88,
+    "text": "kind of think of it as like Nex.js JS"
+  },
+  {
+    "seconds": 2496.8,
+    "text": "for uh electron apps and it's designed"
+  },
+  {
+    "seconds": 2499.839,
+    "text": "for agents to write uh and it's like"
+  },
+  {
+    "seconds": 2502.4,
+    "text": "custom for you know our agent powered"
+  },
+  {
+    "seconds": 2505.2,
+    "text": "applications. Um so the CI checks are"
+  },
+  {
+    "seconds": 2508.4,
+    "text": "very like specific to that like you know"
+  },
+  {
+    "seconds": 2510.079,
+    "text": "don't use use effect it's it's it's"
+  },
+  {
+    "seconds": 2512.319,
+    "text": "banned like CI will fail uh and yell at"
+  },
+  {
+    "seconds": 2515.359,
+    "text": "you. We have like some of the more"
+  },
+  {
+    "seconds": 2517.92,
+    "text": "interesting ones that people might raise"
+  },
+  {
+    "seconds": 2519.52,
+    "text": "eyebrows is like I actually ban code"
+  },
+  {
+    "seconds": 2521.76,
+    "text": "comments as well. Uh which is very"
+  },
+  {
+    "seconds": 2524.48,
+    "text": "interesting. Uh but I've noticed that"
+  },
+  {
+    "seconds": 2528.0,
+    "text": "99% of the time agents just write code"
+  },
+  {
+    "seconds": 2531.52,
+    "text": "comments that kind of describe some"
+  },
+  {
+    "seconds": 2533.52,
+    "text": "historical thing that is actually"
+  },
+  {
+    "seconds": 2535.04,
+    "text": "totally irrelevant to the code. Um like"
+  },
+  {
+    "seconds": 2538.48,
+    "text": "it will often say like you know oh"
+  },
+  {
+    "seconds": 2539.92,
+    "text": "Lauren said you should never do this and"
+  },
+  {
+    "seconds": 2541.599,
+    "text": "it's now in in a code comment. I'm like"
+  },
+  {
+    "seconds": 2543.359,
+    "text": "what? like why what that was I didn't"
+  },
+  {
+    "seconds": 2546.0,
+    "text": "say that as like a durable you know"
+  },
+  {
+    "seconds": 2547.76,
+    "text": "global rule I just meant like your this"
+  },
+  {
+    "seconds": 2550.319,
+    "text": "PR sucks and you should change that part"
+  },
+  {
+    "seconds": 2553.839,
+    "text": "but agents don't really understand us"
+  },
+  {
+    "seconds": 2556.4,
+    "text": "that well surprisingly uh and or they"
+  },
+  {
+    "seconds": 2559.2,
+    "text": "kind of assume too much and they kind of"
+  },
+  {
+    "seconds": 2561.44,
+    "text": "do things in like very stupid ways so"
+  },
+  {
+    "seconds": 2564.079,
+    "text": "like yeah we just ban everything"
+  },
+  {
+    "seconds": 2566.48,
+    "text": "everything you can imagine like the"
+  },
+  {
+    "seconds": 2568.0,
+    "text": "agents are bad at we ban uh so one"
+  },
+  {
+    "seconds": 2572.16,
+    "text": "example that we actually suffer for a"
+  },
+  {
+    "seconds": 2573.92,
+    "text": "lot in the agents window is we have uh"
+  },
+  {
+    "seconds": 2577.359,
+    "text": "you know you if you've used the agents"
+  },
+  {
+    "seconds": 2578.8,
+    "text": "window you've definitely seen"
+  },
+  {
+    "seconds": 2579.76,
+    "text": "performance issues and you know we're"
+  },
+  {
+    "seconds": 2581.68,
+    "text": "constantly trying to fix them. Uh but"
+  },
+  {
+    "seconds": 2583.92,
+    "text": "it's like a it's a never- ending"
+  },
+  {
+    "seconds": 2586.8,
+    "text": "struggle because there's so many pull"
+  },
+  {
+    "seconds": 2588.56,
+    "text": "requests that get merged every any one"
+  },
+  {
+    "seconds": 2590.96,
+    "text": "of them could just regress performance"
+  },
+  {
+    "seconds": 2592.88,
+    "text": "or stability or reliability. Uh you know"
+  },
+  {
+    "seconds": 2595.76,
+    "text": "the agents window doesn't have this"
+  },
+  {
+    "seconds": 2597.2,
+    "text": "architecture yet. I plan to do bring"
+  },
+  {
+    "seconds": 2599.2,
+    "text": "this learning back there and kind of"
+  },
+  {
+    "seconds": 2601.599,
+    "text": "refactor everything there. Uh but uh it"
+  },
+  {
+    "seconds": 2605.68,
+    "text": "just regresses super often uh because uh"
+  },
+  {
+    "seconds": 2609.119,
+    "text": "there's just one example is like we have"
+  },
+  {
+    "seconds": 2611.599,
+    "text": "very poor um isolation between"
+  },
+  {
+    "seconds": 2614.4,
+    "text": "processes. So like on you know on on"
+  },
+  {
+    "seconds": 2616.88,
+    "text": "Electron you have a renderer thread that"
+  },
+  {
+    "seconds": 2618.56,
+    "text": "renders your UI but you also have like a"
+  },
+  {
+    "seconds": 2620.88,
+    "text": "main thread that you can run other code"
+  },
+  {
+    "seconds": 2622.8,
+    "text": "that you know doesn't need to block the"
+  },
+  {
+    "seconds": 2624.88,
+    "text": "renderer."
+  },
+  {
+    "seconds": 2626.72,
+    "text": "Um, but we do a poor job of separating"
+  },
+  {
+    "seconds": 2629.04,
+    "text": "those things. And so oftentimes you just"
+  },
+  {
+    "seconds": 2631.52,
+    "text": "accidentally have code that gets pulled"
+  },
+  {
+    "seconds": 2633.76,
+    "text": "into running on the renderer thread and"
+  },
+  {
+    "seconds": 2636.16,
+    "text": "then all of a sudden you're competing"
+  },
+  {
+    "seconds": 2637.76,
+    "text": "with the the renderer that you know that"
+  },
+  {
+    "seconds": 2640.64,
+    "text": "has a very if you want like 60 fps you"
+  },
+  {
+    "seconds": 2643.04,
+    "text": "have to every frame that gets drawn has"
+  },
+  {
+    "seconds": 2645.839,
+    "text": "to be done in 16 milliseconds. So very"
+  },
+  {
+    "seconds": 2648.56,
+    "text": "very small you know deadline per frame"
+  },
+  {
+    "seconds": 2651.2,
+    "text": "uh if you want you know a very smooth"
+  },
+  {
+    "seconds": 2653.28,
+    "text": "product. Uh and when you start building"
+  },
+  {
+    "seconds": 2655.359,
+    "text": "bringing in accidentally bringing in you"
+  },
+  {
+    "seconds": 2657.52,
+    "text": "know things that are like very"
+  },
+  {
+    "seconds": 2659.52,
+    "text": "computationally heavy or they have a lot"
+  },
+  {
+    "seconds": 2661.44,
+    "text": "of IO uh then you just get into like a"
+  },
+  {
+    "seconds": 2664.72,
+    "text": "lot of jank right your your FPS really"
+  },
+  {
+    "seconds": 2667.28,
+    "text": "drops you start uh you know losing"
+  },
+  {
+    "seconds": 2669.76,
+    "text": "frames you get long tasks that take more"
+  },
+  {
+    "seconds": 2672.64,
+    "text": "than 16 milliseconds and you just get"
+  },
+  {
+    "seconds": 2674.16,
+    "text": "this really choppy experience."
+  },
+  {
+    "seconds": 2677.04,
+    "text": "So all of those patterns that we've"
+  },
+  {
+    "seconds": 2678.72,
+    "text": "learned basically building electron apps"
+  },
+  {
+    "seconds": 2680.72,
+    "text": "we've encoded into this framework and it"
+  },
+  {
+    "seconds": 2683.44,
+    "text": "becomes like a hard failure. So I"
+  },
+  {
+    "seconds": 2685.52,
+    "text": "literally in in grabbot we literally"
+  },
+  {
+    "seconds": 2687.52,
+    "text": "have a directory called electron main"
+  },
+  {
+    "seconds": 2689.92,
+    "text": "electron renderer and we have uh import"
+  },
+  {
+    "seconds": 2694.96,
+    "text": "uh CI guess where we actually check the"
+  },
+  {
+    "seconds": 2698.079,
+    "text": "dependency graph to make sure you're not"
+  },
+  {
+    "seconds": 2699.839,
+    "text": "accidentally importing code from one"
+  },
+  {
+    "seconds": 2702.16,
+    "text": "directory to another. Uh so that's"
+  },
+  {
+    "seconds": 2704.96,
+    "text": "enforced by CI um as well as bug bots uh"
+  },
+  {
+    "seconds": 2709.44,
+    "text": "which is our which cursors um like code"
+  },
+  {
+    "seconds": 2713.04,
+    "text": "review tool that runs on CI uh you know"
+  },
+  {
+    "seconds": 2715.92,
+    "text": "in our agents MD it's everywhere like so"
+  },
+  {
+    "seconds": 2718.16,
+    "text": "I I I um I have this thing here where I"
+  },
+  {
+    "seconds": 2722.48,
+    "text": "I talk about like um you know like there"
+  },
+  {
+    "seconds": 2725.359,
+    "text": "are multiple layers I think for building"
+  },
+  {
+    "seconds": 2727.839,
+    "text": "a good codebase. Uh obviously the"
+  },
+  {
+    "seconds": 2730.16,
+    "text": "codebase is one where uh if you have an"
+  },
+  {
+    "seconds": 2733.04,
+    "text": "architecture like this where it's"
+  },
+  {
+    "seconds": 2734.96,
+    "text": "extremely strict uh you know the the the"
+  },
+  {
+    "seconds": 2738.24,
+    "text": "way to build features is very"
+  },
+  {
+    "seconds": 2739.599,
+    "text": "conventional that's like the strongest"
+  },
+  {
+    "seconds": 2742.079,
+    "text": "strongest level of enforcement because"
+  },
+  {
+    "seconds": 2744.24,
+    "text": "agents just love to copy existing"
+  },
+  {
+    "seconds": 2746.48,
+    "text": "patterns. So uh one example of this in"
+  },
+  {
+    "seconds": 2749.76,
+    "text": "rockbot is like we have this these"
+  },
+  {
+    "seconds": 2751.68,
+    "text": "concepts called like a feature and we"
+  },
+  {
+    "seconds": 2754.24,
+    "text": "have entry points and transcript cards"
+  },
+  {
+    "seconds": 2756.0,
+    "text": "like oh you know the cards that you see"
+  },
+  {
+    "seconds": 2757.52,
+    "text": "in the chat these are all like like"
+  },
+  {
+    "seconds": 2761.119,
+    "text": "nouns I guess in in the framework and so"
+  },
+  {
+    "seconds": 2763.68,
+    "text": "there's a very conventional way of"
+  },
+  {
+    "seconds": 2765.44,
+    "text": "creating them and so like a feature is"
+  },
+  {
+    "seconds": 2769.119,
+    "text": "all in in a single directory as an"
+  },
+  {
+    "seconds": 2770.96,
+    "text": "example and so all of the code that"
+  },
+  {
+    "seconds": 2773.04,
+    "text": "contributes to that feature lives in one"
+  },
+  {
+    "seconds": 2775.119,
+    "text": "directory so it's all collocated in one"
+  },
+  {
+    "seconds": 2777.599,
+    "text": "place. Makes it super easy. You know,"
+  },
+  {
+    "seconds": 2779.359,
+    "text": "agents don't have to like uh grap around"
+  },
+  {
+    "seconds": 2781.599,
+    "text": "and try to figure out like where all the"
+  },
+  {
+    "seconds": 2783.44,
+    "text": "things are. It just looks at the feature"
+  },
+  {
+    "seconds": 2785.68,
+    "text": "and like, oh, okay, I'm working on the"
+  },
+  {
+    "seconds": 2787.68,
+    "text": "onboarding feature in Grockbot. Uh I'm"
+  },
+  {
+    "seconds": 2791.04,
+    "text": "just going to work in this directory."
+  },
+  {
+    "seconds": 2792.4,
+    "text": "And for 80% of the work, it's mostly"
+  },
+  {
+    "seconds": 2795.04,
+    "text": "just very encapsulated there. But, uh"
+  },
+  {
+    "seconds": 2798.56,
+    "text": "like it's like very it's like designed"
+  },
+  {
+    "seconds": 2801.52,
+    "text": "again for you know like the dumbest"
+  },
+  {
+    "seconds": 2803.28,
+    "text": "agent like you don't have to think,"
+  },
+  {
+    "seconds": 2805.119,
+    "text": "right? the the the one of the key"
+  },
+  {
+    "seconds": 2808.0,
+    "text": "principles I have for this framework is"
+  },
+  {
+    "seconds": 2810.24,
+    "text": "like the shortest the shortest path is"
+  },
+  {
+    "seconds": 2812.88,
+    "text": "the best path."
+  },
+  {
+    "seconds": 2815.04,
+    "text": "So uh because that plays exactly to how"
+  },
+  {
+    "seconds": 2817.76,
+    "text": "agents love to write code is like they"
+  },
+  {
+    "seconds": 2819.44,
+    "text": "like to take shortcuts really you know"
+  },
+  {
+    "seconds": 2821.839,
+    "text": "they they'll find the quickest way to"
+  },
+  {
+    "seconds": 2824.079,
+    "text": "solve the problem. So why not make that"
+  },
+  {
+    "seconds": 2826.88,
+    "text": "the best way to solve the problem? Uh so"
+  },
+  {
+    "seconds": 2830.24,
+    "text": "I I I probably won't get into all the"
+  },
+  {
+    "seconds": 2832.16,
+    "text": "specific details. Um and uh the the this"
+  },
+  {
+    "seconds": 2836.319,
+    "text": "framework is really more of a collection"
+  },
+  {
+    "seconds": 2837.76,
+    "text": "of ideas and principles rather than"
+  },
+  {
+    "seconds": 2839.76,
+    "text": "something that will open source. Uh you"
+  },
+  {
+    "seconds": 2842.079,
+    "text": "can you can you know screenshot this I"
+  },
+  {
+    "seconds": 2843.839,
+    "text": "guess if you want and uh tell your agent"
+  },
+  {
+    "seconds": 2846.48,
+    "text": "to uh do some build build something like"
+  },
+  {
+    "seconds": 2849.52,
+    "text": "this for you too."
+  },
+  {
+    "seconds": 2851.68,
+    "text": "Um yeah, but it's really all about the"
+  },
+  {
+    "seconds": 2854.16,
+    "text": "layers uh you know like the the codebase"
+  },
+  {
+    "seconds": 2856.4,
+    "text": "is one part with features uh and"
+  },
+  {
+    "seconds": 2858.96,
+    "text": "directories and you know import or"
+  },
+  {
+    "seconds": 2861.839,
+    "text": "blocking import dependencies uh that"
+  },
+  {
+    "seconds": 2864.4,
+    "text": "shouldn't be imported. Uh but and and it"
+  },
+  {
+    "seconds": 2867.119,
+    "text": "all enforces that and static analysis."
+  },
+  {
+    "seconds": 2869.44,
+    "text": "So like uh there's CI checks, we have a"
+  },
+  {
+    "seconds": 2872.56,
+    "text": "lot of lints for bad patterns that we"
+  },
+  {
+    "seconds": 2875.52,
+    "text": "observe. uh compiler diagnostics"
+  },
+  {
+    "seconds": 2878.96,
+    "text": "uh there's also rules and bugbot which"
+  },
+  {
+    "seconds": 2881.04,
+    "text": "are um I think like three four five are"
+  },
+  {
+    "seconds": 2884.56,
+    "text": "more soft right these two actually make"
+  },
+  {
+    "seconds": 2888.72,
+    "text": "make CI red right so that you know"
+  },
+  {
+    "seconds": 2891.599,
+    "text": "there's a hard constraint where the"
+  },
+  {
+    "seconds": 2893.119,
+    "text": "agent can't just write crappy code"
+  },
+  {
+    "seconds": 2896.96,
+    "text": "for rules and skills and buggbot your"
+  },
+  {
+    "seconds": 2900.4,
+    "text": "agents can still forget right you can"
+  },
+  {
+    "seconds": 2902.559,
+    "text": "still or it may not always consistently"
+  },
+  {
+    "seconds": 2905.76,
+    "text": "apply them. So, I like to layer them,"
+  },
+  {
+    "seconds": 2909.839,
+    "text": "but I don't I don't like to rely on them"
+  },
+  {
+    "seconds": 2912.4,
+    "text": "as the only source of enforcement"
+  },
+  {
+    "seconds": 2915.28,
+    "text": "because it's very very soft, right? And"
+  },
+  {
+    "seconds": 2916.88,
+    "text": "if you if you only have rules and bug"
+  },
+  {
+    "seconds": 2918.88,
+    "text": "ball and skills and a style guide for"
+  },
+  {
+    "seconds": 2920.72,
+    "text": "your code, you will it's only a matter"
+  },
+  {
+    "seconds": 2923.52,
+    "text": "of time before your code base looks like"
+  },
+  {
+    "seconds": 2925.44,
+    "text": "complete trash. I'm sorry to say that,"
+  },
+  {
+    "seconds": 2928.48,
+    "text": "but uh I definitely recommend yeah like"
+  },
+  {
+    "seconds": 2930.4,
+    "text": "you know investing in you know things"
+  },
+  {
+    "seconds": 2932.96,
+    "text": "that can be hard and forced, right?"
+  },
+  {
+    "seconds": 2935.28,
+    "text": "Okay. And this is why you know maybe uh"
+  },
+  {
+    "seconds": 2937.839,
+    "text": "the choice of text stack that you use is"
+  },
+  {
+    "seconds": 2939.76,
+    "text": "also very important. Um like I think for"
+  },
+  {
+    "seconds": 2943.119,
+    "text": "example Rust is sort of making you know"
+  },
+  {
+    "seconds": 2945.52,
+    "text": "it's like getting super popular again."
+  },
+  {
+    "seconds": 2948.0,
+    "text": "Uh because the compiler is so strict"
+  },
+  {
+    "seconds": 2951.119,
+    "text": "right the compiler enforces so many"
+  },
+  {
+    "seconds": 2953.119,
+    "text": "different things. you know, there's a"
+  },
+  {
+    "seconds": 2954.48,
+    "text": "borrow checker that you have to appease"
+  },
+  {
+    "seconds": 2956.559,
+    "text": "and if as long as you make sure your"
+  },
+  {
+    "seconds": 2958.24,
+    "text": "agents don't write unsafe code blocks,"
+  },
+  {
+    "seconds": 2961.04,
+    "text": "uh you can more or less feel somewhat"
+  },
+  {
+    "seconds": 2963.28,
+    "text": "confident that if the code compiles, it"
+  },
+  {
+    "seconds": 2965.599,
+    "text": "probably works and it's good. Uh but you"
+  },
+  {
+    "seconds": 2968.48,
+    "text": "see it gives you that level of trust and"
+  },
+  {
+    "seconds": 2970.72,
+    "text": "confidence that you as a human engineer"
+  },
+  {
+    "seconds": 2974.4,
+    "text": "no longer need to go and check it"
+  },
+  {
+    "seconds": 2976.88,
+    "text": "yourself. you know, you you rely on code"
+  },
+  {
+    "seconds": 2980.0,
+    "text": "and static analysis to actually make"
+  },
+  {
+    "seconds": 2983.599,
+    "text": "that uh a lot smoother. Um, and I I"
+  },
+  {
+    "seconds": 2988.079,
+    "text": "guess the worst part, the worst place to"
+  },
+  {
+    "seconds": 2990.4,
+    "text": "be in is if you are stuck in code review"
+  },
+  {
+    "seconds": 2993.119,
+    "text": "land where you actually enforce all of"
+  },
+  {
+    "seconds": 2995.76,
+    "text": "the constraints, the invariance in your"
+  },
+  {
+    "seconds": 2997.76,
+    "text": "codebase by literally the human person"
+  },
+  {
+    "seconds": 3001.68,
+    "text": "saying, you know, reading the code and"
+  },
+  {
+    "seconds": 3003.04,
+    "text": "like, okay, you should not do this,"
+  },
+  {
+    "seconds": 3004.72,
+    "text": "right?"
+  },
+  {
+    "seconds": 3006.0,
+    "text": "Every time you have to do that, you"
+  },
+  {
+    "seconds": 3007.28,
+    "text": "should consider that as a code smell"
+  },
+  {
+    "seconds": 3008.96,
+    "text": "like a anti- pattern and you should say,"
+  },
+  {
+    "seconds": 3011.68,
+    "text": "\"Okay, instead of me commenting on the"
+  },
+  {
+    "seconds": 3013.52,
+    "text": "PR, how do I turn this into a hard"
+  },
+  {
+    "seconds": 3017.04,
+    "text": "rule?\" Right? How do I turn this into a"
+  },
+  {
+    "seconds": 3018.8,
+    "text": "lint rule? How do I turn this into a CI"
+  },
+  {
+    "seconds": 3021.28,
+    "text": "failure? Or how do I even categorically"
+  },
+  {
+    "seconds": 3023.92,
+    "text": "eliminate this problem uh entirely? Uh I"
+  },
+  {
+    "seconds": 3028.88,
+    "text": "I can talk about another migration I've"
+  },
+  {
+    "seconds": 3030.559,
+    "text": "done, but I'll probably pause here."
+  },
+  {
+    "seconds": 3032.24,
+    "text": ">> Sure."
+  },
+  {
+    "seconds": 3033.44,
+    "text": ">> Yeah. I feel like that's that's where I"
+  },
+  {
+    "seconds": 3034.96,
+    "text": "am to be honest is is what you're"
+  },
+  {
+    "seconds": 3036.64,
+    "text": "describing right now which is that like"
+  },
+  {
+    "seconds": 3038.079,
+    "text": "I don't have all of these rules. So I"
+  },
+  {
+    "seconds": 3040.24,
+    "text": "have some things to go do after this"
+  },
+  {
+    "seconds": 3041.68,
+    "text": "session in terms of being able to scale"
+  },
+  {
+    "seconds": 3043.92,
+    "text": "my agents. I'm I'm definitely on like"
+  },
+  {
+    "seconds": 3045.52,
+    "text": "the uh you know maybe a couple of"
+  },
+  {
+    "seconds": 3047.839,
+    "text": "parallel ones locally stage like two to"
+  },
+  {
+    "seconds": 3050.319,
+    "text": "three locally and I'm sure most people"
+  },
+  {
+    "seconds": 3052.0,
+    "text": "here are on the same. So uh yeah I know"
+  },
+  {
+    "seconds": 3054.559,
+    "text": "we only have a couple minutes left."
+  },
+  {
+    "seconds": 3056.079,
+    "text": "Lauren, was there anything else that you"
+  },
+  {
+    "seconds": 3057.44,
+    "text": "wanted to to highlight? I obviously"
+  },
+  {
+    "seconds": 3059.28,
+    "text": "there's lots of questions so I can grab"
+  },
+  {
+    "seconds": 3060.72,
+    "text": "more but I want to give you a few"
+  },
+  {
+    "seconds": 3062.16,
+    "text": "minutes if there's anything else you"
+  },
+  {
+    "seconds": 3063.359,
+    "text": "want to talk about."
+  },
+  {
+    "seconds": 3063.76,
+    "text": ">> Well, I think I've been yapping for"
+  },
+  {
+    "seconds": 3064.96,
+    "text": "quite a lot so maybe let's just do"
+  },
+  {
+    "seconds": 3067.04,
+    "text": "questions."
+  },
+  {
+    "seconds": 3068.16,
+    "text": ">> Okay, cool. Uh, one question that had uh"
+  },
+  {
+    "seconds": 3070.4,
+    "text": "a couple of uh came up a couple times"
+  },
+  {
+    "seconds": 3072.16,
+    "text": "was just around like token usage."
+  },
+  {
+    "seconds": 3075.04,
+    "text": ">> So the the question is like is is what"
+  },
+  {
+    "seconds": 3077.359,
+    "text": "you're describing a realistic thing for"
+  },
+  {
+    "seconds": 3079.359,
+    "text": "people who are on you know uh a normal"
+  },
+  {
+    "seconds": 3083.04,
+    "text": "set of token usage. They don't have you"
+  },
+  {
+    "seconds": 3085.119,
+    "text": "know basically unlimited tokens uh to"
+  },
+  {
+    "seconds": 3087.359,
+    "text": "work with."
+  },
+  {
+    "seconds": 3089.44,
+    "text": "I think that's a really good point. I"
+  },
+  {
+    "seconds": 3090.8,
+    "text": "mean, like obviously, you know, I work"
+  },
+  {
+    "seconds": 3092.319,
+    "text": "at a AI lab where we have unlimited"
+  },
+  {
+    "seconds": 3094.64,
+    "text": "tokens. So, uh I definitely cannot"
+  },
+  {
+    "seconds": 3099.52,
+    "text": "say that, you know, this is something"
+  },
+  {
+    "seconds": 3101.04,
+    "text": "everyone should do in the exact same way"
+  },
+  {
+    "seconds": 3103.68,
+    "text": "that I did it. I think it's possible to"
+  },
+  {
+    "seconds": 3105.599,
+    "text": "get to this point without, you know,"
+  },
+  {
+    "seconds": 3107.119,
+    "text": "breaking the bank."
+  },
+  {
+    "seconds": 3109.52,
+    "text": "But you know if you're like an"
+  },
+  {
+    "seconds": 3110.64,
+    "text": "engineering leader or you know you're"
+  },
+  {
+    "seconds": 3112.48,
+    "text": "you you have a startup that you lead um"
+  },
+  {
+    "seconds": 3115.52,
+    "text": "I think to me it's a question of ROI um"
+  },
+  {
+    "seconds": 3118.48,
+    "text": "and it's like uh yes you spend a lot of"
+  },
+  {
+    "seconds": 3123.119,
+    "text": "money on tokens in the upfront stage you"
+  },
+  {
+    "seconds": 3126.079,
+    "text": "know like refactoring a code base is"
+  },
+  {
+    "seconds": 3127.76,
+    "text": "going to take a lot of tokens uh adding"
+  },
+  {
+    "seconds": 3129.76,
+    "text": "all these things uh is going to take a"
+  },
+  {
+    "seconds": 3131.76,
+    "text": "bunch of tokens but if we're heading to"
+  },
+  {
+    "seconds": 3134.4,
+    "text": "a world where agents are writing all the"
+  },
+  {
+    "seconds": 3136.64,
+    "text": "code and you know You want to be very"
+  },
+  {
+    "seconds": 3140.319,
+    "text": "lean, right? You don't want to have to"
+  },
+  {
+    "seconds": 3142.079,
+    "text": "hire, you don't want to be, you don't"
+  },
+  {
+    "seconds": 3143.52,
+    "text": "want to become like meta, right? Like I"
+  },
+  {
+    "seconds": 3145.119,
+    "text": "mean like in terms of you don't want to"
+  },
+  {
+    "seconds": 3146.8,
+    "text": "become a 10,000 person engineering or"
+  },
+  {
+    "seconds": 3149.599,
+    "text": "because I mean that's a cool problem to"
+  },
+  {
+    "seconds": 3152.24,
+    "text": "have, but also you you have so much"
+  },
+  {
+    "seconds": 3154.72,
+    "text": "overhead. There's like planning, you"
+  },
+  {
+    "seconds": 3157.04,
+    "text": "know, like you it's it's a personally I"
+  },
+  {
+    "seconds": 3159.76,
+    "text": "I wouldn't uh it it's not super fun. But"
+  },
+  {
+    "seconds": 3163.76,
+    "text": "um I think you want to stay very nimble,"
+  },
+  {
+    "seconds": 3166.079,
+    "text": "right? And you want to you want to be"
+  },
+  {
+    "seconds": 3167.68,
+    "text": "like agents are all about allowing you"
+  },
+  {
+    "seconds": 3170.0,
+    "text": "to do things that you couldn't do"
+  },
+  {
+    "seconds": 3171.76,
+    "text": "before. That's really to me like the"
+  },
+  {
+    "seconds": 3173.92,
+    "text": "value of agents, you know, it's not just"
+  },
+  {
+    "seconds": 3176.48,
+    "text": "storing tokens on every single little"
+  },
+  {
+    "seconds": 3178.319,
+    "text": "thing, but um to me like the thing I"
+  },
+  {
+    "seconds": 3180.96,
+    "text": "couldn't do before is like enforce this"
+  },
+  {
+    "seconds": 3183.839,
+    "text": "level of constraints in a codebase by"
+  },
+  {
+    "seconds": 3186.72,
+    "text": "myself, right? Like I'm just a single"
+  },
+  {
+    "seconds": 3189.119,
+    "text": "person, you know? Uh it would have taken"
+  },
+  {
+    "seconds": 3191.599,
+    "text": "me years to build this framework uh and"
+  },
+  {
+    "seconds": 3195.119,
+    "text": "do all the refactoring and"
+  },
+  {
+    "seconds": 3198.319,
+    "text": "test everything myself and verify you"
+  },
+  {
+    "seconds": 3200.72,
+    "text": "know like run imagine if there it was"
+  },
+  {
+    "seconds": 3202.319,
+    "text": "just me right know in in pre- agent era"
+  },
+  {
+    "seconds": 3205.2,
+    "text": "just like running you know by it would"
+  },
+  {
+    "seconds": 3207.359,
+    "text": "take me so long right and my salary is"
+  },
+  {
+    "seconds": 3210.319,
+    "text": "pretty high right like so you know the"
+  },
+  {
+    "seconds": 3213.44,
+    "text": "the question I think an engineering"
+  },
+  {
+    "seconds": 3215.119,
+    "text": "leader might have is just then you know"
+  },
+  {
+    "seconds": 3217.2,
+    "text": "like what is there's a trade-off of do"
+  },
+  {
+    "seconds": 3219.76,
+    "text": "Do you hire someone to do this or do you"
+  },
+  {
+    "seconds": 3222.88,
+    "text": "spend the tokens to set up a codebase so"
+  },
+  {
+    "seconds": 3225.04,
+    "text": "that even the the most naive, right, the"
+  },
+  {
+    "seconds": 3228.72,
+    "text": "dumbest agents can do a good job? And"
+  },
+  {
+    "seconds": 3231.92,
+    "text": "when you actually get to this point,"
+  },
+  {
+    "seconds": 3233.44,
+    "text": "like even agents that are not, you know,"
+  },
+  {
+    "seconds": 3235.92,
+    "text": "fable size do an excellent job of"
+  },
+  {
+    "seconds": 3238.4,
+    "text": "writing code. And this pays a lot of"
+  },
+  {
+    "seconds": 3240.88,
+    "text": "dividends as well for me personally"
+  },
+  {
+    "seconds": 3242.96,
+    "text": "where I've empowered not just myself but"
+  },
+  {
+    "seconds": 3246.72,
+    "text": "again like PMs, designers, engineers who"
+  },
+  {
+    "seconds": 3250.16,
+    "text": "are not familiar with Grockbot to just"
+  },
+  {
+    "seconds": 3252.079,
+    "text": "contribute in a way that is sustainable."
+  },
+  {
+    "seconds": 3256.8,
+    "text": "So I think yeah it's definitely like a"
+  },
+  {
+    "seconds": 3258.24,
+    "text": "trade-off for sure. You know like"
+  },
+  {
+    "seconds": 3260.079,
+    "text": "nothing is like free for sure. Uh and"
+  },
+  {
+    "seconds": 3262.559,
+    "text": "tokens are pretty expensive. Uh but oh"
+  },
+  {
+    "seconds": 3265.04,
+    "text": "actually uh I I I don't know how many of"
+  },
+  {
+    "seconds": 3267.76,
+    "text": "you have seen this but we actually"
+  },
+  {
+    "seconds": 3269.76,
+    "text": "announced Grock 4.6 today so very"
+  },
+  {
+    "seconds": 3272.48,
+    "text": "exciting finally out um so yeah graph"
+  },
+  {
+    "seconds": 3275.28,
+    "text": "4.6 would be like a great it was very"
+  },
+  {
+    "seconds": 3277.44,
+    "text": "very smart uh it's really good on the on"
+  },
+  {
+    "seconds": 3280.4,
+    "text": "the benchmarks uh and it's the same the"
+  },
+  {
+    "seconds": 3283.2,
+    "text": "tokens uh well uh I hopefully I'm not"
+  },
+  {
+    "seconds": 3285.839,
+    "text": "saying this incorrectly but uh I believe"
+  },
+  {
+    "seconds": 3288.16,
+    "text": "the cost per token is the same as 4.5 so"
+  },
+  {
+    "seconds": 3292.079,
+    "text": "you're actually getting more"
+  },
+  {
+    "seconds": 3293.359,
+    "text": "intelligence for the same cost uh I"
+  },
+  {
+    "seconds": 3297.2,
+    "text": "think this is an area that cursor tries"
+  },
+  {
+    "seconds": 3299.359,
+    "text": "to cursor and spaceex AI try to really"
+  },
+  {
+    "seconds": 3302.96,
+    "text": "optimize for like that heredto frontier"
+  },
+  {
+    "seconds": 3305.28,
+    "text": "here of you know cost versus"
+  },
+  {
+    "seconds": 3307.28,
+    "text": "intelligence. Uh you know we don't"
+  },
+  {
+    "seconds": 3309.28,
+    "text": "necessarily want to build the biggest"
+  },
+  {
+    "seconds": 3310.88,
+    "text": "model ever because that is extremely"
+  },
+  {
+    "seconds": 3313.2,
+    "text": "expensive to run. It's really about like"
+  },
+  {
+    "seconds": 3315.92,
+    "text": "how do you find that sweet spot right?"
+  },
+  {
+    "seconds": 3317.44,
+    "text": "You don't you don't need a giant model"
+  },
+  {
+    "seconds": 3318.88,
+    "text": "but it's just super smart right and it's"
+  },
+  {
+    "seconds": 3320.96,
+    "text": "not very expensive for inference."
+  },
+  {
+    "seconds": 3324.24,
+    "text": "Uh but um yeah, I think to kind of round"
+  },
+  {
+    "seconds": 3327.76,
+    "text": "it up, um I think it's like a it's it's"
+  },
+  {
+    "seconds": 3330.8,
+    "text": "there's a if you do your own analysis, I"
+  },
+  {
+    "seconds": 3333.359,
+    "text": "feel like it's pretty positive. It it'll"
+  },
+  {
+    "seconds": 3336.079,
+    "text": "be pretty positive that the ROI you get"
+  },
+  {
+    "seconds": 3338.72,
+    "text": "from investing in stuff like this, uh"
+  },
+  {
+    "seconds": 3341.52,
+    "text": "just empowers not just yourself, but"
+  },
+  {
+    "seconds": 3344.0,
+    "text": "your whole team to be so much more"
+  },
+  {
+    "seconds": 3346.0,
+    "text": "productive, right? Like imagine if you"
+  },
+  {
+    "seconds": 3347.68,
+    "text": "have an army of engineers like me who"
+  },
+  {
+    "seconds": 3350.16,
+    "text": "are shipping so much improvements and"
+  },
+  {
+    "seconds": 3352.559,
+    "text": "and bug fixes uh you know every day"
+  },
+  {
+    "seconds": 3356.16,
+    "text": "right like that is pretty exciting."
+  },
+  {
+    "seconds": 3359.92,
+    "text": ">> Cool. Uh one last question before we"
+  },
+  {
+    "seconds": 3361.839,
+    "text": "wrap up. This one is for the people in"
+  },
+  {
+    "seconds": 3363.839,
+    "text": "product on the on the call."
+  },
+  {
+    "seconds": 3365.44,
+    "text": ">> So let's say we do have an army of"
+  },
+  {
+    "seconds": 3367.28,
+    "text": "engineers who are shipping like Lauren."
+  },
+  {
+    "seconds": 3369.52,
+    "text": "I'm just curious like how is the product"
+  },
+  {
+    "seconds": 3371.68,
+    "text": "team or other functions of your company"
+  },
+  {
+    "seconds": 3373.28,
+    "text": "keeping up given that like if you're"
+  },
+  {
+    "seconds": 3375.76,
+    "text": "shipping so quickly have are they using"
+  },
+  {
+    "seconds": 3378.16,
+    "text": "AI more to do their jobs? Like as much"
+  },
+  {
+    "seconds": 3380.4,
+    "text": "as you can speak to that obviously you"
+  },
+  {
+    "seconds": 3381.92,
+    "text": "don't have like you're not in that role"
+  },
+  {
+    "seconds": 3383.28,
+    "text": "but just curious about how that works."
+  },
+  {
+    "seconds": 3385.92,
+    "text": ">> Um I think this is where Grothbot has"
+  },
+  {
+    "seconds": 3388.4,
+    "text": "been actually exceedingly powerful. uh"
+  },
+  {
+    "seconds": 3391.119,
+    "text": "where so before graphbot like you know"
+  },
+  {
+    "seconds": 3393.92,
+    "text": "uh obviously cursor only had cursor like"
+  },
+  {
+    "seconds": 3396.88,
+    "text": "we only had agents window we had a CLI"
+  },
+  {
+    "seconds": 3399.119,
+    "text": "we had an IDE and these are really like"
+  },
+  {
+    "seconds": 3402.799,
+    "text": "power user tools right like de they're"
+  },
+  {
+    "seconds": 3404.96,
+    "text": "designed for developers so it's very"
+  },
+  {
+    "seconds": 3406.799,
+    "text": "very developerentric you can do"
+  },
+  {
+    "seconds": 3408.88,
+    "text": "knowledge work in them but it like the"
+  },
+  {
+    "seconds": 3410.88,
+    "text": "UI is not really optimized for that so"
+  },
+  {
+    "seconds": 3414.72,
+    "text": "we actually didn't really have uh well I"
+  },
+  {
+    "seconds": 3417.359,
+    "text": "think like a lot of people like you know"
+  },
+  {
+    "seconds": 3418.72,
+    "text": "GTM product like they might have used"
+  },
+  {
+    "seconds": 3421.52,
+    "text": "cursor uh to do their work but it"
+  },
+  {
+    "seconds": 3424.24,
+    "text": "definitely wasn't like a delightful"
+  },
+  {
+    "seconds": 3425.68,
+    "text": "experience for them. Um I think now with"
+  },
+  {
+    "seconds": 3428.96,
+    "text": "Grogbot"
+  },
+  {
+    "seconds": 3430.72,
+    "text": "uh it's become Grogbot is basically like"
+  },
+  {
+    "seconds": 3433.839,
+    "text": "the kusher moment for people who are not"
+  },
+  {
+    "seconds": 3436.4,
+    "text": "in tech in my opinion like it's like"
+  },
+  {
+    "seconds": 3438.72,
+    "text": "it's like a very very accessible way to"
+  },
+  {
+    "seconds": 3441.359,
+    "text": "use agents in a very comfortable very"
+  },
+  {
+    "seconds": 3444.079,
+    "text": "familiar interface. It looks like"
+  },
+  {
+    "seconds": 3445.52,
+    "text": "iMessage. Um, and it's very fun to, you"
+  },
+  {
+    "seconds": 3449.28,
+    "text": "know, you can give your agent a fun"
+  },
+  {
+    "seconds": 3450.72,
+    "text": "name. Uh, you can have you can kind of"
+  },
+  {
+    "seconds": 3453.28,
+    "text": "do orchestration with in a very like"
+  },
+  {
+    "seconds": 3455.76,
+    "text": "natural way where you can sort of, you"
+  },
+  {
+    "seconds": 3457.839,
+    "text": "know, each agent's like a person and now"
+  },
+  {
+    "seconds": 3459.44,
+    "text": "you got a team of agents like working on"
+  },
+  {
+    "seconds": 3461.2,
+    "text": "you have one one agent per account that"
+  },
+  {
+    "seconds": 3462.96,
+    "text": "you manage as an example. Or if you're a"
+  },
+  {
+    "seconds": 3465.119,
+    "text": "PM, you have, you know, you can have an"
+  },
+  {
+    "seconds": 3466.96,
+    "text": "agent that summarizes all the work that"
+  },
+  {
+    "seconds": 3468.64,
+    "text": "Lauren did last night and then now you"
+  },
+  {
+    "seconds": 3470.72,
+    "text": "know what I did, right? So I think our"
+  },
+  {
+    "seconds": 3473.28,
+    "text": "PMs are leveraging that a lot and"
+  },
+  {
+    "seconds": 3475.839,
+    "text": "they're shipping code too. Uh so you"
+  },
+  {
+    "seconds": 3478.079,
+    "text": "know like often times they will just say"
+  },
+  {
+    "seconds": 3479.68,
+    "text": "oh here's a bug I fixed it can you look"
+  },
+  {
+    "seconds": 3481.68,
+    "text": "at it and then I'll go review it and"
+  },
+  {
+    "seconds": 3483.359,
+    "text": "actually it's just perfect. I'm like"
+  },
+  {
+    "seconds": 3485.119,
+    "text": "okay stamp. Uh so uh that I think that"
+  },
+  {
+    "seconds": 3488.48,
+    "text": "shows that you know the the Dune"
+  },
+  {
+    "seconds": 3489.839,
+    "text": "architecture is holding up right the all"
+  },
+  {
+    "seconds": 3492.96,
+    "text": "the the really strict constraints allow"
+  },
+  {
+    "seconds": 3495.92,
+    "text": "people who are not experts in"
+  },
+  {
+    "seconds": 3497.44,
+    "text": "engineering to contribute at a high"
+  },
+  {
+    "seconds": 3499.359,
+    "text": "level. Uh so I'm I feel like I'm already"
+  },
+  {
+    "seconds": 3501.76,
+    "text": "seeing that pay off a lot where uh you"
+  },
+  {
+    "seconds": 3504.48,
+    "text": "know designers and PMs are just able to"
+  },
+  {
+    "seconds": 3507.2,
+    "text": "to to ship features directly. Um and"
+  },
+  {
+    "seconds": 3511.28,
+    "text": "that just makes the Grockbot team super"
+  },
+  {
+    "seconds": 3514.48,
+    "text": "fast, right? Where we can ship so"
+  },
+  {
+    "seconds": 3516.96,
+    "text": "quickly. Um and we have a lot planned."
+  },
+  {
+    "seconds": 3520.64,
+    "text": "So I'm very excited uh to you know uh to"
+  },
+  {
+    "seconds": 3524.4,
+    "text": "to ship more ship more stuff."
+  },
+  {
+    "seconds": 3526.96,
+    "text": ">> Yeah, that's awesome. Uh well, we are at"
+  },
+  {
+    "seconds": 3529.04,
+    "text": "time. So, uh I guess Lauren, if if folks"
+  },
+  {
+    "seconds": 3532.079,
+    "text": "want to support you, maybe go try out"
+  },
+  {
+    "seconds": 3533.28,
+    "text": "Crockbot, try out uh 46 and uh you know,"
+  },
+  {
+    "seconds": 3537.599,
+    "text": "get provide some feedback. But yeah,"
+  },
+  {
+    "seconds": 3539.04,
+    "text": "this was awesome. Really appreciate you"
+  },
+  {
+    "seconds": 3540.319,
+    "text": "taking the time. Uh thanks everyone for"
+  },
+  {
+    "seconds": 3542.079,
+    "text": "all the messages in the chat. Lots of"
+  },
+  {
+    "seconds": 3543.76,
+    "text": "good questions. I know we didn't get"
+  },
+  {
+    "seconds": 3544.72,
+    "text": "through everything, but as I kind of"
+  },
+  {
+    "seconds": 3546.16,
+    "text": "said at the top, way more questions than"
+  },
+  {
+    "seconds": 3547.52,
+    "text": "than we could get through, but uh yeah,"
+  },
+  {
+    "seconds": 3549.76,
+    "text": "really really thanks thanks for for"
+  },
+  {
+    "seconds": 3551.359,
+    "text": "joining. Thanks everyone for joining and"
+  },
+  {
+    "seconds": 3553.2,
+    "text": "uh hopefully you enjoyed the session."
+  },
+  {
+    "seconds": 3555.76,
+    "text": ">> Yep."
+  },
+  {
+    "seconds": 3556.48,
+    "text": ">> All right."
+  },
+  {
+    "seconds": 3556.799,
+    "text": ">> Yeah, I see it. Thank thanks for having"
+  },
+  {
+    "seconds": 3558.4,
+    "text": "me. And uh if you have any more"
+  },
+  {
+    "seconds": 3559.76,
+    "text": "questions yet, just DM me on Twitter."
+  },
+  {
+    "seconds": 3561.76,
+    "text": "I'll I'll open them up. I guess I'll let"
+  },
+  {
+    "seconds": 3563.599,
+    "text": "the let the"
+  },
+  {
+    "seconds": 3564.319,
+    "text": ">> You're going to get a lot of DMs."
+  },
+  {
+    "seconds": 3566.0,
+    "text": ">> Yeah, I'll open the updates. So yeah, DM"
+  },
+  {
+    "seconds": 3568.559,
+    "text": "me. Maybe I'll do like a Twitter space"
+  },
+  {
+    "seconds": 3570.319,
+    "text": "at some point. That's all for more"
+  },
+  {
+    "seconds": 3572.0,
+    "text": "questions. But"
+  },
+  {
+    "seconds": 3573.359,
+    "text": ">> really appreciate everyone for showing"
+  },
+  {
+    "seconds": 3574.799,
+    "text": "up uh you know, taking an hour out of"
+  },
+  {
+    "seconds": 3576.559,
+    "text": "your day."
+  },
+  {
+    "seconds": 3577.359,
+    "text": ">> Yeah. All right. Thanks all. I'll see"
+  },
+  {
+    "seconds": 3578.72,
+    "text": "you the next one."
+  },
+  {
+    "seconds": 3579.359,
+    "text": ">> Okay. Thanks everyone. And bye."
+  }
+]

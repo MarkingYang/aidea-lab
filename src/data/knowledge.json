@@ -103,6 +103,16 @@
         "认知",
         "学习"
       ]
+    },
+    {
+      "id": "agent-engineering-practice",
+      "title": "Agent 工程实践",
+      "english": "Agent engineering practice",
+      "question": "怎样让 Agent 团队持续交付可靠的工作？",
+      "description": "从 Lauren Tan 的工程分享出发，学习验证技能、功能地图、技能评测与代码约束，逐步建立可委派的工作流。",
+      "tags": [
+        "Agent 工程实践"
+      ]
     }
   ],
   "series": [
@@ -438,6 +448,17 @@
       "articles": [
         "lu-qi-researcher-founder",
         "yang-zhilin-agent-generalization"
+      ]
+    },
+    {
+      "id": "lauren-tan-agent-engineering",
+      "topic": "agent-engineering-practice",
+      "title": "Lauren Tan：建立可靠的 Agent 团队",
+      "description": "一场约一小时分享的中文阅读版，配原视频截图和时间索引，解释从人工监督到云端协作的工程条件。",
+      "outcome": "理解如何建立验证闭环、维护技能并用架构约束支持 Agent 协作。",
+      "question": "从一个需要紧盯的 Agent 到可委派的团队，中间要补齐什么？",
+      "articles": [
+        "lauren-tan-agent-engineering"
       ]
     }
   ]

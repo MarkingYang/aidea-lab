@@ -1,0 +1,14 @@
+{
+  "build": "npm run build: passed",
+  "articles": 85,
+  "graphNodes": 162,
+  "graphLinks": 674,
+  "screenshots": 5,
+  "oneH1": true,
+  "uniqueAnchors": true,
+  "topicAndDirectory": true,
+  "readingCopyMatches": true,
+  "browser": "Desktop article and image lightbox visually verified; no mobile emulation performed",
+  "source": "Original YouTube automatic English captions and five video frames",
+  "publicationScope": "Only new topic, series, article, screenshots, evidence and AGENTS note"
+}
