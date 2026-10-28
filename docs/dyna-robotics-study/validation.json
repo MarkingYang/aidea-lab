@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-28",
+  "revision": "three-level-learning-natural-introduction",
+  "source_sha256": "670bea8ea26f46e9de38449b3900a3f4ffc1fe65cf066ad2ea39ead0668490a5",
+  "parts": 3,
+  "han_characters": 21626,
+  "self_checks": 20,
+  "reasoning_cases": 10,
+  "all_answers_have_explanations": true,
+  "display_formulas": 8,
+  "browser_math_errors": 0,
+  "http_status": 200,
+  "url": "http://localhost:4321/writing/dyna-robotics-embodied-ai/",
+  "reading_copy_synced": true,
+  "preview_copy_synced": true,
+  "missing_internal_anchors": [],
+  "teaching_arithmetic": {
+    "A_recovery_20": 84.7,
+    "A_recovery_120": 53.3,
+    "B_recovery_20": 83.4,
+    "B_recovery_120": 74.3
+  },
+  "preview_root": "/Users/fei/.cache/aidea-lab-runtime-20261028",
+  "preview_is_snapshot": true,
+  "original_dependencies": "unchanged",
+  "build": "passed in isolated snapshot with identical package-lock",
+  "content_check": "passed; 81 articles, 25 groups, 9 topics",
+  "graph_check": "passed; 154 nodes, 644 links",
+  "introduction_labels_verified": true
+}

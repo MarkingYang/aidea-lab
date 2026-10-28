@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-28",
+  "base_commit": "5b2fc776c23d43970421a83d08aab2afb5274111",
+  "production_url": "https://ainoteatlas.com/writing/dyna-robotics-embodied-ai/",
+  "source_hashes": {
+    "src/content/writing/dyna-robotics-embodied-ai.md": "670bea8ea26f46e9de38449b3900a3f4ffc1fe65cf066ad2ea39ead0668490a5",
+    "docs/dyna-robotics-study/learning-notes.md": "67e7789abc8209ac9520b190b0e56797306d168e61429e834b946c1e2352f563",
+    "docs/dyna-robotics-study/foundations-and-comparison.md": "f828995a028cdd72f211c84c142857cdd6097d6b0c09be3775169ed3d3fbe84a"
+  },
+  "build": "passed",
+  "content_check": {
+    "articles": 79,
+    "groups": 25,
+    "domains": 9,
+    "errors": []
+  },
+  "graph_check": {
+    "nodes": 150,
+    "links": 627
+  },
+  "self_checks": 20,
+  "reasoning_cases": 10,
+  "display_formulas": 8,
+  "math_errors": 0,
+  "scope": "Dyna article, reading copy and supporting records, required independent topic and group, authorization note",
+  "excluded": "Other local drafts, embodied-intelligence history article, homepage edits, unrelated revisions",
+  "deployment": "origin/main followed by existing server deployment timer"
+}

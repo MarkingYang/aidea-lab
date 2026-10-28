@@ -92,6 +92,17 @@
         "认知",
         "学习"
       ]
+    },
+    {
+      "id": "embodied-intelligence",
+      "title": "具身智能",
+      "english": "Embodied intelligence",
+      "question": "智能怎样通过身体感知、行动并适应物理世界？",
+      "description": "机器人的感知、控制、学习与应用，研究智能怎样通过身体与物理环境交互。",
+      "tags": [
+        "具身智能",
+        "机器人学习"
+      ]
     }
   ],
   "series": [
@@ -411,6 +422,17 @@
       "question": "保留研究型创业、处理未知与组织学习的完整论述，区分演讲观点与作者推演。",
       "articles": [
         "lu-qi-researcher-founder"
+      ]
+    },
+    {
+      "id": "embodied-intelligence",
+      "topic": "embodied-intelligence",
+      "title": "发展与核心机制",
+      "description": "沿机器人、动作学习与基础模型的发展，理解感知、控制、数据和真实环境泛化。",
+      "outcome": "理解具身智能的历史脉络、系统职责与能力证据。",
+      "question": "机器人怎样把学到的本领带到新的身体、任务与环境？",
+      "articles": [
+        "dyna-robotics-embodied-ai"
       ]
     }
   ]
