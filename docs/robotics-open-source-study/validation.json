@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-28",
+  "preview": "http://localhost:4321/writing/robotics-open-source-learning/",
+  "http_status": 200,
+  "main_parts": 3,
+  "explained_questions": 17,
+  "tables": 9,
+  "rendered_math": 9,
+  "missing_fragment_links": [],
+  "katex_errors": [],
+  "reading_copy_matches": true,
+  "runtime_copy_matches": true,
+  "homepage_lists_article": true,
+  "content_check": "pass: 83 articles, 25 groups, 9 domains",
+  "build": "pass: 132 pages",
+  "graph": "pass: 158 nodes, 667 links",
+  "source_sha256": "b6b3da76c9e2040fbc44d3396d648a2efe2af0da9df93dcd584a3fdfd4fecb22",
+  "browser_visual_check": "Unavailable: in-app browser control transport disconnected; verified HTTP and generated HTML, not screenshot appearance",
+  "published": false
+}

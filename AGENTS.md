@@ -1,3 +1,7 @@
+## Publication authorization — robotics open-source learning article, 2026-10-28
+
+The user requests publication of the completed `robotics-open-source-learning` article. Publish its three-part learning text, synchronized reading copy, source and validation records, and one entry in the existing embodied-intelligence group. Preserve 17 explained study questions and original research limitations. Interview speaking notes stay in the conversation. Exclude unfinished tactile research, homepage changes and unrelated local files.
+
 ## Publication authorization — all remaining article drafts and revisions, 2026-10-28
 
 The user explicitly requests full publication after reviewing the pending-content inventory. Publish the two new articles (`embodied-intelligence-evolution`, `yang-zhilin-agent-generalization`), four architecture revisions (Claude Code, DeepSeek, Hermes, Pi), and the independent AI product/Agent study guide. Preserve existing article dates, URLs, factual boundaries and source evidence. The guide is published at `ai-product-interview-study-guide`, preserving its 16 existing diagrams and original portable Markdown; only frontmatter and asset URL adaptation are added. This authorization includes its existing illustrations, directory entries and necessary supporting records. Earlier local-only notes for these seven items are superseded. Exclude unrelated homepage changes, historical archives and WeChat files. No models, robots or business systems are executed.
