@@ -1,3 +1,7 @@
+## Publication authorization - complete embodied-intelligence review, 2026-10-28
+
+The user explicitly requests review of all embodied-intelligence documents against their source videos, supplementation of important omissions, then publication and push. This authorizes the reviewed four-article topic: embodied-intelligence-evolution, dyna-robotics-embodied-ai, robotics-open-source-learning, and robot-tactile-learning; their synchronized reading copies and source/review records; and the fourth article's existing group entry. Preserve original dates and URLs, progressive structures, scientific limitations and explained exercises. Publish only this topic's changes through origin/main using the existing deployment process; exclude unrelated homepage, architecture, interview and archive changes. Prior local-only notes for these revisions are superseded. No robot, model or simulation was executed. Publication validation is recorded in docs/embodied-intelligence-publication-20261028/.
+
 ## Publication authorization — robotics open-source learning article, 2026-10-28
 
 The user requests publication of the completed `robotics-open-source-learning` article. Publish its three-part learning text, synchronized reading copy, source and validation records, and one entry in the existing embodied-intelligence group. Preserve 17 explained study questions and original research limitations. Interview speaking notes stay in the conversation. Exclude unfinished tactile research, homepage changes and unrelated local files.

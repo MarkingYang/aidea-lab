@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "url": "https://ainoteatlas.com/writing/dyna-robotics-embodied-ai/",
+  "updated_article": true,
+  "self_checks": 20,
+  "cases": 10,
+  "formulas": 8,
+  "math_errors": 0,
+  "commit": "5bc19ce",
+  "deployed": true
+}

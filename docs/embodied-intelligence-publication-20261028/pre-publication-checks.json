@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-28",
+  "build": "pass: 133 pages",
+  "content": "pass: 84 articles, 25 groups, 9 domains",
+  "graph": "pass: 159 nodes, 672 links",
+  "topic_entries": 4,
+  "topic_home_series_links": "pass",
+  "articles": [
+    {
+      "slug": "embodied-intelligence-evolution",
+      "source_sha256": "5a4216424c26d92292dbc6e0ccda2af342f87e3cbd825c026391da771d75cfee",
+      "body_text_sha256": "320dcd92a0ca6f8fc70cd3841505830ceca584fc14c2272c956f4484e79f4e93",
+      "h1": 1,
+      "main_sections": 8,
+      "study_questions": 0,
+      "reasoning_cases": 0,
+      "katex_errors": 0,
+      "missing_links": [],
+      "duplicate_ids": [],
+      "reading_copy_and_source_match": true
+    },
+    {
+      "slug": "dyna-robotics-embodied-ai",
+      "source_sha256": "d7c6fb8016282ece1a39ddfe11a4a3b214ae346dbcef8e56a4564b72a5a9efcb",
+      "body_text_sha256": "d2b3cbc92062068ddeeb88455fadca701231a3f1123bc4eefafb7b48399aefe5",
+      "h1": 1,
+      "main_sections": 3,
+      "study_questions": 20,
+      "reasoning_cases": 10,
+      "katex_errors": 0,
+      "missing_links": [],
+      "duplicate_ids": [],
+      "reading_copy_and_source_match": true
+    },
+    {
+      "slug": "robotics-open-source-learning",
+      "source_sha256": "fbaf5286345bedb47a6aa56f7f713162fe22ea3b07681f1bf741e11e514c960c",
+      "body_text_sha256": "40bbec8276065a82e8f9476315cde76a4d3f52d680f0c5512197dada6b534c7a",
+      "h1": 1,
+      "main_sections": 3,
+      "study_questions": 19,
+      "reasoning_cases": 0,
+      "katex_errors": 0,
+      "missing_links": [],
+      "duplicate_ids": [],
+      "reading_copy_and_source_match": true
+    },
+    {
+      "slug": "robot-tactile-learning",
+      "source_sha256": "18ae85d657eda8148fcfeb88b92c4cd13295037bb3b0a0a64d19d904478e17e7",
+      "body_text_sha256": "3f461a5e8eddf83d221f1c35ff0b62929d18a91f060c6849f1a767563012ace6",
+      "h1": 1,
+      "main_sections": 3,
+      "study_questions": 18,
+      "reasoning_cases": 0,
+      "katex_errors": 0,
+      "missing_links": [],
+      "duplicate_ids": [],
+      "reading_copy_and_source_match": true
+    }
+  ],
+  "scope": "built publication checkout; source/reading sync, generated HTML and internal links",
+  "visual_check": "No new browser visual inspection; unchanged layout and diagrams, generated HTML checked",
+  "publication": "ready for authorized push; online verification recorded separately"
+}
