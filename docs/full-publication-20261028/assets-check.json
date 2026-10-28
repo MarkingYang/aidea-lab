@@ -1,0 +1,98 @@
+[
+  {
+    "file": "01-overview.png",
+    "width": 2400,
+    "height": 2370,
+    "sha256": "c0a9ad2eb3fbd43af1fd2c52ef43d5135ae5e70f3057de0b9ae49a37bc62e97a"
+  },
+  {
+    "file": "02-kv-cache.png",
+    "width": 2400,
+    "height": 2890,
+    "sha256": "56104421a3ad09e5b86f3791b8988dbea6a63b57212f2c1a062895b82233388f"
+  },
+  {
+    "file": "03-rag.png",
+    "width": 2400,
+    "height": 3658,
+    "sha256": "8d0e3007b910d1db11f99b16eb79528dee042c5bb599aebd9ed4ee9d7217f52e"
+  },
+  {
+    "file": "04-tool-call.png",
+    "width": 2400,
+    "height": 2222,
+    "sha256": "c8c1a7eaa5a07fc24ef12baae9c8b90a14eff93261528cf6b920b60be4546043"
+  },
+  {
+    "file": "05-memory.png",
+    "width": 2400,
+    "height": 1462,
+    "sha256": "67bbe8d7f20f2de72e7cddd2369aea16764cd6a8c417641e58b4d41035581c43"
+  },
+  {
+    "file": "06-evaluation.png",
+    "width": 2400,
+    "height": 2422,
+    "sha256": "fa91fb92a692bc67f50d7003e9da4a659417b94d9a0883fdbc8f15bf5d120ccd"
+  },
+  {
+    "file": "07-judge.png",
+    "width": 2400,
+    "height": 1650,
+    "sha256": "c0a201f6a051519bb86cf2317d8776cb0291d7c9bfd6bf97a92fc35f983a851a"
+  },
+  {
+    "file": "08-data-loop.png",
+    "width": 2400,
+    "height": 3688,
+    "sha256": "fe36133dd2bd52aacd3c5841f886fb6f96ad4195ea4153f49af9ab75d8724d3f"
+  },
+  {
+    "file": "09-security.png",
+    "width": 2400,
+    "height": 3408,
+    "sha256": "916d5dc95976891d8ad0956bee582ac8aede2f98261b9cd7dbab16584c822a20"
+  },
+  {
+    "file": "10-harness.png",
+    "width": 2400,
+    "height": 2288,
+    "sha256": "e744b6764f3eb5fa25b37533166487fb1cdbbd84f0a5565c995ef94b4e0a900f"
+  },
+  {
+    "file": "11-recovery.png",
+    "width": 2400,
+    "height": 2540,
+    "sha256": "4dd29894fc52fe66e7bebf566c40fde893104633eee57cb9a7bcbeb3117560d7"
+  },
+  {
+    "file": "12-tuning.png",
+    "width": 2400,
+    "height": 2094,
+    "sha256": "40192c7cddeaf46b37b5b490882f5662d09ef61395b049039b63089c73d6470b"
+  },
+  {
+    "file": "13-cost.png",
+    "width": 2400,
+    "height": 1530,
+    "sha256": "190f99ce8e6a3beece0acd2fa261abf1e9c6d2ef23cbe0a7bff48bc70b277b2c"
+  },
+  {
+    "file": "14-competitors.png",
+    "width": 2400,
+    "height": 1680,
+    "sha256": "090e62e4de9fb6938a8313eb7c23ea83972de44970390fad56a5c4f3b1b03325"
+  },
+  {
+    "file": "15-embodied.png",
+    "width": 2400,
+    "height": 2628,
+    "sha256": "18cfad017cdeae833e6bd97acfd557ccb838c0c92d7e1109c4ef4c2f66b918ae"
+  },
+  {
+    "file": "16-selection.png",
+    "width": 2400,
+    "height": 1810,
+    "sha256": "0edce2c67bef104dc0cb8c09e1906ad5535cbd0a77ca8a0031e156b57cac9ecd"
+  }
+]

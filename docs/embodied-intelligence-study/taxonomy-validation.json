@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-09-26T09:54:14.029593+00:00",
+  "request": "具身智能是新的独立话题，不属于模型子类",
+  "topic": "embodied-intelligence",
+  "group": "发展与核心机制",
+  "article_sha256": "2fa9f8c949899cf70bc850f253dfc74d0f78c474c6ee5f0aea397feb07e50e53",
+  "body_and_reading_copy_unchanged": true,
+  "other_registry_entries_unchanged": true,
+  "content_check": "passed",
+  "build": "passed in /tmp/embodied-blog-validation-20260926 with matching source and lockfile",
+  "site_snapshot": {
+    "articles": 80,
+    "groups": 25,
+    "domains": 9,
+    "graph_nodes": 152,
+    "graph_links": 639
+  },
+  "graph_parent_check": "passed",
+  "browser": {
+    "breadcrumb": "知识目录\n/\n具身智能\n/\n发展与核心机制\n/\n从机械臂到机器人基础模型：具身智能的发展脉络",
+    "topLevelTopics": 9,
+    "topicRoute": "passed",
+    "modelsExcludesArticle": true,
+    "mobileOverflow": false
+  },
+  "publication": "local only; no commit or push"
+}

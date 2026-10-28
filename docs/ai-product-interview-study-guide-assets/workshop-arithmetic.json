@@ -1,0 +1,101 @@
+{
+  "scope": "Arithmetic only, synthetic examples, not empirical performance",
+  "checks": [
+    {
+      "name": "model task cost",
+      "actual": 0.04,
+      "expected": 0.04,
+      "pass": true
+    },
+    {
+      "name": "retrieval recall",
+      "actual": 0.3333333333333333,
+      "expected": 0.3333333333333333,
+      "pass": true
+    },
+    {
+      "name": "retrieval precision",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "contract pass",
+      "actual": 0.75,
+      "expected": 0.75,
+      "pass": true
+    },
+    {
+      "name": "eligible autonomous refund",
+      "actual": 0.5,
+      "expected": 0.5,
+      "pass": true
+    },
+    {
+      "name": "all task autonomous refund share",
+      "actual": 0.25,
+      "expected": 0.25,
+      "pass": true
+    },
+    {
+      "name": "training break even",
+      "actual": 600000.0,
+      "expected": 600000,
+      "pass": true
+    },
+    {
+      "name": "base cost",
+      "actual": 31.0,
+      "expected": 31,
+      "pass": true
+    },
+    {
+      "name": "base unit cost",
+      "actual": 0.34444444444444444,
+      "expected": 0.34444444444444444,
+      "pass": true
+    },
+    {
+      "name": "cheap model cost",
+      "actual": 43.0,
+      "expected": 43,
+      "pass": true
+    },
+    {
+      "name": "cheap model unit cost",
+      "actual": 0.4777777777777778,
+      "expected": 0.4777777777777778,
+      "pass": true
+    },
+    {
+      "name": "serial latency",
+      "actual": 3.1,
+      "expected": 3.1,
+      "pass": true
+    },
+    {
+      "name": "parallel latency",
+      "actual": 2.8,
+      "expected": 2.8,
+      "pass": true
+    },
+    {
+      "name": "robot autonomous",
+      "actual": 0.72,
+      "expected": 0.72,
+      "pass": true
+    },
+    {
+      "name": "robot with help",
+      "actual": 0.9,
+      "expected": 0.9,
+      "pass": true
+    },
+    {
+      "name": "robot weighted illustration",
+      "actual": 0.81,
+      "expected": 0.81,
+      "pass": true
+    }
+  ]
+}

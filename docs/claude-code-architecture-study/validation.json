@@ -1,0 +1,18 @@
+{
+  "article": "src/content/writing/claude-code-internals-overview.md",
+  "article_sha256": "e675944c8cbe3bb84a828977d9a0f50769052558127ee6580f05be261406d8f2",
+  "date": "2026-09-20",
+  "publication": "local only; no commit or push",
+  "chinese_characters": 3915,
+  "sections": 6,
+  "mermaid_diagrams": 1,
+  "official_markdown_sources": 11,
+  "content_check": "passed: 79 articles, 24 groups, 8 domains at check time",
+  "internal_article_links": "passed",
+  "diff_whitespace": "passed",
+  "full_build": "incomplete: system and bundled Node builds stalled in synchronous local dependency reads before compiler output; terminated only this task builds",
+  "existing_dist_graph": "passed but stale output, not validation of this revision",
+  "site_browser_checks": "not run: current revision build unavailable",
+  "standalone_diagram": "passed: Mermaid 11.17.2 browser rendering, no error nodes; screenshot /tmp/aidea-claude-diagram-preview.png. Does not validate site integration.",
+  "standalone_visual_review": "Reviewed rendered screenshot: labels and edges visible; full site desktop/mobile/theme checks remain pending."
+}

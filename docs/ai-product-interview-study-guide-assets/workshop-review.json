@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-07",
+  "scope": "Hypothetical worked cases; no model, training, agent, business or robot runs. No publication.",
+  "guide_sha256": "60609df1c6557621f35ce0e7ddd6e3ae4405bebac7d30de640c6f327086f9b56",
+  "workshops": [
+    {
+      "chapter": 1,
+      "title": "同一模型排行榜，为什么会得到不同采购结论",
+      "anchor": "workshop-1"
+    },
+    {
+      "chapter": 2,
+      "title": "检索到了主规则，为什么答案仍然错",
+      "anchor": "workshop-2"
+    },
+    {
+      "chapter": 3,
+      "title": "把一句“能退就办”拆成可停止的 Agent 回路",
+      "anchor": "workshop-3"
+    },
+    {
+      "chapter": 4,
+      "title": "用户改了地址，四种存储分别该更新什么",
+      "anchor": "workshop-4"
+    },
+    {
+      "chapter": 5,
+      "title": "八个任务怎样算出三个不同的“成功率”",
+      "anchor": "workshop-5"
+    },
+    {
+      "chapter": 6,
+      "title": "沿着 T5 和 T7，把坏例分流到两条修复路径",
+      "anchor": "workshop-6"
+    },
+    {
+      "chapter": 7,
+      "title": "一张权限表，区分“会不会做”与“允许做”",
+      "anchor": "workshop-7"
+    },
+    {
+      "chapter": 8,
+      "title": "四个崩溃时点，为什么只保存对话还不够",
+      "anchor": "workshop-8"
+    },
+    {
+      "chapter": 9,
+      "title": "什么时候已有足够理由启动一次 SFT",
+      "anchor": "workshop-9"
+    },
+    {
+      "chapter": 10,
+      "title": "单次 API 降价，为什么每成功任务仍可能变贵",
+      "anchor": "workshop-10"
+    },
+    {
+      "chapter": 11,
+      "title": "怎样把竞品介绍改成能影响采购的验证",
+      "anchor": "workshop-11"
+    },
+    {
+      "chapter": 12,
+      "title": "机器人演示成功，距离可靠交付还缺哪张表",
+      "anchor": "workshop-12"
+    },
+    {
+      "chapter": 13,
+      "title": "把青禾第一版方案写成一张可审查的决策卡",
+      "anchor": "workshop-13"
+    },
+    {
+      "chapter": 14,
+      "title": "把术语堆砌改成能经受追问的回答",
+      "anchor": "workshop-14"
+    }
+  ],
+  "retained": {
+    "chapters": 14,
+    "subsections": 88,
+    "point_answers": 88,
+    "interview_answers": 26,
+    "images": 16,
+    "code_blocks": 10
+  },
+  "new_folded_workshops": 14,
+  "total_details": 143,
+  "new_external_claims": "No vendor benchmark results or new vendor capability claims. Cases apply mechanisms already sourced in the guide."
+}

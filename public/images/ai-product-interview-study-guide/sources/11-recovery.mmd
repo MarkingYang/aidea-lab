@@ -1,0 +1,13 @@
+sequenceDiagram
+participant R as Runtime
+participant S as 持久化状态
+participant B as 退款服务
+R->>S: 保存操作键 K 和执行意图
+R->>B: 按 K 提交 80 元退款
+B->>B: 退款落账，记录 K
+B--xR: 回包丢失 / Runtime 崩溃
+Note over R,S: 恢复后本地仍不知道业务结果
+R->>B: 根据 K 查询业务结果
+B-->>R: K 已成功，金额 80 元
+R->>S: 保存已确认完成
+Note over R,B: 结果仍不明 → 待查证或人工接管

@@ -1,0 +1,63 @@
+{
+  "edition": "Structured plain Markdown",
+  "checks": [
+    {
+      "viewport": 1440,
+      "pageWidth": 1440,
+      "images": 16,
+      "brokenImages": 0,
+      "units": 6,
+      "chapters": 14,
+      "knowledgeSections": 88,
+      "pointAnswers": 88,
+      "reviewSections": 14,
+      "cases": 14,
+      "interviewAnswers": 26,
+      "foldingTags": 0,
+      "navLinks": 14,
+      "literalEmphasis": 0,
+      "missingAnchors": [],
+      "duplicateIds": [],
+      "overflow": false
+    },
+    {
+      "viewport": 1280,
+      "pageWidth": 1280,
+      "images": 16,
+      "brokenImages": 0,
+      "units": 6,
+      "chapters": 14,
+      "knowledgeSections": 88,
+      "pointAnswers": 88,
+      "reviewSections": 14,
+      "cases": 14,
+      "interviewAnswers": 26,
+      "foldingTags": 0,
+      "navLinks": 14,
+      "literalEmphasis": 0,
+      "missingAnchors": [],
+      "duplicateIds": [],
+      "overflow": false
+    },
+    {
+      "viewport": 390,
+      "pageWidth": 390,
+      "images": 16,
+      "brokenImages": 0,
+      "units": 6,
+      "chapters": 14,
+      "knowledgeSections": 88,
+      "pointAnswers": 88,
+      "reviewSections": 14,
+      "cases": 14,
+      "interviewAnswers": 26,
+      "foldingTags": 0,
+      "navLinks": 14,
+      "literalEmphasis": 0,
+      "missingAnchors": [],
+      "duplicateIds": [],
+      "overflow": false
+    }
+  ],
+  "scope": "Local document rendering only; no model, agent, training or business execution."
+}

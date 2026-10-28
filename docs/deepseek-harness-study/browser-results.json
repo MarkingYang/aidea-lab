@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-20",
+  "base": "http://127.0.0.1:4497",
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "size": {
+        "width": 740,
+        "height": 503.984375,
+        "svgHeight": 419.984375,
+        "error": false
+      }
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "size": {
+        "width": 740,
+        "height": 503.984375,
+        "svgHeight": 419.984375,
+        "error": false
+      }
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "size": {
+        "width": 374,
+        "height": 376.25,
+        "svgHeight": 259.578125,
+        "error": false
+      }
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "size": {
+        "width": 374,
+        "height": 376.25,
+        "svgHeight": 259.578125,
+        "error": false
+      }
+    }
+  ],
+  "interactions": [
+    "zoom",
+    "reset"
+  ],
+  "legacyAnchors": "present",
+  "pageErrors": [],
+  "scope": "Static production build in isolated temporary checkout; no Harness execution"
+}

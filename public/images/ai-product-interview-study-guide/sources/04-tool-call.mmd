@@ -1,0 +1,16 @@
+sequenceDiagram
+participant M as 模型
+participant R as Runtime
+participant P as 权限与策略
+participant T as 业务服务
+R->>M: 问题、任务状态、可用工具
+M-->>R: get_order / submit_refund 请求
+R->>R: 校验参数与状态
+R->>P: 可信身份、资源、拟执行动作
+P-->>R: 允许 / 拒绝 / 需确认
+Note over R,T: 仅在检查通过、必要确认满足后执行
+R->>T: 调用工具（身份在可信侧绑定）
+T-->>R: 业务结果或错误
+R->>R: 保存结果与任务状态
+R->>M: 已核验的工具返回
+M-->>R: 回答或提出下一步

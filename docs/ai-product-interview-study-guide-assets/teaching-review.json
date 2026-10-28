@@ -1,0 +1,539 @@
+{
+  "date": "2026-10-06",
+  "before_sha256": "3d760116c3160ce7c6cba846871ac2a2aff31507543ce55a9091f5db82200b2a",
+  "after_sha256": "93ad62208ca9d86e450d455688a290a5954b351cb003269e0aacbcaf133bc516",
+  "scope": "Editorial teaching checks and hypothetical worked examples; no learner assessment, model, training, real Agent or business execution.",
+  "prerequisites": 16,
+  "point_checks": 88,
+  "extra_walkthroughs": 11,
+  "sections": [
+    {
+      "section": "1.1",
+      "question": "模型为什么能生成退款说明，却不能证明钱已经退了？",
+      "answer_characters": 149,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "1.2",
+      "question": "把历史摘要从 4,000 tokens 压到 1,000，是否一定节约了 75% 的任务成本？",
+      "answer_characters": 113,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "1.3",
+      "question": "窗口足够容纳全部政策，为什么还需要版本和证据组织？",
+      "answer_characters": 112,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "1.4",
+      "question": "开启 KV Cache 后，生成第 1,000 个 token 是否只需要计算这个 token，与前文长度无关？",
+      "answer_characters": 116,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "1.5",
+      "question": "为什么不能根据“激活参数少”直接承诺更低延迟？",
+      "answer_characters": 130,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "1.6",
+      "question": "A 的平均分高、B 的工具调用更稳，怎样做选择？",
+      "answer_characters": 119,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "2.1",
+      "question": "怎样证明新 Prompt 更好，而不是刚好抽到一次好回答？",
+      "answer_characters": 119,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "2.2",
+      "question": "新政策已经上传，为什么用户仍得到旧答案？",
+      "answer_characters": 106,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "2.3",
+      "question": "片段越大，保留的上下文越全，为什么不直接一整篇入库？",
+      "answer_characters": 111,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "2.4",
+      "question": "同一个问题，为什么关键词检索和向量检索都值得保留？",
+      "answer_characters": 104,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "2.5",
+      "question": "召回率是 100%，回答为什么仍然可能错？",
+      "answer_characters": 109,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "2.6",
+      "question": "人工提供正确资料后答案变好了，能否宣布检索是唯一根因？",
+      "answer_characters": 108,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "2.7",
+      "question": "已经用了“专业 RAG 框架”，为什么团队还要做检索评测？",
+      "answer_characters": 133,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "3.1",
+      "question": "模型返回了合法的退款工具请求，下一步能直接执行吗？",
+      "answer_characters": 111,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "3.2",
+      "question": "Self-Ask 拆出了所有子问题，就等于拥有了规划能力吗？",
+      "answer_characters": 115,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "3.3",
+      "question": "业务流程有分支，是否就必须使用动态 Agent？",
+      "answer_characters": 111,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "3.4",
+      "question": "多加一轮“自我检查”，应该怎样判断是否值得？",
+      "answer_characters": 110,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "3.5",
+      "question": "三个 Agent 都认可一个结论，为什么不能把它当成交叉验证？",
+      "answer_characters": 110,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "3.6",
+      "question": "团队该先选框架，还是先画任务流程？",
+      "answer_characters": 104,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "4.1",
+      "question": "为什么“用户喜欢中文”和“退款已经完成”不能都当成普通长期记忆？",
+      "answer_characters": 103,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "4.2",
+      "question": "用户更正地址后，改掉数据库里一行就足够了吗？",
+      "answer_characters": 109,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "4.3",
+      "question": "为什么精确订单状态一般不该靠向量相似度决定？",
+      "answer_characters": 110,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.1",
+      "question": "测试账本显示正确退款，但中间曾越权读取他人订单，这次应判成功吗？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.2",
+      "question": "两个方案工具调用次数不同，怎样公平评测？",
+      "answer_characters": 104,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.3",
+      "question": "为了覆盖风险，把攻击题加到测试集的一半，能否用总分估计线上成功率？",
+      "answer_characters": 99,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "5.4",
+      "question": "一个任务重试三次才成功，应当记录几个任务、几次执行？",
+      "answer_characters": 102,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.5",
+      "question": "为什么不能让同一个模型根据最终回答直接给整次任务打分？",
+      "answer_characters": 105,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "5.6",
+      "question": "裁判准确率 99%，就可以放心把所有坏例筛选交给它吗？",
+      "answer_characters": 108,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.7",
+      "question": "一个坏例已加入回归集，为什么还需要独立发布集？",
+      "answer_characters": 107,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.8",
+      "question": "五个任务分别成功 3、3、2、1、0 次，每题跑三次，三个成功指标各是多少？",
+      "answer_characters": 106,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "5.9",
+      "question": "新版本从 90% 提高到 92%，为什么还要看哪些任务退化？",
+      "answer_characters": 112,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "5.10",
+      "question": "评测平台能保存 Trace、自动打分，还缺什么才能成为业务验收系统？",
+      "answer_characters": 105,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "6.1",
+      "question": "用户给差评、模型裁判给好评，应该相信谁？",
+      "answer_characters": 105,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "6.2",
+      "question": "Trace 中没有退款调用，能否认定没有退款？",
+      "answer_characters": 103,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "6.3",
+      "question": "相同坏例每天出现，模型分数却不断提高，闭环可能断在哪里？",
+      "answer_characters": 107,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "6.4",
+      "question": "把差评回答作为 rejected、点赞回答作为 chosen，能直接训练 DPO 吗？",
+      "answer_characters": 106,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "6.5",
+      "question": "两名标注员意见完全一致，标签还可能有问题吗？",
+      "answer_characters": 105,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "6.6",
+      "question": "发现一批训练标签错了，为什么需要数据血缘？",
+      "answer_characters": 110,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "7.1",
+      "question": "为什么一个只输出文本的风险，接上工具后可能升级？",
+      "answer_characters": 101,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "7.2",
+      "question": "已经过滤了可疑文档，为什么还要限制工具权限？",
+      "answer_characters": 110,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "7.3",
+      "question": "客服角色有退款权限，为什么每次还要检查订单和金额？",
+      "answer_characters": 107,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "7.4",
+      "question": "参数完全符合 JSON Schema，是否就没有注入或越权风险？",
+      "answer_characters": 109,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "7.5",
+      "question": "内容护栏通过、策略服务却不可用，能否继续退款？",
+      "answer_characters": 106,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "8.1",
+      "question": "已有 MaaS 网关，为什么还需要任务 Runtime？",
+      "answer_characters": 118,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "8.2",
+      "question": "两台机器同时读到“待执行”，怎样避免同时推进同一退款？",
+      "answer_characters": 109,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "8.3",
+      "question": "系统恢复到了提交前的检查点，为什么不能直接重新提交？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "8.4",
+      "question": "一个第三方工具演示调用成功了，为什么还不能立即开放给所有 Agent？",
+      "answer_characters": 108,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "8.5",
+      "question": "“保存了聊天历史”和“支持持久执行”之间还差哪些环节？",
+      "answer_characters": 114,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "8.6",
+      "question": "换模型后所有 HTTP 请求都成功了，是否算迁移完成？",
+      "answer_characters": 98,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.1",
+      "question": "行业知识不熟、输出格式不稳、订单状态过期，分别先改什么？",
+      "answer_characters": 109,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.2",
+      "question": "训练 loss 降了，为什么生成时仍会在第三轮工具调用出错？",
+      "answer_characters": 126,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.3",
+      "question": "LoRA 可训练参数只有全矩阵的 1/256，训练总费用也会降到 1/256 吗？",
+      "answer_characters": 111,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.4",
+      "question": "奖励模型分数越高，是否就代表 RLHF 越成功？",
+      "answer_characters": 101,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.5",
+      "question": "DPO 不训练显式奖励模型，是否就不需要定义“好答案”？",
+      "answer_characters": 114,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.6",
+      "question": "训练项目什么时候应该停止，而不是不断追加数据和轮次？",
+      "answer_characters": 101,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "9.7",
+      "question": "新任务变好、旧任务变差，是过拟合还是遗忘？",
+      "answer_characters": 104,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "9.8",
+      "question": "托管训练省去了 GPU 运维，为什么仍需技术产品经理参与？",
+      "answer_characters": 104,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.1",
+      "question": "首字更快，但用户说更慢了，可能是哪里出了问题？",
+      "answer_characters": 100,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.2",
+      "question": "显卡恰好能装下权重，能否按这个配置承诺并发服务？",
+      "answer_characters": 105,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.3",
+      "question": "PagedAttention 与连续批处理，哪个解决“短请求等待长请求”的问题？",
+      "answer_characters": 117,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.4",
+      "question": "在途请求翻倍、吞吐不变，能否说系统扩容成功？",
+      "answer_characters": 101,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.5",
+      "question": "缓存命中率很高，为什么还可能损害产品？",
+      "answer_characters": 103,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.6",
+      "question": "每次模型调用便宜了，但人工补救增加，怎样判断优化是否成立？",
+      "answer_characters": 105,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "10.7",
+      "question": "月任务量超过算出的成本交点，是否应该立即自部署？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "10.8",
+      "question": "网关、SDK 和应用都自动重试，为什么会放大故障？",
+      "answer_characters": 111,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "11.1",
+      "question": "怎样分析“竞品为什么这样设计”，又不编造厂商内部动机？",
+      "answer_characters": 100,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "11.2",
+      "question": "业务人员能在 Dify 画布上修改流程，工程工作是不是就消失了？",
+      "answer_characters": 109,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "11.3",
+      "question": "企业已有很多连接器，为什么 Agent 仍可能误用工具？",
+      "answer_characters": 104,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "11.4",
+      "question": "Agentforce 中一个 action 带确认配置，为什么仍要测试后端权限？",
+      "answer_characters": 108,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "11.5",
+      "question": "候选都有同名功能，怎样得出有价值的竞品结论？",
+      "answer_characters": 98,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.1",
+      "question": "机器人能回答“杯子在左边”，为什么还可能抓不到？",
+      "answer_characters": 111,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.2",
+      "question": "把动作序列一次生成得很长，为什么既可能有利也可能危险？",
+      "answer_characters": 107,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.3",
+      "question": "扩散策略从噪声开始，是否意味着机器人先做随机动作再逐渐变好？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.4",
+      "question": "世界模型预测成功，为什么不能把该任务计入实际成功率？",
+      "answer_characters": 98,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.5",
+      "question": "论文 A 成功率 90%、论文 B 为 85%，能直接选 A 吗？",
+      "answer_characters": 102,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.6",
+      "question": "训练时用了遥操作，是否说明部署时一定不自主？",
+      "answer_characters": 97,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "12.7",
+      "question": "两台机器人自主成功率相同，为什么单位作业成本仍可能差很多？",
+      "answer_characters": 107,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "13.1",
+      "question": "只有四周，是否可以先不做权限和评测，等验证需求后再补？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "13.2",
+      "question": "为什么不能把 Prompt → RAG → SFT → RLHF 当成产品成熟度阶梯？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "13.3",
+      "question": "已经采用可视化平台，以后增加持久执行是否必须重做全部系统？",
+      "answer_characters": 103,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "13.4",
+      "question": "A 上线快，B 每任务便宜，怎样比较？",
+      "answer_characters": 104,
+      "extra_walkthrough": true
+    },
+    {
+      "section": "13.5",
+      "question": "只要复杂任务自动升级到大模型，路由是不是就没有质量风险？",
+      "answer_characters": 104,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "13.6",
+      "question": "如何把“后面再做技术升级”写成可执行计划？",
+      "answer_characters": 103,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "13.7",
+      "question": "自主解决率提高了，为什么业务价值可能没有增加？",
+      "answer_characters": 94,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "14.1",
+      "question": "怎样判断自己是“看懂了”，还是能迁移到新场景？",
+      "answer_characters": 102,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "14.2",
+      "question": "企业 IT 助手的权限申请已获批准，就一定能回复“已开通”吗？",
+      "answer_characters": 96,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "14.3",
+      "question": "一份写满技术名词的决策卡，怎样检查是否有实质？",
+      "answer_characters": 99,
+      "extra_walkthrough": false
+    },
+    {
+      "section": "14.4",
+      "question": "面试时不知道某个实现细节，怎样仍把问题讲清楚？",
+      "answer_characters": 94,
+      "extra_walkthrough": false
+    }
+  ]
+}

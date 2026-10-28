@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="765" viewBox="0 0 1200 765" font-family="PingFang SC,Arial,sans-serif"><rect width="1200" height="765" fill="#f7f9fc"/><rect x="24" y="24" width="1152" height="717" rx="20" fill="#fff"/><text x="55" y="60" font-size="17" fill="#61748b" font-weight="600">AI 产品与 Agent 系统学习指南  /  图 13</text><text x="55" y="101" font-size="30" fill="#172b49" font-weight="700">完整业务成本，需要加上失败后的补救</text><svg id="13-cost" x="60" y="126" width="1080" height="550" viewBox="0 0 1080 550"><svg width="1080" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" viewBox="0 0 1080 550">
+<rect width="1080" height="550" x="0" y="0" fill="none"></rect>
+<path d="M110 445.5L1015 445.5" fill="none" pointer-events="visible" stroke="#dce4ed" class="zr0-cls-0"></path>
+<path d="M110 373.5L1015 373.5" fill="none" pointer-events="visible" stroke="#dce4ed" class="zr0-cls-0"></path>
+<path d="M110 302.5L1015 302.5" fill="none" pointer-events="visible" stroke="#dce4ed" class="zr0-cls-0"></path>
+<path d="M110 230.5L1015 230.5" fill="none" pointer-events="visible" stroke="#dce4ed" class="zr0-cls-0"></path>
+<path d="M110 158.5L1015 158.5" fill="none" pointer-events="visible" stroke="#dce4ed" class="zr0-cls-0"></path>
+<path d="M110 87.5L1015 87.5" fill="none" pointer-events="visible" stroke="#dce4ed" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:21px;font-family:PingFang SC, Arial;" xml:space="preserve" x="15" y="-22.5" transform="translate(110 72)" fill="#54555a">元 / 1,000 个任务</text>
+<path d="M110 445.5L1015 445.5" fill="none" pointer-events="visible" stroke="#54555a" stroke-linecap="round" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="end" style="font-size:20px;font-family:PingFang SC, Arial;" transform="translate(102 445)" fill="#54555a">0</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:20px;font-family:PingFang SC, Arial;" transform="translate(102 373.4)" fill="#54555a">300</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:20px;font-family:PingFang SC, Arial;" transform="translate(102 301.8)" fill="#54555a">600</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:20px;font-family:PingFang SC, Arial;" transform="translate(102 230.2)" fill="#54555a">900</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:20px;font-family:PingFang SC, Arial;" transform="translate(102 158.6)" fill="#54555a">1,200</text>
+<text dominant-baseline="central" text-anchor="end" style="font-size:20px;font-family:PingFang SC, Arial;" transform="translate(102 87)" fill="#54555a">1,500</text>
+<path d="M-106.8 0l213.6 0l0 64l-213.6 0Z" transform="translate(336.25 463)" fill="none" pointer-events="visible" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:22px;font-family:PingFang SC, Arial;" xml:space="preserve" y="16" transform="translate(336.25 463)" fill="#54555a">方案 A</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:22px;font-family:PingFang SC, Arial;" xml:space="preserve" y="48" transform="translate(336.25 463)" fill="#54555a">自主解决 750 / 1,000</text>
+<path d="M-107.4 0l214.8 0l0 64l-214.8 0Z" transform="translate(788.75 463)" fill="none" pointer-events="visible" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:22px;font-family:PingFang SC, Arial;" xml:space="preserve" y="16" transform="translate(788.75 463)" fill="#54555a">方案 B</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:22px;font-family:PingFang SC, Arial;" xml:space="preserve" y="48" transform="translate(788.75 463)" fill="#54555a">自主解决 960 / 1,000</text>
+<path d="M256.3 445l160 0l0 -143.2l-160 0Z" fill="#487cc1" ecmeta_series_index="0" ecmeta_data_index="0" ecmeta_ssr_type="chart" class="zr0-cls-1"></path>
+<path d="M708.8 445l160 0l0 -190.9l-160 0Z" fill="#487cc1" ecmeta_series_index="0" ecmeta_data_index="1" ecmeta_ssr_type="chart" class="zr0-cls-1"></path>
+<path d="M256.3 301.8l160 0l0 -179l-160 0Z" fill="#e5a24f" ecmeta_series_index="1" ecmeta_data_index="0" ecmeta_ssr_type="chart" class="zr0-cls-2"></path>
+<path d="M708.8 254.1l160 0l0 -28.6l-160 0Z" fill="#e5a24f" ecmeta_series_index="1" ecmeta_data_index="1" ecmeta_ssr_type="chart" class="zr0-cls-2"></path>
+<path d="M256.3 445l160 0l0 -322.2l-160 0Z" fill="none" pointer-events="visible" ecmeta_series_index="2" ecmeta_data_index="0" ecmeta_ssr_type="chart" ecmeta_silent="true" class="zr0-cls-0"></path>
+<path d="M708.8 445l160 0l0 -219.6l-160 0Z" fill="none" pointer-events="visible" ecmeta_series_index="2" ecmeta_data_index="1" ecmeta_ssr_type="chart" ecmeta_silent="true" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:25px;font-family:PingFang SC, Arial;" xml:space="preserve" transform="translate(336.25 373.4)" fill="#fff">600 元</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:25px;font-family:PingFang SC, Arial;" xml:space="preserve" transform="translate(788.75 349.5333)" fill="#fff">800 元</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:24px;font-family:PingFang SC, Arial;" xml:space="preserve" transform="translate(336.25 212.3)" fill="#352b1e">750 元</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:24px;font-family:PingFang SC, Arial;" xml:space="preserve" transform="translate(788.75 239.7467)" fill="#352b1e">120 元</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:25px;font-family:PingFang SC, Arial;font-weight:bold;" xml:space="preserve" y="-12.5" transform="translate(336.25 117.8)" fill="#203652">合计 1350 元</text>
+<text dominant-baseline="central" text-anchor="middle" style="font-size:25px;font-family:PingFang SC, Arial;font-weight:bold;" xml:space="preserve" y="-12.5" transform="translate(788.75 220.4267)" fill="#203652">合计 920 元</text>
+<path d="M-5 -5l292 0l0 32l-292 0Z" transform="translate(399 17)" fill="rgb(0,0,0)" fill-opacity="0" stroke="#b7b9be" stroke-width="0" class="zr0-cls-0"></path>
+<path d="M4.5 0L17.5 0A4.5 4.5 0 0 1 22 4.5L22 13.5A4.5 4.5 0 0 1 17.5 18L4.5 18A4.5 4.5 0 0 1 0 13.5L0 4.5A4.5 4.5 0 0 1 4.5 0Z" transform="translate(399 19)" fill="#487cc1" ecmeta_series_index="0" ecmeta_data_index="0" ecmeta_ssr_type="legend" ecmeta_silent="true" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="start" style="font-size:22px;font-family:PingFang SC, Arial;" x="27" y="9" transform="translate(399 19)" fill="#54555a">运行成本</text>
+<path d="M0 -2l115 0l0 22l-115 0Z" transform="translate(399 19)" fill="none" pointer-events="visible" ecmeta_series_index="0" ecmeta_data_index="0" ecmeta_ssr_type="legend" class="zr0-cls-3"></path>
+<path d="M4.5 0L17.5 0A4.5 4.5 0 0 1 22 4.5L22 13.5A4.5 4.5 0 0 1 17.5 18L4.5 18A4.5 4.5 0 0 1 0 13.5L0 4.5A4.5 4.5 0 0 1 4.5 0Z" transform="translate(522 19)" fill="#e5a24f" ecmeta_series_index="1" ecmeta_data_index="1" ecmeta_ssr_type="legend" ecmeta_silent="true" class="zr0-cls-0"></path>
+<text dominant-baseline="central" text-anchor="start" style="font-size:22px;font-family:PingFang SC, Arial;" x="27" y="9" transform="translate(522 19)" fill="#54555a">人工补救成本</text>
+<path d="M0 -2l159 0l0 22l-159 0Z" transform="translate(522 19)" fill="none" pointer-events="visible" ecmeta_series_index="1" ecmeta_data_index="1" ecmeta_ssr_type="legend" class="zr0-cls-3"></path>
+<style ><![CDATA[
+.zr0-cls-0:hover {
+pointer-events:none;
+}
+.zr0-cls-1:hover {
+cursor:pointer;
+fill:rgba(79,136,212,1);
+}
+.zr0-cls-2:hover {
+cursor:pointer;
+fill:rgba(251,178,86,1);
+}
+.zr0-cls-3:hover {
+cursor:pointer;
+fill:rgba(0,0,0,0);
+}
+
+]]>
+
+</style>
+</svg></svg><text x="55" y="725" font-size="17" fill="#61748b" font-weight="400">每组 1,000 个任务；人工补救每次 3 元。全部数字是假设，不是报价或实测。</text></svg>

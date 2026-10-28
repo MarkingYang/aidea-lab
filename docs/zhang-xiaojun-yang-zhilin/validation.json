@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-09-13",
+  "article": "src/content/writing/yang-zhilin-agent-generalization.md",
+  "articleSha256": "75d76d5242da228b9ad0e19b0c235f2bf75b921bf7113442f24283bac1fee718",
+  "build": "npm run build: passed",
+  "contentCheck": "passed; no errors",
+  "graphCheck": "passed",
+  "renderedArticleCheck": {
+    "title": true,
+    "sourceAttribution": true,
+    "wechatAccessLimitation": true,
+    "wechatLinks": 1
+  },
+  "counts": {
+    "articles": 75,
+    "groups": 24,
+    "domains": 8,
+    "graphNodes": 143,
+    "graphLinks": 604
+  },
+  "luQiMatchesHEAD": true,
+  "publication": "local only; not committed or pushed",
+  "modelOrAgentExperimentsRun": false,
+  "limits": [
+    "Build and HTML checks do not verify vendor performance.",
+    "The remaining illustrative example is hypothetical; detailed unrun test proposals were removed.",
+    "WeChat original was accessed through public reprint/archive text; no claim of direct successful WeChat read."
+  ],
+  "revision": "User requested a shorter article focused on core points; three sections, 4 min."
+}

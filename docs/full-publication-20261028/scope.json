@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28",
+  "base_commit": "5bc19ce64b7c50bf2efd036294382e8dd61362d6",
+  "articles": [
+    "embodied-intelligence-evolution",
+    "yang-zhilin-agent-generalization",
+    "claude-code-internals-overview",
+    "deepseek-harness-composition",
+    "hermes-agent-architecture-deep-dive",
+    "pi-architecture-deep-dive",
+    "ai-product-interview-study-guide"
+  ],
+  "source_hashes": {
+    "embodied-intelligence-evolution": "44fc4426bbc0728665ca9fad4bca9b99a790228731daf108fb914162f33571b3",
+    "yang-zhilin-agent-generalization": "75d76d5242da228b9ad0e19b0c235f2bf75b921bf7113442f24283bac1fee718",
+    "claude-code-internals-overview": "e675944c8cbe3bb84a828977d9a0f50769052558127ee6580f05be261406d8f2",
+    "deepseek-harness-composition": "e145c91a2310478f9b5c431d7521b4f2c056beaa53b425e522381da871c2bda7",
+    "hermes-agent-architecture-deep-dive": "310e016e73ceff4e1b683ae83c1549c1fe49ae090237e93ed9924e5292956bde",
+    "pi-architecture-deep-dive": "538bcfcd94de6b67c1a424486d33aab4aaae6fbaac6f6738c8b454a6034cfc7d",
+    "ai-product-interview-study-guide": "27463423e3837b3761a93af37e25c338a8dfedf5900db8eaa15b47b0f4b91511"
+  },
+  "guide_source_hash": "bb7fe79c784753233916fb40230cee71eed1824eeb52e915f86384a1e42ce735",
+  "guide_changes": "Frontmatter, removal of duplicate H1, public asset URLs and 13 local-file links converted to website routes; substantive body unchanged",
+  "guide_figures": 16,
+  "excluded": [
+    "homepage edits",
+    "historical archives",
+    "WeChat files",
+    "local preview screenshots"
+  ],
+  "history_changes": "Removed duplicate H1 from publication copy; original reading document preserved",
+  "formatting": "Existing Markdown hard break expressed with backslash; excess end-of-file blank line removed, without changing visible content."
+}

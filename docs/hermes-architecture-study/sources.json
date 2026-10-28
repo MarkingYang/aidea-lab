@@ -1,0 +1,138 @@
+{
+  "repository": "https://github.com/NousResearch/hermes-agent",
+  "commit": "2ed6387d87b4db091af2f05db32faab6e0dbb9a2",
+  "retrievedAt": "2026-09-20",
+  "scope": "Static official source and documentation inspection; no Hermes or model execution",
+  "files": [
+    {
+      "path": "website/docs/developer-guide/architecture.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/developer-guide/architecture.md",
+      "sha256": "66cc2baba18cd59866b32886edf08d37683e2e929aed31704a0f290b562885fb",
+      "bytes": 16760
+    },
+    {
+      "path": "website/docs/developer-guide/agent-loop.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/developer-guide/agent-loop.md",
+      "sha256": "93c1c57c3fba8b0368214c5647a61e14a7243072f2b4c5435349252f5c5e1b08",
+      "bytes": 11537
+    },
+    {
+      "path": "website/docs/developer-guide/prompt-assembly.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/developer-guide/prompt-assembly.md",
+      "sha256": "d3970a2fd494132f7564a2889798e89271ea978ea8e895342d5cd98e1446a3b2",
+      "bytes": 15808
+    },
+    {
+      "path": "website/docs/developer-guide/session-storage.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/developer-guide/session-storage.md",
+      "sha256": "2a1d9c263cf8437fc736902b789d09faa1f7166a9a5bbd53b9d8ae26479626ca",
+      "bytes": 23578
+    },
+    {
+      "path": "website/docs/developer-guide/gateway-internals.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/developer-guide/gateway-internals.md",
+      "sha256": "663e1712cabdfb87a3ab019b4087f58b130168a42676f9bc5e59efe4941f8478",
+      "bytes": 19923
+    },
+    {
+      "path": "website/docs/developer-guide/tools-runtime.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/developer-guide/tools-runtime.md",
+      "sha256": "eff476b64dfb2a9279e7bcb4e51efdd89711d866c1cfcc03d3b42301f322e80e",
+      "bytes": 12079
+    },
+    {
+      "path": "website/docs/user-guide/features/memory.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/user-guide/features/memory.md",
+      "sha256": "cf8742e99682617cf9e8433f46fd2aaac4629c110c5b3f74901a99ad3e68147c",
+      "bytes": 26104
+    },
+    {
+      "path": "website/docs/user-guide/features/skills.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/user-guide/features/skills.md",
+      "sha256": "8221906953aaed7d83a1e6cafb5b6074b1cbaf4f345cb8cae5157725450d5a7d",
+      "bytes": 54471
+    },
+    {
+      "path": "website/docs/user-guide/features/delegation.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/user-guide/features/delegation.md",
+      "sha256": "27c3d695b75abaa174eeae39074c00d320f9f1343e9373f26f5f4cb2a7e7067f",
+      "bytes": 49011
+    },
+    {
+      "path": "website/docs/user-guide/features/code-execution.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/user-guide/features/code-execution.md",
+      "sha256": "7ff22829cb69c126b8d7eab374066c24b8bccc3d609b1095ce27b3ba4389488b",
+      "bytes": 14931
+    },
+    {
+      "path": "website/docs/user-guide/security.md",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/website/docs/user-guide/security.md",
+      "sha256": "89a63ee3fd3ada3bf2a8f516619b19c8209b40d2345d163ab54993737e7cfc08",
+      "bytes": 59651
+    },
+    {
+      "path": "agent/background_review.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/agent/background_review.py",
+      "sha256": "9cd0a59c820afeacf2c3f850cf8e5dd5714f3cb4f96eed73e5a59361172dfc96",
+      "bytes": 79757
+    },
+    {
+      "path": "run_agent.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/run_agent.py",
+      "sha256": "72f63d73987c4fb50b3311116ab1a8b98a64622c43f1949efb5a70a97509e7f9",
+      "bytes": 90186
+    },
+    {
+      "path": "tools/registry.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/tools/registry.py",
+      "sha256": "08ffd01f156a9b9ce0c4df73686649ca3cdd7918aa9d282c2b60a1a0b394c399",
+      "bytes": 50001
+    },
+    {
+      "path": "agent/conversation_loop.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/agent/conversation_loop.py",
+      "sha256": "fb2fddda46a148f80e6384f138e27ecc4b71e05c26465859dd2824a757016eb6",
+      "bytes": 89182
+    },
+    {
+      "path": "agent/system_prompt.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/agent/system_prompt.py",
+      "sha256": "04b09acc16045149bbf267c0d7829edddf6a4fbde3822b17987ac32175687100",
+      "bytes": 43962
+    },
+    {
+      "path": "agent/tool_dispatch.py",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "agent/memory_manager.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/agent/memory_manager.py",
+      "sha256": "bd688b6ceecaf63e737516d9a65d2e0db3c3a8c12d5d7ede26c415b609a2898a",
+      "bytes": 42069
+    },
+    {
+      "path": "tools/delegate_tool.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/tools/delegate_tool.py",
+      "sha256": "c66b7d9b833de139596847a745e139453a6930a6a998b888229a868020fde5d2",
+      "bytes": 44258
+    },
+    {
+      "path": "tools/approval.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/tools/approval.py",
+      "sha256": "fb8dafe0ed0b18b9c782330724fe17f9ec8503de59cfa166b506c13c7bc685ac",
+      "bytes": 69587
+    },
+    {
+      "path": "tools/file_tools.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/tools/file_tools.py",
+      "sha256": "776a3162069e32f9e585cd1697f97e5f54164a5792bfe01adb78dd6f094a92d2",
+      "bytes": 70801
+    },
+    {
+      "path": "agent/prompt_builder.py",
+      "url": "https://raw.githubusercontent.com/NousResearch/hermes-agent/2ed6387d87b4db091af2f05db32faab6e0dbb9a2/agent/prompt_builder.py",
+      "sha256": "71d873c9fbc79e688f1440fbfafd7cebb20b3c4384142f6b65f9aab1e864f79f",
+      "bytes": 106935
+    }
+  ]
+}

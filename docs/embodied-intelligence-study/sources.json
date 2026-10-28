@@ -1,0 +1,624 @@
+{
+  "scope": "Citation response identity only; HTTP success does not validate source claims. Failed supplemental requests do not negate prior browser verification.",
+  "sources": [
+    {
+      "url": "https://www.computerhistory.org/timeline/1961/",
+      "title": "计算机历史博物馆：1961 年与 Unimate",
+      "sections": [
+        "1961｜Unimate：从危险、重复的工位开始"
+      ],
+      "checked_at": "2026-09-26T08:05:21.321686+00:00",
+      "status": 200,
+      "final_url": "https://www.computerhistory.org/timeline/1961/",
+      "content_type": "text/html",
+      "bytes": 73001,
+      "sha256": "c6fc27ab079863c05d50e2fbb1e8c89724f2dfc5153f2708d732a53ade81f645"
+    },
+    {
+      "url": "https://www.sri.com/case-study/the-man-the-myth-the-legend-meet-shakey-the-robot-the-worlds-first-ai-based-robot/",
+      "title": "SRI：Shakey 项目回顾",
+      "sections": [
+        "1966—1972｜Shakey：把“去做一件事”拆成行动"
+      ],
+      "checked_at": "2026-09-26T08:05:21.321981+00:00",
+      "status": 200,
+      "final_url": "https://www.sri.com/case-study/the-man-the-myth-the-legend-meet-shakey-the-robot-the-worlds-first-ai-based-robot/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 155898,
+      "sha256": "c9a2f968468c11643c677caaaeb139e2c49550759a66e7d97b39f2cfddc3e03d"
+    },
+    {
+      "url": "https://www.sri.com/wp-content/uploads/2021/12/629.pdf",
+      "title": "SRI 汇编的项目技术报告",
+      "sections": [
+        "1966—1972｜Shakey：把“去做一件事”拆成行动"
+      ],
+      "checked_at": "2026-09-26T08:05:21.322119+00:00",
+      "status": 200,
+      "final_url": "https://www.sri.com/wp-content/uploads/2021/12/629.pdf",
+      "content_type": "application/pdf",
+      "bytes": 1372914,
+      "sha256": "058a4ad70f61a6deb12aa4afe6a1240ee424bd46b572a3c63c35b39ea0058d24"
+    },
+    {
+      "url": "https://doi.org/10.1109/JRA.1986.1087032",
+      "title": "Brooks，A Robust Layered Control System for a Mobile Robot",
+      "sections": [
+        "1986｜Brooks：先对眼前的世界作出反应"
+      ],
+      "checked_at": "2026-09-26T08:05:21.322224+00:00",
+      "status": 202,
+      "final_url": "https://ieeexplore.ieee.org/document/1087032/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "url": "https://global.honda/en/newsroom/news/2000/c001120b-eng.html",
+      "title": "Honda：ASIMO 首次发布",
+      "sections": [
+        "2000.11｜ASIMO：拥有一副能走进人类空间的身体"
+      ],
+      "checked_at": "2026-09-26T08:05:21.322334+00:00",
+      "status": 200,
+      "final_url": "https://global.honda/en/newsroom/news/2000/c001120b-eng.html",
+      "content_type": "text/html",
+      "bytes": 63961,
+      "sha256": "2e5fd34115b172519ae54a409a0c029eb15d2c0bedf7d29759640d41dac2a5cc"
+    },
+    {
+      "url": "https://www.darpa.mil/about/innovation-timeline/grand-challenge",
+      "title": "DARPA：Grand Challenge",
+      "sections": [
+        "2004—2005｜DARPA 挑战赛：让整套系统经受长距离考验"
+      ],
+      "checked_at": "2026-09-26T08:05:21.322425+00:00",
+      "status": "request_failed",
+      "error": "<urlopen error _ssl.c:989: The handshake operation timed out>"
+    },
+    {
+      "url": "https://robots.stanford.edu/papers/thrun.stanley05.pdf",
+      "title": "Stanley 系统论文，2006 年发表",
+      "sections": [
+        "2004—2005｜DARPA 挑战赛：让整套系统经受长距离考验"
+      ],
+      "checked_at": "2026-09-26T08:05:21.322527+00:00",
+      "status": 200,
+      "final_url": "https://robots.stanford.edu/papers/thrun.stanley05.pdf",
+      "content_type": "application/pdf",
+      "bytes": 3569074,
+      "sha256": "33136bb302d6690d5f538b7944a89c398c5db6ad14b801a2739f8f8a0418f0a8"
+    },
+    {
+      "url": "https://arxiv.org/abs/1504.00702",
+      "title": "Levine 等，End-to-End Training of Deep Visuomotor Policies",
+      "sections": [
+        "2015.04｜深度视觉运动学习：看见什么，与怎样动一起训练"
+      ],
+      "checked_at": "2026-09-26T08:05:21.322629+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/1504.00702",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 43692,
+      "sha256": "e2ecf9576df596042ecb40c40bfe093f48615106e623e75c94c53780dd37ede7"
+    },
+    {
+      "url": "https://arxiv.org/abs/1703.06907",
+      "title": "Tobin 等，Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World",
+      "sections": [
+        "2017.03｜域随机化：让现实成为训练变化中的一种"
+      ],
+      "checked_at": "2026-09-26T08:05:22.506523+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/1703.06907",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 43042,
+      "sha256": "d3ffdac6e7db209616c5fc0222350d77515efe5f0960201904312960efff8830"
+    },
+    {
+      "url": "https://openai.com/index/learning-dexterity/",
+      "title": "OpenAI：Learning Dexterity，2018",
+      "sections": [
+        "2018—2019｜Dactyl 与魔方：学会操作，还要连续做对"
+      ],
+      "checked_at": "2026-09-26T08:05:22.995170+00:00",
+      "status": "request_failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://openai.com/index/solving-rubiks-cube/",
+      "title": "Solving Rubik’s Cube，2019",
+      "sections": [
+        "2018—2019｜Dactyl 与魔方：学会操作，还要连续做对"
+      ],
+      "checked_at": "2026-09-26T08:05:23.226751+00:00",
+      "status": "request_failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://arxiv.org/abs/2107.04034",
+      "title": "Kumar 等，RMA: Rapid Motor Adaptation for Legged Robots",
+      "sections": [
+        "2021.07｜RMA：走到不同地面上，及时调整身体"
+      ],
+      "checked_at": "2026-09-26T08:05:23.451577+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2107.04034",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 42881,
+      "sha256": "1867d1e1efc250a596593cd5488fdbb2f51acc3be0b6cb170b9d0696973dd47c"
+    },
+    {
+      "url": "https://arxiv.org/abs/2204.01691",
+      "title": "SayCan 原论文",
+      "sections": [
+        "2022.04｜SayCan：既要知道该做什么，也要知道能做什么"
+      ],
+      "checked_at": "2026-09-26T08:05:23.709572+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2204.01691",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 50714,
+      "sha256": "6d5f957d099eff18d25746ad9c1ed054c9a13afdf927c2c89de94399f09ccae9"
+    },
+    {
+      "url": "https://say-can.github.io/",
+      "title": "项目页与后续更新",
+      "sections": [
+        "2022.04｜SayCan：既要知道该做什么，也要知道能做什么"
+      ],
+      "checked_at": "2026-09-26T08:05:23.716562+00:00",
+      "status": 200,
+      "final_url": "https://say-can.github.io/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 26548,
+      "sha256": "efa67e52e79f4792d8e673ae04fffed3155037e8bb094d7ce3d3da7161993a90"
+    },
+    {
+      "url": "https://research.google/blog/rt-1-robotics-transformer-for-real-world-control-at-scale/",
+      "title": "Google Research：RT-1 发布",
+      "sections": [
+        "2022.12｜RT-1：让多个任务共享一套动作策略"
+      ],
+      "checked_at": "2026-09-26T08:05:23.991877+00:00",
+      "status": 200,
+      "final_url": "https://research.google/blog/rt-1-robotics-transformer-for-real-world-control-at-scale/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 179394,
+      "sha256": "de196ff20e78f63403014fa5e053e90e3d1dfa1d9c9ba9a3b92f9960e0bb71bf"
+    },
+    {
+      "url": "https://arxiv.org/html/2212.06817v1",
+      "title": "RT-1 首版论文",
+      "sections": [
+        "2022.12｜RT-1：让多个任务共享一套动作策略"
+      ],
+      "checked_at": "2026-09-26T08:05:23.992815+00:00",
+      "status": "request_failed",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "url": "https://arxiv.org/abs/2303.03378",
+      "title": "PaLM-E 论文",
+      "sections": [
+        "2023.03｜PaLM-E：让模型读到身体的观察"
+      ],
+      "checked_at": "2026-09-26T08:05:24.101394+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2303.03378",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 45201,
+      "sha256": "32312ddf20f5de2d58e6a8da8f2d080f63c5f615a55826cd5ecf2b331d383ae4"
+    },
+    {
+      "url": "https://palm-e.github.io/",
+      "title": "作者项目页",
+      "sections": [
+        "2023.03｜PaLM-E：让模型读到身体的观察"
+      ],
+      "checked_at": "2026-09-26T08:05:24.756635+00:00",
+      "status": 200,
+      "final_url": "https://palm-e.github.io/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 36900,
+      "sha256": "a0a316d5539e12d0be1952f27b57a1441174493e5178d3a118f34a6d5d6e2a57"
+    },
+    {
+      "url": "https://arxiv.org/html/2303.04137v1",
+      "title": "Diffusion Policy 首版论文",
+      "sections": [
+        "2023.03｜Diffusion Policy：一次生成一段连贯动作"
+      ],
+      "checked_at": "2026-09-26T08:05:24.764866+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2303.04137v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 330395,
+      "sha256": "c9ed8375098d121f76f8e58e2452af456cc96098fc5f91fd57cfc1c75bcb02c9"
+    },
+    {
+      "url": "https://diffusion-policy.cs.columbia.edu/",
+      "title": "作者项目页",
+      "sections": [
+        "2023.03｜Diffusion Policy：一次生成一段连贯动作"
+      ],
+      "checked_at": "2026-09-26T08:05:24.874903+00:00",
+      "status": 200,
+      "final_url": "https://diffusion-policy.cs.columbia.edu/",
+      "content_type": "text/html",
+      "bytes": 35723,
+      "sha256": "361b244003e973cefe369dc0b448a8ef7c5c2892f1a7567b8ddc603954bb584a"
+    },
+    {
+      "url": "https://arxiv.org/abs/2304.13705",
+      "title": "Learning Fine-Grained Bimanual Manipulation with Low-Cost Hardware",
+      "sections": [
+        "2023.04｜ALOHA 与 ACT：示范怎样采，动作怎样学"
+      ],
+      "checked_at": "2026-09-26T08:05:25.059434+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2304.13705",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 41303,
+      "sha256": "15a866d09f1d264d4028424ea2af2df134747a573f8d830d30c5193c2c6abd87"
+    },
+    {
+      "url": "https://tonyzhaozh.github.io/aloha/",
+      "title": "ALOHA 项目页",
+      "sections": [
+        "2023.04｜ALOHA 与 ACT：示范怎样采，动作怎样学"
+      ],
+      "checked_at": "2026-09-26T08:05:25.593464+00:00",
+      "status": 200,
+      "final_url": "https://tonyzhaozh.github.io/aloha/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 24358,
+      "sha256": "61caeeef121e9a5d114a9b22cfe382452c8d9b0eac9afaf7ab4cf447c3d74eec"
+    },
+    {
+      "url": "https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/",
+      "title": "Google DeepMind：RT-2",
+      "sections": [
+        "2023.07｜RT-2：把网络知识迁移到动作选择"
+      ],
+      "checked_at": "2026-09-26T08:05:25.666134+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/",
+      "content_type": "text/html",
+      "bytes": 174328,
+      "sha256": "8246691f66fb11c87e9c27744c5aaea77fb4f7491593779dba837253d03d8230"
+    },
+    {
+      "url": "https://arxiv.org/html/2307.15818v1",
+      "title": "RT-2 首版论文",
+      "sections": [
+        "2023.07｜RT-2：把网络知识迁移到动作选择"
+      ],
+      "checked_at": "2026-09-26T08:05:25.839625+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2307.15818v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 242203,
+      "sha256": "7029c47cbce39692871f9e94ff1f54bf4e02a2aa382f998996deda89bc4d1656"
+    },
+    {
+      "url": "https://deepmind.google/blog/scaling-up-learning-across-many-different-robot-types/",
+      "title": "Google DeepMind：跨机器人学习项目发布",
+      "sections": [
+        "2023.10｜Open X-Embodiment：不同机器人的经验能否共享"
+      ],
+      "checked_at": "2026-09-26T08:05:26.250483+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/scaling-up-learning-across-many-different-robot-types/",
+      "content_type": "text/html",
+      "bytes": 163635,
+      "sha256": "e344b78189d8ca8eff225af45e01321423d95b0ddd7a8c10b0968387c24842e9"
+    },
+    {
+      "url": "https://arxiv.org/abs/2310.08864",
+      "title": "10 月 13 日首次提交的论文",
+      "sections": [
+        "2023.10｜Open X-Embodiment：不同机器人的经验能否共享"
+      ],
+      "checked_at": "2026-09-26T08:05:26.276882+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2310.08864",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 92219,
+      "sha256": "0a9129c1dac7b556b7521cb13636be913a2a1ea35df02d5f033cba4670ae562c"
+    },
+    {
+      "url": "https://arxiv.org/abs/2405.12213",
+      "title": "Octo 论文",
+      "sections": [
+        "2024.05｜Octo：换一台机器人，能否少从头学一些"
+      ],
+      "checked_at": "2026-09-26T08:05:26.800197+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2405.12213",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 44626,
+      "sha256": "6e9e93b9090faf6a8ff6e4f149da863af6c601c934ba4b6b6a9ad1b78e06e2cc"
+    },
+    {
+      "url": "https://octo-models.github.io/",
+      "title": "作者项目与开放资源",
+      "sections": [
+        "2024.05｜Octo：换一台机器人，能否少从头学一些"
+      ],
+      "checked_at": "2026-09-26T08:05:26.897959+00:00",
+      "status": 200,
+      "final_url": "https://octo-models.github.io/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 18294,
+      "sha256": "4f23c47e37533137b1e3845afd57bbbd74ed37865f3fce0699ca673a8cde0b6b"
+    },
+    {
+      "url": "https://arxiv.org/html/2406.09246v1",
+      "title": "OpenVLA 首版论文",
+      "sections": [
+        "2024.06｜OpenVLA：把 VLA 变成可以继续研究的模型"
+      ],
+      "checked_at": "2026-09-26T08:05:27.320172+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2406.09246v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 316621,
+      "sha256": "0dcb1146816a514cd0c7cff414907981aa0c24ebea4dc9af44c7fd1330241c85"
+    },
+    {
+      "url": "https://openvla.github.io/",
+      "title": "项目页",
+      "sections": [
+        "2024.06｜OpenVLA：把 VLA 变成可以继续研究的模型"
+      ],
+      "checked_at": "2026-09-26T08:05:27.469273+00:00",
+      "status": 200,
+      "final_url": "https://openvla.github.io/",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 50363,
+      "sha256": "fc8d7c59138ef1d5b668e12986d7b94d247b0ecf21e04063a2a65846b2aa824c"
+    },
+    {
+      "url": "https://gxo.com/news_article/gxo-signs-industry-first-multi-year-agreement-with-agility-robotics/",
+      "title": "GXO：与 Agility Robotics 的商业部署协议",
+      "sections": [
+        "2024.06｜Digit：机器人开始接受具体工位的检验"
+      ],
+      "checked_at": "2026-09-26T08:05:27.497652+00:00",
+      "status": 200,
+      "final_url": "https://gxo.com/news_article/gxo-signs-industry-first-multi-year-agreement-with-agility-robotics/",
+      "content_type": "text/html; charset=UTF-8",
+      "bytes": 189648,
+      "sha256": "8ae94854f2d43b954020de176aa20fab677b72a02edf293a3615c7c786faa171"
+    },
+    {
+      "url": "https://www.physicalintelligence.company/blog/pi0",
+      "title": "Physical Intelligence：π₀ 首次发布",
+      "sections": [
+        "2024.10｜π₀：让语义知识与连续动作共同工作"
+      ],
+      "checked_at": "2026-09-26T08:05:27.889651+00:00",
+      "status": "request_failed",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "url": "https://arxiv.org/html/2410.24164v1",
+      "title": "π₀ 首版论文",
+      "sections": [
+        "2024.10｜π₀：让语义知识与连续动作共同工作"
+      ],
+      "checked_at": "2026-09-26T08:05:27.999949+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/html/2410.24164v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 227546,
+      "sha256": "3e0641909f7b6325d36047ddad8957278599e76bb4a9cc5fd52692552e495cf5"
+    },
+    {
+      "url": "https://www.figure.ai/news/helix",
+      "title": "Figure：Helix 首次发布",
+      "sections": [
+        "2025.02｜Helix：理解任务与控制身体采用不同节奏"
+      ],
+      "checked_at": "2026-09-26T08:05:28.079505+00:00",
+      "status": 200,
+      "final_url": "https://www.figure.ai/news/helix",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 90619,
+      "sha256": "67e55b8cff3a6b2b514de60da7922d30eee010b620dfbf5eb94df89f61a79732"
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.06669v1",
+      "title": "AgiBot World 首版论文",
+      "sections": [
+        "2025.03｜AgiBot World：把真机示范组织成规模化资源"
+      ],
+      "checked_at": "2026-09-26T08:08:37.908915+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2503.06669v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 50771,
+      "sha256": "791231742cbbf492f08ad198efdb49dde9ea1a1ef459c000841f9cccd241dbf6"
+    },
+    {
+      "url": "https://github.com/OpenDriveLab/AgiBot-World",
+      "title": "作者数据与模型仓库",
+      "sections": [
+        "2025.03｜AgiBot World：把真机示范组织成规模化资源"
+      ],
+      "checked_at": "2026-09-26T08:05:28.738139+00:00",
+      "status": 200,
+      "final_url": "https://github.com/OpenDriveLab/AgiBot-World",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 394071,
+      "sha256": "11819fbaa3f9dd1da5805971f0cc3de85bfb06c2af9da6896645b3e3fb2d03a7"
+    },
+    {
+      "url": "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/",
+      "title": "Gemini Robotics 首次发布",
+      "sections": [
+        "2025.03｜Gemini Robotics：空间理解与动作模型分开推进"
+      ],
+      "checked_at": "2026-09-26T08:05:28.884104+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/",
+      "content_type": "text/html",
+      "bytes": 174218,
+      "sha256": "e6bc1e5ebaf26e6149ed118504f95853b5e0b043d8b9732eef7beb8ed8ffc2f6"
+    },
+    {
+      "url": "https://deepmind.google/blog/gemini-robotics-on-device-brings-ai-to-local-robotic-devices/",
+      "title": "6 月 24 日 On-Device 发布",
+      "sections": [
+        "2025.03｜Gemini Robotics：空间理解与动作模型分开推进"
+      ],
+      "checked_at": "2026-09-26T08:05:29.124365+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-on-device-brings-ai-to-local-robotic-devices/",
+      "content_type": "text/html",
+      "bytes": 166677,
+      "sha256": "18a68eca082d7b053278369c6ae0a9512e7ef1f04200eddb57f1d1dac7042bec"
+    },
+    {
+      "url": "https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks",
+      "title": "NVIDIA：GR00T N1 发布",
+      "sections": [
+        "2025.03｜GR00T N1：模型背后还需要一套训练设施"
+      ],
+      "checked_at": "2026-09-26T08:05:29.288759+00:00",
+      "status": 200,
+      "final_url": "https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 83620,
+      "sha256": "1581ef61bd6c26a8fcba1e0a2449451ce3641ae3bb93b8828a40ca91b6cecc0b"
+    },
+    {
+      "url": "https://arxiv.org/abs/2503.14734",
+      "title": "GR00T N1 论文",
+      "sections": [
+        "2025.03｜GR00T N1：模型背后还需要一套训练设施"
+      ],
+      "checked_at": "2026-09-26T08:05:29.429191+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2503.14734",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 48631,
+      "sha256": "a3f24e4ea3e6025b026a04802d9e16802794e09e4bf999a3023babbb0aebfd73"
+    },
+    {
+      "url": "https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-world-foundation-model-platform-to-accelerate-physical-ai-development",
+      "title": "Cosmos 平台发布",
+      "sections": [
+        "2025.03｜GR00T N1：模型背后还需要一套训练设施"
+      ],
+      "checked_at": "2026-09-26T08:05:30.168557+00:00",
+      "status": 200,
+      "final_url": "https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-world-foundation-model-platform-to-accelerate-physical-ai-development",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 83833,
+      "sha256": "ae61933c570fa8b1983f3757f8e772185556e15bfd35f795bc7e700fe1d6ec4a"
+    },
+    {
+      "url": "https://arxiv.org/abs/2504.16054",
+      "title": "π₀.₅：具有开放环境泛化能力的 VLA",
+      "sections": [
+        "2025.04｜π₀.₅：把问题带到陌生住宅里"
+      ],
+      "checked_at": "2026-09-26T08:05:30.488270+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2504.16054",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 47099,
+      "sha256": "bd188bdea0c24c3eeef87c977492037c35ee84fdbd4f9d82db054b33d5bdcdba"
+    },
+    {
+      "url": "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
+      "title": "Google DeepMind：Gemini Robotics 1.5",
+      "sections": [
+        "2025.09｜Gemini Robotics 1.5：把多步任务接到行动中"
+      ],
+      "checked_at": "2026-09-26T08:05:30.608134+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
+      "content_type": "text/html",
+      "bytes": 177143,
+      "sha256": "69ee20f71ea6b6c911fe7f6214843d2a144b78671f4bcbaa37f11bd7024c0d2a"
+    },
+    {
+      "url": "https://www.pi.website/blog/pistar06",
+      "title": "Physical Intelligence：π*₀.₆ 与 RECAP",
+      "sections": [
+        "2025.11｜π*₀.₆：失败与纠正也进入训练"
+      ],
+      "checked_at": "2026-09-26T08:05:30.679065+00:00",
+      "status": "request_failed",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "url": "https://arxiv.org/abs/2511.14759",
+      "title": "11 月 18 日首次提交的论文",
+      "sections": [
+        "2025.11｜π*₀.₆：失败与纠正也进入训练"
+      ],
+      "checked_at": "2026-09-26T08:05:30.852401+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2511.14759",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 50093,
+      "sha256": "75351fae30ef4caac8c18cdb585f77b558ac9f338c30eed4a397ecaa883bdcff"
+    },
+    {
+      "url": "https://www.figure.ai/news/helix-02",
+      "title": "Figure：Helix 02",
+      "sections": [
+        "2026.01｜Helix 02：走路、平衡与操作成为连续过程"
+      ],
+      "checked_at": "2026-09-26T08:05:31.406682+00:00",
+      "status": 200,
+      "final_url": "https://www.figure.ai/news/helix-02",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 72614,
+      "sha256": "24ca9c74c3213e2159eb9c4e9606f7a630fa0d87d68a3061db55085cbc0e1e3e"
+    },
+    {
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "title": "Gemini Robotics 2 发布",
+      "sections": [
+        "2026.07｜Gemini Robotics 2：继续拓展身体与任务范围"
+      ],
+      "checked_at": "2026-09-26T08:05:31.468157+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "content_type": "text/html",
+      "bytes": 180189,
+      "sha256": "f324b213b6b6166b5cc37d9e3bc5dfd1a762cf3b32351a0c3702fb98d10b7ba6"
+    },
+    {
+      "url": "https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/",
+      "title": "On-Device 2 模型卡",
+      "sections": [
+        "2026.07｜Gemini Robotics 2：继续拓展身体与任务范围"
+      ],
+      "checked_at": "2026-09-26T08:05:31.787625+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/",
+      "content_type": "text/html",
+      "bytes": 26788,
+      "sha256": "c12837b9946d3260717b6c8fd31162cf4704fbc88bd46cd3d836ba4c0216c985"
+    },
+    {
+      "url": "https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "title": "Figure：Helix 2.5 发布与评测附录",
+      "sections": [
+        "2026.09｜Helix 2.5：换一个家，究竟还能做多少"
+      ],
+      "checked_at": "2026-09-26T08:05:32.024904+00:00",
+      "status": 200,
+      "final_url": "https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 86404,
+      "sha256": "cb1b673e52b77d9cdb3b67ba2973347062ab39aa344c53170cb321115890f1e0"
+    }
+  ]
+}

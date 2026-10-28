@@ -1,0 +1,162 @@
+{
+  "checkedAt": "2026-09-20",
+  "commit": "ddefc45fbc7f8e46dd73185e68295696d1297887",
+  "release": "0.1.6-alpha.2",
+  "scope": "Official documentation and static source analysis; no Harness, model, provider or sandbox execution.",
+  "sources": [
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/README.md",
+      "sha256": "b43a2af65d10028e5de61e4603f946bfce9b777df079e92745491c7700a6d58e",
+      "bytes": 2444
+    },
+    {
+      "path": "SAFETY.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/SAFETY.md",
+      "sha256": "62075bb51e0f7790441e7722ff12063107b4866019332e71ef01b63b6f880fee",
+      "bytes": 1673
+    },
+    {
+      "path": "docs/architecture.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/architecture.md",
+      "sha256": "a381d3b3cb3af59f9be1075b009d5fd0b65b926c2dadd59965af0b1d9d1d2b0a",
+      "bytes": 18627
+    },
+    {
+      "path": "docs/capability-seams.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/capability-seams.md",
+      "sha256": "eec4107471819e8c39cd24637640262a1da606e553488d97e6e4f90d6492c4ab",
+      "bytes": 56569
+    },
+    {
+      "path": "docs/subsystems/session.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/subsystems/session.md",
+      "sha256": "5e1eb611406fe133ba464be4427dd023bebd62c7629c14eb2965a446c562fe3b",
+      "bytes": 70780
+    },
+    {
+      "path": "docs/subsystems/tools.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/subsystems/tools.md",
+      "sha256": "c23b2c2177c8a14f5e3dd566d4352a3ca2888721d1dc2f0ec01ad5ed73cc1f07",
+      "bytes": 44006
+    },
+    {
+      "path": "docs/subsystems/compaction.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/subsystems/compaction.md",
+      "sha256": "a788a95291714b8c14d9c9b2a968bfc813cc2c53cb9784bdd06a6378c09f8588",
+      "bytes": 19641
+    },
+    {
+      "path": "docs/subsystems/sandbox.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/subsystems/sandbox.md",
+      "sha256": "a8bb9cf5405aa8470785d9442786e9e6940265fb46c21608ef15c82993a62ca7",
+      "bytes": 12950
+    },
+    {
+      "path": "docs/subsystems/subagent.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/subsystems/subagent.md",
+      "sha256": "2325501b37964f4743547542a5340a8913d25ede2cddc2480c4c562ab33ccfc5",
+      "bytes": 57924
+    },
+    {
+      "path": "docs/subsystems/agent-team.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/subsystems/agent-team.md",
+      "sha256": "708e3641fcb66074f46a8a1635dfef2697bef6e10aa5e86abf845530863d7f4d",
+      "bytes": 9579
+    },
+    {
+      "path": "packages/core/agent-loop/README.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/agent-loop/README.md",
+      "sha256": "0a2275673cec2f22cb343cabab7554ef59ae7b6ffb73f0e7a93c8df421f446f8",
+      "bytes": 20355
+    },
+    {
+      "path": "packages/code-runtime/code-runtime-worker-thread/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "path": "packages/preset/agent-presets/README.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/preset/agent-presets/README.md",
+      "sha256": "0cbe393e46eb2c93cd025e2107ac45c9070029452049374d4d3887cfa54d612b",
+      "bytes": 19039
+    },
+    {
+      "path": "docs/cordis-tutorial/02-lifecycle-and-effects.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/cordis-tutorial/02-lifecycle-and-effects.md",
+      "sha256": "109dec778aa71245e17beb2df51d12e9a962db4e2ef7f1221ade268ac4b8a019",
+      "bytes": 4159
+    },
+    {
+      "path": "docs/cordis-tutorial/04-events.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/cordis-tutorial/04-events.md",
+      "sha256": "fe5c9fbd85dadc6f29205f628619c045f32b6290bf3449bf6eb3d9c82330a6b3",
+      "bytes": 5574
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/LICENSE",
+      "sha256": "ebb4f09972aee8608be255debaf78451a68e95c290f55c240dec2ecfa16ea6be",
+      "bytes": 1065
+    },
+    {
+      "path": "packages/ptc-runtime/ptc-runtime-node/README.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/ptc-runtime/ptc-runtime-node/README.md",
+      "sha256": "de6e3418bb18539081b7e154228aa1613843f8b49672f34f6ee8a2114c283b7e",
+      "bytes": 11436
+    },
+    {
+      "path": "packages/ptc-runtime/ptc-runtime/README.md",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/ptc-runtime/ptc-runtime/README.md",
+      "sha256": "da819aab377905f06abbec672248792880ec5ed4ad9eb1c78693c6b379575250",
+      "bytes": 10913
+    },
+    {
+      "path": "packages/core/tools/src/index.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/tools/src/index.ts",
+      "sha256": "e040cf44c7a4c1b74650cc32f67503b8881cc1d5b1f47f1cb38cf0167a9bb3da",
+      "bytes": 88889
+    },
+    {
+      "path": "packages/core/tools/src/ptc.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/tools/src/ptc.ts",
+      "sha256": "7a7c19cfdabce7bad053291614b1d727205e94601771a7b239790b3b0f0a7eab",
+      "bytes": 38515
+    },
+    {
+      "path": "packages/core/agent-loop/src/agent.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/agent-loop/src/agent.ts",
+      "sha256": "2b238998e1b63ac7ceffa20190caaaa4806a9ae275112807424d176244dfd014",
+      "bytes": 25001
+    },
+    {
+      "path": "packages/core/agent-loop/src/assistant-stream.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/agent-loop/src/assistant-stream.ts",
+      "sha256": "120d2bec5efeec2aa54bf0e4261a45282936272d610dbbab21eee36b902629de",
+      "bytes": 4263
+    },
+    {
+      "path": "packages/core/agent-loop/src/invariant.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/agent-loop/src/invariant.ts",
+      "sha256": "109c89b44b3449b92c10a7116b00af0e49a8a80ff2be3d79a22c7d48992a08b5",
+      "bytes": 3251
+    },
+    {
+      "path": "packages/core/agent-loop/src/tool-calls.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/agent-loop/src/tool-calls.ts",
+      "sha256": "1f8984127d4245b6a08c1e4b0c8b9d8fa7ce30ffcf08184187f16dc1bf57ae6d",
+      "bytes": 11488
+    },
+    {
+      "path": "packages/core/session/src/repair.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/core/session/src/repair.ts",
+      "sha256": "985740ced27041c1964ca721caea9099703af8b32fa6b610b537909c86f7a76a",
+      "bytes": 5603
+    },
+    {
+      "path": "packages/ptc-runtime/ptc-runtime-node/src/index.ts",
+      "url": "https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/ptc-runtime/ptc-runtime-node/src/index.ts",
+      "sha256": "bba371dc7154ed10637db7157e3c0c9a8e72eb622db251fedd9f100d4052eae7",
+      "bytes": 19964
+    }
+  ]
+}

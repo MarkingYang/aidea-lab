@@ -1,0 +1,15 @@
+flowchart TB
+subgraph OBJECTIVE[轴一：数据和学习目标]
+A[指令与目标回答] --> S[SFT：学习示范输出]
+B[同一输入的偏好对] --> R[经典 RLHF：奖励模型 + 强化学习]
+B --> D[DPO：直接优化相对偏好]
+end
+S --> P[训练参数更新]
+R --> P
+D --> P
+subgraph PARAMS[轴二：参数更新方式]
+P --> F[全参数更新]
+P --> L[LoRA 等参数高效更新]
+end
+F --> E[新任务、旧能力与安全独立评测]
+L --> E

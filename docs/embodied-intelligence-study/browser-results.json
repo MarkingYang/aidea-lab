@@ -1,0 +1,45 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "timelineNodes": 12,
+      "datedHeadings": 30,
+      "diagramCount": 1,
+      "minTimelineFont": 13,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "timelineNodes": 12,
+      "datedHeadings": 30,
+      "diagramCount": 1,
+      "minTimelineFont": 13,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "timelineNodes": 12,
+      "datedHeadings": 30,
+      "diagramCount": 1,
+      "minTimelineFont": 13,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "timelineNodes": 12,
+      "datedHeadings": 30,
+      "diagramCount": 1,
+      "minTimelineFont": 13,
+      "horizontalOverflow": false
+    }
+  ],
+  "timelineControls": "passed",
+  "anchors": "passed",
+  "pageErrors": [],
+  "externalCommentErrors": [],
+  "screenshots": "/tmp/embodied-intelligence-preview"
+}

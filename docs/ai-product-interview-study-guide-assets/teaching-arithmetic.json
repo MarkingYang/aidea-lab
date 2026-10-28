@@ -1,0 +1,119 @@
+{
+  "scope": "Hypothetical arithmetic only; not measured system results.",
+  "checks": [
+    {
+      "example": "注意力第一分量",
+      "result": 0.8,
+      "expected": 0.8,
+      "passed": true
+    },
+    {
+      "example": "RRF A",
+      "result": 0.16233766233766234,
+      "expected": 0.16233766233766234,
+      "passed": true
+    },
+    {
+      "example": "RRF B",
+      "result": 0.1575757575757576,
+      "expected": 0.1575757575757576,
+      "passed": true
+    },
+    {
+      "example": "业务分布加权",
+      "result": 0.88,
+      "expected": 0.88,
+      "passed": true
+    },
+    {
+      "example": "等权测试分布",
+      "result": 0.7749999999999999,
+      "expected": 0.775,
+      "passed": true
+    },
+    {
+      "example": "全部判好准确率",
+      "result": 0.99,
+      "expected": 0.99,
+      "passed": true
+    },
+    {
+      "example": "重复试次成功率",
+      "result": 0.6,
+      "expected": 0.6,
+      "passed": true
+    },
+    {
+      "example": "至少一次成功",
+      "result": 0.8,
+      "expected": 0.8,
+      "passed": true
+    },
+    {
+      "example": "全部三次成功",
+      "result": 0.4,
+      "expected": 0.4,
+      "passed": true
+    },
+    {
+      "example": "配对 A 成功率",
+      "result": 0.9,
+      "expected": 0.9,
+      "passed": true
+    },
+    {
+      "example": "配对 B 成功率",
+      "result": 0.92,
+      "expected": 0.92,
+      "passed": true
+    },
+    {
+      "example": "每轮更新数",
+      "result": 30.0,
+      "expected": 30,
+      "passed": true
+    },
+    {
+      "example": "三轮更新数",
+      "result": 90.0,
+      "expected": 90,
+      "passed": true
+    },
+    {
+      "example": "人工补救成本交点",
+      "result": 0.9523809523809523,
+      "expected": 0.9523809523809523,
+      "passed": true
+    },
+    {
+      "example": "机器人 A 产能",
+      "result": 40.0,
+      "expected": 40,
+      "passed": true
+    },
+    {
+      "example": "机器人 B 产能",
+      "result": 24.0,
+      "expected": 24,
+      "passed": true
+    },
+    {
+      "example": "开发投入回收任务量",
+      "result": 400000.0,
+      "expected": 400000,
+      "passed": true
+    },
+    {
+      "example": "未计额外维护的回收月数",
+      "result": 4.0,
+      "expected": 4,
+      "passed": true
+    },
+    {
+      "example": "含额外维护的回收月数",
+      "result": 5.0,
+      "expected": 5,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "01-overview",
+    "width": 1200,
+    "height": 1185,
+    "pngScale": 2
+  },
+  {
+    "id": "02-kv-cache",
+    "width": 1200,
+    "height": 1445,
+    "pngScale": 2
+  },
+  {
+    "id": "03-rag",
+    "width": 1200,
+    "height": 1829,
+    "pngScale": 2
+  },
+  {
+    "id": "04-tool-call",
+    "width": 1200,
+    "height": 1111,
+    "pngScale": 2
+  },
+  {
+    "id": "05-memory",
+    "width": 1200,
+    "height": 731,
+    "pngScale": 2
+  },
+  {
+    "id": "06-evaluation",
+    "width": 1200,
+    "height": 1211,
+    "pngScale": 2
+  },
+  {
+    "id": "07-judge",
+    "width": 1200,
+    "height": 825,
+    "pngScale": 2
+  },
+  {
+    "id": "08-data-loop",
+    "width": 1200,
+    "height": 1844,
+    "pngScale": 2
+  },
+  {
+    "id": "09-security",
+    "width": 1200,
+    "height": 1704,
+    "pngScale": 2
+  },
+  {
+    "id": "10-harness",
+    "width": 1200,
+    "height": 1144,
+    "pngScale": 2
+  },
+  {
+    "id": "11-recovery",
+    "width": 1200,
+    "height": 1270,
+    "pngScale": 2
+  },
+  {
+    "id": "12-tuning",
+    "width": 1200,
+    "height": 1047,
+    "pngScale": 2
+  },
+  {
+    "id": "13-cost",
+    "width": 1200,
+    "height": 765,
+    "pngScale": 2
+  },
+  {
+    "id": "14-competitors",
+    "width": 1200,
+    "height": 840,
+    "pngScale": 2
+  },
+  {
+    "id": "15-embodied",
+    "width": 1200,
+    "height": 1314,
+    "pngScale": 2
+  },
+  {
+    "id": "16-selection",
+    "width": 1200,
+    "height": 905,
+    "pngScale": 2
+  }
+]

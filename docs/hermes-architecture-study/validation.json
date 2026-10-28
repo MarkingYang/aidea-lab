@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-09-20T13:50:02.132119+00:00",
+  "article": "src/content/writing/hermes-agent-architecture-deep-dive.md",
+  "articleSha256": "310e016e73ceff4e1b683ae83c1549c1fe49ae090237e93ed9924e5292956bde",
+  "sourceCommit": "2ed6387d87b4db091af2f05db32faab6e0dbb9a2",
+  "sourceHashesVerified": 21,
+  "failedSourceProbes": [
+    {
+      "path": "agent/tool_dispatch.py",
+      "status": 404,
+      "usedAsEvidence": false
+    }
+  ],
+  "contentCheck": "passed",
+  "graphCheck": "passed",
+  "build": {
+    "status": "passed",
+    "directory": "/tmp/hermes-blog-validation-20260920",
+    "command": "npm run build",
+    "astro": "7.2.9",
+    "mermaid": "11.17.2",
+    "articleMatchesWorkspace": true,
+    "note": "Original workspace build blocked on dependency file reads and was terminated. Validation uses a temporary source copy and fresh dependencies; tracked package files and shared node_modules were not changed."
+  },
+  "structure": {
+    "sections": 6,
+    "diagrams": 1,
+    "historicalAnchorsPreserved": 3,
+    "originalPublicationDatePreserved": true
+  },
+  "browser": {
+    "passed": true,
+    "widths": [
+      1440,
+      390
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "results": "browser-results.json",
+    "screenshotsVisuallyReviewed": true,
+    "note": "Responsive fit scales overview text down on narrow screens; existing zoom/fullscreen controls remain available."
+  },
+  "publication": "local only; no commit or push",
+  "runtimeExperiments": "None: no Hermes, model, real agent, external business action, failure injection or isolation test."
+}

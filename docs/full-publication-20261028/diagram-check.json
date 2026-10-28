@@ -1,0 +1,30 @@
+{
+  "results": [
+    {
+      "slug": "embodied-intelligence-evolution",
+      "index": 0,
+      "parsed": true
+    },
+    {
+      "slug": "claude-code-internals-overview",
+      "index": 0,
+      "parsed": true
+    },
+    {
+      "slug": "deepseek-harness-composition",
+      "index": 0,
+      "parsed": true
+    },
+    {
+      "slug": "hermes-agent-architecture-deep-dive",
+      "index": 0,
+      "parsed": true
+    },
+    {
+      "slug": "pi-architecture-deep-dive",
+      "index": 0,
+      "parsed": true
+    }
+  ],
+  "browserCheck": "Fresh browser inspection unavailable: browser transport disconnected and Mac locked. Syntax validated with Mermaid and DOM support; prior article browser records retained."
+}

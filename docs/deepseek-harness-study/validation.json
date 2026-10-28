@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-20",
+  "article": "deepseek-harness-composition",
+  "articleSha256": "e145c91a2310478f9b5c431d7521b4f2c056beaa53b425e522381da871c2bda7",
+  "headings": 6,
+  "mermaidDiagrams": 1,
+  "cjkCharacters": 4386,
+  "sourceHashesVerified": 25,
+  "linkedOfficialSourcePathsVerified": 17,
+  "preserved": [
+    "URL",
+    "publishedAt 2026-09-05",
+    "deepseek-harness-composition anchor",
+    "deepseek-harness-state anchor",
+    "deepseek-harness-execution anchor"
+  ],
+  "contentCheck": "passed: 79 articles, 24 groups, 8 domains",
+  "graphCheck": "passed: 79 articles, 149 nodes, 635 links in isolated current-worktree snapshot",
+  "build": "passed: npm run build in isolated snapshot, 126 pages; fresh npm ci with original lockfile",
+  "browser": "passed: 1440px and 390px × light and dark; rendered diagram, no horizontal overflow, zoom/reset, three legacy anchors, no page errors",
+  "executedHarnessOrModel": false,
+  "publication": "local only",
+  "buildDirectory": "/tmp/aidea-deepseek-validation-20260920",
+  "visualReview": "inspected final desktop light and mobile dark screenshots; reduced overlapping edge labels before final verification",
+  "limitations": [
+    "Original workspace Astro stalled while reading dependency files; stopped only this task’s affected processes and verified an isolated snapshot with freshly installed locked dependencies.",
+    "The shared workspace contains other active article edits; site counts describe the validation snapshot, not an isolated publication.",
+    "No actual Harness, model, provider, business action or sandbox experiment."
+  ]
+}

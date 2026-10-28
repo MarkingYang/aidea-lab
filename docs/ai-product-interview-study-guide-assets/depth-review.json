@@ -1,0 +1,537 @@
+{
+  "date": "2026-10-06",
+  "before_sha256": "b1bb98eaf400b31703f460727f419c99d1729ec3350c4a976d0e2f4b0569de03",
+  "after_sha256": "3d760116c3160ce7c6cba846871ac2a2aff31507543ce55a9091f5db82200b2a",
+  "sections_reviewed": 88,
+  "review_scope": "All 88 existing teaching subsections expanded; static editorial coverage does not establish reader mastery or measured system performance.",
+  "sections": [
+    {
+      "section": "1.1",
+      "title": "1.1 原理：自回归生成与参数学习",
+      "added_characters": 494,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "1.2",
+      "title": "1.2 预算：Token 与上下文组成",
+      "added_characters": 280,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "1.3",
+      "title": "1.3 边界：长上下文、幻觉与污染",
+      "added_characters": 311,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "1.4",
+      "title": "1.4 计算：KV Cache 复用什么",
+      "added_characters": 323,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "1.5",
+      "title": "1.5 架构：MoE 总参数与激活参数",
+      "added_characters": 280,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "1.6",
+      "title": "1.6 选型：硬条件筛选与同题对照",
+      "added_characters": 231,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.1",
+      "title": "2.1 指令：Prompt 的作用与边界",
+      "added_characters": 257,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.2",
+      "title": "2.2 流程：RAG 如何提供外部证据",
+      "added_characters": 384,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.3",
+      "title": "2.3 准备：切片怎样保留条件与例外",
+      "added_characters": 239,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.4",
+      "title": "2.4 检索：向量、关键词与混合方式",
+      "added_characters": 364,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.5",
+      "title": "2.5 算例：召回与重排各解决什么",
+      "added_characters": 217,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.6",
+      "title": "2.6 诊断：沿证据链定位错误",
+      "added_characters": 216,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "2.7",
+      "title": "2.7 选型：Dify、LlamaIndex 与 Haystack",
+      "added_characters": 230,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "3.1",
+      "title": "3.1 执行：Function Calling 的完整回路",
+      "added_characters": 284,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "3.2",
+      "title": "3.2 规划：CoT、Self-Ask 与 ReAct",
+      "added_characters": 329,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "3.3",
+      "title": "3.3 控制：Workflow 与动态 Agent",
+      "added_characters": 225,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "3.4",
+      "title": "3.4 反馈：反思如何获得有效证据",
+      "added_characters": 223,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "3.5",
+      "title": "3.5 协作：何时值得用多 Agent",
+      "added_characters": 264,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "3.6",
+      "title": "3.6 选型：不同编排方式的代价",
+      "added_characters": 215,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "4.1",
+      "title": "4.1 分类：五类信息各放在哪里",
+      "added_characters": 225,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "4.2",
+      "title": "4.2 治理：记忆的写入、更新与删除",
+      "added_characters": 266,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "4.3",
+      "title": "4.3 选型：摘要、结构化存储与向量记忆",
+      "added_characters": 222,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.1",
+      "title": "5.1 对象：任务、试次、轨迹与终态",
+      "added_characters": 236,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.2",
+      "title": "5.2 步骤一：定义任务契约",
+      "added_characters": 313,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.3",
+      "title": "5.3 步骤二：构建场景矩阵",
+      "added_characters": 292,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.4",
+      "title": "5.4 步骤三：定义指标与分母",
+      "added_characters": 303,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.5",
+      "title": "5.5 步骤四：组合规则、模型与人工裁判",
+      "added_characters": 296,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.6",
+      "title": "5.6 步骤五：用专家样本校准裁判",
+      "added_characters": 239,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.7",
+      "title": "5.7 步骤六：隔离数据并防止泄露",
+      "added_characters": 304,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.8",
+      "title": "5.8 步骤七：检验重复运行的稳定性",
+      "added_characters": 223,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.9",
+      "title": "5.9 步骤八：从离线验证走向线上实验",
+      "added_characters": 619,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "5.10",
+      "title": "5.10 选型：四类评测平台入口",
+      "added_characters": 226,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "6.1",
+      "title": "6.1 入口：差评为什么还不是训练标签",
+      "added_characters": 187,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "6.2",
+      "title": "6.2 证据：Trace、任务状态与业务账本",
+      "added_characters": 263,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "6.3",
+      "title": "6.3 流程：采集、归因、修复、验证",
+      "added_characters": 222,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "6.4",
+      "title": "6.4 分流：形成 SFT 样本或偏好对",
+      "added_characters": 375,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "6.5",
+      "title": "6.5 质量：一致率、Kappa 与仲裁",
+      "added_characters": 258,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "6.6",
+      "title": "6.6 治理：数据血缘与使用边界",
+      "added_characters": 294,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "7.1",
+      "title": "7.1 风险：从错误内容到错误行动",
+      "added_characters": 195,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "7.2",
+      "title": "7.2 案例：不可信文档中的提示注入",
+      "added_characters": 209,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "7.3",
+      "title": "7.3 职责：认证、授权、确认与沙箱",
+      "added_characters": 236,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "7.4",
+      "title": "7.4 区别：参数注入与提示注入",
+      "added_characters": 216,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "7.5",
+      "title": "7.5 选型：内容护栏与策略引擎",
+      "added_characters": 200,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "8.1",
+      "title": "8.1 架构：由故障推导平台职责",
+      "added_characters": 241,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "8.2",
+      "title": "8.2 状态：推进、等待与结束条件",
+      "added_characters": 349,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "8.3",
+      "title": "8.3 案例：回包丢失后的恢复与幂等",
+      "added_characters": 289,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "8.4",
+      "title": "8.4 契约：第三方工具如何接入",
+      "added_characters": 707,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "8.5",
+      "title": "8.5 选型：执行框架与持久任务基础设施",
+      "added_characters": 295,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "8.6",
+      "title": "8.6 迁移：模型替换需要哪些验证",
+      "added_characters": 205,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.1",
+      "title": "9.1 边界：改变输入与改变模型参数",
+      "added_characters": 232,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.2",
+      "title": "9.2 SFT：从示范学习目标输出",
+      "added_characters": 358,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.3",
+      "title": "9.3 LoRA：参数高效更新",
+      "added_characters": 442,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.4",
+      "title": "9.4 经典 RLHF：奖励模型与强化学习",
+      "added_characters": 307,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.5",
+      "title": "9.5 DPO：直接优化偏好",
+      "added_characters": 502,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.6",
+      "title": "9.6 流程：从立项到灰度部署",
+      "added_characters": 394,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.7",
+      "title": "9.7 质量：过拟合、遗忘与学习曲线",
+      "added_characters": 274,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "9.8",
+      "title": "9.8 选型：托管服务与自建训练工具",
+      "added_characters": 237,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.1",
+      "title": "10.1 时延：Prefill 与 Decode",
+      "added_characters": 244,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.2",
+      "title": "10.2 容量：权重、KV Cache 与显存",
+      "added_characters": 244,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.3",
+      "title": "10.3 调度：vLLM、PagedAttention 与连续批处理",
+      "added_characters": 336,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.4",
+      "title": "10.4 负载：并发、吞吐与延迟",
+      "added_characters": 219,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.5",
+      "title": "10.5 手段：路由、缓存、压缩与量化",
+      "added_characters": 381,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.6",
+      "title": "10.6 算例：运行费用与完整业务成本",
+      "added_characters": 339,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.7",
+      "title": "10.7 选型：API、自部署与模型网关",
+      "added_characters": 356,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "10.8",
+      "title": "10.8 治理：限流、熔断与可观测",
+      "added_characters": 337,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "11.1",
+      "title": "11.1 比较前提：产品、SDK 与基础设施分层",
+      "added_characters": 231,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "11.2",
+      "title": "11.2 Dify：可视化组织应用流程",
+      "added_characters": 334,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "11.3",
+      "title": "11.3 Copilot Studio：编排企业已有能力",
+      "added_characters": 398,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "11.4",
+      "title": "11.4 Agentforce：封装受约束的业务动作",
+      "added_characters": 235,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "11.5",
+      "title": "11.5 验证：同一任务下的竞品对照",
+      "added_characters": 217,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.1",
+      "title": "12.1 边界：VLM、VLA 与低层控制",
+      "added_characters": 213,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.2",
+      "title": "12.2 闭环：观测、行动与安全反馈",
+      "added_characters": 229,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.3",
+      "title": "12.3 动作生成：Diffusion Policy",
+      "added_characters": 303,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.4",
+      "title": "12.4 预测与规划：世界模型",
+      "added_characters": 235,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.5",
+      "title": "12.5 路线：OpenVLA、Diffusion Policy 与 π0",
+      "added_characters": 314,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.6",
+      "title": "12.6 迁移：sim2real、遥操作与接管",
+      "added_characters": 240,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "12.7",
+      "title": "12.7 验收：任务分布、成功与干预",
+      "added_characters": 214,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.1",
+      "title": "13.1 第一步：写清业务与团队约束",
+      "added_characters": 204,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.2",
+      "title": "13.2 第二步：按瓶颈选择技术手段",
+      "added_characters": 255,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.3",
+      "title": "13.3 第三步：比较三条实现路线",
+      "added_characters": 246,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.4",
+      "title": "13.4 第四步：设计同题验证与淘汰条件",
+      "added_characters": 190,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.5",
+      "title": "13.5 第五步：决定何时引入模型路由",
+      "added_characters": 265,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.6",
+      "title": "13.6 第六步：写明演进与切换信号",
+      "added_characters": 348,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "13.7",
+      "title": "13.7 价值校验：AI 指标如何连接商业结果",
+      "added_characters": 213,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "14.1",
+      "title": "14.1 学习安排：知识依赖与短板优先",
+      "added_characters": 239,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "14.2",
+      "title": "14.2 综合作业：设计企业 IT 助手",
+      "added_characters": 194,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "14.3",
+      "title": "14.3 决策模板：形成可复查的选择记录",
+      "added_characters": 201,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    },
+    {
+      "section": "14.4",
+      "title": "14.4 自评：从背概念到独立作决策",
+      "added_characters": 273,
+      "scope": "Mechanism, worked example, boundary or verification detail; editorial coverage, not a learner competency test."
+    }
+  ]
+}

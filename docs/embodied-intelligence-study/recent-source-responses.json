@@ -1,0 +1,164 @@
+{
+  "scope": "Recent-history primary-source HTTP response hashes; no source body stored. Hashes record fetched response bytes and do not independently validate source claims.",
+  "records": [
+    {
+      "id": "cosmos",
+      "event_date": "2025-01-06",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-world-foundation-model-platform-to-accelerate-physical-ai-development",
+      "retrieved_at": "2026-09-26T08:00:06.388378+00:00",
+      "status": 200,
+      "final_url": "https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-world-foundation-model-platform-to-accelerate-physical-ai-development",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 83833,
+      "sha256": "ae61933c570fa8b1983f3757f8e772185556e15bfd35f795bc7e700fe1d6ec4a"
+    },
+    {
+      "id": "gr00t-n1",
+      "event_date": "2025-03-18",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks",
+      "retrieved_at": "2026-09-26T08:00:06.388738+00:00",
+      "status": 200,
+      "final_url": "https://nvidianews.nvidia.com/news/nvidia-isaac-gr00t-n1-open-humanoid-robot-foundation-model-simulation-frameworks",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 83620,
+      "sha256": "1581ef61bd6c26a8fcba1e0a2449451ce3641ae3bb93b8828a40ca91b6cecc0b"
+    },
+    {
+      "id": "helix",
+      "event_date": "2025-02-20",
+      "url": "https://www.figure.ai/news/helix",
+      "retrieved_at": "2026-09-26T08:00:06.388884+00:00",
+      "status": 200,
+      "final_url": "https://www.figure.ai/news/helix",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 90619,
+      "sha256": "1d537ca59409a89874bf47e9d93012a9c560eaa07f504e737c7c17bf4949c0cb"
+    },
+    {
+      "id": "helix-02",
+      "event_date": "2026-01-27",
+      "url": "https://www.figure.ai/news/helix-02",
+      "retrieved_at": "2026-09-26T08:00:06.389027+00:00",
+      "status": 200,
+      "final_url": "https://www.figure.ai/news/helix-02",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 72612,
+      "sha256": "0836a6d4ff6676db9e6618c30408d50895687e34928c34a8c8fb760575e0f7c1"
+    },
+    {
+      "id": "agibot-world-v1",
+      "event_date": "2025-03-09",
+      "url": "https://arxiv.org/abs/2503.06669v1",
+      "retrieved_at": "2026-09-26T08:00:07.628800+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2503.06669v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 50771,
+      "sha256": "791231742cbbf492f08ad198efdb49dde9ea1a1ef459c000841f9cccd241dbf6"
+    },
+    {
+      "id": "gemini-robotics",
+      "event_date": "2025-03-12",
+      "url": "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/",
+      "retrieved_at": "2026-09-26T08:00:08.033578+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/",
+      "content_type": "text/html",
+      "bytes": 33117,
+      "sha256": "f50068a452d7a108454797ce054ee2cd6106bd5dbc3d566c6e324caeeb51d96c"
+    },
+    {
+      "id": "gemini-on-device",
+      "event_date": "2025-06-24",
+      "url": "https://deepmind.google/blog/gemini-robotics-on-device-brings-ai-to-local-robotic-devices/",
+      "retrieved_at": "2026-09-26T08:00:08.079159+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-on-device-brings-ai-to-local-robotic-devices/",
+      "content_type": "text/html",
+      "bytes": 166677,
+      "sha256": "18a68eca082d7b053278369c6ae0a9512e7ef1f04200eddb57f1d1dac7042bec"
+    },
+    {
+      "id": "gemini-robotics-1-5",
+      "event_date": "2025-09-25",
+      "url": "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
+      "retrieved_at": "2026-09-26T08:00:08.211643+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-15-brings-ai-agents-into-the-physical-world/",
+      "content_type": "text/html",
+      "bytes": 177143,
+      "sha256": "69ee20f71ea6b6c911fe7f6214843d2a144b78671f4bcbaa37f11bd7024c0d2a"
+    },
+    {
+      "id": "pi0-5",
+      "event_date": "2025-04-22",
+      "url": "https://arxiv.org/abs/2504.16054v1",
+      "retrieved_at": "2026-09-26T08:00:09.181013+00:00",
+      "status": 200,
+      "final_url": "https://arxiv.org/abs/2504.16054v1",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 47111,
+      "sha256": "9050d8538e11eb7c0d9fed4e4aa26b05f6903f2d7953dae662a8952c497d7f3e"
+    },
+    {
+      "id": "pi-star-0-6",
+      "event_date": "2025-11-18",
+      "url": "https://arxiv.org/abs/2511.14759v1",
+      "retrieved_at": "2026-09-26T08:00:09.239888+00:00",
+      "status": "failed",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "id": "gxo-digit",
+      "event_date": "2024-06-27",
+      "url": "https://gxo.com/news_article/gxo-signs-industry-first-multi-year-agreement-with-agility-robotics/",
+      "retrieved_at": "2026-09-26T08:00:09.852686+00:00",
+      "status": "failed",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "digit-100k",
+      "event_date": "2025-11-20",
+      "url": "https://www.agilityrobotics.com/content/digit-moves-over-100k-totes",
+      "retrieved_at": "2026-09-26T08:00:10.007701+00:00",
+      "status": 200,
+      "final_url": "https://www.agilityrobotics.com/content/digit-moves-over-100k-totes",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 139928,
+      "sha256": "49881d1b5e41847ddfaac2cc0e8fb8c755ab33bd6200e9cc113cc31859be209e"
+    },
+    {
+      "id": "gemini-robotics-2",
+      "event_date": "2026-07-30",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "retrieved_at": "2026-09-26T08:00:10.019145+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "content_type": "text/html",
+      "bytes": 36253,
+      "sha256": "8535b1fad9d52f709ab2ef66d661308c568694893e65aba1c8a0ba0f17a0f5d4"
+    },
+    {
+      "id": "gemini-on-device-2-card",
+      "event_date": null,
+      "url": "https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/",
+      "retrieved_at": "2026-09-26T08:00:10.333536+00:00",
+      "status": 200,
+      "final_url": "https://deepmind.google/models/model-cards/gemini-robotics-on-device-2/",
+      "content_type": "text/html",
+      "bytes": 144160,
+      "sha256": "dcf340c63a557f22bd18fabac00f86a6e341cd51eff4d9fb75e736ff25857d45"
+    },
+    {
+      "id": "helix-2-5",
+      "event_date": "2026-09-17",
+      "url": "https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "retrieved_at": "2026-09-26T08:00:11.450095+00:00",
+      "status": 200,
+      "final_url": "https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 86404,
+      "sha256": "c0f1985426d4405c6f4e5a54145c324fa948de6d117545b8cb45cafd1bf24511"
+    }
+  ]
+}

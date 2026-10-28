@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-09-20T13:57:11.484121+00:00",
+  "article": "src/content/writing/pi-architecture-deep-dive.md",
+  "article_sha256": "538bcfcd94de6b67c1a424486d33aab4aaae6fbaac6f6738c8b454a6034cfc7d",
+  "source_commit": "19451accdeec671c1f4da9eafac8fc270f510ef4",
+  "source_files_verified": 24,
+  "content_check": "passed",
+  "build": {
+    "status": "passed",
+    "directory": "/tmp/pi-blog-validation-20260920",
+    "command": "npm run build",
+    "article_matches_workspace": true,
+    "astro": "7.2.9",
+    "mermaid": "11.17.2",
+    "note": "Original workspace builds stalled in local dependency reads. Isolated build used a fresh source snapshot and a separate copy of the working dependencies from /tmp/hermes-blog-validation-20260920; shared node_modules and package files unchanged."
+  },
+  "site_snapshot": {
+    "articles": 79,
+    "groups": 24,
+    "domains": 8,
+    "graph_nodes": 149,
+    "graph_links": 635,
+    "note": "Shared working tree also contains concurrent article revisions; these counts describe the validated source snapshot, not publication scope."
+  },
+  "browser": {
+    "passed": true,
+    "widths": [
+      1440,
+      390
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "diagram_count": 1,
+    "zoom_reset": "passed",
+    "old_anchors_preserved": 3,
+    "horizontal_overflow": false,
+    "screenshots_visually_reviewed": true,
+    "external_comment_error_count": 2,
+    "note": "External ArtalkComments fetch errors are recorded separately in browser-results.json; article and diagram checks passed."
+  },
+  "runtime_experiments": "None; no Pi, models, providers, real agent, business tools, upstream tests or benchmark executed.",
+  "publication": "local only; no commit or push"
+}

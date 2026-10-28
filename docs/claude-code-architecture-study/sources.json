@@ -1,0 +1,104 @@
+{
+  "scope": "Mutable official documentation responses, not an immutable software release. Body snapshots only in /tmp.",
+  "sources": [
+    {
+      "id": "how-claude-code-works",
+      "url": "https://code.claude.com/docs/en/how-claude-code-works.md",
+      "canonical": "https://code.claude.com/docs/en/how-claude-code-works",
+      "retrieved_at": "2026-09-20T13:44:44.528349+00:00",
+      "status": 200,
+      "bytes": 19761,
+      "sha256": "b07472946283485c42cb15990019aa39d636fceb2471abaf7d8282dfb9726c1d"
+    },
+    {
+      "id": "memory",
+      "url": "https://code.claude.com/docs/en/memory.md",
+      "canonical": "https://code.claude.com/docs/en/memory",
+      "retrieved_at": "2026-09-20T13:44:44.550038+00:00",
+      "status": 200,
+      "bytes": 52465,
+      "sha256": "1cf44b112e7daa1bc85820c368b8bed40359abc687d962925d4f93b2f54ffb82"
+    },
+    {
+      "id": "skills",
+      "url": "https://code.claude.com/docs/en/skills.md",
+      "canonical": "https://code.claude.com/docs/en/skills",
+      "retrieved_at": "2026-09-20T13:44:45.034290+00:00",
+      "status": 200,
+      "bytes": 115336,
+      "sha256": "5a2e0e2ee821fb7b79bff173358f48c036a2c9406a0446bc8292aa0221eee4af"
+    },
+    {
+      "id": "sub-agents",
+      "url": "https://code.claude.com/docs/en/sub-agents.md",
+      "canonical": "https://code.claude.com/docs/en/sub-agents",
+      "retrieved_at": "2026-09-20T13:44:44.849588+00:00",
+      "status": 200,
+      "bytes": 115522,
+      "sha256": "bc5cde1e31c0049ae254f0a65314d4d34072f94c15a173fe98cf52bcf0f553d0"
+    },
+    {
+      "id": "hooks",
+      "url": "https://code.claude.com/docs/en/hooks.md",
+      "canonical": "https://code.claude.com/docs/en/hooks",
+      "retrieved_at": "2026-09-20T13:44:45.449969+00:00",
+      "status": 200,
+      "bytes": 329656,
+      "sha256": "e0a14dcffd8299c22401f2ba18e577470f4ae25cb3dd6609a68160f1f2fbb390"
+    },
+    {
+      "id": "permissions",
+      "url": "https://code.claude.com/docs/en/permissions.md",
+      "canonical": "https://code.claude.com/docs/en/permissions",
+      "retrieved_at": "2026-09-20T13:44:44.751313+00:00",
+      "status": 200,
+      "bytes": 83911,
+      "sha256": "eab3c45e44187c7be90a7566d21233835354237c9b41ac36906ea45114cc21cb"
+    },
+    {
+      "id": "sandboxing",
+      "url": "https://code.claude.com/docs/en/sandboxing.md",
+      "canonical": "https://code.claude.com/docs/en/sandboxing",
+      "retrieved_at": "2026-09-20T13:44:45.981953+00:00",
+      "status": 200,
+      "bytes": 77859,
+      "sha256": "c1b48d15ec7181a1839b6c519757fd51d499ec72c6718a6296d7a8629baa18d0"
+    },
+    {
+      "id": "checkpointing",
+      "url": "https://code.claude.com/docs/en/checkpointing.md",
+      "canonical": "https://code.claude.com/docs/en/checkpointing",
+      "retrieved_at": "2026-09-20T13:44:45.822088+00:00",
+      "status": 200,
+      "bytes": 8711,
+      "sha256": "82edec95e91ab38c7ec1544c6415a8e04764d9cc219371c54879dd9c68eb7519"
+    },
+    {
+      "id": "mcp",
+      "url": "https://code.claude.com/docs/en/mcp.md",
+      "canonical": "https://code.claude.com/docs/en/mcp",
+      "retrieved_at": "2026-09-20T13:44:45.988544+00:00",
+      "status": 200,
+      "bytes": 117610,
+      "sha256": "d872a8aded51160476e935bad371f10a06e31d244f23f3f4f28f057c0f0ca36e"
+    },
+    {
+      "id": "costs",
+      "url": "https://code.claude.com/docs/en/costs.md",
+      "canonical": "https://code.claude.com/docs/en/costs",
+      "retrieved_at": "2026-09-20T13:44:45.975426+00:00",
+      "status": 200,
+      "bytes": 42188,
+      "sha256": "6c5ca34fa65f38c44e5dffeac3e5f44db486aeb001490ff16beac6b3034e8526"
+    },
+    {
+      "id": "model-config",
+      "url": "https://code.claude.com/docs/en/model-config.md",
+      "canonical": "https://code.claude.com/docs/en/model-config",
+      "retrieved_at": "2026-09-20T13:44:46.389915+00:00",
+      "status": 200,
+      "bytes": 111200,
+      "sha256": "98334d9d22a0f7fb9cd93b108e5ba48ddad767952f1922e1c3ab74a0e96ca505"
+    }
+  ]
+}

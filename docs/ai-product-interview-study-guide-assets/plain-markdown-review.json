@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-07",
+  "edition": "Structured plain Markdown",
+  "sha256": "ba2efc5af782e4b8fb6802318eee27f6557edc2c57a627997ea25a386814243e",
+  "chapters": [
+    {
+      "chapter": 1,
+      "knowledgeSections": 6,
+      "reviewQuestions": 6
+    },
+    {
+      "chapter": 2,
+      "knowledgeSections": 7,
+      "reviewQuestions": 7
+    },
+    {
+      "chapter": 3,
+      "knowledgeSections": 6,
+      "reviewQuestions": 6
+    },
+    {
+      "chapter": 4,
+      "knowledgeSections": 3,
+      "reviewQuestions": 3
+    },
+    {
+      "chapter": 5,
+      "knowledgeSections": 10,
+      "reviewQuestions": 10
+    },
+    {
+      "chapter": 6,
+      "knowledgeSections": 6,
+      "reviewQuestions": 6
+    },
+    {
+      "chapter": 7,
+      "knowledgeSections": 5,
+      "reviewQuestions": 5
+    },
+    {
+      "chapter": 8,
+      "knowledgeSections": 6,
+      "reviewQuestions": 6
+    },
+    {
+      "chapter": 9,
+      "knowledgeSections": 8,
+      "reviewQuestions": 8
+    },
+    {
+      "chapter": 10,
+      "knowledgeSections": 8,
+      "reviewQuestions": 8
+    },
+    {
+      "chapter": 11,
+      "knowledgeSections": 5,
+      "reviewQuestions": 5
+    },
+    {
+      "chapter": 12,
+      "knowledgeSections": 7,
+      "reviewQuestions": 7
+    },
+    {
+      "chapter": 13,
+      "knowledgeSections": 7,
+      "reviewQuestions": 7
+    },
+    {
+      "chapter": 14,
+      "knowledgeSections": 4,
+      "reviewQuestions": 4
+    }
+  ],
+  "units": 6,
+  "knowledgeSections": 88,
+  "pointAnswers": 88,
+  "interviewAnswers": 26,
+  "cases": 14,
+  "reviewSections": 14,
+  "images": 16,
+  "sourceURLsPreserved": 65,
+  "codeBlocksPreserved": 10,
+  "htmlTagsRemoved": true,
+  "foldingBlocksRemoved": 143,
+  "substantiveAnswersPreserved": 114,
+  "localLinksChecked": 77,
+  "scope": "Editorial restructuring and local rendering only; no publication or model/agent/business runs."
+}

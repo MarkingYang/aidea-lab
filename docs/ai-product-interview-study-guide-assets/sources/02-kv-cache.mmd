@@ -1,0 +1,15 @@
+sequenceDiagram
+participant T as Token 序列
+participant M as 模型计算
+participant K as KV Cache
+T->>M: 输入序列：Prefill
+M->>K: 保存各层输入 K / V
+M-->>T: 预测并选出第一个新 token
+loop Decode：直到满足停止条件
+T->>M: 处理刚生成的 token
+M->>M: 计算当前 Q / K / V
+K-->>M: 提供历史 K / V
+M->>M: 当前 Q 关注历史和当前 K / V
+M->>K: 追加当前 K / V
+M-->>T: 预测并选出下一个 token
+end

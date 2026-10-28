@@ -1,0 +1,55 @@
+{
+  "checked_at": "2026-09-26T08:13:34.509763+00:00",
+  "article": "src/content/writing/embodied-intelligence-evolution.md",
+  "article_sha256": "ce44a0c596fbb96b9b7c67a889527ea5d3fb5d0705fa11ef07a6742bd2d779bc",
+  "reading_copy_matches": true,
+  "dated_nodes": 30,
+  "historical_stages": 6,
+  "timeline_nodes": 12,
+  "mermaid_diagrams": 1,
+  "external_sources": 49,
+  "http_response_records": {
+    "ok_200": 42,
+    "accepted_202": 1,
+    "failed": 6,
+    "meaning": "Supplemental response identities, not claim verification; see research notes for browser readings."
+  },
+  "build": {
+    "command": "npm run build",
+    "status": "passed",
+    "directory": "/tmp/embodied-blog-validation-20260926",
+    "source_and_lock_match_workspace": true,
+    "pages": 128,
+    "note": "Original workspace build was terminated after stalling; isolated locked install and final content build passed."
+  },
+  "site_snapshot": {
+    "articles": 80,
+    "groups": 25,
+    "domains": 8,
+    "graph_nodes": 151,
+    "graph_links": 641
+  },
+  "browser": {
+    "status": "passed",
+    "widths": [
+      1440,
+      390
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "timeline_controls_and_anchors": "passed",
+    "horizontal_overflow": false,
+    "screenshots_visually_reviewed": true,
+    "external_comment_errors": 0
+  },
+  "preservation": {
+    "preexisting_files_checked": 201,
+    "other_changes_detected": [],
+    "existing_knowledge_entries_preserved": true,
+    "prior_AGENTS_content_preserved": true
+  },
+  "runtime_experiments": "None; no robots, models, simulators, provider APIs or business actions executed.",
+  "publication": "local only; no commit or push"
+}

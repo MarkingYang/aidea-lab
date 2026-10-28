@@ -1,0 +1,83 @@
+{
+  "scope": "Hypothetical teaching arithmetic only",
+  "checks": [
+    {
+      "example": "双候选softmax",
+      "result": 0.7500000000000001,
+      "expected": 0.75,
+      "passed": true
+    },
+    {
+      "example": "向量A长度",
+      "result": 1.0,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "example": "向量A余弦",
+      "result": 0.8,
+      "expected": 0.8,
+      "passed": true
+    },
+    {
+      "example": "核验错误率",
+      "result": 0.05,
+      "expected": 0.05,
+      "passed": true
+    },
+    {
+      "example": "核验覆盖率",
+      "result": 0.8,
+      "expected": 0.8,
+      "passed": true
+    },
+    {
+      "example": "真阳性预期",
+      "result": 90.0,
+      "expected": 90,
+      "passed": true
+    },
+    {
+      "example": "假阳性预期",
+      "result": 990.0,
+      "expected": 990,
+      "passed": true
+    },
+    {
+      "example": "报警精确率",
+      "result": 0.08333333333333333,
+      "expected": 0.08333333333333333,
+      "passed": true
+    },
+    {
+      "example": "零失败单侧95%上界",
+      "result": 0.029513049607039932,
+      "expected": 0.029513049607039932,
+      "passed": true
+    },
+    {
+      "example": "DPO sigmoid",
+      "result": 0.6666666666666666,
+      "expected": 0.6666666666666666,
+      "passed": true
+    },
+    {
+      "example": "DPO改善后损失",
+      "result": 0.40546510810816444,
+      "expected": 0.40546510810816444,
+      "passed": true
+    },
+    {
+      "example": "DPO零偏好差损失",
+      "result": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "passed": true
+    },
+    {
+      "example": "路由费用交点",
+      "result": 0.7,
+      "expected": 0.7,
+      "passed": true
+    }
+  ]
+}

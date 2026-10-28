@@ -1,0 +1,53 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "diagramCount": 1,
+      "frame": 503.984375,
+      "svg": 419.984375,
+      "error": false,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "diagramCount": 1,
+      "frame": 503.984375,
+      "svg": 419.984375,
+      "error": false,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "diagramCount": 1,
+      "frame": 436.078125,
+      "svg": 319.40625,
+      "error": false,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "diagramCount": 1,
+      "frame": 436.078125,
+      "svg": 319.40625,
+      "error": false,
+      "horizontalOverflow": false
+    }
+  ],
+  "pageErrors": [],
+  "externalCommentErrors": [
+    {
+      "message": "Failed to fetch",
+      "stack": "TypeError: Failed to fetch\n    at http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:20694\n    at Generator.next (<anonymous>)\n    at c (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:582)\n    at o (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:779)\n    at http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:838\n    at new Promise (<anonymous>)\n    at http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:720\n    at or (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:21183)\n    at cr.customFetch (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:21412)\n    at cr.<anonymous> (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:12656)"
+    },
+    {
+      "message": "Failed to fetch",
+      "stack": "TypeError: Failed to fetch\n    at http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:20694\n    at Generator.next (<anonymous>)\n    at c (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:582)\n    at o (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:779)\n    at http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:838\n    at new Promise (<anonymous>)\n    at http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:1:720\n    at or (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:21183)\n    at cr.customFetch (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:21412)\n    at cr.<anonymous> (http://127.0.0.1:4499/_astro/ArtalkComments.astro_astro_type_script_index_0_lang.tJFn6hFZ.js:56:12656)"
+    }
+  ],
+  "anchorsPreserved": 3,
+  "zoomAndReset": true
+}
