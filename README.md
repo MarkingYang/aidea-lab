@@ -1,4 +1,4 @@
-# 大飞随笔
+# Felix 随笔
 
 使用 Astro 构建的个人 AI 研究博客。Markdown 保存在 GitHub，Astro 生成静态页面；自有服务器通过 Nginx 提供页面，并运行一个单文件 Artalk 服务。
 

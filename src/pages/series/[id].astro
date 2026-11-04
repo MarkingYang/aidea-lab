@@ -5,7 +5,7 @@ export async function getStaticPaths() { const { series }=await getKnowledge(); 
 const {series}=Astro.props;
 const topic=topics.find(item=>item.id===series.topic)!;
 ---
-<BaseLayout title={`${series.title}｜阅读｜大飞随笔`} description={series.description}>
+<BaseLayout title={`${series.title}｜阅读`} description={series.description}>
   <div class="page-shell">
     <nav class="breadcrumbs" aria-label="面包屑"><a href="/topics/">知识目录</a><span>/</span><a href={`/topics/${topic.id}/`}>{topic.title}</a><span>/</span><span aria-current="page">{series.title}</span></nav>
     <header class="series-header"><div class="page-intro"><p class="eyebrow">{series.articles.length} chapters · Articles in this topic</p><h1>{series.title}</h1><p class="intro-copy">{series.description}</p><p class="series-facts">{series.articles.length} 篇 · 总阅读约 {series.minutes} 分钟，实践另计<br/>最近修订 {dateLabel(series.updatedAt)}</p><a class="primary-link" href={articleHref(series.articles[0].id)}>{series.articles.length === 1 ? '阅读文章' : '阅读第一篇'} <span aria-hidden="true">→</span></a></div></header>

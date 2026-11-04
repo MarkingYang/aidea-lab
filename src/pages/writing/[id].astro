@@ -35,7 +35,7 @@ const hasInlineSeriesNav=!!series && firstBlock.startsWith('> ') && firstBlock.i
 const related=getRelatedArticles(await getKnowledgeGraph(),entry.id,4);
 ---
 
-<BaseLayout title={`${entry.data.title}｜大飞随笔`} description={entry.data.description} image={null} ogType="article">
+<BaseLayout title={`${entry.data.title}`} description={entry.data.description} image={null} ogType="article">
   <article class="article-shell">
     <nav class="breadcrumbs article-breadcrumbs" aria-label="面包屑"><a href="/topics/">知识目录</a>{topic && <><span>/</span><a href={`/topics/${topic.id}/`}>{topic.title}</a></>}{series ? <><span>/</span><a href={`/series/${series.id}/`}>{series.title}</a><span>/</span><span aria-current="page">{shortTitle(entry.data.title)}</span></> : <><span>/</span><a href="/library/">全部文章</a></>}</nav>
     <header class="article-header">

@@ -9,7 +9,7 @@ const { entries, series, seriesByArticle, topicIdsFor } = await getKnowledge();
 const related = series.filter(item=>item.topic === topic.id);
 const independent = entries.filter(entry=>!seriesByArticle.has(entry.id) && topicIdsFor(entry).includes(topic.id));
 ---
-<BaseLayout title={`${topic.title}｜知识目录｜大飞随笔`} description={topic.description}>
+<BaseLayout title={`${topic.title}｜知识目录`} description={topic.description}>
   <div class="page-shell">
     <nav class="breadcrumbs" aria-label="面包屑"><a href="/topics/">知识目录</a><span>/</span><span aria-current="page">{topic.title}</span></nav>
     <header class="page-intro"><p class="eyebrow">{topic.english}</p><h1>{topic.question}</h1><p class="intro-copy">{topic.description}</p></header>

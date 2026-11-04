@@ -8,7 +8,7 @@ const readingGroups = topics.map(topic => ({
   articles: entries.filter(entry => topicIdsFor(entry).includes(topic.id)),
 })).filter(group => group.articles.length > 0);
 ---
-<BaseLayout title="阅读｜大飞随笔" description="关于 AI、研究、产品与组织的文章。">
+<BaseLayout title="阅读" description="关于 AI、研究、产品与组织的文章。">
   <div class="page-shell">
     <header class="page-intro">
       <p class="eyebrow">READING</p>
