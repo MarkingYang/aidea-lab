@@ -1,0 +1,63 @@
+{
+  "publication_date": "2026-11-04",
+  "articles": [
+    {
+      "slug": "embodied-intelligence-competition",
+      "title": "具身智能竞争格局：16 家公司的位置与产业分工",
+      "source": "具身智能竞品分析总报告_2026-09-14.md",
+      "source_sha256": "cff1fd264114091580f9a53ab63cea5e16b2143bd28136bc6b045f63a03529ab",
+      "evidence_cutoff": "2026-09-14",
+      "url": "https://ainoteatlas.com/writing/embodied-intelligence-competition/"
+    },
+    {
+      "slug": "embodied-vla-data-flywheel-competition",
+      "title": "从 VLA 到工业交付：智平方、PI、Figure 与原力灵机",
+      "source": "竞品分析/智平方_PI_Figure_对标原力灵机_由浅入深结构化版_2026-09-26.md",
+      "source_sha256": "dccbfd15daa0d79db1bbfd1baad6f333ab422b429e001e705b792ddcde39fd27",
+      "evidence_cutoff": "2026-09-24",
+      "url": "https://ainoteatlas.com/writing/embodied-vla-data-flywheel-competition/",
+      "merged_source": "竞品分析/智平方_PI_Figure_对标原力灵机_竞品分析_2026-09-24.md",
+      "merged_source_sha256": "2d03919e087dfb01ec2c7ec0700b6668a0469684f3f48aee4dd4a3fcdc7c0086"
+    },
+    {
+      "slug": "tesla-optimus-competition",
+      "title": "Tesla Optimus 竞品分析：制造优势怎样变成机器人生产力",
+      "source": "Tesla具身智能竞品分析_2026-09-13.md",
+      "source_sha256": "ccb0c6ebc29631ca436900cc4acf148e3c4713a3a5bf672d2a2a86c9ac0a638e",
+      "evidence_cutoff": "2026-09-13",
+      "url": "https://ainoteatlas.com/writing/tesla-optimus-competition/"
+    },
+    {
+      "slug": "galaxea-ai-competition",
+      "title": "星海图 Galaxea AI：从开发者平台走向生产现场",
+      "source": "星海图GalaxeaAI_具身智能竞品分析_2026-09-13.md",
+      "source_sha256": "b866723a6fb1d8d1ad0a2f77bee82e57286a99efb06f253bbdd80aea475eda17",
+      "evidence_cutoff": "2026-09-13",
+      "url": "https://ainoteatlas.com/writing/galaxea-ai-competition/"
+    },
+    {
+      "slug": "1x-neo-competition",
+      "title": "1X NEO 竞品分析：家庭机器人怎样真正省事",
+      "source": "竞品分析/1X_NEO_具身智能竞品分析_2026-09-13.md",
+      "source_sha256": "054f2eac291040c41229c70b7b593da307bfdc52fd89274d1b393a2ec1df5205",
+      "evidence_cutoff": "2026-09-13",
+      "url": "https://ainoteatlas.com/writing/1x-neo-competition/"
+    },
+    {
+      "slug": "embodied-intelligence-production",
+      "title": "具身智能：从能力演示到可持续生产力",
+      "source": "录音纪要整理/06_具身智能深度分析_金字塔版.md",
+      "source_sha256": "2c9c3436fcb8d1e9c3d4d40155698a4e8880fdc4e4adb52263379439b1a9d313",
+      "evidence_cutoff": "2026-09-13",
+      "url": "https://ainoteatlas.com/writing/embodied-intelligence-production/"
+    },
+    {
+      "slug": "embodied-intelligence-career-learning",
+      "title": "具身智能岗位与学习路径：从技术理解到产品交付",
+      "source": "具身智能岗位技能需求分析与学习路径报告.md",
+      "source_sha256": "3980852bdc50126baef112d703e32e63931c5acedf5ac07ab11df83f6ded886e",
+      "evidence_cutoff": "2026-09-22",
+      "url": "https://ainoteatlas.com/writing/embodied-intelligence-career-learning/"
+    }
+  ]
+}

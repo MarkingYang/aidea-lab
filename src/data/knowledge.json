@@ -225,15 +225,22 @@
     {
       "id": "embodied-intelligence",
       "topic": "embodied-intelligence",
-      "title": "发展与核心机制",
-      "description": "沿机器人、动作学习与基础模型的发展，理解感知、控制、数据和真实环境泛化。",
-      "outcome": "理解具身智能的历史脉络、系统职责与能力证据。",
-      "question": "机器人怎样把学到的本领带到新的身体、任务与环境？",
+      "title": "发展、技术与产业竞争",
+      "description": "从机器人发展与动作学习，走向数据飞轮、企业竞争、工业交付和岗位能力，理解具身智能怎样成为可持续生产力。",
+      "outcome": "理解技术机制、竞争位置和交付证据，能用任务与完整成本判断具身智能产品。",
+      "question": "机器人怎样学会行动，形成可复用能力，并在真实工作中创造价值？",
       "articles": [
         "embodied-intelligence-evolution",
         "dyna-robotics-embodied-ai",
         "robotics-open-source-learning",
-        "robot-tactile-learning"
+        "robot-tactile-learning",
+        "embodied-intelligence-competition",
+        "embodied-vla-data-flywheel-competition",
+        "tesla-optimus-competition",
+        "galaxea-ai-competition",
+        "1x-neo-competition",
+        "embodied-intelligence-production",
+        "embodied-intelligence-career-learning"
       ]
     },
     {

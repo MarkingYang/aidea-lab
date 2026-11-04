@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-11-04T08:00:45.369833+00:00",
+  "articles": [
+    {
+      "slug": "embodied-intelligence-competition",
+      "sha256": "f5d4a75f5efad72b8920d9eb8fc9bb45318e4a9adacdaaf0160294d4aa4737d2",
+      "body_text_sha256": "39e3559375250d8f5b3ceae40aea8e32fb4f2653f0bd3790f908565d0d3e7212",
+      "internal_links": 58,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    },
+    {
+      "slug": "embodied-vla-data-flywheel-competition",
+      "sha256": "94d5dcd6a9f4e754d46dfcc461f22a49a1defcafa2edd588e7da28ed2d0f44fd",
+      "body_text_sha256": "20814b6ff28242c8258403ec13680ee4be7d74e0f9ba6f5ec3b526e77c65ae42",
+      "internal_links": 54,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    },
+    {
+      "slug": "tesla-optimus-competition",
+      "sha256": "bd1984c4822b9ac5469e30e59e2afcb5c61187079eab2cf569414d99d5153b92",
+      "body_text_sha256": "2c93cd6ca58c5f408eb60bd83080b24426a5379324b72a99d607504df94aa7ca",
+      "internal_links": 53,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    },
+    {
+      "slug": "galaxea-ai-competition",
+      "sha256": "09c73225dbca463c0cfd1a76755bf217b1626482f2fc689f995eaafed464fae5",
+      "body_text_sha256": "851f373bdd8c8c7a64fe6a6504d410bb78513ebcd747aecca51db444b190f66d",
+      "internal_links": 54,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    },
+    {
+      "slug": "1x-neo-competition",
+      "sha256": "4ab6ad715f2e3cd0d0ecbf337b17ed943b2a22a586a46c8e4f007746379e7300",
+      "body_text_sha256": "739f1e738482c2d34df5886fd85831d7a510f466e41a98c7e885a462d0cdb889",
+      "internal_links": 54,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    },
+    {
+      "slug": "embodied-intelligence-production",
+      "sha256": "52d743b269e891c43d4a49b17063b41b6b1281eb31e3f6ce6a38aa4c6f359b0c",
+      "body_text_sha256": "b6ecf5e9f304ee09bab3d7e0be1d73c87dab42d84990227db976a7cadf935f52",
+      "internal_links": 56,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    },
+    {
+      "slug": "embodied-intelligence-career-learning",
+      "sha256": "bd17a02394dfea68f82ce4eaf46f4a05df0ab47a1f785962dcbbe0d089dc0149",
+      "body_text_sha256": "dccc1b80055485fdd8cfce51064ca5954d12c168cd706ea15503fffff64634ee",
+      "internal_links": 56,
+      "unique_ids": true,
+      "reading_copy_synchronized": true
+    }
+  ],
+  "series_articles": 11,
+  "site_articles": 92,
+  "build": "npm run build passed, content errors 0; graph 170 nodes / 714 links",
+  "scope": "Static output, routes, anchors, source/read-copy agreement and private-link scan. No robot/model experiments executed."
+}

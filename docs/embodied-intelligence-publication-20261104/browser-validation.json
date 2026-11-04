@@ -1,0 +1,234 @@
+{
+  "checked_at": "2026-11-04T07:59:08.843Z",
+  "article_view_checks": 28,
+  "checks": [
+    {
+      "slug": "embodied-intelligence-competition",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-vla-data-flywheel-competition",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "tables": 14,
+      "passed": true
+    },
+    {
+      "slug": "tesla-optimus-competition",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "galaxea-ai-competition",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 4,
+      "passed": true
+    },
+    {
+      "slug": "1x-neo-competition",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 6,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-production",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 1,
+      "tables": 13,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-career-learning",
+      "width": 1440,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-competition",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-vla-data-flywheel-competition",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "tables": 14,
+      "passed": true
+    },
+    {
+      "slug": "tesla-optimus-competition",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "galaxea-ai-competition",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 4,
+      "passed": true
+    },
+    {
+      "slug": "1x-neo-competition",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 6,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-production",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 1,
+      "tables": 13,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-career-learning",
+      "width": 1440,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-competition",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-vla-data-flywheel-competition",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "tables": 14,
+      "passed": true
+    },
+    {
+      "slug": "tesla-optimus-competition",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "galaxea-ai-competition",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 4,
+      "passed": true
+    },
+    {
+      "slug": "1x-neo-competition",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 6,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-production",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 1,
+      "tables": 13,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-career-learning",
+      "width": 390,
+      "theme": "light",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-competition",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "embodied-vla-data-flywheel-competition",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "tables": 14,
+      "passed": true
+    },
+    {
+      "slug": "tesla-optimus-competition",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    },
+    {
+      "slug": "galaxea-ai-competition",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 4,
+      "passed": true
+    },
+    {
+      "slug": "1x-neo-competition",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 6,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-production",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 1,
+      "tables": 13,
+      "passed": true
+    },
+    {
+      "slug": "embodied-intelligence-career-learning",
+      "width": 390,
+      "theme": "dark",
+      "diagrams": 0,
+      "tables": 7,
+      "passed": true
+    }
+  ],
+  "series_all_seven": true,
+  "first_party_errors": [],
+  "expected_blocked_comment_errors": 28,
+  "scope": "Desktop and mobile, light and dark, unique titles, table overflow, Mermaid runtime rendering and series presence; external comments intentionally blocked."
+}
