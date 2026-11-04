@@ -1,0 +1,13 @@
+{
+  "build": "passed",
+  "content_check": "passed",
+  "graph_check": "passed",
+  "articles": 93,
+  "topic_articles": 12,
+  "reading_copy_matches": true,
+  "local_paths_absent": true,
+  "internal_links": "passed",
+  "directory_membership": "passed",
+  "body_sha256": "6ab1c34c2c2e5bed45a95b84cc5d8c42b670be7ec53c892237e5b765bc6cbc2e",
+  "browser_validation": "Unavailable: in-app browser timed out twice; no visual verification claimed"
+}

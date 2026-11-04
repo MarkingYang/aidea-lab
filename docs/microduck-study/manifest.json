@@ -1,0 +1,13 @@
+{
+  "source_file": "Microduck_深度调研_2026-11-04.md",
+  "source_sha256": "3533904ec9b174043a3963461caaf7259943b746d54061b8cf75d8055bfeec39",
+  "article": "microduck-deep-dive",
+  "published_at": "2026-11-04",
+  "research_as_of": "2026-11-04",
+  "reading_minutes": 16,
+  "url": "https://ainoteatlas.com/writing/microduck-deep-dive/",
+  "runtime_commit": "d13be2c1a2f4b1e0b0e499b08b92f870518b1384",
+  "training_commit": "bae39f5900b318f7e87fc485c30a31213cfa14eb",
+  "physical_tests_executed": false,
+  "training_executed": false
+}
